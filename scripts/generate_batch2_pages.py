@@ -7,7 +7,11 @@ generate_sample_pages.py와 동일한 템플릿/규칙을 사용하되, 1차 배
 인접한 경우 "인근"/"가까운" 등으로 표현해 사실관계를 과장하지 않았다.
 """
 import re
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from sitemap_lib import update_sitemap
 
 ROOT = Path(__file__).resolve().parent.parent
 TEMPLATE_PATH = ROOT / "templates" / "region-landing-template.html"
@@ -1074,6 +1078,9 @@ def main() -> None:
         print(f"생성 완료: {out_path.relative_to(ROOT)}")
 
     print(f"\n총 {len(REGIONS)}개 페이지 생성")
+
+    sitemap_path = update_sitemap(ROOT, [region["slug"] for region in REGIONS])
+    print(f"sitemap.xml 갱신 완료: {sitemap_path.relative_to(ROOT)}")
 
 
 if __name__ == "__main__":

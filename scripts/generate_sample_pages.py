@@ -8,7 +8,11 @@ templates/region-landing-template.html 의 {{ }} 변수를 실제 지역 정보�
 1600-6011로 통일한다.
 """
 import re
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from sitemap_lib import update_sitemap
 
 ROOT = Path(__file__).resolve().parent.parent
 TEMPLATE_PATH = ROOT / "templates" / "region-landing-template.html"
@@ -434,6 +438,9 @@ def main() -> None:
         print(f"생성 완료: {out_path.relative_to(ROOT)}")
 
     print(f"\n총 {len(REGIONS)}개 페이지 생성")
+
+    sitemap_path = update_sitemap(ROOT, [region["slug"] for region in REGIONS])
+    print(f"sitemap.xml 갱신 완료: {sitemap_path.relative_to(ROOT)}")
 
 
 if __name__ == "__main__":
