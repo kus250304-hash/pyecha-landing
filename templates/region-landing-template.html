@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <!--
-  지역별 폐차장 랜딩페이지 템플릿
+  지역별 폐차 비교매입 랜딩페이지 템플릿
   ------------------------------------------------------------
   이 파일은 프로그래매틱 SEO 생성기가 지역(동 단위)마다 값을 채워
   넣는 "템플릿"입니다. {{ }} 로 표시된 자리는 반드시 실제 값으로
   치환한 뒤 배포하세요. 콘텐츠 원칙은 /CLAUDE.md 를 따릅니다.
+
+  이 서비스는 특정 폐차장을 직접 운영하는 것이 아니라, 전국 폐차
+  협력업체 네트워크와 연계하여 상담을 연결해주는 중개형 서비스입니다.
+  대표번호와 블로그·유튜브 링크는 템플릿에 고정값으로 포함되어 있으며,
+  특정 업체명을 전면에 내세우지 않습니다.
 
   [필수 치환 변수 목록]
   - {{REGION_SIDO}}            : 시/도 (예: 서울특별시)
@@ -13,16 +18,17 @@
   - {{REGION_FULL_NAME}}       : 전체 지역명 (예: 서울특별시 강남구 역삼동)
   - {{PAGE_TITLE}}             : <title> 및 메타 설명용 지역 포함 제목
   - {{META_DESCRIPTION}}       : 지역 포함 메타 설명 (120자 내외)
-  - {{COMPANY_NAME}}           : 업체명
-  - {{COMPANY_INTRO}}          : 업체 소개 문단 (지역 언급 포함, 시세/경쟁사 언급 금지)
-  - {{PHONE_NUMBER_TEL}}       : tel: 링크용 전화번호 (예: 0212345678)
-  - {{PHONE_NUMBER_DISPLAY}}   : 화면 표시용 전화번호 (예: 02-1234-5678)
+  - {{SERVICE_INTRO}}          : 서비스 소개 문단 (지역 언급 포함, 시세/경쟁사 언급 금지,
+                                 폐차 협력업체 네트워크 연계 및 비교매입 개념 반영)
+  - {{PHONE_NUMBER_TEL}}       : tel: 링크용 대표번호 (모든 페이지 공통, 예: 16006011)
+  - {{PHONE_NUMBER_DISPLAY}}   : 화면 표시용 대표번호 (모든 페이지 공통, 예: 1600-6011)
   - {{LANDMARK_NAME}}          : 지역 랜드마크/지리적 특징 이름
   - {{LANDMARK_DESCRIPTION}}   : 랜드마크와 연계한 지역 설명 문장
   - {{REVIEW_1_NAME}} / {{REVIEW_1_TEXT}} / {{REVIEW_1_RATING}}   : 지역 후기 1 (반복 3개)
   - {{REVIEW_2_NAME}} / {{REVIEW_2_TEXT}} / {{REVIEW_2_RATING}}
   - {{REVIEW_3_NAME}} / {{REVIEW_3_TEXT}} / {{REVIEW_3_RATING}}
-  - {{FAQ_1_QUESTION}} / {{FAQ_1_ANSWER}}   : 지역 맞춤 FAQ (반복 5개)
+  - {{FAQ_1_QUESTION}} / {{FAQ_1_ANSWER}}   : 지역 맞춤 FAQ (반복 5개, 서비스 신뢰 관련
+                                 FAQ 2개는 템플릿에 고정 문구로 이미 포함되어 있음)
   - {{FAQ_2_QUESTION}} / {{FAQ_2_ANSWER}}
   - {{FAQ_3_QUESTION}} / {{FAQ_3_ANSWER}}
   - {{FAQ_4_QUESTION}} / {{FAQ_4_ANSWER}}
@@ -31,13 +37,17 @@
 
   [생성 시 준수 사항 - CLAUDE.md 참조]
   1. 시세/견적 금액/매입가/경쟁사명 등은 어떤 변수 값에도 넣지 않는다.
-  2. COMPANY_INTRO 또는 서비스 지역 안내 문구에 "실제 서비스 가능 지역" 문구와
+     "폐차 대비 수출 비교매입" 개념은 구체적 금액 없이 방식 비교로만 서술한다.
+  2. SERVICE_INTRO 또는 서비스 지역 안내 문구에 "실제 서비스 가능 지역" 문구와
      출장 방문 서비스 안내가 반드시 포함되어야 한다(본 템플릿 본문에 기본 문구 포함됨).
+     또한 폐차장을 직접 운영하지 않고 협력업체 네트워크와 연계된 서비스임을
+     정직하게 고지해야 한다(본 템플릿에 고정 안내 문구 포함됨).
   3. LANDMARK_*, REVIEW_*, FAQ_* 값은 지역마다 고유해야 하며, 동일 문구를
      여러 지역 페이지에 복사해 붙여넣지 않는다. 페이지 전체 분량이
      최소 기준(예: 본문 800자 이상)을 충족하도록 설명 문단을 채운다.
   4. "100%", "1위", "무조건", "최고", "보장" 등 단정적 표현을 어떤 변수
-     값에도 사용하지 않는다.
+     값에도 사용하지 않는다. "더 유리한 방향으로 연결"과 같이 상황에 따라
+     달라질 수 있음을 전제로 한 표현만 사용한다.
 -->
 <html lang="ko">
 <head>
@@ -111,6 +121,35 @@
     width: fit-content;
   }
   .call-button:hover { filter: brightness(1.05); }
+  .social-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 0;
+  }
+  .social-row a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 999px;
+  }
+  header.hero .social-row a {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+  }
+  header.hero .social-row a:hover { background: rgba(255,255,255,0.2); }
+  footer .social-row {
+    justify-content: center;
+    margin-top: 10px;
+  }
+  footer .social-row a {
+    background: var(--color-bg-alt);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+  }
   nav.section-nav {
     background: var(--color-bg-alt);
     border-bottom: 1px solid var(--color-border);
@@ -262,23 +301,30 @@
   footer a {
     text-decoration: underline;
   }
+  footer .social-row a {
+    text-decoration: none;
+  }
 </style>
 </head>
 <body>
 
 <header class="hero">
   <div class="container">
-    <span class="badge">{{REGION_FULL_NAME}} 폐차 상담</span>
-    <h1>{{REGION_FULL_NAME}} 폐차, {{COMPANY_NAME}}에 문의하세요</h1>
-    <p>{{REGION_DONG}} 및 인근 지역 방문 상담 가능. 전화 한 통으로 절차를 안내받으세요.</p>
+    <span class="badge">{{REGION_FULL_NAME}} 폐차 비교매입 상담</span>
+    <h1>{{REGION_FULL_NAME}} 폐차, 수출 비교매입으로 알아보세요</h1>
+    <p>차량 상태에 따라 폐차와 수출 비교매입 중 더 적합한 방법으로, 전국 폐차 협력업체와 연결해 드립니다.</p>
     <a class="call-button" href="tel:{{PHONE_NUMBER_TEL}}">📞 {{PHONE_NUMBER_DISPLAY}} 전화 문의</a>
+    <div class="social-row">
+      <a href="https://blog.naver.com/abh77790" target="_blank" rel="noopener noreferrer">📝 폐차119 블로그</a>
+      <a href="http://www.youtube.com/@pecha-export" target="_blank" rel="noopener noreferrer">▶ 유튜브</a>
+    </div>
   </div>
 </header>
 
 <nav class="section-nav">
   <div class="container">
     <ul>
-      <li><a href="#about">업체 소개</a></li>
+      <li><a href="#about">서비스 소개</a></li>
       <li><a href="#service-area">서비스 지역 안내</a></li>
       <li><a href="#process">폐차 절차</a></li>
       <li><a href="#reviews">지역 후기</a></li>
@@ -289,12 +335,18 @@
 
 <main>
 
-  <!-- 1. 업체 소개 -->
+  <!-- 1. 서비스 소개 -->
   <section id="about">
     <div class="container">
-      <h2><span class="accent">업체 소개</span></h2>
-      <p class="lead">{{REGION_FULL_NAME}} 지역 폐차 상담 안내</p>
-      <p>{{COMPANY_INTRO}}</p>
+      <h2><span class="accent">서비스 소개</span></h2>
+      <p class="lead">{{REGION_FULL_NAME}} 지역 폐차 비교매입 상담 안내</p>
+      <p>{{SERVICE_INTRO}}</p>
+      <div class="notice-box">
+        <strong>정직한 서비스 안내</strong><br>
+        저희는 폐차장을 직접 운영하지 않으며, 전국 폐차 협력업체 네트워크와 연계되어
+        상담과 연결을 도와드리는 서비스입니다. 차량 상태와 조건에 따라 폐차와 수출
+        비교매입 중 더 적합한 방법을 안내해 드립니다.
+      </div>
     </div>
   </section>
 
@@ -304,7 +356,7 @@
       <h2><span class="accent">서비스 지역 안내</span></h2>
       <p>
         <strong>{{REGION_FULL_NAME}}</strong>은(는) 실제 서비스 가능 지역입니다.
-        {{REGION_SIGUNGU}} {{REGION_DONG}} 일대에서 직접 방문하여 상담과 폐차 절차를
+        {{REGION_SIGUNGU}} {{REGION_DONG}} 일대에서 협력업체와 연계하여 상담과 폐차 절차를
         도와드리고 있습니다.
       </p>
       <p>
@@ -313,7 +365,7 @@
       </p>
       <div class="notice-box">
         <strong>출장 방문 서비스 안내</strong><br>
-        차량이 있는 현장으로 직접 방문하여 상담 및 처리를 도와드립니다.
+        차량이 있는 현장으로 협력업체가 직접 방문하여 상담 및 처리를 도와드립니다.
         방문 가능 일정과 절차는 전화 문의 시 안내해 드립니다.
       </div>
     </div>
@@ -326,19 +378,19 @@
       <ol class="process-steps">
         <li>
           <h3>전화 상담</h3>
-          <p>차량 정보와 위치를 알려주시면 절차를 안내해 드립니다.</p>
+          <p>차량 정보와 위치를 알려주시면 폐차와 수출 비교매입 중 어떤 방법이 적합한지 안내해 드립니다.</p>
         </li>
         <li>
           <h3>방문 확인</h3>
-          <p>{{REGION_DONG}} 현장을 방문하여 차량 상태를 확인합니다.</p>
+          <p>{{REGION_DONG}} 현장으로 협력업체가 방문하여 차량 상태를 확인합니다.</p>
         </li>
         <li>
           <h3>서류 처리</h3>
-          <p>말소 등록 등 필요한 서류 절차를 함께 진행합니다.</p>
+          <p>말소 등록 등 필요한 서류 절차를 협력업체와 함께 진행합니다.</p>
         </li>
         <li>
           <h3>차량 인수</h3>
-          <p>절차 완료 후 차량을 인수하여 이동합니다.</p>
+          <p>절차 완료 후 연결된 협력업체가 차량을 인수하여 이동합니다.</p>
         </li>
       </ol>
     </div>
@@ -368,7 +420,7 @@
     </div>
   </section>
 
-  <!-- 5. FAQ -->
+  <!-- 5. FAQ (지역 맞춤 FAQ 5개 + 서비스 신뢰 관련 고정 FAQ 2개) -->
   <section id="faq">
     <div class="container">
       <h2><span class="accent">자주 묻는 질문</span></h2>
@@ -392,6 +444,14 @@
         <summary>{{FAQ_5_QUESTION}}</summary>
         <p>{{FAQ_5_ANSWER}}</p>
       </details>
+      <details class="faq-item">
+        <summary>폐차장을 직접 운영하시나요?</summary>
+        <p>아니요, 폐차장을 직접 운영하지 않습니다. 전국 폐차 협력업체 네트워크와 연계하여 상담과 연결을 도와드리는 서비스입니다.</p>
+      </details>
+      <details class="faq-item">
+        <summary>폐차와 수출 비교매입은 어떻게 다른가요?</summary>
+        <p>차량의 연식과 상태에 따라 국내 폐차 처리와 수출 비교매입 중 더 적합한 방식이 달라질 수 있습니다. 상담을 통해 차량 상황에 맞는 협력업체와 연결해 드립니다.</p>
+      </details>
     </div>
   </section>
 
@@ -399,8 +459,12 @@
 
 <footer>
   <div class="container">
-    <p>{{COMPANY_NAME}} · {{REGION_FULL_NAME}} 폐차 상담</p>
+    <p>{{REGION_FULL_NAME}} 폐차 비교매입 상담 · 전국 폐차 협력업체 네트워크 연계 서비스</p>
     <p><a href="{{PRIVACY_POLICY_URL}}">개인정보 처리방침</a></p>
+    <p class="social-row">
+      <a href="https://blog.naver.com/abh77790" target="_blank" rel="noopener noreferrer">📝 폐차119 블로그</a>
+      <a href="http://www.youtube.com/@pecha-export" target="_blank" rel="noopener noreferrer">▶ 유튜브</a>
+    </p>
   </div>
 </footer>
 
