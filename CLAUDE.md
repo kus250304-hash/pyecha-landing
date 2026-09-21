@@ -38,4 +38,5 @@
 ## 배치 생성 스크립트 운영 원칙
 
 - 새 배치(generate_batchN_pages.py)를 만들 때는 마지막에 `scripts/sitemap_lib.py`의 `update_sitemap(ROOT, [region["slug"] for region in REGIONS])`를 호출해 방금 생성한 페이지 URL을 `sitemap.xml`에 자동으로 반영합니다. 기존 배치 스크립트(generate_sample_pages.py, generate_batch2_pages.py, generate_batch3_pages.py)가 이 패턴의 예시입니다.
+- 배치 생성 후에는 `scripts/build_index.py`를 실행해 루트 `index.html`의 지역 목록과 지역 수를 pages/ 기준으로 갱신합니다.
 - 페이지 생성 자체는 사용자가 "다음 배치 만들어줘"처럼 명시적으로 요청했을 때만 실행합니다. 스크립트나 스케줄을 만들어 자동으로 배치를 계속 이어서 생성하지 않습니다.
