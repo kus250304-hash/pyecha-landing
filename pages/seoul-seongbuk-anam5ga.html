@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>서울특별시 성북구 안암동5가 폐차 비교매입 상담</title>
+<meta name="description" content="서울특별시 성북구 안암동5가 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다.">
+<style>
+  :root {
+    --color-primary: #1a5f3f;
+    --color-primary-dark: #0f3d28;
+    --color-accent: #e8622c;
+    --color-text: #222222;
+    --color-muted: #6b7280;
+    --color-bg-alt: #f7f8f6;
+    --color-border: #e5e7eb;
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Apple SD Gothic Neo", "Malgun Gothic", -apple-system, sans-serif;
+    color: var(--color-text);
+    line-height: 1.6;
+    background: #ffffff;
+  }
+  a { color: inherit; }
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  header.hero {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: #fff;
+    padding: 48px 0 40px;
+  }
+  header.hero .container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  header.hero .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 14px;
+    width: fit-content;
+  }
+  header.hero h1 {
+    font-size: 28px;
+    margin: 0;
+  }
+  header.hero p {
+    margin: 0;
+    font-size: 16px;
+    opacity: 0.92;
+  }
+  .call-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--color-accent);
+    color: #fff;
+    font-weight: 700;
+    font-size: 18px;
+    padding: 14px 24px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    width: fit-content;
+  }
+  .call-button:hover { filter: brightness(1.05); }
+  .social-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 0;
+  }
+  .social-row a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 999px;
+  }
+  header.hero .social-row a {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+  }
+  header.hero .social-row a:hover { background: rgba(255,255,255,0.2); }
+  footer .social-row {
+    justify-content: center;
+    margin-top: 10px;
+  }
+  footer .social-row a {
+    background: var(--color-bg-alt);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+  }
+  nav.section-nav {
+    background: var(--color-bg-alt);
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  nav.section-nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin: 0;
+    padding: 10px 0;
+  }
+  nav.section-nav a {
+    display: block;
+    padding: 8px 12px;
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--color-text);
+    border-radius: 6px;
+  }
+  nav.section-nav a:hover { background: #eceee9; }
+  section {
+    padding: 44px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  section h2 {
+    font-size: 22px;
+    margin: 0 0 18px;
+  }
+  section h2 .accent { color: var(--color-primary); }
+  .lead {
+    color: var(--color-muted);
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+  .notice-box {
+    background: #eef6f0;
+    border: 1px solid #cfe6d7;
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    margin-top: 16px;
+  }
+  .notice-box strong { color: var(--color-primary-dark); }
+  .process-steps {
+    list-style: none;
+    counter-reset: step;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+  }
+  .process-steps li {
+    counter-increment: step;
+    background: var(--color-bg-alt);
+    border-radius: var(--radius);
+    padding: 20px 16px;
+    position: relative;
+  }
+  .process-steps li::before {
+    content: counter(step);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  .process-steps h3 {
+    font-size: 16px;
+    margin: 0 0 6px;
+  }
+  .process-steps p {
+    font-size: 14px;
+    color: var(--color-muted);
+    margin: 0;
+  }
+  .reviews {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .review-card {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 18px;
+    background: #fff;
+  }
+  .review-card .rating {
+    color: #f5a623;
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+  .review-card .reviewer {
+    font-weight: 700;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--color-border);
+    padding: 16px 0;
+  }
+  .faq-item summary {
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::before {
+    content: "Q.";
+    color: var(--color-primary);
+    margin-right: 8px;
+  }
+  .faq-item p {
+    margin: 10px 0 0;
+    color: var(--color-muted);
+  }
+  .sticky-cta {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--color-primary-dark);
+    padding: 12px 20px;
+    display: flex;
+    justify-content: center;
+    z-index: 20;
+  }
+  .sticky-cta a {
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: none;
+  }
+  footer {
+    padding: 28px 0 90px;
+    text-align: center;
+    color: var(--color-muted);
+    font-size: 13px;
+  }
+  footer a {
+    text-decoration: underline;
+  }
+  footer .social-row a {
+    text-decoration: none;
+  }
+  .fine-print {
+    padding: 14px 0;
+    text-align: center;
+  }
+  .fine-print p {
+    color: var(--color-muted);
+    font-size: 12px;
+    margin: 0;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <span class="badge">서울특별시 성북구 안암동5가 폐차 비교매입 상담</span>
+    <h1>서울특별시 성북구 안암동5가 폐차, 수출 비교매입으로 알아보세요</h1>
+    <p>차량 상태에 따라 폐차와 수출 비교매입 중 더 적합한 방법으로, 전국 폐차 협력업체와 연결해 드립니다.</p>
+    <a class="call-button" href="tel:16006011">📞 1600-6011 전화 문의</a>
+    <div class="social-row">
+      <a href="https://blog.naver.com/abh77790" target="_blank" rel="noopener noreferrer">📝 폐차119 블로그</a>
+      <a href="http://www.youtube.com/@pecha-export" target="_blank" rel="noopener noreferrer">▶ 유튜브</a>
+    </div>
+  </div>
+</header>
+
+<nav class="section-nav">
+  <div class="container">
+    <ul>
+      <li><a href="#about">서비스 소개</a></li>
+      <li><a href="#service-area">서비스 지역 안내</a></li>
+      <li><a href="#process">폐차 절차</a></li>
+      <li><a href="#reviews">지역 후기</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+  <!-- 1. 서비스 소개 -->
+  <section id="about">
+    <div class="container">
+      <h2><span class="accent">서비스 소개</span></h2>
+      <p class="lead">서울특별시 성북구 안암동5가 지역 폐차 비교매입 상담 안내</p>
+      <p>서울특별시 성북구 안암동5가 일대는 전국 폐차 협력업체 네트워크와 연계되어 상담과 방문 처리가 가능한 지역입니다. 대학가 상권부터 언덕 위 주택가까지, 차량 상태와 조건에 따라 폐차와 수출 비교매입 중 더 적합한 방법으로 협력업체와 연결해 드립니다.</p>
+    </div>
+  </section>
+
+  <!-- 2. 서비스 지역 안내 (실제 서비스 가능 지역 + 출장 방문 안내 + 지역 고유 콘텐츠) -->
+  <section id="service-area">
+    <div class="container">
+      <h2><span class="accent">서비스 지역 안내</span></h2>
+      <p>
+        <strong>서울특별시 성북구 안암동5가</strong>은(는) 실제 서비스 가능 지역입니다.
+        성북구 안암동5가 일대에서 협력업체와 연계하여 상담과 폐차 절차를
+        도와드리고 있습니다.
+      </p>
+      <p>
+        안암동5가은 <strong>고려대학교 서울캠퍼스</strong> 인근 지역으로,
+        안암동5가는 고려대학교 서울캠퍼스가 자리한 지역으로, 안암로를 따라 대학가 상권과 오래된 주택가가 함께 이어지는 곳입니다.
+      </p>
+      <div class="notice-box">
+        <strong>출장 방문 서비스 안내</strong><br>
+        차량이 있는 현장으로 협력업체가 직접 방문하여 상담 및 처리를 도와드립니다.
+        방문 가능 일정과 절차는 전화 문의 시 안내해 드립니다.
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 폐차 절차 -->
+  <section id="process">
+    <div class="container">
+      <h2><span class="accent">폐차 절차</span></h2>
+      <ol class="process-steps">
+        <li>
+          <h3>전화 상담</h3>
+          <p>차량 정보와 위치를 알려주시면 폐차와 수출 비교매입 중 어떤 방법이 적합한지 안내해 드립니다.</p>
+        </li>
+        <li>
+          <h3>방문 확인</h3>
+          <p>안암동5가 현장으로 협력업체가 방문하여 차량 상태를 확인합니다.</p>
+        </li>
+        <li>
+          <h3>서류 처리</h3>
+          <p>말소 등록 등 필요한 서류 절차를 협력업체와 함께 진행합니다.</p>
+        </li>
+        <li>
+          <h3>차량 인수</h3>
+          <p>절차 완료 후 연결된 협력업체가 차량을 인수하여 이동합니다.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 4. 지역 후기 -->
+  <section id="reviews">
+    <div class="container">
+      <h2><span class="accent">안암동5가 지역 후기</span></h2>
+      <div class="reviews">
+        <div class="review-card">
+          <div class="rating">⭐⭐⭐⭐⭐</div>
+          <p>대학가 골목이라 주차가 까다로웠는데 통행이 적은 시간에 맞춰 방문해 주셨습니다.</p>
+          <div class="reviewer">남O수</div>
+        </div>
+        <div class="review-card">
+          <div class="rating">⭐⭐⭐⭐</div>
+          <p>안암동 언덕 위 다세대주택 앞이었는데 별 문제 없이 처리됐습니다.</p>
+          <div class="reviewer">표O진</div>
+        </div>
+        <div class="review-card">
+          <div class="rating">⭐⭐⭐⭐⭐</div>
+          <p>오래 방치한 차라 절차가 복잡할 줄 알았는데 필요한 부분만 짚어 안내해 주셨습니다.</p>
+          <div class="reviewer">구O영</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. FAQ (지역 맞춤 FAQ 5개 + 서비스 신뢰 관련 고정 FAQ 2개) -->
+  <section id="faq">
+    <div class="container">
+      <h2><span class="accent">자주 묻는 질문</span></h2>
+      <details class="faq-item">
+        <summary>대학가 원룸촌 골목에도 방문이 가능한가요?</summary>
+        <p>네, 가능합니다. 골목이 좁은 경우 인근 큰길에서 만날 위치를 함께 정하면 수월합니다.</p>
+      </details>
+      <details class="faq-item">
+        <summary>안암동5가가 실제 방문 가능한 지역인가요?</summary>
+        <p>안암동5가는 실제 서비스 가능 지역입니다. 인근 보문동, 종암동, 제기동에서도 출장 방문 상담이 가능합니다.</p>
+      </details>
+      <details class="faq-item">
+        <summary>학기 중 통행이 많은 시간을 피할 수 있나요?</summary>
+        <p>네, 통학 차량이 많은 시간을 피해 방문을 원하시면 전화로 편한 시간을 말씀해 주세요.</p>
+      </details>
+      <details class="faq-item">
+        <summary>장기 방치로 먼지가 쌓인 차량도 상담이 되나요?</summary>
+        <p>가능합니다. 방치 기간과 현재 상태를 알려주시면 진행 방법을 함께 확인합니다.</p>
+      </details>
+      <details class="faq-item">
+        <summary>번호판이 없는 차량도 처리할 수 있나요?</summary>
+        <p>상황에 따라 필요한 서류와 절차가 달라지므로 상담 시 차량 상태를 먼저 확인해 드립니다.</p>
+      </details>
+      <details class="faq-item">
+        <summary>폐차장을 직접 운영하시나요?</summary>
+        <p>아니요, 폐차장을 직접 운영하지 않습니다. 전국 폐차 협력업체 네트워크와 연계하여 상담과 연결을 도와드리는 서비스입니다.</p>
+      </details>
+      <details class="faq-item">
+        <summary>폐차와 수출 비교매입은 어떻게 다른가요?</summary>
+        <p>차량의 연식과 상태에 따라 국내 폐차 처리와 수출 비교매입 중 더 적합한 방식이 달라질 수 있습니다. 상담을 통해 차량 상황에 맞는 협력업체와 연결해 드립니다.</p>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+<div class="fine-print">
+  <div class="container">
+    <p>본 서비스는 전국 폐차 협력업체 네트워크와 함께합니다. 차량 상태와 조건에 따라 폐차와 수출 비교매입 중 더 적합한 방법을 안내해 드립니다.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p>서울특별시 성북구 안암동5가 폐차 비교매입 상담 · 전국 폐차 협력업체 네트워크 연계 서비스</p>
+    <p><a href="/privacy-policy.html">개인정보 처리방침</a></p>
+    <p class="social-row">
+      <a href="https://blog.naver.com/abh77790" target="_blank" rel="noopener noreferrer">📝 폐차119 블로그</a>
+      <a href="http://www.youtube.com/@pecha-export" target="_blank" rel="noopener noreferrer">▶ 유튜브</a>
+    </p>
+  </div>
+</footer>
+
+<div class="sticky-cta">
+  <a href="tel:16006011">📞 지금 전화하고 상담받기 · 1600-6011</a>
+</div>
+
+</body>
+</html>
