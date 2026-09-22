@@ -1,17 +1,19 @@
 """
-index.html의 지역 목록을 pages/ 디렉터리 기준으로 다시 생성한다.
+index.html의 지역 목록을 data/regions.json 기준으로 다시 생성한다.
 
-각 페이지의 <title>에서 "{시도} {시군구} {동} 폐차 비교매입 상담" 형태의 지역명을
-읽어 시도별로 모아, index.html의 지역 목록 블록과 헤더의 지역 수만 교체한다.
-스타일이나 안내 문구 등 나머지 내용은 그대로 둔다.
+regions.json 이 이미 지역별 sido/sigungu/dong을 갖고 있으므로 페이지 HTML을
+스크래핑하지 않고 직접 읽는다(템플릿의 title/badge 형식이 바뀌어도 영향받지 않음).
+index.html의 지역 목록 블록과 헤더의 지역 수만 교체하고 나머지는 그대로 둔다.
 
-배치 생성 스크립트를 실행한 뒤 이 스크립트를 실행하면 index.html이 최신 상태가 된다.
+배치 생성 스크립트나 build_site.py를 실행한 뒤 이 스크립트를 실행하면 index.html이 최신 상태가 된다.
 """
+import json
 import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 PAGES_DIR = ROOT / "pages"
+REGIONS_PATH = ROOT / "data" / "regions.json"
 INDEX_PATH = ROOT / "index.html"
 
 SIDO_ORDER = [
@@ -21,20 +23,20 @@ SIDO_ORDER = [
     "경상남도", "제주특별자치도",
 ]
 
-TITLE_RE = re.compile(r"<title>(.+?) 폐차 비교매입 상담</title>")
 GROUPS_RE = re.compile(r'(?<=</div>\n\n)(      <div class="region-group">.*</div>\n)(?=</main>)', re.DOTALL)
 COUNT_RE = re.compile(r"(지역별 상담 페이지 \(현재 )\d+(개 지역\))")
 
 
 def collect_regions() -> dict[str, list[tuple[str, str]]]:
+    regions = json.loads(REGIONS_PATH.read_text(encoding="utf-8"))
+    existing = {p.stem for p in PAGES_DIR.glob("*.html")}
+
     by_sido: dict[str, list[tuple[str, str]]] = {}
-    for path in sorted(PAGES_DIR.glob("*.html")):
-        match = TITLE_RE.search(path.read_text(encoding="utf-8"))
-        if not match:
-            raise ValueError(f"지역명을 찾을 수 없습니다: {path.name}")
-        full_name = match.group(1)
-        sido = full_name.split()[0]
-        by_sido.setdefault(sido, []).append((full_name, path.name))
+    for r in regions:
+        if r["slug"] not in existing:
+            continue  # 아직 렌더링되지 않은 지역은 목록에서 제외
+        full_name = " ".join(x for x in (r["sido"], r["sigungu"], r["dong"]) if x)
+        by_sido.setdefault(r["sido"], []).append((full_name, f"{r['slug']}.html"))
 
     unknown = set(by_sido) - set(SIDO_ORDER)
     if unknown:

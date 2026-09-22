@@ -72,20 +72,18 @@
 
   /* 히어로 */
   .hero { background: linear-gradient(160deg, var(--teal) 0%, var(--teal-deep) 100%); color: #fff; padding-block: 34px 44px; }
-  .hero .badge { display: inline-block; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.28); border-radius: 999px; padding: 6px 14px; font-size: 13px; font-weight: 700; }
-  .hero h1 { font-size: 34px; line-height: 1.18; margin: 16px 0 12px; }
-  .hero .sub { font-size: 17px; margin: 0 0 22px; opacity: .94; max-width: 34em; }
+  .hero .badge { display: inline-block; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.28); border-radius: 999px; padding: 6px 14px; font-size: clamp(12px, 3.2vw, 13px); font-weight: 700; line-height: 1.4; }
+  .hero h1 { font-size: clamp(24px, 7.8vw, 34px); line-height: 1.22; margin: 16px 0 12px; }
+  .hero .sub { font-size: clamp(14px, 4vw, 17px); margin: 0 0 22px; opacity: .94; max-width: 34em; }
   .hero .btn-call { font-size: 20px; min-height: 60px; }
   .hero .hint { margin: 10px 0 0; font-size: 14px; opacity: .9; }
-  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 26px 0; }
+  .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 26px 0; }
   .stat { background: rgba(255,255,255,.10); border-radius: 12px; padding: 14px 8px; text-align: center; }
-  .stat .num { display: block; font-size: 26px; color: var(--coral-soft); line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .stat .num { display: block; font-size: clamp(22px, 6.5vw, 26px); color: var(--coral-soft); line-height: 1.1; font-variant-numeric: tabular-nums; }
   .stat .lbl { display: block; font-size: 13px; margin-top: 6px; opacity: .92; }
   .trust { display: flex; flex-wrap: wrap; gap: 8px 16px; justify-content: center; margin-top: 18px; font-size: 14px; font-weight: 700; }
   .trust span::before { content: "✓ "; color: var(--coral-soft); }
   @media (min-width: 700px) {
-    .hero h1 { font-size: 46px; }
-    .hero .sub { font-size: 19px; }
     .stat .num { font-size: 34px; }
   }
 
@@ -182,7 +180,7 @@
   footer a { color: var(--muted); }
 
   /* 하단 고정 바 */
-  .bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; display: grid; grid-template-columns: 3fr 2fr; gap: 8px; padding: 8px 10px calc(8px + env(safe-area-inset-bottom, 0px)); background: rgba(245,248,248,.96); backdrop-filter: blur(8px); border-top: 1px solid var(--line); }
+  .bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; display: grid; grid-template-columns: 2fr 1fr; gap: 8px; padding: 8px 10px calc(8px + env(safe-area-inset-bottom, 0px)); background: rgba(245,248,248,.96); backdrop-filter: blur(8px); border-top: 1px solid var(--line); }
   .bar .btn { min-height: 52px; font-size: 17px; border-radius: 12px; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   :focus-visible { outline: 3px solid var(--coral); outline-offset: 2px; }
@@ -214,7 +212,7 @@
     <p class="hint">통화 1분이면 폐차·수출 중 어느 쪽이 유리한지 바로 확인됩니다.</p>
 
     <div class="stats">
-      <div class="stat"><span class="num display">0원</span><span class="lbl">견인비</span></div><div class="stat"><span class="num display">당일</span><span class="lbl">접수</span></div><div class="stat"><span class="num display">최고가</span><span class="lbl">도전</span></div>
+      <div class="stat"><span class="num display">당일</span><span class="lbl">접수</span></div><div class="stat"><span class="num display">최고가</span><span class="lbl">도전</span></div>
     </div>
 
     <div class="quote-card" id="quote">
@@ -332,7 +330,7 @@
     <div class="wrap">
       <div class="time-band">
         <strong class="display">오늘 접수하면 당일·익일 견인 가능</strong>
-        <p>지금 전화 주시면 순서대로 연결됩니다. 통화가 어려우면 견적 폼으로 남겨주세요.</p>
+        <p>전화 응대 24시간 상담 가능 · 야간·주말 접수는 문자로 남겨주시면 순서대로 연락드립니다.</p>
         <a class="btn btn-call" href="tel:16006011"><svg><use href="#i-phone"/></svg>1600-6011 전화 상담</a>
       </div>
     </div>
@@ -355,7 +353,7 @@
       <p class="sec-sub">전화가 어려우면 문자나 견적 폼으로 남겨주세요</p>
       <div class="channel">
         <a class="btn btn-call" href="tel:16006011"><svg><use href="#i-phone"/></svg>전화 1600-6011</a>
-        
+        <a class="btn btn-sms" href="sms:16006011?body=역삼동%20폐차%20문의드립니다"><svg><use href="#i-chat"/></svg>문자로 문의</a>
         
         <a class="btn btn-quote" href="#quote"><svg><use href="#i-chat"/></svg>견적 폼으로 남기기</a>
       </div>
@@ -440,7 +438,7 @@
 
 <nav class="bar" aria-label="빠른 문의">
   <a class="btn btn-call" href="tel:16006011"><svg><use href="#i-phone"/></svg>1600-6011 전화</a>
-  <a class="btn btn-quote" href="#quote" style="background:#fff"><svg><use href="#i-chat"/></svg>견적 남기기</a>
+  <a class="btn btn-sms" href="sms:16006011?body=역삼동%20폐차%20문의드립니다"><svg><use href="#i-chat"/></svg>문자</a>
 </nav>
 
 </body>

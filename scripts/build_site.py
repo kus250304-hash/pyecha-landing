@@ -7,7 +7,6 @@ pages/<slug>.html 을 렌더링하고 sitemap.xml 을 갱신한다.
   python3 scripts/build_site.py --only a,b,c    # 지정한 슬러그만 (시범 적용)
 
 site_config.json 에서 null 인 값은 해당 요소를 숨기거나 대체 문구로 바꾼다:
-  consultation_count → 누적 상담 타일 대신 '견인비 없음' 타일
   hours_text         → 운영시간 줄 생략
   sms_number         → 문자 버튼 생략, 하단 바 두 번째 버튼은 견적 폼 이동
   kakao_channel_url  → 카카오톡 버튼 생략
@@ -19,6 +18,7 @@ import html
 import json
 import re
 import sys
+from collections import Counter
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -82,18 +82,16 @@ def cases_for(r: dict, cases: list[dict], n: int = 4) -> tuple[str, str, list[di
     return "실제 사례 보기", "유튜브와 블로그에서 실제 진행 사례를 보실 수 있습니다", []
 
 
-def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template: str) -> str:
+def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template: str, dong_counts: dict) -> str:
     full = " ".join(x for x in (r["sido"], r["sigungu"], r["dong"]) if x)
     sigungu_dong = " ".join(x for x in (r["sigungu"], r["dong"]) if x)
+    # 같은 동 이름이 다른 시/군/구에도 있으면 title/description이 겹치지 않도록 구를 붙인다
+    title_region = f"{r['sigungu'] or r['sido']} {r['dong']}" if dong_counts[r["dong"]] > 1 else r["dong"]
     base = cfg["site_base_url"].rstrip("/")
     phone_tel, phone_disp = cfg["phone_tel"], cfg["phone_display"]
 
-    # 숫자 3개
-    if cfg.get("consultation_count"):
-        first = f'<div class="stat"><span class="num display">{int(cfg["consultation_count"]):,}건</span><span class="lbl">누적 상담</span></div>'
-    else:
-        first = '<div class="stat"><span class="num display">0원</span><span class="lbl">견인비</span></div>'
-    stats = first + (
+    # 숫자 타일: 실제 수치가 없는 누적 상담 건수는 지어내지 않고 넣지 않는다
+    stats = (
         '<div class="stat"><span class="num display">당일</span><span class="lbl">접수</span></div>'
         '<div class="stat"><span class="num display">최고가</span><span class="lbl">도전</span></div>'
     )
@@ -176,7 +174,7 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
         parts.append(f"이메일 {esc(b['email'])}")
     footer_biz = (" · ".join(parts) + "<br>") if parts else ""
 
-    meta_title = f"{r['dong']} 폐차 | 폐차 보상금 vs 수출 시세 비교, 견인비 없음 · {phone_disp}"
+    meta_title = f"{title_region} 폐차 | 폐차 보상금 vs 수출 시세 비교, 견인비 없음 · {phone_disp}"
     meta_desc = (
         f"{full} 폐차 전에 폐차 보상금과 수출 시세를 함께 비교해 드립니다. 압류·서류 없음도 상담 가능, "
         f"당일 접수, 견인비 없음. {r['landmark_name']} 인근 출장 방문. 전화 {phone_disp}"
@@ -237,6 +235,8 @@ def main() -> None:
     template = TEMPLATE.read_text(encoding="utf-8")
     OUT.mkdir(exist_ok=True)
 
+    dong_counts = Counter(r["dong"] for r in regions)
+
     targets = regions
     if args.only:
         wanted = {s.strip() for s in args.only.split(",") if s.strip()}
@@ -246,7 +246,7 @@ def main() -> None:
             raise SystemExit(f"regions.json 에 없는 슬러그: {sorted(missing)}")
 
     for r in targets:
-        (OUT / f"{r['slug']}.html").write_text(render(r, regions, cfg, cases, template), encoding="utf-8")
+        (OUT / f"{r['slug']}.html").write_text(render(r, regions, cfg, cases, template, dong_counts), encoding="utf-8")
         print(f"렌더링: pages/{r['slug']}.html")
 
     update_sitemap(ROOT, [r["slug"] for r in targets])
