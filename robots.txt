@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kus250304-hash.github.io/pyecha-landing/sitemap.xml

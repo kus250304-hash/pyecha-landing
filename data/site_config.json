@@ -1,0 +1,19 @@
+{
+  "_comment": "사이트 공통 설정. null 인 값은 아직 받지 못한 정보이며, 빌더가 해당 요소를 자동으로 숨기거나 대체 문구를 씁니다.",
+  "site_base_url": "https://kus250304-hash.github.io/pyecha-landing",
+  "phone_tel": "16006011",
+  "phone_display": "1600-6011",
+  "sms_number": "16006011",
+  "kakao_channel_url": null,
+  "web3forms_access_key": null,
+  "hours_text": "24시간 상담 가능",
+  "youtube_url": "http://www.youtube.com/@pecha-export",
+  "blog_url": "https://blog.naver.com/abh77790",
+  "business": {
+    "name": null,
+    "ceo": null,
+    "registration_number": null,
+    "address": null,
+    "email": null
+  }
+}
