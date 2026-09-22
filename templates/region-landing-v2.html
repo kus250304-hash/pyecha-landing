@@ -1,21 +1,26 @@
 <!DOCTYPE html>
+<!--
+  지역별 폐차 상담 랜딩페이지 템플릿 v2 (전화·견적 폼 중심)
+  scripts/build_site.py 가 data/regions.json + data/site_config.json 으로 채운다.
+  {{ }} 자리는 빌더가 전부 치환하며, 남는 자리가 있으면 빌더가 실패한다.
+-->
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>인계동 폐차 | 폐차 보상금 vs 수출 시세 비교, 견인비 없음 · 1600-6011</title>
-<meta name="description" content="경기도 수원시 팔달구 인계동 폐차 전에 폐차 보상금과 수출 시세를 함께 비교해 드립니다. 압류·서류 없음도 상담 가능, 당일 접수, 견인비 없음. 경기아트센터 인근 출장 방문. 전화 1600-6011">
-<link rel="canonical" href="https://kus250304-hash.github.io/pyecha-landing/pages/gyeonggi-suwon-paldal-ingye.html">
+<title>{{META_TITLE}}</title>
+<meta name="description" content="{{META_DESC}}">
+<link rel="canonical" href="{{CANONICAL}}">
 <meta property="og:type" content="website">
-<meta property="og:title" content="인계동 폐차 | 폐차 보상금 vs 수출 시세 비교, 견인비 없음 · 1600-6011">
-<meta property="og:description" content="경기도 수원시 팔달구 인계동 폐차 전에 폐차 보상금과 수출 시세를 함께 비교해 드립니다. 압류·서류 없음도 상담 가능, 당일 접수, 견인비 없음. 경기아트센터 인근 출장 방문. 전화 1600-6011">
-<meta property="og:url" content="https://kus250304-hash.github.io/pyecha-landing/pages/gyeonggi-suwon-paldal-ingye.html">
+<meta property="og:title" content="{{META_TITLE}}">
+<meta property="og:description" content="{{META_DESC}}">
+<meta property="og:url" content="{{CANONICAL}}">
 <meta property="og:locale" content="ko_KR">
 <meta name="theme-color" content="#0E5E63">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "압류가 있어도 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "차령이 기준을 넘었다면 압류·저당이 있어도 말소가 되는 경우가 많습니다. 등록원부를 보고 바로 확인해 드립니다."}}, {"@type": "Question", "name": "서류가 없어도 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "등록증을 잃어버리셨어도 재발급 없이 진행할 수 있는 방법을 안내해 드립니다. 신분증만 준비해 주세요."}}, {"@type": "Question", "name": "차가 안 움직여도 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "시동이 안 걸리거나 사고 차량이어도 견인차가 갑니다. 견인비는 받지 않습니다."}}, {"@type": "Question", "name": "비용이 나오나요?", "acceptedAnswer": {"@type": "Answer", "text": "폐차·수출 어느 쪽이든 고객님이 내시는 비용은 없습니다. 예외가 생기면 진행 전에 먼저 말씀드립니다."}}, {"@type": "Question", "name": "인계동 상권 뒷골목에도 방문이 가능한가요?", "acceptedAnswer": {"@type": "Answer", "text": "네, 가능합니다. 골목이 좁은 경우 인근 큰길 위치를 함께 안내해 주시면 원활합니다."}}, {"@type": "Question", "name": "인계동이 실제 방문 가능한 지역인가요?", "acceptedAnswer": {"@type": "Answer", "text": "인계동은 실제 서비스 가능 지역입니다. 인근 매탄동, 우만동에서도 방문 상담이 가능합니다."}}, {"@type": "Question", "name": "경기아트센터 공연 시간을 피해 방문할 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "네, 공연 시간과 겹치지 않도록 전화로 방문 시간을 조율해 드립니다."}}]}</script>
+<script type="application/ld+json">{{FAQ_JSONLD}}</script>
 <style>
   :root {
     --teal: #0E5E63;
@@ -182,7 +187,7 @@
   footer a { color: var(--muted); }
 
   /* 하단 고정 바 */
-  .bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; display: grid; grid-template-columns: 3fr 2fr; gap: 8px; padding: 8px 10px calc(8px + env(safe-area-inset-bottom, 0px)); background: rgba(245,248,248,.96); backdrop-filter: blur(8px); border-top: 1px solid var(--line); }
+  .bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; display: grid; grid-template-columns: {{BAR_COLS}}; gap: 8px; padding: 8px 10px calc(8px + env(safe-area-inset-bottom, 0px)); background: rgba(245,248,248,.96); backdrop-filter: blur(8px); border-top: 1px solid var(--line); }
   .bar .btn { min-height: 52px; font-size: 17px; border-radius: 12px; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   :focus-visible { outline: 3px solid var(--coral); outline-offset: 2px; }
@@ -206,24 +211,24 @@
 
 <header class="hero">
   <div class="wrap">
-    <span class="badge">수원시 팔달구 인계동 폐차 상담 · 당일 접수</span>
-    <h1 class="display">인계동 폐차,<br>폐차보다 수출이 더 받는 차가 있습니다</h1>
+    <span class="badge">{{SIGUNGU_DONG}} 폐차 상담 · 당일 접수</span>
+    <h1 class="display">{{DONG}} 폐차,<br>폐차보다 수출이 더 받는 차가 있습니다</h1>
     <p class="sub">폐차 보상금과 수출 시세를 함께 비교해서 최고가를 받으실 수 있도록 도와드립니다.</p>
 
-    <a class="btn btn-call" href="tel:16006011"><svg><use href="#i-phone"/></svg>1600-6011 지금 전화하기</a>
+    <a class="btn btn-call" href="tel:{{PHONE_TEL}}"><svg><use href="#i-phone"/></svg>{{PHONE_DISPLAY}} 지금 전화하기</a>
     <p class="hint">통화 1분이면 폐차·수출 중 어느 쪽이 유리한지 바로 확인됩니다.</p>
 
     <div class="stats">
-      <div class="stat"><span class="num display">0원</span><span class="lbl">견인비</span></div><div class="stat"><span class="num display">당일</span><span class="lbl">접수</span></div><div class="stat"><span class="num display">최고가</span><span class="lbl">도전</span></div>
+      {{STATS_HTML}}
     </div>
 
     <div class="quote-card" id="quote">
       <h3>전화가 부담되시면 3칸만 남겨주세요</h3>
       <p class="lead">문자로 답드립니다. 차량번호만 있으면 더 빠르게 확인해 드립니다.</p>
-      <form action="../thanks.html" method="GET">
-        
-        <input type="hidden" name="subject" value="[경기도 수원시 팔달구 인계동] 폐차·수출 비교 견적 요청">
-        <input type="hidden" name="region" value="경기도 수원시 팔달구 인계동">
+      <form action="{{FORM_ACTION}}" method="{{FORM_METHOD}}">
+        {{FORM_HIDDEN}}
+        <input type="hidden" name="subject" value="[{{REGION_FULL_NAME}}] 폐차·수출 비교 견적 요청">
+        <input type="hidden" name="region" value="{{REGION_FULL_NAME}}">
         <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
         <label for="q1-plate">차량번호 (선택)</label>
         <input id="q1-plate" name="plate" type="text" inputmode="text" placeholder="예: 12가 3456" autocomplete="off">
@@ -252,28 +257,28 @@
           <h3>일반 폐차</h3>
           <p>압류·저당이 없는 차량. 접수 → 견인 → 폐차장 인수 → 말소까지 함께 진행합니다.</p>
           <span class="tag ok">견인 당일·익일</span>
-          <a class="link" href="tel:16006011">이 경우 전화 주세요 →</a>
+          <a class="link" href="tel:{{PHONE_TEL}}">이 경우 전화 주세요 →</a>
         </div>
         <div class="card">
           <div class="icon coral"><svg><use href="#i-lock"/></svg></div>
           <h3>차령초과 말소 (압류 있어도)</h3>
           <p>차령 기준을 넘긴 차는 압류·저당이 남아 있어도 말소가 가능한 경우가 많습니다. 등록원부만 확인하면 됩니다.</p>
           <span class="tag warn">보통 1~2개월</span>
-          <a class="link" href="tel:16006011">이 경우 전화 주세요 →</a>
+          <a class="link" href="tel:{{PHONE_TEL}}">이 경우 전화 주세요 →</a>
         </div>
         <div class="card">
           <div class="icon warn"><svg><use href="#i-bolt"/></svg></div>
           <h3>조기폐차 (노후 경유차)</h3>
           <p>배출가스 4·5등급 경유차는 지자체 조기폐차 제도 대상일 수 있습니다. 사전 신청·승인 후 진행합니다.</p>
           <span class="tag teal">승인 후 2주 내</span>
-          <a class="link" href="tel:16006011">이 경우 전화 주세요 →</a>
+          <a class="link" href="tel:{{PHONE_TEL}}">이 경우 전화 주세요 →</a>
         </div>
         <div class="card">
           <div class="icon ok"><svg><use href="#i-people"/></svg></div>
           <h3>상속 폐차</h3>
           <p>명의자가 돌아가신 차량은 상속인이 말소합니다. 사망 후 90일 안에 이전·폐차하지 않으면 과태료가 나올 수 있어 서둘러 안내해 드립니다.</p>
           <span class="tag ok">서류 준비 후 당일 접수</span>
-          <a class="link" href="tel:16006011">이 경우 전화 주세요 →</a>
+          <a class="link" href="tel:{{PHONE_TEL}}">이 경우 전화 주세요 →</a>
         </div>
       </div>
       <p class="note">처리 기간은 지역·서류 상황에 따라 달라질 수 있습니다.</p>
@@ -306,7 +311,7 @@
         <div class="card" style="background:var(--ground)">
           <div class="icon teal"><svg><use href="#i-net"/></svg></div>
           <h3>전국 협력 네트워크</h3>
-          <p>인계동을 포함해 전국 폐차 협력업체와 함께 진행합니다. 지역에 맞는 업체가 방문합니다.</p>
+          <p>{{DONG}}을 포함해 전국 폐차 협력업체와 함께 진행합니다. 지역에 맞는 업체가 방문합니다.</p>
           <span class="tag teal">출장 방문</span>
         </div>
       </div>
@@ -332,8 +337,8 @@
     <div class="wrap">
       <div class="time-band">
         <strong class="display">오늘 접수하면 당일·익일 견인 가능</strong>
-        <p>지금 전화 주시면 순서대로 연결됩니다. 통화가 어려우면 견적 폼으로 남겨주세요.</p>
-        <a class="btn btn-call" href="tel:16006011"><svg><use href="#i-phone"/></svg>1600-6011 전화 상담</a>
+        {{HOURS_HTML}}
+        <a class="btn btn-call" href="tel:{{PHONE_TEL}}"><svg><use href="#i-phone"/></svg>{{PHONE_DISPLAY}} 전화 상담</a>
       </div>
     </div>
   </section>
@@ -354,9 +359,9 @@
       <h2 class="sec-title display">편한 방법으로 문의하세요</h2>
       <p class="sec-sub">전화가 어려우면 문자나 견적 폼으로 남겨주세요</p>
       <div class="channel">
-        <a class="btn btn-call" href="tel:16006011"><svg><use href="#i-phone"/></svg>전화 1600-6011</a>
-        
-        
+        <a class="btn btn-call" href="tel:{{PHONE_TEL}}"><svg><use href="#i-phone"/></svg>전화 {{PHONE_DISPLAY}}</a>
+        {{SMS_BUTTON}}
+        {{KAKAO_BUTTON}}
         <a class="btn btn-quote" href="#quote"><svg><use href="#i-chat"/></svg>견적 폼으로 남기기</a>
       </div>
     </div>
@@ -364,56 +369,56 @@
 
   <section id="local" style="background:#fff">
     <div class="wrap">
-      <h2 class="sec-title display">인계동에서 폐차하실 때</h2>
-      <p class="sec-sub">경기도 수원시 팔달구 인계동 은(는) 실제 출장 방문이 가능한 지역입니다</p>
+      <h2 class="sec-title display">{{DONG}}에서 폐차하실 때</h2>
+      <p class="sec-sub">{{REGION_FULL_NAME}} 은(는) 실제 출장 방문이 가능한 지역입니다</p>
       <div class="local">
-        <p>인계동은 <span class="landmark">경기아트센터</span> 인근 지역으로, 인계동은 경기아트센터와 인계동 상권이 자리한 수원 최대의 업무·상업 중심지로, 수원 3대 상권 중 하나로 꼽히는 지역입니다.</p>
-        <p>경기도 수원시 팔달구 인계동 일대는 전국 폐차 협력업체 네트워크와 연계되어 상담과 방문 처리가 가능한 지역입니다. 인계동 상권 골목부터 경기아트센터 인근 주택가까지, 차량 상태에 따라 폐차와 수출 비교매입 중 더 적합한 방법으로 협력업체와 연결해 드립니다.</p>
+        <p>{{DONG}}은 <span class="landmark">{{LANDMARK_NAME}}</span> 인근 지역으로, {{LANDMARK_DESC}}</p>
+        <p>{{SERVICE_INTRO}}</p>
         <p>차량이 있는 곳으로 협력업체가 직접 방문해 상담과 처리를 도와드립니다. 아파트 지하주차장, 상가 뒤편, 좁은 골목 어디든 위치만 알려주시면 됩니다.</p>
       </div>
       <div class="faq" style="margin-top:16px">
-        <details><summary>인계동 상권 뒷골목에도 방문이 가능한가요?</summary><p>네, 가능합니다. 골목이 좁은 경우 인근 큰길 위치를 함께 안내해 주시면 원활합니다.</p></details><details><summary>인계동이 실제 방문 가능한 지역인가요?</summary><p>인계동은 실제 서비스 가능 지역입니다. 인근 매탄동, 우만동에서도 방문 상담이 가능합니다.</p></details><details><summary>경기아트센터 공연 시간을 피해 방문할 수 있나요?</summary><p>네, 공연 시간과 겹치지 않도록 전화로 방문 시간을 조율해 드립니다.</p></details>
+        {{LOCAL_FAQ_HTML}}
       </div>
       <div class="local" style="margin-top:16px">
-        <p style="font-weight:800;margin-bottom:4px"><svg style="width:18px;height:18px;vertical-align:-3px;color:var(--teal)"><use href="#i-pin"/></svg> 경기도 다른 지역 폐차 상담</p>
-        <div class="neighbors"><a href="gyeonggi-seongnam-bundang-jeongja.html">정자동 폐차</a><a href="gyeonggi-seongnam-sujeong-taepyeong.html">태평동 폐차</a><a href="gyeonggi-bucheon-wonmi-jung.html">중동 폐차</a><a href="gyeonggi-goyang-ilsandong-baekseok.html">백석동 폐차</a><a href="gyeonggi-goyang-ilsanseo-daehwa.html">대화동 폐차</a><a href="gyeonggi-yongin-suji-jukjeon.html">죽전동 폐차</a></div>
+        <p style="font-weight:800;margin-bottom:4px"><svg style="width:18px;height:18px;vertical-align:-3px;color:var(--teal)"><use href="#i-pin"/></svg> {{NEIGHBOR_TITLE}}</p>
+        <div class="neighbors">{{NEIGHBORS_HTML}}</div>
       </div>
     </div>
   </section>
 
   <section id="cases">
     <div class="wrap">
-      <h2 class="sec-title display">실제 사례 보기</h2>
-      <p class="sec-sub">유튜브와 블로그에서 실제 진행 사례를 보실 수 있습니다</p>
-      
+      <h2 class="sec-title display">{{CASES_TITLE}}</h2>
+      <p class="sec-sub">{{CASES_SUB}}</p>
+      {{CASES_HTML}}
       <div class="ext">
         <div class="yt">
           <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
           <h3>영상으로 보는 폐차·수출 현장</h3>
           <p>실제 견인·인수 과정을 영상으로 확인하실 수 있습니다.</p>
-          <a class="btn btn-quote" href="http://www.youtube.com/@pecha-export" target="_blank" rel="noopener noreferrer" style="background:#fff">영상으로 보기</a>
+          <a class="btn btn-quote" href="{{YOUTUBE_URL}}" target="_blank" rel="noopener noreferrer" style="background:#fff">영상으로 보기</a>
         </div>
         <div class="blog">
           <h3>폐차119 블로그</h3>
           <p>더 많은 사례와 폐차·수출 이야기를 블로그에서 보실 수 있습니다.</p>
-          <a class="btn btn-quote" href="https://blog.naver.com/abh77790" target="_blank" rel="noopener noreferrer" style="background:#fff;color:#124D2C;border-color:#124D2C">블로그에서 더 많은 사례 보기</a>
+          <a class="btn btn-quote" href="{{BLOG_URL}}" target="_blank" rel="noopener noreferrer" style="background:#fff;color:#124D2C;border-color:#124D2C">블로그에서 더 많은 사례 보기</a>
         </div>
       </div>
-      <a class="btn btn-call" href="tel:16006011" style="margin-top:16px"><svg><use href="#i-phone"/></svg>1600-6011 지금 전화하기</a>
+      <a class="btn btn-call" href="tel:{{PHONE_TEL}}" style="margin-top:16px"><svg><use href="#i-phone"/></svg>{{PHONE_DISPLAY}} 지금 전화하기</a>
     </div>
   </section>
 
   <section id="final" class="final">
     <div class="wrap">
-      <h2 class="display">인계동 폐차, 전화 한 통이면<br>폐차·수출 중 유리한 쪽을 바로 알 수 있습니다</h2>
-      <a class="btn btn-call" href="tel:16006011"><svg><use href="#i-phone"/></svg>1600-6011 지금 전화하기</a>
+      <h2 class="display">{{DONG}} 폐차, 전화 한 통이면<br>폐차·수출 중 유리한 쪽을 바로 알 수 있습니다</h2>
+      <a class="btn btn-call" href="tel:{{PHONE_TEL}}"><svg><use href="#i-phone"/></svg>{{PHONE_DISPLAY}} 지금 전화하기</a>
       <div class="quote-card">
         <h3>3칸만 남겨주셔도 됩니다</h3>
         <p class="lead">전화가 부담되시면 차종·연식만 남겨주세요. 문자로 답드립니다.</p>
-        <form action="../thanks.html" method="GET">
-          
-          <input type="hidden" name="subject" value="[경기도 수원시 팔달구 인계동] 폐차·수출 비교 견적 요청 (하단)">
-          <input type="hidden" name="region" value="경기도 수원시 팔달구 인계동">
+        <form action="{{FORM_ACTION}}" method="{{FORM_METHOD}}">
+          {{FORM_HIDDEN}}
+          <input type="hidden" name="subject" value="[{{REGION_FULL_NAME}}] 폐차·수출 비교 견적 요청 (하단)">
+          <input type="hidden" name="region" value="{{REGION_FULL_NAME}}">
           <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
           <label for="q2-plate">차량번호 (선택)</label>
           <input id="q2-plate" name="plate" type="text" placeholder="예: 12가 3456" autocomplete="off">
@@ -433,14 +438,14 @@
 <p class="fine-print">본 서비스는 전국 폐차 협력업체 네트워크와 함께합니다. 차량 상태와 조건에 따라 폐차와 수출 비교매입 중 더 적합한 방법을 안내해 드립니다.</p>
 
 <footer>
-  
-  대표번호 <a href="tel:16006011">1600-6011</a> · <a href="../privacy.html">개인정보 처리방침</a> · <a href="../index.html">전체 지역 보기</a><br>
-  <a href="https://blog.naver.com/abh77790" target="_blank" rel="noopener noreferrer">폐차119 블로그</a> · <a href="http://www.youtube.com/@pecha-export" target="_blank" rel="noopener noreferrer">유튜브</a>
+  {{FOOTER_BIZ}}
+  대표번호 <a href="tel:{{PHONE_TEL}}">{{PHONE_DISPLAY}}</a> · <a href="../privacy.html">개인정보 처리방침</a> · <a href="../index.html">전체 지역 보기</a><br>
+  <a href="{{BLOG_URL}}" target="_blank" rel="noopener noreferrer">폐차119 블로그</a> · <a href="{{YOUTUBE_URL}}" target="_blank" rel="noopener noreferrer">유튜브</a>
 </footer>
 
 <nav class="bar" aria-label="빠른 문의">
-  <a class="btn btn-call" href="tel:16006011"><svg><use href="#i-phone"/></svg>1600-6011 전화</a>
-  <a class="btn btn-quote" href="#quote" style="background:#fff"><svg><use href="#i-chat"/></svg>견적 남기기</a>
+  <a class="btn btn-call" href="tel:{{PHONE_TEL}}"><svg><use href="#i-phone"/></svg>{{PHONE_DISPLAY}} 전화</a>
+  {{BAR_SECOND}}
 </nav>
 
 </body>

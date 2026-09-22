@@ -27,7 +27,8 @@ OUT_PATH = ROOT / "diagnosis.md"
 
 SITE_BASE = "https://kus250304-hash.github.io/pyecha-landing"
 
-PROMISE_WORDS = ["보장", "무조건", "100%", "1위", "최고", "최저가", "확실히", "반드시", "무료"]
+PROMISE_WORDS = ["보장", "무조건", "100%", "1위", "최고가 보장", "최저가", "확실히", "반드시", "무료"]
+# "최고가 도전 / 최고가를 받으실 수 있도록" 는 방향 표현으로 허용(CLAUDE.md 5번)
 
 TITLE_RE = re.compile(r"<title>(.*?)</title>", re.S)
 DESC_RE = re.compile(r'<meta name="description" content="(.*?)">')
