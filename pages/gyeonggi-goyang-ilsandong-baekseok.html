@@ -12,11 +12,15 @@
 <meta property="og:url" content="https://kus250304-hash.github.io/pyecha-landing/pages/gyeonggi-goyang-ilsandong-baekseok.html">
 <meta property="og:locale" content="ko_KR">
 <meta name="theme-color" content="#0E5E63">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "압류가 있어도 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "차령이 기준을 넘었다면 압류·저당이 있어도 말소가 되는 경우가 많습니다. 등록원부를 보고 바로 확인해 드립니다."}}, {"@type": "Question", "name": "서류가 없어도 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "등록증을 잃어버리셨어도 재발급 없이 진행할 수 있는 방법을 안내해 드립니다. 신분증만 준비해 주세요."}}, {"@type": "Question", "name": "차가 안 움직여도 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "시동이 안 걸리거나 사고 차량이어도 견인차가 갑니다. 견인비는 받지 않습니다."}}, {"@type": "Question", "name": "비용이 나오나요?", "acceptedAnswer": {"@type": "Answer", "text": "폐차·수출 어느 쪽이든 고객님이 내시는 비용은 없습니다. 예외가 생기면 진행 전에 먼저 말씀드립니다."}}, {"@type": "Question", "name": "백석동이 실제 방문 가능한 지역인가요?", "acceptedAnswer": {"@type": "Answer", "text": "백석동은 실제 서비스 가능 지역입니다. 인근 마두동, 장항동에서도 방문 상담이 가능합니다."}}, {"@type": "Question", "name": "일산호수공원 인근 주차 차량도 처리되나요?", "acceptedAnswer": {"@type": "Answer", "text": "네, 가능합니다. 정확한 주차 구역을 알려주시면 방문 일정에 맞춰 찾아갑니다."}}, {"@type": "Question", "name": "고양종합터미널 근처 아울렛 주차장도 방문되나요?", "acceptedAnswer": {"@type": "Answer", "text": "네, 가능합니다. 쇼핑 혼잡 시간을 피해 방문 시간을 조율해 드립니다."}}]}</script>
 <style>
+  @font-face {
+    font-family: 'Jalnan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Jalnan.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
   :root {
     --teal: #0E5E63;
     --teal-deep: #083E42;
@@ -50,7 +54,7 @@
   }
   a { color: inherit; }
   .wrap { max-width: 960px; margin: 0 auto; padding-inline: 18px; }
-  .display { font-family: "Black Han Sans", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; font-weight: 400; letter-spacing: -0.01em; }
+  .display { font-family: "Jalnan", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; font-weight: 400; letter-spacing: -0.01em; }
   h1, h2, h3 { text-wrap: balance; margin: 0; }
   section { padding-block: 40px; }
   .sec-title { font-size: 24px; text-align: center; margin-bottom: 6px; }
@@ -115,6 +119,12 @@
   .tag.ok { background: var(--ok); } .tag.warn { background: var(--warn); } .tag.teal { background: var(--teal); } .tag.coral { background: var(--coral); }
   .card .link { margin-top: auto; font-size: 14px; font-weight: 700; color: var(--coral-deep); text-decoration: none; }
   .note { font-size: 13px; color: var(--muted); text-align: center; margin: 14px 0 0; }
+
+  /* 문제차 상담 */
+  .problem-list { list-style: none; margin: 0 0 18px; padding: 0; display: grid; gap: 10px; }
+  @media (min-width: 620px) { .problem-list { grid-template-columns: 1fr 1fr; } }
+  .problem-list li { background: var(--card); border-radius: 12px; padding: 14px 16px; font-size: 15px; font-weight: 700; box-shadow: 0 2px 10px rgba(23,40,43,.06); display: flex; align-items: center; gap: 10px; }
+  .problem-list li::before { content: "✓"; flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--teal-tint); color: var(--teal); display: grid; place-items: center; font-size: 14px; font-weight: 800; }
 
   /* 서류 */
   .docs { background: var(--card); border-radius: var(--radius); overflow: hidden; box-shadow: 0 2px 10px rgba(23,40,43,.06); }
@@ -228,7 +238,7 @@
         <label for="q1-car">연식 또는 차종</label>
         <input id="q1-car" name="car" type="text" placeholder="예: 2015 그랜저" autocomplete="off">
         <label for="q1-phone">전화번호</label>
-        <input id="q1-phone" name="phone" type="tel" inputmode="tel" placeholder="010-0000-0000" required autocomplete="tel">
+        <input id="q1-phone" name="phone" type="tel" inputmode="tel" placeholder="010-0000-0000" maxlength="13" required autocomplete="tel">
         <button class="btn btn-call" type="submit"><svg><use href="#i-chat"/></svg>폐차·수출 비교 견적 받기</button>
         <p class="fine">남겨주신 번호는 견적 안내에만 사용합니다.</p>
       </form>
@@ -275,6 +285,26 @@
         </div>
       </div>
       <p class="note">처리 기간은 지역·서류 상황에 따라 달라질 수 있습니다.</p>
+    </div>
+  </section>
+
+  <section id="problem-cars" style="background:#fff">
+    <div class="wrap">
+      <h2 class="sec-title display">문제가 있는 차량도 상담 가능합니다</h2>
+      <p class="sec-sub">서류가 복잡한 차량, 다른 곳에서 어렵다고 한 차량도 상담해 드립니다</p>
+      <ul class="problem-list">
+        <li>법인 부도 차량</li>
+        <li>상속 차량</li>
+        <li>차는 없어졌는데 서류상 말소가 안 된 차량</li>
+        <li>압류·저당 차량</li>
+        <li>오래 방치된 차량</li>
+        <li>사고 차량</li>
+      </ul>
+      <p class="note">상태나 서류가 복잡할수록 폐차와 수출을 비교해 더 유리한 쪽을 찾아드립니다.</p>
+      <div class="channel" style="margin-top:18px">
+        <a class="btn btn-call" href="tel:16006011"><svg><use href="#i-phone"/></svg>전화 1600-6011</a>
+        <a class="btn btn-sms" href="sms:16006011?body=백석동%20폐차%20문의드립니다"><svg><use href="#i-chat"/></svg>문자로 문의</a>
+      </div>
     </div>
   </section>
 
@@ -418,7 +448,7 @@
           <label for="q2-car">연식 또는 차종</label>
           <input id="q2-car" name="car" type="text" placeholder="예: 2015 그랜저" autocomplete="off">
           <label for="q2-phone">전화번호</label>
-          <input id="q2-phone" name="phone" type="tel" inputmode="tel" placeholder="010-0000-0000" required autocomplete="tel">
+          <input id="q2-phone" name="phone" type="tel" inputmode="tel" placeholder="010-0000-0000" maxlength="13" required autocomplete="tel">
           <button class="btn btn-call" type="submit"><svg><use href="#i-chat"/></svg>폐차·수출 비교 견적 받기</button>
           <p class="fine">남겨주신 번호는 견적 안내에만 사용합니다.</p>
         </form>
@@ -440,6 +470,29 @@
   <a class="btn btn-call" href="tel:16006011"><svg><use href="#i-phone"/></svg>1600-6011 전화</a>
   <a class="btn btn-sms" href="sms:16006011?body=백석동%20폐차%20문의드립니다"><svg><use href="#i-chat"/></svg>문자</a>
 </nav>
+
+<script>
+(function () {
+  function formatPhone(raw) {
+    var v = raw.replace(/[^0-9]/g, '').slice(0, 11);
+    if (v.startsWith('02')) {
+      if (v.length <= 2) return v;
+      if (v.length <= 5) return v.slice(0, 2) + '-' + v.slice(2);
+      if (v.length <= 9) return v.slice(0, 2) + '-' + v.slice(2, 5) + '-' + v.slice(5);
+      return v.slice(0, 2) + '-' + v.slice(2, 6) + '-' + v.slice(6, 10);
+    }
+    if (v.length <= 3) return v;
+    if (v.length <= 6) return v.slice(0, 3) + '-' + v.slice(3);
+    if (v.length <= 10) return v.slice(0, 3) + '-' + v.slice(3, 6) + '-' + v.slice(6);
+    return v.slice(0, 3) + '-' + v.slice(3, 7) + '-' + v.slice(7, 11);
+  }
+  document.querySelectorAll('input[type="tel"]').forEach(function (input) {
+    input.addEventListener('input', function () {
+      input.value = formatPhone(input.value);
+    });
+  });
+})();
+</script>
 
 </body>
 </html>
