@@ -1,0 +1,5 @@
+{
+  "_comment": "자동 생성 루틴 설정. daily_count 숫자만 바꾸면 하루 생성 개수가 바뀝니다(루틴 프롬프트는 건드릴 필요 없음). include_myeon 을 true 로 하면 면(面) 단위도 생성 대상에 넣습니다.",
+  "daily_count": 30,
+  "include_myeon": false
+}
