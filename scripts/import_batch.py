@@ -21,6 +21,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 REGIONS_PATH = ROOT / "data" / "regions.json"
 CSV_PATH = ROOT / "data" / "legal_dong_list.csv"
+SITEMAP_PATH = ROOT / "sitemap.xml"
+INDEX_PATH = ROOT / "index.html"
+PAGES_DIR = ROOT / "pages"
 SCRIPTS = ROOT / "scripts"
 FIELDS = ("code", "slug", "sido", "sigungu", "dong", "landmark_name", "landmark_desc", "service_intro", "faqs", "meta")
 SLUG_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)+$")
@@ -81,6 +84,17 @@ def main() -> None:
             print("  -", p)
         sys.exit(1)
 
+    # 실패하면 되돌릴 수 있도록 손대는 파일을 기억해 둔다
+    snapshots = {p: p.read_bytes() for p in (REGIONS_PATH, SITEMAP_PATH, INDEX_PATH) if p.exists()}
+    new_pages = [PAGES_DIR / f"{e['slug']}.html" for e in entries if not (PAGES_DIR / f"{e['slug']}.html").exists()]
+
+    def rollback() -> None:
+        for p, data in snapshots.items():
+            p.write_bytes(data)
+        for p in new_pages:
+            p.unlink(missing_ok=True)
+        print("변경 사항을 되돌렸습니다 (regions.json, sitemap.xml, index.html, 새 페이지)")
+
     by_code = {r["code"]: i for i, r in enumerate(regions) if r.get("code")}
     added = replaced = 0
     for e in entries:
@@ -97,9 +111,11 @@ def main() -> None:
 
     slugs = ",".join(e["slug"] for e in entries)
     if run("build_site.py", "--only", slugs) != 0 or run("build_index.py") != 0:
+        rollback()
         sys.exit(1)
     if run("check_pages.py", "--only", slugs) != 0:
-        print(f"검사 실패: {batch_path.relative_to(ROOT)} 를 고친 뒤 다시 실행하세요")
+        rollback()
+        print(f"검사 실패: {batch_path.relative_to(ROOT)} 의 해당 항목을 고치거나 빼고 다시 실행하세요")
         sys.exit(1)
 
     batch_path.unlink()
