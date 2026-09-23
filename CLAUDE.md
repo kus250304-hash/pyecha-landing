@@ -36,8 +36,23 @@
 - "최고가 도전", "최고가를 받으실 수 있도록", "수출 시세와 비교", "상담 후 확인"처럼 방향을 말하는 표현은 적극 사용합니다. 목표는 문의를 최대한 많이 끌어내는 것이며, 전화하고 싶어지게 씁니다.
 - 비교매입이 항상 더 이득이라는 식의 단정은 하지 않습니다. "폐차보다 수출이 더 받는 차가 있습니다"처럼 조건부로 씁니다.
 
-## 배치 생성 스크립트 운영 원칙
+## 페이지 생성 방법 (v2)
 
-- 새 배치(generate_batchN_pages.py)를 만들 때는 마지막에 `scripts/sitemap_lib.py`의 `update_sitemap(ROOT, [region["slug"] for region in REGIONS])`를 호출해 방금 생성한 페이지 URL을 `sitemap.xml`에 자동으로 반영합니다. 기존 배치 스크립트(generate_sample_pages.py, generate_batch2_pages.py, generate_batch3_pages.py)가 이 패턴의 예시입니다.
-- 배치 생성 후에는 `scripts/build_index.py`를 실행해 루트 `index.html`의 지역 목록과 지역 수를 pages/ 기준으로 갱신합니다.
-- 페이지 생성 자체는 사용자가 "다음 배치 만들어줘"처럼 명시적으로 요청했을 때만 실행합니다. 스크립트나 스케줄을 만들어 자동으로 배치를 계속 이어서 생성하지 않습니다.
+페이지는 `templates/region-landing-v2.html` 하나로만 만듭니다. 지역별 생성 스크립트(generate_batchN_pages.py 류)나 다른 템플릿을 새로 만들지 않습니다.
+
+- 지역 데이터는 `data/regions.json` 한 곳에 있습니다(법정동코드 `code` 포함). 페이지 HTML을 직접 쓰거나 고치지 않고, 데이터를 고친 뒤 `python3 scripts/build_site.py --only <slug,...>` 로 다시 렌더링합니다.
+- 새 지역 추가 순서:
+  1. `python3 scripts/pick_next_regions.py` → `data/batches/YYYY-MM-DD.json` 뼈대 생성 (개수는 `data/generation_config.json`의 `daily_count`)
+  2. 뼈대의 `landmark_name`, `landmark_desc`, `service_intro`, `faqs`(질문·답 쌍 4개 이상), `meta` 를 채움
+  3. `python3 scripts/import_batch.py data/batches/YYYY-MM-DD.json` → regions.json 반영, 렌더링, `index.html`·`sitemap.xml` 갱신, `check_pages.py` 검사까지 한 번에 실행. 검사가 실패하면 배치 파일을 고치고 다시 실행
+- `python3 scripts/check_pages.py` 는 언제든 전체 페이지를 검사합니다. 오류가 있는 상태로 PR을 올리지 않습니다.
+- 생성 결과는 항상 브랜치에 커밋하고 PR로 올립니다. main에 직접 push하지 않습니다.
+
+### 지역 콘텐츠 작성 규칙 (뼈대를 채울 때)
+- `landmark_name`: 그 동에 실제로 있는 잘 알려진 장소 하나(역, 시장, 대학, 공원, 관공서, 큰길 등). 확실하지 않으면 "○○동 주민센터"나 동을 지나는 큰 도로처럼 틀릴 수 없는 것을 씁니다. 지어내지 않습니다.
+- `landmark_desc`: 랜드마크와 동네 특징(주거·상업·공업, 지형, 주차 환경 등) 1~2문장.
+- `service_intro`: "{시도} {시군구} {동} 일대는 전국 폐차 협력업체 네트워크와 연계되어 상담과 방문 처리가 가능한 지역입니다."로 시작하고, 그 동의 지형·주거 형태에 맞춘 방문 안내 1~2문장을 이어 씁니다.
+- `faqs`: 4~5개. 그중 3개 이상은 질문이나 답에 그 동 이름 또는 랜드마크 이름이 들어가야 합니다(주차 환경, 골목 진입, 방문 시간, 인근 동 방문 가능 여부 등).
+- `meta`: "{시도} {시군구} {동} 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다." 형태 1문장.
+- 다른 시도의 지역 이름을 쓰지 않습니다. 인근 동을 언급할 때는 같은 시군구 안의 실제 법정동만 씁니다.
+- 시세·금액·경쟁사 언급 금지, 결과를 약속하는 표현 금지(위 콘텐츠 원칙과 동일).
