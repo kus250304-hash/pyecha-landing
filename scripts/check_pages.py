@@ -160,6 +160,10 @@ def main() -> None:
         for key, min_len in (("landmark_name", 2), ("landmark_desc", 40), ("service_intro", 80), ("meta", 20)):
             if len((r.get(key) or "").strip()) < min_len:
                 errors.append(f"{tag}: {key} 가 비었거나 {min_len}자 미만")
+        # 템플릿이 "○○ 인근 출장 방문"처럼 뒤에 말을 붙이므로 랜드마크 이름엔 위치 표현이 들어가면 겹친다
+        m = re.search(r"인근|주변|일대|근처", r.get("landmark_name", ""))
+        if m:
+            warn(f"{tag}: landmark_name 에 위치 표현 '{m.group(0)}' 이 있음 → 장소 이름만 쓰세요 ({r['landmark_name']})")
         faqs = r.get("faqs") or []
         if len(faqs) < 4 or any(len(qa) != 2 or not qa[0].strip() or not qa[1].strip() for qa in faqs):
             errors.append(f"{tag}: FAQ 는 질문·답 쌍으로 4개 이상 필요 (현재 {len(faqs)}개)")
