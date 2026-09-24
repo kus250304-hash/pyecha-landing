@@ -1,14 +1,9 @@
 """
 sitemap.xml 자동 관리 유틸리티.
 
-모든 배치 생성 스크립트(generate_*.py)는 페이지 파일을 다 쓴 뒤
-update_sitemap()을 호출해 방금 생성한 슬러그를 sitemap.xml에 반영해야 한다.
+build_site.py(지역 페이지)와 build_cases.py(사례 페이지)가 파일을 다 쓴 뒤
+update_sitemap()을 호출해 URL을 sitemap.xml에 반영한다.
 이미 있는 URL은 lastmod만 오늘 날짜로 갱신하고, 새 URL은 추가한다.
-
-주의: 이 모듈은 "생성된 페이지를 sitemap에 등록하는 절차"만 제공한다.
-페이지 생성 자체를 자동으로 반복 실행하지는 않는다 — 다음 배치 생성은
-사용자가 명시적으로 요청했을 때만 새 generate_batchN_pages.py 스크립트를
-만들어 실행한다.
 """
 import xml.etree.ElementTree as ET
 from datetime import date
@@ -29,9 +24,11 @@ def update_sitemap(
     slugs: list[str],
     changefreq: str = "monthly",
     priority: str = "0.8",
+    paths: list[str] | None = None,
 ) -> Path:
     """root_dir/sitemap.xml 에 root_dir/pages/<slug>.html 각각의 절대 URL을
-    추가하거나 lastmod를 갱신한다. 사이트 루트(index.html) 엔트리도 항상 보장한다.
+    추가하거나 lastmod를 갱신한다. paths 로는 "cases/xxx.html" 같은 다른 상대 경로도
+    넣을 수 있다. 사이트 루트(index.html) 엔트리도 항상 보장한다.
     변경된 sitemap.xml의 경로를 반환한다.
     """
     sitemap_path = root_dir / "sitemap.xml"
@@ -68,6 +65,8 @@ def update_sitemap(
     upsert(f"{SITE_BASE_URL}/", "weekly", "1.0")
     for slug in slugs:
         upsert(f"{SITE_BASE_URL}/pages/{slug}.html", changefreq, priority)
+    for rel in paths or []:
+        upsert(f"{SITE_BASE_URL}/{rel.lstrip('/')}", changefreq, priority)
 
     def sort_key(url_el):
         loc = url_el.find(_tag("loc")).text
