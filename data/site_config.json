@@ -7,6 +7,8 @@
   "kakao_channel_url": null,
   "web3forms_access_key": null,
   "hours_text": "24시간 상담 가능",
+  "cases_extra_pages_per_case": 5,
+  "_cases_comment": "사례 하나가 자기 동 페이지 외에 같은 시군구의 다른 동 페이지 몇 곳까지 보일지. 다른 시군구·시도에는 보이지 않음.",
   "youtube_url": "http://www.youtube.com/@pecha-export",
   "blog_url": "https://blog.naver.com/abh77790",
   "business": {
