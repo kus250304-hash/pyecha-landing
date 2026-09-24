@@ -7,7 +7,7 @@
 순서
   1. 배치 항목 형식 검사(빈 칸, FAQ 개수, code 가 legal_dong_list.csv 와 맞는지, slug 형식·중복)
   2. regions.json 에 추가 (같은 code 가 이미 있으면 그 항목을 교체하므로 고친 뒤 다시 실행해도 된다)
-  3. build_site.py --only, build_index.py 실행 (sitemap.xml 도 갱신됨)
+  3. build_site.py(전체 렌더링, 기존 페이지의 이웃 링크·사례 카드도 갱신), build_index.py 실행 (sitemap.xml 도 갱신됨)
   4. check_pages.py --only 실행. 실패하면 배치 파일을 남겨 두고 종료 코드 1
   5. 성공하면 배치 파일을 지운다
 """
@@ -93,6 +93,7 @@ def main() -> None:
             p.write_bytes(data)
         for p in new_pages:
             p.unlink(missing_ok=True)
+        run("build_site.py")  # 이웃 링크가 바뀐 기존 페이지도 원래대로
         print("변경 사항을 되돌렸습니다 (regions.json, sitemap.xml, index.html, 새 페이지)")
 
     by_code = {r["code"]: i for i, r in enumerate(regions) if r.get("code")}
@@ -110,7 +111,8 @@ def main() -> None:
     print(f"regions.json: {added}개 추가, {replaced}개 교체")
 
     slugs = ",".join(e["slug"] for e in entries)
-    if run("build_site.py", "--only", slugs) != 0 or run("build_index.py") != 0:
+    # 새 지역이 기존 페이지의 이웃 링크·사례 카드에도 반영되도록 전체를 다시 렌더링한다 (몇 초 걸림)
+    if run("build_site.py") != 0 or run("build_index.py") != 0:
         rollback()
         sys.exit(1)
     if run("check_pages.py", "--only", slugs) != 0:

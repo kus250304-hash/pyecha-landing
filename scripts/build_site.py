@@ -59,30 +59,66 @@ def pick_local_faqs(r: dict, n: int = 3) -> list[tuple[str, str]]:
 def neighbors_for(r: dict, regions: list[dict], n: int = 6) -> tuple[str, list[dict]]:
     same_gu = [x for x in regions if x["slug"] != r["slug"] and x["sido"] == r["sido"] and x["sigungu"] == r["sigungu"]]
     if len(same_gu) >= 3:
-        return f"{r['sigungu']} 다른 지역 폐차 상담", same_gu[:n]
+        return f"{r['sigungu'] or r['sido']} 다른 지역 폐차 상담", same_gu[:n]
     same_sido = [x for x in regions if x["slug"] != r["slug"] and x["sido"] == r["sido"] and x not in same_gu]
     picked = (same_gu + same_sido)[:n]
     label = f"{r['sigungu'] or r['sido']} 인근 지역 폐차 상담" if same_gu else f"{r['sido']} 다른 지역 폐차 상담"
     return label, picked
 
 
-def cases_for(r: dict, cases: list[dict], n: int = 4) -> tuple[str, str, list[dict]]:
-    same_dong = [c for c in cases if c.get("sido") == r["sido"] and c.get("sigungu") == r["sigungu"] and c.get("dong") == r["dong"]]
-    if same_dong:
-        return f"{r['dong']} 폐차 사례", "같은 동에서 진행한 실제 사례입니다", same_dong[:n]
-    same_gu = [c for c in cases if c.get("sido") == r["sido"] and c.get("sigungu") == r["sigungu"]]
-    if same_gu:
-        return f"{r['sigungu']} 폐차 사례", "가까운 지역에서 진행한 실제 사례입니다", same_gu[:n]
-    general = [c for c in cases if not c.get("dong")]
-    if general:
-        # 페이지마다 다른 조합이 보이도록 슬러그 해시로 시작점을 돌린다
-        start = sum(ord(ch) for ch in r["slug"]) % len(general)
-        rotated = general[start:] + general[:start]
-        return "최근 폐차 사례", "실제 진행한 사례입니다", rotated[:min(3, n)]
-    return "실제 사례 보기", "유튜브와 블로그에서 실제 진행 사례를 보실 수 있습니다", []
+def case_page_map(regions: list[dict], cases: list[dict], extra_pages: int) -> dict[str, set[str]]:
+    """사례별로 보여줄 페이지: 같은 동 페이지 전부 + 같은 시군구(세종은 시 전체)의 다른 동 페이지 최대 extra_pages 곳.
+    다른 시군구·시도에는 보이지 않는다."""
+    by_gu: dict[tuple[str, str], list[dict]] = {}
+    for r in regions:
+        by_gu.setdefault((r["sido"], r["sigungu"]), []).append(r)
+    mapping = {}
+    for c in cases:
+        group = by_gu.get((c["sido"], c["sigungu"]), [])
+        same_dong = {r["slug"] for r in group if r["dong"] == c["dong"]}
+        others = sorted(r["slug"] for r in group if r["dong"] != c["dong"])
+        mapping[c["slug"]] = same_dong | set(others[:extra_pages])
+    return mapping
 
 
-def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template: str, dong_counts: dict) -> str:
+def cases_for(r: dict, cases: list[dict], page_map: dict[str, set[str]], n: int = 4) -> tuple[str, str, list[dict]]:
+    """이 페이지에 보여줄 사례(최신순). 같은 동 사례를 먼저, 그다음 같은 시군구의 다른 동 사례."""
+    mine = [c for c in cases if r["slug"] in page_map.get(c["slug"], ())]
+    if not mine:
+        return "실제 사례 보기", "유튜브와 블로그에서 실제 진행 사례를 보실 수 있습니다", []
+    same_dong = [c for c in mine if c["dong"] == r["dong"]]
+    others = [c for c in mine if c["dong"] != r["dong"]]
+    picked = (same_dong + others)[:n]
+    if not others or not any(c in picked for c in others):
+        return f"{r['dong']} 작업 사례", "이 동에서 진행한 실제 사례입니다", picked
+    area = r["sigungu"] or r["sido"]
+    return f"{area} 작업 사례", f"{area} 안 가까운 동에서 진행한 실제 사례입니다. 지역은 카드마다 표시됩니다", picked
+
+
+def contact_parts(cfg: dict, dong: str) -> dict:
+    """문자·카카오 버튼, 하단 바 두 번째 버튼, 푸터 사업자 줄. 지역 페이지와 사례 페이지가 같이 쓴다."""
+    sms = cfg.get("sms_number")
+    sms_href = f'href="sms:{esc(sms)}?body={esc(dong)}%20폐차%20문의드립니다"' if sms else ""
+    sms_btn = f'<a class="btn btn-sms" {sms_href}><svg><use href="#i-chat"/></svg>문자로 문의</a>' if sms else ""
+    kakao = cfg.get("kakao_channel_url")
+    kakao_btn = f'<a class="btn btn-kakao" href="{esc(kakao)}" target="_blank" rel="noopener noreferrer">카카오톡 채널</a>' if kakao else ""
+    if sms:
+        bar_second = f'<a class="btn btn-sms" {sms_href}><svg><use href="#i-chat"/></svg>문자</a>'
+        bar_cols = "2fr 1fr"
+    else:
+        bar_second = '<a class="btn btn-quote" href="#quote" style="background:#fff"><svg><use href="#i-chat"/></svg>견적 남기기</a>'
+        bar_cols = "3fr 2fr"
+
+    b = cfg.get("business") or {}
+    parts = []
+    for key, label in (("name", "상호"), ("ceo", "대표"), ("registration_number", "사업자등록번호"), ("address", "주소"), ("email", "이메일")):
+        if b.get(key):
+            parts.append(f"{label} {esc(b[key])}")
+    footer_biz = (" · ".join(parts) + "<br>") if parts else ""
+    return {"SMS_BUTTON": sms_btn, "KAKAO_BUTTON": kakao_btn, "BAR_SECOND": bar_second, "BAR_COLS": bar_cols, "FOOTER_BIZ": footer_biz}
+
+
+def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template: str, dong_counts: dict, page_map: dict) -> str:
     full = " ".join(x for x in (r["sido"], r["sigungu"], r["dong"]) if x)
     sigungu_dong = " ".join(x for x in (r["sigungu"], r["dong"]) if x)
     # 같은 동 이름이 다른 시/군/구에도 있으면 title/description이 겹치지 않도록 구를 붙인다
@@ -108,18 +144,6 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
         )
     else:
         form_action, form_method, form_hidden = "../thanks.html", "GET", ""
-
-    # 문자 / 카카오
-    sms = cfg.get("sms_number")
-    sms_btn = f'<a class="btn btn-sms" href="sms:{esc(sms)}?body={esc(r["dong"])}%20폐차%20문의드립니다"><svg><use href="#i-chat"/></svg>문자로 문의</a>' if sms else ""
-    kakao = cfg.get("kakao_channel_url")
-    kakao_btn = f'<a class="btn btn-kakao" href="{esc(kakao)}" target="_blank" rel="noopener noreferrer">카카오톡 채널</a>' if kakao else ""
-    if sms:
-        bar_second = f'<a class="btn btn-sms" href="sms:{esc(sms)}?body={esc(r["dong"])}%20폐차%20문의드립니다"><svg><use href="#i-chat"/></svg>문자</a>'
-        bar_cols = "2fr 1fr"
-    else:
-        bar_second = '<a class="btn btn-quote" href="#quote" style="background:#fff"><svg><use href="#i-chat"/></svg>견적 남기기</a>'
-        bar_cols = "3fr 2fr"
 
     # 지역 FAQ
     local_faqs = pick_local_faqs(r)
@@ -148,31 +172,17 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
     )
 
     # 사례
-    c_title, c_sub, picked = cases_for(r, cases)
+    c_title, c_sub, picked = cases_for(r, cases, page_map)
     if picked:
         cases_html = '<div class="cases" data-nosnippet>' + "".join(
             f'<a class="case" href="../cases/{esc(c["slug"])}.html">'
             + (f'<img src="../cases/images/{esc(c["thumb"])}" alt="" loading="lazy" width="800" height="600">' if c.get("thumb") else "")
-            + f'<div class="body"><h3>{esc(c["title"])}</h3><p>{esc(c.get("summary", ""))}</p></div></a>'
+            + f'<div class="body"><span class="region">{esc((c["sigungu"] or c["sido"]) + " " + c["dong"])} 작업 사례</span>'
+            + f'<h3>{esc(c["title"])}</h3><p>{esc(c.get("summary", ""))}</p></div></a>'
             for c in picked
         ) + "</div>"
     else:
         cases_html = ""
-
-    # 푸터 사업자 정보
-    b = cfg.get("business") or {}
-    parts = []
-    if b.get("name"):
-        parts.append(f"상호 {esc(b['name'])}")
-    if b.get("ceo"):
-        parts.append(f"대표 {esc(b['ceo'])}")
-    if b.get("registration_number"):
-        parts.append(f"사업자등록번호 {esc(b['registration_number'])}")
-    if b.get("address"):
-        parts.append(f"주소 {esc(b['address'])}")
-    if b.get("email"):
-        parts.append(f"이메일 {esc(b['email'])}")
-    footer_biz = (" · ".join(parts) + "<br>") if parts else ""
 
     meta_title = f"{title_region} 폐차 | 폐차 보상금 vs 수출 시세 비교, 견인비 없음 · {phone_disp}"
     meta_desc = (
@@ -198,10 +208,7 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
         "FORM_ACTION": form_action,
         "FORM_METHOD": form_method,
         "FORM_HIDDEN": form_hidden,
-        "SMS_BUTTON": sms_btn,
-        "KAKAO_BUTTON": kakao_btn,
-        "BAR_SECOND": bar_second,
-        "BAR_COLS": bar_cols,
+        **contact_parts(cfg, r["dong"]),
         "LOCAL_FAQ_HTML": local_faq_html,
         "NEIGHBOR_TITLE": esc(n_title),
         "NEIGHBORS_HTML": neighbors_html,
@@ -210,7 +217,6 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
         "CASES_HTML": cases_html,
         "YOUTUBE_URL": esc(cfg["youtube_url"]),
         "BLOG_URL": esc(cfg["blog_url"]),
-        "FOOTER_BIZ": footer_biz,
     }
 
     cleaned = LEADING_COMMENT_RE.sub("<!DOCTYPE html>", template, count=1)
@@ -236,6 +242,7 @@ def main() -> None:
     OUT.mkdir(exist_ok=True)
 
     dong_counts = Counter(r["dong"] for r in regions)
+    page_map = case_page_map(regions, cases, int(cfg.get("cases_extra_pages_per_case", 5)))
 
     targets = regions
     if args.only:
@@ -245,12 +252,18 @@ def main() -> None:
         if missing:
             raise SystemExit(f"regions.json 에 없는 슬러그: {sorted(missing)}")
 
+    changed = []
     for r in targets:
-        (OUT / f"{r['slug']}.html").write_text(render(r, regions, cfg, cases, template, dong_counts), encoding="utf-8")
-        print(f"렌더링: pages/{r['slug']}.html")
+        out_path = OUT / f"{r['slug']}.html"
+        html_text = render(r, regions, cfg, cases, template, dong_counts, page_map)
+        if not out_path.exists() or out_path.read_text(encoding="utf-8") != html_text:
+            out_path.write_text(html_text, encoding="utf-8")
+            changed.append(r["slug"])
+            print(f"렌더링: pages/{r['slug']}.html")
 
-    update_sitemap(ROOT, [r["slug"] for r in targets])
-    print(f"완료: {len(targets)}개 페이지, sitemap.xml 갱신")
+    # 내용이 실제로 바뀐 페이지만 sitemap 의 수정일을 갱신한다
+    update_sitemap(ROOT, changed)
+    print(f"완료: {len(targets)}개 중 {len(changed)}개 페이지 변경, sitemap.xml 갱신")
 
 
 if __name__ == "__main__":
