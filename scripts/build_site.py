@@ -118,11 +118,34 @@ def contact_parts(cfg: dict, dong: str) -> dict:
     return {"SMS_BUTTON": sms_btn, "KAKAO_BUTTON": kakao_btn, "BAR_SECOND": bar_second, "BAR_COLS": bar_cols, "FOOTER_BIZ": footer_biz}
 
 
-def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template: str, dong_counts: dict, page_map: dict) -> str:
+SIDO_SHORT = {
+    "서울특별시": "서울", "부산광역시": "부산", "대구광역시": "대구", "인천광역시": "인천", "광주광역시": "광주",
+    "대전광역시": "대전", "울산광역시": "울산", "세종특별자치시": "세종", "경기도": "경기", "강원특별자치도": "강원",
+    "충청북도": "충북", "충청남도": "충남", "전북특별자치도": "전북", "전라남도": "전남", "경상북도": "경북",
+    "경상남도": "경남", "제주특별자치도": "제주",
+}
+
+
+def title_labels(regions: list[dict]) -> dict[str, str]:
+    """페이지 제목에 쓸 지역 이름. 겹치지 않을 만큼만 길게 붙인다:
+    역삼동 → (동 이름이 겹치면) 강남구 중동 → (구+동도 겹치면) 부산 중구 중앙동1가"""
+    dong_counts = Counter(r["dong"] for r in regions)
+    pair_counts = Counter((r["sigungu"], r["dong"]) for r in regions)
+    labels = {}
+    for r in regions:
+        if dong_counts[r["dong"]] == 1:
+            labels[r["slug"]] = r["dong"]
+        elif pair_counts[(r["sigungu"], r["dong"])] == 1:
+            labels[r["slug"]] = f"{r['sigungu'] or r['sido']} {r['dong']}"
+        else:
+            labels[r["slug"]] = " ".join(x for x in (SIDO_SHORT[r["sido"]], r["sigungu"], r["dong"]) if x)
+    return labels
+
+
+def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template: str, labels: dict, page_map: dict) -> str:
     full = " ".join(x for x in (r["sido"], r["sigungu"], r["dong"]) if x)
     sigungu_dong = " ".join(x for x in (r["sigungu"], r["dong"]) if x)
-    # 같은 동 이름이 다른 시/군/구에도 있으면 title/description이 겹치지 않도록 구를 붙인다
-    title_region = f"{r['sigungu'] or r['sido']} {r['dong']}" if dong_counts[r["dong"]] > 1 else r["dong"]
+    title_region = labels[r["slug"]]
     base = cfg["site_base_url"].rstrip("/")
     phone_tel, phone_disp = cfg["phone_tel"], cfg["phone_display"]
 
@@ -241,7 +264,7 @@ def main() -> None:
     template = TEMPLATE.read_text(encoding="utf-8")
     OUT.mkdir(exist_ok=True)
 
-    dong_counts = Counter(r["dong"] for r in regions)
+    labels = title_labels(regions)
     page_map = case_page_map(regions, cases, int(cfg.get("cases_extra_pages_per_case", 5)))
 
     targets = regions
@@ -255,7 +278,7 @@ def main() -> None:
     changed = []
     for r in targets:
         out_path = OUT / f"{r['slug']}.html"
-        html_text = render(r, regions, cfg, cases, template, dong_counts, page_map)
+        html_text = render(r, regions, cfg, cases, template, labels, page_map)
         if not out_path.exists() or out_path.read_text(encoding="utf-8") != html_text:
             out_path.write_text(html_text, encoding="utf-8")
             changed.append(r["slug"])
