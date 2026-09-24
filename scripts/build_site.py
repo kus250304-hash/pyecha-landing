@@ -66,23 +66,33 @@ def neighbors_for(r: dict, regions: list[dict], n: int = 6) -> tuple[str, list[d
     return label, picked
 
 
-def cases_for(r: dict, cases: list[dict], n: int = 4) -> tuple[str, str, list[dict]]:
-    """cases/index.json(최신순) 에서 이 지역에 보여줄 사례를 고른다: 같은 동 → 같은 시군구 → 같은 시도 → 전국"""
-    same_dong = [c for c in cases if (c.get("sido"), c.get("sigungu"), c.get("dong")) == (r["sido"], r["sigungu"], r["dong"])]
-    if same_dong:
-        return f"{r['dong']} 폐차 사례", "같은 동에서 진행한 실제 사례입니다", same_dong[:n]
-    same_gu = [c for c in cases if (c.get("sido"), c.get("sigungu")) == (r["sido"], r["sigungu"])]
-    if same_gu:
-        return f"{r['sigungu'] or r['sido']} 폐차 사례", "가까운 지역에서 진행한 실제 사례입니다", same_gu[:n]
-    same_sido = [c for c in cases if c.get("sido") == r["sido"]]
-    if same_sido:
-        return f"{r['sido']} 폐차 사례", "같은 지역에서 진행한 실제 사례입니다", same_sido[:n]
-    if cases:
-        # 페이지마다 다른 조합이 보이도록 슬러그 해시로 시작점을 돌린다
-        start = sum(ord(ch) for ch in r["slug"]) % len(cases)
-        rotated = cases[start:] + cases[:start]
-        return "최근 폐차 사례", "실제 진행한 사례입니다", rotated[:min(3, n)]
-    return "실제 사례 보기", "유튜브와 블로그에서 실제 진행 사례를 보실 수 있습니다", []
+def case_page_map(regions: list[dict], cases: list[dict], extra_pages: int) -> dict[str, set[str]]:
+    """사례별로 보여줄 페이지: 같은 동 페이지 전부 + 같은 시군구(세종은 시 전체)의 다른 동 페이지 최대 extra_pages 곳.
+    다른 시군구·시도에는 보이지 않는다."""
+    by_gu: dict[tuple[str, str], list[dict]] = {}
+    for r in regions:
+        by_gu.setdefault((r["sido"], r["sigungu"]), []).append(r)
+    mapping = {}
+    for c in cases:
+        group = by_gu.get((c["sido"], c["sigungu"]), [])
+        same_dong = {r["slug"] for r in group if r["dong"] == c["dong"]}
+        others = sorted(r["slug"] for r in group if r["dong"] != c["dong"])
+        mapping[c["slug"]] = same_dong | set(others[:extra_pages])
+    return mapping
+
+
+def cases_for(r: dict, cases: list[dict], page_map: dict[str, set[str]], n: int = 4) -> tuple[str, str, list[dict]]:
+    """이 페이지에 보여줄 사례(최신순). 같은 동 사례를 먼저, 그다음 같은 시군구의 다른 동 사례."""
+    mine = [c for c in cases if r["slug"] in page_map.get(c["slug"], ())]
+    if not mine:
+        return "실제 사례 보기", "유튜브와 블로그에서 실제 진행 사례를 보실 수 있습니다", []
+    same_dong = [c for c in mine if c["dong"] == r["dong"]]
+    others = [c for c in mine if c["dong"] != r["dong"]]
+    picked = (same_dong + others)[:n]
+    if not others or not any(c in picked for c in others):
+        return f"{r['dong']} 작업 사례", "이 동에서 진행한 실제 사례입니다", picked
+    area = r["sigungu"] or r["sido"]
+    return f"{area} 작업 사례", f"{area} 안 가까운 동에서 진행한 실제 사례입니다. 지역은 카드마다 표시됩니다", picked
 
 
 def contact_parts(cfg: dict, dong: str) -> dict:
@@ -108,7 +118,7 @@ def contact_parts(cfg: dict, dong: str) -> dict:
     return {"SMS_BUTTON": sms_btn, "KAKAO_BUTTON": kakao_btn, "BAR_SECOND": bar_second, "BAR_COLS": bar_cols, "FOOTER_BIZ": footer_biz}
 
 
-def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template: str, dong_counts: dict) -> str:
+def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template: str, dong_counts: dict, page_map: dict) -> str:
     full = " ".join(x for x in (r["sido"], r["sigungu"], r["dong"]) if x)
     sigungu_dong = " ".join(x for x in (r["sigungu"], r["dong"]) if x)
     # 같은 동 이름이 다른 시/군/구에도 있으면 title/description이 겹치지 않도록 구를 붙인다
@@ -162,12 +172,13 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
     )
 
     # 사례
-    c_title, c_sub, picked = cases_for(r, cases)
+    c_title, c_sub, picked = cases_for(r, cases, page_map)
     if picked:
         cases_html = '<div class="cases" data-nosnippet>' + "".join(
             f'<a class="case" href="../cases/{esc(c["slug"])}.html">'
             + (f'<img src="../cases/images/{esc(c["thumb"])}" alt="" loading="lazy" width="800" height="600">' if c.get("thumb") else "")
-            + f'<div class="body"><h3>{esc(c["title"])}</h3><p>{esc(c.get("summary", ""))}</p></div></a>'
+            + f'<div class="body"><span class="region">{esc((c["sigungu"] or c["sido"]) + " " + c["dong"])} 작업 사례</span>'
+            + f'<h3>{esc(c["title"])}</h3><p>{esc(c.get("summary", ""))}</p></div></a>'
             for c in picked
         ) + "</div>"
     else:
@@ -231,6 +242,7 @@ def main() -> None:
     OUT.mkdir(exist_ok=True)
 
     dong_counts = Counter(r["dong"] for r in regions)
+    page_map = case_page_map(regions, cases, int(cfg.get("cases_extra_pages_per_case", 5)))
 
     targets = regions
     if args.only:
@@ -243,7 +255,7 @@ def main() -> None:
     changed = []
     for r in targets:
         out_path = OUT / f"{r['slug']}.html"
-        html_text = render(r, regions, cfg, cases, template, dong_counts)
+        html_text = render(r, regions, cfg, cases, template, dong_counts, page_map)
         if not out_path.exists() or out_path.read_text(encoding="utf-8") != html_text:
             out_path.write_text(html_text, encoding="utf-8")
             changed.append(r["slug"])

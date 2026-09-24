@@ -76,24 +76,46 @@ def load_region_index() -> tuple[dict[str, dict], dict[tuple[str, str, str], str
     return by_name, page_slugs
 
 
-def save_photo(src: Path, dst_base: Path) -> str:
-    """사진을 줄여서 JPEG 로 저장하고 파일 이름을 돌려준다. Pillow 가 없으면 원본을 그대로 복사한다."""
+def ensure_pillow() -> None:
     try:
-        from PIL import Image, ImageOps
+        import PIL  # noqa: F401
     except ImportError:
         subprocess.run([sys.executable, "-m", "pip", "install", "-q", "pillow"], capture_output=True)
         try:
-            from PIL import Image, ImageOps
+            import PIL  # noqa: F401
         except ImportError:
-            dst = dst_base.with_suffix(src.suffix.lower())
-            shutil.copy2(src, dst)
-            print(f"  (Pillow 없음 → 원본 그대로 복사: {dst.name})")
-            return dst.name
+            raise SystemExit("사진 처리에 Pillow 가 필요합니다. `pip install pillow` 후 다시 실행하세요")
+
+
+def hidden_info(path: Path) -> list[str]:
+    """사진에 남아 있는 숨은 정보(EXIF·GPS·XMP·코멘트) 항목 이름. 비어 있으면 깨끗한 것."""
+    from PIL import Image
+    with Image.open(path) as im:
+        found = []
+        exif = im.getexif()
+        if len(exif):
+            found.append("EXIF")
+        if exif and exif.get_ifd(0x8825):
+            found.append("GPS")
+        for key in ("exif", "xmp", "XML:com.adobe.xmp", "comment", "icc_profile_description"):
+            if im.info.get(key):
+                found.append(key)
+        return found
+
+
+def save_photo(src: Path, dst_base: Path) -> str:
+    """사진을 줄여서 숨은 정보가 전혀 없는 JPEG 로 저장하고 파일 이름을 돌려준다."""
+    from PIL import Image, ImageOps
     dst = dst_base.with_suffix(".jpg")
     with Image.open(src) as im:
-        im = ImageOps.exif_transpose(im).convert("RGB")  # 회전 정보를 반영하고 EXIF(위치 정보 등)는 버린다
+        im = ImageOps.exif_transpose(im).convert("RGB")  # 회전 정보만 픽셀에 반영
         im.thumbnail((1200, 1200))
-        im.save(dst, "JPEG", quality=82, optimize=True)
+        clean = Image.frombytes("RGB", im.size, im.tobytes())  # 픽셀만 새 이미지로 옮겨 EXIF·GPS·XMP 를 전부 버린다
+    clean.save(dst, "JPEG", quality=82, optimize=True)
+    left = hidden_info(dst)
+    if left:
+        dst.unlink()
+        raise SystemExit(f"{src.name}: 숨은 정보 {left} 를 지우지 못했습니다. 처리를 중단합니다")
     return dst.name
 
 
@@ -217,6 +239,7 @@ def main() -> None:
         print("처리할 사례 없음 (cases/input/ 에 폴더가 없습니다)")
         return
 
+    ensure_pillow()
     cfg = load_json(CONFIG_PATH)
     template = TEMPLATE_PATH.read_text(encoding="utf-8")
     index: list[dict] = load_json(INDEX_PATH, default=[])
@@ -241,6 +264,9 @@ def main() -> None:
         subprocess.run([sys.executable, str(SCRIPTS / "build_site.py")], cwd=ROOT, check=True, stdout=subprocess.DEVNULL)
         update_sitemap(ROOT, [], paths=[f"cases/{c['slug']}.html" for c in done])
         print(f"지역 페이지 재렌더링 완료, sitemap 에 사례 {len(done)}건 추가")
+        for c in done:
+            shown = [p.stem for p in (ROOT / "pages").glob("*.html") if f"/cases/{c['slug']}.html" in p.read_text(encoding="utf-8")]
+            print(f"  {c['slug']} → 지역 페이지 {len(shown)}곳에 표시: {', '.join(sorted(shown))}")
         # 기존 페이지 경고는 매번 같으니 오류와 요약 줄만 보여 준다
         result = subprocess.run([sys.executable, str(SCRIPTS / "check_pages.py")], cwd=ROOT, capture_output=True, text=True)
         for line in result.stdout.splitlines():

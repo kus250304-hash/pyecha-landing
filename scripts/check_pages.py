@@ -235,6 +235,19 @@ def main() -> None:
             if f"/cases/{c['slug']}.html" not in sitemap:
                 errors.append(f"사례 {c['slug']}: sitemap.xml 에 없음")
 
+    # 사례 사진: 숨은 정보(EXIF·GPS·XMP)가 남아 있으면 오류
+    images = sorted(p for p in (ROOT / "cases" / "images").glob("*") if p.is_file()) if (ROOT / "cases" / "images").exists() else []
+    if images and only is None:
+        try:
+            sys.path.insert(0, str(Path(__file__).resolve().parent))
+            from build_cases import hidden_info
+            for p in images:
+                left = hidden_info(p)
+                if left:
+                    errors.append(f"사진 cases/images/{p.name}: 숨은 정보 {left} 가 남아 있음 → cases/input 에 다시 넣고 build_cases.py 로 처리하세요")
+        except ImportError:
+            errors.append("사례 사진 검사에 Pillow 가 필요합니다: pip install pillow")
+
     for w in warnings:
         print("경고:", w)
     for e in errors:

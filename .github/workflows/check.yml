@@ -1,0 +1,23 @@
+name: check
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pillow
+      - name: 페이지가 최신 데이터로 렌더링되어 있는지
+        run: |
+          python3 scripts/build_site.py
+          python3 scripts/build_index.py
+          git diff --exit-code --stat -- pages/ index.html
+      - name: 페이지·사례 검사
+        run: python3 scripts/check_pages.py
