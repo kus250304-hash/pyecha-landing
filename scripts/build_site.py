@@ -10,7 +10,7 @@ site_config.json 에서 null 인 값은 해당 요소를 숨기거나 대체 문
   hours_text         → 운영시간 줄 생략
   sms_number         → 문자 버튼 생략, 하단 바 두 번째 버튼은 견적 폼 이동
   kakao_channel_url  → 카카오톡 버튼 생략
-  web3forms_access_key → 폼이 thanks.html 로만 이동 (전송 안 됨, 시범용)
+  web3forms_access_key → 폼이 thanks.html 로만 이동 (전송 안 됨). 값이 있으면 Web3Forms 로 전송 후 thanks.html
   business.*         → 푸터의 사업자 줄 생략
 """
 import argparse
@@ -118,6 +118,8 @@ def contact_parts(cfg: dict, dong: str) -> dict:
     return {"SMS_BUTTON": sms_btn, "KAKAO_BUTTON": kakao_btn, "BAR_SECOND": bar_second, "BAR_COLS": bar_cols, "FOOTER_BIZ": footer_biz}
 
 
+WEB3FORMS_URL = "https://api.web3forms.com/submit"
+
 SIDO_SHORT = {
     "서울특별시": "서울", "부산광역시": "부산", "대구광역시": "대구", "인천광역시": "인천", "광주광역시": "광주",
     "대전광역시": "대전", "울산광역시": "울산", "세종특별자치시": "세종", "경기도": "경기", "강원특별자치도": "강원",
@@ -157,11 +159,13 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
 
     hours = f"<p>전화 응대 {esc(cfg['hours_text'])} · 야간·주말 접수는 문자로 남겨주시면 순서대로 연락드립니다.</p>" if cfg.get("hours_text") else "<p>지금 전화 주시면 순서대로 연결됩니다. 통화가 어려우면 견적 폼으로 남겨주세요.</p>"
 
-    # 폼
+    # 폼: Web3Forms 로 전송. 받는 메일 제목에 어느 동 페이지에서 온 문의인지 보이게 한다
+    form_subject = "[견적문의] " + " ".join(x for x in (SIDO_SHORT[r["sido"]], r["sigungu"], r["dong"]) if x)
     if cfg.get("web3forms_access_key"):
-        form_action, form_method = "https://api.web3forms.com/submit", "POST"
+        form_action, form_method = WEB3FORMS_URL, "POST"
         form_hidden = (
             f'<input type="hidden" name="access_key" value="{esc(cfg["web3forms_access_key"])}">'
+            f'<input type="hidden" name="subject" value="{esc(form_subject)}">'
             f'<input type="hidden" name="from_name" value="폐차 견적 폼">'
             f'<input type="hidden" name="redirect" value="{base}/thanks.html">'
         )
