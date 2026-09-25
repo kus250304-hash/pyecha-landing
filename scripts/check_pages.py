@@ -205,6 +205,21 @@ def main() -> None:
                 errors.append(f"{tag}: {label} 없음")
         if site_cfg.get("sms_number") and 'href="sms:' not in html:
             errors.append(f"{tag}: 문자 링크 없음")
+        if site_cfg.get("web3forms_access_key"):
+            forms = re.findall(r"<form\b[^>]*>.*?</form>", html, flags=re.DOTALL)
+            base = site_cfg["site_base_url"].rstrip("/")
+            for i, f in enumerate(forms, 1):
+                problems = [label for needle, label in (
+                    ('action="https://api.web3forms.com/submit"', "Web3Forms 주소"),
+                    ('method="POST"', "POST"),
+                    (f'name="access_key" value="{site_cfg["web3forms_access_key"]}"', "access_key"),
+                    ('name="subject" value="[견적문의] ', "메일 제목"),
+                    (f'name="redirect" value="{base}/thanks.html"', "thanks.html 이동"),
+                ) if needle not in f]
+                if problems:
+                    errors.append(f"{tag}: 견적 폼 {i}번에 {', '.join(problems)} 없음 (문의가 전송되지 않음)")
+            if len(forms) < 2:
+                errors.append(f"{tag}: 견적 폼이 {len(forms)}개 (2개여야 함)")
         body = re.sub(r"<style>.*?</style>|<script[^>]*>.*?</script>", "", html, flags=re.DOTALL)
         for m in PROMISE_RE.finditer(body):
             errors.append(f"{tag}: 결과 약속 표현 '{m.group(0)}' → …{body[max(0, m.start()-15):m.end()+15]}…")

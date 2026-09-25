@@ -229,10 +229,10 @@
     <div class="quote-card" id="quote">
       <h3>전화가 부담되시면 3칸만 남겨주세요</h3>
       <p class="lead">문자로 답드립니다. 차량번호만 있으면 더 빠르게 확인해 드립니다.</p>
-      <form action="../thanks.html" method="GET">
-        
-        <input type="hidden" name="subject" value="[경상남도 창원시 의창구 중동] 폐차·수출 비교 견적 요청">
+      <form class="quote-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="3882a359-01c7-4afb-b44e-cc2b87b0165b"><input type="hidden" name="subject" value="[견적문의] 경남 창원시 의창구 중동"><input type="hidden" name="from_name" value="폐차 견적 폼"><input type="hidden" name="redirect" value="https://kus250304-hash.github.io/pyecha-landing/thanks.html">
         <input type="hidden" name="region" value="경상남도 창원시 의창구 중동">
+        <input type="hidden" name="form" value="상단 견적 폼">
         <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
         <label for="q1-plate">차량번호 (선택)</label>
         <input id="q1-plate" name="plate" type="text" inputmode="text" placeholder="예: 12가 3456" autocomplete="off">
@@ -439,10 +439,10 @@
       <div class="quote-card">
         <h3>3칸만 남겨주셔도 됩니다</h3>
         <p class="lead">전화가 부담되시면 차종·연식만 남겨주세요. 문자로 답드립니다.</p>
-        <form action="../thanks.html" method="GET">
-          
-          <input type="hidden" name="subject" value="[경상남도 창원시 의창구 중동] 폐차·수출 비교 견적 요청 (하단)">
+        <form class="quote-form" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="3882a359-01c7-4afb-b44e-cc2b87b0165b"><input type="hidden" name="subject" value="[견적문의] 경남 창원시 의창구 중동"><input type="hidden" name="from_name" value="폐차 견적 폼"><input type="hidden" name="redirect" value="https://kus250304-hash.github.io/pyecha-landing/thanks.html">
           <input type="hidden" name="region" value="경상남도 창원시 의창구 중동">
+          <input type="hidden" name="form" value="하단 견적 폼">
           <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
           <label for="q2-plate">차량번호 (선택)</label>
           <input id="q2-plate" name="plate" type="text" placeholder="예: 12가 3456" autocomplete="off">
@@ -490,6 +490,31 @@
   document.querySelectorAll('input[type="tel"]').forEach(function (input) {
     input.addEventListener('input', function () {
       input.value = formatPhone(input.value);
+    });
+  });
+
+  // 견적 폼: Web3Forms 로 보내고 성공하면 thanks.html 로 이동.
+  // 스크립트가 막혀 있어도 폼 자체의 redirect 값으로 같은 곳에 도착한다.
+  document.querySelectorAll('form.quote-form').forEach(function (form) {
+    var redirect = form.querySelector('input[name="redirect"]');
+    if (!redirect || form.method.toUpperCase() !== 'POST' || !window.fetch) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = form.querySelector('button[type="submit"]');
+      var label = btn.innerHTML;
+      btn.disabled = true;
+      btn.textContent = '보내는 중…';
+      fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
+        .then(function (res) { return res.json().then(function (data) { return { ok: res.ok, data: data }; }); })
+        .then(function (r) {
+          if (r.ok && r.data.success) { window.location.href = redirect.value; return; }
+          throw new Error(r.data && r.data.message);
+        })
+        .catch(function () {
+          btn.disabled = false;
+          btn.innerHTML = label;
+          alert('전송이 되지 않았습니다. 잠시 후 다시 시도하시거나 1600-6011로 전화 주세요.');
+        });
     });
   });
 })();
