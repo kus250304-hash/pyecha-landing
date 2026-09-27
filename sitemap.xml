@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kus250304-hash.github.io/pyecha-landing/</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -235,12 +235,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kus250304-hash.github.io/pyecha-landing/pages/chungnam-cheonan-dongnam-guseong.html</loc>
-    <lastmod>2026-09-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://kus250304-hash.github.io/pyecha-landing/pages/chungnam-cheonan-dongnam-munhwa.html</loc>
     <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
@@ -387,12 +381,6 @@
   <url>
     <loc>https://kus250304-hash.github.io/pyecha-landing/pages/daegu-junggu-sangseo.html</loc>
     <lastmod>2026-09-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kus250304-hash.github.io/pyecha-landing/pages/daegu-junggu-su.html</loc>
-    <lastmod>2026-09-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
