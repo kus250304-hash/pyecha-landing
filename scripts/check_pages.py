@@ -97,6 +97,43 @@ def load_name_index() -> tuple[dict[str, set[str]], dict[str, set[str]]]:
     return sigungu_sidos, dong_sidos
 
 
+OLD_BASES = ("kus250304-hash.github.io", "/pyecha-landing/")
+LINK_RE = re.compile(r'\b(?:href|src)="([^"#]*)(?:#[^"]*)?"')
+
+
+def check_links(base: str) -> list[str]:
+    """사이트 안 링크가 깨졌는지와 옛 주소가 남았는지 본다. 외부 사이트 링크는 확인하지 않는다."""
+    problems = []
+    files = [p for p in ROOT.glob("*.html")] + list(PAGES_DIR.glob("*.html")) + list((ROOT / "cases").glob("*.html"))
+    for extra in ("sitemap.xml", "robots.txt"):
+        if (ROOT / extra).exists():
+            files.append(ROOT / extra)
+    for f in files:
+        text = f.read_text(encoding="utf-8")
+        rel = f.relative_to(ROOT)
+        for old in OLD_BASES:
+            if old in text:
+                problems.append(f"{rel}: 옛 주소 '{old}' 가 남아 있음")
+        if f.suffix != ".html":
+            continue
+        for url in set(LINK_RE.findall(text)):
+            if not url or url.startswith(("tel:", "sms:", "mailto:", "javascript:", "data:")):
+                continue
+            if url.startswith(base + "/") or url == base:
+                target = ROOT / url[len(base):].lstrip("/")
+            elif re.match(r"^[a-z]+://", url):
+                continue  # 외부 사이트(Web3Forms, 블로그, 유튜브, 글꼴)
+            elif url.startswith("/"):
+                target = ROOT / url.lstrip("/")
+            else:
+                target = (f.parent / url.split("?")[0])
+            if target.is_dir():
+                target = target / "index.html"
+            if not target.resolve().exists():
+                problems.append(f"{rel}: 깨진 링크 {url}")
+    return problems
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", help="쉼표로 구분한 슬러그 목록 (엄격 모드)")
@@ -262,6 +299,10 @@ def main() -> None:
                     errors.append(f"사진 cases/images/{p.name}: 숨은 정보 {left} 가 남아 있음 → cases/input 에 다시 넣고 build_cases.py 로 처리하세요")
         except ImportError:
             errors.append("사례 사진 검사에 Pillow 가 필요합니다: pip install pillow")
+
+    # 링크 검사: 사이트 안 모든 HTML 의 href/src 가 실제 파일을 가리키는지, 옛 주소가 남지 않았는지
+    if only is None:
+        errors.extend(check_links(site_cfg["site_base_url"].rstrip("/")))
 
     for w in warnings:
         print("경고:", w)

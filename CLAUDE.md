@@ -36,6 +36,12 @@
 - "최고가 도전", "최고가를 받으실 수 있도록", "수출 시세와 비교", "상담 후 확인"처럼 방향을 말하는 표현은 적극 사용합니다. 목표는 문의를 최대한 많이 끌어내는 것이며, 전화하고 싶어지게 씁니다.
 - 비교매입이 항상 더 이득이라는 식의 단정은 하지 않습니다. "폐차보다 수출이 더 받는 차가 있습니다"처럼 조건부로 씁니다.
 
+## 사이트 주소
+
+- 사이트 주소는 **https://pyecha119.com** 입니다(저장소 맨 위 `CNAME` 파일로 GitHub Pages에 연결). 옛 주소 `kus250304-hash.github.io/pyecha-landing` 는 쓰지 않습니다.
+- 주소는 `data/site_config.json` 의 `site_base_url` 한 곳에서만 관리합니다. canonical·og:url·폼 이동 주소·sitemap.xml 은 모두 여기서 만들어지므로 페이지나 스크립트에 주소를 직접 쓰지 않습니다.
+- 사이트 안 링크는 `../index.html`, `seoul-gangnam-yeoksam.html` 처럼 상대 경로로 씁니다. `check_pages.py` 가 모든 링크가 실제 파일을 가리키는지와 옛 주소가 남았는지 검사합니다.
+
 ## 페이지 생성 방법 (v2)
 
 페이지는 `templates/region-landing-v2.html` 하나로만 만듭니다. 지역별 생성 스크립트(generate_batchN_pages.py 류)나 다른 템플릿을 새로 만들지 않습니다.

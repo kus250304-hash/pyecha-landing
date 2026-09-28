@@ -5,11 +5,15 @@ build_site.py(지역 페이지)와 build_cases.py(사례 페이지)가 파일을
 update_sitemap()을 호출해 URL을 sitemap.xml에 반영한다.
 이미 있는 URL은 lastmod만 오늘 날짜로 갱신하고, 새 URL은 추가한다.
 """
+import json
 import xml.etree.ElementTree as ET
 from datetime import date
 from pathlib import Path
 
-SITE_BASE_URL = "https://kus250304-hash.github.io/pyecha-landing"
+# 사이트 주소는 data/site_config.json 의 site_base_url 한 곳에서만 관리한다
+SITE_BASE_URL = json.loads(
+    (Path(__file__).resolve().parent.parent / "data" / "site_config.json").read_text(encoding="utf-8")
+)["site_base_url"].rstrip("/")
 SITEMAP_NS = "http://www.sitemaps.org/schemas/sitemap/0.9"
 
 ET.register_namespace("", SITEMAP_NS)
