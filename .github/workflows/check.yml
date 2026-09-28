@@ -18,6 +18,6 @@ jobs:
         run: |
           python3 scripts/build_site.py
           python3 scripts/build_index.py
-          git diff --exit-code --stat -- pages/ index.html
+          git diff --exit-code --stat -- pages/ index.html thanks.html privacy.html
       - name: 페이지·사례 검사
         run: python3 scripts/check_pages.py
