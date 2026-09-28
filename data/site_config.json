@@ -1,6 +1,6 @@
 {
   "_comment": "사이트 공통 설정. null 인 값은 아직 받지 못한 정보이며, 빌더가 해당 요소를 자동으로 숨기거나 대체 문구를 씁니다.",
-  "site_base_url": "https://kus250304-hash.github.io/pyecha-landing",
+  "site_base_url": "https://pyecha119.com",
   "phone_tel": "16006011",
   "phone_display": "1600-6011",
   "sms_number": "16006011",
