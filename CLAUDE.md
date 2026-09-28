@@ -43,6 +43,12 @@
 - 네이버 서치어드바이저 소유확인 코드는 `site_config.json` 의 `naver_site_verification` 에 있고, `build_index.py` 가 실행될 때마다 첫 화면(`index.html`) `<head>` 에 메타 태그로 넣습니다. `index.html` 에 직접 쓰지 않습니다. 구글 소유확인은 DNS로 되어 있으므로 따로 넣지 않습니다.
 - 사이트 안 링크는 `../index.html`, `seoul-gangnam-yeoksam.html` 처럼 상대 경로로 씁니다. `check_pages.py` 가 모든 링크가 실제 파일을 가리키는지와 옛 주소가 남았는지 검사합니다.
 
+## 개인정보처리방침
+
+- 방침은 `privacy.html` 한 파일입니다(쉬운 말, 맨 위 "한눈에 보기" 3줄 + 표). 받는 정보·맡기는 곳·보관 기간·Web3Forms 보관 기간이 바뀌면 이 파일과 시행일을 함께 고칩니다. 제3자 제공은 "없음"이며, 운송 업체(주소만)·협력 폐차업체(차량 정보·말소 서류)·Web3Forms·네이버 메일은 처리 위탁으로 적습니다.
+- 지역 페이지의 견적 폼 두 곳 모두 버튼 바로 아래에 "문의 시 개인정보처리방침에 동의한 것으로 봅니다" 안내와 방침 링크가 있습니다(`templates/region-landing-v2.html`). 문구를 빼거나 바꾸면 `check_pages.py` 가 오류를 냅니다.
+- 모든 페이지 맨 아래(footer)에 개인정보처리방침·블로그·유튜브 링크가 있어야 합니다. 지역·사례 페이지는 템플릿에, `index.html`·`thanks.html`·`privacy.html` 은 `build_index.py` 가 실행될 때마다 `site_config.json` 값으로 다시 채웁니다. 이 세 파일의 footer 를 손으로 고치지 않습니다.
+
 ## 페이지 생성 방법 (v2)
 
 페이지는 `templates/region-landing-v2.html` 하나로만 만듭니다. 지역별 생성 스크립트(generate_batchN_pages.py 류)나 다른 템플릿을 새로 만들지 않습니다.

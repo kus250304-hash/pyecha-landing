@@ -98,6 +98,35 @@ def load_name_index() -> tuple[dict[str, set[str]], dict[str, set[str]]]:
 
 
 OLD_BASES = ("kus250304-hash.github.io", "/pyecha-landing/")
+CONSENT_TEXT = "문의 시 <a href=\"../privacy.html\">개인정보처리방침</a>에 동의한 것으로 봅니다"
+PRIVACY_REQUIRED = ["한눈에 보기", "개인정보 보호책임자", "Web3Forms", "해외로 보내는 정보", "일을 맡기는 곳", "보관 기간"]
+
+
+def footer_problems(text: str, cfg: dict) -> list[str]:
+    """맨 아래(footer)에 개인정보처리방침·블로그·유튜브 링크가 있는지 본다."""
+    m = re.search(r"<footer>.*?</footer>", text, flags=re.DOTALL)
+    if not m:
+        return ["맨 아래(footer) 없음"]
+    footer = m.group(0)
+    needles = [(r'href="(?:\.\./)?privacy\.html"', "개인정보처리방침 링크")]
+    needles += [(re.escape(f'href="{cfg[k]}"'), label) for k, label in (("blog_url", "블로그 링크"), ("youtube_url", "유튜브 링크")) if cfg.get(k)]
+    return [f"맨 아래에 {label} 없음" for pat, label in needles if not re.search(pat, footer)]
+
+
+def check_site_pages(cfg: dict) -> list[str]:
+    """지역 페이지 밖의 페이지(첫 화면·접수 완료·방침·사례)의 footer 와 방침 내용을 본다."""
+    problems = []
+    for f in [ROOT / "index.html", ROOT / "thanks.html", ROOT / "privacy.html"] + sorted((ROOT / "cases").glob("*.html")):
+        if not f.exists():
+            problems.append(f"{f.relative_to(ROOT)}: 파일 없음")
+            continue
+        text = f.read_text(encoding="utf-8")
+        problems += [f"{f.relative_to(ROOT)}: {p} (build_index.py 또는 템플릿 확인)" for p in footer_problems(text, cfg)]
+    privacy = (ROOT / "privacy.html").read_text(encoding="utf-8") if (ROOT / "privacy.html").exists() else ""
+    for needle in PRIVACY_REQUIRED + [cfg["phone_display"]]:
+        if needle not in privacy:
+            problems.append(f"privacy.html: '{needle}' 항목 없음")
+    return problems
 LINK_RE = re.compile(r'\b(?:href|src)="([^"#]*)(?:#[^"]*)?"')
 
 
@@ -255,8 +284,12 @@ def main() -> None:
                 ) if needle not in f]
                 if problems:
                     errors.append(f"{tag}: 견적 폼 {i}번에 {', '.join(problems)} 없음 (문의가 전송되지 않음)")
+                if CONSENT_TEXT not in f:
+                    errors.append(f"{tag}: 견적 폼 {i}번 버튼 아래에 개인정보처리방침 동의 안내 없음")
             if len(forms) < 2:
                 errors.append(f"{tag}: 견적 폼이 {len(forms)}개 (2개여야 함)")
+        for problem in footer_problems(html, site_cfg):
+            errors.append(f"{tag}: {problem}")
         body = re.sub(r"<style>.*?</style>|<script[^>]*>.*?</script>", "", html, flags=re.DOTALL)
         for m in PROMISE_RE.finditer(body):
             errors.append(f"{tag}: 결과 약속 표현 '{m.group(0)}' → …{body[max(0, m.start()-15):m.end()+15]}…")
@@ -303,6 +336,7 @@ def main() -> None:
     # 링크 검사: 사이트 안 모든 HTML 의 href/src 가 실제 파일을 가리키는지, 옛 주소가 남지 않았는지
     if only is None:
         errors.extend(check_links(site_cfg["site_base_url"].rstrip("/")))
+        errors.extend(check_site_pages(site_cfg))
 
     # 첫 화면의 네이버 서치어드바이저 소유확인 태그
     naver = site_cfg.get("naver_site_verification")

@@ -6,6 +6,9 @@ regions.json 이 이미 지역별 sido/sigungu/dong을 갖고 있으므로 페�
 index.html의 지역 목록 블록과 헤더의 지역 수만 교체하고 나머지는 그대로 둔다.
 검색엔진 소유확인 메타 태그(site_config.json 의 naver_site_verification)는 실행할 때마다
 <head> 안에 다시 넣으므로 index.html 을 손으로 고쳐도 지워지지 않는다.
+사이트 맨 위 폴더의 페이지(index.html·thanks.html·privacy.html)의 <footer> 도 실행할 때마다
+공통 내용(대표번호·개인정보처리방침·블로그·유튜브 링크)으로 다시 채운다.
+지역·사례 페이지의 footer 는 templates/ 의 템플릿에 들어 있다.
 
 배치 생성 스크립트나 build_site.py를 실행한 뒤 이 스크립트를 실행하면 index.html이 최신 상태가 된다.
 """
@@ -21,6 +24,30 @@ CONFIG_PATH = ROOT / "data" / "site_config.json"
 INDEX_PATH = ROOT / "index.html"
 NAVER_META_RE = re.compile(r'[ \t]*<meta name="naver-site-verification"[^>]*>\n?')
 VIEWPORT_RE = re.compile(r'(<meta name="viewport"[^>]*>\n)')
+FOOTER_RE = re.compile(r"<footer>.*?</footer>", re.DOTALL)
+STATIC_PAGES = [ROOT / "index.html", ROOT / "thanks.html", ROOT / "privacy.html"]
+
+
+def site_footer(cfg: dict) -> str:
+    """맨 위 폴더 페이지 공통 footer. 링크 주소는 site_config.json 에서 가져온다."""
+    esc = lambda v: html.escape(v, quote=True)
+    ext = 'target="_blank" rel="noopener noreferrer"'
+    return (
+        "<footer>\n"
+        "  <p>전국 폐차 비교매입 상담 · 전국 폐차 협력업체 네트워크 연계 서비스</p>\n"
+        f'  <p>대표번호 <a href="tel:{esc(cfg["phone_tel"])}">{esc(cfg["phone_display"])}</a>'
+        ' · <a href="privacy.html">개인정보처리방침</a> · <a href="index.html">전체 지역 보기</a></p>\n'
+        f'  <p><a href="{esc(cfg["blog_url"])}" {ext}>폐차119 블로그</a>'
+        f' · <a href="{esc(cfg["youtube_url"])}" {ext}>유튜브</a></p>\n'
+        "</footer>"
+    )
+
+
+def apply_footer(text: str, cfg: dict, name: str) -> str:
+    text, n = FOOTER_RE.subn(lambda _: site_footer(cfg), text, count=1)
+    if n != 1:
+        raise ValueError(f"{name} 에서 <footer> 를 찾지 못했습니다")
+    return text
 
 
 def naver_meta_tag(code: str) -> str:
@@ -99,9 +126,12 @@ def main() -> None:
     if n_count != 1:
         raise ValueError("index.html에서 지역 수 문구를 찾지 못했습니다")
     text = apply_head_meta(text)
-
     INDEX_PATH.write_text(text, encoding="utf-8")
-    print(f"index.html 갱신 완료: 총 {total}개 지역, 시도 {len(by_sido)}개")
+
+    cfg = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+    for page in STATIC_PAGES:
+        page.write_text(apply_footer(page.read_text(encoding="utf-8"), cfg, page.name), encoding="utf-8")
+    print(f"index.html 갱신 완료: 총 {total}개 지역, 시도 {len(by_sido)}개 (맨 아래 링크: {', '.join(p.name for p in STATIC_PAGES)})")
 
 
 if __name__ == "__main__":
