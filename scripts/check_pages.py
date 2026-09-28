@@ -304,6 +304,15 @@ def main() -> None:
     if only is None:
         errors.extend(check_links(site_cfg["site_base_url"].rstrip("/")))
 
+    # 첫 화면의 네이버 서치어드바이저 소유확인 태그
+    naver = site_cfg.get("naver_site_verification")
+    if naver:
+        index_html = (ROOT / "index.html").read_text(encoding="utf-8")
+        head = index_html.split("</head>", 1)[0]
+        tag = f'<meta name="naver-site-verification" content="{naver}" />'
+        if head.count(tag) != 1 or index_html.count("naver-site-verification") != 1:
+            errors.append("index.html: <head> 안에 네이버 소유확인 메타 태그가 정확히 1개 있어야 함 (build_index.py 실행 필요)")
+
     for w in warnings:
         print("경고:", w)
     for e in errors:

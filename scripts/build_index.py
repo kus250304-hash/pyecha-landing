@@ -4,9 +4,12 @@ index.html의 지역 목록을 data/regions.json 기준으로 다시 생성한�
 regions.json 이 이미 지역별 sido/sigungu/dong을 갖고 있으므로 페이지 HTML을
 스크래핑하지 않고 직접 읽는다(템플릿의 title/badge 형식이 바뀌어도 영향받지 않음).
 index.html의 지역 목록 블록과 헤더의 지역 수만 교체하고 나머지는 그대로 둔다.
+검색엔진 소유확인 메타 태그(site_config.json 의 naver_site_verification)는 실행할 때마다
+<head> 안에 다시 넣으므로 index.html 을 손으로 고쳐도 지워지지 않는다.
 
 배치 생성 스크립트나 build_site.py를 실행한 뒤 이 스크립트를 실행하면 index.html이 최신 상태가 된다.
 """
+import html
 import json
 import re
 from pathlib import Path
@@ -14,7 +17,26 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 PAGES_DIR = ROOT / "pages"
 REGIONS_PATH = ROOT / "data" / "regions.json"
+CONFIG_PATH = ROOT / "data" / "site_config.json"
 INDEX_PATH = ROOT / "index.html"
+NAVER_META_RE = re.compile(r'[ \t]*<meta name="naver-site-verification"[^>]*>\n?')
+VIEWPORT_RE = re.compile(r'(<meta name="viewport"[^>]*>\n)')
+
+
+def naver_meta_tag(code: str) -> str:
+    return f'<meta name="naver-site-verification" content="{html.escape(code, quote=True)}" />\n'
+
+
+def apply_head_meta(text: str) -> str:
+    """네이버 서치어드바이저 소유확인 태그를 viewport 태그 바로 아래에 하나만 둔다."""
+    code = json.loads(CONFIG_PATH.read_text(encoding="utf-8")).get("naver_site_verification")
+    text = NAVER_META_RE.sub("", text)
+    if not code:
+        return text
+    text, n = VIEWPORT_RE.subn(lambda m: m.group(1) + naver_meta_tag(code), text, count=1)
+    if n != 1:
+        raise ValueError("index.html 에서 viewport 메타 태그를 찾지 못했습니다")
+    return text
 
 SIDO_ORDER = [
     "서울특별시", "부산광역시", "대구광역시", "인천광역시", "광주광역시",
@@ -76,6 +98,7 @@ def main() -> None:
     text, n_count = COUNT_RE.subn(rf"\g<1>{total}\g<2>", text, count=1)
     if n_count != 1:
         raise ValueError("index.html에서 지역 수 문구를 찾지 못했습니다")
+    text = apply_head_meta(text)
 
     INDEX_PATH.write_text(text, encoding="utf-8")
     print(f"index.html 갱신 완료: 총 {total}개 지역, 시도 {len(by_sido)}개")

@@ -40,6 +40,7 @@
 
 - 사이트 주소는 **https://pyecha119.com** 입니다(저장소 맨 위 `CNAME` 파일로 GitHub Pages에 연결). 옛 주소 `kus250304-hash.github.io/pyecha-landing` 는 쓰지 않습니다.
 - 주소는 `data/site_config.json` 의 `site_base_url` 한 곳에서만 관리합니다. canonical·og:url·폼 이동 주소·sitemap.xml 은 모두 여기서 만들어지므로 페이지나 스크립트에 주소를 직접 쓰지 않습니다.
+- 네이버 서치어드바이저 소유확인 코드는 `site_config.json` 의 `naver_site_verification` 에 있고, `build_index.py` 가 실행될 때마다 첫 화면(`index.html`) `<head>` 에 메타 태그로 넣습니다. `index.html` 에 직접 쓰지 않습니다. 구글 소유확인은 DNS로 되어 있으므로 따로 넣지 않습니다.
 - 사이트 안 링크는 `../index.html`, `seoul-gangnam-yeoksam.html` 처럼 상대 경로로 씁니다. `check_pages.py` 가 모든 링크가 실제 파일을 가리키는지와 옛 주소가 남았는지 검사합니다.
 
 ## 페이지 생성 방법 (v2)
