@@ -55,11 +55,25 @@
 
 - 지역 데이터는 `data/regions.json` 한 곳에 있습니다(법정동코드 `code` 포함). 페이지 HTML을 직접 쓰거나 고치지 않고, 데이터를 고친 뒤 `python3 scripts/build_site.py --only <slug,...>` 로 다시 렌더링합니다.
 - 새 지역 추가 순서:
-  1. `python3 scripts/pick_next_regions.py` → `data/batches/YYYY-MM-DD.json` 뼈대 생성 (개수는 `data/generation_config.json`의 `daily_count`)
+  1. `python3 scripts/pick_next_regions.py` → `data/batches/YYYY-MM-DD.json` 뼈대 생성 (개수는 `data/generation_config.json`의 `daily_count`, 보류 폴더에 있는 동은 다시 뽑지 않음)
   2. 뼈대의 `landmark_name`, `landmark_desc`, `service_intro`, `faqs`(질문·답 쌍 4개 이상), `meta` 를 채움
-  3. `python3 scripts/import_batch.py data/batches/YYYY-MM-DD.json` → regions.json 반영, 렌더링, `index.html`·`sitemap.xml` 갱신, `check_pages.py` 검사까지 한 번에 실행. 검사가 실패하면 배치 파일을 고치고 다시 실행
-- `python3 scripts/check_pages.py` 는 언제든 전체 페이지를 검사합니다. 오류가 있는 상태로 PR을 올리지 않습니다.
-- 생성 결과는 항상 브랜치에 커밋하고 PR로 올립니다. main에 직접 push하지 않습니다.
+  3. **사실 확인**: 아래 "사실 확인" 규칙대로 지역마다 `fact_check` 를 채움. `python3 scripts/fact_check.py data/batches/YYYY-MM-DD.json` 이 확인해야 할 이름과 빠진 기록을 보여 줌
+  4. `python3 scripts/import_batch.py data/batches/YYYY-MM-DD.json` → 보류 항목을 `data/batches/held/` 로 옮기고, 확인된 항목만 regions.json 반영, 렌더링, `index.html`·`sitemap.xml` 갱신, `check_pages.py` 검사까지 한 번에 실행. 실패하면 모두 되돌려지므로 배치 파일을 고치고 다시 실행
+- `python3 scripts/check_pages.py` 는 언제든 전체 페이지를 검사합니다. 오류가 있는 상태로는 반영하지 않습니다.
+
+### 반영 방법
+- **매일 자동생성 루틴**만 main 에 바로 push 합니다(PR 없음). 조건: 사실 확인 기록 + `import_batch.py` 통과 + 커밋 후 `python3 scripts/publish_gate.py` 통과. 게이트가 하나라도 실패하면 main 에 push 하지 않고 작업을 `auto/failed-YYYYMMDD` 브랜치에 남깁니다.
+- 루틴이 main 에 반영할 수 있는 파일은 `data/regions.json`, `data/batches/held/`, `data/fact_checks/`, `pages/`, `cases/`, `index.html`, `sitemap.xml` 뿐입니다(`publish_gate.py` 가 막음).
+- 스크립트·템플릿·CLAUDE.md·설정 변경, 기존 지역 수정은 지금처럼 브랜치에 커밋하고 PR로 올립니다.
+- 매일 루틴의 지시문은 `docs/daily-routine-prompt.md` 에 있습니다. 루틴 문장을 바꾸면 이 파일도 함께 고칩니다.
+
+### 사실 확인 (자동 반영 조건)
+- 새 지역마다 글(`landmark_name`, `landmark_desc`, `service_intro`, `faqs`)에 나오는 **장소 이름(랜드마크·역·도로명·시장·학교·공원·관공서·하천·산 등)을 하나씩 웹 검색으로 확인**합니다. 옆 동 이름은 `legal_dong_list.csv` 로 확인하므로 제외합니다.
+- 확인됨의 기준: 그 장소가 실제로 있고, **그 동 안(또는 설명에 쓴 대로 바로 옆)에 있다는 근거**가 검색 결과에 있을 것(주소에 동 이름이 나오거나, 공식·백과·지자체 자료가 그 동의 장소로 소개). 이름만 있고 위치가 확인되지 않으면 확인되지 않은 것입니다.
+- 기록 형식: `"fact_check": {"status": "confirmed", "reason": "", "items": [{"name": "대동하늘공원", "evidence": "대전 동구 대동, 동구청 관광명소 소개", "url": "https://..."}]}`. 이름마다 근거 한 줄과 실제로 연 출처 주소를 적습니다. 주소를 지어내지 않습니다.
+- 확인되지 않는 이름이 있으면 ① 그 이름을 확인되는 다른 장소나 틀릴 수 없는 큰 도로로 바꾸고 다시 확인하거나 ② `"status": "held", "reason": "<쉬운 말 이유>"` 로 보류합니다. 확실하지 않은 채로 confirmed 로 두지 않습니다.
+- `scripts/fact_check.py` 는 글에서 장소 이름으로 보이는 낱말을 자동으로 뽑아, 확인 기록이 없는 이름이 하나라도 있으면 `import_batch.py` 가 반영을 거부합니다. 장소 이름이 아닌데 잡힌 낱말(예: "행사로 주변")은 문장을 바꿔 씁니다.
+- 확인 기록은 `data/fact_checks/YYYY-MM-DD.json`, 보류된 지역은 `data/batches/held/YYYY-MM-DD.json` 에 남습니다. 보류 지역을 나중에 사람이 고쳐 올리려면 그 항목을 배치 파일로 옮겨 확인 기록을 채운 뒤 `import_batch.py` 로 넣고, 보류 파일에서는 뺍니다.
 
 ## 사례(후기) 운영 방법
 
@@ -70,7 +84,7 @@
 - 사례 페이지(`templates/case.html`)에도 지역 페이지와 같은 전화·문자 버튼, 하단 고정 바, 협력업체 고지가 들어갑니다.
 
 ### 지역 콘텐츠 작성 규칙 (뼈대를 채울 때)
-- `landmark_name`: 그 동에 실제로 있는 잘 알려진 장소 하나(역, 시장, 대학, 공원, 관공서, 큰길 등). 확실하지 않으면 그 동을 지나는 큰 도로 이름처럼 틀릴 수 없는 것을 씁니다. 지어내지 않습니다. 주민센터(행정복지센터)는 그 이름의 주민센터가 실제로 있을 때만 씁니다. "수동", "구성동"처럼 주소에만 쓰이는 법정동은 이름이 같은 주민센터가 없는 경우가 많으므로 "○○동 주민센터"를 만들어 쓰지 않습니다. 큰 도로도 확실하지 않으면 그 동은 배치 파일에서 빼고, PR 본문에 뺀 이유를 적습니다. 장소 이름만 쓰고 "인근", "주변", "일대", "근처" 같은 위치 표현이나 "원도심 주택가" 같은 설명은 붙이지 않습니다(템플릿이 "○○ 인근 출장 방문"처럼 뒤에 말을 붙이므로 겹칩니다). 설명은 `landmark_desc`에 씁니다.
+- `landmark_name`: 그 동에 실제로 있는 잘 알려진 장소 하나(역, 시장, 대학, 공원, 관공서, 큰길 등). 확실하지 않으면 그 동을 지나는 큰 도로 이름처럼 틀릴 수 없는 것을 씁니다. 지어내지 않습니다. 주민센터(행정복지센터)는 그 이름의 주민센터가 실제로 있을 때만 씁니다. "수동", "구성동"처럼 주소에만 쓰이는 법정동은 이름이 같은 주민센터가 없는 경우가 많으므로 "○○동 주민센터"를 만들어 쓰지 않습니다. 큰 도로도 확실하지 않으면 그 동은 `fact_check` 를 `held` 로 두고 이유를 적습니다(보류 폴더로 감). 장소 이름만 쓰고 "인근", "주변", "일대", "근처" 같은 위치 표현이나 "원도심 주택가" 같은 설명은 붙이지 않습니다(템플릿이 "○○ 인근 출장 방문"처럼 뒤에 말을 붙이므로 겹칩니다). 설명은 `landmark_desc`에 씁니다.
 - `landmark_desc`: 랜드마크와 동네 특징(주거·상업·공업, 지형, 주차 환경 등) 1~2문장.
 - `service_intro`: "{시도} {시군구} {동} 일대는 전국 폐차 협력업체 네트워크와 연계되어 상담과 방문 처리가 가능한 지역입니다."로 시작하고, 그 동의 지형·주거 형태에 맞춘 방문 안내 1~2문장을 이어 씁니다.
 - `faqs`: 4~5개. 그중 3개 이상은 질문이나 답에 그 동 이름 또는 랜드마크 이름이 들어가야 합니다(주차 환경, 골목 진입, 방문 시간, 인근 동 방문 가능 여부 등).

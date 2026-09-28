@@ -11,6 +11,7 @@ data/legal_dong_list.csv 에서 아직 페이지가 없는 동을 골라 오늘 
 
 선택 규칙
 - 법정동코드 기준으로 regions.json 에 이미 있는 동은 제외
+- 사실 확인에서 보류된 동(data/batches/held/*.json)도 제외 (매일 같은 동을 다시 뽑지 않게)
 - 같은 시군구에서 '숫자+가'만 다른 동(명동1가/명동2가 등)은 하나만 만든다
 - 면(面)은 generation_config.json 의 include_myeon 이 true 일 때만 포함
 - 시도별로 돌아가며 하나씩 뽑아 하루 분량이 한 지역에 몰리지 않게 한다
@@ -31,6 +32,7 @@ CSV_PATH = ROOT / "data" / "legal_dong_list.csv"
 REGIONS_PATH = ROOT / "data" / "regions.json"
 CONFIG_PATH = ROOT / "data" / "generation_config.json"
 BATCH_DIR = ROOT / "data" / "batches"
+HELD_DIR = BATCH_DIR / "held"
 KST = timezone(timedelta(hours=9))
 
 SIDO_PREFIX = {
@@ -98,6 +100,8 @@ def main() -> None:
         return
 
     covered_codes = {r["code"] for r in regions if r.get("code")}
+    for held_file in sorted(HELD_DIR.glob("*.json")):
+        covered_codes |= {h["code"] for h in json.loads(held_file.read_text(encoding="utf-8"))}
     covered_base = {(r["sido"], r["sigungu"], base_name(r["dong"])) for r in regions}
     used_slugs = {r["slug"] for r in regions}
 
@@ -144,6 +148,7 @@ def main() -> None:
             "code": r["법정동코드"], "slug": slug,
             "sido": r["시도"], "sigungu": r["시군구"], "dong": r["읍면동"],
             "landmark_name": "", "landmark_desc": "", "service_intro": "", "faqs": [], "meta": "",
+            "fact_check": {"status": "", "reason": "", "items": []},
         })
 
     BATCH_DIR.mkdir(exist_ok=True)
