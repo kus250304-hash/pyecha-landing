@@ -37,11 +37,14 @@ KST = timezone(timedelta(hours=9))
 
 SIDO_PREFIX = {
     "서울특별시": "seoul", "부산광역시": "busan", "대구광역시": "daegu", "인천광역시": "incheon",
-    "광주광역시": "gwangju", "대전광역시": "daejeon", "울산광역시": "ulsan", "세종특별자치시": "sejong",
+    "전남광주통합특별시": "jeonnam", "대전광역시": "daejeon", "울산광역시": "ulsan", "세종특별자치시": "sejong",
     "경기도": "gyeonggi", "강원특별자치도": "gangwon", "충청북도": "chungbuk", "충청남도": "chungnam",
-    "전북특별자치도": "jeonbuk", "전라남도": "jeonnam", "경상북도": "gyeongbuk", "경상남도": "gyeongnam",
+    "전북특별자치도": "jeonbuk", "경상북도": "gyeongbuk", "경상남도": "gyeongnam",
     "제주특별자치도": "jeju",
 }
+# 전남광주통합특별시(2026-07-01) 안의 옛 광주광역시 자치구는 기존 페이지처럼 gwangju- 로 시작한다.
+# 인천 제물포구·영종구·검단구·서해구는 구 이름에서 incheon-jemulpo- 처럼 저절로 만들어진다.
+GWANGJU_GU = {"동구", "서구", "남구", "북구", "광산구"}
 
 # 국어의 로마자 표기법(음운 변화 미적용). 슬러그용이라 발음 규칙까지는 따르지 않는다.
 CHO = ["g", "kk", "n", "d", "tt", "r", "m", "b", "pp", "s", "ss", "", "j", "jj", "ch", "k", "t", "p", "h"]
@@ -72,7 +75,7 @@ def base_name(dong: str) -> str:
 
 
 def make_slug(sido: str, sigungu: str, dong: str) -> str:
-    parts = [SIDO_PREFIX[sido]]
+    parts = ["gwangju" if sido == "전남광주통합특별시" and sigungu in GWANGJU_GU else SIDO_PREFIX[sido]]
     for tok in sigungu.split():
         # 강남구→gangnam, 남구→namgu (한 글자만 남으면 구/시/군을 붙여 둔다)
         parts.append(romanize(tok[:-1] if tok[-1] in "시군구" and len(tok) > 2 else tok))

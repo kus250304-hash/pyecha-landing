@@ -121,21 +121,58 @@ def contact_parts(cfg: dict, dong: str) -> dict:
 WEB3FORMS_URL = "https://api.web3forms.com/submit"
 
 SIDO_SHORT = {
-    "서울특별시": "서울", "부산광역시": "부산", "대구광역시": "대구", "인천광역시": "인천", "광주광역시": "광주",
-    "대전광역시": "대전", "울산광역시": "울산", "세종특별자치시": "세종", "경기도": "경기", "강원특별자치도": "강원",
-    "충청북도": "충북", "충청남도": "충남", "전북특별자치도": "전북", "전라남도": "전남", "경상북도": "경북",
-    "경상남도": "경남", "제주특별자치도": "제주",
+    "서울특별시": "서울", "부산광역시": "부산", "대구광역시": "대구", "인천광역시": "인천",
+    "전남광주통합특별시": "전남광주", "대전광역시": "대전", "울산광역시": "울산", "세종특별자치시": "세종",
+    "경기도": "경기", "강원특별자치도": "강원", "충청북도": "충북", "충청남도": "충남", "전북특별자치도": "전북",
+    "경상북도": "경북", "경상남도": "경남", "제주특별자치도": "제주",
 }
+
+
+RENAMED_ON_TEXT = "2026년 7월 1일"
+HERO_SUB_TEXT = "폐차 보상금과 수출 시세를 함께 비교해서 최고가를 받으실 수 있도록 도와드립니다."
+
+
+def is_renamed(r: dict) -> bool:
+    return bool(r.get("old_sido") or r.get("old_sigungu"))
+
+
+def old_region_name(r: dict) -> str:
+    """"(옛 …)" 안에 넣을 옛 이름: 구가 바뀌면 '중구 신포동', 시도만 바뀌면 '광주광역시 동구 계림동'."""
+    if r.get("old_sigungu"):
+        return f"{r['old_sigungu']} {r['dong']}"
+    return " ".join(x for x in (r["old_sido"], r["sigungu"], r["dong"]) if x)
+
+
+def josa(word: str, with_final: str, without_final: str) -> str:
+    """앞 낱말 끝 글자의 받침에 맞춰 은/는, 이/가 를 고른다."""
+    ch = word[-1]
+    if "가" <= ch <= "힣":
+        return with_final if (ord(ch) - 0xAC00) % 28 else without_final
+    return with_final if ch in "013678" else without_final
+
+
+def renamed_note(r: dict) -> str:
+    """첫 화면 아래 회색 작은 글씨 한 줄. 이름이 바뀌지 않은 지역은 빈 문자열이라 페이지가 그대로다."""
+    if not is_renamed(r):
+        return ""
+    old = " ".join(x for x in (r.get("old_sido") or r["sido"], r.get("old_sigungu") or r["sigungu"], r["dong"]) if x)
+    new = " ".join(x for x in (r["sido"], r["sigungu"], r["dong"]) if x)
+    text = (f"{RENAMED_ON_TEXT}부터 {old}{josa(old, '은', '는')} {new}{josa(new, '이', '가')} 되었습니다. "
+            "옛 주소로 문의하셔도 됩니다.")
+    return f'\n<p class="renamed-note" style="margin:10px auto 0;padding:0 18px;max-width:960px;color:#5E6E70;font-size:12px;line-height:1.6">{esc(text)}</p>'
 
 
 def title_labels(regions: list[dict]) -> dict[str, str]:
     """페이지 제목에 쓸 지역 이름. 겹치지 않을 만큼만 길게 붙인다:
-    역삼동 → (동 이름이 겹치면) 강남구 중동 → (구+동도 겹치면) 부산 중구 중앙동1가"""
+    역삼동 → (동 이름이 겹치면) 강남구 중동 → (구+동도 겹치면) 부산 중구 중앙동1가
+    행정구역이 바뀐 지역은 새 이름이 보이도록 늘 시도 줄임 이름부터 붙인다(인천 제물포구 신포동)."""
     dong_counts = Counter(r["dong"] for r in regions)
     pair_counts = Counter((r["sigungu"], r["dong"]) for r in regions)
     labels = {}
     for r in regions:
-        if dong_counts[r["dong"]] == 1:
+        if is_renamed(r):
+            labels[r["slug"]] = " ".join(x for x in (SIDO_SHORT[r["sido"]], r["sigungu"], r["dong"]) if x)
+        elif dong_counts[r["dong"]] == 1:
             labels[r["slug"]] = r["dong"]
         elif pair_counts[(r["sigungu"], r["dong"])] == 1:
             labels[r["slug"]] = f"{r['sigungu'] or r['sido']} {r['dong']}"
@@ -212,8 +249,10 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
         cases_html = ""
 
     meta_title = f"{title_region} 폐차 | 폐차 보상금 vs 수출 시세 비교, 견인비 없음 · {phone_disp}"
+    old_mark = f"(옛 {old_region_name(r)})" if is_renamed(r) else ""
+    hero_sub = f"{title_region}{old_mark} {HERO_SUB_TEXT}" if old_mark else HERO_SUB_TEXT
     meta_desc = (
-        f"{full} 폐차 전에 폐차 보상금과 수출 시세를 함께 비교해 드립니다. 압류·서류 없음도 상담 가능, "
+        f"{full}{old_mark} 폐차 전에 폐차 보상금과 수출 시세를 함께 비교해 드립니다. 압류·서류 없음도 상담 가능, "
         f"당일 접수, 견인비 없음. {r['landmark_name']} 인근 출장 방문. 전화 {phone_disp}"
     )
 
@@ -225,6 +264,9 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
         "REGION_FULL_NAME": esc(full),
         "SIGUNGU_DONG": esc(sigungu_dong),
         "DONG": esc(r["dong"]),
+        "H1_REGION": esc(title_region if is_renamed(r) else r["dong"]),
+        "HERO_SUB": esc(hero_sub),
+        "RENAMED_NOTE": renamed_note(r),
         "LANDMARK_NAME": esc(r["landmark_name"]),
         "LANDMARK_DESC": esc(r["landmark_desc"]),
         "SERVICE_INTRO": esc(r["service_intro"]),

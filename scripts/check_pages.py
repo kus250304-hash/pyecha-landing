@@ -49,8 +49,10 @@ SIDO_SHORT = {
     "서울특별시": "서울", "부산광역시": "부산", "대구광역시": "대구", "인천광역시": "인천",
     "대전광역시": "대전", "울산광역시": "울산", "세종특별자치시": "세종", "경기도": "경기",
     "강원특별자치도": "강원", "충청북도": "충북", "충청남도": "충남", "전북특별자치도": "전북",
-    "전라남도": "전남", "경상북도": "경북", "경상남도": "경남", "제주특별자치도": "제주",
+    "전남광주통합특별시": "전남광주", "경상북도": "경북", "경상남도": "경남", "제주특별자치도": "제주",
 }  # 광주는 경기도 광주시와 겹쳐 제외
+# 2026-07-01 에 없어진 시도 이름. 다른 지역 글에 나오면 여전히 잡되, regions.json 의 old_sido 로 적힌 그 지역만 예외
+OLD_SIDOS = {"광주광역시", "전라남도"}
 
 
 def base_name(dong: str) -> str:
@@ -73,6 +75,7 @@ SIDO_SHORT_TAIL = r"(?=[\s,·]|과|와|의|에|로|까지|에서|이|가|은|는
 def own_tokens(r: dict) -> set[str]:
     toks = {r["dong"], base_name(r["dong"])}
     toks.update(r["sigungu"].split())
+    toks.update((r.get("old_sigungu") or "").split())  # 행정구역이 바뀐 지역의 옛 구 이름(예: 인천 중구)
     # "한남대교와 유엔빌리지", "강남구청·가구거리" 처럼 묶인 랜드마크는 낱개로 나눠 센다
     for part in re.split(r"[\s·,/()]+", r.get("landmark_name", "")):
         part = re.sub(r"(와|과)$", "", part)
@@ -172,7 +175,7 @@ def main() -> None:
     site_cfg = json.loads(SITE_CONFIG_PATH.read_text(encoding="utf-8"))
     sitemap = SITEMAP_PATH.read_text(encoding="utf-8") if SITEMAP_PATH.exists() else ""
     sigungu_sidos, dong_sidos = load_name_index()
-    all_sidos = set(SIDO_SHORT) | {"광주광역시"}
+    all_sidos = set(SIDO_SHORT) | OLD_SIDOS
 
     strict = bool(args.only)
     only = {s.strip() for s in args.only.split(",") if s.strip()} if args.only else None
@@ -236,7 +239,7 @@ def main() -> None:
 
         text = region_text(r)
         mine = own_tokens(r)
-        for sido in all_sidos - {r["sido"]}:
+        for sido in all_sidos - {r["sido"], r.get("old_sido")}:
             if sido in text:
                 errors.append(f"{tag}: 다른 시도 이름 '{sido}' 가 지역 문구에 있음")
         for sido, short in SIDO_SHORT.items():
@@ -293,7 +296,7 @@ def main() -> None:
         body = re.sub(r"<style>.*?</style>|<script[^>]*>.*?</script>", "", html, flags=re.DOTALL)
         for m in PROMISE_RE.finditer(body):
             errors.append(f"{tag}: 결과 약속 표현 '{m.group(0)}' → …{body[max(0, m.start()-15):m.end()+15]}…")
-        for sido in all_sidos - {r["sido"]}:
+        for sido in all_sidos - {r["sido"], r.get("old_sido")}:
             if sido in body:
                 errors.append(f"{tag}: 페이지에 다른 시도 이름 '{sido}' 가 있음")
         if f"/pages/{slug}.html" not in sitemap:
