@@ -231,11 +231,12 @@
   "meta": "대전광역시 유성구 봉명동 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "2911010900",
+  "code": "1221010900",
   "slug": "gwangju-donggu-gyerim",
   "sido": "전남광주통합특별시",
   "sigungu": "동구",
   "dong": "계림동",
+  "old_code": "2911010900",
   "old_sido": "광주광역시",
   "renamed_on": "2026-07-01",
   "landmark_name": "광주고등학교",
@@ -794,11 +795,12 @@
   "meta": "대구광역시 수성구 범어동 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "2811012400",
+  "code": "2812513100",
   "slug": "incheon-junggu-sinpo",
   "sido": "인천광역시",
   "sigungu": "제물포구",
   "dong": "신포동",
+  "old_code": "2811012400",
   "old_sigungu": "중구",
   "renamed_on": "2026-07-01",
   "landmark_name": "신포국제시장",
@@ -895,11 +897,12 @@
   "meta": "인천광역시 부평구 부평동 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "2914012000",
+  "code": "1224012000",
   "slug": "gwangju-seogu-chipyeong",
   "sido": "전남광주통합특별시",
   "sigungu": "서구",
   "dong": "치평동",
+  "old_code": "2914012000",
   "old_sido": "광주광역시",
   "renamed_on": "2026-07-01",
   "landmark_name": "상무지구",
@@ -930,11 +933,12 @@
   "meta": "전남광주통합특별시 서구 치평동 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "2917010700",
+  "code": "1230010700",
   "slug": "gwangju-bukgu-yongbong",
   "sido": "전남광주통합특별시",
   "sigungu": "북구",
   "dong": "용봉동",
+  "old_code": "2917010700",
   "old_sido": "광주광역시",
   "renamed_on": "2026-07-01",
   "landmark_name": "전남대학교",
@@ -1793,11 +1797,12 @@
   "meta": "전북특별자치도 군산시 나운동 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "4611015900",
+  "code": "1211015900",
   "slug": "jeonnam-mokpo-yonghae",
   "sido": "전남광주통합특별시",
   "sigungu": "목포시",
   "dong": "용해동",
+  "old_code": "4611015900",
   "old_sido": "전라남도",
   "renamed_on": "2026-07-01",
   "landmark_name": "목포용해초등학교",
@@ -1828,11 +1833,12 @@
   "meta": "전남광주통합특별시 목포시 용해동 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "4613010700",
+  "code": "1213010700",
   "slug": "jeonnam-yeosu-jungang",
   "sido": "전남광주통합특별시",
   "sigungu": "여수시",
   "dong": "중앙동",
+  "old_code": "4613010700",
   "old_sido": "전라남도",
   "renamed_on": "2026-07-01",
   "landmark_name": "이순신광장",
@@ -2688,11 +2694,12 @@
   "meta": "인천광역시 미추홀구 주안동 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "2826012200",
+  "code": "2827511100",
   "slug": "incheon-seogu-cheongna",
   "sido": "인천광역시",
   "sigungu": "서해구",
   "dong": "청라동",
+  "old_code": "2826012200",
   "old_sigungu": "서구",
   "renamed_on": "2026-07-01",
   "landmark_name": "청라국제도시",
@@ -2723,11 +2730,12 @@
   "meta": "인천광역시 서해구 청라동 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "2920011400",
+  "code": "1233011400",
   "slug": "gwangju-gwangsan-suwan",
   "sido": "전남광주통합특별시",
   "sigungu": "광산구",
   "dong": "수완동",
+  "old_code": "2920011400",
   "old_sido": "광주광역시",
   "renamed_on": "2026-07-01",
   "landmark_name": "수완지구",
@@ -3451,11 +3459,12 @@
   "meta": "전북특별자치도 정읍시 수성동 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "4615013300",
+  "code": "1215013300",
   "slug": "jeonnam-suncheon-jorye",
   "sido": "전남광주통합특별시",
   "sigungu": "순천시",
   "dong": "조례동",
+  "old_code": "4615013300",
   "old_sido": "전라남도",
   "renamed_on": "2026-07-01",
   "landmark_name": "조례호수공원",
@@ -3486,11 +3495,12 @@
   "meta": "전남광주통합특별시 순천시 조례동 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "4617013400",
+  "code": "1217013400",
   "slug": "jeonnam-naju-bitgaram",
   "sido": "전남광주통합특별시",
   "sigungu": "나주시",
   "dong": "빛가람동",
+  "old_code": "4617013400",
   "old_sido": "전라남도",
   "renamed_on": "2026-07-01",
   "landmark_name": "빛가람혁신도시",
@@ -4412,11 +4422,12 @@
   "meta": "대구광역시 서구 내당동 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "2811014700",
+  "code": "2815510300",
   "slug": "incheon-junggu-unseo",
   "sido": "인천광역시",
   "sigungu": "영종구",
   "dong": "운서동",
+  "old_code": "2811014700",
   "old_sigungu": "중구",
   "renamed_on": "2026-07-01",
   "landmark_name": "인천국제공항",
@@ -4513,11 +4524,12 @@
   "meta": "인천광역시 남동구 논현동 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "2917010900",
+  "code": "1230010900",
   "slug": "gwangju-bukgu-unam",
   "sido": "전남광주통합특별시",
   "sigungu": "북구",
   "dong": "운암동",
+  "old_code": "2917010900",
   "old_sido": "광주광역시",
   "renamed_on": "2026-07-01",
   "landmark_name": "중외공원",
@@ -4548,11 +4560,12 @@
   "meta": "전남광주통합특별시 북구 운암동 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "2915511500",
+  "code": "1227011500",
   "slug": "gwangju-namgu-bongseon",
   "sido": "전남광주통합특별시",
   "sigungu": "남구",
   "dong": "봉선동",
+  "old_code": "2915511500",
   "old_sido": "광주광역시",
   "renamed_on": "2026-07-01",
   "landmark_name": "봉선로",
@@ -5375,11 +5388,12 @@
   "meta": "전북특별자치도 남원시 천거동 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "4623010600",
+  "code": "1219010600",
   "slug": "jeonnam-gwangyang-jung",
   "sido": "전남광주통합특별시",
   "sigungu": "광양시",
   "dong": "중동",
+  "old_code": "4623010600",
   "old_sido": "전라남도",
   "renamed_on": "2026-07-01",
   "landmark_name": "광양시청",
@@ -7316,11 +7330,12 @@
   "meta": "대구광역시 중구 동인동1가 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "2811010100",
+  "code": "2812510800",
   "slug": "incheon-junggu-jungangdong1ga",
   "sido": "인천광역시",
   "sigungu": "제물포구",
   "dong": "중앙동1가",
+  "old_code": "2811010100",
   "old_sigungu": "중구",
   "renamed_on": "2026-07-01",
   "landmark_name": "인천 개항장 거리(신포로23번길)",
@@ -7347,11 +7362,12 @@
   "meta": "인천광역시 제물포구 중앙동1가 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "2911010100",
+  "code": "1221010100",
   "slug": "gwangju-donggu-daein",
   "sido": "전남광주통합특별시",
   "sigungu": "동구",
   "dong": "대인동",
+  "old_code": "2911010100",
   "old_sido": "광주광역시",
   "renamed_on": "2026-07-01",
   "landmark_name": "대인시장",
@@ -7618,11 +7634,12 @@
   "meta": "전북특별자치도 전주시 완산구 중앙동1가 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "4611010100",
+  "code": "1211010100",
   "slug": "jeonnam-mokpo-yongdang",
   "sido": "전남광주통합특별시",
   "sigungu": "목포시",
   "dong": "용당동",
+  "old_code": "4611010100",
   "old_sido": "전라남도",
   "renamed_on": "2026-07-01",
   "landmark_name": "용당로",
@@ -7831,11 +7848,12 @@
   "meta": "대구광역시 중구 삼덕동1가 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "2811010500",
+  "code": "2812511200",
   "slug": "incheon-junggu-haeandong1ga",
   "sido": "인천광역시",
   "sigungu": "제물포구",
   "dong": "해안동1가",
+  "old_code": "2811010500",
   "old_sigungu": "중구",
   "renamed_on": "2026-07-01",
   "landmark_name": "인천아트플랫폼",
@@ -7862,11 +7880,12 @@
   "meta": "인천광역시 제물포구 해안동1가 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "2911010200",
+  "code": "1221010200",
   "slug": "gwangju-donggu-geumnamno5ga",
   "sido": "전남광주통합특별시",
   "sigungu": "동구",
   "dong": "금남로5가",
+  "old_code": "2911010200",
   "old_sido": "광주광역시",
   "renamed_on": "2026-07-01",
   "landmark_name": "금남로",
@@ -8187,11 +8206,12 @@
   "meta": "대구광역시 중구 봉산동 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "2811010900",
+  "code": "2812511600",
   "slug": "incheon-junggu-gwandong1ga",
   "sido": "인천광역시",
   "sigungu": "제물포구",
   "dong": "관동1가",
+  "old_code": "2811010900",
   "old_sigungu": "중구",
   "renamed_on": "2026-07-01",
   "landmark_name": "제물포구청 신포청사",
@@ -8218,11 +8238,12 @@
   "meta": "인천광역시 제물포구 관동1가 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "2911010300",
+  "code": "1221010300",
   "slug": "gwangju-donggu-chungjangno5ga",
   "sido": "전남광주통합특별시",
   "sigungu": "동구",
   "dong": "충장로5가",
+  "old_code": "2911010300",
   "old_sido": "광주광역시",
   "renamed_on": "2026-07-01",
   "landmark_name": "충장로",
@@ -8481,11 +8502,12 @@
   "meta": "전북특별자치도 전주시 완산구 전동 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "4611010200",
+  "code": "1211010200",
   "slug": "jeonnam-mokpo-sanjeong",
   "sido": "전남광주통합특별시",
   "sigungu": "목포시",
   "dong": "산정동",
+  "old_code": "4611010200",
   "old_sido": "전라남도",
   "renamed_on": "2026-07-01",
   "landmark_name": "산정동성당",
@@ -8686,11 +8708,12 @@
   "meta": "대구광역시 중구 장관동 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "2811011200",
+  "code": "2812511900",
   "slug": "incheon-junggu-hangdong1ga",
   "sido": "인천광역시",
   "sigungu": "제물포구",
   "dong": "항동1가",
+  "old_code": "2811011200",
   "old_sigungu": "중구",
   "renamed_on": "2026-07-01",
   "landmark_name": "인천항",
@@ -8717,11 +8740,12 @@
   "meta": "인천광역시 제물포구 항동1가 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "2911010400",
+  "code": "1221010400",
   "slug": "gwangju-donggu-sugi",
   "sido": "전남광주통합특별시",
   "sigungu": "동구",
   "dong": "수기동",
+  "old_code": "2911010400",
   "old_sido": "광주광역시",
   "renamed_on": "2026-07-01",
   "landmark_name": "광주천",
@@ -9067,11 +9091,12 @@
   "meta": "대구광역시 중구 상서동 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "2811011900",
+  "code": "2812512600",
   "slug": "incheon-junggu-songhakdong1ga",
   "sido": "인천광역시",
   "sigungu": "제물포구",
   "dong": "송학동1가",
+  "old_code": "2811011900",
   "old_sigungu": "중구",
   "renamed_on": "2026-07-01",
   "landmark_name": "자유공원",
@@ -9098,11 +9123,12 @@
   "meta": "인천광역시 제물포구 송학동1가 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "2911010500",
+  "code": "1221010500",
   "slug": "gwangju-donggu-daeui",
   "sido": "전남광주통합특별시",
   "sigungu": "동구",
   "dong": "대의동",
+  "old_code": "2911010500",
   "old_sido": "광주광역시",
   "renamed_on": "2026-07-01",
   "landmark_name": "광주 예술의거리",
@@ -9361,11 +9387,12 @@
   "meta": "전북특별자치도 전주시 완산구 고사동 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "4611010300",
+  "code": "1211010300",
   "slug": "jeonnam-mokpo-yeonsan",
   "sido": "전남광주통합특별시",
   "sigungu": "목포시",
   "dong": "연산동",
+  "old_code": "4611010300",
   "old_sido": "전라남도",
   "renamed_on": "2026-07-01",
   "landmark_name": "연산동 행정복지센터",
@@ -9537,11 +9564,12 @@
   "meta": "부산광역시 중구 대청동1가 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "2811012200",
+  "code": "2812512900",
   "slug": "incheon-junggu-sa",
   "sido": "인천광역시",
   "sigungu": "제물포구",
   "dong": "사동",
+  "old_code": "2811012200",
   "old_sigungu": "중구",
   "renamed_on": "2026-07-01",
   "landmark_name": "우현로",
@@ -9568,11 +9596,12 @@
   "meta": "인천광역시 제물포구 사동 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "2911010600",
+  "code": "1221010600",
   "slug": "gwangju-donggu-gung",
   "sido": "전남광주통합특별시",
   "sigungu": "동구",
   "dong": "궁동",
+  "old_code": "2911010600",
   "old_sido": "광주광역시",
   "renamed_on": "2026-07-01",
   "landmark_name": "광주중앙초등학교",
@@ -9889,11 +9918,12 @@
   "meta": "부산광역시 중구 보수동1가 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "2811012300",
+  "code": "2812513000",
   "slug": "incheon-junggu-sinsaeng",
   "sido": "인천광역시",
   "sigungu": "제물포구",
   "dong": "신생동",
+  "old_code": "2811012300",
   "old_sigungu": "중구",
   "renamed_on": "2026-07-01",
   "landmark_name": "제물량로",
@@ -9920,11 +9950,12 @@
   "meta": "인천광역시 제물포구 신생동 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "2911010700",
+  "code": "1221010700",
   "slug": "gwangju-donggu-jang",
   "sido": "전남광주통합특별시",
   "sigungu": "동구",
   "dong": "장동",
+  "old_code": "2911010700",
   "old_sido": "광주광역시",
   "renamed_on": "2026-07-01",
   "landmark_name": "동명로",
@@ -10183,11 +10214,12 @@
   "meta": "전북특별자치도 전주시 완산구 중노송동 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "4611010400",
+  "code": "1211010400",
   "slug": "jeonnam-mokpo-daeseong",
   "sido": "전남광주통합특별시",
   "sigungu": "목포시",
   "dong": "대성동",
+  "old_code": "4611010400",
   "old_sido": "전라남도",
   "renamed_on": "2026-07-01",
   "landmark_name": "대성동 행정복지센터",
@@ -10388,11 +10420,12 @@
   "meta": "대구광역시 중구 덕산동 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "2811012500",
+  "code": "2812513200",
   "slug": "incheon-junggu-dap",
   "sido": "인천광역시",
   "sigungu": "제물포구",
   "dong": "답동",
+  "old_code": "2811012500",
   "old_sigungu": "중구",
   "renamed_on": "2026-07-01",
   "landmark_name": "답동성당",
@@ -10419,11 +10452,12 @@
   "meta": "인천광역시 제물포구 답동 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "2911010800",
+  "code": "1221010800",
   "slug": "gwangju-donggu-dongmyeong",
   "sido": "전남광주통합특별시",
   "sigungu": "동구",
   "dong": "동명동",
+  "old_code": "2911010800",
   "old_sido": "광주광역시",
   "renamed_on": "2026-07-01",
   "landmark_name": "동명동 카페거리",
@@ -10711,11 +10745,12 @@
   "meta": "부산광역시 중구 신창동1가 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "2811012600",
+  "code": "2812513300",
   "slug": "incheon-junggu-sinheungdong1ga",
   "sido": "인천광역시",
   "sigungu": "제물포구",
   "dong": "신흥동1가",
+  "old_code": "2811012600",
   "old_sigungu": "중구",
   "renamed_on": "2026-07-01",
   "landmark_name": "인중로",
@@ -10742,11 +10777,12 @@
   "meta": "인천광역시 제물포구 신흥동1가 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "2911011000",
+  "code": "1221011000",
   "slug": "gwangju-donggu-sansu",
   "sido": "전남광주통합특별시",
   "sigungu": "동구",
   "dong": "산수동",
+  "old_code": "2911011000",
   "old_sido": "광주광역시",
   "renamed_on": "2026-07-01",
   "landmark_name": "산수오거리",
@@ -10976,11 +11012,12 @@
   "meta": "전북특별자치도 전주시 완산구 동완산동 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "4611010500",
+  "code": "1211010500",
   "slug": "jeonnam-mokpo-yang",
   "sido": "전남광주통합특별시",
   "sigungu": "목포시",
   "dong": "양동",
+  "old_code": "4611010500",
   "old_sido": "전라남도",
   "renamed_on": "2026-07-01",
   "landmark_name": "양동교회",
@@ -11181,11 +11218,12 @@
   "meta": "대구광역시 중구 종로1가 폐차 비교매입 상담 및 출장 방문 서비스 안내 페이지입니다."
  },
  {
-  "code": "2911011100",
+  "code": "1221011100",
   "slug": "gwangju-donggu-jisan",
   "sido": "전남광주통합특별시",
   "sigungu": "동구",
   "dong": "지산동",
+  "old_code": "2911011100",
   "old_sido": "광주광역시",
   "renamed_on": "2026-07-01",
   "landmark_name": "광주지방법원",
