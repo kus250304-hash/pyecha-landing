@@ -55,15 +55,23 @@
 
 - 지역 데이터는 `data/regions.json` 한 곳에 있습니다(법정동코드 `code` 포함). 페이지 HTML을 직접 쓰거나 고치지 않고, 데이터를 고친 뒤 `python3 scripts/build_site.py --only <slug,...>` 로 다시 렌더링합니다.
 - 새 지역 추가 순서:
-  1. `python3 scripts/pick_next_regions.py` → `data/batches/YYYY-MM-DD.json` 뼈대 생성 (개수는 `data/generation_config.json`의 `daily_count`, 보류 폴더에 있는 동은 다시 뽑지 않음)
+  1. `python3 scripts/pick_next_regions.py` → `data/batches/YYYY-MM-DD.json` 뼈대 생성 (개수는 `data/generation_config.json`의 `daily_count`, 보류 폴더에 있는 동은 다시 뽑지 않음, 순서는 아래 "새 동을 고르는 순서")
   2. 뼈대의 `landmark_name`, `landmark_desc`, `service_intro`, `faqs`(질문·답 쌍 4개 이상), `meta` 를 채움
   3. **사실 확인**: 아래 "사실 확인" 규칙대로 지역마다 `fact_check` 를 채움. `python3 scripts/fact_check.py data/batches/YYYY-MM-DD.json` 이 확인해야 할 이름과 빠진 기록을 보여 줌
   4. `python3 scripts/import_batch.py data/batches/YYYY-MM-DD.json` → 보류 항목을 `data/batches/held/` 로 옮기고, 확인된 항목만 regions.json 반영, 렌더링, `index.html`·`sitemap.xml` 갱신, `check_pages.py` 검사까지 한 번에 실행. 실패하면 모두 되돌려지므로 배치 파일을 고치고 다시 실행
 - `python3 scripts/check_pages.py` 는 언제든 전체 페이지를 검사합니다. 오류가 있는 상태로는 반영하지 않습니다.
 
+### 새 동을 고르는 순서 (등록대수 통계)
+- `pick_next_regions.py` 는 **추정 노후 자가용 대수가 많은 시군구의 동부터** 뽑습니다. 추정 노후 자가용 대수 = 시군구별 자가용 등록대수(관용·영업용 제외) × 그 시도의 자가용 중 차령 10년 이상 비율(모델연도 ≤ 조회연도−10)입니다.
+- 두 숫자 모두 국토교통부 통계누리(stat.molit.go.kr) 자동차등록현황보고의 월별 엑셀 「○년 ○월 자동차 등록자료 통계.xlsx」에서 가져옵니다(시군구 자가용: 02.통계표_시군구, 시도 비율: 14.차종별_상세등록(시도)). 국토교통부가 시군구별 차령 통계를 내지 않아 이렇게 추정합니다. 엑셀에 자가용 칸이 없으면 전체 등록대수 × 시도 노후차 비율로 계산하고 그렇게 알립니다.
+- `python3 scripts/vehicle_stats.py molit` 이 최신 엑셀을 받아 `data/vehicle_stats_old10_est.json` 에 저장하고, `python3 scripts/vehicle_stats.py show` 가 지금 기준과 상위 20개 시군구를 보여 줍니다. 매일 루틴이 기준 연월이 2개월보다 오래되면 다시 받습니다.
+- 파일 우선순위: `data/vehicle_stats.json`(실제 시군구 노후차, 지금은 없음) → `data/vehicle_stats_old10_est.json`(추정) → `data/vehicle_stats_total.json`(전체 등록대수). 셋 다 없으면 구 페이지가 있는 구 → 동 페이지가 많은 구 순으로 뽑고 보고에 "등록대수 통계 없음"을 적습니다.
+- 세종은 시군구가 빈칸이라 통계의 "세종특별자치시" 줄을, 화성시처럼 통계만 구로 나뉜 시는 구를 합친 숫자를 씁니다(`vehicle_stats.count_for`).
+- 이 숫자는 순서를 정하는 데만 씁니다. 추정치이므로 페이지 글에는 등록대수나 비율을 쓰지 않으며, 숫자를 지어내거나 손으로 고치지 않습니다.
+
 ### 반영 방법
 - **매일 자동생성 루틴**만 main 에 바로 push 합니다(PR 없음). 조건: 사실 확인 기록 + `import_batch.py` 통과 + 커밋 후 `python3 scripts/publish_gate.py` 통과. 게이트가 하나라도 실패하면 main 에 push 하지 않고 작업을 `auto/failed-YYYYMMDD` 브랜치에 남깁니다.
-- 루틴이 main 에 반영할 수 있는 파일은 `data/regions.json`, `data/batches/held/`, `data/fact_checks/`, `pages/`, `cases/`, `index.html`, `sitemap.xml` 뿐입니다(`publish_gate.py` 가 막음).
+- 루틴이 main 에 반영할 수 있는 파일은 `data/regions.json`, `data/batches/held/`, `data/fact_checks/`, `pages/`, `gu/`, `data/gu.json`, `cases/`, `index.html`, `sitemap.xml`, 등록대수 통계 파일(`data/vehicle_stats*.json`) 뿐입니다(`publish_gate.py` 가 막음).
 - 스크립트·템플릿·CLAUDE.md·설정 변경, 기존 지역 수정은 지금처럼 브랜치에 커밋하고 PR로 올립니다.
 - 매일 루틴의 지시문은 `docs/daily-routine-prompt.md` 의 코드 상자 하나에 있습니다. 루틴 설정에는 "이 파일의 코드 상자를 따르라"는 한 줄만 있으므로, 지시문을 바꿀 때는 이 코드 상자 안만 고쳐 PR로 올립니다(코드 상자는 하나만 둡니다).
 
