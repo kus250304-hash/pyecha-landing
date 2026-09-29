@@ -1,0 +1,36 @@
+[
+ {
+  "code": "2811012900",
+  "slug": "incheon-jemulpo-seonhwa",
+  "sido": "인천광역시",
+  "sigungu": "제물포구",
+  "dong": "선화동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "인중로가 선화동 안을 지난다는 근거를 검색으로 확인하지 못함(옆 번길 주소만 확인됨)",
+   "items": []
+  }
+ },
+ {
+  "code": "4711110700",
+  "slug": "gyeongbuk-pohang-namgu-songjeong",
+  "sido": "경상북도",
+  "sigungu": "포항시 남구",
+  "dong": "송정동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "송정동 안에 있는 장소나 큰 도로를 검색으로 확인하지 못했습니다. 송정동은 제철동 관할 법정동이라는 것만 확인되고, 포항제철소 주소는 괴동동으로 나와 송정동 안의 랜드마크 근거가 없습니다.",
+   "items": []
+  }
+ }
+]

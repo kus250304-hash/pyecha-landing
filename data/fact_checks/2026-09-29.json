@@ -1,0 +1,380 @@
+[
+ {
+  "code": "1111011100",
+  "slug": "seoul-jongno-okin",
+  "items": [
+   {
+    "name": "필운대로",
+    "evidence": "필운대로 경유지에 옥인동 포함(위키백과), 필운대로 69가 옥인동 56(세종아파트)",
+    "url": "https://ko.wikipedia.org/wiki/%ED%95%84%EC%9A%B4%EB%8C%80%EB%A1%9C"
+   }
+  ]
+ },
+ {
+  "code": "2611013300",
+  "slug": "busan-junggu-gwangbokdong1ga",
+  "items": [
+   {
+    "name": "광복로",
+    "evidence": "'부산광역시 중구 광복로 81(광복동1가)' 주소 확인, 광복동1가를 지나는 상업 거리",
+    "url": "https://www.whatmytrip.com/ko/hotel/1993996"
+   }
+  ]
+ },
+ {
+  "code": "2711011100",
+  "slug": "daegu-junggu-su",
+  "items": [
+   {
+    "name": "약령길",
+    "evidence": "수동 을뜸병원앞삼거리에서 시작해 남산동으로 잇는 480m 도로, 대구역사문화대전(중구) 소개",
+    "url": "https://daegu.grandculture.net/daegu/junggu/toc/GC40000635"
+   }
+  ]
+ },
+ {
+  "code": "2911011200",
+  "slug": "gwangju-donggu-nam",
+  "items": [
+   {
+    "name": "남동성당",
+    "evidence": "광주 동구 제봉로 67(남동 55) 소재, 5·18 민주화운동 관련 성당, 디지털광주문화대전 소개",
+    "url": "https://gwangju.grandculture.net/gwangju/index/GC60005057?category=%EC%A7%80%EB%AA%85%2F%EA%B8%B0%EA%B4%80%EB%AA%85&depth=2&name=%EA%B0%80&page=119&search=%EA%B4%91%EC%A3%BC%EA%B5%90%EB%8F%84%EC%86%8C"
+   },
+   {
+    "name": "제봉로",
+    "evidence": "남동성당 주소가 제봉로 67(남동)으로, 남동을 지나는 도로",
+    "url": "https://gwangju.grandculture.net/gwangju/index/GC60005057?category=%EC%A7%80%EB%AA%85%2F%EA%B8%B0%EA%B4%80%EB%AA%85&depth=2&name=%EA%B0%80&page=119&search=%EA%B4%91%EC%A3%BC%EA%B5%90%EB%8F%84%EC%86%8C"
+   }
+  ]
+ },
+ {
+  "code": "3011011200",
+  "slug": "daejeon-donggu-sinan",
+  "items": [
+   {
+    "name": "신안동길",
+    "evidence": "대전 동구청 역세권개발사업 안내에 삼가로·신안동길 도로확장 구간이 '동구 신안동~정동'으로 소개",
+    "url": "https://www.donggu.go.kr/dg/kor/contents/149"
+   }
+  ]
+ },
+ {
+  "code": "3111011200",
+  "slug": "ulsan-junggu-daun",
+  "items": [
+   {
+    "name": "다운로",
+    "evidence": "울산 중구 다운동 다운사거리와 울주군 범서읍 서사리를 잇는 도로(국도 14호선 일부), 위키백과 소개",
+    "url": "https://ko.wikipedia.org/wiki/%EB%8B%A4%EC%9A%B4%EB%A1%9C"
+   },
+   {
+    "name": "다운중학교",
+    "evidence": "울산 중구 다운동 소재 공립 중학교, 위키백과 소개",
+    "url": "https://ko.wikipedia.org/wiki/%EB%8B%A4%EC%9A%B4%EC%A4%91%ED%95%99%EA%B5%90"
+   }
+  ]
+ },
+ {
+  "code": "3611011300",
+  "slug": "sejong-areum",
+  "items": [
+   {
+    "name": "아름고등학교",
+    "evidence": "세종특별자치시 달빛1로 151(아름동 1322) 소재, 디지털세종시문화대전 소개",
+    "url": "https://sejong.grandculture.net/sejong/toc/GC07701110"
+   },
+   {
+    "name": "달빛로",
+    "evidence": "아름초등학교 주소가 세종시 달빛로 174(아름동 1275)",
+    "url": "https://m.richgo.ai/realty/place/elementary/S080000110"
+   }
+  ]
+ },
+ {
+  "code": "4111312600",
+  "slug": "gyeonggi-suwon-gwonseon-seryu",
+  "items": [
+   {
+    "name": "세류초등학교",
+    "evidence": "수원시 권선구 세류동 소재, 세류로 78 공립 초등학교(위키백과·학교 정보 소개)",
+    "url": "https://ko.wikipedia.org/wiki/%EC%84%B8%EB%A5%98%EC%B4%88%EB%93%B1%ED%95%99%EA%B5%90"
+   },
+   {
+    "name": "세류로",
+    "evidence": "세류초등학교 주소가 세류로 78(세류동)",
+    "url": "https://m.richgo.ai/realty/place/elementary/S090002468"
+   }
+  ]
+ },
+ {
+  "code": "5111011300",
+  "slug": "gangwon-chuncheon-soyangno1ga",
+  "items": [
+   {
+    "name": "소양정",
+    "evidence": "춘천시 소양로1가 산1-1 봉의산 북쪽 기슭 소재, 국가유산청 강원특별자치도 문화유산자료 소개",
+    "url": "https://www.heritage.go.kr/heri/cul/culSelectDetail.do?pageNo=1_1_1_0&ccbaKdcd=31&ccbaAsno=0000010000000&ccbaCtcd=32&ccbaCpno=3413200010000"
+   },
+   {
+    "name": "봉의산",
+    "evidence": "소양정이 소양로1가 봉의산 북쪽 기슭에 있다는 국가유산청 소개",
+    "url": "https://www.heritage.go.kr/heri/cul/culSelectDetail.do?pageNo=1_1_1_0&ccbaKdcd=31&ccbaAsno=0000010000000&ccbaCtcd=32&ccbaCpno=3413200010000"
+   }
+  ]
+ },
+ {
+  "code": "4311111800",
+  "slug": "chungbuk-cheongju-sangdang-daeseong",
+  "items": [
+   {
+    "name": "청주향교",
+    "evidence": "청주시 상당구 대성동 67(당고개로 42-21, 대성동) 소재, 위키백과·디지털청주문화대전 소개",
+    "url": "https://ko.wikipedia.org/wiki/%EC%B2%AD%EC%A3%BC%ED%96%A5%EA%B5%90"
+   }
+  ]
+ },
+ {
+  "code": "4413110800",
+  "slug": "chungnam-cheonan-dongnam-guseong",
+  "items": [
+   {
+    "name": "천안구성초등학교",
+    "evidence": "천안시 동남구 구성동 388-71 소재 공립 초등학교(1983년 개교), 학교 정보 사이트 소개",
+    "url": "https://m.richgo.ai/realty/place/elementary/S120000796"
+   }
+  ]
+ },
+ {
+  "code": "5211112500",
+  "slug": "jeonbuk-jeonju-wansan-dongseohak",
+  "items": [
+   {
+    "name": "전주교육대학교",
+    "evidence": "전주시 완산구 서학로 50(동서학동) 소재, 위키백과 소개",
+    "url": "https://ko.wikipedia.org/wiki/%EC%A0%84%EC%A3%BC%EA%B5%90%EC%9C%A1%EB%8C%80%ED%95%99%EA%B5%90"
+   },
+   {
+    "name": "서학로",
+    "evidence": "전주교육대학교 주소가 서학로 50(동서학동)",
+    "url": "https://ko.wikipedia.org/wiki/%EC%A0%84%EC%A3%BC%EA%B5%90%EC%9C%A1%EB%8C%80%ED%95%99%EA%B5%90"
+   }
+  ]
+ },
+ {
+  "code": "4711110600",
+  "slug": "gyeongbuk-pohang-namgu-ilwol",
+  "items": [
+   {
+    "name": "동해안로",
+    "evidence": "일월동 소재 업체 주소가 포항시 남구 동해안로 5902(일월동), 동해안로(구룡포~포항 구간)가 일월동을 지남",
+    "url": "https://fmr.purpleo.co.kr/view/23447"
+   }
+  ]
+ },
+ {
+  "code": "4812110600",
+  "slug": "gyeongnam-changwon-uichang-dongjeong",
+  "items": [
+   {
+    "name": "창원역",
+    "evidence": "창원시 의창구 의창대로 67, 의창구 동정동에 있는 경전선 철도역(위키백과)",
+    "url": "https://ko.wikipedia.org/wiki/%EC%B0%BD%EC%9B%90%EC%97%AD"
+   },
+   {
+    "name": "의창대로",
+    "evidence": "창원역 주소가 의창대로 67(동정동)",
+    "url": "https://ko.wikipedia.org/wiki/%EC%B0%BD%EC%9B%90%EC%97%AD"
+   }
+  ]
+ },
+ {
+  "code": "5011010600",
+  "slug": "jeju-jeju-samdoi",
+  "items": [
+   {
+    "name": "관덕정",
+    "evidence": "제주시 관덕로 19(삼도이동) 소재 보물, 제주목 관아·위키백과 소개",
+    "url": "https://ko.wikipedia.org/wiki/%EA%B4%80%EB%8D%95%EC%A0%95"
+   },
+   {
+    "name": "관덕로",
+    "evidence": "관덕정 주소가 관덕로 19(삼도이동)",
+    "url": "https://ko.wikipedia.org/wiki/%EA%B4%80%EB%8D%95%EC%A0%95"
+   }
+  ]
+ },
+ {
+  "code": "1111011200",
+  "slug": "seoul-jongno-chebu",
+  "items": [
+   {
+    "name": "세종마을 음식문화거리",
+    "evidence": "서울 종로구 체부동 194-2(자하문로 1, 옛 금천교시장), 경복궁역 2번 출구 도보 1분",
+    "url": "https://m.tripinfo.co.kr/info.html?content_type_id=12&content_id=2992822"
+   },
+   {
+    "name": "금천교시장",
+    "evidence": "세종마을 음식문화거리의 옛 이름, 체부동 소재",
+    "url": "https://blog.daum.net/keiti/16529669"
+   }
+  ]
+ },
+ {
+  "code": "2614010100",
+  "slug": "busan-seogu-dongdaesindong1ga",
+  "items": [
+   {
+    "name": "화랑초등학교",
+    "evidence": "부산 서구 대영로86번길 56(동대신동1가 348) 소재 공립 초등학교, 위키백과 소개",
+    "url": "https://ko.wikipedia.org/wiki/%ED%99%94%EB%9E%91%EC%B4%88%EB%93%B1%ED%95%99%EA%B5%90_(%EB%B6%80%EC%82%B0)"
+   }
+  ]
+ },
+ {
+  "code": "2711011500",
+  "slug": "daegu-junggu-sail",
+  "items": [
+   {
+    "name": "중앙대로",
+    "evidence": "대구 중구 사일동 50-1 주소가 중앙대로 412-15, 사일동 55-2가 중앙대로 412-48",
+    "url": "https://zippoom.com/%EB%B6%80%EB%8F%99%EC%82%B0/%EB%8C%80%EA%B5%AC-%EC%A4%91%EA%B5%AC-%EC%82%AC%EC%9D%BC%EB%8F%99-50-1/k7wy4h"
+   }
+  ]
+ },
+ {
+  "code": "2811013000",
+  "slug": "incheon-jemulpo-yu",
+  "items": [
+   {
+    "name": "참외전로",
+    "evidence": "인천 중구(현 제물포구) 참외전로 202 지번이 유동 2-6, 참외전로는 송월동3가~숭의삼거리 도로",
+    "url": "https://zippoom.com/%EC%A7%80%EC%97%AD%EB%B3%84-%EB%B6%80%EB%8F%99%EC%82%B0/%EC%9D%B8%EC%B2%9C-%EC%A4%91%EA%B5%AC-%EC%9C%A0%EB%8F%99/%EC%98%A4%ED%94%BC%EC%8A%A4%ED%85%94/%EA%B3%B5%EC%8B%9C%EA%B0%80%EA%B2%A9"
+   }
+  ]
+ },
+ {
+  "code": "2911011300",
+  "slug": "gwangju-donggu-gwangsan",
+  "items": [
+   {
+    "name": "국립아시아문화전당",
+    "evidence": "광주 동구 문화전당로 38 (광산동), 문화포털 시설 소개",
+    "url": "https://www.culture.go.kr/space/facilityView.do?seq=2370"
+   },
+   {
+    "name": "옛 전남도청",
+    "evidence": "광주 전라남도청 구 본관은 동구 광산동 소재, 디지털광주문화대전",
+    "url": "https://www.grandculture.net/gwangju/bukgu/toc/GC60001079"
+   }
+  ]
+ },
+ {
+  "code": "3011011300",
+  "slug": "daejeon-donggu-soje",
+  "items": [
+   {
+    "name": "소제동 철도관사촌",
+    "evidence": "대전역 동쪽 대전 동구 소제동의 1920~30년대 철도관사촌, 대전 동구청 관광 소개",
+    "url": "https://www.donggu.go.kr/dg/tour/103/14/sights"
+   },
+   {
+    "name": "대동천",
+    "evidence": "소제동 카페거리와 나란히 대동천이 흐름, 대전관광 소제동 카페골목 소개",
+    "url": "https://www.daejeontour.co.kr/ko/board.do?menuIdx=102&bbsIdx=294"
+   }
+  ]
+ },
+ {
+  "code": "3111011300",
+  "slug": "ulsan-junggu-dong",
+  "items": [
+   {
+    "name": "한국폴리텍대학 울산캠퍼스",
+    "evidence": "울산 중구 산전길 155 (동동), 학교 소개·주소",
+    "url": "https://kopo-ulsan.step.or.kr/usrs/drctns/drctnsForm.do"
+   }
+  ]
+ },
+ {
+  "code": "3611011400",
+  "slug": "sejong-dodam",
+  "items": [
+   {
+    "name": "세종충남대학교병원",
+    "evidence": "세종 보듬7로 20 (도담동), 병원 정보 사이트 주소",
+    "url": "https://www.goodoc.co.kr/hospitals/26251"
+   },
+   {
+    "name": "도램마을",
+    "evidence": "도담동 도램마을5단지·10단지 아파트, 아파트 정보",
+    "url": "https://hogangnono.com/apt/9Inbe"
+   }
+  ]
+ },
+ {
+  "code": "4111312700",
+  "slug": "gyeonggi-suwon-gwonseon-pyeong",
+  "items": [
+   {
+    "name": "평동로",
+    "evidence": "수원 권선구 평동로 110 (평동) 도로명주소, 평동 행정복지센터도 평동로76번길 13(평동)",
+    "url": "https://dorojuso.kr/4111312700100320001072952/%EA%B2%BD%EA%B8%B0%EB%8F%84-%EC%88%98%EC%9B%90%EC%8B%9C-%EA%B6%8C%EC%84%A0%EA%B5%AC-%ED%8F%89%EB%8F%99%EB%A1%9C-110-%ED%8F%89%EB%8F%99"
+   }
+  ]
+ },
+ {
+  "code": "5111011800",
+  "slug": "gangwon-chuncheon-udu",
+  "items": [
+   {
+    "name": "충렬탑",
+    "evidence": "춘천 우두동 우두산에 1955년 세운 6·25 전사자 추모탑, 춘천사람들 문화유산 기사",
+    "url": "http://www.chunsa.kr/news/articleView.html?idxno=49437"
+   },
+   {
+    "name": "소양강",
+    "evidence": "소양8교가 우두동 코아루아파트와 동면 장학지구를 잇는 계획, 파이낸셜뉴스",
+    "url": "https://www.fnnews.com/news/202306251140583615"
+   }
+  ]
+ },
+ {
+  "code": "4311111900",
+  "slug": "chungbuk-cheongju-sangdang-yeongun",
+  "items": [
+   {
+    "name": "단재로",
+    "evidence": "영운동 행정복지센터가 상당구 단재로 129 (영운동), 단재로는 석교동·금천동·영운동·용암동 등을 경유(위키백과)",
+    "url": "https://ko.wikipedia.org/wiki/%EB%8B%A8%EC%9E%AC%EB%A1%9C_(%EC%B2%AD%EC%A3%BC%EC%8B%9C)"
+   },
+   {
+    "name": "영운공원",
+    "evidence": "상당구 영운동과 금천동에 걸친 근린공원, 디지털청주문화대전",
+    "url": "https://cheongju.grandculture.net/cheongju/toc/GC00201726"
+   }
+  ]
+ },
+ {
+  "code": "4413110900",
+  "slug": "chungnam-cheonan-dongnam-cheongsu",
+  "items": [
+   {
+    "name": "청수호수공원",
+    "evidence": "천안 동남구 청수로 20 (청수동), 충남관광 관광지 소개",
+    "url": "https://tour.chungnam.go.kr/prog/trsrcn/kor/sub02_01_01/view.do?trsrcnNo=998"
+   }
+  ]
+ },
+ {
+  "code": "5211112600",
+  "slug": "jeonbuk-jeonju-wansan-seoseohak",
+  "items": [
+   {
+    "name": "흑석골",
+    "evidence": "완산구 서서학동 흑석골, 고덕산 줄기 골짜기이자 옛 전주한지 생산지(K-한지마을 조성), 국민일보",
+    "url": "https://www.kmib.co.kr/article/view.asp?arcid=1739343339"
+   }
+  ]
+ }
+]
