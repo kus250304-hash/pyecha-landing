@@ -16,8 +16,10 @@ data/legal_dong_list.csv 에서 아직 페이지가 없는 동을 골라 오늘 
   dong 은 "종로", dong_parts 는 ["종로1가", …, "종로6가"], code 는 첫 ○가의 법정동코드.
   그중 하나라도 이미 페이지가 있으면(옛 방식의 ○가 페이지 38개) 그 묶음은 뽑지 않는다.
 - 면(面)은 generation_config.json 의 include_myeon 이 true 일 때만 포함
-- 우선순위(2026-09-29부터): 구 페이지(data/gu.json)가 있는 구 → 동 페이지가 많은 구(곧 구 페이지가 생길 구) 순.
-  동 페이지가 하나도 없는 구끼리는 시도별로 돌아가며 하나씩 뽑는다.
+- 우선순위(scripts/vehicle_stats.py): 시군구별 차령 10년 이상 노후차 등록대수가 많은 구부터
+  (data/vehicle_stats.json). 없으면 전체 등록대수(data/vehicle_stats_total.json) 순.
+  통계가 둘 다 없으면 구 페이지(data/gu.json)가 있는 구 → 동 페이지가 많은 구 순이고,
+  동 페이지가 하나도 없는 구끼리는 시도별로 돌아가며 하나씩 뽑는다. 첫 줄에 어떤 기준을 썼는지 찍는다.
 - 사람이 거의 살지 않는 동(산업단지·산지 등)은 여기서 가려내지 않는다. 글을 채울 때 held 로 두고 이유를 적는다.
 """
 import argparse
@@ -30,6 +32,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from build_index import SIDO_ORDER
+import vehicle_stats
 
 ROOT = Path(__file__).resolve().parent.parent
 CSV_PATH = ROOT / "data" / "legal_dong_list.csv"
@@ -89,29 +92,13 @@ def make_slug(sido: str, sigungu: str, dong: str) -> str:
     return "-".join(p for p in parts if p)
 
 
-def main() -> None:
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--count", type=int, help="생성 개수 (기본: generation_config.json 의 daily_count)")
-    ap.add_argument("--date", help="배치 파일 날짜 (기본: 오늘, 한국 시간)")
-    args = ap.parse_args()
-
-    cfg = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
-    count = args.count or int(cfg["daily_count"])
-    include_myeon = bool(cfg.get("include_myeon", False))
-    regions = json.loads(REGIONS_PATH.read_text(encoding="utf-8"))
+def pick(regions: list[dict], count: int, include_myeon: bool) -> list[dict]:
+    """아직 페이지가 없는 후보 가운데 우선순위대로 count 개를 고른다(○가 묶음은 _parts·_dong 을 단다)."""
     rows = list(csv.DictReader(CSV_PATH.open(encoding="utf-8-sig")))
-
-    date = args.date or datetime.now(KST).strftime("%Y-%m-%d")
-    out_path = BATCH_DIR / f"{date}.json"
-    if out_path.exists():
-        print(f"이미 있음: {out_path.relative_to(ROOT)} — 이 파일을 채워서 import_batch.py 로 넘기세요")
-        return
-
     covered_codes = {r["code"] for r in regions if r.get("code")}
     for held_file in sorted(HELD_DIR.glob("*.json")):
         covered_codes |= {h["code"] for h in json.loads(held_file.read_text(encoding="utf-8"))}
     covered_base = {(r["sido"], r["sigungu"], base_name(r["dong"])) for r in regions}
-    used_slugs = {r["slug"] for r in regions}
 
     # 후보: ○가 는 (시도, 시군구, 묶은 이름) 하나로 묶는다
     groups: dict[tuple[str, str, str], list[dict]] = {}
@@ -136,12 +123,29 @@ def main() -> None:
             if not re.search(r"\d+가$", r["읍면동"]):
                 candidates.append(r)
 
-    # 우선순위: 구 페이지가 있는 구 → 동 페이지가 많은 구 → (동 페이지가 없는 구) 시도별로 돌아가며
+    csv_pos = {r["법정동코드"]: i for i, r in enumerate(rows)}
+    basis, counts, meta = vehicle_stats.load()
+    if basis != "none":
+        # 노후차(없으면 전체) 등록대수가 많은 구부터. 통계에 없는 구는 맨 뒤, CSV 순서
+        def stat_key(c: dict) -> tuple:
+            n = vehicle_stats.count_for(counts, c["시도"], c["시군구"])
+            return (n is None, -(n or 0), csv_pos[c["법정동코드"]])
+        picked = sorted(candidates, key=stat_key)[:count]
+        label = "차령 10년 이상 노후차" if basis == "old10" else "전체(노후차 통계 없음)"
+        print(f"우선순위 기준: 시군구별 {label} 등록대수 많은 순 ({meta.get('as_of')}, {meta.get('source')})")
+    else:
+        picked = fallback_order(candidates, regions, rows, count)
+        print("우선순위 기준: 등록대수 통계 없음 → 구 페이지가 있는 구, 동 페이지가 많은 구 순 (보고에 알릴 것)")
+    return picked
+
+
+def fallback_order(candidates: list[dict], regions: list[dict], rows: list[dict], count: int) -> list[dict]:
+    """등록대수 통계가 없을 때: 구 페이지가 있는 구 → 동 페이지가 많은 구 → (동 페이지가 없는 구) 시도별로 돌아가며."""
+    csv_pos = {r["법정동코드"]: i for i, r in enumerate(rows)}
     gu_pages = {(g["sido"], g["sigungu"]) for g in json.loads(GU_PATH.read_text(encoding="utf-8"))} if GU_PATH.exists() else set()
     page_count: dict[tuple[str, str], int] = {}
     for r in regions:
         page_count[(r["sido"], r["sigungu"])] = page_count.get((r["sido"], r["sigungu"]), 0) + 1
-    csv_pos = {r["법정동코드"]: i for i, r in enumerate(rows)}
     ranked = sorted(
         (c for c in candidates if page_count.get((c["시도"], c["시군구"]))),
         key=lambda c: (-((c["시도"], c["시군구"]) in gu_pages), -page_count[(c["시도"], c["시군구"])], csv_pos[c["법정동코드"]]),
@@ -158,7 +162,25 @@ def main() -> None:
                 picked.append(queues[sido].pop(0))
             if len(picked) >= count:
                 break
+    return picked
 
+
+def main() -> None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--count", type=int, help="생성 개수 (기본: generation_config.json 의 daily_count)")
+    ap.add_argument("--date", help="배치 파일 날짜 (기본: 오늘, 한국 시간)")
+    args = ap.parse_args()
+
+    cfg = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+    count = args.count or int(cfg["daily_count"])
+    date = args.date or datetime.now(KST).strftime("%Y-%m-%d")
+    out_path = BATCH_DIR / f"{date}.json"
+    if out_path.exists():
+        print(f"이미 있음: {out_path.relative_to(ROOT)} — 이 파일을 채워서 import_batch.py 로 넘기세요")
+        return
+    regions = json.loads(REGIONS_PATH.read_text(encoding="utf-8"))
+    picked = pick(regions, count, bool(cfg.get("include_myeon", False)))
+    used_slugs = {r["slug"] for r in regions}
     if not picked:
         print("선택 가능한 동이 없습니다 (전체 완료됨)")
         return
