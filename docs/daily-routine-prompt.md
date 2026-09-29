@@ -1,0 +1,40 @@
+# 매일 자동생성 루틴 문장 (폐차 랜딩 자동생성)
+
+claude.ai/code/routines 에서 "폐차 랜딩 자동생성 v3" 루틴을 열고, 지시문(prompt)을 아래 줄 사이의 글로 통째로 바꿉니다.
+루틴 문장을 바꿀 때는 이 파일도 같이 고쳐 둡니다.
+
+---
+
+pyecha-landing 저장소(kus250304-hash/pyecha-landing)의 지역 폐차 랜딩페이지를 오늘 분량만큼 만들고, 사실 확인과 검사를 모두 통과한 것만 main 에 바로 반영하는 작업이다. PR은 만들지 않는다. 아래 순서와 규칙을 그대로 따른다.
+
+[준비]
+0. 현재 작업 디렉터리에 저장소가 없으면(`git rev-parse --show-toplevel` 실패) `git clone https://github.com/kus250304-hash/pyecha-landing` 후 그 디렉터리로 이동한다.
+1. `git fetch origin main` 후 `git checkout -B auto/pages-$(TZ=Asia/Seoul date +%Y%m%d) origin/main` 으로 작업 브랜치를 만든다(로컬 작업용).
+2. `scripts/publish_gate.py` 와 `scripts/fact_check.py` 가 없으면 아무것도 만들지 말고 "새 반영 파이프라인이 main에 없음(PR 병합 필요)"이라고만 보고하고 종료한다.
+3. 저장소의 CLAUDE.md를 읽고 '콘텐츠 원칙', '지역 콘텐츠 작성 규칙', '반영 방법', '사실 확인'을 따른다.
+3-1. `python3 scripts/build_cases.py` 를 실행한다(cases/input 에 새 사례가 있으면 처리, 없으면 넘어감).
+
+[생성]
+4. `python3 scripts/pick_next_regions.py` 를 실행한다. 개수는 data/generation_config.json 의 daily_count 를 따르며 여기서 바꾸지 않는다. "선택 가능한 동이 없습니다"가 나오면 "전체 완료됨"이라고 보고하고 종료한다.
+5. 만들어진 data/batches/YYYY-MM-DD.json 의 각 항목에서 landmark_name, landmark_desc, service_intro, faqs(질문·답 4~5쌍), meta 를 채운다. 규칙:
+   - 지역마다 내용이 달라야 한다. 문장을 복사해 동 이름만 바꾸지 않는다.
+   - 랜드마크는 그 동에 실제로 있는 장소만 쓴다. 확실하지 않으면 지어내지 말고 그 동을 지나는 큰 도로 이름을 쓴다. 주민센터는 그 이름의 주민센터가 실제로 있을 때만 쓴다.
+   - FAQ 4~5개 중 3개 이상은 질문이나 답에 그 동 이름 또는 랜드마크 이름이 들어가야 한다.
+   - 다른 시도의 지역 이름, 시세·금액·경쟁사, 결과를 약속하는 표현("보장", "무조건", "100%", "1위", "최저가")은 쓰지 않는다.
+
+[사실 확인 — 반영 전 필수]
+6. `python3 scripts/fact_check.py data/batches/YYYY-MM-DD.json` 을 실행해 지역마다 "확인할 이름"을 본다. 그 이름들과 글에 쓴 모든 장소 이름(랜드마크·역·도로명·시장·학교·공원·관공서·하천·산 등)을 WebSearch 로 하나씩 검색한다(검색어 예: "<시군구> <동> <이름>").
+   - 그 장소가 실제로 있고, 그 동 안(또는 글에 쓴 대로 바로 옆)에 있다는 근거가 검색 결과에 있을 때만 확인됨으로 본다. fact_check.items 에 name, evidence(근거 한 줄), url(실제 검색 결과의 주소)을 적는다. 주소나 근거를 지어내지 않는다.
+   - 확인되지 않는 이름은 확인되는 다른 장소나 큰 도로로 바꾸고 다시 확인한다. 그래도 확인이 안 되면 그 지역의 fact_check.status 를 "held", reason 에 쉬운 말 이유(예: "랜드마크 위치를 검색으로 확인하지 못함")를 적는다. 애매하면 confirmed 가 아니라 held 로 둔다.
+   - 모든 이름이 확인된 지역만 fact_check.status 를 "confirmed" 로 둔다.
+   - WebSearch 를 쓸 수 없으면 모든 지역을 held(이유: "웹 검색을 쓸 수 없어 확인 못 함")로 둔다.
+   - fact_check.py 를 다시 돌려 "확인 기록 문제 있는 항목: 0개"가 될 때까지 고친다.
+7. `python3 scripts/import_batch.py data/batches/YYYY-MM-DD.json` 을 실행한다. 보류 항목은 data/batches/held/ 로, 확인된 항목만 반영·렌더링·검사된다. 오류가 나오면 변경이 자동으로 되돌려지므로 배치 파일을 고치고 다시 실행한다(세 번 고쳐도 안 되는 항목은 held 로 바꾼다). 통과 전에는 커밋하지 않는다.
+8. scripts/, templates/, CLAUDE.md, data/generation_config.json, .github/, docs/ 는 수정하지 않는다. 그쪽에 문제가 있으면 보고만 한다.
+
+[반영]
+9. 변경된 파일(data/regions.json, data/batches/held/, data/fact_checks/, pages/, cases/, index.html, sitemap.xml)만 커밋한다. 메시지: "Add N region pages (YYYY-MM-DD), held M". 반영할 지역이 0개이고 보류만 있으면 보류 파일만 커밋한다(다음 날 다시 뽑히지 않게).
+10. `python3 scripts/publish_gate.py` 를 실행한다.
+   - "통과"가 나오면 `git push origin HEAD:main` 으로 main 에 반영한다.
+   - "통과 못 함"이 나오거나 push 가 거절되면 main 에는 push 하지 않는다. 대신 `git push -u origin HEAD:auto/failed-$(TZ=Asia/Seoul date +%Y%m%d)` 로 작업을 남기고 실패 이유를 보고한다. 강제 push, 게이트 건너뛰기, 스크립트를 고쳐 통과시키는 것은 금지한다.
+11. 마지막으로 반영 N개, 보류 M개(보류된 동 이름과 이유), 실패가 있었으면 그 이유를 짧게 보고한다.

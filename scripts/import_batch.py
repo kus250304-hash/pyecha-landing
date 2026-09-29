@@ -5,11 +5,14 @@
   python3 scripts/import_batch.py data/batches/2026-09-24.json
 
 순서
+  0. 사실 확인 기록(fact_check) 로 나눈다. status 가 "held" 인 항목은 반영하지 않고
+     data/batches/held/YYYY-MM-DD.json(보류 폴더)에 모은다. "confirmed" 인 항목만 아래로 간다.
+     기록이 없거나 글에 나오는 장소 이름 중 확인 기록이 빠진 것이 있으면 오류(scripts/fact_check.py)
   1. 배치 항목 형식 검사(빈 칸, FAQ 개수, code 가 legal_dong_list.csv 와 맞는지, slug 형식·중복)
   2. regions.json 에 추가 (같은 code 가 이미 있으면 그 항목을 교체하므로 고친 뒤 다시 실행해도 된다)
   3. build_site.py(전체 렌더링, 기존 페이지의 이웃 링크·사례 카드도 갱신), build_index.py 실행 (sitemap.xml 도 갱신됨)
   4. check_pages.py --only 실행. 실패하면 배치 파일을 남겨 두고 종료 코드 1
-  5. 성공하면 배치 파일을 지운다
+  5. 성공하면 확인 기록을 data/fact_checks/YYYY-MM-DD.json 에 남기고, 보류 항목을 보류 폴더에 옮기고, 배치 파일을 지운다
 """
 import csv
 import json
@@ -18,6 +21,9 @@ import subprocess
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import fact_check
+
 ROOT = Path(__file__).resolve().parent.parent
 REGIONS_PATH = ROOT / "data" / "regions.json"
 CSV_PATH = ROOT / "data" / "legal_dong_list.csv"
@@ -25,6 +31,8 @@ SITEMAP_PATH = ROOT / "sitemap.xml"
 INDEX_PATH = ROOT / "index.html"
 PAGES_DIR = ROOT / "pages"
 SCRIPTS = ROOT / "scripts"
+HELD_DIR = ROOT / "data" / "batches" / "held"
+FACT_LOG_DIR = ROOT / "data" / "fact_checks"
 FIELDS = ("code", "slug", "sido", "sigungu", "dong", "landmark_name", "landmark_desc", "service_intro", "faqs", "meta")
 SLUG_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)+$")
 
@@ -53,6 +61,8 @@ def validate(entries: list[dict], regions: list[dict]) -> list[str]:
         seen_slugs.add(e["slug"])
         if e["slug"] in slug_to_code and slug_to_code[e["slug"]] != e["code"]:
             problems.append(f"{tag}: slug 가 다른 지역(code {slug_to_code[e['slug']]})에 이미 쓰임")
+        for fp in fact_check.problems(e):
+            problems.append(f"{tag}: {fp}")
         for key in ("landmark_name", "landmark_desc", "service_intro", "meta"):
             if not str(e[key]).strip():
                 problems.append(f"{tag}: {key} 비어 있음")
@@ -62,6 +72,15 @@ def validate(entries: list[dict], regions: list[dict]) -> list[str]:
         ):
             problems.append(f"{tag}: faqs 는 [질문, 답] 쌍 4개 이상이어야 함")
     return problems
+
+
+def merge_json_list(path: Path, items: list[dict]) -> None:
+    """path 의 목록에 items 를 code 기준으로 합쳐 쓴다(같은 날 다시 실행해도 겹치지 않게)."""
+    old = json.loads(path.read_text(encoding="utf-8")) if path.exists() else []
+    codes = {i["code"] for i in items}
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps([o for o in old if o.get("code") not in codes] + items, ensure_ascii=False, indent=1) + "\n",
+                    encoding="utf-8")
 
 
 def run(script: str, *args: str) -> int:
@@ -74,8 +93,23 @@ def main() -> None:
     batch_path = Path(sys.argv[1])
     if not batch_path.is_absolute():
         batch_path = ROOT / batch_path
-    entries = json.loads(batch_path.read_text(encoding="utf-8"))
+    all_entries = json.loads(batch_path.read_text(encoding="utf-8"))
     regions = json.loads(REGIONS_PATH.read_text(encoding="utf-8"))
+    held = [e for e in all_entries if (e.get("fact_check") or {}).get("status") == "held"]
+    entries = [e for e in all_entries if e not in held]
+    held_path = HELD_DIR / batch_path.name
+    fact_log_path = FACT_LOG_DIR / batch_path.name
+
+    for e in held:
+        if not str(e["fact_check"].get("reason", "")).strip():
+            print(f"배치 파일 오류: {e.get('slug')} 보류(held) 이유(reason) 없음")
+            sys.exit(1)
+    if not entries:
+        if held:
+            merge_json_list(held_path, held)
+        batch_path.unlink()
+        print(f"반영할 지역 0개, 보류 {len(held)}개 ({held_path.relative_to(ROOT)}). 배치 파일 삭제")
+        return
 
     problems = validate(entries, regions)
     if problems:
@@ -120,8 +154,13 @@ def main() -> None:
         print(f"검사 실패: {batch_path.relative_to(ROOT)} 의 해당 항목을 고치거나 빼고 다시 실행하세요")
         sys.exit(1)
 
+    merge_json_list(fact_log_path, [
+        {"code": e["code"], "slug": e["slug"], "items": e["fact_check"]["items"]} for e in entries
+    ])
+    if held:
+        merge_json_list(held_path, held)
     batch_path.unlink()
-    print(f"완료: {len(entries)}개 페이지 생성·검사 통과, 배치 파일 삭제")
+    print(f"완료: {len(entries)}개 페이지 생성·검사 통과, 보류 {len(held)}개, 배치 파일 삭제")
 
 
 if __name__ == "__main__":
