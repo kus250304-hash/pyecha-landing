@@ -136,7 +136,8 @@ LINK_RE = re.compile(r'\b(?:href|src)="([^"#]*)(?:#[^"]*)?"')
 def check_links(base: str) -> list[str]:
     """사이트 안 링크가 깨졌는지와 옛 주소가 남았는지 본다. 외부 사이트 링크는 확인하지 않는다."""
     problems = []
-    files = [p for p in ROOT.glob("*.html")] + list(PAGES_DIR.glob("*.html")) + list((ROOT / "cases").glob("*.html"))
+    files = ([p for p in ROOT.glob("*.html")] + list(PAGES_DIR.glob("*.html")) + list((ROOT / "cases").glob("*.html"))
+             + list((ROOT / "gu").glob("*.html")))
     for extra in ("sitemap.xml", "robots.txt"):
         if (ROOT / extra).exists():
             files.append(ROOT / extra)
@@ -163,6 +164,56 @@ def check_links(base: str) -> list[str]:
                 target = target / "index.html"
             if not target.resolve().exists():
                 problems.append(f"{rel}: 깨진 링크 {url}")
+    return problems
+
+
+GU_REQUIRED = [
+    ('href="tel:', "전화 링크"),
+    ('class="bar"', "하단 고정 바"),
+    ("협력업체 네트워크와 함께합니다", "협력업체 고지"),
+    ("실제 출장 방문이 가능한 지역", "서비스 가능 지역 문구"),
+    ('rel="canonical"', "canonical"),
+    ('"FAQPage"', "FAQ 구조화 데이터"),
+    ('class="crumbs"', "길 안내 줄"),
+    ('id="public-info"', "공공 정보 표"),
+]
+AMOUNT_RE = re.compile(r"\d[\d,.]*\s*(원|만원|만 원|천원|억)|₩|견적가|매입가")
+
+
+def check_gu_pages(cfg: dict, sitemap: str, all_sidos: set[str]) -> list[str]:
+    """구 페이지(gu/): gu.json 과 파일이 맞는지, 필수 문구·footer·금액·결과 약속 표현·다른 시도 이름·sitemap."""
+    problems = []
+    gu_path = ROOT / "data" / "gu.json"
+    gu_data = json.loads(gu_path.read_text(encoding="utf-8")) if gu_path.exists() else []
+    want = {g["slug"]: g for g in gu_data}
+    have = {p.stem for p in (ROOT / "gu").glob("*.html")} if (ROOT / "gu").exists() else set()
+    for slug in sorted(have - set(want)):
+        problems.append(f"gu/{slug}.html: data/gu.json 에 없는 구 페이지")
+    for slug, g in want.items():
+        tag = f"구 {slug}"
+        f = ROOT / "gu" / f"{slug}.html"
+        if not f.exists():
+            problems.append(f"{tag}: gu/{slug}.html 없음 (build_site.py 실행 필요)")
+            continue
+        html = f.read_text(encoding="utf-8")
+        if PLACEHOLDER_RE.search(html):
+            problems.append(f"{tag}: 템플릿 자리 잔여 {PLACEHOLDER_RE.findall(html)[:3]}")
+        for needle, label in GU_REQUIRED:
+            if needle not in html:
+                problems.append(f"{tag}: {label} 없음")
+        problems += [f"{tag}: {x}" for x in footer_problems(html, cfg)]
+        body = re.sub(r"<style>.*?</style>|<script[^>]*>.*?</script>", "", html, flags=re.DOTALL)
+        for m in PROMISE_RE.finditer(body):
+            problems.append(f"{tag}: 결과 약속 표현 '{m.group(0)}'")
+        for m in AMOUNT_RE.finditer(body):
+            problems.append(f"{tag}: 금액 표현 '{m.group(0)}' → …{body[max(0, m.start()-15):m.end()+15]}…")
+        for sido in all_sidos - {g["sido"]}:
+            if sido in body:
+                problems.append(f"{tag}: 다른 시도 이름 '{sido}' 가 있음")
+        if html.count('href="../pages/') < 3:
+            problems.append(f"{tag}: 동 페이지 링크가 3개 미만")
+        if f"/gu/{slug}.html" not in sitemap:
+            problems.append(f"{tag}: sitemap.xml 에 없음")
     return problems
 
 
@@ -340,6 +391,7 @@ def main() -> None:
     if only is None:
         errors.extend(check_links(site_cfg["site_base_url"].rstrip("/")))
         errors.extend(check_site_pages(site_cfg))
+        errors.extend(check_gu_pages(site_cfg, sitemap, all_sidos))
 
     # 첫 화면의 네이버 서치어드바이저 소유확인 태그
     naver = site_cfg.get("naver_site_verification")

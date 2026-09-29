@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://pyecha119.com/pages/sejong-dodam.html">
 <meta property="og:locale" content="ko_KR">
 <meta name="theme-color" content="#0E5E63">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "압류가 있어도 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "차령이 기준을 넘었다면 압류·저당이 있어도 말소가 되는 경우가 많습니다. 등록원부를 보고 바로 확인해 드립니다."}}, {"@type": "Question", "name": "서류가 없어도 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "등록증을 잃어버리셨어도 재발급 없이 진행할 수 있는 방법을 안내해 드립니다. 신분증만 준비해 주세요."}}, {"@type": "Question", "name": "차가 안 움직여도 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "시동이 안 걸리거나 사고 차량이어도 견인차가 갑니다. 견인비는 받지 않습니다."}}, {"@type": "Question", "name": "비용이 나오나요?", "acceptedAnswer": {"@type": "Answer", "text": "폐차·수출 어느 쪽이든 고객님이 내시는 비용은 없습니다. 예외가 생기면 진행 전에 먼저 말씀드립니다."}}, {"@type": "Question", "name": "세종충남대학교병원 근처는 차가 많은데 방문 시간을 맞출 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "붐비는 시간을 피해 편한 시간으로 조율합니다."}}, {"@type": "Question", "name": "도담동 옆 어진동이나 아름동 차도 함께 상담되나요?", "acceptedAnswer": {"@type": "Answer", "text": "같은 세종시 안이라 함께 출장 방문 상담이 가능합니다."}}, {"@type": "Question", "name": "도램마을 아파트 지하주차장에 있는 차도 가져갈 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "지하주차장 높이와 출입 등록 방법을 확인한 뒤 방문합니다."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "압류가 있어도 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "많은 경우 가능합니다. 차령 기준을 넘었는지가 핵심이라, 등록원부부터 함께 살펴보겠습니다."}}, {"@type": "Question", "name": "서류가 없어도 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "서류가 빠져 있어도 먼저 전화 주세요. 등록증 없이 진행하는 방법이 있고, 신분증은 꼭 필요합니다."}}, {"@type": "Question", "name": "차가 안 움직여도 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "시동 여부와 상관없이 견인차가 방문합니다. 견인비는 받지 않으니 위치만 알려주세요."}}, {"@type": "Question", "name": "비용이 나오나요?", "acceptedAnswer": {"@type": "Answer", "text": "고객님이 내시는 돈은 없습니다. 예외가 생길 경우엔 진행하기 전에 먼저 설명드립니다."}}, {"@type": "Question", "name": "세종충남대학교병원 근처는 차가 많은데 방문 시간을 맞출 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "붐비는 시간을 피해 편한 시간으로 조율합니다."}}, {"@type": "Question", "name": "도담동 옆 어진동이나 아름동 차도 함께 상담되나요?", "acceptedAnswer": {"@type": "Answer", "text": "같은 세종시 안이라 함께 출장 방문 상담이 가능합니다."}}, {"@type": "Question", "name": "도램마을 아파트 지하주차장에 있는 차도 가져갈 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "지하주차장 높이와 출입 등록 방법을 확인한 뒤 방문합니다."}}]}</script>
 <style>
   @font-face {
     font-family: 'Jalnan';
@@ -76,6 +76,8 @@
 
   /* 히어로 */
   .hero { background: linear-gradient(160deg, var(--teal) 0%, var(--teal-deep) 100%); color: #fff; padding-block: 34px 44px; }
+  .crumbs { font-size: 13px; opacity: .9; margin: 0 0 12px; }
+  .crumbs a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
   .hero .badge { display: inline-block; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.28); border-radius: 999px; padding: 6px 14px; font-size: clamp(12px, 3.2vw, 13px); font-weight: 700; line-height: 1.4; }
   .hero h1 { font-size: clamp(24px, 7.8vw, 34px); line-height: 1.22; margin: 16px 0 12px; }
   .hero .sub { font-size: clamp(14px, 4vw, 17px); margin: 0 0 22px; opacity: .94; max-width: 34em; }
@@ -216,9 +218,10 @@
 
 <header class="hero">
   <div class="wrap">
+    <nav class="crumbs" aria-label="지역 경로">세종 › 도담동</nav>
     <span class="badge">도담동 폐차 상담 · 당일 접수</span>
     <h1 class="display">도담동 폐차,<br>폐차보다 수출이 더 받는 차가 있습니다</h1>
-    <p class="sub">폐차 보상금과 수출 시세를 함께 비교해서 최고가를 받으실 수 있도록 도와드립니다.</p>
+    <p class="sub">차 상태를 먼저 듣고, 폐차 보상금과 수출 시세 가운데 유리한 쪽으로 최고가에 도전합니다.</p>
 
     <a class="btn btn-call" href="tel:16006011"><svg><use href="#i-phone"/></svg>1600-6011 지금 전화하기</a>
     <p class="hint">통화 1분이면 폐차·수출 중 어느 쪽이 유리한지 바로 확인됩니다.</p>
@@ -372,10 +375,10 @@
     <div class="wrap">
       <h2 class="sec-title display">걱정되는 것부터 풀어드릴게요</h2>
       <p class="sec-sub">가장 많이 받는 질문 4가지</p>
-      <details><summary>압류가 있어도 되나요?</summary><p>차령이 기준을 넘었다면 압류·저당이 있어도 말소가 되는 경우가 많습니다. 등록원부를 보고 바로 확인해 드립니다.</p></details>
-      <details><summary>서류가 없어도 되나요?</summary><p>등록증을 잃어버리셨어도 재발급 없이 진행할 수 있는 방법을 안내해 드립니다. 신분증만 준비해 주세요.</p></details>
-      <details><summary>차가 안 움직여도 되나요?</summary><p>시동이 안 걸리거나 사고 차량이어도 견인차가 갑니다. 견인비는 받지 않습니다.</p></details>
-      <details><summary>비용이 나오나요?</summary><p>폐차·수출 어느 쪽이든 고객님이 내시는 비용은 없습니다. 예외가 생기면 진행 전에 먼저 말씀드립니다.</p></details>
+      <details><summary>압류가 있어도 되나요?</summary><p>많은 경우 가능합니다. 차령 기준을 넘었는지가 핵심이라, 등록원부부터 함께 살펴보겠습니다.</p></details>
+      <details><summary>서류가 없어도 되나요?</summary><p>서류가 빠져 있어도 먼저 전화 주세요. 등록증 없이 진행하는 방법이 있고, 신분증은 꼭 필요합니다.</p></details>
+      <details><summary>차가 안 움직여도 되나요?</summary><p>시동 여부와 상관없이 견인차가 방문합니다. 견인비는 받지 않으니 위치만 알려주세요.</p></details>
+      <details><summary>비용이 나오나요?</summary><p>고객님이 내시는 돈은 없습니다. 예외가 생길 경우엔 진행하기 전에 먼저 설명드립니다.</p></details>
     </div>
   </section>
 
@@ -395,11 +398,11 @@
   <section id="local" style="background:#fff">
     <div class="wrap">
       <h2 class="sec-title display">도담동에서 폐차하실 때</h2>
-      <p class="sec-sub">세종특별자치시 도담동 은(는) 실제 출장 방문이 가능한 지역입니다</p>
+      <p class="sec-sub">협력업체가 오가는 세종특별자치시 도담동은 실제 출장 방문이 가능한 지역입니다</p>
       <div class="local">
-        <p>도담동은 <span class="landmark">세종충남대학교병원</span> 인근 지역으로, 도담동은 세종충남대학교병원과 도램마을 아파트 단지가 있는 1생활권 주거지로, 도로가 넓고 반듯하지만 대부분 지하주차장을 씁니다.</p>
+        <p>방문 위치는 <span class="landmark">세종충남대학교병원</span>를 기준으로 안내해 드리면 편합니다. 도담동은 세종충남대학교병원과 도램마을 아파트 단지가 있는 1생활권 주거지로, 도로가 넓고 반듯하지만 대부분 지하주차장을 씁니다.</p>
         <p>세종특별자치시 도담동 일대는 전국 폐차 협력업체 네트워크와 연계되어 상담과 방문 처리가 가능한 지역입니다. 도담동은 단지 지하주차장이 많아, 차량 위치와 주차장 높이 제한을 먼저 확인한 뒤 출장 방문합니다.</p>
-        <p>차량이 있는 곳으로 협력업체가 직접 방문해 상담과 처리를 도와드립니다. 아파트 지하주차장, 상가 뒤편, 좁은 골목 어디든 위치만 알려주시면 됩니다.</p>
+        <p>차를 따로 옮겨 두실 필요는 없습니다. 지금 서 있는 자리를 알려주시면 방문 일정을 맞춰 협력업체가 찾아갑니다.</p>
       </div>
       <div class="faq" style="margin-top:16px">
         <details><summary>세종충남대학교병원 근처는 차가 많은데 방문 시간을 맞출 수 있나요?</summary><p>붐비는 시간을 피해 편한 시간으로 조율합니다.</p></details><details><summary>도담동 옆 어진동이나 아름동 차도 함께 상담되나요?</summary><p>같은 세종시 안이라 함께 출장 방문 상담이 가능합니다.</p></details><details><summary>도램마을 아파트 지하주차장에 있는 차도 가져갈 수 있나요?</summary><p>지하주차장 높이와 출입 등록 방법을 확인한 뒤 방문합니다.</p></details>

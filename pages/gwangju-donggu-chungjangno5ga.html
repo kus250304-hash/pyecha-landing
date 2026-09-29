@@ -76,6 +76,8 @@
 
   /* 히어로 */
   .hero { background: linear-gradient(160deg, var(--teal) 0%, var(--teal-deep) 100%); color: #fff; padding-block: 34px 44px; }
+  .crumbs { font-size: 13px; opacity: .9; margin: 0 0 12px; }
+  .crumbs a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
   .hero .badge { display: inline-block; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.28); border-radius: 999px; padding: 6px 14px; font-size: clamp(12px, 3.2vw, 13px); font-weight: 700; line-height: 1.4; }
   .hero h1 { font-size: clamp(24px, 7.8vw, 34px); line-height: 1.22; margin: 16px 0 12px; }
   .hero .sub { font-size: clamp(14px, 4vw, 17px); margin: 0 0 22px; opacity: .94; max-width: 34em; }
@@ -216,9 +218,10 @@
 
 <header class="hero">
   <div class="wrap">
+    <nav class="crumbs" aria-label="지역 경로">전남광주 › 동구 › 충장로5가</nav>
     <span class="badge">동구 충장로5가 폐차 상담 · 당일 접수</span>
     <h1 class="display">전남광주 동구 충장로5가 폐차,<br>폐차보다 수출이 더 받는 차가 있습니다</h1>
-    <p class="sub">전남광주 동구 충장로5가(옛 광주광역시 동구 충장로5가) 폐차 보상금과 수출 시세를 함께 비교해서 최고가를 받으실 수 있도록 도와드립니다.</p>
+    <p class="sub">전남광주 동구 충장로5가(옛 광주광역시 동구 충장로5가) 차 상태를 먼저 듣고, 폐차 보상금과 수출 시세 가운데 유리한 쪽으로 최고가에 도전합니다.</p>
 
     <a class="btn btn-call" href="tel:16006011"><svg><use href="#i-phone"/></svg>1600-6011 지금 전화하기</a>
     <p class="hint">통화 1분이면 폐차·수출 중 어느 쪽이 유리한지 바로 확인됩니다.</p>
@@ -337,7 +340,7 @@
         <div class="card" style="background:var(--ground)">
           <div class="icon teal"><svg><use href="#i-net"/></svg></div>
           <h3>전국 협력 네트워크</h3>
-          <p>충장로5가을 포함해 전국 폐차 협력업체와 함께 진행합니다. 지역에 맞는 업체가 방문합니다.</p>
+          <p>전국 협력업체 가운데 충장로5가에 맞는 곳이 찾아갑니다. 지역을 가리지 않고 함께 진행합니다.</p>
           <span class="tag teal">출장 방문</span>
         </div>
       </div>
@@ -396,11 +399,11 @@
   <section id="local" style="background:#fff">
     <div class="wrap">
       <h2 class="sec-title display">충장로5가에서 폐차하실 때</h2>
-      <p class="sec-sub">전남광주통합특별시 동구 충장로5가 은(는) 실제 출장 방문이 가능한 지역입니다</p>
+      <p class="sec-sub">협력업체가 오가는 전남광주통합특별시 동구 충장로5가는 실제 출장 방문이 가능한 지역입니다</p>
       <div class="local">
-        <p>충장로5가은 <span class="landmark">충장로</span> 인근 지역으로, 충장로5가는 광주 대표 상권인 충장로 남쪽 끝자락으로, 오래된 점포와 주택이 뒤섞인 한적한 구간입니다.</p>
+        <p>방문 위치는 <span class="landmark">충장로</span>를 기준으로 안내해 드리면 편합니다. 충장로5가는 광주 대표 상권인 충장로 남쪽 끝자락으로, 오래된 점포와 주택이 뒤섞인 한적한 구간입니다.</p>
         <p>전남광주통합특별시 동구 충장로5가 일대는 전국 폐차 협력업체 네트워크와 연계되어 상담과 방문 처리가 가능한 지역입니다. 상가 앞 도로는 낮 시간 조업 차량이 많아, 영업 시간과 차량 위치를 확인해 통행이 덜한 시간으로 출장 방문을 잡습니다.</p>
-        <p>차량이 있는 곳으로 협력업체가 직접 방문해 상담과 처리를 도와드립니다. 아파트 지하주차장, 상가 뒤편, 좁은 골목 어디든 위치만 알려주시면 됩니다.</p>
+        <p>차를 따로 옮겨 두실 필요는 없습니다. 지금 서 있는 자리를 알려주시면 방문 일정을 맞춰 협력업체가 찾아갑니다.</p>
       </div>
       <div class="faq" style="margin-top:16px">
         <details><summary>충장로5가 가게 앞에 세워 둔 차도 가져가시나요?</summary><p>네, 가능합니다. 영업에 지장이 적은 시간으로 맞춰 방문합니다.</p></details><details><summary>충장로 상가 뒤편 좁은 골목에도 들어오나요?</summary><p>골목 폭을 먼저 확인하고, 진입이 어려우면 가까운 도로로 옮기는 방법을 함께 상담합니다.</p></details><details><summary>수기동이나 대인동에서도 부를 수 있나요?</summary><p>같은 광주 동구 안이라 출장 방문 상담이 가능합니다.</p></details>
@@ -436,11 +439,11 @@
 
   <section id="final" class="final">
     <div class="wrap">
-      <h2 class="display">충장로5가 폐차, 전화 한 통이면<br>폐차·수출 중 유리한 쪽을 바로 알 수 있습니다</h2>
+      <h2 class="display">폐차 전에 한 번 더 비교하세요<br>충장로5가 상담은 전화 한 통이면 됩니다</h2>
       <a class="btn btn-call" href="tel:16006011"><svg><use href="#i-phone"/></svg>1600-6011 지금 전화하기</a>
       <div class="quote-card">
         <h3>3칸만 남겨주셔도 됩니다</h3>
-        <p class="lead">전화가 부담되시면 차종·연식만 남겨주세요. 문자로 답드립니다.</p>
+        <p class="lead">통화가 어려우시면 아래 칸만 채워 주세요. 확인 후 문자로 연락드립니다.</p>
         <form class="quote-form" action="https://api.web3forms.com/submit" method="POST">
           <input type="hidden" name="access_key" value="3882a359-01c7-4afb-b44e-cc2b87b0165b"><input type="hidden" name="subject" value="[견적문의] 전남광주 동구 충장로5가"><input type="hidden" name="from_name" value="폐차 견적 폼"><input type="hidden" name="redirect" value="https://pyecha119.com/thanks.html">
           <input type="hidden" name="region" value="전남광주통합특별시 동구 충장로5가">

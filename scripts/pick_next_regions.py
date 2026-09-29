@@ -12,9 +12,13 @@ data/legal_dong_list.csv 에서 아직 페이지가 없는 동을 골라 오늘 
 선택 규칙
 - 법정동코드 기준으로 regions.json 에 이미 있는 동은 제외
 - 사실 확인에서 보류된 동(data/batches/held/*.json)도 제외 (매일 같은 동을 다시 뽑지 않게)
-- 같은 시군구에서 '숫자+가'만 다른 동(명동1가/명동2가 등)은 하나만 만든다
+- 같은 시군구에서 '숫자+가'만 다른 동(종로1가~6가 등)은 따로 만들지 않고 한 페이지로 묶는다:
+  dong 은 "종로", dong_parts 는 ["종로1가", …, "종로6가"], code 는 첫 ○가의 법정동코드.
+  그중 하나라도 이미 페이지가 있으면(옛 방식의 ○가 페이지 38개) 그 묶음은 뽑지 않는다.
 - 면(面)은 generation_config.json 의 include_myeon 이 true 일 때만 포함
-- 시도별로 돌아가며 하나씩 뽑아 하루 분량이 한 지역에 몰리지 않게 한다
+- 우선순위(2026-09-29부터): 구 페이지(data/gu.json)가 있는 구 → 동 페이지가 많은 구(곧 구 페이지가 생길 구) 순.
+  동 페이지가 하나도 없는 구끼리는 시도별로 돌아가며 하나씩 뽑는다.
+- 사람이 거의 살지 않는 동(산업단지·산지 등)은 여기서 가려내지 않는다. 글을 채울 때 held 로 두고 이유를 적는다.
 """
 import argparse
 import csv
@@ -33,6 +37,7 @@ REGIONS_PATH = ROOT / "data" / "regions.json"
 CONFIG_PATH = ROOT / "data" / "generation_config.json"
 BATCH_DIR = ROOT / "data" / "batches"
 HELD_DIR = BATCH_DIR / "held"
+GU_PATH = ROOT / "data" / "gu.json"
 KST = timezone(timedelta(hours=9))
 
 SIDO_PREFIX = {
@@ -108,30 +113,49 @@ def main() -> None:
     covered_base = {(r["sido"], r["sigungu"], base_name(r["dong"])) for r in regions}
     used_slugs = {r["slug"] for r in regions}
 
-    queues: dict[str, list[dict]] = {s: [] for s in SIDO_ORDER}
+    # 후보: ○가 는 (시도, 시군구, 묶은 이름) 하나로 묶는다
+    groups: dict[tuple[str, str, str], list[dict]] = {}
     for r in rows:
         sido, sigungu, dong, code = r["시도"], r["시군구"], r["읍면동"], r["법정동코드"]
-        if sido not in queues:
+        if sido not in SIDO_ORDER:
             raise ValueError(f"SIDO_ORDER 에 없는 시도: {sido}")
-        if code in covered_codes or (sido, sigungu, base_name(dong)) in covered_base:
-            continue
         if dong.endswith("면") and not include_myeon:
             continue
-        queues[sido].append(r)
+        groups.setdefault((sido, sigungu, base_name(dong)), []).append(r)
+    candidates = []
+    for key, rs in groups.items():
+        if key in covered_base or any(r["법정동코드"] in covered_codes for r in rs):
+            continue
+        gas = sorted((r for r in rs if re.search(r"\d+가$", r["읍면동"])), key=lambda r: int(re.search(r"(\d+)가$", r["읍면동"]).group(1)))
+        if gas:
+            first = dict(gas[0])
+            first["_parts"] = [r["읍면동"] for r in gas]
+            first["_dong"] = key[2]
+            candidates.append(first)
+        for r in rs:
+            if not re.search(r"\d+가$", r["읍면동"]):
+                candidates.append(r)
 
-    picked: list[dict] = []
-    picked_base: set[tuple[str, str, str]] = set()
+    # 우선순위: 구 페이지가 있는 구 → 동 페이지가 많은 구 → (동 페이지가 없는 구) 시도별로 돌아가며
+    gu_pages = {(g["sido"], g["sigungu"]) for g in json.loads(GU_PATH.read_text(encoding="utf-8"))} if GU_PATH.exists() else set()
+    page_count: dict[tuple[str, str], int] = {}
+    for r in regions:
+        page_count[(r["sido"], r["sigungu"])] = page_count.get((r["sido"], r["sigungu"]), 0) + 1
+    csv_pos = {r["법정동코드"]: i for i, r in enumerate(rows)}
+    ranked = sorted(
+        (c for c in candidates if page_count.get((c["시도"], c["시군구"]))),
+        key=lambda c: (-((c["시도"], c["시군구"]) in gu_pages), -page_count[(c["시도"], c["시군구"])], csv_pos[c["법정동코드"]]),
+    )
+    queues: dict[str, list[dict]] = {s: [] for s in SIDO_ORDER}
+    for c in candidates:
+        if not page_count.get((c["시도"], c["시군구"])):
+            queues[c["시도"]].append(c)
+
+    picked: list[dict] = ranked[:count]
     while len(picked) < count and any(queues.values()):
         for sido in SIDO_ORDER:
-            q = queues[sido]
-            while q:
-                r = q.pop(0)
-                key = (r["시도"], r["시군구"], base_name(r["읍면동"]))
-                if key in picked_base:
-                    continue
-                picked_base.add(key)
-                picked.append(r)
-                break
+            if queues[sido]:
+                picked.append(queues[sido].pop(0))
             if len(picked) >= count:
                 break
 
@@ -141,25 +165,30 @@ def main() -> None:
 
     entries = []
     for r in picked:
-        slug = base = make_slug(r["시도"], r["시군구"], r["읍면동"])
+        dong = r.get("_dong") or r["읍면동"]
+        slug = base = make_slug(r["시도"], r["시군구"], dong)
         n = 2
         while slug in used_slugs:
             slug = f"{base}-{n}"
             n += 1
         used_slugs.add(slug)
-        entries.append({
+        entry = {
             "code": r["법정동코드"], "slug": slug,
-            "sido": r["시도"], "sigungu": r["시군구"], "dong": r["읍면동"],
+            "sido": r["시도"], "sigungu": r["시군구"], "dong": dong,
             "landmark_name": "", "landmark_desc": "", "service_intro": "", "faqs": [], "meta": "",
             "fact_check": {"status": "", "reason": "", "items": []},
-        })
+        }
+        if r.get("_parts"):
+            entry["dong_parts"] = r["_parts"]
+        entries.append(entry)
 
     BATCH_DIR.mkdir(exist_ok=True)
     out_path.write_text(json.dumps(entries, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     print(f"배치 파일: {out_path.relative_to(ROOT)} ({len(entries)}개)")
     for e in entries:
         full = " ".join(x for x in (e["sido"], e["sigungu"], e["dong"]) if x)
-        print(f"  {e['slug']}: {full}")
+        parts = f" (묶음: {', '.join(e['dong_parts'])})" if e.get("dong_parts") else ""
+        print(f"  {e['slug']}: {full}{parts}")
 
 
 if __name__ == "__main__":

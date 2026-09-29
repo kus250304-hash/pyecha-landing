@@ -24,6 +24,7 @@ ROOT = Path(__file__).resolve().parent.parent
 ALLOWED_PREFIXES = (
     "data/regions.json", "data/batches/held/", "data/fact_checks/",
     "pages/", "cases/", "index.html", "sitemap.xml",
+    "gu/", "data/gu.json",  # 구 페이지(2026-09-29 추가)
 )
 
 

@@ -23,12 +23,15 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from sitemap_lib import update_sitemap
+from pick_next_regions import GWANGJU_GU, SIDO_PREFIX, romanize
+import variants as V
 
 ROOT = Path(__file__).resolve().parent.parent
 TEMPLATE = ROOT / "templates" / "region-landing-v2.html"
 REGIONS = ROOT / "data" / "regions.json"
 CONFIG = ROOT / "data" / "site_config.json"
 CASES_INDEX = ROOT / "cases" / "index.json"
+GU_DATA = ROOT / "data" / "gu.json"
 OUT = ROOT / "pages"
 
 LEADING_COMMENT_RE = re.compile(r"<!DOCTYPE html>\s*<!--.*?-->", re.DOTALL)
@@ -129,7 +132,6 @@ SIDO_SHORT = {
 
 
 RENAMED_ON_TEXT = "2026년 7월 1일"
-HERO_SUB_TEXT = "폐차 보상금과 수출 시세를 함께 비교해서 최고가를 받으실 수 있도록 도와드립니다."
 
 
 def is_renamed(r: dict) -> bool:
@@ -181,7 +183,44 @@ def title_labels(regions: list[dict]) -> dict[str, str]:
     return labels
 
 
-def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template: str, labels: dict, page_map: dict) -> str:
+def gu_slug(sido: str, sigungu: str) -> str:
+    """구 페이지 파일 이름: 동 페이지 이름의 앞부분과 같은 규칙(서울 종로구 → seoul-jongno, 세종 → sejong).
+    이름이 바뀐 구는 새 이름으로 만든다(인천 제물포구 → incheon-jemulpo)."""
+    parts = ["gwangju" if sido == "전남광주통합특별시" and sigungu in GWANGJU_GU else SIDO_PREFIX[sido]]
+    for tok in sigungu.split():
+        parts.append(romanize(tok[:-1] if tok[-1] in "시군구" and len(tok) > 2 else tok))
+    return "-".join(p for p in parts if p)
+
+
+def gu_groups(regions: list[dict]) -> dict[str, list[dict]]:
+    groups: dict[str, list[dict]] = {}
+    for r in regions:
+        groups.setdefault(gu_slug(r["sido"], r["sigungu"]), []).append(r)
+    return groups
+
+
+def breadcrumb(r: dict, gu_pages: set[str]) -> str:
+    """첫 화면 위 길 안내: 서울 › 종로구 › 청운동. 구 페이지가 있으면 구 이름에 링크(세종은 시 이름)."""
+    g = gu_slug(r["sido"], r["sigungu"])
+    gu_label = r["sigungu"] or SIDO_SHORT[r["sido"]]
+    gu_html = f'<a href="../gu/{g}.html">{esc(gu_label)}</a>' if g in gu_pages else esc(gu_label)
+    items = ([esc(SIDO_SHORT[r["sido"]])] if r["sigungu"] else []) + [gu_html, esc(r["dong"])]
+    return '<nav class="crumbs" aria-label="지역 경로">' + " › ".join(items) + "</nav>"
+
+
+def parts_range(parts: list[str]) -> str:
+    """["종로1가", …, "종로6가"] → "종로1가~6가" (번호가 이어지지 않으면 쉼표로 나열)."""
+    nums = [re.search(r"(\d+)가$", p) for p in parts]
+    if parts and all(nums):
+        base = re.sub(r"\d+가$", "", parts[0])
+        ns = [int(m.group(1)) for m in nums]
+        if all(re.sub(r"\d+가$", "", p) == base for p in parts) and ns == list(range(ns[0], ns[0] + len(ns))):
+            return f"{base}{ns[0]}가~{ns[-1]}가"
+    return ", ".join(parts)
+
+
+def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template: str, labels: dict, page_map: dict,
+           combo: tuple[int, int, int] = (0, 0, 0), gu_pages: set[str] = frozenset()) -> str:
     full = " ".join(x for x in (r["sido"], r["sigungu"], r["dong"]) if x)
     sigungu_dong = " ".join(x for x in (r["sigungu"], r["dong"]) if x)
     title_region = labels[r["slug"]]
@@ -214,12 +253,10 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
     local_faq_html = "".join(
         f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in local_faqs
     )
-    common_faqs = [
-        ("압류가 있어도 되나요?", "차령이 기준을 넘었다면 압류·저당이 있어도 말소가 되는 경우가 많습니다. 등록원부를 보고 바로 확인해 드립니다."),
-        ("서류가 없어도 되나요?", "등록증을 잃어버리셨어도 재발급 없이 진행할 수 있는 방법을 안내해 드립니다. 신분증만 준비해 주세요."),
-        ("차가 안 움직여도 되나요?", "시동이 안 걸리거나 사고 차량이어도 견인차가 갑니다. 견인비는 받지 않습니다."),
-        ("비용이 나오나요?", "폐차·수출 어느 쪽이든 고객님이 내시는 비용은 없습니다. 예외가 생기면 진행 전에 먼저 말씀드립니다."),
-    ]
+    # 공통 문장은 여러 벌 중 이 페이지에 배정된 조합(소개, FAQ, 마무리)을 쓴다 (scripts/variants.py)
+    intro, closing = V.DONG_INTRO[combo[0]], V.DONG_CLOSING[combo[2]]
+    common_faqs = list(zip(V.COMMON_FAQ_QUESTIONS, V.DONG_FAQ[combo[1]]))
+    common_faq_html = "\n      ".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in common_faqs)
     faq_ld = {
         "@context": "https://schema.org",
         "@type": "FAQPage",
@@ -250,7 +287,16 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
 
     meta_title = f"{title_region} 폐차 | 폐차 보상금 vs 수출 시세 비교, 견인비 없음 · {phone_disp}"
     old_mark = f"(옛 {old_region_name(r)})" if is_renamed(r) else ""
-    hero_sub = f"{title_region}{old_mark} {HERO_SUB_TEXT}" if old_mark else HERO_SUB_TEXT
+    hero_sub = f"{title_region}{old_mark} {intro['hero']}" if old_mark else intro["hero"]
+    lm_html = f'<span class="landmark">{esc(r["landmark_name"])}</span>'
+    # 이름 뒤 조사는 글자로 고르고, 랜드마크 이름만 강조 표시로 바꿔 끼운다
+    lead = V.fill(intro["lead"], dong=r["dong"], lm="\x00")
+    for pair, (a, b) in (("{을를}", ("을", "를")), ("{이가}", ("이", "가")), ("{은는}", ("은", "는"))):
+        lead = lead.replace("\x00" + pair, "\x00" + V.josa(r["landmark_name"], a, b))
+    lead = esc(lead).replace("\x00", lm_html)
+    parts = r.get("dong_parts") or []
+    parts_note = (f'<p style="color:#5E6E70;font-size:14px">이 페이지는 {esc(parts_range(parts))}를 함께 안내합니다.</p>'
+                  if parts else "")
     meta_desc = (
         f"{full}{old_mark} 폐차 전에 폐차 보상금과 수출 시세를 함께 비교해 드립니다. 압류·서류 없음도 상담 가능, "
         f"당일 접수, 견인비 없음. {r['landmark_name']} 인근 출장 방문. 전화 {phone_disp}"
@@ -267,6 +313,15 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
         "H1_REGION": esc(title_region if is_renamed(r) else r["dong"]),
         "HERO_SUB": esc(hero_sub),
         "RENAMED_NOTE": renamed_note(r),
+        "BREADCRUMB": breadcrumb(r, gu_pages),
+        "LOCAL_SEC_SUB": esc(V.fill(intro["sec"], full=full)),
+        "LANDMARK_LEAD": lead,
+        "PARTS_NOTE": parts_note,
+        "VISIT_TEXT": esc(intro["visit"]),
+        "COMMON_FAQ_HTML": common_faq_html,
+        "PARTNER_TEXT": esc(V.fill(closing["partner"], dong=r["dong"])),
+        "CLOSING_H2": esc(V.fill(closing["h2"], dong=r["dong"])).replace("&lt;br&gt;", "<br>"),
+        "CLOSING_LEAD": esc(closing["lead"]),
         "LANDMARK_NAME": esc(r["landmark_name"]),
         "LANDMARK_DESC": esc(r["landmark_desc"]),
         "SERVICE_INTRO": esc(r["service_intro"]),
@@ -312,6 +367,10 @@ def main() -> None:
 
     labels = title_labels(regions)
     page_map = case_page_map(regions, cases, int(cfg.get("cases_extra_pages_per_case", 5)))
+    groups = gu_groups(regions)
+    combos = V.assign_combos({g: [r["slug"] for r in rs] for g, rs in groups.items()})
+    gu_data = load_json(GU_DATA, default=[])
+    gu_pages = {g["slug"] for g in gu_data}
 
     targets = regions
     if args.only:
@@ -324,15 +383,19 @@ def main() -> None:
     changed = []
     for r in targets:
         out_path = OUT / f"{r['slug']}.html"
-        html_text = render(r, regions, cfg, cases, template, labels, page_map)
+        html_text = render(r, regions, cfg, cases, template, labels, page_map, combos[r["slug"]], gu_pages)
         if not out_path.exists() or out_path.read_text(encoding="utf-8") != html_text:
             out_path.write_text(html_text, encoding="utf-8")
             changed.append(r["slug"])
             print(f"렌더링: pages/{r['slug']}.html")
 
+    # 구 페이지(/gu/)는 동 페이지 목록에 따라 달라지므로 늘 함께 다시 만든다
+    from build_gu import render_all as render_gu
+    gu_changed = render_gu(regions, cfg, gu_data, groups)
+
     # 내용이 실제로 바뀐 페이지만 sitemap 의 수정일을 갱신한다
-    update_sitemap(ROOT, changed)
-    print(f"완료: {len(targets)}개 중 {len(changed)}개 페이지 변경, sitemap.xml 갱신")
+    update_sitemap(ROOT, changed, paths=[f"gu/{g}.html" for g in gu_changed])
+    print(f"완료: {len(targets)}개 중 {len(changed)}개 페이지 변경, 구 페이지 {len(gu_changed)}개 변경, sitemap.xml 갱신")
 
 
 if __name__ == "__main__":

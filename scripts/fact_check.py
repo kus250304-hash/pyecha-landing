@@ -71,6 +71,10 @@ SIDO_SHORT = {
 }
 
 
+# 도로명 랜드마크(○○로·○○대로·○○길·○○로12번길)는 새 페이지에 쓰지 않는다. 숲길·둘레길 같은 산책길 이름은 장소로 본다
+ROAD_LANDMARK_RE = re.compile(r"(?<!숲)(?<!둘레)(?<!올레)(?<!산책)(?:대로|로|길)(?:\d+번?길)?$|\d+번길$")
+
+
 def entry_text(e: dict) -> str:
     parts = [e.get("landmark_desc", ""), e.get("service_intro", ""), e.get("meta", "")]
     for qa in e.get("faqs") or []:
@@ -114,6 +118,10 @@ def problems(e: dict) -> list[str]:
     if status == "held":
         return [] if str(fc.get("reason", "")).strip() else ["보류(held) 이유(reason) 없음"]
     out = []
+    lm = str(e.get("landmark_name") or "").strip()
+    if ROAD_LANDMARK_RE.search(lm):
+        out.append(f"랜드마크 '{lm}' 가 도로명임 → 도로명은 랜드마크로 쓰지 않음(2026-09-29부터). "
+                   "동 안에서 확인되는 장소로 바꾸거나 held 로 두세요")
     items = fc.get("items") or []
     checked = []
     for i, it in enumerate(items, 1):

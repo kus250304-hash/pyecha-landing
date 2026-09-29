@@ -51,6 +51,14 @@ def validate(entries: list[dict], regions: list[dict]) -> list[str]:
         row = csv_rows.get(e["code"])
         if not row:
             problems.append(f"{tag}: code {e['code']} 가 legal_dong_list.csv 에 없음")
+        elif e.get("dong_parts"):
+            # "○가" 여러 개를 한 페이지로 묶은 항목: code 는 첫 ○가, dong 은 묶은 이름(종로1가~6가 → 종로)
+            parts = e["dong_parts"]
+            same_gu = {(r["시도"], r["시군구"], r["읍면동"]) for r in csv_rows.values()}
+            if (row["시도"], row["시군구"]) != (e["sido"], e["sigungu"]) or row["읍면동"] != parts[0]:
+                problems.append(f"{tag}: code {e['code']} 는 dong_parts 첫 항목({parts[0]})의 법정동코드여야 함")
+            if any(re.sub(r"\d+가$", "", x) != e["dong"] or (e["sido"], e["sigungu"], x) not in same_gu for x in parts):
+                problems.append(f"{tag}: dong_parts {parts} 가 '{e['dong']}○가' 형태의 실제 법정동이 아님")
         elif (row["시도"], row["시군구"], row["읍면동"]) != (e["sido"], e["sigungu"], e["dong"]):
             problems.append(f"{tag}: code {e['code']} 의 지역명이 CSV 와 다름 "
                             f"(CSV: {row['시도']} {row['시군구']} {row['읍면동']})")
@@ -134,6 +142,8 @@ def main() -> None:
     added = replaced = 0
     for e in entries:
         clean = {k: e[k] for k in FIELDS}
+        if e.get("dong_parts"):
+            clean["dong_parts"] = e["dong_parts"]
         if e["code"] in by_code:
             regions[by_code[e["code"]]] = clean
             replaced += 1
