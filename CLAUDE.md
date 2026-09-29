@@ -72,8 +72,9 @@
 ### 반영 방법
 - **매일 자동생성 루틴**만 main 에 바로 push 합니다(PR 없음). 조건: 사실 확인 기록 + `import_batch.py` 통과 + 커밋 후 `python3 scripts/publish_gate.py` 통과. 게이트가 하나라도 실패하면 main 에 push 하지 않고 작업을 `auto/failed-YYYYMMDD` 브랜치에 남깁니다.
 - 루틴이 main 에 반영할 수 있는 파일은 `data/regions.json`, `data/batches/held/`, `data/fact_checks/`, `pages/`, `gu/`, `data/gu.json`, `cases/`, `index.html`, `sitemap.xml`, 등록대수 통계 파일(`data/vehicle_stats*.json`) 뿐입니다(`publish_gate.py` 가 막음).
-- 스크립트·템플릿·CLAUDE.md·설정 변경, 기존 지역 수정은 지금처럼 브랜치에 커밋하고 PR로 올립니다.
-- 매일 루틴의 지시문은 `docs/daily-routine-prompt.md` 의 코드 상자 하나에 있습니다. 루틴 설정에는 "이 파일의 코드 상자를 따르라"는 한 줄만 있으므로, 지시문을 바꿀 때는 이 코드 상자 안만 고쳐 PR로 올립니다(코드 상자는 하나만 둡니다).
+- 모든 변경(스크립트·템플릿·CLAUDE.md·설정 변경, 기존 지역 수정 포함)은 PR 없이 main 에 바로 반영하고, 무엇을 왜 바꿨는지와 검사 결과를 보고에 남깁니다. 반영 전에 `python3 scripts/check_pages.py` 오류 0건을 확인하는 것은 그대로입니다.
+- 위 매일 루틴의 반영 파일 제한(`publish_gate.py`)은 루틴 자체에만 적용됩니다. 루틴은 스크립트·템플릿·설정을 스스로 바꾸지 않습니다.
+- 매일 루틴의 지시문은 `docs/daily-routine-prompt.md` 의 코드 상자 하나에 있습니다. 루틴 설정에는 "이 파일의 코드 상자를 따르라"는 한 줄만 있으므로, 지시문을 바꿀 때는 이 코드 상자 안만 고쳐 main 에 바로 올립니다(코드 상자는 하나만 둡니다).
 
 ### 사실 확인 (자동 반영 조건)
 - 새 지역마다 글(`landmark_name`, `landmark_desc`, `service_intro`, `faqs`)에 나오는 **장소 이름(랜드마크·역·도로명·시장·학교·공원·관공서·하천·산 등)을 하나씩 웹 검색으로 확인**합니다. 옆 동 이름은 `legal_dong_list.csv` 로 확인하므로 제외합니다.

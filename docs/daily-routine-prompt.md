@@ -14,7 +14,7 @@ pyecha-landing 저장소(kus250304-hash/pyecha-landing)의 지역 폐차 랜딩�
 [준비]
 0. 현재 작업 디렉터리에 저장소가 없으면(`git rev-parse --show-toplevel` 실패) `git clone https://github.com/kus250304-hash/pyecha-landing` 후 그 디렉터리로 이동한다.
 1. `git fetch origin main` 후 `git checkout -B auto/pages-$(TZ=Asia/Seoul date +%Y%m%d) origin/main` 으로 작업 브랜치를 만든다(로컬 작업용).
-2. `scripts/publish_gate.py` 와 `scripts/fact_check.py` 가 없으면 아무것도 만들지 말고 "새 반영 파이프라인이 main에 없음(PR 병합 필요)"이라고만 보고하고 종료한다.
+2. `scripts/publish_gate.py` 와 `scripts/fact_check.py` 가 없으면 아무것도 만들지 말고 "새 반영 파이프라인이 main에 없음"이라고만 보고하고 종료한다.
 3. 저장소의 CLAUDE.md를 읽고 '콘텐츠 원칙', '지역 콘텐츠 작성 규칙', '반영 방법', '사실 확인'을 따른다.
 3-1. `python3 scripts/build_cases.py` 를 실행한다(cases/input 에 새 사례가 있으면 처리, 없으면 넘어감).
 
