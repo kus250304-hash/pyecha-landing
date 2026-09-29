@@ -2518,9 +2518,20 @@
   "slug": "daejeon-donggu-hyo",
   "region": "대전광역시 동구 효동",
   "landmark_name": "대전천",
-  "verdict": "unverifiable",
-  "note": "대전천이 효동과 맞닿는지(\"대전천 동쪽\") 근거를 검색에서 찾지 못함. 효동 관련 자료에는 대전천 언급 없음",
-  "sources": []
+  "verdict": "ok",
+  "note": "2차 재확인(2026-09-29): 효동은 서쪽으로 중구 문창동과 맞닿고 그 경계를 대전천이 흐름. 대전천 하상도로가 효동 TJB사옥부터 이어짐 — \"대전천 동쪽\" 설명 맞음",
+  "sources": [
+   {
+    "name": "대전천",
+    "evidence": "효동은 동으로 판암동, 서로 중구 문창동, 북으로 인동과 연접(동구청 효동 소개)",
+    "url": "https://www.donggu.go.kr/dg/kor/contents/426"
+   },
+   {
+    "name": "대전천",
+    "evidence": "대전천은 남북으로 흘러 중구 문창동과 경계, 효동 TJB사옥부터 오정동까지 하상도로",
+    "url": "https://ko.wikipedia.org/wiki/%EB%8C%80%EC%A0%84%EC%B2%9C"
+   }
+  ]
  },
  {
   "code": "3111010300",
@@ -2597,13 +2608,13 @@
   "slug": "chungbuk-cheongju-sangdang-nammullo1ga",
   "region": "충청북도 청주시 상당구 남문로1가",
   "landmark_name": "남문로",
-  "verdict": "unverifiable",
-  "note": "성안길(성안로)은 남문로1가를 지남(남문 터~육거리시장 구간) — 설명의 '맞닿은'은 무리 없음. 그러나 랜드마크 '남문로'가 실제 도로명인지 확인 못함(법정동 이름과 같아 장소 이름으로 보기 어려움). 성안길로 바꾸는 편이 안전",
+  "verdict": "bad",
+  "note": "2차 재확인: \"남문로\"라는 도로명 근거를 찾지 못함(남문로1가의 건물 주소는 성안로·상당로 계열). 랜드마크를 성안로로 바꿈(existing-fix 참고)",
   "sources": [
    {
-    "name": "성안길",
-    "evidence": "성안로는 상당구 도로로 무심천 지하상가 입구~육거리시장, 남문로1가 구간 포함",
-    "url": "https://cheongju.grandculture.net/cheongju/toc/GC00202066"
+    "name": "남문로",
+    "evidence": "남문로1가 건물 주소는 상당로13번길·성안로 등 — 남문로라는 도로명 주소는 보이지 않음",
+    "url": "https://findby.co.kr/%EC%B6%A9%EC%B2%AD%EB%B6%81%EB%8F%84/%EC%B2%AD%EC%A3%BC%EC%8B%9C-%EC%83%81%EB%8B%B9%EA%B5%AC/%EB%82%A8%EB%AC%B8%EB%A1%9C1%EA%B0%80?page=4"
    }
   ]
  },
@@ -2852,9 +2863,15 @@
   "slug": "gangwon-chuncheon-jungangno1ga",
   "region": "강원특별자치도 춘천시 중앙로1가",
   "landmark_name": "중앙로",
-  "verdict": "unverifiable",
-  "note": "검색 한도 소진으로 춘천 중앙로·중앙로터리가 중앙로1가를 지나는 근거를 확보하지 못함(맞을 가능성 높음, 재확인 필요)",
-  "sources": []
+  "verdict": "ok",
+  "note": "2차 재확인: 중앙로(춘천) 변 건물 주소가 중앙로1가(중앙로 17 = 중앙로1가 45, 중앙로 31 한국은행 강원본부 = 중앙로1가 60-1 등) — 맞음",
+  "sources": [
+   {
+    "name": "중앙로",
+    "evidence": "대한적십자사 강원지사 중앙로 17(중앙로1가 45), 한국은행 강원본부 중앙로 31(중앙로1가 60-1)",
+    "url": "https://ko.wikipedia.org/wiki/%EC%A4%91%EC%95%99%EB%A1%9C_(%EC%B6%98%EC%B2%9C%EC%8B%9C)"
+   }
+  ]
  },
  {
   "code": "4311110700",
@@ -2926,13 +2943,13 @@
   "slug": "busan-junggu-jungangdong1ga",
   "region": "부산광역시 중구 중앙동1가",
   "landmark_name": "중앙대로",
-  "verdict": "unverifiable",
-  "note": "중앙대로는 중앙동7가 옛시청사거리에서 시작해 중앙동3가(중앙대로 63)·4가를 지나는 것은 확인되나, 중앙동1가 주소가 중앙대로 변인지는 근거를 찾지 못함",
+  "verdict": "bad",
+  "note": "2차 재확인: 중앙대로 변 주소는 중앙동3가(중앙대로 63)·4가에서 확인되나 중앙동1가 주소는 해관로(해관로 17 = 중앙동1가 23-8) 쪽 — 중앙대로가 1가를 지난다는 근거 없음. 랜드마크를 해관로로 바꿈",
   "sources": [
    {
     "name": "중앙대로",
-    "evidence": "중구 중앙동7가 옛시청사거리~양산; 중앙대로 63은 중앙동3가",
-    "url": "https://namu.wiki/w/%EC%A4%91%EC%95%99%EB%8C%80%EB%A1%9C(%EB%B6%80%EC%82%B0)"
+    "evidence": "중앙대로 63(중앙동3가) — 1가 주소 사례 없음",
+    "url": "https://dorojuso.kr/2611010600100010000001876/%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C-%EC%A4%91%EA%B5%AC-%EC%A4%91%EC%95%99%EB%8C%80%EB%A1%9C-63-%EC%A4%91%EC%95%99%EB%8F%993%EA%B0%80"
    }
   ]
  },
@@ -2941,18 +2958,13 @@
   "slug": "daegu-junggu-sangseo",
   "region": "대구광역시 중구 상서동",
   "landmark_name": "북성로",
-  "verdict": "unverifiable",
-  "note": "북성로 공구골목의 대표 위치는 태평로3가(대구역네거리 남쪽~달성로). 상서동이 북성로와 맞닿는지 근거를 찾지 못함(검색 한도 소진, 백과 페이지 접근 차단)",
+  "verdict": "bad",
+  "note": "2차 재확인: 북성로는 북성로1·2가 법정동을 지나는 도로로, 상서동과 맞닿는다는 주소 근거를 찾지 못함. 상서동을 지나는 국채보상로로 바꿈",
   "sources": [
    {
-    "name": "공구골목",
-    "evidence": "북성로 공구골목은 대구 중구 태평로3가, 대우빌딩 서편~달성로 약 1.15km",
+    "name": "북성로",
+    "evidence": "북성로는 인교동 달성공원교차로~북성로1가, 공구골목은 태평로3가 쪽 — 상서동 언급 없음",
     "url": "https://daegu.grandculture.net/daegu/junggu/toc/GC40000526"
-   },
-   {
-    "name": "상서동",
-    "evidence": "법정동, 행정동 성내2동 — 북성로와의 경계는 확인 못함",
-    "url": "https://www.grandculture.net/daegu/toc/GC40000551"
    }
   ]
  },
@@ -3231,13 +3243,13 @@
   "slug": "busan-junggu-daecheongdong1ga",
   "region": "부산광역시 중구 대청동1가",
   "landmark_name": "대청로",
-  "verdict": "unverifiable",
-  "note": "용두산공원은 광복동2가(용두산길 37-55)이고 대청동에서 오르는 진입로가 있어 '용두산 쪽으로 오르는 비탈'은 맞음. 대청로가 대청동1가를 지나는 근거는 찾지 못함(검색 한도 소진)",
+  "verdict": "ok",
+  "note": "2차 재확인: 대청로 113(대청동1가 35-2), 대청로 126(대청동1가 39-2) 등 대청로 변 주소가 대청동1가 — 맞음",
   "sources": [
    {
-    "name": "용두산",
-    "evidence": "용두산공원 중구 용두산길 37-55(광복동2가), 대청동에서 오르는 진입로 있음",
-    "url": "https://www.busan.go.kr/park/parkinfo02"
+    "name": "대청로",
+    "evidence": "부산 중구 대청로 113(대청동1가 35-2), 대청로 126(대청동1가 39-2)",
+    "url": "https://zippoom.com/region/btR4SMAj8jJ7WtkPSWlM6Q/official-price/house"
    }
   ]
  },
@@ -3481,18 +3493,13 @@
   "slug": "gwangju-donggu-jang",
   "region": "광주광역시 동구 장동",
   "landmark_name": "장동로터리",
-  "verdict": "unverifiable",
-  "note": "장동로터리는 실제 있는 교차로(5·18민주광장~장동로터리 행사 구간, 동명동 카페거리 끝)지만 장동 안인지 동명동 경계인지 주소 근거를 찾지 못함(검색 한도 소진)",
+  "verdict": "bad",
+  "note": "2차 재확인: 장동로터리가 장동 안에 있다는 주소 근거를 찾지 못함. 디지털광주문화대전이 \"장동 중앙부에 동명로가 지난다\"고 소개하므로 동명로로 바꿈",
   "sources": [
    {
     "name": "장동로터리",
-    "evidence": "2024 광주국제교류주간 행사 구간 '5·18민주광장 입구~장동로터리' — 존재 확인, 동 소재 미확인",
-    "url": "https://gwangjuguide.or.kr/bbs/board.php?bo_table=kor_gw6&wr_id=254"
-   },
-   {
-    "name": "장동로터리",
-    "evidence": "문화전당에서 장동로터리를 건너 동명동 카페거리로 이어짐",
-    "url": "https://tour.gwangju.go.kr/home/tour/info/village/002.cs?act=view&infoId=56&category=002&searchCondition=&searchKeyword=&pageIndex=2"
+    "evidence": "장동 관련 주소는 제봉로98번길 등만 확인, 로터리 소재 동 근거 없음",
+    "url": "https://dorojuso.kr/2911010700101010065000001/%EA%B4%91%EC%A3%BC%EA%B4%91%EC%97%AD%EC%8B%9C-%EB%8F%99%EA%B5%AC-%EC%A0%9C%EB%B4%89%EB%A1%9C98%EB%B2%88%EA%B8%B8-8-1-%EC%9E%A5%EB%8F%99"
    }
   ]
  },
@@ -3501,13 +3508,18 @@
   "slug": "daejeon-donggu-samjeong",
   "region": "대전광역시 동구 삼정동",
   "landmark_name": "대청호",
-  "verdict": "unverifiable",
-  "note": "대청호 쪽 행정동인 대청동 관할 법정동 15곳에 삼정동이 없고, 검색 결과는 동구 삼정동을 판암동 쪽으로, '삼정동 대청호 생태공원'은 대덕구 삼정동으로 나옴 — 동구 삼정동이 대청호 물가 마을인지 확인 못 함(대덕구 삼정동과 혼동 가능성)",
+  "verdict": "bad",
+  "note": "2차 재확인: 동구 삼정동은 판암1동 관할 법정동(판암동과 함께). 대청호 쪽 대청동 관할 법정동 15곳에 없음 — \"대청호 물가 마을\"이 틀림(대덕구 삼정동과 혼동). 식장산 입구 쪽 마을로 고침",
   "sources": [
    {
     "name": "대청호",
-    "evidence": "대청동(대전 동구) 관할 15개 법정동에 삼정동 없음",
-    "url": "https://ko.wikipedia.org/wiki/%EB%8C%80%EC%B2%AD%EB%8F%99_(%EB%8C%80%EC%A0%84)"
+    "evidence": "대청동 행정동 법정동: 추동·세천동·비룡동·주산동 등 15곳, 삼정동 없음",
+    "url": "https://www.donggu.go.kr/dg/kor/contents/414"
+   },
+   {
+    "name": "대청호",
+    "evidence": "판암1동은 법정동 판암동·삼정동 관할, 옥천 국도·경부선·판암IC가 만나는 도농 복합지역",
+    "url": "https://www.donggu.go.kr/dg/kor/contents/423"
    }
   ]
  },
@@ -3696,12 +3708,12 @@
   "slug": "busan-junggu-bupyeongdong1ga",
   "region": "부산광역시 중구 부평동1가",
   "landmark_name": "구덕로",
-  "verdict": "unverifiable",
-  "note": "구덕로(중앙동7가 옛시청사거리~충무동사거리~구덕운동장)가 부평동1가 경계를 지나는지 검색 한도로 확인 못 함. 비프광장로 11이 부평동1가라 남쪽 구덕로와 가까울 가능성은 큼",
+  "verdict": "bad",
+  "note": "2차 재확인: 구덕로가 부평동1가를 지난다는 근거를 찾지 못함. 중구로 13 건물이 부평동1가 45-9로 확인되어 중구로로 바꿈",
   "sources": [
    {
     "name": "구덕로",
-    "evidence": "중구 중앙동7가~서구 동대신동3가 도로, 부평동1가 접함 근거 미확보",
+    "evidence": "구덕로는 중앙동7가 옛시청사거리~서구 동대신동3가 구덕운동장, 부평동1가 경유 근거 없음",
     "url": "https://ko.wikipedia.org/wiki/%EA%B5%AC%EB%8D%95%EB%A1%9C"
    }
   ]
@@ -3821,12 +3833,12 @@
   "slug": "gangwon-chuncheon-ungyo",
   "region": "강원특별자치도 춘천시 운교동",
   "landmark_name": "운교사거리",
-  "verdict": "unverifiable",
-  "note": "운교사거리는 춘천로의 교차로로 실제 있음(남부사거리~운교사거리~중앙로터리). 운교동 안에 있다는 주소 근거는 검색 한도로 확보 못 함",
+  "verdict": "bad",
+  "note": "2차 재확인: 운교사거리는 춘천로·금강로 교차로로 있으나 운교동 안이라는 주소 근거를 찾지 못함. 운교동 183의 춘천 동부시장으로 바꿈",
   "sources": [
    {
     "name": "운교사거리",
-    "evidence": "춘천로 경유 교차로, 남부사거리와 중앙로터리 사이",
+    "evidence": "운교사거리 위치 설명에 운교동 주소 근거 없음",
     "url": "https://ko.wikipedia.org/wiki/%EC%B6%98%EC%B2%9C%EB%A1%9C"
    }
   ]
@@ -3996,13 +4008,18 @@
   "slug": "gangwon-chuncheon-yaksa",
   "region": "강원특별자치도 춘천시 약사동",
   "landmark_name": "약사천",
-  "verdict": "unverifiable",
-  "note": "약사천 복원 구간(봉의초~공지천 합류점 850m)은 확인되나, 그 물길이 약사동을 지난다는 주소·공식 근거는 검색 한도로 확인 못 함(가능성은 높음)",
+  "verdict": "ok",
+  "note": "2차 재확인: 약사천은 공지천 지류로 효자동과 약사동을 지나 흐름 — 맞음",
   "sources": [
    {
     "name": "약사천",
-    "evidence": "복원 구간 봉의초교~공지천 합류점 850m",
-    "url": "https://www.seoul.co.kr/news/society/2012/10/09/20121009800050"
+    "evidence": "약사천은 공지천의 지류로 효자동과 약사동을 흐름",
+    "url": "https://ko.wikipedia.org/wiki/%EC%95%BD%EC%82%AC%EB%8F%99"
+   },
+   {
+    "name": "약사천",
+    "evidence": "약사명동 소개에 약사천 복원(옛 물길 복원, 소양강댐 하류에서 끌어온 물)",
+    "url": "https://bomnae.chuncheon.go.kr/contentView?contentNo=1170&no=372"
    }
   ]
  },

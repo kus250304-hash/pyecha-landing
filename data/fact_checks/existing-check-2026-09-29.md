@@ -180,3 +180,23 @@
 | busan-junggu-bupyeongdong1ga | 부산광역시 중구 부평동1가 | 구덕로 | 구덕로(중앙동7가 옛시청사거리~충무동사거리~구덕운동장)가 부평동1가 경계를 지나는지 검색 한도로 확인 못 함. 비프광장로 11이 부평동1가라 남쪽 구덕로와 가까울 가능성은 큼 |
 | gangwon-chuncheon-ungyo | 강원특별자치도 춘천시 운교동 | 운교사거리 | 운교사거리는 춘천로의 교차로로 실제 있음(남부사거리~운교사거리~중앙로터리). 운교동 안에 있다는 주소 근거는 검색 한도로 확보 못 함 |
 | gangwon-chuncheon-yaksa | 강원특별자치도 춘천시 약사동 | 약사천 | 약사천 복원 구간(봉의초~공지천 합류점 850m)은 확인되나, 그 물길이 약사동을 지난다는 주소·공식 근거는 검색 한도로 확인 못 함(가능성은 높음) |
+
+## 7. 3차 재확인 (확인 못 함 11개)
+
+2026-09-29 다시 검색해 `unverifiable` 11개를 모두 판정했습니다. JSON 의 `verdict`·`note`·`sources` 를 고쳤습니다.
+
+| 페이지 | 랜드마크 | 결과 | 확인 내용 |
+|---|---|---|---|
+| daejeon-donggu-hyo | 대전천 | 문제 없음 | 효동 서쪽이 중구 문창동과 맞닿고 그 경계를 대전천이 흐름 |
+| gangwon-chuncheon-jungangno1ga | 중앙로 | 문제 없음 | 중앙로 17·31 등 중앙로 변 건물 주소가 중앙로1가 |
+| busan-junggu-daecheongdong1ga | 대청로 | 문제 없음 | 대청로 113·126 등이 대청동1가 |
+| gangwon-chuncheon-yaksa | 약사천 | 문제 없음 | 약사천은 효자동과 약사동을 지나 흐름 |
+| chungbuk-cheongju-sangdang-nammullo1ga | 남문로 | 틀림 | '남문로' 도로명 근거 없음 → 성안로로 교체 |
+| busan-junggu-jungangdong1ga | 중앙대로 | 틀림 | 1가 주소가 중앙대로 변이라는 근거 없음 → 해관로로 교체 |
+| daegu-junggu-sangseo | 북성로 | 틀림 | 상서동과 맞닿는 근거 없음 → 국채보상로로 교체 |
+| gwangju-donggu-jang | 장동로터리 | 틀림 | 장동 안이라는 주소 근거 없음 → 동명로로 교체 |
+| daejeon-donggu-samjeong | 대청호 | 틀림 | 동구 삼정동은 판암1동 관할, 대청호 쪽 마을이 아님 → 식장산으로 교체 |
+| busan-junggu-bupyeongdong1ga | 구덕로 | 틀림 | 부평동1가 경유 근거 없음 → 중구로로 교체 |
+| gangwon-chuncheon-ungyo | 운교사거리 | 틀림 | 운교동 안이라는 주소 근거 없음 → 춘천 동부시장으로 교체 |
+
+틀림 7개는 1·2차 틀림 21개와 함께 `existing-fix-2026-09-29.json` 에서 고쳤습니다(모두 28개).
