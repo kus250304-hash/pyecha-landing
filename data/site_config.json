@@ -1,7 +1,7 @@
 {
   "_comment": "사이트 공통 설정. null 인 값은 아직 받지 못한 정보이며, 빌더가 해당 요소를 자동으로 숨기거나 대체 문구를 씁니다.",
   "site_base_url": "https://pyecha119.com",
-  "naver_site_verification": "c6088e5e29147aa84496bd36f652f81dae622855",
+  "naver_site_verification": "49dd7214fa33d7e511f8a9d860e3587fb8da2fa7",
   "phone_tel": "16006011",
   "phone_display": "1600-6011",
   "sms_number": "16006011",
