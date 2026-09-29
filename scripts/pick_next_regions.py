@@ -17,7 +17,8 @@ data/legal_dong_list.csv 에서 아직 페이지가 없는 동을 골라 오늘 
   그중 하나라도 이미 페이지가 있으면(옛 방식의 ○가 페이지 38개) 그 묶음은 뽑지 않는다.
 - 면(面)은 generation_config.json 의 include_myeon 이 true 일 때만 포함
 - 우선순위(scripts/vehicle_stats.py): 시군구별 차령 10년 이상 노후차 등록대수가 많은 구부터
-  (data/vehicle_stats.json). 없으면 전체 등록대수(data/vehicle_stats_total.json) 순.
+  (data/vehicle_stats.json). 없으면 추정 노후 자가용 대수(시군구 자가용 × 시도 노후차 비율,
+  data/vehicle_stats_old10_est.json), 그것도 없으면 전체 등록대수(data/vehicle_stats_total.json) 순.
   통계가 둘 다 없으면 구 페이지(data/gu.json)가 있는 구 → 동 페이지가 많은 구 순이고,
   동 페이지가 하나도 없는 구끼리는 시도별로 돌아가며 하나씩 뽑는다. 첫 줄에 어떤 기준을 썼는지 찍는다.
 - 사람이 거의 살지 않는 동(산업단지·산지 등)은 여기서 가려내지 않는다. 글을 채울 때 held 로 두고 이유를 적는다.
@@ -131,7 +132,7 @@ def pick(regions: list[dict], count: int, include_myeon: bool) -> list[dict]:
             n = vehicle_stats.count_for(counts, c["시도"], c["시군구"])
             return (n is None, -(n or 0), csv_pos[c["법정동코드"]])
         picked = sorted(candidates, key=stat_key)[:count]
-        label = "차령 10년 이상 노후차" if basis == "old10" else "전체(노후차 통계 없음)"
+        label = vehicle_stats.BASIS_LABEL.get(basis, basis)
         print(f"우선순위 기준: 시군구별 {label} 등록대수 많은 순 ({meta.get('as_of')}, {meta.get('source')})")
     else:
         picked = fallback_order(candidates, regions, rows, count)

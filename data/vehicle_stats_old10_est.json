@@ -1,0 +1,1849 @@
+{
+ "basis": "old10_est",
+ "as_of": "2026년 8월",
+ "private": true,
+ "method": "시군구 자가용 등록대수 × 시도 자가용 중 모델연도 2016년 이하 비율 (반올림)",
+ "source": "국토교통부 자동차등록현황보고(2026년 08월 자동차 등록자료 통계.xlsx: 02.통계표_시군구, 14.차종별_상세등록(시도))",
+ "url": "https://stat.molit.go.kr/portal/cate/statMetaView.do?hRsId=58",
+ "saved_on": "2026-09-29",
+ "sido_ratio": {
+  "경상북도": 0.4857,
+  "경상남도": 0.4504,
+  "대구광역시": 0.4503,
+  "전북특별자치도": 0.4481,
+  "전남광주통합특별시": 0.442,
+  "울산광역시": 0.4258,
+  "대전광역시": 0.4237,
+  "충청남도": 0.4165,
+  "서울특별시": 0.4146,
+  "충청북도": 0.4101,
+  "부산광역시": 0.4074,
+  "강원특별자치도": 0.407,
+  "제주특별자치도": 0.3995,
+  "경기도": 0.3839,
+  "세종특별자치시": 0.3751,
+  "인천광역시": 0.3562
+ },
+ "rows": [
+  {
+   "sido": "경상남도",
+   "sigungu": "김해시",
+   "count": 135931,
+   "registered": 301810,
+   "old_ratio": 0.4504
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "평택시",
+   "count": 135443,
+   "registered": 352836,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "제주특별자치도",
+   "sigungu": "제주시",
+   "count": 130296,
+   "registered": 326114,
+   "old_ratio": 0.3995
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "남양주시",
+   "count": 123099,
+   "registered": 320681,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "달서구",
+   "count": 121917,
+   "registered": 270762,
+   "old_ratio": 0.4503
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "구미시",
+   "count": 111025,
+   "registered": 228578,
+   "old_ratio": 0.4857
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "시흥시",
+   "count": 104573,
+   "registered": 272418,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "파주시",
+   "count": 101372,
+   "registered": 264079,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "강남구",
+   "count": 97406,
+   "registered": 234927,
+   "old_ratio": 0.4146
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "수성구",
+   "count": 95789,
+   "registered": 212734,
+   "old_ratio": 0.4503
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "송파구",
+   "count": 94414,
+   "registered": 227711,
+   "old_ratio": 0.4146
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "김포시",
+   "count": 91633,
+   "registered": 238709,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "광산구",
+   "count": 90927,
+   "registered": 205728,
+   "old_ratio": 0.442
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "남동구",
+   "count": 90830,
+   "registered": 255014,
+   "old_ratio": 0.3562
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "북구",
+   "count": 90381,
+   "registered": 200725,
+   "old_ratio": 0.4503
+  },
+  {
+   "sido": "대전광역시",
+   "sigungu": "서구",
+   "count": 89964,
+   "registered": 212325,
+   "old_ratio": 0.4237
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "북구",
+   "count": 89120,
+   "registered": 201639,
+   "old_ratio": 0.442
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "천안시 서북구",
+   "count": 88810,
+   "registered": 213209,
+   "old_ratio": 0.4165
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "아산시",
+   "count": 88691,
+   "registered": 212923,
+   "old_ratio": 0.4165
+  },
+  {
+   "sido": "대전광역시",
+   "sigungu": "유성구",
+   "count": 85404,
+   "registered": 201563,
+   "old_ratio": 0.4237
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "양산시",
+   "count": 83934,
+   "registered": 186361,
+   "old_ratio": 0.4504
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "수원시 권선구",
+   "count": 83220,
+   "registered": 216793,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "연수구",
+   "count": 83014,
+   "registered": 233070,
+   "old_ratio": 0.3562
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "광주시",
+   "count": 81178,
+   "registered": 211474,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "원주시",
+   "count": 80341,
+   "registered": 197379,
+   "old_ratio": 0.407
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "진주시",
+   "count": 78848,
+   "registered": 175069,
+   "old_ratio": 0.4504
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "용인시 기흥구",
+   "count": 77486,
+   "registered": 201856,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "화성시 동탄구",
+   "count": 77381,
+   "registered": 201581,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "강서구",
+   "count": 76673,
+   "registered": 184922,
+   "old_ratio": 0.4146
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "전주시 덕진구",
+   "count": 76565,
+   "registered": 170866,
+   "old_ratio": 0.4481
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "포항시 북구",
+   "count": 76352,
+   "registered": 157194,
+   "old_ratio": 0.4857
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "고양시 덕양구",
+   "count": 75129,
+   "registered": 195716,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "부평구",
+   "count": 75029,
+   "registered": 210652,
+   "old_ratio": 0.3562
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "동구",
+   "count": 74465,
+   "registered": 165377,
+   "old_ratio": 0.4503
+  },
+  {
+   "sido": "세종특별자치시",
+   "sigungu": "세종특별자치시",
+   "count": 74337,
+   "registered": 198200,
+   "old_ratio": 0.3751
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "경주시",
+   "count": 74055,
+   "registered": 152464,
+   "old_ratio": 0.4857
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "성남시 분당구",
+   "count": 72563,
+   "registered": 189030,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "서해구",
+   "count": 71928,
+   "registered": 201945,
+   "old_ratio": 0.3562
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "경산시",
+   "count": 71068,
+   "registered": 146315,
+   "old_ratio": 0.4857
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "서초구",
+   "count": 70664,
+   "registered": 170430,
+   "old_ratio": 0.4146
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "전주시 완산구",
+   "count": 69090,
+   "registered": 154185,
+   "old_ratio": 0.4481
+  },
+  {
+   "sido": "울산광역시",
+   "sigungu": "남구",
+   "count": 68238,
+   "registered": 160265,
+   "old_ratio": 0.4258
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "창원시 성산구",
+   "count": 68080,
+   "registered": 151159,
+   "old_ratio": 0.4504
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "의정부시",
+   "count": 67701,
+   "registered": 176366,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "순천시",
+   "count": 67440,
+   "registered": 152586,
+   "old_ratio": 0.442
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "창원시 의창구",
+   "count": 67349,
+   "registered": 149537,
+   "old_ratio": 0.4504
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "화성시 만세구",
+   "count": 66755,
+   "registered": 173900,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "강동구",
+   "count": 66439,
+   "registered": 160241,
+   "old_ratio": 0.4146
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "익산시",
+   "count": 65397,
+   "registered": 145943,
+   "old_ratio": 0.4481
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "해운대구",
+   "count": 64676,
+   "registered": 158760,
+   "old_ratio": 0.4074
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "청주시 흥덕구",
+   "count": 64607,
+   "registered": 157546,
+   "old_ratio": 0.4101
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "서구",
+   "count": 64192,
+   "registered": 145238,
+   "old_ratio": 0.442
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "안산시 단원구",
+   "count": 63855,
+   "registered": 166345,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "군산시",
+   "count": 63498,
+   "registered": 141706,
+   "old_ratio": 0.4481
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "달성군",
+   "count": 62791,
+   "registered": 139451,
+   "old_ratio": 0.4503
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "여수시",
+   "count": 61201,
+   "registered": 138471,
+   "old_ratio": 0.442
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "천안시 동남구",
+   "count": 60952,
+   "registered": 146329,
+   "old_ratio": 0.4165
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "용인시 처인구",
+   "count": 60744,
+   "registered": 158242,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "포항시 남구",
+   "count": 59456,
+   "registered": 122409,
+   "old_ratio": 0.4857
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "수원시 영통구",
+   "count": 59226,
+   "registered": 154288,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "춘천시",
+   "count": 59148,
+   "registered": 145312,
+   "old_ratio": 0.407
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "미추홀구",
+   "count": 58568,
+   "registered": 164435,
+   "old_ratio": 0.3562
+  },
+  {
+   "sido": "울산광역시",
+   "sigungu": "울주군",
+   "count": 57973,
+   "registered": 136156,
+   "old_ratio": 0.4258
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "노원구",
+   "count": 57961,
+   "registered": 139793,
+   "old_ratio": 0.4146
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "용인시 수지구",
+   "count": 57537,
+   "registered": 149888,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "양천구",
+   "count": 57298,
+   "registered": 138194,
+   "old_ratio": 0.4146
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "양주시",
+   "count": 56756,
+   "registered": 147852,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "부천시 원미구",
+   "count": 56001,
+   "registered": 145887,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "영등포구",
+   "count": 55329,
+   "registered": 133444,
+   "old_ratio": 0.4146
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "안산시 상록구",
+   "count": 55067,
+   "registered": 143453,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "하남시",
+   "count": 54209,
+   "registered": 141217,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "구로구",
+   "count": 53904,
+   "registered": 130008,
+   "old_ratio": 0.4146
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "부산진구",
+   "count": 53428,
+   "registered": 131149,
+   "old_ratio": 0.4074
+  },
+  {
+   "sido": "울산광역시",
+   "sigungu": "북구",
+   "count": 53127,
+   "registered": 124774,
+   "old_ratio": 0.4258
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "연제구",
+   "count": 52462,
+   "registered": 128778,
+   "old_ratio": 0.4074
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "은평구",
+   "count": 51770,
+   "registered": 124860,
+   "old_ratio": 0.4146
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "고양시 일산동구",
+   "count": 51165,
+   "registered": 133287,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "안양시 동안구",
+   "count": 50838,
+   "registered": 132436,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "거제시",
+   "count": 50357,
+   "registered": 111809,
+   "old_ratio": 0.4504
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "오산시",
+   "count": 49854,
+   "registered": 129872,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "이천시",
+   "count": 49659,
+   "registered": 129364,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "충주시",
+   "count": 49110,
+   "registered": 119756,
+   "old_ratio": 0.4101
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "창원시 마산회원구",
+   "count": 48988,
+   "registered": 108770,
+   "old_ratio": 0.4504
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "성북구",
+   "count": 48371,
+   "registered": 116664,
+   "old_ratio": 0.4146
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "안성시",
+   "count": 47065,
+   "registered": 122608,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "강릉시",
+   "count": 47062,
+   "registered": 115619,
+   "old_ratio": 0.407
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "마포구",
+   "count": 46578,
+   "registered": 112338,
+   "old_ratio": 0.4146
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "당진시",
+   "count": 46546,
+   "registered": 111745,
+   "old_ratio": 0.4165
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "창원시 마산합포구",
+   "count": 45990,
+   "registered": 102112,
+   "old_ratio": 0.4504
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "검단구",
+   "count": 45550,
+   "registered": 127888,
+   "old_ratio": 0.3562
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "관악구",
+   "count": 45264,
+   "registered": 109169,
+   "old_ratio": 0.4146
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "청주시 청원구",
+   "count": 44593,
+   "registered": 108741,
+   "old_ratio": 0.4101
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "고양시 일산서구",
+   "count": 44007,
+   "registered": 114640,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "울산광역시",
+   "sigungu": "중구",
+   "count": 43798,
+   "registered": 102863,
+   "old_ratio": 0.4258
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "창원시 진해구",
+   "count": 43688,
+   "registered": 97002,
+   "old_ratio": 0.4504
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "광양시",
+   "count": 43537,
+   "registered": 98505,
+   "old_ratio": 0.442
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "남구",
+   "count": 43535,
+   "registered": 106865,
+   "old_ratio": 0.4074
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "서산시",
+   "count": 43531,
+   "registered": 104506,
+   "old_ratio": 0.4165
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "중랑구",
+   "count": 43520,
+   "registered": 104964,
+   "old_ratio": 0.4146
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "광명시",
+   "count": 43181,
+   "registered": 112489,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "안동시",
+   "count": 43113,
+   "registered": 88761,
+   "old_ratio": 0.4857
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "사하구",
+   "count": 43091,
+   "registered": 105776,
+   "old_ratio": 0.4074
+  },
+  {
+   "sido": "제주특별자치도",
+   "sigungu": "서귀포시",
+   "count": 42890,
+   "registered": 107347,
+   "old_ratio": 0.3995
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "목포시",
+   "count": 42316,
+   "registered": 95742,
+   "old_ratio": 0.442
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "동작구",
+   "count": 42243,
+   "registered": 101882,
+   "old_ratio": 0.4146
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "동대문구",
+   "count": 42235,
+   "registered": 101865,
+   "old_ratio": 0.4146
+  },
+  {
+   "sido": "대전광역시",
+   "sigungu": "중구",
+   "count": 41825,
+   "registered": 98711,
+   "old_ratio": 0.4237
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "수원시 장안구",
+   "count": 41786,
+   "registered": 108856,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "청주시 상당구",
+   "count": 41760,
+   "registered": 101833,
+   "old_ratio": 0.4101
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "남구",
+   "count": 41623,
+   "registered": 94175,
+   "old_ratio": 0.442
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "북구",
+   "count": 40543,
+   "registered": 99520,
+   "old_ratio": 0.4074
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "동래구",
+   "count": 40412,
+   "registered": 99199,
+   "old_ratio": 0.4074
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "계양구",
+   "count": 40369,
+   "registered": 113341,
+   "old_ratio": 0.3562
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "청주시 서원구",
+   "count": 39918,
+   "registered": 97342,
+   "old_ratio": 0.4101
+  },
+  {
+   "sido": "대전광역시",
+   "sigungu": "동구",
+   "count": 39795,
+   "registered": 93920,
+   "old_ratio": 0.4237
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "김천시",
+   "count": 38728,
+   "registered": 79734,
+   "old_ratio": 0.4857
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "성동구",
+   "count": 38674,
+   "registered": 93275,
+   "old_ratio": 0.4146
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "강서구",
+   "count": 38275,
+   "registered": 93953,
+   "old_ratio": 0.4074
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "광진구",
+   "count": 37531,
+   "registered": 90519,
+   "old_ratio": 0.4146
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "군포시",
+   "count": 37012,
+   "registered": 96419,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "대전광역시",
+   "sigungu": "대덕구",
+   "count": 36916,
+   "registered": 87126,
+   "old_ratio": 0.4237
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "기장군",
+   "count": 36529,
+   "registered": 89667,
+   "old_ratio": 0.4074
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "화성시 효행구",
+   "count": 36098,
+   "registered": 94037,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "도봉구",
+   "count": 35293,
+   "registered": 85122,
+   "old_ratio": 0.4146
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "포천시",
+   "count": 35090,
+   "registered": 91412,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "서대문구",
+   "count": 35002,
+   "registered": 84420,
+   "old_ratio": 0.4146
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "금천구",
+   "count": 34663,
+   "registered": 83602,
+   "old_ratio": 0.4146
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "칠곡군",
+   "count": 34349,
+   "registered": 70717,
+   "old_ratio": 0.4857
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "안양시 만안구",
+   "count": 33856,
+   "registered": 88198,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "서구",
+   "count": 33148,
+   "registered": 73617,
+   "old_ratio": 0.4503
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "사상구",
+   "count": 33138,
+   "registered": 81344,
+   "old_ratio": 0.4074
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "화성시 병점구",
+   "count": 32100,
+   "registered": 83623,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "나주시",
+   "count": 32039,
+   "registered": 72490,
+   "old_ratio": 0.442
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "성남시 수정구",
+   "count": 31828,
+   "registered": 82914,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "부천시 소사구",
+   "count": 31753,
+   "registered": 82719,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "수원시 팔달구",
+   "count": 31669,
+   "registered": 82500,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "금정구",
+   "count": 30841,
+   "registered": 75704,
+   "old_ratio": 0.4074
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "영천시",
+   "count": 30504,
+   "registered": 62801,
+   "old_ratio": 0.4857
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "제천시",
+   "count": 29373,
+   "registered": 71628,
+   "old_ratio": 0.4101
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "용산구",
+   "count": 28498,
+   "registered": 68732,
+   "old_ratio": 0.4146
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "완주군",
+   "count": 28413,
+   "registered": 63407,
+   "old_ratio": 0.4481
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "영주시",
+   "count": 28390,
+   "registered": 58450,
+   "old_ratio": 0.4857
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "음성군",
+   "count": 28373,
+   "registered": 69189,
+   "old_ratio": 0.4101
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "사천시",
+   "count": 28014,
+   "registered": 62201,
+   "old_ratio": 0.4504
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "강북구",
+   "count": 27982,
+   "registered": 67489,
+   "old_ratio": 0.4146
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "구리시",
+   "count": 27825,
+   "registered": 72485,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "상주시",
+   "count": 27566,
+   "registered": 56754,
+   "old_ratio": 0.4857
+  },
+  {
+   "sido": "울산광역시",
+   "sigungu": "동구",
+   "count": 27501,
+   "registered": 64589,
+   "old_ratio": 0.4258
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "의왕시",
+   "count": 27499,
+   "registered": 71636,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "성남시 중원구",
+   "count": 27483,
+   "registered": 71595,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "여주시",
+   "count": 27222,
+   "registered": 70916,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "밀양시",
+   "count": 26856,
+   "registered": 59628,
+   "old_ratio": 0.4504
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "수영구",
+   "count": 26749,
+   "registered": 65660,
+   "old_ratio": 0.4074
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "논산시",
+   "count": 26611,
+   "registered": 63886,
+   "old_ratio": 0.4165
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "정읍시",
+   "count": 26568,
+   "registered": 59290,
+   "old_ratio": 0.4481
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "양평군",
+   "count": 26391,
+   "registered": 68751,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "남구",
+   "count": 26309,
+   "registered": 58428,
+   "old_ratio": 0.4503
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "무안군",
+   "count": 25573,
+   "registered": 57861,
+   "old_ratio": 0.442
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "영종구",
+   "count": 25074,
+   "registered": 70397,
+   "old_ratio": 0.3562
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "홍성군",
+   "count": 24972,
+   "registered": 59952,
+   "old_ratio": 0.4165
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "중구",
+   "count": 24663,
+   "registered": 54773,
+   "old_ratio": 0.4503
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "통영시",
+   "count": 24208,
+   "registered": 53750,
+   "old_ratio": 0.4504
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "공주시",
+   "count": 23953,
+   "registered": 57504,
+   "old_ratio": 0.4165
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "부천시 오정구",
+   "count": 23899,
+   "registered": 62257,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "진천군",
+   "count": 23445,
+   "registered": 57171,
+   "old_ratio": 0.4101
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "김제시",
+   "count": 23420,
+   "registered": 52266,
+   "old_ratio": 0.4481
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "보령시",
+   "count": 22833,
+   "registered": 54815,
+   "old_ratio": 0.4165
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "동구",
+   "count": 21019,
+   "registered": 47557,
+   "old_ratio": 0.442
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "예산군",
+   "count": 20467,
+   "registered": 49136,
+   "old_ratio": 0.4165
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "함안군",
+   "count": 20331,
+   "registered": 45142,
+   "old_ratio": 0.4504
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "동구",
+   "count": 19766,
+   "registered": 48520,
+   "old_ratio": 0.4074
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "남원시",
+   "count": 19596,
+   "registered": 43731,
+   "old_ratio": 0.4481
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "동해시",
+   "count": 19564,
+   "registered": 48063,
+   "old_ratio": 0.407
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "해남군",
+   "count": 19198,
+   "registered": 43437,
+   "old_ratio": 0.442
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "문경시",
+   "count": 19012,
+   "registered": 39143,
+   "old_ratio": 0.4857
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "중구",
+   "count": 18422,
+   "registered": 44432,
+   "old_ratio": 0.4146
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "종로구",
+   "count": 18015,
+   "registered": 43448,
+   "old_ratio": 0.4146
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "홍천군",
+   "count": 16948,
+   "registered": 41636,
+   "old_ratio": 0.407
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "영암군",
+   "count": 16809,
+   "registered": 38031,
+   "old_ratio": 0.442
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "창녕군",
+   "count": 16573,
+   "registered": 36797,
+   "old_ratio": 0.4504
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "속초시",
+   "count": 16513,
+   "registered": 40568,
+   "old_ratio": 0.407
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "의성군",
+   "count": 16418,
+   "registered": 33801,
+   "old_ratio": 0.4857
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "제물포구",
+   "count": 16356,
+   "registered": 45922,
+   "old_ratio": 0.3562
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "예천군",
+   "count": 16069,
+   "registered": 33082,
+   "old_ratio": 0.4857
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "성주군",
+   "count": 16046,
+   "registered": 33035,
+   "old_ratio": 0.4857
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "거창군",
+   "count": 16040,
+   "registered": 35613,
+   "old_ratio": 0.4504
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "고흥군",
+   "count": 15881,
+   "registered": 35932,
+   "old_ratio": 0.442
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "화순군",
+   "count": 15679,
+   "registered": 35475,
+   "old_ratio": 0.442
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "태안군",
+   "count": 15399,
+   "registered": 36968,
+   "old_ratio": 0.4165
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "중구",
+   "count": 15381,
+   "registered": 37756,
+   "old_ratio": 0.4074
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "부여군",
+   "count": 14929,
+   "registered": 35841,
+   "old_ratio": 0.4165
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "동두천시",
+   "count": 14840,
+   "registered": 38659,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "고창군",
+   "count": 14719,
+   "registered": 32848,
+   "old_ratio": 0.4481
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "영광군",
+   "count": 14454,
+   "registered": 32703,
+   "old_ratio": 0.442
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "강화군",
+   "count": 14393,
+   "registered": 40411,
+   "old_ratio": 0.3562
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "울진군",
+   "count": 14256,
+   "registered": 29351,
+   "old_ratio": 0.4857
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "삼척시",
+   "count": 13935,
+   "registered": 34236,
+   "old_ratio": 0.407
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "장성군",
+   "count": 13177,
+   "registered": 29814,
+   "old_ratio": 0.442
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "청도군",
+   "count": 13132,
+   "registered": 27036,
+   "old_ratio": 0.4857
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "부안군",
+   "count": 13009,
+   "registered": 29031,
+   "old_ratio": 0.4481
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "담양군",
+   "count": 12972,
+   "registered": 29349,
+   "old_ratio": 0.442
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "가평군",
+   "count": 12957,
+   "registered": 33755,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "금산군",
+   "count": 12901,
+   "registered": 30971,
+   "old_ratio": 0.4165
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "옥천군",
+   "count": 12857,
+   "registered": 31353,
+   "old_ratio": 0.4101
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "고성군",
+   "count": 12648,
+   "registered": 28083,
+   "old_ratio": 0.4504
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "영도구",
+   "count": 12563,
+   "registered": 30838,
+   "old_ratio": 0.4074
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "서구",
+   "count": 12505,
+   "registered": 30697,
+   "old_ratio": 0.4074
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "과천시",
+   "count": 12379,
+   "registered": 32247,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "옹진군",
+   "count": 12177,
+   "registered": 34188,
+   "old_ratio": 0.3562
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "신안군",
+   "count": 12159,
+   "registered": 27511,
+   "old_ratio": 0.442
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "횡성군",
+   "count": 12043,
+   "registered": 29587,
+   "old_ratio": 0.407
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "완도군",
+   "count": 11970,
+   "registered": 27082,
+   "old_ratio": 0.442
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "서천군",
+   "count": 11797,
+   "registered": 28321,
+   "old_ratio": 0.4165
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "합천군",
+   "count": 11281,
+   "registered": 25048,
+   "old_ratio": 0.4504
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "하동군",
+   "count": 11216,
+   "registered": 24903,
+   "old_ratio": 0.4504
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "평창군",
+   "count": 11145,
+   "registered": 27380,
+   "old_ratio": 0.407
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "영동군",
+   "count": 11140,
+   "registered": 27166,
+   "old_ratio": 0.4101
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "계룡시",
+   "count": 11045,
+   "registered": 26516,
+   "old_ratio": 0.4165
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "함양군",
+   "count": 10952,
+   "registered": 24317,
+   "old_ratio": 0.4504
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "보성군",
+   "count": 10785,
+   "registered": 24401,
+   "old_ratio": 0.442
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "고령군",
+   "count": 10712,
+   "registered": 22054,
+   "old_ratio": 0.4857
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "괴산군",
+   "count": 10457,
+   "registered": 25500,
+   "old_ratio": 0.4101
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "연천군",
+   "count": 10280,
+   "registered": 26779,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "철원군",
+   "count": 10233,
+   "registered": 25140,
+   "old_ratio": 0.407
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "남해군",
+   "count": 10093,
+   "registered": 22409,
+   "old_ratio": 0.4504
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "산청군",
+   "count": 9979,
+   "registered": 22156,
+   "old_ratio": 0.4504
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "영덕군",
+   "count": 9822,
+   "registered": 20222,
+   "old_ratio": 0.4857
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "장흥군",
+   "count": 9619,
+   "registered": 21764,
+   "old_ratio": 0.442
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "봉화군",
+   "count": 9257,
+   "registered": 19059,
+   "old_ratio": 0.4857
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "정선군",
+   "count": 9249,
+   "registered": 22722,
+   "old_ratio": 0.407
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "영월군",
+   "count": 8961,
+   "registered": 22014,
+   "old_ratio": 0.407
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "함평군",
+   "count": 8916,
+   "registered": 20173,
+   "old_ratio": 0.442
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "증평군",
+   "count": 8843,
+   "registered": 21563,
+   "old_ratio": 0.4101
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "강진군",
+   "count": 8819,
+   "registered": 19953,
+   "old_ratio": 0.442
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "청송군",
+   "count": 8763,
+   "registered": 18042,
+   "old_ratio": 0.4857
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "보은군",
+   "count": 8541,
+   "registered": 20827,
+   "old_ratio": 0.4101
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "인제군",
+   "count": 8326,
+   "registered": 20455,
+   "old_ratio": 0.407
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "진도군",
+   "count": 8282,
+   "registered": 18738,
+   "old_ratio": 0.442
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "태백시",
+   "count": 8148,
+   "registered": 20018,
+   "old_ratio": 0.407
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "청양군",
+   "count": 7899,
+   "registered": 18963,
+   "old_ratio": 0.4165
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "순창군",
+   "count": 7800,
+   "registered": 17406,
+   "old_ratio": 0.4481
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "곡성군",
+   "count": 7758,
+   "registered": 17552,
+   "old_ratio": 0.442
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "군위군",
+   "count": 7230,
+   "registered": 16056,
+   "old_ratio": 0.4503
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "진안군",
+   "count": 7149,
+   "registered": 15954,
+   "old_ratio": 0.4481
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "의령군",
+   "count": 7067,
+   "registered": 15691,
+   "old_ratio": 0.4504
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "양양군",
+   "count": 7030,
+   "registered": 17270,
+   "old_ratio": 0.407
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "임실군",
+   "count": 6972,
+   "registered": 15559,
+   "old_ratio": 0.4481
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "고성군",
+   "count": 6883,
+   "registered": 16910,
+   "old_ratio": 0.407
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "단양군",
+   "count": 6800,
+   "registered": 16581,
+   "old_ratio": 0.4101
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "무주군",
+   "count": 6578,
+   "registered": 14679,
+   "old_ratio": 0.4481
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "구례군",
+   "count": 6376,
+   "registered": 14427,
+   "old_ratio": 0.442
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "장수군",
+   "count": 6048,
+   "registered": 13497,
+   "old_ratio": 0.4481
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "화천군",
+   "count": 5693,
+   "registered": 13986,
+   "old_ratio": 0.407
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "영양군",
+   "count": 5432,
+   "registered": 11183,
+   "old_ratio": 0.4857
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "양구군",
+   "count": 5222,
+   "registered": 12830,
+   "old_ratio": 0.407
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "울릉군",
+   "count": 2961,
+   "registered": 6097,
+   "old_ratio": 0.4857
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "화성시",
+   "count": 1433,
+   "registered": 3733,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "부천시",
+   "count": 102,
+   "registered": 267,
+   "old_ratio": 0.3839
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "군위군",
+   "count": 17,
+   "registered": 34,
+   "old_ratio": 0.4857
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "청원군",
+   "count": 7,
+   "registered": 18,
+   "old_ratio": 0.4101
+  }
+ ]
+}

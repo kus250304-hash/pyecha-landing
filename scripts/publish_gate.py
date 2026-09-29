@@ -25,7 +25,7 @@ ALLOWED_PREFIXES = (
     "data/regions.json", "data/batches/held/", "data/fact_checks/",
     "pages/", "cases/", "index.html", "sitemap.xml",
     "gu/", "data/gu.json",  # 구 페이지(2026-09-29 추가)
-    "data/vehicle_stats.json", "data/vehicle_stats_total.json",  # 우선순위용 등록대수 통계
+    "data/vehicle_stats.json", "data/vehicle_stats_old10_est.json", "data/vehicle_stats_total.json",  # 우선순위용 등록대수 통계
 )
 
 

@@ -19,7 +19,7 @@ pyecha-landing 저장소(kus250304-hash/pyecha-landing)의 지역 폐차 랜딩�
 3-1. `python3 scripts/build_cases.py` 를 실행한다(cases/input 에 새 사례가 있으면 처리, 없으면 넘어감).
 
 [우선순위 통계]
-3-2. `python3 scripts/vehicle_stats.py show` 로 지금 쓰는 등록대수 통계를 본다. "통계 없음"이거나 기준 연월이 3개월보다 오래됐으면, 국토교통부 통계누리(stat.molit.go.kr) 자동차등록현황보고 또는 공공데이터포털(data.go.kr)에서 시군구별 차령 10년 이상 등록대수 최신 파일을 받아 `scripts/vehicle_stats.py import … --basis old10` 으로 저장한다. 노후차 통계를 못 구하면 시군구별 전체 등록대수를 `--basis total` 로 저장한다. 접속이 막히거나 파일을 못 구하면 넘어가고 보고에 적는다. 숫자를 지어내거나 추정해서 넣지 않는다.
+3-2. `python3 scripts/vehicle_stats.py show` 로 지금 쓰는 등록대수 통계를 본다. "통계 없음"이거나 기준 연월이 2개월보다 오래됐으면 `python3 scripts/vehicle_stats.py molit` 을 실행한다(국토교통부 통계누리에서 최신 월 엑셀을 받아 시군구 자가용 × 시도 노후차 비율로 data/vehicle_stats_old10_est.json 저장. openpyxl 이 없으면 `pip install openpyxl` 후 다시 실행). 접속이 끊기면 몇 분 뒤 한 번 더 해 보고, 그래도 안 되면 넘어가고 보고에 적는다. 숫자를 지어내지 않는다.
 
 [생성]
 4. `python3 scripts/pick_next_regions.py` 를 실행한다. 첫 줄의 "우선순위 기준"을 보고에 그대로 옮긴다. 개수는 data/generation_config.json 의 daily_count 를 따르며 여기서 바꾸지 않는다. "선택 가능한 동이 없습니다"가 나오면 "전체 완료됨"이라고 보고하고 종료한다.
@@ -42,7 +42,7 @@ pyecha-landing 저장소(kus250304-hash/pyecha-landing)의 지역 폐차 랜딩�
 8. scripts/, templates/, CLAUDE.md, data/generation_config.json, .github/, docs/ 는 수정하지 않는다. 그쪽에 문제가 있으면 보고만 한다.
 
 [반영]
-9. 변경된 파일(data/regions.json, data/batches/held/, data/fact_checks/, data/vehicle_stats.json, data/vehicle_stats_total.json, pages/, gu/, cases/, index.html, sitemap.xml)만 커밋한다. 메시지: "Add N region pages (YYYY-MM-DD), held M". 반영할 지역이 0개이고 보류만 있으면 보류 파일만 커밋한다(다음 날 다시 뽑히지 않게).
+9. 변경된 파일(data/regions.json, data/batches/held/, data/fact_checks/, data/vehicle_stats.json, data/vehicle_stats_old10_est.json, data/vehicle_stats_total.json, pages/, gu/, cases/, index.html, sitemap.xml)만 커밋한다. 메시지: "Add N region pages (YYYY-MM-DD), held M". 반영할 지역이 0개이고 보류만 있으면 보류 파일만 커밋한다(다음 날 다시 뽑히지 않게).
 10. `python3 scripts/publish_gate.py` 를 실행한다.
    - "통과"가 나오면 `git push origin HEAD:main` 으로 main 에 반영한다.
    - "통과 못 함"이 나오거나 push 가 거절되면 main 에는 push 하지 않는다. 대신 `git push -u origin HEAD:auto/failed-$(TZ=Asia/Seoul date +%Y%m%d)` 로 작업을 남기고 실패 이유를 보고한다. 강제 push, 게이트 건너뛰기, 스크립트를 고쳐 통과시키는 것은 금지한다.
@@ -50,7 +50,7 @@ pyecha-landing 저장소(kus250304-hash/pyecha-landing)의 지역 폐차 랜딩�
 12. 마지막으로 짧게 보고한다(3시 보고):
    - 반영 N개, 보류 M개(보류된 동 이름과 이유, 사람이 거의 살지 않아 건너뛴 동은 판단 근거 포함)
    - 동 페이지 총 개수(data/regions.json 항목 수)
-   - 우선순위 기준(pick_next_regions.py 첫 줄). 노후차 통계를 못 구해 전체 등록대수 순으로 했거나, 통계가 아예 없어 임시 순서로 했으면 그 사실과 이유를 적는다
+   - 우선순위 기준(pick_next_regions.py 첫 줄). 추정 노후 자가용 통계를 못 구해 전체 등록대수 순으로 했거나, 통계가 아예 없어 임시 순서로 했으면 그 사실과 이유를 적는다
    - 오늘 만든 구 페이지 목록, 공공 정보 중 확인 못 해서 뺀 항목, 보류한 구와 이유(구 페이지 단계가 루틴에 들어간 뒤부터. 아직이면 "구 페이지: 견본 승인 대기"라고만 적는다)
    - 실패가 있었으면 그 이유
 ```
