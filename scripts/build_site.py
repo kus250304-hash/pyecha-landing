@@ -131,11 +131,23 @@ SIDO_SHORT = {
 }
 
 
-RENAMED_ON_TEXT = "2026년 7월 1일"
+RENAMED_ON_TEXT = "2026년 7월 1일"  # renamed_on 이 없는 옛 기록용
 
 
 def is_renamed(r: dict) -> bool:
-    return bool(r.get("old_sido") or r.get("old_sigungu"))
+    return bool(r.get("old_sido") or r.get("old_sigungu") or r.get("old_dong"))
+
+
+def is_gu_split(r: dict) -> bool:
+    """시 안에 구가 새로 생긴 경우(화성시 → 화성시 병점구). 이름이 바뀐 게 아니라 앞에 붙은 것이라 "(옛 …)"을 넣지 않는다."""
+    old = r.get("old_sigungu")
+    return bool(old and r["sigungu"].startswith(old + " "))
+
+
+def date_text(iso: str) -> str:
+    """'2026-02-01' → '2026년 2월 1일'."""
+    y, m, d = iso.split("-")
+    return f"{int(y)}년 {int(m)}월 {int(d)}일"
 
 
 def old_region_name(r: dict) -> str:
@@ -143,6 +155,15 @@ def old_region_name(r: dict) -> str:
     if r.get("old_sigungu"):
         return f"{r['old_sigungu']} {r['dong']}"
     return " ".join(x for x in (r["old_sido"], r["sigungu"], r["dong"]) if x)
+
+
+def old_mark(r: dict) -> str:
+    """첫 문장·설명문에 한 번 붙는 "(옛 …)". 동 이름이 바뀌면 "(옛 오산동)", 구가 새로 생긴 것뿐이면 붙이지 않는다."""
+    if r.get("old_dong"):
+        return f"(옛 {r['old_dong']})"
+    if is_renamed(r) and not is_gu_split(r):
+        return f"(옛 {old_region_name(r)})"
+    return ""
 
 
 def josa(word: str, with_final: str, without_final: str) -> str:
@@ -157,10 +178,21 @@ def renamed_note(r: dict) -> str:
     """첫 화면 아래 회색 작은 글씨 한 줄. 이름이 바뀌지 않은 지역은 빈 문자열이라 페이지가 그대로다."""
     if not is_renamed(r):
         return ""
-    old = " ".join(x for x in (r.get("old_sido") or r["sido"], r.get("old_sigungu") or r["sigungu"], r["dong"]) if x)
-    new = " ".join(x for x in (r["sido"], r["sigungu"], r["dong"]) if x)
-    text = (f"{RENAMED_ON_TEXT}부터 {old}{josa(old, '은', '는')} {new}{josa(new, '이', '가')} 되었습니다. "
-            "옛 주소로 문의하셔도 됩니다.")
+    sents = []
+    if r.get("old_sido") or r.get("old_sigungu"):
+        when = date_text(r["renamed_on"]) if r.get("renamed_on") else RENAMED_ON_TEXT
+        if is_gu_split(r):
+            new_gu = r["sigungu"][len(r["old_sigungu"]) + 1:]
+            sents.append(f"{when}부터 {r['old_sigungu']}에 {new_gu}{josa(new_gu, '이', '가')} 생겨 "
+                         f"{r['dong']}{josa(r['dong'], '은', '는')} {r['sigungu']}에 속합니다.")
+        else:
+            old = " ".join(x for x in (r.get("old_sido") or r["sido"], r.get("old_sigungu") or r["sigungu"], r["dong"]) if x)
+            new = " ".join(x for x in (r["sido"], r["sigungu"], r["dong"]) if x)
+            sents.append(f"{when}부터 {old}{josa(old, '은', '는')} {new}{josa(new, '이', '가')} 되었습니다.")
+    if r.get("old_dong"):
+        when = date_text(r["dong_renamed_on"]) if r.get("dong_renamed_on") else RENAMED_ON_TEXT
+        sents.append(f"{when}부터 {r['old_dong']}{josa(r['old_dong'], '은', '는')} {r['dong']}{josa(r['dong'], '이', '가')} 되었습니다.")
+    text = " ".join(sents) + " 옛 주소로 문의하셔도 됩니다."
     return f'\n<p class="renamed-note" style="margin:10px auto 0;padding:0 18px;max-width:960px;color:#5E6E70;font-size:12px;line-height:1.6">{esc(text)}</p>'
 
 
@@ -286,8 +318,8 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
         cases_html = ""
 
     meta_title = f"{title_region} 폐차 | 폐차 보상금 vs 수출 시세 비교, 견인비 없음 · {phone_disp}"
-    old_mark = f"(옛 {old_region_name(r)})" if is_renamed(r) else ""
-    hero_sub = f"{title_region}{old_mark} {intro['hero']}" if old_mark else intro["hero"]
+    mark = old_mark(r)
+    hero_sub = f"{title_region}{mark} {intro['hero']}" if mark else intro["hero"]
     lm_html = f'<span class="landmark">{esc(r["landmark_name"])}</span>'
     # 이름 뒤 조사는 글자로 고르고, 랜드마크 이름만 강조 표시로 바꿔 끼운다
     lead = V.fill(intro["lead"], dong=r["dong"], lm="\x00")
@@ -298,7 +330,7 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
     parts_note = (f'<p style="color:#5E6E70;font-size:14px">이 페이지는 {esc(parts_range(parts))}를 함께 안내합니다.</p>'
                   if parts else "")
     meta_desc = (
-        f"{full}{old_mark} 폐차 전에 폐차 보상금과 수출 시세를 함께 비교해 드립니다. 압류·서류 없음도 상담 가능, "
+        f"{full}{mark} 폐차 전에 폐차 보상금과 수출 시세를 함께 비교해 드립니다. 압류·서류 없음도 상담 가능, "
         f"당일 접수, 견인비 없음. {r['landmark_name']} 인근 출장 방문. 전화 {phone_disp}"
     )
 

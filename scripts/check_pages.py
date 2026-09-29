@@ -76,6 +76,8 @@ def own_tokens(r: dict) -> set[str]:
     toks = {r["dong"], base_name(r["dong"])}
     toks.update(r["sigungu"].split())
     toks.update((r.get("old_sigungu") or "").split())  # 행정구역이 바뀐 지역의 옛 구 이름(예: 인천 중구)
+    if r.get("old_dong"):  # 동 이름이 바뀐 지역의 옛 동 이름(예: 화성 오산동 → 여울동)
+        toks.update({r["old_dong"], base_name(r["old_dong"])})
     # "한남대교와 유엔빌리지", "강남구청·가구거리" 처럼 묶인 랜드마크는 낱개로 나눠 센다
     for part in re.split(r"[\s·,/()]+", r.get("landmark_name", "")):
         part = re.sub(r"(와|과)$", "", part)

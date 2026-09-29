@@ -99,7 +99,7 @@ def load(prefer: str = "old10") -> tuple[str, dict[tuple[str, str], int], dict]:
 def count_for(counts: dict[tuple[str, str], int], sido: str, sigungu: str) -> int | None:
     """그 시군구의 등록대수. '수원시 장안구' 가 없으면 '수원시' 전체를 쓴다. 없으면 None.
     세종처럼 시군구가 빈칸이면 시도 이름 줄(통계의 '세종특별자치시')을 쓴다.
-    '화성시'처럼 CSV 는 시 하나인데 통계는 구로 나뉘어 있으면 그 시의 구를 모두 더한다."""
+    CSV 에는 시 하나인데 통계는 구로 나뉘어 있으면 그 시의 구를 모두 더한다(2026-09-30 화성시 구 반영 전에 쓰던 예외, 다른 시가 같은 상태가 되면 다시 쓰인다)."""
     k = _key(sigungu) or _key(sido)
     if k.endswith("시"):
         parts = [n for (s, g), n in counts.items() if s == sido and g.startswith(k) and g != k and g.endswith("구")]
@@ -311,7 +311,7 @@ def cmd_show(_: argparse.Namespace) -> None:
     print(f"기준: {BASIS_LABEL.get(basis, basis)} 등록대수 · {meta.get('as_of')} · {meta.get('source')}")
     if meta.get("method"):
         print(f"계산: {meta['method']}")
-    # 동을 뽑을 때와 같은 단위(법정동 목록의 시군구)로 센다. 화성시처럼 통계가 구로 나뉜 곳은 합친다.
+    # 동을 뽑을 때와 같은 단위(법정동 목록의 시군구)로 센다. 목록에 구가 없는 시는 통계의 구를 합친다.
     with (ROOT / "data" / "legal_dong_list.csv").open(encoding="utf-8-sig") as f:
         units = sorted({(r["시도"], r["시군구"]) for r in csv.DictReader(f)})
     ranked = sorted(((n, s, g) for s, g in units if (n := count_for(counts, s, g)) is not None), reverse=True)

@@ -85,7 +85,7 @@ def entry_text(e: dict) -> str:
 def candidate_names(e: dict) -> list[str]:
     """글(랜드마크 설명·방문 안내·FAQ)에서 장소 이름으로 보이는 낱말을 뽑는다. 동·시군구 이름은 뺀다."""
     sido = e.get("sido", "")
-    own = {e.get("dong", ""), e.get("sigungu", ""), sido, SIDO_SHORT.get(sido, ""), e.get("old_sido", ""), e.get("old_sigungu", "")}
+    own = {e.get("dong", ""), e.get("sigungu", ""), sido, SIDO_SHORT.get(sido, ""), e.get("old_sido", ""), e.get("old_sigungu", ""), e.get("old_dong", "")}
     own |= set((e.get("sigungu") or "").split())
     found: list[str] = []
     text = entry_text(e)
