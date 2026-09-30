@@ -60,6 +60,9 @@ KEY_ALIASES = {
 }
 # 둘 중 한 형식이 다 있어야 한다: PC 원본 메모 형식 / 예전 직접 작성 형식
 REQUIRED_SETS = (("지역", "차종", "연식", "시동"), ("지역", "차종", "상황", "처리"))
+# 이 칸들의 괄호 "(등록증)", "(사진)" 은 출처 표시라서 읽을 때 지운다
+SOURCE_NOTE_KEYS = ("지역", "차종", "연식")
+SOURCE_NOTE_RE = re.compile(r"[(（\[][^)）\]]*[)）\]]")
 PHOTO_EXT = {".jpg", ".jpeg", ".png", ".webp"}
 MONEY_RE = re.compile(r"\d[\d,.]*\s*(원|만원|만 원|천원|억)|₩|시세|견적가|매입가|매입 가격|보상금\s*\d")
 PROMISE_RE = re.compile(r"보장|무조건|100%|1위|최저가")
@@ -117,6 +120,10 @@ def parse_memo(text: str) -> dict:
                 data[key] = m.group(2).strip()
         elif key:
             data[key] = (data[key] + " " + line).strip()  # 여러 줄로 쓴 값은 이어 붙인다
+    # 지역·차종·연식 끝의 "(등록증)", "(사진)" 같은 괄호는 출처 표시일 뿐이므로 지우고 읽는다
+    for k in SOURCE_NOTE_KEYS:
+        if k in data:
+            data[k] = re.sub(r"\s+", " ", SOURCE_NOTE_RE.sub(" ", data[k])).strip()
     return {k: v for k, v in data.items() if v}
 
 
