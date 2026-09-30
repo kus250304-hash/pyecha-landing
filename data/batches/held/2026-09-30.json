@@ -1,0 +1,53 @@
+[
+ {
+  "code": "4825011300",
+  "slug": "gyeongnam-gimhae-i",
+  "sido": "경상남도",
+  "sigungu": "김해시",
+  "dong": "이동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "동 안에서 확인된 장소는 딸기 체험농장(김해가야딸기테마파크)뿐이고, 동 대부분이 논과 개발제한구역으로 주거지를 확인할 근거를 찾지 못해 보류합니다.",
+   "items": []
+  }
+ },
+ {
+  "code": "4825011400",
+  "slug": "gyeongnam-gimhae-hwamok",
+  "sido": "경상남도",
+  "sigungu": "김해시",
+  "dong": "화목동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "나무위키에 서쪽 일부 공장을 빼면 동 대부분이 논이라고 나오고, 주거지로 소개할 만한 장소를 동 안에서 확인하지 못해 보류합니다.",
+   "items": []
+  }
+ },
+ {
+  "code": "4825011600",
+  "slug": "gyeongnam-gimhae-gang",
+  "sido": "경상남도",
+  "sigungu": "김해시",
+  "dong": "강동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "동 안에 있다고 확인되는 장소(학교·공원·시설 등)를 검색으로 찾지 못해 보류합니다.",
+   "items": []
+  }
+ }
+]

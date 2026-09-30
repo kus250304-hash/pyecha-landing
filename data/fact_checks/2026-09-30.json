@@ -1,0 +1,329 @@
+[
+ {
+  "code": "4825010100",
+  "slug": "gyeongnam-gimhae-dongsang",
+  "items": [
+   {
+    "name": "동상전통시장",
+    "evidence": "김해시 구지로180번길 27-10(동상동 881-1), 김해시청 전통시장 안내",
+    "url": "https://www.gimhae.go.kr/00892.web"
+   }
+  ]
+ },
+ {
+  "code": "4825010200",
+  "slug": "gyeongnam-gimhae-seosang",
+  "items": [
+   {
+    "name": "김해 수로왕릉",
+    "evidence": "김해시 가락로93번길 26(서상동), 김해시 관광 안내 사적 소개",
+    "url": "https://www.gimhae.go.kr/here/04380.web?amode=view&idx=265"
+   }
+  ]
+ },
+ {
+  "code": "4825010400",
+  "slug": "gyeongnam-gimhae-bonghwang",
+  "items": [
+   {
+    "name": "김해 봉황동 유적",
+    "evidence": "김해시 봉황동 253번지 외, 사적. 위키백과 소개",
+    "url": "https://ko.wikipedia.org/wiki/%EA%B9%80%ED%95%B4_%EB%B4%89%ED%99%A9%EB%8F%99_%EC%9C%A0%EC%A0%81"
+   }
+  ]
+ },
+ {
+  "code": "4825010500",
+  "slug": "gyeongnam-gimhae-daeseong",
+  "items": [
+   {
+    "name": "대성동고분박물관",
+    "evidence": "김해시 가야의길 126(대성동), 김해시 대성동고분박물관 누리집",
+    "url": "https://www.gimhae.go.kr/ds.web"
+   }
+  ]
+ },
+ {
+  "code": "4825010600",
+  "slug": "gyeongnam-gimhae-gusan",
+  "items": [
+   {
+    "name": "국립김해박물관",
+    "evidence": "김해시 가야의길 190(구산동 232번지), 국립김해박물관 관람안내",
+    "url": "https://gimhae.museum.go.kr/kr/html/sub01/0101.html"
+   }
+  ]
+ },
+ {
+  "code": "4825010700",
+  "slug": "gyeongnam-gimhae-samgye",
+  "items": [
+   {
+    "name": "가야대학교",
+    "evidence": "김해캠퍼스 김해시 삼계로 208(삼계동), 위키백과 소개",
+    "url": "https://ko.wikipedia.org/wiki/%EA%B0%80%EC%95%BC%EB%8C%80%ED%95%99%EA%B5%90"
+   }
+  ]
+ },
+ {
+  "code": "4825010800",
+  "slug": "gyeongnam-gimhae-nae",
+  "items": [
+   {
+    "name": "연지공원",
+    "evidence": "김해시 금관대로1368번길 7(내동), 김해시청 공원 안내",
+    "url": "https://www.gimhae.go.kr/00950/01945/02011.web"
+   }
+  ]
+ },
+ {
+  "code": "4825010900",
+  "slug": "gyeongnam-gimhae-oe",
+  "items": [
+   {
+    "name": "김해여객터미널",
+    "evidence": "김해시 김해대로 2232(외동 1264), 위키백과 소개",
+    "url": "https://ko.wikipedia.org/wiki/%EA%B9%80%ED%95%B4%EC%97%AC%EA%B0%9D%ED%84%B0%EB%AF%B8%EB%84%90"
+   }
+  ]
+ },
+ {
+  "code": "4825011000",
+  "slug": "gyeongnam-gimhae-heung",
+  "items": [
+   {
+    "name": "칠산서부동 행정복지센터",
+    "evidence": "김해시 전하로 99(흥동), 김해시청 칠산서부동 찾아오시는길",
+    "url": "https://www.gimhae.go.kr/00954/01200/02456.web"
+   }
+  ]
+ },
+ {
+  "code": "4825011100",
+  "slug": "gyeongnam-gimhae-pungyu",
+  "items": [
+   {
+    "name": "서김해일반산업단지",
+    "evidence": "김해시 풍유동 789-4번지 일원, 김해시청 산업단지 안내",
+    "url": "https://www.gimhae.go.kr/00847/00873/03028.web"
+   }
+  ]
+ },
+ {
+  "code": "4825011200",
+  "slug": "gyeongnam-gimhae-myeongbeop",
+  "items": [
+   {
+    "name": "김해 칠산동 고분군",
+    "evidence": "소재지 경남 김해시 금관대로838번길 15-28 (명법동), 국가유산청·김해시 관광포털 소개",
+    "url": "http://www.heritage.go.kr/heri/cul/culSelectDetail.do?ccbaCpno=2333800980000&pageNo=1_1_1_1"
+   }
+  ]
+ },
+ {
+  "code": "4825011500",
+  "slug": "gyeongnam-gimhae-jeonha",
+  "items": [
+   {
+    "name": "김해봉황초등학교",
+    "evidence": "경남 김해시 전하로198번길 5 (전하동), 1970년 개교 공립 초등학교",
+    "url": "https://m.richgo.ai/realty/place/elementary/S160001166"
+   }
+  ]
+ },
+ {
+  "code": "4825011700",
+  "slug": "gyeongnam-gimhae-samjeong",
+  "items": [
+   {
+    "name": "삼정중학교",
+    "evidence": "디지털김해문화대전: 경상남도 김해시 삼정동에 있는 공립 중학교",
+    "url": "https://gimhae.grandculture.net/gimhae/toc/GC09401117"
+   },
+   {
+    "name": "남해고속도로",
+    "evidence": "디지털김해문화대전 삼정동: 남해고속도로를 중심으로 북쪽은 시가지, 남쪽은 개발제한구역 논",
+    "url": "https://gimhae.grandculture.net/gimhae/toc/GC09400165"
+   }
+  ]
+ },
+ {
+  "code": "4825011800",
+  "slug": "gyeongnam-gimhae-eobang",
+  "items": [
+   {
+    "name": "인제대학교",
+    "evidence": "주소 경상남도 김해시 인제로 197 (어방동, 인제대학교)",
+    "url": "https://cms.inje.ac.kr/graduate/intro/location.do"
+   }
+  ]
+ },
+ {
+  "code": "4825011900",
+  "slug": "gyeongnam-gimhae-sambang",
+  "items": [
+   {
+    "name": "삼방공원",
+    "evidence": "삼방공원 주소 경상남도 김해시 삼방동 674-1, 지하 공영주차장 98면 준공 보도",
+    "url": "https://www.busan.com/view/busan/view.php?code=2025061111283408221"
+   }
+  ]
+ },
+ {
+  "code": "4825012000",
+  "slug": "gyeongnam-gimhae-an",
+  "items": [
+   {
+    "name": "김해대학역",
+    "evidence": "경상남도 김해시 안동에 위치한 부산-김해경전철 역, 소재지 김해대로 2641",
+    "url": "https://ko.wikipedia.org/wiki/%EA%B9%80%ED%95%B4%EB%8C%80%ED%95%99%EC%97%AD"
+   },
+   {
+    "name": "안동공단",
+    "evidence": "디지털김해문화대전: 김해 안동 지역에 조성된 공단, 1969년 첫 공장 입주",
+    "url": "https://gimhae.grandculture.net/gimhae/toc/GC09401340"
+   },
+   {
+    "name": "부산김해경전철",
+    "evidence": "김해대학역이 부산-김해경전철의 역임(위키백과)",
+    "url": "https://ko.wikipedia.org/wiki/%EA%B9%80%ED%95%B4%EB%8C%80%ED%95%99%EC%97%AD"
+   }
+  ]
+ },
+ {
+  "code": "4825012100",
+  "slug": "gyeongnam-gimhae-jinae",
+  "items": [
+   {
+    "name": "지내역",
+    "evidence": "경상남도 김해시 지내동에 위치한 부산-김해경전철 역, 지내 삼거리에 있음(위키백과)",
+    "url": "https://ko.wikipedia.org/wiki/%EC%A7%80%EB%82%B4%EC%97%AD"
+   },
+   {
+    "name": "부산김해경전철",
+    "evidence": "지내역이 부산-김해경전철의 역임(위키백과)",
+    "url": "https://ko.wikipedia.org/wiki/%EC%A7%80%EB%82%B4%EC%97%AD"
+   },
+   {
+    "name": "지내공업지구",
+    "evidence": "불암동 일반현황: 지내공업지구 및 지내준공업지구 준공으로 빌라와 공장 건립",
+    "url": "https://www.gimhae.go.kr/00954/01200/02483.web"
+   },
+   {
+    "name": "지내 삼거리",
+    "evidence": "지내역이 지내 삼거리에 있음(위키백과)",
+    "url": "https://ko.wikipedia.org/wiki/%EC%A7%80%EB%82%B4%EC%97%AD"
+   }
+  ]
+ },
+ {
+  "code": "4825012200",
+  "slug": "gyeongnam-gimhae-bulam",
+  "items": [
+   {
+    "name": "불암동장어타운",
+    "evidence": "김해시 관광 안내에 불암동장어타운으로 소개",
+    "url": "https://www.gimhae.go.kr/here/04380.web?amode=view&idx=696"
+   }
+  ]
+ },
+ {
+  "code": "4825012300",
+  "slug": "gyeongnam-gimhae-yuha",
+  "items": [
+   {
+    "name": "김해 유하패총",
+    "evidence": "국가유산청: 경상남도 기념물, 소재지 김해시 유하동 183",
+    "url": "https://www.heritage.go.kr/heri/cul/culSelectDetail.do?ccbaCpno=2333800450000&pageNo=1_1_1_1"
+   }
+  ]
+ },
+ {
+  "code": "4825012400",
+  "slug": "gyeongnam-gimhae-naedeok",
+  "items": [
+   {
+    "name": "내덕중학교",
+    "evidence": "위키백과: 김해시 내덕로 80(내덕동) 공립 중학교, 2006년 개교",
+    "url": "https://ko.wikipedia.org/wiki/%EB%82%B4%EB%8D%95%EC%A4%91%ED%95%99%EA%B5%90"
+   }
+  ]
+ },
+ {
+  "code": "4825012500",
+  "slug": "gyeongnam-gimhae-bugok",
+  "items": [
+   {
+    "name": "김해부곡초등학교",
+    "evidence": "위키백과: 김해시 월산로 139(부곡동 800-4) 공립 초등학교",
+    "url": "https://ko.wikipedia.org/wiki/%EA%B9%80%ED%95%B4%EB%B6%80%EA%B3%A1%EC%B4%88%EB%93%B1%ED%95%99%EA%B5%90"
+   }
+  ]
+ },
+ {
+  "code": "4825012600",
+  "slug": "gyeongnam-gimhae-mugye",
+  "items": [
+   {
+    "name": "장유시외버스정류장",
+    "evidence": "위키백과: 김해시 무계동 156-8 고속·시외버스 정류장",
+    "url": "https://ko.wikipedia.org/wiki/%EC%9E%A5%EC%9C%A0%EC%8B%9C%EC%99%B8%EB%B2%84%EC%8A%A4%EC%A0%95%EB%A5%98%EC%9E%A5"
+   }
+  ]
+ },
+ {
+  "code": "4825012700",
+  "slug": "gyeongnam-gimhae-sinmun",
+  "items": [
+   {
+    "name": "김해 롯데워터파크",
+    "evidence": "위키백과 및 주소 자료: 김해시 장유로 555(신문동 1417)",
+    "url": "https://ko.wikipedia.org/wiki/%EA%B9%80%ED%95%B4_%EB%A1%AF%EB%8D%B0_%EC%9B%8C%ED%84%B0%ED%8C%8C%ED%81%AC"
+   }
+  ]
+ },
+ {
+  "code": "4825012800",
+  "slug": "gyeongnam-gimhae-sammun",
+  "items": [
+   {
+    "name": "김해삼문고등학교",
+    "evidence": "위키백과: 김해시 번화1로 127(삼문동 67-6)",
+    "url": "https://ko.wikipedia.org/wiki/%EA%B9%80%ED%95%B4%EC%82%BC%EB%AC%B8%EA%B3%A0%EB%93%B1%ED%95%99%EA%B5%90"
+   }
+  ]
+ },
+ {
+  "code": "4825012900",
+  "slug": "gyeongnam-gimhae-daecheong",
+  "items": [
+   {
+    "name": "장유대청계곡",
+    "evidence": "디지털김해문화대전: 김해시 대청동에 있는 계곡, 대청동 이름의 유래",
+    "url": "https://gimhae.grandculture.net/gimhae/toc/GC09400055"
+   }
+  ]
+ },
+ {
+  "code": "4825013000",
+  "slug": "gyeongnam-gimhae-gwandong",
+  "items": [
+   {
+    "name": "관동초등학교",
+    "evidence": "위키백과: 김해시 관동동 1119(율하3로 110) 공립 초등학교, 2013년 개교",
+    "url": "https://ko.wikipedia.org/wiki/%EA%B4%80%EB%8F%99%EC%B4%88%EB%93%B1%ED%95%99%EA%B5%90"
+   }
+  ]
+ },
+ {
+  "code": "4825013100",
+  "slug": "gyeongnam-gimhae-yulha",
+  "items": [
+   {
+    "name": "율하초등학교",
+    "evidence": "위키백과: 김해시 율하동 공립 초등학교, 2010년 개교",
+    "url": "https://ko.wikipedia.org/wiki/%EC%9C%A8%ED%95%98%EC%B4%88%EB%93%B1%ED%95%99%EA%B5%90"
+   }
+  ]
+ }
+]
