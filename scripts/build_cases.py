@@ -6,18 +6,23 @@ cases/input/ 에 올린 사례 폴더(사진 + 메모.txt)를 읽어 사례 페�
 
 한 사례 = 폴더 하나
   cases/input/2026-09-24-역삼동-그랜저/
-    메모.txt          ← 지역·차종·상황·처리 (형식은 cases/input/README.md)
-    1.jpg 2.jpg …     ← 번호판을 가린 사진
+    메모.txt          ← 지역·차종·연식·시동 (또는 지역·차종·상황·처리). 형식은 cases/input/README.md
+    1.jpg 2.jpg …     ← 번호판·얼굴·서류를 가린 사진 (6장까지)
 
 하는 일
-  1. 메모를 읽는다. 금액·시세·결과 약속 표현이 있으면 그 사례는 건너뛰고 이유를 출력한다.
-  2. 사진을 cases/images/<slug>-N.jpg 로 복사한다 (Pillow 가 있으면 긴 변 1200px 로 줄이고 EXIF 를 지운다).
+  1. 메모를 읽는다. 금액·시세·결과 약속·수출 단정 표현이나 고객 정보(전화번호·차량번호·상세 주소)가 있으면
+     그 사례는 건너뛰고 이유를 출력한다.
+  2. 사진을 cases/images/<slug>-N.jpg 로 복사한다 (긴 변 1200px, EXIF·GPS·XMP 를 전부 지운 새 파일).
   3. templates/case.html 로 cases/<slug>.html 을 만들고 cases/index.json 맨 앞에 등록한다.
   4. 처리한 폴더는 cases/done/ 으로 옮긴다.
   5. 지역 페이지를 전부 다시 렌더링해 사례 카드를 반영하고, sitemap 을 갱신하고, check_pages 를 돌린다.
+
+사례 페이지는 build_site.py 가 돌 때마다 render_all_cases() 로 다시 만든다. 그래서 사례를 만든 뒤에
+그 동 페이지가 새로 생겨도 사례 페이지의 "○○동 폐차 상담 페이지" 버튼이 자동으로 연결된다.
+
+PC 에서 원본 폴더를 골라 가리고 올리는 단계는 scripts/pc_cases.py (docs/pc-case-import-prompt.md).
 """
 import csv
-import html
 import json
 import re
 import shutil
@@ -43,12 +48,59 @@ CONFIG_PATH = ROOT / "data" / "site_config.json"
 SCRIPTS = ROOT / "scripts"
 
 MEMO_NAMES = ("메모.txt", "memo.txt")
-REQUIRED = ("지역", "차종", "상황", "처리")
-OPTIONAL = ("날짜", "결과", "한마디")
+MAX_PHOTOS = 6
+# 메모 칸 이름 → 표준 이름. 여기 없는 칸(고객명·연락처 등)은 읽지 않고 버린다.
+KEY_ALIASES = {
+    "지역": "지역", "차종": "차종", "연식": "연식", "날짜": "날짜",
+    "시동": "시동", "시동여부": "시동",
+    "운행": "운행", "운행여부": "운행", "운행가능여부": "운행",
+    "상황": "상황", "처리": "처리",
+    "진행": "진행", "실제진행": "진행", "진행방식": "진행",
+    "결과": "결과", "한마디": "한마디",
+}
+# 둘 중 한 형식이 다 있어야 한다: PC 원본 메모 형식 / 예전 직접 작성 형식
+REQUIRED_SETS = (("지역", "차종", "연식", "시동"), ("지역", "차종", "상황", "처리"))
 PHOTO_EXT = {".jpg", ".jpeg", ".png", ".webp"}
 MONEY_RE = re.compile(r"\d[\d,.]*\s*(원|만원|만 원|천원|억)|₩|시세|견적가|매입가|매입 가격|보상금\s*\d")
 PROMISE_RE = re.compile(r"보장|무조건|100%|1위|최저가")
+# 이 차가 수출이 된다/안 된다는 단정. 사례 글에는 방식 비교만 쓴다.
+EXPORT_CLAIM_RE = re.compile(r"수출\s*(이|은|는|로|으로)?\s*(불가|안\s*(됨|돼|되|된|가|간|감)|못|가능|됨|돼요|됩니다|된다|간다|갑니다|나감|나간)")
+# 고객 정보: 휴대폰·전화번호, 차량번호, 상세 주소(번지·동호수·도로명 번호)
+CUSTOMER_RE = re.compile(
+    r"01[016789][-.\s]?\d{3,4}[-.\s]?\d{4}|0\d{1,2}-\d{3,4}-\d{4}"
+    r"|(?<!\d)\d{2,3}\s?[가-힣]\s?\d{4}(?!\d)"
+    r"|\d+\s*번지|\d+\s*동\s*\d+\s*호"
+    r"|[가-힣\d]+(로|길)\s?\d+(-\d+)?(?!\d|-\d|\s*(층|년|개|대|시|분|일|주|달|건|번|장|명|km|킬로))"
+)
 LEADING_COMMENT_RE = re.compile(r"<!DOCTYPE html>\s*<!--.*?-->", re.DOTALL)
+
+SIDO_ALIASES = {
+    "서울": "서울특별시", "서울시": "서울특별시", "부산": "부산광역시", "부산시": "부산광역시",
+    "대구": "대구광역시", "대구시": "대구광역시", "인천": "인천광역시", "인천시": "인천광역시",
+    "대전": "대전광역시", "대전시": "대전광역시", "울산": "울산광역시", "울산시": "울산광역시",
+    "세종": "세종특별자치시", "세종시": "세종특별자치시",
+    "경기": "경기도", "강원": "강원특별자치도", "강원도": "강원특별자치도",
+    "충북": "충청북도", "충남": "충청남도",
+    "전북": "전북특별자치도", "전라북도": "전북특별자치도",
+    "경북": "경상북도", "경남": "경상남도",
+    "제주": "제주특별자치도", "제주도": "제주특별자치도",
+    # 2026-07-01 통합: 옛 광주광역시·전라남도
+    "광주": "전남광주통합특별시", "광주시": "전남광주통합특별시", "광주광역시": "전남광주통합특별시",
+    "전남": "전남광주통합특별시", "전라남도": "전남광주통합특별시", "전남광주": "전남광주통합특별시",
+}
+# 행정구역 개편으로 사라진 구 이름. 옛 메모에 있어도 무시하고 동 이름으로 찾는다(찾은 결과가 하나일 때만).
+OLD_SIGUNGU = {"중구", "동구", "서구"}
+
+
+def read_text_any(p: Path) -> str:
+    """카카오톡으로 받은 메모는 UTF-8 이 아닐 수 있다(윈도우 메모장 CP949)."""
+    raw = p.read_bytes()
+    for enc in ("utf-8-sig", "cp949", "utf-16"):
+        try:
+            return raw.decode(enc)
+        except UnicodeDecodeError:
+            continue
+    return raw.decode("utf-8", errors="replace")
 
 
 def parse_memo(text: str) -> dict:
@@ -58,22 +110,155 @@ def parse_memo(text: str) -> dict:
         line = raw.strip()
         if not line:
             continue
-        m = re.match(r"^([가-힣A-Za-z]+)\s*[:：]\s*(.*)$", line)
-        if m and m.group(1) in REQUIRED + OPTIONAL:
-            key = m.group(1)
-            data[key] = m.group(2).strip()
+        m = re.match(r"^([가-힣A-Za-z ]{1,12}?)\s*[:：]\s*(.*)$", line)
+        if m:
+            key = KEY_ALIASES.get(m.group(1).replace(" ", ""))  # 모르는 칸이면 None → 그 줄과 이어지는 줄은 버린다
+            if key:
+                data[key] = m.group(2).strip()
         elif key:
             data[key] = (data[key] + " " + line).strip()  # 여러 줄로 쓴 값은 이어 붙인다
-    return data
+    return {k: v for k, v in data.items() if v}
 
 
-def load_region_index() -> tuple[dict[str, dict], dict[tuple[str, str, str], str]]:
-    by_name = {}
-    for row in csv.DictReader(CSV_PATH.open(encoding="utf-8-sig")):
-        full = " ".join(x for x in (row["시도"], row["시군구"], row["읍면동"]) if x)
-        by_name[full] = {"sido": row["시도"], "sigungu": row["시군구"], "dong": row["읍면동"]}
-    page_slugs = {(r["sido"], r["sigungu"], r["dong"]): r["slug"] for r in load_json(REGIONS_PATH, [])}
-    return by_name, page_slugs
+def load_csv_rows() -> list[dict]:
+    return [
+        {"sido": r["시도"], "sigungu": r["시군구"], "dong": r["읍면동"]}
+        for r in csv.DictReader(CSV_PATH.open(encoding="utf-8-sig"))
+    ]
+
+
+def resolve_region(text: str, rows: list[dict]) -> tuple[dict | None, str]:
+    """'용인시 처인구 모현읍', '경기 용인시 처인구 모현읍', '서울특별시 강남구 역삼동' 같은 지역 글을
+    법정동 목록의 한 줄로 바꾼다. (결과, 문제 설명) — 결과가 None 이면 설명이 이유."""
+    tokens = re.sub(r"[,()]", " ", text).split()
+    if not tokens:
+        return None, "지역이 비어 있습니다"
+    dong = tokens[-1]
+    cands = [r for r in rows if r["dong"] == dong]
+    if not cands and dong.endswith("면"):  # 면 → 읍 승격(예: 모현면 → 모현읍)
+        cands = [r for r in rows if r["dong"] == dong[:-1] + "읍"]
+    if not cands:
+        return None, f"법정동 목록에 '{dong}' 이 없습니다"
+    for t in tokens[:-1]:
+        if t in SIDO_ALIASES or t in {r["sido"] for r in cands}:
+            sido = SIDO_ALIASES.get(t, t)
+            f = [r for r in cands if r["sido"] == sido]
+        else:
+            f = [r for r in cands if t in r["sigungu"].split()]
+        if f:
+            cands = f
+        elif t not in OLD_SIGUNGU:
+            return None, f"'{t}' 과 '{dong}' 이 함께 있는 곳이 법정동 목록에 없습니다"
+    if len(cands) > 1:
+        where = ", ".join(" ".join(x for x in (r["sido"], r["sigungu"], r["dong"]) if x) for r in cands[:5])
+        return None, f"'{text}' 이 여러 곳과 맞습니다({where}). 시도·시군구를 더 적어 주세요"
+    return cands[0], ""
+
+
+def year_of(v: str) -> str:
+    if m := re.search(r"(19|20)\d{2}", v):
+        return m.group(0)
+    if m := re.search(r"(?<!\d)(\d{2})\s*년", v):
+        yy = int(m.group(1))
+        return str(2000 + yy if yy <= date.today().year % 100 else 1900 + yy)
+    return ""
+
+
+def start_state(v: str) -> str:
+    """시동 칸 → '걸림' / '안 걸림' / '' (알 수 없음)"""
+    s = v.replace(" ", "")
+    if re.search(r"안|불|않|X|x|×|NO|no|불량|꺼짐", s):
+        return "안 걸림"
+    if re.search(r"됨|된다|가능|걸림|O|o|○|양호|정상|YES|yes|ok|OK", s):
+        return "걸림"
+    return ""
+
+
+def drive_state(v: str) -> str:
+    s = v.replace(" ", "")
+    if not s:
+        return ""
+    if re.search(r"확인|모름|미정|\?", s):
+        return "현장 확인 필요"
+    if re.search(r"불|안|못|X|x|×", s):
+        return "운행 어려움"
+    if re.search(r"가능|됨|O|o|○|양호", s):
+        return "운행 가능"
+    return ""
+
+
+def clean_car(v: str) -> str:
+    return re.sub(r"\s+", " ", re.sub(r"\s*[(\[][^)\]]*[)\]]", "", v)).strip()
+
+
+def compose(memo: dict) -> tuple[dict | None, str]:
+    """메모 → 사례 글 조각. (결과, 이유) — 결과가 None 이면 이유가 건너뛴 까닭."""
+    if not any(all(memo.get(k) for k in s) for s in REQUIRED_SETS):
+        need = " / ".join("·".join(s) for s in REQUIRED_SETS)
+        return None, f"메모에 필수 항목이 없습니다(둘 중 하나가 다 있어야 함: {need})"
+    car = clean_car(memo["차종"])
+    if not car:
+        return None, "차종이 비어 있습니다"
+    facts: list[tuple[str, str]] = [("차종", car)]
+    year = ""
+    if memo.get("연식"):
+        year = year_of(memo["연식"])
+        if not year:
+            return None, f"연식 '{memo['연식']}' 을 읽을 수 없습니다(예: 2008)"
+        facts.append(("연식", f"{year}년식"))
+    start = ""
+    if memo.get("시동"):
+        start = start_state(memo["시동"])
+        if not start:
+            return None, f"시동 '{memo['시동']}' 을 읽을 수 없습니다(예: 시동됨 / 시동안됨)"
+        facts.append(("시동", start))
+    drive = drive_state(memo.get("운행", ""))
+    if drive:
+        facts.append(("운행", {"운행 가능": "가능", "운행 어려움": "어려움"}.get(drive, drive)))
+    kind = memo.get("상황", "")
+    short_kind = kind if kind and len(kind) <= 15 else ""
+    if short_kind:
+        facts.append(("문의 내용", short_kind))
+    # '실제 진행'(일반폐차/수출)은 글에 쓰지 않는다: "이 차는 수출된다/안 된다"는 단정으로 읽히기 때문
+
+    car_full = f"{year}년식 {car}" if year else car
+    parts = [f"{car_full} 차량"]
+    if start:
+        parts.append("시동은 걸리는 상태였습니다." if start == "걸림" else "시동이 걸리지 않는 상태였습니다.")
+    situation = (parts[0] + "으로, " + parts[1]) if len(parts) > 1 else parts[0] + "입니다."
+    if drive == "현장 확인 필요":
+        situation += " 운행 가능 여부는 현장에서 확인이 필요했습니다."
+    elif drive == "운행 어려움":
+        situation += " 운행은 어려운 상태였습니다."
+    elif drive == "운행 가능":
+        situation += " 운행은 가능한 상태였습니다."
+    if kind and not short_kind:
+        situation = kind if not memo.get("연식") else situation + " " + kind
+
+    if memo.get("처리"):
+        method = memo["처리"]
+    else:
+        method = ("차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 "
+                  "협력업체와 연결해 진행했습니다.")
+
+    out = {
+        "car": car_full, "facts": facts, "situation": situation, "method": method,
+        "result": memo.get("결과", ""), "quote": memo.get("한마디", ""),
+    }
+    text = " ".join([out["situation"], out["method"], out["result"], out["quote"]] + [v for _, v in facts])
+    if m := MONEY_RE.search(text):
+        return None, f"금액·시세 표현 '{m.group(0)}' 이 있습니다. 메모에서 금액을 빼 주세요"
+    if m := PROMISE_RE.search(text):
+        return None, f"결과를 약속하는 표현 '{m.group(0)}' 이 있습니다"
+    if m := EXPORT_CLAIM_RE.search(text):
+        return None, f"수출이 된다/안 된다는 단정 '{m.group(0)}' 이 있습니다"
+    if m := CUSTOMER_RE.search(text):
+        return None, f"고객 정보로 보이는 글 '{m.group(0)}' 이 있습니다(전화번호·차량번호·상세 주소 금지)"
+    return out, ""
+
+
+def page_slugs_by_region() -> dict[tuple[str, str, str], str]:
+    return {(r["sido"], r["sigungu"], r["dong"]): r["slug"] for r in load_json(REGIONS_PATH, [])}
 
 
 def ensure_pillow() -> None:
@@ -119,92 +304,89 @@ def save_photo(src: Path, dst_base: Path) -> str:
     return dst.name
 
 
-def kind_label(method: str) -> str:
-    if "수출" in method:
-        return "수출 비교매입 사례"
-    if "폐차" in method:
-        return "폐차 처리 사례"
-    return "폐차·수출 비교 사례"
-
-
 def first_sentence(text: str, limit: int = 70) -> str:
     s = re.split(r"(?<=[.!?])\s+", text.strip())[0]
     return s if len(s) <= limit else s[: limit - 1] + "…"
 
 
-def process_folder(folder: Path, by_name: dict, page_slugs: dict, used_slugs: set[str]) -> dict | None:
+def check_folder(folder: Path, rows: list[dict]) -> tuple[dict | None, str]:
+    """사례 폴더 하나를 사진 복사 없이 검사한다. PC 쪽(pc_cases.py)도 같은 검사를 쓴다."""
     memo_path = next((folder / n for n in MEMO_NAMES if (folder / n).exists()), None)
     if not memo_path:
-        print(f"건너뜀 {folder.name}: 메모.txt 가 없습니다")
-        return None
-    memo = parse_memo(memo_path.read_text(encoding="utf-8"))
-    missing = [k for k in REQUIRED if not memo.get(k)]
-    if missing:
-        print(f"건너뜀 {folder.name}: 메모에 {missing} 항목이 없습니다")
-        return None
-    all_text = " ".join(memo.values())
-    if m := MONEY_RE.search(all_text):
-        print(f"건너뜀 {folder.name}: 금액·시세 표현 '{m.group(0)}' 이 있습니다. 메모에서 금액을 빼 주세요")
-        return None
-    if m := PROMISE_RE.search(all_text):
-        print(f"건너뜀 {folder.name}: 결과를 약속하는 표현 '{m.group(0)}' 이 있습니다")
-        return None
-    region_text = re.sub(r"\s+", " ", memo["지역"]).strip()
-    region = by_name.get(region_text)
+        return None, "메모.txt 가 없습니다"
+    memo = parse_memo(read_text_any(memo_path))
+    if not memo.get("지역"):
+        return None, "메모에 지역이 없습니다"
+    region, why = resolve_region(memo["지역"], rows)
     if not region:
-        print(f"건너뜀 {folder.name}: 지역 '{region_text}' 을 찾을 수 없습니다. '서울특별시 강남구 역삼동'처럼 정식 이름으로 적어 주세요")
-        return None
+        return None, why
+    body, why = compose(memo)
+    if not body:
+        return None, why
     photos = sorted(p for p in folder.iterdir() if p.suffix.lower() in PHOTO_EXT)
     if not photos:
-        print(f"건너뜀 {folder.name}: 사진(jpg/png/webp)이 없습니다")
-        return None
-
+        return None, "사진(jpg/png/webp)이 없습니다"
+    if len(photos) > MAX_PHOTOS:
+        return None, f"사진이 {len(photos)}장입니다. {MAX_PHOTOS}장까지만 올려 주세요"
     case_date = memo.get("날짜") or (m.group(0) if (m := re.match(r"\d{4}-\d{2}-\d{2}", folder.name)) else date.today().isoformat())
-    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", case_date):
-        print(f"건너뜀 {folder.name}: 날짜는 2026-09-24 형식으로 적어 주세요 (현재 '{case_date}')")
-        return None
+    if case_date in ("미상", "모름"):  # PC 원본 메모에 날짜가 없던 건: 날짜를 지어내지 않고 표시하지 않는다
+        case_date = ""
+    elif not re.fullmatch(r"\d{4}-\d{2}-\d{2}", case_date):
+        return None, f"날짜는 2026-09-24 형식으로 적어 주세요 (현재 '{case_date}')"
+    return {"memo": memo, "region": region, "body": body, "photos": photos, "date": case_date}, ""
 
-    base = f"case-{case_date.replace('-', '')}-{make_slug(region['sido'], region['sigungu'], region['dong'])}"
+
+def process_folder(folder: Path, rows: list[dict], page_slugs: dict, used_slugs: set[str]) -> dict | None:
+    info, why = check_folder(folder, rows)
+    if not info:
+        print(f"건너뜀 {folder.name}: {why}")
+        return None
+    region, body, case_date = info["region"], info["body"], info["date"]
+
+    base = f"case-{(case_date or date.today().isoformat()).replace('-', '')}-{make_slug(region['sido'], region['sigungu'], region['dong'])}"
     slug, n = base, 2
     while slug in used_slugs:
         slug, n = f"{base}-{n}", n + 1
     used_slugs.add(slug)
 
     IMAGES_DIR.mkdir(parents=True, exist_ok=True)
-    names = [save_photo(p, IMAGES_DIR / f"{slug}-{i}") for i, p in enumerate(photos, 1)]
+    names = [save_photo(p, IMAGES_DIR / f"{slug}-{i}") for i, p in enumerate(info["photos"], 1)]
 
     return {
         "slug": slug,
         "date": case_date,
         "sido": region["sido"], "sigungu": region["sigungu"], "dong": region["dong"],
         "region_slug": page_slugs.get((region["sido"], region["sigungu"], region["dong"])),
-        "car": memo["차종"],
-        "title": f"{region['dong']} {memo['차종']} {kind_label(memo['처리'])}",
-        "summary": first_sentence(memo["상황"]),
-        "situation": memo["상황"], "method": memo["처리"],
-        "result": memo.get("결과", ""), "quote": memo.get("한마디", ""),
+        "car": body["car"],
+        "title": f"{region['dong']} {body['car']} 폐차·수출 비교 상담 사례",
+        "summary": first_sentence(body["situation"]),
+        "facts": body["facts"],
+        "situation": body["situation"], "method": body["method"],
+        "result": body["result"], "quote": body["quote"],
         "thumb": names[0], "photos": names,
     }
 
 
-def render_case(c: dict, cfg: dict, template: str) -> str:
+def render_case(c: dict, cfg: dict, template: str, region_slug: str | None) -> str:
     base = cfg["site_base_url"].rstrip("/")
     full = " ".join(x for x in (c["sido"], c["sigungu"], c["dong"]) if x)
     photos_html = "".join(
         f'<figure><img src="images/{esc(name)}" alt="{esc(c["title"])} 사진 {i}" loading="{"eager" if i == 1 else "lazy"}" width="1200" height="900"></figure>'
         for i, name in enumerate(c["photos"], 1)
     )
+    story_html = ""
+    if c.get("facts"):
+        story_html += "<h2>차량 정보</h2><p>" + " · ".join(f"{esc(k)} {esc(v)}" for k, v in c["facts"]) + "</p>"
     story = [("차량 상황", c["situation"]), ("진행 방식", c["method"])]
     if c["result"]:
         story.append(("결과", c["result"]))
-    story_html = "".join(f"<h2>{esc(h)}</h2><p>{esc(t)}</p>" for h, t in story)
+    story_html += "".join(f"<h2>{esc(h)}</h2><p>{esc(t)}</p>" for h, t in story)
     if c["quote"]:
         story_html += f"<h2>고객 한마디</h2><blockquote>“{esc(c['quote'])}”</blockquote>"
-    if c["region_slug"]:
-        region_btn = f'<a class="btn btn-quote" href="../pages/{esc(c["region_slug"])}.html" style="background:#fff">{esc(c["dong"])} 폐차 상담 페이지</a>'
+    if region_slug:
+        region_btn = f'<a class="btn btn-quote" href="../pages/{esc(region_slug)}.html" style="background:#fff">{esc(c["dong"])} 폐차 상담 페이지</a>'
     else:
         region_btn = '<a class="btn btn-quote" href="../index.html" style="background:#fff">지역별 상담 페이지 보기</a>'
-    y, mth, d = c["date"].split("-")
     values = {
         "META_TITLE": esc(f"{c['title']} | 폐차 보상금 vs 수출 시세 비교 · {cfg['phone_display']}"),
         "META_DESC": esc(f"{full}에서 진행한 {c['car']} 사례. {c['summary']} 폐차와 수출 중 유리한 쪽으로 안내. 전화 {cfg['phone_display']}"),
@@ -212,7 +394,7 @@ def render_case(c: dict, cfg: dict, template: str) -> str:
         "OG_IMAGE": f"{base}/cases/images/{c['thumb']}",
         "REGION_FULL_NAME": esc(full),
         "TITLE": esc(c["title"]),
-        "DATE_TEXT": f"{int(y)}년 {int(mth)}월 {int(d)}일 진행",
+        "DATE_TEXT": "{}년 {}월 {}일 진행".format(*(int(x) for x in c["date"].split("-"))) if c["date"] else "",
         "PHOTOS_HTML": photos_html,
         "STORY_HTML": story_html,
         "REGION_BUTTON": region_btn,
@@ -233,6 +415,23 @@ def render_case(c: dict, cfg: dict, template: str) -> str:
     return re.sub(r"\{\{(\w+)\}\}", sub, cleaned)
 
 
+def render_all_cases(regions: list[dict], cfg: dict) -> list[str]:
+    """cases/index.json 의 사례 페이지를 지금 동 페이지 목록 기준으로 다시 만든다. 바뀐 파일 경로 목록."""
+    index = load_json(INDEX_PATH, default=[])
+    if not index:
+        return []
+    template = TEMPLATE_PATH.read_text(encoding="utf-8")
+    slugs = {(r["sido"], r["sigungu"], r["dong"]): r["slug"] for r in regions}
+    changed = []
+    for c in index:
+        out = ROOT / "cases" / f"{c['slug']}.html"
+        text = render_case(c, cfg, template, slugs.get((c["sido"], c["sigungu"], c["dong"])))
+        if not out.exists() or out.read_text(encoding="utf-8") != text:
+            out.write_text(text, encoding="utf-8")
+            changed.append(f"cases/{c['slug']}.html")
+    return changed
+
+
 def main() -> None:
     folders = sorted(p for p in INPUT_DIR.glob("*") if p.is_dir()) if INPUT_DIR.exists() else []
     if not folders:
@@ -240,33 +439,33 @@ def main() -> None:
         return
 
     ensure_pillow()
-    cfg = load_json(CONFIG_PATH)
-    template = TEMPLATE_PATH.read_text(encoding="utf-8")
     index: list[dict] = load_json(INDEX_PATH, default=[])
-    by_name, page_slugs = load_region_index()
+    rows = load_csv_rows()
+    page_slugs = page_slugs_by_region()
     used_slugs = {c["slug"] for c in index}
 
     done, skipped = [], 0
     for folder in folders:
-        c = process_folder(folder, by_name, page_slugs, used_slugs)
+        c = process_folder(folder, rows, page_slugs, used_slugs)
         if not c:
             skipped += 1
             continue
-        (ROOT / "cases" / f"{c['slug']}.html").write_text(render_case(c, cfg, template), encoding="utf-8")
         index.insert(0, c)
         DONE_DIR.mkdir(parents=True, exist_ok=True)
         shutil.move(str(folder), str(DONE_DIR / folder.name))
         done.append(c)
-        print(f"사례 생성: cases/{c['slug']}.html ({c['title']}, 사진 {len(c['photos'])}장)")
+        print(f"사례 생성: cases/{c['slug']}.html ({c['sigungu'] or c['sido']} {c['dong']} · {c['car']}, 사진 {len(c['photos'])}장)")
 
     if done:
         INDEX_PATH.write_text(json.dumps(index, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+        # build_site.py 가 동 페이지와 함께 사례 페이지(render_all_cases)도 만든다
         subprocess.run([sys.executable, str(SCRIPTS / "build_site.py")], cwd=ROOT, check=True, stdout=subprocess.DEVNULL)
         update_sitemap(ROOT, [], paths=[f"cases/{c['slug']}.html" for c in done])
         print(f"지역 페이지 재렌더링 완료, sitemap 에 사례 {len(done)}건 추가")
         for c in done:
             shown = [p.stem for p in (ROOT / "pages").glob("*.html") if f"/cases/{c['slug']}.html" in p.read_text(encoding="utf-8")]
-            print(f"  {c['slug']} → 지역 페이지 {len(shown)}곳에 표시: {', '.join(sorted(shown))}")
+            where = ", ".join(sorted(shown)) if shown else "없음(같은 시군구에 동 페이지가 아직 없음. 페이지가 생기면 자동으로 붙음)"
+            print(f"  {c['slug']} → 지역 페이지 {len(shown)}곳에 표시: {where}")
         # 기존 페이지 경고는 매번 같으니 오류와 요약 줄만 보여 준다
         result = subprocess.run([sys.executable, str(SCRIPTS / "check_pages.py")], cwd=ROOT, capture_output=True, text=True)
         for line in result.stdout.splitlines():

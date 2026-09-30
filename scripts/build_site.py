@@ -425,8 +425,12 @@ def main() -> None:
     from build_gu import render_all as render_gu
     gu_changed = render_gu(regions, cfg, gu_data, groups)
 
+    # 사례 페이지(/cases/)도 동 페이지 목록에 따라 "○○동 상담 페이지" 버튼이 달라지므로 함께 다시 만든다
+    from build_cases import render_all_cases
+    case_changed = render_all_cases(regions, cfg)
+
     # 내용이 실제로 바뀐 페이지만 sitemap 의 수정일을 갱신한다
-    update_sitemap(ROOT, changed, paths=[f"gu/{g}.html" for g in gu_changed])
+    update_sitemap(ROOT, changed, paths=[f"gu/{g}.html" for g in gu_changed] + case_changed)
     print(f"완료: {len(targets)}개 중 {len(changed)}개 페이지 변경, 구 페이지 {len(gu_changed)}개 변경, sitemap.xml 갱신")
 
 

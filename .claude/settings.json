@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(//c/Users/AOMG/Documents/카카오톡 받은 파일/폐차사진원본/**)",
+      "Edit(//c/Users/AOMG/Documents/카카오톡 받은 파일/폐차사진원본/**)"
+    ]
+  }
+}
