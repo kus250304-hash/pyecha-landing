@@ -284,7 +284,7 @@ def cmd_stage(args) -> None:
     if dest.exists():
         shutil.rmtree(dest)
     dest.mkdir(parents=True)
-    order = ("날짜", "지역", "차종", "연식", "시동", "운행", "상황", "진행", "처리", "결과", "한마디")
+    order = ("날짜", "지역", "차종", "연식", "시동", "운행", "상황", "처리", "결과", "한마디")
     (dest / "메모.txt").write_text("".join(f"{k}: {memo[k]}\n" for k in order if memo.get(k)), encoding="utf-8")
     for p in sorted((STAGING / args.cid / "out").glob("[0-9]*.jpg"), key=lambda p: int(p.stem)):
         shutil.copy2(p, dest / p.name)

@@ -63,6 +63,13 @@ REQUIRED_SETS = (("지역", "차종", "연식", "시동"), ("지역", "차종", 
 # 이 칸들의 괄호 "(등록증)", "(사진)" 은 출처 표시라서 읽을 때 지운다
 SOURCE_NOTE_KEYS = ("지역", "차종", "연식")
 SOURCE_NOTE_RE = re.compile(r"[(（\[][^)）\]]*[)）\]]")
+# 상황 칸 → 페이지 문구. "" 은 페이지에 쓰지 않는다. 여기 없는 값은 짧으면 "문의 내용" 으로 쓴다
+SITUATION_TEXT = {
+    "일반폐차": "",
+    "차령초과말소": "저당·압류가 있던 차, 차령초과말소로 처리",
+    "조기폐차": "조기폐차로 진행",
+    "수출": "수출 쪽과 비교해 진행",
+}
 PHOTO_EXT = {".jpg", ".jpeg", ".png", ".webp"}
 MONEY_RE = re.compile(r"\d[\d,.]*\s*(원|만원|만 원|천원|억)|₩|시세|견적가|매입가|매입 가격|보상금\s*\d")
 PROMISE_RE = re.compile(r"보장|무조건|100%|1위|최저가")
@@ -222,11 +229,17 @@ def compose(memo: dict) -> tuple[dict | None, str]:
     drive = drive_state(memo.get("운행", ""))
     if drive:
         facts.append(("운행", {"운행 가능": "가능", "운행 어려움": "어려움"}.get(drive, drive)))
-    kind = memo.get("상황", "")
+    kind, kind_text = memo.get("상황", ""), None
+    for word, text in SITUATION_TEXT.items():
+        if word in kind.replace(" ", ""):
+            kind, kind_text = "", text  # 정해 둔 상황은 정해 둔 문구로만 쓴다("일반폐차"는 쓰지 않음)
+            break
+    if kind_text:
+        facts.append(("진행 내용", kind_text))
     short_kind = kind if kind and len(kind) <= 15 else ""
     if short_kind:
         facts.append(("문의 내용", short_kind))
-    # '실제 진행'(일반폐차/수출)은 글에 쓰지 않는다: "이 차는 수출된다/안 된다"는 단정으로 읽히기 때문
+    # '실제 진행'·'비고' 칸은 글에 쓰지 않는다: "이 차는 수출된다/안 된다"는 단정으로 읽히기 때문
 
     car_full = f"{year}년식 {car}" if year else car
     parts = [f"{car_full} 차량"]
