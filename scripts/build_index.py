@@ -54,13 +54,22 @@ def naver_meta_tag(code: str) -> str:
     return f'<meta name="naver-site-verification" content="{html.escape(code, quote=True)}" />\n'
 
 
-def apply_head_meta(text: str) -> str:
-    """네이버 서치어드바이저 소유확인 태그를 viewport 태그 바로 아래에 하나만 둔다."""
-    code = json.loads(CONFIG_PATH.read_text(encoding="utf-8")).get("naver_site_verification")
-    text = NAVER_META_RE.sub("", text)
+def naver_codes(cfg: dict) -> list[str]:
+    """naver_site_verification 은 문자열 하나 또는 목록(여러 계정 소유확인)."""
+    code = cfg.get("naver_site_verification")
     if not code:
+        return []
+    return [code] if isinstance(code, str) else [c for c in code if c]
+
+
+def apply_head_meta(text: str) -> str:
+    """네이버 서치어드바이저 소유확인 태그를 viewport 태그 바로 아래에 설정 순서대로 하나씩 둔다."""
+    codes = naver_codes(json.loads(CONFIG_PATH.read_text(encoding="utf-8")))
+    text = NAVER_META_RE.sub("", text)
+    if not codes:
         return text
-    text, n = VIEWPORT_RE.subn(lambda m: m.group(1) + naver_meta_tag(code), text, count=1)
+    tags = "".join(naver_meta_tag(c) for c in codes)
+    text, n = VIEWPORT_RE.subn(lambda m: m.group(1) + tags, text, count=1)
     if n != 1:
         raise ValueError("index.html 에서 viewport 메타 태그를 찾지 못했습니다")
     return text
