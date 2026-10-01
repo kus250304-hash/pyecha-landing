@@ -1,6 +1,8 @@
 {
   "_comment": "자동 생성 루틴 설정. daily_count 숫자만 바꾸면 하루 생성 개수가 바뀝니다(루틴 프롬프트는 건드릴 필요 없음). include_myeon 을 true 로 하면 면(面) 단위도 생성 대상에 넣습니다.",
   "daily_count": 30,
+  "small_si_gun_daily_count": 10,
+  "_small_comment": "daily_count 중 인구 30만 이하 시·군(gu_line_b_max_population) 몫. 한 시·군에 동 페이지 3개가 되도록 몰아서 뽑아 구 페이지 줄 B 를 바로 만들 수 있게 한다(scripts/pick_next_regions.py).",
   "gu_line_a_count": 5,
   "gu_line_b_count": 5,
   "gu_line_b_max_population": 300000,

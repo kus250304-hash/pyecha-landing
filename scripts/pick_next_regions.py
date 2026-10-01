@@ -22,6 +22,11 @@ data/legal_dong_list.csv 에서 아직 페이지가 없는 동을 골라 오늘 
   통계가 둘 다 없으면 구 페이지(data/gu.json)가 있는 구 → 동 페이지가 많은 구 순이고,
   동 페이지가 하나도 없는 구끼리는 시도별로 돌아가며 하나씩 뽑는다. 첫 줄에 어떤 기준을 썼는지 찍는다.
 - 사람이 거의 살지 않는 동(산업단지·산지 등)은 여기서 가려내지 않는다. 글을 채울 때 held 로 두고 이유를 적는다.
+- 시·군 몫 (2026-10-01): daily_count 중 small_si_gun_daily_count 개(10)는 인구 30만 이하 시·군
+  (scripts/population_stats.py, 구 페이지 줄 B 와 같은 기준)에서 먼저 뽑는다. 한 시·군에 동 페이지가
+  3개가 되도록 몰아서 뽑아(이미 1~2개 있으면 모자란 만큼만), 3개가 쌓이면 바로 구 페이지 줄 B 후보가 된다.
+  거의 다 찬 시·군(모자란 개수가 적은 곳) → 추정 노후 자가용 대수 많은 순. 이미 3개 이상이거나 후보 동을
+  다 합쳐도 3개가 안 되는 시·군은 건너뛴다. 남은 칸은 위 우선순위대로 채운다. 이유는 docs/roadmap.md 6절.
 """
 import argparse
 import csv
@@ -33,6 +38,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from build_index import SIDO_ORDER
+import population_stats
 import vehicle_stats
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -93,7 +99,50 @@ def make_slug(sido: str, sigungu: str, dong: str) -> str:
     return "-".join(p for p in parts if p)
 
 
-def pick(regions: list[dict], count: int, include_myeon: bool) -> list[dict]:
+SMALL_TARGET = 3  # 구 페이지를 만들 수 있는 동 페이지 수(build_gu.MIN_DONG_PAGES)
+
+
+def pick_small(candidates: list[dict], regions: list[dict], slots: int, limit: int,
+               stat_of) -> list[dict]:
+    """인구 limit 이하 시·군에서 동 페이지가 3개가 되도록 몰아서 slots 개까지 고른다."""
+    pops, meta = population_stats.load()
+    if not pops or slots <= 0:
+        if slots > 0:
+            print("시·군 몫: 인구 통계 없음 → 건너뜀 (python3 scripts/population_stats.py fetch, 보고에 알릴 것)")
+        return []
+    have: dict[tuple[str, str], int] = {}
+    for r in regions:
+        have[(r["sido"], r["sigungu"])] = have.get((r["sido"], r["sigungu"]), 0) + 1
+    groups: dict[tuple[str, str], list[dict]] = {}
+    for c in candidates:
+        if population_stats.is_small_si_gun(pops, c["시도"], c["시군구"], limit):
+            groups.setdefault((c["시도"], c["시군구"]), []).append(c)
+    ready = []
+    for key, cs in groups.items():
+        need = SMALL_TARGET - have.get(key, 0)
+        if need <= 0 or len(cs) < need:
+            continue  # 이미 3개 이상이거나, 후보를 다 써도 3개가 안 됨
+        ready.append((need, stat_of(key), key, cs))
+    ready.sort(key=lambda x: (x[0], x[1] is None, -(x[1] or 0), x[2]))
+    picked, partial = [], None
+    for need, _, key, cs in ready:
+        if len(picked) + need <= slots:
+            picked += cs[:need]
+        elif partial is None:
+            partial = cs
+        if len(picked) == slots:
+            break
+    if len(picked) < slots and partial:  # 남은 칸은 다음 시·군을 미리 시작(내일 나머지를 채움)
+        picked += partial[: slots - len(picked)]
+    names = {}
+    for c in picked:
+        names[c["시군구"]] = names.get(c["시군구"], 0) + 1
+    print(f"시·군 몫 {len(picked)}개 (인구 {limit:,}명 이하, {meta.get('as_of')}): "
+          + ", ".join(f"{k} {n}" for k, n in names.items()))
+    return picked
+
+
+def pick(regions: list[dict], count: int, include_myeon: bool, small_count: int = 0, small_limit: int = 300000) -> list[dict]:
     """아직 페이지가 없는 후보 가운데 우선순위대로 count 개를 고른다(○가 묶음은 _parts·_dong 을 단다)."""
     rows = list(csv.DictReader(CSV_PATH.open(encoding="utf-8-sig")))
     covered_codes = {r["code"] for r in regions if r.get("code")}
@@ -125,19 +174,27 @@ def pick(regions: list[dict], count: int, include_myeon: bool) -> list[dict]:
                 candidates.append(r)
 
     csv_pos = {r["법정동코드"]: i for i, r in enumerate(rows)}
+    candidates.sort(key=lambda c: csv_pos[c["법정동코드"]])
     basis, counts, meta = vehicle_stats.load()
+
+    # 시·군 몫을 먼저 고르고, 나머지 칸을 원래 순서로 채운다
+    small = pick_small(candidates, regions, min(small_count, count), small_limit,
+                       lambda key: vehicle_stats.count_for(counts, *key) if basis != "none" else None)
+    small_codes = {c["법정동코드"] for c in small}
+    rest = [c for c in candidates if c["법정동코드"] not in small_codes]
+    count -= len(small)
     if basis != "none":
         # 노후차(없으면 전체) 등록대수가 많은 구부터. 통계에 없는 구는 맨 뒤, CSV 순서
         def stat_key(c: dict) -> tuple:
             n = vehicle_stats.count_for(counts, c["시도"], c["시군구"])
             return (n is None, -(n or 0), csv_pos[c["법정동코드"]])
-        picked = sorted(candidates, key=stat_key)[:count]
+        picked = sorted(rest, key=stat_key)[:count]
         label = vehicle_stats.BASIS_LABEL.get(basis, basis)
         print(f"우선순위 기준: 시군구별 {label} 등록대수 많은 순 ({meta.get('as_of')}, {meta.get('source')})")
     else:
-        picked = fallback_order(candidates, regions, rows, count)
+        picked = fallback_order(rest, regions, rows, count)
         print("우선순위 기준: 등록대수 통계 없음 → 구 페이지가 있는 구, 동 페이지가 많은 구 순 (보고에 알릴 것)")
-    return picked
+    return small + picked
 
 
 def fallback_order(candidates: list[dict], regions: list[dict], rows: list[dict], count: int) -> list[dict]:
@@ -180,7 +237,8 @@ def main() -> None:
         print(f"이미 있음: {out_path.relative_to(ROOT)} — 이 파일을 채워서 import_batch.py 로 넘기세요")
         return
     regions = json.loads(REGIONS_PATH.read_text(encoding="utf-8"))
-    picked = pick(regions, count, bool(cfg.get("include_myeon", False)))
+    picked = pick(regions, count, bool(cfg.get("include_myeon", False)),
+                  int(cfg.get("small_si_gun_daily_count", 0)), int(cfg.get("gu_line_b_max_population", 300000)))
     used_slugs = {r["slug"] for r in regions}
     if not picked:
         print("선택 가능한 동이 없습니다 (전체 완료됨)")

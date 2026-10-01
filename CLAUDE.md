@@ -55,7 +55,7 @@
 
 - 지역 데이터는 `data/regions.json` 한 곳에 있습니다(법정동코드 `code` 포함). 페이지 HTML을 직접 쓰거나 고치지 않고, 데이터를 고친 뒤 `python3 scripts/build_site.py --only <slug,...>` 로 다시 렌더링합니다.
 - 새 지역 추가 순서:
-  1. `python3 scripts/pick_next_regions.py` → `data/batches/YYYY-MM-DD.json` 뼈대 생성 (개수는 `data/generation_config.json`의 `daily_count`, 보류 폴더에 있는 동은 다시 뽑지 않음, 순서는 아래 "새 동을 고르는 순서")
+  1. `python3 scripts/pick_next_regions.py` → `data/batches/YYYY-MM-DD.json` 뼈대 생성 (개수는 `data/generation_config.json`의 `daily_count`, 보류 폴더에 있는 동은 다시 뽑지 않음, 순서는 아래 "새 동을 고르는 순서". 그중 `small_si_gun_daily_count`(10)개는 인구 30만 이하 시·군에서 한 시·군에 3개씩 몰아서 먼저 뽑음 — `docs/roadmap.md` 6절)
   2. 뼈대의 `landmark_name`, `landmark_desc`, `service_intro`, `faqs`(질문·답 쌍 4개 이상), `meta` 를 채움
   3. **사실 확인**: 아래 "사실 확인" 규칙대로 지역마다 `fact_check` 를 채움. `python3 scripts/fact_check.py data/batches/YYYY-MM-DD.json` 이 확인해야 할 이름과 빠진 기록을 보여 줌
   4. `python3 scripts/import_batch.py data/batches/YYYY-MM-DD.json` → 보류 항목을 `data/batches/held/` 로 옮기고, 확인된 항목만 regions.json 반영, 렌더링, `index.html`·`sitemap.xml` 갱신, `check_pages.py` 검사까지 한 번에 실행. 실패하면 모두 되돌려지므로 배치 파일을 고치고 다시 실행
