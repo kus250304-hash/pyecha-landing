@@ -1,0 +1,70 @@
+[
+ {
+  "code": "1215010100",
+  "slug": "jeonnam-suncheon-samgeo",
+  "sido": "전남광주통합특별시",
+  "sigungu": "순천시",
+  "dong": "삼거동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "외진 산골 법정동으로 동 안에서 확인된 장소가 시립 공원묘지뿐이고, 주거지나 사람이 사는 근거를 검색으로 찾지 못해 보류합니다(디지털순천문화대전·순천시 공원묘지 안내).",
+   "items": []
+  }
+ },
+ {
+  "code": "4825013300",
+  "slug": "gyeongnam-gimhae-eungdal",
+  "sido": "경상남도",
+  "sigungu": "김해시",
+  "dong": "응달동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "동 안에서 학교·공공시설을 찾지 못했고, 마을(태정마을 등) 근거도 주로 위키 검색 요약뿐이라 랜드마크 위치를 확실히 확인하지 못해 보류합니다.",
+   "items": []
+  }
+ },
+ {
+  "code": "4825013400",
+  "slug": "gyeongnam-gimhae-suga",
+  "sido": "경상남도",
+  "sigungu": "김해시",
+  "dong": "수가동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "동 안에서 확인되는 장소 없음(조만강은 동쪽 경계를 흐르는 강이고, 학교·역·공원 같은 시설을 동 안에서 찾지 못함).",
+   "items": []
+  }
+ },
+ {
+  "code": "4122011600",
+  "slug": "gyeonggi-pyeongtaek-yucheon",
+  "sido": "경기도",
+  "sigungu": "평택시",
+  "dong": "유천동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "평택시사 기준 동 대부분이 논인 농촌이고 상수원보호구역이라 사는 사람이 매우 적으며, 동 안에서 확인된 장소가 유천정수장 하나뿐이라 보류합니다.",
+   "items": []
+  }
+ }
+]

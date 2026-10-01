@@ -1,0 +1,773 @@
+[
+ {
+  "code": "4713010100",
+  "slug": "gyeongbuk-gyeongju-dongbu",
+  "items": [
+   {
+    "name": "경주문화원",
+    "evidence": "경주시 중앙로 67-12 (동부동), 옛 경주부 관아 내아 건물을 향토사료관으로 사용 (경주시 관광 안내, 경주신문)",
+    "url": "https://www.gjnews.com/news/view.php?idx=81968"
+   },
+   {
+    "name": "경주경찰서",
+    "evidence": "경주시 중앙로 63 (동부동) - 검색 결과 요약 기준, 경찰서 공식 페이지 직접 열람은 못 함",
+    "url": "https://namu.wiki/w/%EB%8F%99%EB%B6%80%EB%8F%99"
+   },
+   {
+    "name": "중앙로",
+    "evidence": "경주문화원(중앙로 67-12)·경주경찰서(중앙로 63)가 동부동 주소로 중앙로에 있음",
+    "url": "https://www.gyeongju.go.kr/tour/page.do?mnu_uid=2292&sortKwd=name&code_uid=1012&area_uid=76&cmd=2"
+   }
+  ]
+ },
+ {
+  "code": "5115010100",
+  "slug": "gangwon-gangneung-hongje",
+  "items": [
+   {
+    "name": "강릉시청",
+    "evidence": "강릉시 강릉대로 33 (홍제동), 강릉시청 오시는 길",
+    "url": "https://gn.go.kr/www/contents.do?key=772"
+   },
+   {
+    "name": "강릉인문중고등학교",
+    "evidence": "강릉시 경강로1928번길 11 [홍제동 366-8], 디지털강릉문화대전",
+    "url": "https://gangneung.grandculture.net/gangneung/toc/GC00300340"
+   },
+   {
+    "name": "홍제동 행정복지센터",
+    "evidence": "강릉시 경강로 1953 (홍제동 95-2), 114 안내 / 강릉시청 행정구역",
+    "url": "https://www.114.co.kr/search/detail?comp_id=4198802&comp_tp_cd=TEL&upjong_cd=962209"
+   },
+   {
+    "name": "경강로",
+    "evidence": "홍제동 행정복지센터(경강로 1953)·강릉인문중고(경강로1928번길) 주소",
+    "url": "https://www.114.co.kr/search/detail?comp_id=4198802&comp_tp_cd=TEL&upjong_cd=962209"
+   },
+   {
+    "name": "강릉대로",
+    "evidence": "강릉시청 강릉대로 33 (홍제동)",
+    "url": "https://gn.go.kr/www/contents.do?key=772"
+   }
+  ]
+ },
+ {
+  "code": "5121010100",
+  "slug": "gangwon-sokcho-yeongnang",
+  "items": [
+   {
+    "name": "속초등대",
+    "evidence": "속초시 영금정로5길 8-28 (영랑동), '영금정 속초 등대전망대'로 알려짐",
+    "url": "https://kr.trip.com/moments/poi-sokcho-lighthouse-101518/"
+   },
+   {
+    "name": "등대해수욕장",
+    "evidence": "속초시 영랑해안길 37 (영랑동), 2004년 간이 해수욕장 개장, 해양수산부 바다여행 안내",
+    "url": "https://www.badaon.or.kr/seantour_map/travel/destination/detail.do?destId=FCID110533"
+   },
+   {
+    "name": "영랑호",
+    "evidence": "속초시 장사동·금호동·동명동·영랑동에 걸친 석호(위키백과 영랑호 항목 검색 요약)",
+    "url": "https://ko.wikipedia.org/wiki/%EC%98%81%EB%9E%91%ED%98%B8"
+   },
+   {
+    "name": "영랑해안길",
+    "evidence": "등대해수욕장 주소 영랑해안길 37 (영랑동)",
+    "url": "https://www.badaon.or.kr/seantour_map/travel/destination/detail.do?destId=FCID110533"
+   }
+  ]
+ },
+ {
+  "code": "4729010100",
+  "slug": "gyeongbuk-gyeongsan-samnam",
+  "items": [
+   {
+    "name": "경산초등학교",
+    "evidence": "경산시 경안로 84 [삼남동 21], 1911년 개교, 디지털경산문화대전·학교 정보",
+    "url": "https://m.richgo.ai/realty/place/elementary/S150001034"
+   },
+   {
+    "name": "경산 삼남동 근대한옥",
+    "evidence": "경북 등록문화유산, 경산시 경안로21길 13-6 (삼남동), 국가유산포털",
+    "url": "https://www.heritage.go.kr/heri/cul/culSelectDetail.do?ccbaKdcd=25&ccbaAsno=0000040000000&ccbaCtcd=37&ccbaCpno=4422602250001"
+   },
+   {
+    "name": "경안로",
+    "evidence": "경산초등학교 경안로 84 [삼남동 21]",
+    "url": "https://m.richgo.ai/realty/place/elementary/S150001034"
+   }
+  ]
+ },
+ {
+  "code": "4729010200",
+  "slug": "gyeongbuk-gyeongsan-sambuk",
+  "items": [
+   {
+    "name": "중앙동 행정복지센터",
+    "evidence": "경산시 경안로30길 18 (삼북동 278-12), 114 공공기관 안내",
+    "url": "https://www.114.co.kr/life/public/detail/9747"
+   },
+   {
+    "name": "경산삼북주공아파트",
+    "evidence": "경산시 삼북동 27, 부동산 정보(호갱노노)",
+    "url": "https://hogangnono.com/apt/8w0be"
+   }
+  ]
+ },
+ {
+  "code": "1215010200",
+  "slug": "jeonnam-suncheon-waryong",
+  "items": [
+   {
+    "name": "순천SOS어린이마을",
+    "evidence": "전남 순천시 용수동길 111 (와룡동 157), 디지털순천문화대전에서 와룡동의 어린이 보호시설로 소개",
+    "url": "http://suncheon.grandculture.net/suncheon/toc/GC07600779"
+   },
+   {
+    "name": "와룡 산지습지",
+    "evidence": "순천 와룡동 산277번지, 2022년 12월 30번째 국가 내륙습지보호지역 지정(환경부 보도자료·경향신문)",
+    "url": "https://www.khan.co.kr/environment/environment-general/article/202212291245001"
+   },
+   {
+    "name": "와룡 수원지",
+    "evidence": "디지털순천문화대전 와룡동 항목에 '와룡 제1~2수원지가 있다'고 소개",
+    "url": "http://suncheon.grandculture.net/suncheon/toc/GC07600081"
+   },
+   {
+    "name": "수리봉",
+    "evidence": "디지털순천문화대전 와룡동 항목: 동 대부분이 수리봉(540m)의 남동 방향 능선과 골짜기, 서쪽 경계가 수리봉 능선",
+    "url": "http://suncheon.grandculture.net/suncheon/toc/GC07600081"
+   },
+   {
+    "name": "용수동길",
+    "evidence": "순천SOS어린이마을 용수동길 111 (와룡동 157), 용수동길 94 (와룡동) 도로명주소",
+    "url": "https://dorojuso.kr/4615010200101440001056934/%EC%A0%84%EB%9D%BC%EB%82%A8%EB%8F%84-%EC%88%9C%EC%B2%9C%EC%8B%9C-%EC%9A%A9%EC%88%98%EB%8F%99%EA%B8%B8-94-%EC%99%80%EB%A3%A1%EB%8F%99"
+   }
+  ]
+ },
+ {
+  "code": "5214010300",
+  "slug": "jeonbuk-iksan-jungang",
+  "items": [
+   {
+    "name": "익산아트센터",
+    "evidence": "전북 익산시 중앙로 12-39 (중앙동2가), 익산 문화예술의거리 거점시설(투어전북 전북문화관광)",
+    "url": "https://tour.jb.go.kr/travel/info/view.do?menuCd=DOM_000000103007003000&contentsSid=140&category_top_id=a&ctnt_id=25371"
+   },
+   {
+    "name": "익산 문화예술의거리",
+    "evidence": "디지털익산문화대전: 익산시 중앙동에 조성된 문화예술의 거리(중앙로 일대). 일부 자료는 평화동 311-17로 적어 두 동에 걸침",
+    "url": "https://iksan.grandculture.net/iksan/toc/GC07500334"
+   },
+   {
+    "name": "익산중앙동우체국",
+    "evidence": "전북 익산시 중앙동3가 125 (검색 결과 요약)",
+    "url": "https://skinnara.co.kr/?M_SEQ=1123517&html=board.view"
+   },
+   {
+    "name": "익산중앙동주상복합",
+    "evidence": "호갱노노 '중앙동3가 익산중앙동주상복합' 단지 정보",
+    "url": "https://hogangnono.com/apt/fiQb5/0"
+   },
+   {
+    "name": "중앙로",
+    "evidence": "전북특별자치도 익산시 중앙로 12-53 (중앙동2가), 지번 중앙동2가 41-9 도로명주소",
+    "url": "https://dorojuso.kr/4514010400100410009094066/%EC%A0%84%EB%9D%BC%EB%B6%81%EB%8F%84-%EC%9D%B5%EC%82%B0%EC%8B%9C-%EC%A4%91%EC%95%99%EB%A1%9C-12-53-%EC%A4%91%EC%95%99%EB%8F%992%EA%B0%80"
+   }
+  ]
+ },
+ {
+  "code": "5214010600",
+  "slug": "jeonbuk-iksan-pyeonghwa",
+  "items": [
+   {
+    "name": "익산공용버스터미널",
+    "evidence": "전북 익산시 익산대로 52 (평화동 247-6), 2023년부터 고속버스도 함께 쓰는 종합 터미널(위키백과·디지털익산문화대전)",
+    "url": "https://ko.wikipedia.org/wiki/%EC%9D%B5%EC%82%B0%EA%B3%B5%EC%9A%A9%EB%B2%84%EC%8A%A4%ED%84%B0%EB%AF%B8%EB%84%90"
+   },
+   {
+    "name": "전북제일고등학교",
+    "evidence": "전북 익산시 학곤로 19 (평화동 169), 학교알리미 공시",
+    "url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=52fdb3bf-7754-4de5-a420-f91acf87e019"
+   },
+   {
+    "name": "평화동 행정복지센터",
+    "evidence": "익산시 평화동 누리집: (54674) 익산시 익산대로4길 12 (평화동), 063-855-2843",
+    "url": "https://www.iksan.go.kr/pyeonghwa/board/list.iksan?boardId=BBS_DONG_NOTI&menuCd=DOM_000004905001000000&startPage=13"
+   },
+   {
+    "name": "익산역하늘채더퍼스트",
+    "evidence": "호갱노노 '평화동 익산역하늘채더퍼스트' 단지 정보",
+    "url": "https://hogangnono.com/apt/fa25c"
+   },
+   {
+    "name": "익산대로",
+    "evidence": "익산공용버스터미널 익산대로 52 (평화동 247-6), 옛 고속버스터미널 익산대로 56 (평화동 247-1)",
+    "url": "https://ko.wikipedia.org/wiki/%EC%9D%B5%EC%82%B0%EA%B3%A0%EC%86%8D%EB%B2%84%EC%8A%A4%ED%84%B0%EB%AF%B8%EB%84%90"
+   }
+  ]
+ },
+ {
+  "code": "5213010100",
+  "slug": "jeonbuk-gunsan-haemang",
+  "items": [
+   {
+    "name": "군산수산물종합센터",
+    "evidence": "군산시 내항2길 216 (해망동), 2003년 개장·2023년 본관 신축, 전용주차장 있음, 군산시 문화관광",
+    "url": "https://www.gunsan.go.kr/tour/m2160/view/306500"
+   },
+   {
+    "name": "군산 해망굴",
+    "evidence": "국가등록문화유산, 군산시 해망동 1000-21, 1926년 중앙로와 해망동을 잇는 터널",
+    "url": "https://www.heritage.go.kr/heri/cul/culSelectDetail.do?pageNo=1_1_1_1&ccbaCpno=4413501840000"
+   },
+   {
+    "name": "내항2길",
+    "evidence": "군산수산물종합센터 내항2길 216 (해망동)",
+    "url": "https://www.gunsan.go.kr/tour/m2160/view/306500"
+   }
+  ]
+ },
+ {
+  "code": "4825013200",
+  "slug": "gyeongnam-gimhae-jangyu",
+  "items": [
+   {
+    "name": "율하자이힐스테이트",
+    "evidence": "경남 김해시 율하6로 17, 지번 장유동 847, 율하2지구 1,245세대(2019년 5월 입주)",
+    "url": "https://disco.re/l/aee3na3"
+   },
+   {
+    "name": "김해모산초등학교",
+    "evidence": "경남 김해시 율하로 483 (장유동 848), 114 전화번호부 '김해시 장유동'",
+    "url": "https://www.114.co.kr/search/view.do?menuKey=117&telephoneKey=9410297"
+   },
+   {
+    "name": "김해모산중학교",
+    "evidence": "경남 김해시 장유동 율하5로 75, 공립 중학교(디지털김해문화대전)",
+    "url": "https://gimhae.grandculture.net/gimhae/toc/GC09401105?search=G3/1"
+   },
+   {
+    "name": "김해율산초등학교",
+    "evidence": "경남 김해시 율하5로 55, 당근 부동산 '김해시 장유동 김해율산초등학교'",
+    "url": "https://realty.daangn.com/schools/S100003968"
+   },
+   {
+    "name": "율하5로",
+    "evidence": "김해율산초 율하5로 55, 김해모산중 율하5로 75 (장유동)",
+    "url": "https://realty.daangn.com/schools/S100003968"
+   },
+   {
+    "name": "율하6로",
+    "evidence": "율하자이힐스테이트 율하6로 17 (장유동 847)",
+    "url": "https://disco.re/l/aee3na3"
+   }
+  ]
+ },
+ {
+  "code": "4825025000",
+  "slug": "gyeongnam-gimhae-jinyeong",
+  "items": [
+   {
+    "name": "진영역",
+    "evidence": "경전선 역, 김해시 진영읍 김해대로 809(진영읍 설창리)",
+    "url": "https://ko.wikipedia.org/wiki/%EC%A7%84%EC%98%81%EC%97%AD"
+   },
+   {
+    "name": "진영역철도박물관",
+    "evidence": "옛 진영역 건물, 김해시 진영읍 진영로 145-1, 진영역사공원 안",
+    "url": "https://www.idomin.com/news/articleView.html?idxno=945513"
+   },
+   {
+    "name": "진영한빛도서관",
+    "evidence": "김해시 진영읍 김해대로 440, 진영문화센터 겸 시립도서관(2009년 개관)",
+    "url": "https://www.culture.go.kr/space/facilityView.do?seq=4096"
+   },
+   {
+    "name": "진영읍행정복지센터",
+    "evidence": "2024.10.28부터 임시청사(진영한빛도서관 1층, 진영읍 김해대로 440)로 이전, 김해시 진영읍 찾아오시는길",
+    "url": "https://www.gimhae.go.kr/00954/01200/01381.web"
+   },
+   {
+    "name": "봉하마을",
+    "evidence": "김해시 진영읍 봉하로 144(본산리 26-7), 김해시 봉하마을 소개(정치적 연상이 있어 랜드마크로는 비추천, 보조 언급만)",
+    "url": "https://www.gimhae.go.kr/bonghapark/html/sub/01_03.jsp"
+   },
+   {
+    "name": "김해대로",
+    "evidence": "진영역(김해대로 809), 진영한빛도서관(김해대로 440) 주소",
+    "url": "https://ko.wikipedia.org/wiki/%EC%A7%84%EC%98%81%EC%97%AD"
+   },
+   {
+    "name": "진영로",
+    "evidence": "진영역철도박물관 주소 진영로 145-1",
+    "url": "https://www.idomin.com/news/articleView.html?idxno=945513"
+   }
+  ]
+ },
+ {
+  "code": "4122010100",
+  "slug": "gyeonggi-pyeongtaek-seojeong",
+  "items": [
+   {
+    "name": "서정리역",
+    "evidence": "경부선·수도권 전철 1호선 역, 평택시 탄현로 51(서정동 427-53)",
+    "url": "https://namu.wiki/w/%EC%84%9C%EC%A0%95%EB%A6%AC%EC%97%AD"
+   },
+   {
+    "name": "서정리시장",
+    "evidence": "평택시 서정역로55번길 34(서정동 317-31), 서정리역 1번 출구 앞, 끝자리 2·7일 오일장",
+    "url": "https://www.ptsisa.com/news/articleView.html?idxno=3535"
+   },
+   {
+    "name": "평택시청 송탄출장소",
+    "evidence": "평택시 경기대로 1366(서정동), 평택시 오시는길",
+    "url": "https://www.pyeongtaek.go.kr/pyeongtaek/contents.do?mId=2002010600"
+   },
+   {
+    "name": "서정동 행정복지센터",
+    "evidence": "평택시 탄현로 170(서정동), 서정동 행정복지센터 찾아오시는 길",
+    "url": "https://www.pyeongtaek.go.kr/csc/seojeong/contents.do?mId=0205000000"
+   },
+   {
+    "name": "탄현로",
+    "evidence": "서정리역(탄현로 51)·서정동 행정복지센터(탄현로 170) 주소",
+    "url": "https://www.pyeongtaek.go.kr/csc/seojeong/contents.do?mId=0205000000"
+   },
+   {
+    "name": "경기대로",
+    "evidence": "송탄출장소 주소 경기대로 1366(서정동)",
+    "url": "https://www.pyeongtaek.go.kr/pyeongtaek/contents.do?mId=2002010600"
+   }
+  ]
+ },
+ {
+  "code": "4122010200",
+  "slug": "gyeonggi-pyeongtaek-jangdang",
+  "items": [
+   {
+    "name": "장당중학교",
+    "evidence": "평택시 장당길 40(장당동), 학교알리미·위키백과 '평택시 장당동에 있는 공립 중학교'",
+    "url": "https://ko.wikipedia.org/wiki/%EC%9E%A5%EB%8B%B9%EC%A4%91%ED%95%99%EA%B5%90"
+   },
+   {
+    "name": "장당초등학교",
+    "evidence": "평택시 송탄로 46(장당동), 학교알리미",
+    "url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=e3a463b6-701e-4892-8e58-5eef45c1844d"
+   },
+   {
+    "name": "장당산업단지",
+    "evidence": "평택시 장당동 일원 약 15만㎡, 국도1호선과 경부선 사이에 1995~1998년 조성(평택시사 산업단지)",
+    "url": "https://sisa.pyeongtaek.go.kr/bbs/board.php?bo_table=ca14&wr_id=21"
+   },
+   {
+    "name": "제일풍경채장당센트럴",
+    "evidence": "평택시 송탄로 27(장당동 660) 아파트",
+    "url": "https://dapt.kr/%EC%95%84%ED%8C%8C%ED%8A%B8/%EA%B2%BD%EA%B8%B0%EB%8F%84/%ED%8F%89%ED%83%9D%EC%8B%9C/%EC%9E%A5%EB%8B%B9%EB%8F%99/%EC%A0%9C%EC%9D%BC%ED%92%8D%EA%B2%BD%EC%B1%84%EC%9E%A5%EB%8B%B9%EC%84%BC%ED%8A%B8%EB%9F%B4/BMA158"
+   },
+   {
+    "name": "송탄로",
+    "evidence": "장당초(송탄로 46)·제일풍경채장당센트럴(송탄로 27) 주소, 송탄로는 중앙동 장당사거리에서 시작(위키백과)",
+    "url": "https://ko.wikipedia.org/wiki/%EC%86%A1%ED%83%84%EB%A1%9C"
+   },
+   {
+    "name": "장당길",
+    "evidence": "장당중학교 주소 장당길 40(장당동)",
+    "url": "https://ko.wikipedia.org/wiki/%EC%9E%A5%EB%8B%B9%EC%A4%91%ED%95%99%EA%B5%90"
+   }
+  ]
+ },
+ {
+  "code": "4122010300",
+  "slug": "gyeonggi-pyeongtaek-mogok",
+  "items": [
+   {
+    "name": "송탄일반산업단지",
+    "evidence": "평택시 모곡동 일원 약 108만㎡, 1988~1993년 조성, 조립금속 업종 중심(평택시사 산업단지·평택시 산업단지 현황)",
+    "url": "https://sisa.pyeongtaek.go.kr/bbs/board.php?bo_table=ca14&wr_id=21"
+   },
+   {
+    "name": "산단로",
+    "evidence": "송탄일반산업단지 주소 산단로52번길 9-6(모곡동), 모곡동 아파트 주소 산단로16번길 56",
+    "url": "https://hogangnono.com/region/4122010300/0/apt-list"
+   },
+   {
+    "name": "모곡길",
+    "evidence": "모곡길 22-22(모곡동 290-1)",
+    "url": "https://zippoom.com/review/_juJ3z5s1RNl3Z9jFBeZpB"
+   },
+   {
+    "name": "경기대로",
+    "evidence": "모곡동 아파트 주소 경기대로 870·874·876 등",
+    "url": "https://hogangnono.com/region/4122010300/0/apt-list"
+   }
+  ]
+ },
+ {
+  "code": "4122010400",
+  "slug": "gyeonggi-pyeongtaek-chilgoe",
+  "items": [
+   {
+    "name": "KG모빌리티 평택공장",
+    "evidence": "평택시 동삭로 455-12(칠괴동), 1979년 칠괴동에 세워진 본사·생산공장(나무위키·딜사이트)",
+    "url": "https://dealsite.co.kr/articles/121578"
+   },
+   {
+    "name": "칠괴일반산업단지",
+    "evidence": "평택시 칠원동·칠괴동 일원 약 64만㎡, 1995~2000년 조성, 자동차 산업용지(산업입지정보시스템)",
+    "url": "https://industryland.or.kr/web/il/BasicInfo.jsp?q_danji_cd=241350"
+   },
+   {
+    "name": "평택지제역우림필유",
+    "evidence": "칠괴동 아파트 352세대, 2006년 준공(호갱노노)",
+    "url": "https://hogangnono.com/apt/5Db20"
+   },
+   {
+    "name": "동삭로",
+    "evidence": "KG모빌리티 평택공장 주소 동삭로 455-12(칠괴동)",
+    "url": "https://dealsite.co.kr/articles/121578"
+   }
+  ]
+ },
+ {
+  "code": "4122010500",
+  "slug": "gyeonggi-pyeongtaek-chilwon",
+  "items": [
+   {
+    "name": "평택새빛초등학교",
+    "evidence": "경기 평택시 신촌2로 33 (칠원동 588), 2019년 개교 공립 초등학교",
+    "url": "https://zippoom.com/%ED%95%99%EA%B5%90/%EA%B2%BD%EA%B8%B0-%ED%8F%89%ED%83%9D%EC%8B%9C-%EC%B9%A0%EC%9B%90%EB%8F%99-%ED%8F%89%ED%83%9D%EC%83%88%EB%B9%9B%EC%B4%88%EB%93%B1%ED%95%99%EA%B5%90/lzcfbi"
+   },
+   {
+    "name": "평택지제역동문굿모닝힐맘시티",
+    "evidence": "칠원동 542(1단지)·595(4단지)·613(3단지) 등 1~4단지 대단지 아파트, 부동산 포털 단지 정보",
+    "url": "https://realty.daum.net/home/apt/danjis/37818"
+   },
+   {
+    "name": "칠원소공원",
+    "evidence": "평택시 칠원동 58-1 소공원, 평택시민기자단 기사(칠원동 역사 안내)",
+    "url": "https://www.welfarehello.com/community/hometownNews/3daea85a-cca9-4082-8e08-91c9e36efad3"
+   },
+   {
+    "name": "통복천",
+    "evidence": "평택시사: 칠원동 3동(수촌)이 옛 평택시·송탄시 경계로 통복천을 사이에 둔 마을",
+    "url": "https://sisa.pyeongtaek.go.kr/bbs/board.php?bo_table=ca09&wr_id=148"
+   },
+   {
+    "name": "신촌2로",
+    "evidence": "평택새빛초 도로명주소 신촌2로 33 (칠원동 588)",
+    "url": "https://zippoom.com/%ED%95%99%EA%B5%90/%EA%B2%BD%EA%B8%B0-%ED%8F%89%ED%83%9D%EC%8B%9C-%EC%B9%A0%EC%9B%90%EB%8F%99-%ED%8F%89%ED%83%9D%EC%83%88%EB%B9%9B%EC%B4%88%EB%93%B1%ED%95%99%EA%B5%90/lzcfbi"
+   }
+  ]
+ },
+ {
+  "code": "4122010600",
+  "slug": "gyeonggi-pyeongtaek-doil",
+  "items": [
+   {
+    "name": "원균장군묘",
+    "evidence": "경기도기념물, 소재지 경기도 평택시 도일동 산82 (국가유산청 문화유산 상세)",
+    "url": "https://www.heritage.go.kr/heri/cul/culSelectDetail.do?ccbaCpno=2333100570000"
+   },
+   {
+    "name": "평택종합물류단지",
+    "evidence": "평택시 도일동 산223-2 일원, 송탄IC 바로 옆 물류단지(검색 결과 요약; 제2평택물류센터 주소 도일유통길 20-7(도일동))",
+    "url": "https://www.dreamlogis.com/page/network.php?p=pyungtaek2"
+   },
+   {
+    "name": "덕암산",
+    "evidence": "평택시사 마을편: 도일동은 덕암산 남쪽 마을; 평택시민신문 '송탄지역의 지명들-도일동'",
+    "url": "https://sisa.pyeongtaek.go.kr/bbs/board.php?bo_table=ca09&wr_id=147"
+   },
+   {
+    "name": "브레인시티",
+    "evidence": "평택시 도일동·장안동 일대 약 482만㎡ 개발사업(조성 중)",
+    "url": "https://esandan.com/"
+   },
+   {
+    "name": "도일유통길",
+    "evidence": "제2평택물류센터 주소 도일유통길 20-7(도일동)",
+    "url": "https://www.dreamlogis.com/page/network.php?p=pyungtaek2"
+   }
+  ]
+ },
+ {
+  "code": "4122010700",
+  "slug": "gyeonggi-pyeongtaek-gajae",
+  "items": [
+   {
+    "name": "송탄초등학교",
+    "evidence": "경기도 평택시 가재동 200-3, 병설유치원 정보에도 가재동 소재",
+    "url": "https://www.daycarekorea.com/child/kinder_detail.php?name=%EC%86%A1%ED%83%84%EC%B4%88%EB%93%B1%ED%95%99%EA%B5%90%EB%B3%91%EC%84%A4%EC%9C%A0%EC%B9%98%EC%9B%90&addcode=41220107"
+   },
+   {
+    "name": "송탄동 행정복지센터",
+    "evidence": "경기도 평택시 방여울로 117 (가재동 20-53); 평택시사도 가재동을 송탄동 주민센터·송탄초가 있는 송탄동 중심 마을로 소개",
+    "url": "https://ffw.purpleo.co.kr/view/42041"
+   },
+   {
+    "name": "지제역 반도체밸리 쌍용 더 플래티넘",
+    "evidence": "가재동 1,340세대 아파트, 2027년 1월 입주 예정(아직 입주 전이라 본문 언급은 비추천)",
+    "url": "https://m.richgo.ai/realty/parcel/a2yAlDy"
+   },
+   {
+    "name": "방여울로",
+    "evidence": "송탄동 행정복지센터 방여울로 117 (가재동)",
+    "url": "https://ffw.purpleo.co.kr/view/42041"
+   },
+   {
+    "name": "가재길",
+    "evidence": "가재길 14 (가재동 526-2) 도로명주소",
+    "url": "https://dorojuso.kr/4122010700105260002003276/경기도-평택시-가재길-14-가재동"
+   }
+  ]
+ },
+ {
+  "code": "4122010800",
+  "slug": "gyeonggi-pyeongtaek-jangan",
+  "items": [
+   {
+    "name": "은혜고등학교",
+    "evidence": "경기 평택시 장안웃길 66 (장안동 389-1), 은혜중학교와 같은 부지, 1974년 설립 사립고",
+    "url": "https://zippoom.com/%EB%B6%80%EB%8F%99%EC%82%B0/%EA%B2%BD%EA%B8%B0-%ED%8F%89%ED%83%9D%EC%8B%9C-%EC%9E%A5%EC%95%88%EB%8F%99-%EC%9D%80%ED%98%9C%EA%B3%A0%EB%93%B1%ED%95%99%EA%B5%90,%EC%9D%80%ED%98%9C%EC%A4%91%ED%95%99%EA%B5%90/hc1x5n"
+   },
+   {
+    "name": "은혜중학교",
+    "evidence": "장안동 389-1, 장안웃길 66 (은혜고와 같은 부지)",
+    "url": "https://zippoom.com/%EB%B6%80%EB%8F%99%EC%82%B0/%EA%B2%BD%EA%B8%B0-%ED%8F%89%ED%83%9D%EC%8B%9C-%EC%9E%A5%EC%95%88%EB%8F%99-%EC%9D%80%ED%98%9C%EA%B3%A0%EB%93%B1%ED%95%99%EA%B5%90,%EC%9D%80%ED%98%9C%EC%A4%91%ED%95%99%EA%B5%90/hc1x5n"
+   },
+   {
+    "name": "브레인시티",
+    "evidence": "도일동·장안동 일대 개발사업; 브레인시티푸르지오 장안동 171-2(2028년 입주 예정) 등 장안동 아파트 단지 분양",
+    "url": "https://realty.daum.net/home/apt/danjis/92254"
+   },
+   {
+    "name": "장안웃길",
+    "evidence": "은혜고 장안웃길 66 (장안동). 단 장안웃길 149 이충레포츠공원은 이충동이므로 도로 전체가 장안동은 아님",
+    "url": "https://zippoom.com/%EB%B6%80%EB%8F%99%EC%82%B0/%EA%B2%BD%EA%B8%B0-%ED%8F%89%ED%83%9D%EC%8B%9C-%EC%9E%A5%EC%95%88%EB%8F%99-%EC%9D%80%ED%98%9C%EA%B3%A0%EB%93%B1%ED%95%99%EA%B5%90,%EC%9D%80%ED%98%9C%EC%A4%91%ED%95%99%EA%B5%90/hc1x5n"
+   }
+  ]
+ },
+ {
+  "code": "4122010900",
+  "slug": "gyeonggi-pyeongtaek-ichung",
+  "items": [
+   {
+    "name": "이충레포츠공원",
+    "evidence": "평택시 장안웃길 149 (이충동), 이충동 261 일대, 2001년 개장 체육공원(축구장·테니스장·수영장 등), 송탄출장소 관리",
+    "url": "https://www.114.co.kr/search/detail?comp_id=4599686&comp_tp_cd=TEL&upjong_cd=892900"
+   },
+   {
+    "name": "이충중학교",
+    "evidence": "경기도 평택시 이충로35번길 5 (이충동), 2007년 개교",
+    "url": "https://www.academydatainfo.com/school_main/school_view?school_code=J10&school_name=%EC%9D%B4%EC%B6%A9%EC%A4%91%ED%95%99%EA%B5%90&standard_school_code=7631124&seq=172948"
+   },
+   {
+    "name": "이충초등학교",
+    "evidence": "평택시 이충로 93-5, 부동산 학군 정보에 '이충동 이충초등학교'",
+    "url": "https://m.richgo.ai/realty/place/elementary/S090004046"
+   },
+   {
+    "name": "중앙동 행정복지센터",
+    "evidence": "경기도 평택시 서정역로 16 (이충동) — 이름은 중앙동",
+    "url": "https://ffw.purpleo.co.kr/view/42039"
+   },
+   {
+    "name": "충의각",
+    "evidence": "조광조·오달제를 기린 평택시 향토문화재, 택지개발로 이충동 692번지(반지마을주공1단지 인근)로 이전",
+    "url": "https://www.pttimes.com/news/articleView.html?idxno=2820"
+   },
+   {
+    "name": "이충로",
+    "evidence": "이충초 이충로 93-5, 이충중 이충로35번길 5 (이충동)",
+    "url": "https://www.academydatainfo.com/school_main/school_view?school_code=J10&school_name=%EC%9D%B4%EC%B6%A9%EC%A4%91%ED%95%99%EA%B5%90&standard_school_code=7631124&seq=172948"
+   }
+  ]
+ },
+ {
+  "code": "4122011000",
+  "slug": "gyeonggi-pyeongtaek-jisan",
+  "items": [
+   {
+    "name": "송탄근린공원",
+    "evidence": "경기도 평택시 지산동 산182-3 일원, 약 18만㎡, 1989년 조성, 평택시 공원과 관리",
+    "url": "https://ffw.purpleo.co.kr/view/42714"
+   },
+   {
+    "name": "평택지산초등학교",
+    "evidence": "경기도 평택시 지산동 1090, 지산2로 57",
+    "url": "https://zippoom.com/review/FygaIbQQIqNsBXldmdnfTQ"
+   },
+   {
+    "name": "지산동 행정복지센터",
+    "evidence": "경기도 평택시 송탄로 379 (지산동), 031-8024-6606 — 이름이 같은 센터 실제 있음",
+    "url": "https://www.114.co.kr/search/detail?comp_id=4616087&comp_tp_cd=TEL&upjong_cd=962209"
+   },
+   {
+    "name": "지산천",
+    "evidence": "평택시사 지방행정편: 지산동 북쪽으로 지산천이 흐름",
+    "url": "https://sisa.pyeongtaek.go.kr/bbs/board.php?bo_table=ca11&wr_id=126"
+   },
+   {
+    "name": "송탄로",
+    "evidence": "지산동 행정복지센터 송탄로 379 (지산동), 지산동 797-10 송탄로 369-5",
+    "url": "https://www.114.co.kr/search/detail?comp_id=4616087&comp_tp_cd=TEL&upjong_cd=962209"
+   },
+   {
+    "name": "지산2로",
+    "evidence": "평택지산초 지산2로 57 (지산동 1090)",
+    "url": "https://zippoom.com/review/FygaIbQQIqNsBXldmdnfTQ"
+   }
+  ]
+ },
+ {
+  "code": "4122011100",
+  "slug": "gyeonggi-pyeongtaek-dokgok",
+  "items": [
+   {
+    "name": "송탄한일아파트",
+    "evidence": "경기 평택시 경기대로 1576 (독곡동 473), 1993년 입주 450세대 단지",
+    "url": "https://m.richgo.ai/realty/danji/a8xDJhW"
+   },
+   {
+    "name": "독곡동 동부아파트",
+    "evidence": "경기 평택시 지산3로 75 (독곡동 475)",
+    "url": "https://hogangnono.com/apt/5DN8a"
+   },
+   {
+    "name": "대옥아파트",
+    "evidence": "경기 평택시 탄현로381번길 16 (독곡동 396-16)",
+    "url": "https://zippoom.com/%EB%B6%80%EB%8F%99%EC%82%B0/%EA%B2%BD%EA%B8%B0-%ED%8F%89%ED%83%9D%EC%8B%9C-%EB%8F%85%EA%B3%A1%EB%8F%99-%EB%8C%80%EC%98%A5%EC%95%84%ED%8C%8C%ED%8A%B8/1t730f"
+   },
+   {
+    "name": "경기대로(1번 국도)",
+    "evidence": "송탄한일아파트 주소 경기대로 1576 (독곡동 473); 나무위키 송북동 문서에 1번 국도가 독곡동을 지난다고 기술",
+    "url": "https://m.richgo.ai/realty/danji/a8xDJhW"
+   },
+   {
+    "name": "탄현로",
+    "evidence": "독곡동 394-8 = 탄현로 391",
+    "url": "https://zippoom.com/%EB%B6%80%EB%8F%99%EC%82%B0/%EA%B2%BD%EA%B8%B0-%ED%8F%89%ED%83%9D%EC%8B%9C-%EB%8F%85%EA%B3%A1%EB%8F%99-394-8/zdjcx2"
+   }
+  ]
+ },
+ {
+  "code": "4122011200",
+  "slug": "gyeonggi-pyeongtaek-sinjang",
+  "items": [
+   {
+    "name": "신장쇼핑몰",
+    "evidence": "경기도 평택시 쇼핑로 35 (신장동), 오산공군기지 정문 앞 쇼핑거리, 문화관광해설사 통합예약 관광지 정보",
+    "url": "https://www.kctg.or.kr/tour/touristSiteView.do?tourist_cd=TOURIST_ID00011174"
+   },
+   {
+    "name": "송탄관광특구",
+    "evidence": "대표 주소 경기도 평택시 중앙시장로 32 (신장동), 1997년 지정, 신장1·2동·지산동·송북동·서정동 일원",
+    "url": "https://thefestival.co.kr/info/tour/1564"
+   },
+   {
+    "name": "오산공군기지",
+    "evidence": "평택시 송탄(신장동·서탄면 일대)에 있는 한미 공군 기지, 정문이 신장동 쇼핑몰 거리 앞",
+    "url": "https://www.wikiwand.com/ko/articles/%EC%98%A4%EC%82%B0_%EA%B3%B5%EA%B5%B0%EA%B8%B0%EC%A7%80"
+   },
+   {
+    "name": "신장1동 행정복지센터",
+    "evidence": "경기도 평택시 신장로90번길 63 (신장동 338-55)",
+    "url": "https://www.114.co.kr/life/public/detail/4968"
+   },
+   {
+    "name": "쇼핑로",
+    "evidence": "신장쇼핑몰 주소 쇼핑로 35 (신장동)",
+    "url": "https://www.kctg.or.kr/tour/touristSiteView.do?tourist_cd=TOURIST_ID00011174"
+   },
+   {
+    "name": "신장로",
+    "evidence": "신장1동 행정복지센터 신장로90번길 63 (신장동)",
+    "url": "https://www.114.co.kr/life/public/detail/4968"
+   }
+  ]
+ },
+ {
+  "code": "4122011300",
+  "slug": "gyeonggi-pyeongtaek-pyeongtaek",
+  "items": [
+   {
+    "name": "평택역",
+    "evidence": "경기도 평택시 평택동에 있는 경부선 철도역, 주소 평택로 51 (위키백과)",
+    "url": "https://ko.wikipedia.org/wiki/%ED%8F%89%ED%83%9D%EC%97%AD"
+   },
+   {
+    "name": "AK플라자 평택점",
+    "evidence": "경기도 평택시 평택로 51 (평택동), 평택역 민자역사",
+    "url": "https://namu.wiki/w/AK%ED%94%8C%EB%9D%BC%EC%9E%90%20%ED%8F%89%ED%83%9D%EC%A0%90"
+   },
+   {
+    "name": "군문교",
+    "evidence": "경기둘레길 코스 안내: 평택시 평택동 215-21(군문교삼거리), 안성천을 건너는 다리, 1930년 평택 최초 콘크리트 다리",
+    "url": "https://www.ggtour.or.kr/dulegil/usr/wap/detail.do?app=24910&seq=10044"
+   },
+   {
+    "name": "평택로",
+    "evidence": "평택역·AK플라자 평택점 주소 평택로 51 (평택동)",
+    "url": "https://ko.wikipedia.org/wiki/%ED%8F%89%ED%83%9D%EC%97%AD"
+   },
+   {
+    "name": "안성천",
+    "evidence": "군문교(평택동 215-21)가 평택동 남쪽에서 안성천을 건너는 다리, 경기둘레길 코스 안내",
+    "url": "https://www.ggtour.or.kr/dulegil/usr/wap/detail.do?app=24910&seq=10044"
+   }
+  ]
+ },
+ {
+  "code": "4122011400",
+  "slug": "gyeonggi-pyeongtaek-tongbok",
+  "items": [
+   {
+    "name": "통복시장",
+    "evidence": "경기도 평택시 통복시장로25번길 10 (통복동 70-29), 1951년 개장 평택 대표 재래시장",
+    "url": "http://bbsj.kr/sijang/market.php?sij_idx=97"
+   },
+   {
+    "name": "통복천",
+    "evidence": "안성천 지류로 통복동과 세교동 사이를 흐름(위키백과 통복동), 통복천 산책로 통복동 11-3~1-10 구간",
+    "url": "https://ko.wikipedia.org/wiki/%ED%86%B5%EB%B3%B5%EB%8F%99"
+   },
+   {
+    "name": "통복동 행정복지센터",
+    "evidence": "평택시 통복동 주민센터 누리집 '찾아오시는 길', 주소 통복시장로48번길 41",
+    "url": "https://www.pyeongtaek.go.kr/csc/tongbok/contents.do?mId=0205000000"
+   },
+   {
+    "name": "통복시장로",
+    "evidence": "통복시장 주소 통복시장로25번길 10 (통복동 70-29)",
+    "url": "http://bbsj.kr/sijang/market.php?sij_idx=97"
+   }
+  ]
+ },
+ {
+  "code": "4122011500",
+  "slug": "gyeonggi-pyeongtaek-gunmun",
+  "items": [
+   {
+    "name": "군문초등학교",
+    "evidence": "평택시 군문동 소재 초등학교(학교 정보 사이트 '군문초등학교 (군문동)')",
+    "url": "https://academydatainfo.com/school_main/school_view?school_code=J10&school_name=%EA%B5%B0%EB%AC%B8%EC%B4%88%EB%93%B1%ED%95%99%EA%B5%90&standard_school_code=7631066&seq=227038"
+   },
+   {
+    "name": "군문주공1단지",
+    "evidence": "경기도 평택시 원평로25번길 63 (군문동 370)",
+    "url": "https://zippoom.com/%EB%B6%80%EB%8F%99%EC%82%B0/%EA%B2%BD%EA%B8%B0-%ED%8F%89%ED%83%9D%EC%8B%9C-%EA%B5%B0%EB%AC%B8%EB%8F%99-%EA%B5%B0%EB%AC%B8%EC%A3%BC%EA%B3%B51%EB%8B%A8%EC%A7%80/e9l5ab"
+   },
+   {
+    "name": "평택군문2단지주공",
+    "evidence": "호갱노노 '군문동 평택군문2단지주공' 단지 정보",
+    "url": "https://hogangnono.com/apt/5Eccf"
+   },
+   {
+    "name": "원평로",
+    "evidence": "군문주공1단지 원평로25번길 63 (군문동 370)",
+    "url": "https://zippoom.com/%EB%B6%80%EB%8F%99%EC%82%B0/%EA%B2%BD%EA%B8%B0-%ED%8F%89%ED%83%9D%EC%8B%9C-%EA%B5%B0%EB%AC%B8%EB%8F%99-%EA%B5%B0%EB%AC%B8%EC%A3%BC%EA%B3%B51%EB%8B%A8%EC%A7%80/e9l5ab"
+   }
+  ]
+ }
+]
