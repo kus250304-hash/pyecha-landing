@@ -32,6 +32,8 @@ SITE_CONFIG_PATH = ROOT / "data" / "site_config.json"
 SITEMAP_PATH = ROOT / "sitemap.xml"
 
 PROMISE_RE = re.compile(r"보장|무조건|100%|1위|최저가")
+# 대표번호 1600-6011 은 문자 수신이 안 된다(2026-10-01). 문자 버튼은 site_config.json 의 sms_number(휴대폰)로만
+NO_SMS_RE = re.compile(r'href="sms:1600-?6011')
 PLACEHOLDER_RE = re.compile(r"\{\{\w+\}\}")
 SLUG_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)+$")
 REQUIRED = [
@@ -196,7 +198,7 @@ GU_REQUIRED = [
 ]
 AMOUNT_RE = re.compile(r"\d[\d,.]*\s*(원|만원|만 원|천원|억)|₩|견적가|매입가")
 # 구 페이지 제목은 고정 틀 하나(2026-10-01, docs/roadmap.md 1절)
-GU_TITLE_RE = re.compile(r"<title>(.+?) 폐차장 · 폐차 \| 당일말소 · 수출 비교 · 조기폐차 안내 \| 전화 1600-6011</title>")
+GU_TITLE_RE = re.compile(r"<title>(.+?) 폐차장 · 폐차 \| 당일 말소 가능 · 수출 비교 · 조기폐차 안내 \| 전화 1600-6011</title>")
 GU_UPDATED_RE = re.compile(r'<p class="updated">최종 업데이트: \d{4}년 \d{1,2}월 \d{1,2}일</p>')
 # 단정 표현·가짜 숫자 (구 페이지 전체)
 GU_BAN_RE = re.compile(r"최고가|1등|최대(?!한)|실시간\s*접수|접수\s*\d+\s*건")
@@ -229,8 +231,10 @@ def check_gu_pages(cfg: dict, sitemap: str, all_sidos: set[str]) -> list[str]:
             problems.append(f"{tag}: 결과 약속 표현 '{m.group(0)}'")
         for m in GU_BAN_RE.finditer(body):
             problems.append(f"{tag}: 단정 표현·가짜 숫자 '{m.group(0)}'")
+        if NO_SMS_RE.search(html):
+            problems.append(f"{tag}: 문자 버튼이 대표번호(1600-6011)로 감 — 문자 수신이 안 되는 번호")
         if not GU_TITLE_RE.search(html):
-            problems.append(f"{tag}: 제목이 고정 틀 '○○ 폐차장 · 폐차 | 당일말소 · 수출 비교 · 조기폐차 안내 | 전화 1600-6011' 과 다름")
+            problems.append(f"{tag}: 제목이 고정 틀 '○○ 폐차장 · 폐차 | 당일 말소 가능 · 수출 비교 · 조기폐차 안내 | 전화 1600-6011' 과 다름")
         if not GU_UPDATED_RE.search(html):
             problems.append(f"{tag}: '최종 업데이트: YYYY년 M월 D일' 줄 없음")
         for m in AMOUNT_RE.finditer(body):
@@ -353,6 +357,8 @@ def main() -> None:
                 errors.append(f"{tag}: {label} 없음")
         if site_cfg.get("sms_number") and 'href="sms:' not in html:
             errors.append(f"{tag}: 문자 링크 없음")
+        if NO_SMS_RE.search(html):
+            errors.append(f"{tag}: 문자 버튼이 대표번호(1600-6011)로 감 — 문자 수신이 안 되는 번호")
         if site_cfg.get("web3forms_access_key"):
             forms = re.findall(r"<form\b[^>]*>.*?</form>", html, flags=re.DOTALL)
             base = site_cfg["site_base_url"].rstrip("/")

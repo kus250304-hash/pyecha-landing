@@ -132,7 +132,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
         v_intro, v_consult, v_close = V.GU_INTRO[i % V.N], V.GU_CONSULT[(i + 2) % V.N], V.GU_CLOSING[(i + 4) % V.N]
 
         # 제목·설명은 고정 틀 하나 (2026-10-01). 단정 표현·가짜 숫자를 넣지 않는다
-        meta_title = f"{title_name} 폐차장 · 폐차 | 당일말소 · 수출 비교 · 조기폐차 안내 | 전화 {phone_disp}"
+        meta_title = f"{title_name} 폐차장 · 폐차 | 당일 말소 가능 · 수출 비교 · 조기폐차 안내 | 전화 {phone_disp}"
         text_part = f" / 문자 {text_disp}" if text_disp else ""
         meta_desc = (f"{title_name} 전 지역 폐차 상담. 폐차 전에 수출과 비교해 유리한 쪽으로 안내합니다. "
                      f"전화 {phone_disp}{text_part}. 금액은 상담 후 확인.")

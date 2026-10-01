@@ -1,0 +1,1353 @@
+{
+ "basis": "주민등록 총인구(외국인 제외)",
+ "as_of": "2026년 8월",
+ "source": "행정안전부 주민등록 인구통계 「행정동별 주민등록 인구 및 세대현황」(jumin.mois.go.kr/statMonth.do)",
+ "fetched_on": "2026-10-01",
+ "rows": [
+  {
+   "sido": "서울특별시",
+   "sigungu": "종로구",
+   "population": 135935
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "중구",
+   "population": 117305
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "용산구",
+   "population": 199459
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "성동구",
+   "population": 274199
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "광진구",
+   "population": 330791
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "동대문구",
+   "population": 353448
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "중랑구",
+   "population": 376504
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "성북구",
+   "population": 421106
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "강북구",
+   "population": 277509
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "도봉구",
+   "population": 297820
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "노원구",
+   "population": 480045
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "은평구",
+   "population": 452626
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "서대문구",
+   "population": 299492
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "마포구",
+   "population": 356008
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "양천구",
+   "population": 420127
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "강서구",
+   "population": 547821
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "구로구",
+   "population": 382302
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "금천구",
+   "population": 222368
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "영등포구",
+   "population": 371420
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "동작구",
+   "population": 371324
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "관악구",
+   "population": 477297
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "서초구",
+   "population": 416928
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "강남구",
+   "population": 552357
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "송파구",
+   "population": 649212
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "강동구",
+   "population": 498222
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "목포시",
+   "population": 198981
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "여수시",
+   "population": 259857
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "순천시",
+   "population": 273399
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "나주시",
+   "population": 116667
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "광양시",
+   "population": 156052
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "동구",
+   "population": 105328
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "서구",
+   "population": 274234
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "남구",
+   "population": 205051
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "북구",
+   "population": 416582
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "광산구",
+   "population": 382763
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "담양군",
+   "population": 43880
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "곡성군",
+   "population": 27686
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "구례군",
+   "population": 24627
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "고흥군",
+   "population": 59011
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "보성군",
+   "population": 38162
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "화순군",
+   "population": 59860
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "장흥군",
+   "population": 33877
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "강진군",
+   "population": 31603
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "해남군",
+   "population": 61883
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "영암군",
+   "population": 49984
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "무안군",
+   "population": 95537
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "함평군",
+   "population": 29753
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "영광군",
+   "population": 53719
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "장성군",
+   "population": 43079
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "완도군",
+   "population": 44071
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "진도군",
+   "population": 27773
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "신안군",
+   "population": 42384
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "중구",
+   "population": 36126
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "서구",
+   "population": 100964
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "동구",
+   "population": 83115
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "영도구",
+   "population": 100170
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "부산진구",
+   "population": 364184
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "동래구",
+   "population": 270512
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "남구",
+   "population": 254960
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "북구",
+   "population": 260069
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "해운대구",
+   "population": 369727
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "사하구",
+   "population": 281184
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "금정구",
+   "population": 205341
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "강서구",
+   "population": 154782
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "연제구",
+   "population": 211603
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "수영구",
+   "population": 169336
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "사상구",
+   "population": 191912
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "기장군",
+   "population": 175482
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "중구",
+   "population": 101894
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "동구",
+   "population": 338699
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "서구",
+   "population": 163319
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "남구",
+   "population": 141722
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "북구",
+   "population": 406214
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "수성구",
+   "population": 407570
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "달서구",
+   "population": 512577
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "달성군",
+   "population": 251789
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "군위군",
+   "population": 22493
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "제물포구",
+   "population": 99217
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "영종구",
+   "population": 138659
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "미추홀구",
+   "population": 419123
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "연수구",
+   "population": 410369
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "남동구",
+   "population": 478603
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "부평구",
+   "population": 487282
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "계양구",
+   "population": 275966
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "서해구",
+   "population": 392072
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "검단구",
+   "population": 276078
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "강화군",
+   "population": 69541
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "옹진군",
+   "population": 19275
+  },
+  {
+   "sido": "대전광역시",
+   "sigungu": "동구",
+   "population": 217981
+  },
+  {
+   "sido": "대전광역시",
+   "sigungu": "중구",
+   "population": 223664
+  },
+  {
+   "sido": "대전광역시",
+   "sigungu": "서구",
+   "population": 464238
+  },
+  {
+   "sido": "대전광역시",
+   "sigungu": "유성구",
+   "population": 373361
+  },
+  {
+   "sido": "대전광역시",
+   "sigungu": "대덕구",
+   "population": 163594
+  },
+  {
+   "sido": "울산광역시",
+   "sigungu": "중구",
+   "population": 202545
+  },
+  {
+   "sido": "울산광역시",
+   "sigungu": "남구",
+   "population": 304655
+  },
+  {
+   "sido": "울산광역시",
+   "sigungu": "동구",
+   "population": 147440
+  },
+  {
+   "sido": "울산광역시",
+   "sigungu": "북구",
+   "population": 213391
+  },
+  {
+   "sido": "울산광역시",
+   "sigungu": "울주군",
+   "population": 218342
+  },
+  {
+   "sido": "세종특별자치시",
+   "sigungu": "",
+   "population": 390738
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "수원시",
+   "population": 1185677
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "수원시 장안구",
+   "population": 269717
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "수원시 권선구",
+   "population": 360795
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "수원시 팔달구",
+   "population": 193282
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "수원시 영통구",
+   "population": 361883
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "성남시",
+   "population": 899806
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "성남시 수정구",
+   "population": 234948
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "성남시 중원구",
+   "population": 198233
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "성남시 분당구",
+   "population": 466625
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "의정부시",
+   "population": 461977
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "안양시",
+   "population": 562007
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "안양시 만안구",
+   "population": 234085
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "안양시 동안구",
+   "population": 327922
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "부천시",
+   "population": 754159
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "부천시 원미구",
+   "population": 381864
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "부천시 소사구",
+   "population": 223777
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "부천시 오정구",
+   "population": 148518
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "광명시",
+   "population": 303641
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "평택시",
+   "population": 622663
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "동두천시",
+   "population": 86168
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "안산시",
+   "population": 608487
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "안산시 상록구",
+   "population": 320360
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "안산시 단원구",
+   "population": 288127
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "고양시",
+   "population": 1056589
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "고양시 덕양구",
+   "population": 482470
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "고양시 일산동구",
+   "population": 298091
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "고양시 일산서구",
+   "population": 276028
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "과천시",
+   "population": 81107
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "구리시",
+   "population": 188134
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "남양주시",
+   "population": 727158
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "오산시",
+   "population": 255303
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "시흥시",
+   "population": 515337
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "군포시",
+   "population": 249066
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "의왕시",
+   "population": 166540
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "하남시",
+   "population": 327389
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "용인시",
+   "population": 1091437
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "용인시 처인구",
+   "population": 288583
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "용인시 기흥구",
+   "population": 434133
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "용인시 수지구",
+   "population": 368721
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "파주시",
+   "population": 535692
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "이천시",
+   "population": 227032
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "안성시",
+   "population": 199484
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "김포시",
+   "population": 483679
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "화성시",
+   "population": 1000464
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "화성시 만세구",
+   "population": 234222
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "화성시 효행구",
+   "population": 160959
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "화성시 병점구",
+   "population": 175182
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "화성시 동탄구",
+   "population": 430101
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "광주시",
+   "population": 401246
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "양주시",
+   "population": 297605
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "포천시",
+   "population": 140397
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "여주시",
+   "population": 113348
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "연천군",
+   "population": 43143
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "가평군",
+   "population": 62046
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "양평군",
+   "population": 127137
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "춘천시",
+   "population": 284783
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "원주시",
+   "population": 365379
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "강릉시",
+   "population": 205440
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "동해시",
+   "population": 85534
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "태백시",
+   "population": 36680
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "속초시",
+   "population": 78788
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "삼척시",
+   "population": 60041
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "홍천군",
+   "population": 65817
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "횡성군",
+   "population": 45465
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "영월군",
+   "population": 35651
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "평창군",
+   "population": 39849
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "정선군",
+   "population": 35137
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "철원군",
+   "population": 39598
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "화천군",
+   "population": 22908
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "양구군",
+   "population": 20354
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "인제군",
+   "population": 30692
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "고성군",
+   "population": 27196
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "양양군",
+   "population": 27350
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "청주시",
+   "population": 860215
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "청주시 상당구",
+   "population": 192578
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "청주시 서원구",
+   "population": 187612
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "청주시 흥덕구",
+   "population": 294300
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "청주시 청원구",
+   "population": 185725
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "충주시",
+   "population": 205691
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "제천시",
+   "population": 127898
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "보은군",
+   "population": 31549
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "옥천군",
+   "population": 50730
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "영동군",
+   "population": 43089
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "증평군",
+   "population": 36777
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "진천군",
+   "population": 85649
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "괴산군",
+   "population": 37174
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "음성군",
+   "population": 96114
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "단양군",
+   "population": 26481
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "천안시",
+   "population": 666584
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "천안시 동남구",
+   "population": 263872
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "천안시 서북구",
+   "population": 402712
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "공주시",
+   "population": 99481
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "보령시",
+   "population": 91035
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "아산시",
+   "population": 365299
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "서산시",
+   "population": 170780
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "논산시",
+   "population": 105655
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "계룡시",
+   "population": 45937
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "당진시",
+   "population": 172423
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "금산군",
+   "population": 48749
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "부여군",
+   "population": 57591
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "서천군",
+   "population": 46589
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "청양군",
+   "population": 30010
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "홍성군",
+   "population": 101814
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "예산군",
+   "population": 78133
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "태안군",
+   "population": 58858
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "전주시",
+   "population": 618908
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "전주시 완산구",
+   "population": 312490
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "전주시 덕진구",
+   "population": 306418
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "군산시",
+   "population": 255517
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "익산시",
+   "population": 266639
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "정읍시",
+   "population": 100580
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "남원시",
+   "population": 73604
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "김제시",
+   "population": 81585
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "완주군",
+   "population": 100642
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "진안군",
+   "population": 24930
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "무주군",
+   "population": 23455
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "장수군",
+   "population": 21184
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "임실군",
+   "population": 25290
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "순창군",
+   "population": 27654
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "고창군",
+   "population": 50025
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "부안군",
+   "population": 46952
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "포항시",
+   "population": 486930
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "포항시 남구",
+   "population": 211051
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "포항시 북구",
+   "population": 275879
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "경주시",
+   "population": 242512
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "김천시",
+   "population": 132433
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "안동시",
+   "population": 151343
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "구미시",
+   "population": 402596
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "영주시",
+   "population": 96237
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "영천시",
+   "population": 93605
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "상주시",
+   "population": 88920
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "문경시",
+   "population": 64657
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "경산시",
+   "population": 263020
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "의성군",
+   "population": 47879
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "청송군",
+   "population": 24560
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "영양군",
+   "population": 15956
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "영덕군",
+   "population": 32511
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "청도군",
+   "population": 39988
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "고령군",
+   "population": 29429
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "성주군",
+   "population": 40293
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "칠곡군",
+   "population": 103426
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "예천군",
+   "population": 53275
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "봉화군",
+   "population": 28041
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "울진군",
+   "population": 46319
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "울릉군",
+   "population": 8747
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "창원시",
+   "population": 985013
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "창원시 의창구",
+   "population": 209833
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "창원시 성산구",
+   "population": 244872
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "창원시 마산합포구",
+   "population": 174168
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "창원시 마산회원구",
+   "population": 173677
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "창원시 진해구",
+   "population": 182463
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "진주시",
+   "population": 334017
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "통영시",
+   "population": 115975
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "사천시",
+   "population": 107796
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "김해시",
+   "population": 532854
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "밀양시",
+   "population": 98305
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "거제시",
+   "population": 228774
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "양산시",
+   "population": 361044
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "의령군",
+   "population": 24518
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "함안군",
+   "population": 56655
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "창녕군",
+   "population": 54173
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "고성군",
+   "population": 46712
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "남해군",
+   "population": 41073
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "하동군",
+   "population": 39565
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "산청군",
+   "population": 32628
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "함양군",
+   "population": 35074
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "거창군",
+   "population": 58737
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "합천군",
+   "population": 38732
+  },
+  {
+   "sido": "제주특별자치도",
+   "sigungu": "제주시",
+   "population": 484149
+  },
+  {
+   "sido": "제주특별자치도",
+   "sigungu": "서귀포시",
+   "population": 178532
+  }
+ ]
+}
