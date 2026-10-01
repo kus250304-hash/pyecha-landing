@@ -1,5 +1,7 @@
 {
   "_comment": "자동 생성 루틴 설정. daily_count 숫자만 바꾸면 하루 생성 개수가 바뀝니다(루틴 프롬프트는 건드릴 필요 없음). include_myeon 을 true 로 하면 면(面) 단위도 생성 대상에 넣습니다.",
   "daily_count": 30,
+  "gu_daily_count": 10,
+  "_gu_comment": "구 페이지(/gu/) 하루 개수. 순서는 동 페이지와 같은 추정 노후 자가용 대수 순(scripts/pick_next_gu.py).",
   "include_myeon": false
 }

@@ -44,6 +44,12 @@ REQUIRED = [
     ("실제 출장 방문이 가능한 지역", "서비스 가능 지역 문구"),
     ('rel="canonical"', "canonical"),
     ('"FAQPage"', "FAQ 구조화 데이터"),
+    # 2026-10-01: 상단 고정 메뉴 4개(같은 페이지 안 이동)와 그 목적지
+    ('class="topnav"', "상단 고정 메뉴"),
+    ('href="#process">진행 순서</a>', "메뉴 '진행 순서'"),
+    ('id="process"', "진행 순서 칸"),
+    ('id="cases"', "사례 칸"),
+    ('id="channel"', "문의 칸"),
 ]
 SIDO_SHORT = {
     "서울특별시": "서울", "부산광역시": "부산", "대구광역시": "대구", "인천광역시": "인천",
@@ -178,8 +184,22 @@ GU_REQUIRED = [
     ('"FAQPage"', "FAQ 구조화 데이터"),
     ('class="crumbs"', "길 안내 줄"),
     ('id="public-info"', "공공 정보 표"),
+    # 2026-10-01: 상단 고정 메뉴 4개와 그 목적지
+    ('class="topnav"', "상단 고정 메뉴"),
+    ('href="#process">진행 순서</a>', "메뉴 '진행 순서'"),
+    ('href="#faq">자주 묻는 질문</a>', "메뉴 '자주 묻는 질문'"),
+    ('href="#cases">폐차 사례</a>', "메뉴 '폐차 사례'"),
+    ('href="#consult">문의하기</a>', "메뉴 '문의하기'"),
+    ('id="process"', "진행 순서 칸"),
+    ('id="cases"', "폐차 사례 칸"),
+    ('id="consult"', "문의 칸"),
 ]
 AMOUNT_RE = re.compile(r"\d[\d,.]*\s*(원|만원|만 원|천원|억)|₩|견적가|매입가")
+# 구 페이지 제목은 고정 틀 하나(2026-10-01, docs/roadmap.md 1절)
+GU_TITLE_RE = re.compile(r"<title>(.+?) 폐차장 · 폐차 \| 당일말소 · 수출 비교 · 조기폐차 안내 \| 전화 1600-6011</title>")
+GU_UPDATED_RE = re.compile(r'<p class="updated">최종 업데이트: \d{4}년 \d{1,2}월 \d{1,2}일</p>')
+# 단정 표현·가짜 숫자 (구 페이지 전체)
+GU_BAN_RE = re.compile(r"최고가|1등|최대(?!한)|실시간\s*접수|접수\s*\d+\s*건")
 
 
 def check_gu_pages(cfg: dict, sitemap: str, all_sidos: set[str]) -> list[str]:
@@ -207,6 +227,12 @@ def check_gu_pages(cfg: dict, sitemap: str, all_sidos: set[str]) -> list[str]:
         body = re.sub(r"<style>.*?</style>|<script[^>]*>.*?</script>", "", html, flags=re.DOTALL)
         for m in PROMISE_RE.finditer(body):
             problems.append(f"{tag}: 결과 약속 표현 '{m.group(0)}'")
+        for m in GU_BAN_RE.finditer(body):
+            problems.append(f"{tag}: 단정 표현·가짜 숫자 '{m.group(0)}'")
+        if not GU_TITLE_RE.search(html):
+            problems.append(f"{tag}: 제목이 고정 틀 '○○ 폐차장 · 폐차 | 당일말소 · 수출 비교 · 조기폐차 안내 | 전화 1600-6011' 과 다름")
+        if not GU_UPDATED_RE.search(html):
+            problems.append(f"{tag}: '최종 업데이트: YYYY년 M월 D일' 줄 없음")
         for m in AMOUNT_RE.finditer(body):
             problems.append(f"{tag}: 금액 표현 '{m.group(0)}' → …{body[max(0, m.start()-15):m.end()+15]}…")
         for sido in all_sidos - {g["sido"]}:

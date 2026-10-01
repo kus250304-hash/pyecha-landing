@@ -387,9 +387,22 @@ def process_folder(folder: Path, rows: list[dict], page_slugs: dict, used_slugs:
     }
 
 
-def render_case(c: dict, cfg: dict, template: str, region_slug: str | None) -> str:
+def case_meta_title(c: dict, area: str) -> str:
+    """사례 페이지 제목 틀(2026-10-01): "{시군구} {차종} 폐차 사례 | {날짜}". 차종은 메모의 차종 칸(연식 빼고),
+    없으면 "{시군구} 폐차 사례". 날짜가 없는 사례는 날짜를 지어내지 않고 뒷부분을 뺀다."""
+    car = next((v for k, v in c.get("facts") or [] if k == "차종"), "").strip()
+    head = f"{area} {car} 폐차 사례" if car else f"{area} 폐차 사례"
+    if c.get("date"):
+        y, m, d = (int(x) for x in c["date"].split("-"))
+        return f"{head} | {y}년 {m}월 {d}일"
+    return head
+
+
+def render_case(c: dict, cfg: dict, template: str, region_slug: str | None,
+                area: str | None = None, gu_page: str | None = None) -> str:
     base = cfg["site_base_url"].rstrip("/")
     full = " ".join(x for x in (c["sido"], c["sigungu"], c["dong"]) if x)
+    area = area or c["sigungu"] or c["sido"]
     photos_html = "".join(
         f'<figure><img src="images/{esc(name)}" alt="{esc(c["title"])} 사진 {i}" loading="{"eager" if i == 1 else "lazy"}" width="1200" height="900"></figure>'
         for i, name in enumerate(c["photos"], 1)
@@ -407,8 +420,12 @@ def render_case(c: dict, cfg: dict, template: str, region_slug: str | None) -> s
         region_btn = f'<a class="btn btn-quote" href="../pages/{esc(region_slug)}.html" style="background:#fff">{esc(c["dong"])} 폐차 상담 페이지</a>'
     else:
         region_btn = '<a class="btn btn-quote" href="../index.html" style="background:#fff">지역별 상담 페이지 보기</a>'
+    # 이 사례의 구 페이지가 있으면 그쪽으로도 연결한다(구 페이지 "폐차 사례" 칸에도 이 사례가 보임)
+    gu_btn = (f'<a class="btn btn-quote" href="../gu/{esc(gu_page)}.html" style="background:#fff">{esc(area)} 폐차 상담 페이지</a>'
+              if gu_page else "")
     values = {
-        "META_TITLE": esc(f"{c['title']} | 폐차 보상금 vs 수출 시세 비교 · {cfg['phone_display']}"),
+        "META_TITLE": esc(case_meta_title(c, area)),
+        "GU_BUTTON": gu_btn,
         "META_DESC": esc(f"{full}에서 진행한 {c['car']} 사례. {c['summary']} 폐차와 수출 중 유리한 쪽으로 안내. 전화 {cfg['phone_display']}"),
         "CANONICAL": f"{base}/cases/{c['slug']}.html",
         "OG_IMAGE": f"{base}/cases/images/{c['thumb']}",
@@ -440,12 +457,17 @@ def render_all_cases(regions: list[dict], cfg: dict) -> list[str]:
     index = load_json(INDEX_PATH, default=[])
     if not index:
         return []
+    from build_site import GU_DATA, gu_groups, gu_slug, gu_title_names
     template = TEMPLATE_PATH.read_text(encoding="utf-8")
     slugs = {(r["sido"], r["sigungu"], r["dong"]): r["slug"] for r in regions}
+    title_names = gu_title_names(gu_groups(regions))
+    gu_pages = {g["slug"] for g in load_json(GU_DATA, default=[])}
     changed = []
     for c in index:
         out = ROOT / "cases" / f"{c['slug']}.html"
-        text = render_case(c, cfg, template, slugs.get((c["sido"], c["sigungu"], c["dong"])))
+        g = gu_slug(c["sido"], c["sigungu"])
+        text = render_case(c, cfg, template, slugs.get((c["sido"], c["sigungu"], c["dong"])),
+                           area=title_names.get(g), gu_page=g if g in gu_pages else None)
         if not out.exists() or out.read_text(encoding="utf-8") != text:
             out.write_text(text, encoding="utf-8")
             changed.append(f"cases/{c['slug']}.html")

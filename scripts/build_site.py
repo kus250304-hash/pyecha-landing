@@ -98,6 +98,19 @@ def cases_for(r: dict, cases: list[dict], page_map: dict[str, set[str]], n: int 
     return f"{area} 작업 사례", f"{area} 안 가까운 동에서 진행한 실제 사례입니다. 지역은 카드마다 표시됩니다", picked
 
 
+def case_cards_html(picked: list[dict]) -> str:
+    """사례 카드 묶음. 동 페이지와 구 페이지가 같이 쓴다. 사례가 없으면 빈 문자열."""
+    if not picked:
+        return ""
+    return '<div class="cases" data-nosnippet>' + "".join(
+        f'<a class="case" href="../cases/{esc(c["slug"])}.html">'
+        + (f'<img src="../cases/images/{esc(c["thumb"])}" alt="" loading="lazy" width="800" height="600">' if c.get("thumb") else "")
+        + f'<div class="body"><span class="region">{esc((c["sigungu"] or c["sido"]) + " " + c["dong"])} 작업 사례</span>'
+        + f'<h3>{esc(c["title"])}</h3><p>{esc(c.get("summary", ""))}</p></div></a>'
+        for c in picked
+    ) + "</div>"
+
+
 def contact_parts(cfg: dict, dong: str) -> dict:
     """문자·카카오 버튼, 하단 바 두 번째 버튼, 푸터 사업자 줄. 지역 페이지와 사례 페이지가 같이 쓴다."""
     sms = cfg.get("sms_number")
@@ -231,6 +244,13 @@ def gu_groups(regions: list[dict]) -> dict[str, list[dict]]:
     return groups
 
 
+def gu_title_names(groups: dict[str, list[dict]]) -> dict[str, str]:
+    """구 슬러그 → 제목에 쓸 시군구 이름. 같은 이름의 구(중구·동구 …)가 여러 시도에 있으면 시도 줄임 이름을 붙인다(부산 중구)."""
+    names = {slug: rs[0]["sigungu"] or SIDO_SHORT[rs[0]["sido"]] for slug, rs in groups.items()}
+    count = Counter(names.values())
+    return {slug: nm if count[nm] <= 1 else f"{SIDO_SHORT[groups[slug][0]['sido']]} {nm}" for slug, nm in names.items()}
+
+
 def breadcrumb(r: dict, gu_pages: set[str]) -> str:
     """첫 화면 위 길 안내: 서울 › 종로구 › 청운동. 구 페이지가 있으면 구 이름에 링크(세종은 시 이름)."""
     g = gu_slug(r["sido"], r["sigungu"])
@@ -306,16 +326,7 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
 
     # 사례
     c_title, c_sub, picked = cases_for(r, cases, page_map)
-    if picked:
-        cases_html = '<div class="cases" data-nosnippet>' + "".join(
-            f'<a class="case" href="../cases/{esc(c["slug"])}.html">'
-            + (f'<img src="../cases/images/{esc(c["thumb"])}" alt="" loading="lazy" width="800" height="600">' if c.get("thumb") else "")
-            + f'<div class="body"><span class="region">{esc((c["sigungu"] or c["sido"]) + " " + c["dong"])} 작업 사례</span>'
-            + f'<h3>{esc(c["title"])}</h3><p>{esc(c.get("summary", ""))}</p></div></a>'
-            for c in picked
-        ) + "</div>"
-    else:
-        cases_html = ""
+    cases_html = case_cards_html(picked)
 
     meta_title = f"{title_region} 폐차 | 폐차 보상금 vs 수출 시세 비교, 견인비 없음 · {phone_disp}"
     mark = old_mark(r)
@@ -423,9 +434,9 @@ def main() -> None:
 
     # 구 페이지(/gu/)는 동 페이지 목록에 따라 달라지므로 늘 함께 다시 만든다
     from build_gu import render_all as render_gu
-    gu_changed = render_gu(regions, cfg, gu_data, groups)
+    gu_changed = render_gu(regions, cfg, gu_data, groups, cases)
 
-    # 사례 페이지(/cases/)도 동 페이지 목록에 따라 "○○동 상담 페이지" 버튼이 달라지므로 함께 다시 만든다
+    # 사례 페이지(/cases/)도 동·구 페이지 목록에 따라 "○○동 상담 페이지"·"○○구 상담 페이지" 버튼이 달라지므로 함께 다시 만든다
     from build_cases import render_all_cases
     case_changed = render_all_cases(regions, cfg)
 

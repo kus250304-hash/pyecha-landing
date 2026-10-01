@@ -5,6 +5,8 @@
   "phone_tel": "16006011",
   "phone_display": "1600-6011",
   "sms_number": "16006011",
+  "text_reply_display": "010-9926-7779",
+  "_text_reply_comment": "구 페이지 설명(description)에 적는 문자 번호. 고객 문자·사진은 이 휴대폰으로 받는다(2026-10-01).",
   "kakao_channel_url": null,
   "web3forms_access_key": "3882a359-01c7-4afb-b44e-cc2b87b0165b",
   "hours_text": "24시간 상담 가능",

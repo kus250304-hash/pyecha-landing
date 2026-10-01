@@ -16,11 +16,16 @@ gu.json 항목 (확인된 구만 넣는다. 못 채운 구는 넣지 않고 보�
   }
 
 빌더가 막는 것: 동 페이지 3개 미만, 소개에 쓴 랜드마크가 그 구 동 페이지의 확인된 랜드마크가 아님,
-소개에 랜드마크 이름이 없음, FAQ 가 3개가 아님, 공공 정보가 비었거나 출처 주소가 없음, 금액·결과 약속 표현.
+소개에 랜드마크 이름이 없음, FAQ 가 3개가 아님, 공공 정보가 비었거나 출처 주소가 없음, 금액·결과 약속 표현,
+"최고가"·"1등"·"최대"·"실시간 접수" 같은 단정 표현.
+
+제목·설명 틀은 하나로 고정한다(2026-10-01, docs/roadmap.md 1절). 문장 틀 여러 벌(variants.py)은 본문에만 쓴다.
+맨 위 "최종 업데이트" 날짜는 그 페이지 내용이 실제로 바뀐 날(한국 시간)이다. 내용이 그대로면 예전 날짜를 그대로 둔다.
 """
 import json
 import re
 import sys
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -31,7 +36,24 @@ TEMPLATE = ROOT / "templates" / "gu-landing.html"
 DONG_TEMPLATE = ROOT / "templates" / "region-landing-v2.html"
 OUT = ROOT / "gu"
 MIN_DONG_PAGES = 3
-BAN_RE = re.compile(r"보장|무조건|100%|1위|최저가|\d[\d,.]*\s*(원|만원|만 원|천원|억)|₩")
+MAX_CASES = 6
+BAN_RE = re.compile(r"보장|무조건|100%|1위|1등|최저가|최고가|최대(?!한)|실시간\s*접수|\d[\d,.]*\s*(원|만원|만 원|천원|억)|₩")
+KST = timezone(timedelta(hours=9))
+UPDATED_MARK = "\x00UPDATED_ON\x00"
+UPDATED_RE = re.compile(r'(<p class="updated">최종 업데이트: )([^<]*)(</p>)')
+
+
+def date_text(d) -> str:
+    return f"{d.year}년 {d.month}월 {d.day}일"
+
+
+def with_updated_date(new_html: str, old_html: str | None) -> str:
+    """내용(날짜 줄 빼고)이 예전 파일과 같으면 예전 날짜를, 다르면 오늘(한국 시간) 날짜를 넣는다. 날짜만 새로 바꾸지 않는다."""
+    if old_html:
+        m = UPDATED_RE.search(old_html)
+        if m and UPDATED_RE.sub(lambda x: x.group(1) + UPDATED_MARK + x.group(3), old_html, count=1) == new_html:
+            return old_html
+    return new_html.replace(UPDATED_MARK, date_text(datetime.now(KST)))
 
 
 def validate(g: dict, dongs: list[dict]) -> list[str]:
@@ -66,24 +88,31 @@ def validate(g: dict, dongs: list[dict]) -> list[str]:
     return errs
 
 
-def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict[str, list[dict]]) -> list[str]:
+def gu_cases(slug: str, cases: list[dict]) -> list[dict]:
+    """이 구(세종은 시 전체)에서 진행한 사례, 최신순."""
+    from build_site import gu_slug
+    mine = [c for c in cases if gu_slug(c["sido"], c["sigungu"]) == slug]
+    return sorted(mine, key=lambda c: c.get("date") or "", reverse=True)
+
+
+def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict[str, list[dict]],
+               cases: list[dict] | None = None) -> list[str]:
     """gu.json 의 구 페이지를 모두 렌더링하고, 내용이 바뀐 구 슬러그 목록을 돌려준다. 잘못된 항목이 있으면 멈춘다."""
-    from build_site import SIDO_SHORT, breadcrumb, contact_parts, esc  # build_site 가 이 모듈을 부르므로 여기서 가져온다
+    from build_site import SIDO_SHORT, case_cards_html, contact_parts, esc, gu_title_names  # build_site 가 이 모듈을 부르므로 여기서 가져온다
 
     if not gu_data:
         return []
+    cases = cases or []
     template = TEMPLATE.read_text(encoding="utf-8")
     dong_tpl = DONG_TEMPLATE.read_text(encoding="utf-8")
     style = re.search(r"<style>.*?</style>", dong_tpl, flags=re.DOTALL).group(0)
     sprite = re.search(r'<svg width="0" height="0"[^>]*>.*?</svg>', dong_tpl, flags=re.DOTALL).group(0)  # 아이콘 묶음
     base = cfg["site_base_url"].rstrip("/")
     phone_tel, phone_disp = cfg["phone_tel"], cfg["phone_display"]
+    text_disp = cfg.get("text_reply_display") or ""
 
     # 같은 이름의 구(중구·동구 …)가 여러 시도에 있으면 제목에 시도 줄임 이름을 붙인다
-    name_count: dict[str, int] = {}
-    for slug, rs in groups.items():
-        nm = rs[0]["sigungu"] or SIDO_SHORT[rs[0]["sido"]]
-        name_count[nm] = name_count.get(nm, 0) + 1
+    title_names = gu_title_names(groups)
     order = sorted(g["slug"] for g in gu_data)
 
     problems = []
@@ -98,14 +127,22 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
         sido, sigungu = g["sido"], g["sigungu"]
         gu = sigungu or SIDO_SHORT[sido]
         gu_full = " ".join(x for x in (sido, sigungu) if x)
-        title_name = gu if name_count.get(gu, 0) <= 1 else f"{SIDO_SHORT[sido]} {gu}"
+        title_name = title_names.get(g["slug"], gu)
         i = order.index(g["slug"])
         v_intro, v_consult, v_close = V.GU_INTRO[i % V.N], V.GU_CONSULT[(i + 2) % V.N], V.GU_CLOSING[(i + 4) % V.N]
 
-        meta_title = f"{title_name} 폐차 | 폐차 보상금 vs 수출 시세 비교"
-        meta_desc = (f"{gu_full} 폐차 상담 안내. 동별 출장 방문 안내 {len(dongs)}곳과 폐차 전에 알아두면 좋은 공공 정보, "
-                     f"폐차 보상금과 수출 시세 비교 상담. 전화 {phone_disp}")
+        # 제목·설명은 고정 틀 하나 (2026-10-01). 단정 표현·가짜 숫자를 넣지 않는다
+        meta_title = f"{title_name} 폐차장 · 폐차 | 당일말소 · 수출 비교 · 조기폐차 안내 | 전화 {phone_disp}"
+        text_part = f" / 문자 {text_disp}" if text_disp else ""
+        meta_desc = (f"{title_name} 전 지역 폐차 상담. 폐차 전에 수출과 비교해 유리한 쪽으로 안내합니다. "
+                     f"전화 {phone_disp}{text_part}. 금액은 상담 후 확인.")
         canonical = f"{base}/gu/{g['slug']}.html"
+
+        my_cases = gu_cases(g["slug"], cases)
+        if my_cases:
+            cases_sub = f"{gu}에서 진행한 실제 사례입니다. 지역은 카드마다 표시됩니다"
+        else:
+            cases_sub = f"{gu} 사례는 준비 중입니다. 유튜브와 블로그에서 실제 진행 사례를 보실 수 있습니다"
 
         intro_html = f"<p>{esc(g['intro'].strip())}</p>"
         dong_list = "".join(
@@ -143,6 +180,9 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
             "FAQ_HTML": faq_html,
             "INFO_ROWS": info_rows,
             "CHECKED_ON": esc(g.get("checked_on", "")),
+            "UPDATED_ON": UPDATED_MARK,
+            "CASES_SUB": esc(cases_sub),
+            "CASES_HTML": case_cards_html(my_cases[:MAX_CASES]),
             "CONSULT_TEXT": esc(V.fill(v_consult, phone=phone_disp)),
             "CLOSING_H2": esc(V.fill(v_close, gu=gu)).replace("&lt;br&gt;", "<br>"),
             "PHONE_TEL": phone_tel, "PHONE_DISPLAY": phone_disp,
@@ -160,7 +200,9 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
         # 하단 바 칸 비율은 동 페이지 스타일의 {{BAR_COLS}} 자리를 그대로 채운다
         html_text = html_text.replace("{{BAR_COLS}}", contact_parts(cfg, gu)["BAR_COLS"])
         out = OUT / f"{g['slug']}.html"
-        if not out.exists() or out.read_text(encoding="utf-8") != html_text:
+        old_text = out.read_text(encoding="utf-8") if out.exists() else None
+        html_text = with_updated_date(html_text, old_text)
+        if old_text != html_text:
             out.write_text(html_text, encoding="utf-8")
             changed.append(g["slug"])
             print(f"렌더링: gu/{g['slug']}.html")
@@ -170,11 +212,12 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
 
 
 def main() -> None:
-    from build_site import CONFIG, GU_DATA, REGIONS, gu_groups, load_json
+    from build_site import CASES_INDEX, CONFIG, GU_DATA, REGIONS, gu_groups, load_json
     from sitemap_lib import update_sitemap
 
     regions = load_json(REGIONS)
-    changed = render_all(regions, load_json(CONFIG), load_json(GU_DATA, default=[]), gu_groups(regions))
+    changed = render_all(regions, load_json(CONFIG), load_json(GU_DATA, default=[]), gu_groups(regions),
+                         load_json(CASES_INDEX, default=[]))
     update_sitemap(ROOT, [], paths=[f"gu/{g}.html" for g in changed])
     print(f"완료: 구 페이지 {len(changed)}개 변경")
 

@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>종로구 폐차 | 폐차 보상금 vs 수출 시세 비교</title>
-<meta name="description" content="서울특별시 종로구 폐차 상담 안내. 동별 출장 방문 안내 14곳과 폐차 전에 알아두면 좋은 공공 정보, 폐차 보상금과 수출 시세 비교 상담. 전화 1600-6011">
+<title>종로구 폐차장 · 폐차 | 당일말소 · 수출 비교 · 조기폐차 안내 | 전화 1600-6011</title>
+<meta name="description" content="종로구 전 지역 폐차 상담. 폐차 전에 수출과 비교해 유리한 쪽으로 안내합니다. 전화 1600-6011 / 문자 010-9926-7779. 금액은 상담 후 확인.">
 <link rel="canonical" href="https://pyecha119.com/gu/seoul-jongno.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="종로구 폐차 | 폐차 보상금 vs 수출 시세 비교">
-<meta property="og:description" content="서울특별시 종로구 폐차 상담 안내. 동별 출장 방문 안내 14곳과 폐차 전에 알아두면 좋은 공공 정보, 폐차 보상금과 수출 시세 비교 상담. 전화 1600-6011">
+<meta property="og:title" content="종로구 폐차장 · 폐차 | 당일말소 · 수출 비교 · 조기폐차 안내 | 전화 1600-6011">
+<meta property="og:description" content="종로구 전 지역 폐차 상담. 폐차 전에 수출과 비교해 유리한 쪽으로 안내합니다. 전화 1600-6011 / 문자 010-9926-7779. 금액은 상담 후 확인.">
 <meta property="og:url" content="https://pyecha119.com/gu/seoul-jongno.html">
 <meta property="og:locale" content="ko_KR">
 <meta name="theme-color" content="#0E5E63">
@@ -73,6 +73,23 @@
   .btn-ghost { background: var(--teal-tint); color: var(--teal-deep); min-height: 50px; font-size: 16px; }
   .btn-row { display: grid; gap: 10px; }
   @media (min-width: 600px) { .btn-row { grid-template-columns: 1fr 1fr; } .btn { width: auto; } .btn-row .btn { width: 100%; } }
+
+  /* 상단 고정 메뉴 (같은 페이지 안 이동) */
+  .topnav { position: sticky; top: 0; z-index: 40; background: var(--teal-deep); box-shadow: 0 2px 8px rgba(8,62,66,.25); }
+  .topnav .wrap { display: flex; overflow-x: auto; scrollbar-width: none; }
+  .topnav .wrap::-webkit-scrollbar { display: none; }
+  .topnav a { flex: 1 0 auto; text-align: center; color: #fff; text-decoration: none; font-size: 14px; font-weight: 800; padding: 13px 10px; white-space: nowrap; }
+  .topnav a:hover { background: rgba(255,255,255,.10); }
+  section[id], #quote { scroll-margin-top: 56px; }
+  .updated { margin: 0 0 10px; font-size: 12px; opacity: .85; }
+
+  /* 진행 순서 */
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; counter-reset: step; }
+  @media (min-width: 760px) { .steps { grid-template-columns: repeat(4, 1fr); } }
+  .steps li { counter-increment: step; background: var(--card); border-radius: 12px; padding: 16px; box-shadow: 0 2px 10px rgba(23,40,43,.06); }
+  .steps li::before { content: counter(step); display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--teal); color: #fff; font-weight: 800; font-size: 14px; margin-bottom: 8px; }
+  .steps b { display: block; font-size: 16px; margin-bottom: 4px; }
+  .steps span { display: block; color: var(--muted); font-size: 14px; }
 
   /* 히어로 */
   .hero { background: linear-gradient(160deg, var(--teal) 0%, var(--teal-deep) 100%); color: #fff; padding-block: 34px 44px; }
@@ -227,8 +244,11 @@
   <symbol id="i-pin" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M12 21s-6-5.6-6-11a6 6 0 0 1 12 0c0 5.4-6 11-6 11z"/><circle cx="12" cy="10" r="2.2" fill="currentColor"/></symbol>
 </svg>
 
+<nav class="topnav" aria-label="페이지 메뉴"><div class="wrap"><a href="#process">진행 순서</a><a href="#faq">자주 묻는 질문</a><a href="#cases">폐차 사례</a><a href="#consult">문의하기</a></div></nav>
+
 <header class="hero">
   <div class="wrap">
+    <p class="updated">최종 업데이트: 2026년 10월 1일</p>
     <nav class="crumbs" aria-label="지역 경로">서울 › 종로구</nav>
     <span class="badge">서울특별시 종로구 폐차 상담 · 당일 접수</span>
     <h1 class="display">종로구 폐차,<br>폐차 전에 수출과 비교해 보세요</h1>
@@ -251,7 +271,20 @@
     </div>
   </section>
 
-  <section id="dongs">
+  <section id="process">
+    <div class="wrap">
+      <h2 class="sec-title display">진행 순서</h2>
+      <p class="sec-sub">전화 한 통부터 말소까지, 이렇게 진행됩니다</p>
+      <ol class="steps">
+        <li><b>상담</b><span>전화나 문자로 차종·연식·차 상태를 알려주시면 폐차와 수출 중 어느 쪽이 나은지 상담 후 확인해 드립니다.</span></li>
+        <li><b>일정·서류 안내</b><span>방문 날짜를 정하고, 차량 상황에 맞는 서류를 안내해 드립니다.</span></li>
+        <li><b>방문·인수</b><span>협력업체가 약속한 날 차가 있는 곳으로 가서 차를 인수합니다.</span></li>
+        <li><b>말소 처리</b><span>말소 등록을 진행하고 서류를 전달해 드립니다. 차령초과 말소처럼 기간이 더 걸리는 경우는 미리 알려 드립니다.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="dongs" style="background:#fff">
     <div class="wrap">
       <h2 class="sec-title display">종로구 동별 폐차 상담</h2>
       <p class="sec-sub">종로구 안에서 따로 안내하는 동입니다. 차가 있는 동을 누르면 그 동의 방문 안내와 질문을 볼 수 있습니다.</p>
@@ -259,13 +292,34 @@
     </div>
   </section>
 
-  <section id="faq" class="faq" style="background:#fff">
+  <section id="faq" class="faq">
     <div class="wrap">
       <h2 class="sec-title display">종로구에서 자주 묻는 질문</h2>
       <p class="sec-sub">종로구 손님들이 많이 물어보시는 것들입니다</p>
       <details><summary>서촌 한옥 골목 안쪽에 세워 둔 차도 견인할 수 있나요?</summary><p>골목 폭과 경사를 먼저 여쭙고, 좁은 곳이면 작은 견인차를 보내거나 가까운 큰길까지 옮기는 방법을 함께 정합니다. 차 위치 사진을 보내 주시면 상담 후 확인해 드립니다.</p></details>
       <details><summary>종로1가처럼 사무실 건물 지하주차장에 있는 차도 되나요?</summary><p>됩니다. 건물마다 출입 절차와 높이 제한이 달라 관리실 안내를 먼저 확인합니다. 방문 차량을 관리실에 미리 알려 두시면 수월합니다.</p></details>
       <details><summary>경복궁역 주변처럼 관광객과 차가 많은 곳은 언제 방문하나요?</summary><p>사람이 붐비는 시간대를 피해 편한 시간을 여쭤보고 일정을 맞춥니다. 주정차 단속이 잦은 길이라면 차가 서 있는 위치를 미리 알려 주세요.</p></details>
+    </div>
+  </section>
+
+  <section id="cases" style="background:#fff">
+    <div class="wrap">
+      <h2 class="sec-title display">종로구 폐차 사례</h2>
+      <p class="sec-sub">종로구 사례는 준비 중입니다. 유튜브와 블로그에서 실제 진행 사례를 보실 수 있습니다</p>
+      
+      <div class="ext">
+        <div class="yt">
+          <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <h3>영상으로 보는 폐차·수출 현장</h3>
+          <p>실제 견인·인수 과정을 영상으로 확인하실 수 있습니다.</p>
+          <a class="btn btn-quote" href="http://www.youtube.com/@pecha-export" target="_blank" rel="noopener noreferrer" style="background:#fff">영상으로 보기</a>
+        </div>
+        <div class="blog">
+          <h3>폐차119 블로그</h3>
+          <p>더 많은 사례와 폐차·수출 이야기를 블로그에서 보실 수 있습니다.</p>
+          <a class="btn btn-quote" href="https://blog.naver.com/abh77790" target="_blank" rel="noopener noreferrer" style="background:#fff;color:#124D2C;border-color:#124D2C">블로그에서 더 많은 사례 보기</a>
+        </div>
+      </div>
     </div>
   </section>
 

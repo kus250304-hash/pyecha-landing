@@ -35,8 +35,11 @@
 <body>
 {{SPRITE}}
 
+<nav class="topnav" aria-label="페이지 메뉴"><div class="wrap"><a href="#process">진행 순서</a><a href="#faq">자주 묻는 질문</a><a href="#cases">폐차 사례</a><a href="#consult">문의하기</a></div></nav>
+
 <header class="hero">
   <div class="wrap">
+    <p class="updated">최종 업데이트: {{UPDATED_ON}}</p>
     {{BREADCRUMB}}
     <span class="badge">{{GU_FULL}} 폐차 상담 · 당일 접수</span>
     <h1 class="display">{{GU}} 폐차,<br>폐차 전에 수출과 비교해 보세요</h1>
@@ -59,7 +62,20 @@
     </div>
   </section>
 
-  <section id="dongs">
+  <section id="process">
+    <div class="wrap">
+      <h2 class="sec-title display">진행 순서</h2>
+      <p class="sec-sub">전화 한 통부터 말소까지, 이렇게 진행됩니다</p>
+      <ol class="steps">
+        <li><b>상담</b><span>전화나 문자로 차종·연식·차 상태를 알려주시면 폐차와 수출 중 어느 쪽이 나은지 상담 후 확인해 드립니다.</span></li>
+        <li><b>일정·서류 안내</b><span>방문 날짜를 정하고, 차량 상황에 맞는 서류를 안내해 드립니다.</span></li>
+        <li><b>방문·인수</b><span>협력업체가 약속한 날 차가 있는 곳으로 가서 차를 인수합니다.</span></li>
+        <li><b>말소 처리</b><span>말소 등록을 진행하고 서류를 전달해 드립니다. 차령초과 말소처럼 기간이 더 걸리는 경우는 미리 알려 드립니다.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="dongs" style="background:#fff">
     <div class="wrap">
       <h2 class="sec-title display">{{GU}} 동별 폐차 상담</h2>
       <p class="sec-sub">{{LIST_SUB}}</p>
@@ -67,11 +83,32 @@
     </div>
   </section>
 
-  <section id="faq" class="faq" style="background:#fff">
+  <section id="faq" class="faq">
     <div class="wrap">
       <h2 class="sec-title display">{{GU}}에서 자주 묻는 질문</h2>
       <p class="sec-sub">{{GU}} 손님들이 많이 물어보시는 것들입니다</p>
       {{FAQ_HTML}}
+    </div>
+  </section>
+
+  <section id="cases" style="background:#fff">
+    <div class="wrap">
+      <h2 class="sec-title display">{{GU}} 폐차 사례</h2>
+      <p class="sec-sub">{{CASES_SUB}}</p>
+      {{CASES_HTML}}
+      <div class="ext">
+        <div class="yt">
+          <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <h3>영상으로 보는 폐차·수출 현장</h3>
+          <p>실제 견인·인수 과정을 영상으로 확인하실 수 있습니다.</p>
+          <a class="btn btn-quote" href="{{YOUTUBE_URL}}" target="_blank" rel="noopener noreferrer" style="background:#fff">영상으로 보기</a>
+        </div>
+        <div class="blog">
+          <h3>폐차119 블로그</h3>
+          <p>더 많은 사례와 폐차·수출 이야기를 블로그에서 보실 수 있습니다.</p>
+          <a class="btn btn-quote" href="{{BLOG_URL}}" target="_blank" rel="noopener noreferrer" style="background:#fff;color:#124D2C;border-color:#124D2C">블로그에서 더 많은 사례 보기</a>
+        </div>
+      </div>
     </div>
   </section>
 
