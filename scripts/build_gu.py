@@ -103,8 +103,8 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
     """gu.json 의 구 페이지를 모두 렌더링한다. 잘못된 항목이 있으면 멈춘다.
     돌려주는 값: (내용이 바뀐 구 페이지 경로, sitemap 에서 뺄 예전 영문 주소 경로) — 둘 다 "gu/…" 형식."""
     # build_site 가 이 모듈을 부르므로 여기서 가져온다
-    from build_site import (SIDO_SHORT, UPDATED_MARK, area_links_html, case_cards_html, contact_parts, esc, gu_file, gu_rel,
-                            gu_title_names, page_jsonld, with_updated_date)
+    from build_site import (SIDO_SHORT, UPDATED_MARK, area_links_html, case_cards_html, contact_parts, esc, form_parts, gu_file,
+                            gu_rel, gu_title_names, page_jsonld, with_updated_date)
 
     if not gu_data:
         return [], []
@@ -113,6 +113,8 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
     dong_tpl = DONG_TEMPLATE.read_text(encoding="utf-8")
     style = re.search(r"<style>.*?</style>", dong_tpl, flags=re.DOTALL).group(0)
     sprite = re.search(r'<svg width="0" height="0"[^>]*>.*?</svg>', dong_tpl, flags=re.DOTALL).group(0)  # 아이콘 묶음
+    # 견적 폼 전화번호 하이픈·Web3Forms 전송 스크립트도 동 페이지 것을 그대로 쓴다
+    script = re.search(r"<script>\s*\(function \(\).*?</script>", dong_tpl, flags=re.DOTALL).group(0)
     base = cfg["site_base_url"].rstrip("/")
     phone_tel, phone_disp = cfg["phone_tel"], cfg["phone_display"]
     text_disp = cfg.get("text_reply_display") or ""
@@ -197,6 +199,8 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
             "PHONE_TEL": phone_tel, "PHONE_DISPLAY": phone_disp,
             "YOUTUBE_URL": esc(cfg["youtube_url"]), "BLOG_URL": esc(cfg["blog_url"]),
             **contact_parts(cfg, gu),
+            **form_parts(cfg, " ".join(x for x in (SIDO_SHORT[sido], sigungu) if x), gu_full),
+            "SCRIPT": script.replace("{{PHONE_DISPLAY}}", phone_disp),
         }
         cleaned = re.sub(r"<!DOCTYPE html>\s*<!--.*?-->", "<!DOCTYPE html>", template, count=1, flags=re.DOTALL)
 

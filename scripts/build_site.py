@@ -125,7 +125,31 @@ def contact_parts(cfg: dict, dong: str) -> dict:
         if b.get(key):
             parts.append(f"{label} {esc(b[key])}")
     footer_biz = (" · ".join(parts) + "<br>") if parts else ""
-    return {"SMS_BUTTON": sms_btn, "KAKAO_BUTTON": kakao_btn, "BAR_SECOND": bar_second, "BAR_COLS": bar_cols, "FOOTER_BIZ": footer_biz}
+    # 첫 화면 버튼 두 개: 전화 1600-6011 · 문자 010-9926-7779 (번호를 버튼에 그대로 보인다, 2026-10-01)
+    sms_disp = cfg.get("text_reply_display") or sms
+    hero_btns = ('<div class="btn-row hero-btns">'
+                 f'<a class="btn btn-call" href="tel:{esc(cfg["phone_tel"])}"><svg><use href="#i-phone"/></svg>전화 {esc(cfg["phone_display"])}</a>'
+                 + (f'<a class="btn btn-quote" {sms_href}><svg><use href="#i-chat"/></svg>문자 {esc(sms_disp)}</a>' if sms else "")
+                 + "</div>")
+    return {"SMS_BUTTON": sms_btn, "KAKAO_BUTTON": kakao_btn, "BAR_SECOND": bar_second, "BAR_COLS": bar_cols, "FOOTER_BIZ": footer_biz,
+            "HERO_BUTTONS": hero_btns}
+
+
+def form_parts(cfg: dict, subject_region: str, region_full: str) -> dict:
+    """견적 폼 자리(FORM_ACTION·FORM_METHOD·FORM_HIDDEN·REGION_FULL_NAME). 동·구 페이지가 같이 쓴다.
+    Web3Forms 로 보내고, 받는 메일 제목에 어느 페이지에서 온 문의인지 보이게 한다."""
+    if cfg.get("web3forms_access_key"):
+        base = cfg["site_base_url"].rstrip("/")
+        hidden = (
+            f'<input type="hidden" name="access_key" value="{esc(cfg["web3forms_access_key"])}">'
+            f'<input type="hidden" name="subject" value="{esc("[견적문의] " + subject_region)}">'
+            f'<input type="hidden" name="from_name" value="폐차 견적 폼">'
+            f'<input type="hidden" name="redirect" value="{base}/thanks.html">'
+        )
+        action, method = WEB3FORMS_URL, "POST"
+    else:
+        action, method, hidden = "../thanks.html", "GET", ""
+    return {"FORM_ACTION": action, "FORM_METHOD": method, "FORM_HIDDEN": hidden, "REGION_FULL_NAME": esc(region_full)}
 
 
 WEB3FORMS_URL = "https://api.web3forms.com/submit"
@@ -370,26 +394,8 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
     base = cfg["site_base_url"].rstrip("/")
     phone_tel, phone_disp = cfg["phone_tel"], cfg["phone_display"]
 
-    # 숫자 타일: 실제 수치가 없는 누적 상담 건수는 지어내지 않고 넣지 않는다
-    stats = (
-        '<div class="stat"><span class="num display">당일</span><span class="lbl">접수</span></div>'
-        '<div class="stat"><span class="num display">최고가</span><span class="lbl">도전</span></div>'
-    )
-
     hours = f"<p>전화 응대 {esc(cfg['hours_text'])} · 야간·주말 접수는 문자로 남겨주시면 순서대로 연락드립니다.</p>" if cfg.get("hours_text") else "<p>지금 전화 주시면 순서대로 연결됩니다. 통화가 어려우면 견적 폼으로 남겨주세요.</p>"
 
-    # 폼: Web3Forms 로 전송. 받는 메일 제목에 어느 동 페이지에서 온 문의인지 보이게 한다
-    form_subject = "[견적문의] " + " ".join(x for x in (SIDO_SHORT[r["sido"]], r["sigungu"], r["dong"]) if x)
-    if cfg.get("web3forms_access_key"):
-        form_action, form_method = WEB3FORMS_URL, "POST"
-        form_hidden = (
-            f'<input type="hidden" name="access_key" value="{esc(cfg["web3forms_access_key"])}">'
-            f'<input type="hidden" name="subject" value="{esc(form_subject)}">'
-            f'<input type="hidden" name="from_name" value="폐차 견적 폼">'
-            f'<input type="hidden" name="redirect" value="{base}/thanks.html">'
-        )
-    else:
-        form_action, form_method, form_hidden = "../thanks.html", "GET", ""
 
     # 지역 FAQ
     local_faqs = pick_local_faqs(r)
@@ -439,7 +445,6 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
         "FAQ_JSONLD": json.dumps(faq_ld, ensure_ascii=False),
         "PAGE_JSONLD": page_jsonld(meta_title, canonical),
         "UPDATED_ON": UPDATED_MARK,
-        "REGION_FULL_NAME": esc(full),
         "SIGUNGU_DONG": esc(sigungu_dong),
         "DONG": esc(r["dong"]),
         "H1_REGION": esc(title_region if is_renamed(r) else r["dong"]),
@@ -459,11 +464,8 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
         "SERVICE_INTRO": esc(r["service_intro"]),
         "PHONE_TEL": phone_tel,
         "PHONE_DISPLAY": phone_disp,
-        "STATS_HTML": stats,
         "HOURS_HTML": hours,
-        "FORM_ACTION": form_action,
-        "FORM_METHOD": form_method,
-        "FORM_HIDDEN": form_hidden,
+        **form_parts(cfg, " ".join(x for x in (SIDO_SHORT[r["sido"]], r["sigungu"], r["dong"]) if x), full),
         **contact_parts(cfg, r["dong"]),
         "LOCAL_FAQ_HTML": local_faq_html,
         "AREA_LINKS": area_links_html(regions, list(gu_data), here_dong=r),

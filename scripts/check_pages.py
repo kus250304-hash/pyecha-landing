@@ -59,6 +59,38 @@ REQUIRED = [
     ('id="area-links"', "맨 아래 지역 링크 목록"),
     ('"dateModified": "', "수정 날짜(dateModified)"),
 ]
+# 동·구 페이지 첫 화면·폼·진행 순서에 꼭 있어야 하는 문장(2026-10-01, docs/roadmap.md 1-3절). 템플릿에 고정 글자로 들어 있다
+CORE_SENTENCES = [
+    "폐차 전에 수출 시세와 비교해서 더 높은 쪽으로 안내합니다",
+    "차량 확인하면 먼저 입금하고, 그 다음에 차를 가져갑니다",
+    "다른 곳 견적 받으셨으면 금액 알려주세요. 비교해 드립니다",
+    "차량번호와 연락처만 남기시면 바로 연락드립니다",
+    "견인비 없음",
+    "말소 끝나면 말소증을 문자로 보내드립니다",
+    "압류·저당·상속·대리인 서류도 상담 가능",
+]
+# 동·구 페이지에 쓰지 않는 단정 표현(2026-10-01부터 동 페이지도 "최고가" 금지)
+PAGE_BAN_RE = re.compile(r"최고가|1등|최대(?!한)|실시간\s*접수|접수\s*\d+\s*건|당일\s*지급")
+
+
+def core_problems(html: str) -> list[str]:
+    """핵심 문장이 빠졌는지, 첫 화면 순서(제목 → 핵심 문장 → 전화·문자 버튼 → 폼 → 비교 안내)가 맞는지."""
+    out = [f"핵심 문장 '{s}' 없음" for s in CORE_SENTENCES if s not in html]
+    hero = re.search(r'<header class="hero">.*?</header>', html, flags=re.DOTALL)
+    if not hero:
+        return out + ["첫 화면(hero) 없음"]
+    h = hero.group(0)
+    order = ['<h1 class="display">', '<ul class="core">', '<div class="btn-row hero-btns">', '<form class="quote-form"', 'class="compare-note"']
+    pos = [h.find(x) for x in order]
+    if -1 in pos or pos != sorted(pos):
+        out.append("첫 화면 순서가 '제목 → 핵심 문장 → 전화·문자 버튼 → 폼 → 비교 안내' 가 아님")
+    elif not re.search(r'<h1 class="display">[^<]+ 폐차장 · 폐차</h1>', h):
+        out.append("첫 화면 제목이 '○○ 폐차장 · 폐차' 한 줄이 아님")
+    if 'href="tel:' not in h or 'href="sms:' not in h:
+        out.append("첫 화면에 전화·문자 버튼이 둘 다 있지 않음")
+    return out
+
+
 # 동 페이지 제목 틀 하나(2026-10-01, docs/roadmap.md 1-2절)
 DONG_TITLE_RE = re.compile(r"<title>(.+?) 폐차장 · 폐차 \| 폐차 보상금 vs 수출 비교, 견인비 없음 · 1600-6011</title>")
 UPDATED_LINE_RE = re.compile(r'<p class="updated">최종 업데이트: \d{4}년 \d{1,2}월 \d{1,2}일</p>')
@@ -257,6 +289,21 @@ def check_gu_pages(cfg: dict, sitemap: str, all_sidos: set[str]) -> list[str]:
             problems.append(f"{tag}: 결과 약속 표현 '{m.group(0)}'")
         for m in GU_BAN_RE.finditer(body):
             problems.append(f"{tag}: 단정 표현·가짜 숫자 '{m.group(0)}'")
+        problems += [f"{tag}: {x}" for x in core_problems(html)]
+        base_url = cfg["site_base_url"].rstrip("/")
+        for i, form in enumerate(re.findall(r"<form\b[^>]*>.*?</form>", html, flags=re.DOTALL), 1):
+            if CONSENT_TEXT not in form:
+                problems.append(f"{tag}: 견적 폼 {i}번 버튼 아래에 개인정보처리방침 동의 안내 없음")
+            if cfg.get("web3forms_access_key"):
+                missing = [label for needle, label in (
+                    ('action="https://api.web3forms.com/submit"', "Web3Forms 주소"), ('method="POST"', "POST"),
+                    (f'name="access_key" value="{cfg["web3forms_access_key"]}"', "access_key"),
+                    ('name="subject" value="[견적문의] ', "메일 제목"), (f'name="redirect" value="{base_url}/thanks.html"', "thanks.html 이동"),
+                ) if needle not in form]
+                if missing:
+                    problems.append(f"{tag}: 견적 폼 {i}번에 {', '.join(missing)} 없음 (문의가 전송되지 않음)")
+        if "function formatPhone" not in html:
+            problems.append(f"{tag}: 전화번호 하이픈·폼 전송 스크립트 없음")
         if NO_SMS_RE.search(html):
             problems.append(f"{tag}: 문자 버튼이 대표번호(1600-6011)로 감 — 문자 수신이 안 되는 번호")
         if not GU_TITLE_RE.search(html):
@@ -447,6 +494,14 @@ def main() -> None:
                 errors.append(f"{tag}: 견적 폼이 {len(forms)}개 (2개여야 함)")
         for problem in footer_problems(html, site_cfg):
             errors.append(f"{tag}: {problem}")
+        errors += [f"{tag}: {x}" for x in core_problems(html)]
+        body_nostyle = re.sub(r"<style>.*?</style>|<script[^>]*>.*?</script>", "", html, flags=re.DOTALL)
+        # 지역 칸(#local)의 랜드마크 설명("국내 최대 규모의 호수공원")은 장소 설명이라 '최대'만 봐 준다
+        local_sec = re.search(r'<section id="local".*?</section>', body_nostyle, flags=re.DOTALL)
+        for m in PAGE_BAN_RE.finditer(body_nostyle):
+            if m.group(0).startswith("최대") and local_sec and local_sec.start() <= m.start() < local_sec.end():
+                continue
+            errors.append(f"{tag}: 단정 표현 '{m.group(0)}' → …{body_nostyle[max(0, m.start()-15):m.end()+15]}…")
         if not DONG_TITLE_RE.search(html):
             errors.append(f"{tag}: 제목이 고정 틀 '○○ 폐차장 · 폐차 | 폐차 보상금 vs 수출 비교, 견인비 없음 · 1600-6011' 과 다름")
         if not UPDATED_LINE_RE.search(html):
