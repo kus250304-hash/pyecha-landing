@@ -20,13 +20,17 @@ gu.json 항목 (확인된 구만 넣는다. 못 채운 구는 넣지 않고 보�
 "최고가"·"1등"·"최대"·"실시간 접수" 같은 단정 표현.
 
 제목·설명 틀은 하나로 고정한다(2026-10-01, docs/roadmap.md 1절). 문장 틀 여러 벌(variants.py)은 본문에만 쓴다.
-맨 위 "최종 업데이트" 날짜는 그 페이지 내용이 실제로 바뀐 날(한국 시간)이다. 내용이 그대로면 예전 날짜를 그대로 둔다.
+맨 위 "최종 업데이트" 날짜와 구조화 데이터의 dateModified 는 그 페이지 내용이 실제로 바뀐 날(한국 시간)이다.
+내용이 그대로면 예전 날짜를 그대로 둔다(build_site.with_updated_date).
+
+파일 이름은 한글(2026-10-01): gu/종로구-폐차장.html (build_site.gu_file). gu.json 의 영문 slug 는 데이터 열쇠로만 쓴다.
+예전 영문 주소(gu/<slug>.html)가 저장소에 있는 구는 그 파일을 새 주소로 넘겨주는 자동 이동 페이지로 바꿔 둔다.
 """
 import json
 import re
 import sys
-from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from urllib.parse import quote
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import variants as V
@@ -38,22 +42,21 @@ OUT = ROOT / "gu"
 MIN_DONG_PAGES = 3
 MAX_CASES = 6
 BAN_RE = re.compile(r"보장|무조건|100%|1위|1등|최저가|최고가|최대(?!한)|실시간\s*접수|\d[\d,.]*\s*(원|만원|만 원|천원|억)|₩")
-KST = timezone(timedelta(hours=9))
-UPDATED_MARK = "\x00UPDATED_ON\x00"
-UPDATED_RE = re.compile(r'(<p class="updated">최종 업데이트: )([^<]*)(</p>)')
 
 
-def date_text(d) -> str:
-    return f"{d.year}년 {d.month}월 {d.day}일"
-
-
-def with_updated_date(new_html: str, old_html: str | None) -> str:
-    """내용(날짜 줄 빼고)이 예전 파일과 같으면 예전 날짜를, 다르면 오늘(한국 시간) 날짜를 넣는다. 날짜만 새로 바꾸지 않는다."""
-    if old_html:
-        m = UPDATED_RE.search(old_html)
-        if m and UPDATED_RE.sub(lambda x: x.group(1) + UPDATED_MARK + x.group(3), old_html, count=1) == new_html:
-            return old_html
-    return new_html.replace(UPDATED_MARK, date_text(datetime.now(KST)))
+def redirect_html(gu: str, new_file: str, new_abs: str) -> str:
+    """예전 영문 주소에 남기는 자동 이동 페이지(meta refresh). canonical 은 새 주소."""
+    rel = quote(new_file)
+    return (
+        "<!DOCTYPE html>\n<html lang=\"ko\">\n<head>\n<meta charset=\"utf-8\">\n"
+        f"<title>{gu} 폐차 상담 페이지 주소가 바뀌었습니다</title>\n"
+        f"<link rel=\"canonical\" href=\"{new_abs}\">\n"
+        f"<meta http-equiv=\"refresh\" content=\"0; url={rel}\">\n"
+        f"<script>location.replace(\"{rel}\");</script>\n"
+        "</head>\n<body>\n"
+        f"<p><a href=\"{rel}\">{gu} 폐차 상담 페이지로 이동</a></p>\n"
+        "</body>\n</html>\n"
+    )
 
 
 def validate(g: dict, dongs: list[dict]) -> list[str]:
@@ -96,12 +99,15 @@ def gu_cases(slug: str, cases: list[dict]) -> list[dict]:
 
 
 def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict[str, list[dict]],
-               cases: list[dict] | None = None) -> list[str]:
-    """gu.json 의 구 페이지를 모두 렌더링하고, 내용이 바뀐 구 슬러그 목록을 돌려준다. 잘못된 항목이 있으면 멈춘다."""
-    from build_site import SIDO_SHORT, case_cards_html, contact_parts, esc, gu_title_names  # build_site 가 이 모듈을 부르므로 여기서 가져온다
+               cases: list[dict] | None = None) -> tuple[list[str], list[str]]:
+    """gu.json 의 구 페이지를 모두 렌더링한다. 잘못된 항목이 있으면 멈춘다.
+    돌려주는 값: (내용이 바뀐 구 페이지 경로, sitemap 에서 뺄 예전 영문 주소 경로) — 둘 다 "gu/…" 형식."""
+    # build_site 가 이 모듈을 부르므로 여기서 가져온다
+    from build_site import (SIDO_SHORT, UPDATED_MARK, area_links_html, case_cards_html, contact_parts, esc, gu_file, gu_rel,
+                            gu_title_names, page_jsonld, with_updated_date)
 
     if not gu_data:
-        return []
+        return [], []
     cases = cases or []
     template = TEMPLATE.read_text(encoding="utf-8")
     dong_tpl = DONG_TEMPLATE.read_text(encoding="utf-8")
@@ -117,6 +123,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
 
     problems = []
     changed = []
+    dropped = []
     OUT.mkdir(exist_ok=True)
     for g in gu_data:
         dongs = sorted(groups.get(g["slug"], []), key=lambda r: r["dong"])
@@ -136,7 +143,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
         text_part = f" / 문자 {text_disp}" if text_disp else ""
         meta_desc = (f"{title_name} 전 지역 폐차 상담. 폐차 전에 수출과 비교해 유리한 쪽으로 안내합니다. "
                      f"전화 {phone_disp}{text_part}. 금액은 상담 후 확인.")
-        canonical = f"{base}/gu/{g['slug']}.html"
+        canonical = f"{base}/{gu_rel(sido, sigungu)}"
 
         my_cases = gu_cases(g["slug"], cases)
         if my_cases:
@@ -171,6 +178,8 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
         values = {
             "META_TITLE": esc(meta_title), "META_DESC": esc(meta_desc), "CANONICAL": canonical,
             "JSONLD": json.dumps(jsonld, ensure_ascii=False),
+            "PAGE_JSONLD": page_jsonld(meta_title, canonical),
+            "AREA_LINKS": area_links_html(regions, gu_data, here_gu=g),
             "STYLE": style, "SPRITE": sprite, "BREADCRUMB": crumb_html,
             "GU": esc(gu), "GU_FULL": esc(gu_full), "GU_TOPIC": esc(V.fill("{gu}{은는}", gu=gu)),
             "HERO_SUB": esc(V.fill(v_intro["hero"], gu=gu)),
@@ -199,16 +208,25 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
         html_text = re.sub(r"\{\{(\w+)\}\}", sub, cleaned)
         # 하단 바 칸 비율은 동 페이지 스타일의 {{BAR_COLS}} 자리를 그대로 채운다
         html_text = html_text.replace("{{BAR_COLS}}", contact_parts(cfg, gu)["BAR_COLS"])
-        out = OUT / f"{g['slug']}.html"
+        out = OUT / gu_file(sido, sigungu)
         old_text = out.read_text(encoding="utf-8") if out.exists() else None
         html_text = with_updated_date(html_text, old_text)
         if old_text != html_text:
             out.write_text(html_text, encoding="utf-8")
-            changed.append(g["slug"])
-            print(f"렌더링: gu/{g['slug']}.html")
+            changed.append(gu_rel(sido, sigungu))
+            print(f"렌더링: gu/{out.name}")
+
+        # 예전 영문 주소가 있으면 새 한글 주소로 넘겨주는 페이지로 둔다(sitemap 에서는 뺀다)
+        legacy = OUT / f"{g['slug']}.html"
+        if legacy.exists():
+            stub = redirect_html(esc(gu), out.name, canonical)
+            if legacy.read_text(encoding="utf-8") != stub:
+                legacy.write_text(stub, encoding="utf-8")
+                print(f"자동 이동: gu/{legacy.name} → gu/{out.name}")
+            dropped.append(f"gu/{legacy.name}")
     if problems:
         raise SystemExit("구 페이지를 만들 수 없음:\n  " + "\n  ".join(problems))
-    return changed
+    return changed, dropped
 
 
 def main() -> None:
@@ -216,9 +234,9 @@ def main() -> None:
     from sitemap_lib import update_sitemap
 
     regions = load_json(REGIONS)
-    changed = render_all(regions, load_json(CONFIG), load_json(GU_DATA, default=[]), gu_groups(regions),
-                         load_json(CASES_INDEX, default=[]))
-    update_sitemap(ROOT, [], paths=[f"gu/{g}.html" for g in changed])
+    changed, dropped = render_all(regions, load_json(CONFIG), load_json(GU_DATA, default=[]), gu_groups(regions),
+                                  load_json(CASES_INDEX, default=[]))
+    update_sitemap(ROOT, [], paths=changed, drop=dropped)
     print(f"완료: 구 페이지 {len(changed)}개 변경")
 
 

@@ -10,6 +10,9 @@ index.html의 지역 목록 블록과 헤더의 지역 수만 교체하고 나�
 공통 내용(대표번호·개인정보처리방침·블로그·유튜브 링크)으로 다시 채운다.
 지역·사례 페이지의 footer 는 templates/ 의 템플릿에 들어 있다.
 
+시·도 칸마다 id="sido-<줄임 이름>" 을 달고, 그 시·도의 구 페이지(/gu/) 목록을 맨 위에 넣는다.
+동·구·안내 페이지 맨 아래 "시·도별 폐차 상담" 링크가 이 칸으로 온다(시·도 페이지가 생기기 전까지, 2026-10-01).
+
 배치 생성 스크립트나 build_site.py를 실행한 뒤 이 스크립트를 실행하면 index.html이 최신 상태가 된다.
 """
 import html
@@ -81,7 +84,7 @@ SIDO_ORDER = [
     "경상남도", "제주특별자치도",
 ]
 
-GROUPS_RE = re.compile(r'(?<=</div>\n\n)(      <div class="region-group">.*</div>\n)(?=</main>)', re.DOTALL)
+GROUPS_RE = re.compile(r'(?<=</div>\n\n)(      <div class="region-group"[^>]*>.*</div>\n)(?=</main>)', re.DOTALL)
 COUNT_RE = re.compile(r"(지역별 상담 페이지 \(현재 )\d+(개 지역\))")
 
 
@@ -102,7 +105,23 @@ def collect_regions() -> dict[str, list[tuple[str, str]]]:
     return by_sido
 
 
-def render_groups(by_sido: dict[str, list[tuple[str, str]]]) -> str:
+def collect_gu() -> dict[str, list[tuple[str, str]]]:
+    """시·도 → [(구 이름, 구 페이지 파일)] (data/gu.json 에 있고 파일이 만들어진 구만)."""
+    import sys
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from build_site import gu_file
+    gu_path = ROOT / "data" / "gu.json"
+    by_sido: dict[str, list[tuple[str, str]]] = {}
+    for g in json.loads(gu_path.read_text(encoding="utf-8")) if gu_path.exists() else []:
+        f = gu_file(g["sido"], g["sigungu"])
+        if (ROOT / "gu" / f).exists():
+            by_sido.setdefault(g["sido"], []).append((g["sigungu"] or g["sido"], f))
+    return by_sido
+
+
+def render_groups(by_sido: dict[str, list[tuple[str, str]]], gu_by_sido: dict[str, list[tuple[str, str]]] | None = None) -> str:
+    from build_site import SIDO_SHORT
+    gu_by_sido = gu_by_sido or {}
     blocks = []
     for sido in SIDO_ORDER:
         entries = sorted(by_sido.get(sido, []))
@@ -112,9 +131,13 @@ def render_groups(by_sido: dict[str, list[tuple[str, str]]]) -> str:
             f'        <li><a href="pages/{file_name}">{full_name}</a></li>'
             for full_name, file_name in entries
         )
+        gus = sorted(gu_by_sido.get(sido, []))
+        gu_line = ("        <p class=\"gu-links\">시·군·구 전체 상담: " + " · ".join(
+            f'<a href="gu/{html.escape(f, quote=True)}">{html.escape(name)}</a>' for name, f in gus) + "</p>\n") if gus else ""
         blocks.append(
-            '      <div class="region-group">\n'
+            f'      <div class="region-group" id="sido-{SIDO_SHORT[sido]}">\n'
             f'        <h2>{sido} <span class="count">({len(entries)})</span></h2>\n'
+            f"{gu_line}"
             "        <ul>\n"
             f"{items}\n"
             "        </ul>\n"
@@ -128,7 +151,8 @@ def main() -> None:
     total = sum(len(v) for v in by_sido.values())
 
     text = INDEX_PATH.read_text(encoding="utf-8")
-    text, n_groups = GROUPS_RE.subn(lambda _: render_groups(by_sido), text, count=1)
+    gu_by_sido = collect_gu()
+    text, n_groups = GROUPS_RE.subn(lambda _: render_groups(by_sido, gu_by_sido), text, count=1)
     if n_groups != 1:
         raise ValueError("index.html에서 지역 목록 블록을 찾지 못했습니다")
     text, n_count = COUNT_RE.subn(rf"\g<1>{total}\g<2>", text, count=1)

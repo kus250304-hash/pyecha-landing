@@ -421,7 +421,7 @@ def render_case(c: dict, cfg: dict, template: str, region_slug: str | None,
     else:
         region_btn = '<a class="btn btn-quote" href="../index.html" style="background:#fff">지역별 상담 페이지 보기</a>'
     # 이 사례의 구 페이지가 있으면 그쪽으로도 연결한다(구 페이지 "폐차 사례" 칸에도 이 사례가 보임)
-    gu_btn = (f'<a class="btn btn-quote" href="../gu/{esc(gu_page)}.html" style="background:#fff">{esc(area)} 폐차 상담 페이지</a>'
+    gu_btn = (f'<a class="btn btn-quote" href="../gu/{esc(gu_page)}" style="background:#fff">{esc(area)} 폐차 상담 페이지</a>'
               if gu_page else "")
     values = {
         "META_TITLE": esc(case_meta_title(c, area)),
@@ -457,7 +457,7 @@ def render_all_cases(regions: list[dict], cfg: dict) -> list[str]:
     index = load_json(INDEX_PATH, default=[])
     if not index:
         return []
-    from build_site import GU_DATA, gu_groups, gu_slug, gu_title_names
+    from build_site import GU_DATA, gu_file, gu_groups, gu_slug, gu_title_names
     template = TEMPLATE_PATH.read_text(encoding="utf-8")
     slugs = {(r["sido"], r["sigungu"], r["dong"]): r["slug"] for r in regions}
     title_names = gu_title_names(gu_groups(regions))
@@ -467,7 +467,7 @@ def render_all_cases(regions: list[dict], cfg: dict) -> list[str]:
         out = ROOT / "cases" / f"{c['slug']}.html"
         g = gu_slug(c["sido"], c["sigungu"])
         text = render_case(c, cfg, template, slugs.get((c["sido"], c["sigungu"], c["dong"])),
-                           area=title_names.get(g), gu_page=g if g in gu_pages else None)
+                           area=title_names.get(g), gu_page=gu_file(c["sido"], c["sigungu"]) if g in gu_pages else None)
         if not out.exists() or out.read_text(encoding="utf-8") != text:
             out.write_text(text, encoding="utf-8")
             changed.append(f"cases/{c['slug']}.html")

@@ -29,10 +29,12 @@ def update_sitemap(
     changefreq: str = "monthly",
     priority: str = "0.8",
     paths: list[str] | None = None,
+    drop: list[str] | None = None,
 ) -> Path:
     """root_dir/sitemap.xml 에 root_dir/pages/<slug>.html 각각의 절대 URL을
     추가하거나 lastmod를 갱신한다. paths 로는 "cases/xxx.html" 같은 다른 상대 경로도
-    넣을 수 있다. 사이트 루트(index.html) 엔트리도 항상 보장한다.
+    넣을 수 있다. drop 에 적은 상대 경로(예: 자동 이동 페이지로 바뀐 옛 주소)는 sitemap 에서 뺀다.
+    한글 파일 이름은 %인코딩한 경로로 넘긴다(build_site.gu_rel). 사이트 루트(index.html) 엔트리도 항상 보장한다.
     변경된 sitemap.xml의 경로를 반환한다.
     """
     sitemap_path = root_dir / "sitemap.xml"
@@ -65,6 +67,11 @@ def update_sitemap(
             ET.SubElement(url_el, _tag("changefreq")).text = cf
             ET.SubElement(url_el, _tag("priority")).text = pr
             existing[loc] = url_el
+
+    for rel in drop or []:
+        loc = f"{SITE_BASE_URL}/{rel.lstrip('/')}"
+        if loc in existing:
+            urlset.remove(existing.pop(loc))
 
     upsert(f"{SITE_BASE_URL}/", "weekly", "1.0")
     for slug in slugs:

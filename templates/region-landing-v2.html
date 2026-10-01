@@ -20,6 +20,7 @@
 <meta property="og:locale" content="ko_KR">
 <meta name="theme-color" content="#0E5E63">
 <script type="application/ld+json">{{FAQ_JSONLD}}</script>
+<script type="application/ld+json">{{PAGE_JSONLD}}</script>
 <style>
   @font-face {
     font-family: 'Jalnan';
@@ -87,7 +88,7 @@
   .topnav .wrap::-webkit-scrollbar { display: none; }
   .topnav a { flex: 1 0 auto; text-align: center; color: #fff; text-decoration: none; font-size: 14px; font-weight: 800; padding: 13px 10px; white-space: nowrap; }
   .topnav a:hover { background: rgba(255,255,255,.10); }
-  section[id], #quote { scroll-margin-top: 56px; }
+  section[id], #quote, #area-links { scroll-margin-top: 56px; }
   .updated { margin: 0 0 10px; font-size: 12px; opacity: .85; }
 
   /* 진행 순서 */
@@ -186,6 +187,11 @@
   .neighbors { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
   .neighbors a { background: var(--teal-tint); color: var(--teal-deep); text-decoration: none; padding: 8px 12px; border-radius: 999px; font-size: 14px; font-weight: 700; }
 
+  /* 맨 아래 지역·안내 링크 목록 */
+  .area-links { background: #fff; border-top: 1px solid var(--line); padding: 28px 0 12px; }
+  .area-links h2 { font-size: 16px; margin: 0 0 4px; }
+  .area-links .neighbors { margin-bottom: 20px; }
+
   /* 사례 */
   .cases { display: grid; gap: 14px; }
   @media (min-width: 620px) { .cases { grid-template-columns: 1fr 1fr; } }
@@ -240,10 +246,11 @@
   <symbol id="i-pin" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M12 21s-6-5.6-6-11a6 6 0 0 1 12 0c0 5.4-6 11-6 11z"/><circle cx="12" cy="10" r="2.2" fill="currentColor"/></symbol>
 </svg>
 
-<nav class="topnav" aria-label="페이지 메뉴"><div class="wrap"><a href="#process">진행 순서</a><a href="#faq">자주 묻는 질문</a><a href="#cases">폐차 사례</a><a href="#channel">문의하기</a></div></nav>
+<nav class="topnav" aria-label="페이지 메뉴"><div class="wrap"><a href="#process">진행 순서</a><a href="#faq">자주 묻는 질문</a><a href="#cases">폐차 사례</a><a href="#channel">문의하기</a><a href="../guide/폐차-절차.html">폐차 안내</a></div></nav>
 
 <header class="hero">
   <div class="wrap">
+    <p class="updated">최종 업데이트: {{UPDATED_ON}}</p>
     {{BREADCRUMB}}
     <span class="badge">{{SIGUNGU_DONG}} 폐차 상담 · 당일 접수</span>
     <h1 class="display">{{H1_REGION}} 폐차,<br>폐차보다 수출이 더 받는 차가 있습니다</h1>
@@ -443,10 +450,6 @@
       <div class="faq" style="margin-top:16px">
         {{LOCAL_FAQ_HTML}}
       </div>
-      <div class="local" style="margin-top:16px">
-        <p style="font-weight:800;margin-bottom:4px"><svg style="width:18px;height:18px;vertical-align:-3px;color:var(--teal)"><use href="#i-pin"/></svg> {{NEIGHBOR_TITLE}}</p>
-        <div class="neighbors">{{NEIGHBORS_HTML}}</div>
-      </div>
     </div>
   </section>
 
@@ -498,6 +501,8 @@
   </section>
 
 </main>
+
+{{AREA_LINKS}}
 
 <p class="fine-print">본 서비스는 전국 폐차 협력업체 네트워크와 함께합니다. 차량 상태와 조건에 따라 폐차와 수출 비교매입 중 더 적합한 방법을 안내해 드립니다.</p>
 

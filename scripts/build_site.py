@@ -14,12 +14,15 @@ site_config.json 에서 null 인 값은 해당 요소를 숨기거나 대체 문
   business.*         → 푸터의 사업자 줄 생략
 """
 import argparse
+import csv
 import html
 import json
 import re
 import sys
 from collections import Counter
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from urllib.parse import quote
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from sitemap_lib import update_sitemap
@@ -32,6 +35,7 @@ REGIONS = ROOT / "data" / "regions.json"
 CONFIG = ROOT / "data" / "site_config.json"
 CASES_INDEX = ROOT / "cases" / "index.json"
 GU_DATA = ROOT / "data" / "gu.json"
+LEGAL_DONG_CSV = ROOT / "data" / "legal_dong_list.csv"
 OUT = ROOT / "pages"
 
 LEADING_COMMENT_RE = re.compile(r"<!DOCTYPE html>\s*<!--.*?-->", re.DOTALL)
@@ -57,16 +61,6 @@ def pick_local_faqs(r: dict, n: int = 3) -> list[tuple[str, str]]:
     local = [(q, a) for q, a in r["faqs"] if any(t in q or t in a for t in toks)]
     rest = [qa for qa in r["faqs"] if qa not in local]
     return (local + rest)[:n]
-
-
-def neighbors_for(r: dict, regions: list[dict], n: int = 6) -> tuple[str, list[dict]]:
-    same_gu = [x for x in regions if x["slug"] != r["slug"] and x["sido"] == r["sido"] and x["sigungu"] == r["sigungu"]]
-    if len(same_gu) >= 3:
-        return f"{r['sigungu'] or r['sido']} 다른 지역 폐차 상담", same_gu[:n]
-    same_sido = [x for x in regions if x["slug"] != r["slug"] and x["sido"] == r["sido"] and x not in same_gu]
-    picked = (same_gu + same_sido)[:n]
-    label = f"{r['sigungu'] or r['sido']} 인근 지역 폐차 상담" if same_gu else f"{r['sido']} 다른 지역 폐차 상담"
-    return label, picked
 
 
 def case_page_map(regions: list[dict], cases: list[dict], extra_pages: int) -> dict[str, set[str]]:
@@ -237,6 +231,103 @@ def gu_slug(sido: str, sigungu: str) -> str:
     return "-".join(p for p in parts if p)
 
 
+_SHARED_SIGUNGU: set[str] | None = None
+
+
+def shared_sigungu_names() -> set[str]:
+    """전국 법정동 목록에서 두 시도 이상에 있는 시군구 이름(중구·동구·고성군 …). 우리 페이지 수와 상관없이 정해지므로
+    구 페이지가 새로 생겨도 이미 있는 구 페이지 주소가 바뀌지 않는다."""
+    global _SHARED_SIGUNGU
+    if _SHARED_SIGUNGU is None:
+        sidos: dict[str, set[str]] = {}
+        for row in csv.DictReader(LEGAL_DONG_CSV.open(encoding="utf-8-sig")):
+            if row["시군구"]:
+                sidos.setdefault(row["시군구"], set()).add(row["시도"])
+        _SHARED_SIGUNGU = {name for name, s in sidos.items() if len(s) > 1}
+    return _SHARED_SIGUNGU
+
+
+def gu_file(sido: str, sigungu: str) -> str:
+    """구 페이지 파일 이름(한글, 2026-10-01): 종로구-폐차장.html, 용인시-처인구-폐차장.html, 세종-폐차장.html.
+    같은 이름의 구가 여러 시도에 있으면 시도 줄임 이름을 앞에 붙인다(부산-중구-폐차장.html).
+    gu.json 의 영문 slug 는 데이터 열쇠로 그대로 쓰고, 파일 이름만 이 함수로 정한다."""
+    if not sigungu:
+        name = SIDO_SHORT[sido]
+    elif sigungu in shared_sigungu_names():
+        name = f"{SIDO_SHORT[sido]} {sigungu}"
+    else:
+        name = sigungu
+    return name.replace(" ", "-") + "-폐차장.html"
+
+
+def gu_rel(sido: str, sigungu: str) -> str:
+    """sitemap·canonical 에 쓰는 구 페이지 경로(한글은 %인코딩)."""
+    return "gu/" + quote(gu_file(sido, sigungu))
+
+
+# 최종 업데이트 날짜: 그 페이지 내용이 실제로 바뀐 날(한국 시간). 동·구·안내 페이지가 같이 쓴다
+KST = timezone(timedelta(hours=9))
+UPDATED_MARK = "@@UPDATED_ON@@"
+UPDATED_ISO_MARK = "@@UPDATED_ISO@@"
+UPDATED_RE = re.compile(r'(<p class="updated">최종 업데이트: )([^<]*)(</p>)')
+UPDATED_ISO_RE = re.compile(r'("dateModified": ")(\d{4}-\d{2}-\d{2})(")')
+
+
+def with_updated_date(new_html: str, old_html: str | None) -> str:
+    """내용(날짜 빼고)이 예전 파일과 같으면 예전 파일을 그대로, 다르면 오늘 날짜를 넣는다. 날짜만 새로 바꾸지 않는다."""
+    if old_html:
+        masked = UPDATED_RE.sub(lambda m: m.group(1) + UPDATED_MARK + m.group(3), old_html, count=1)
+        masked = UPDATED_ISO_RE.sub(lambda m: m.group(1) + UPDATED_ISO_MARK + m.group(3), masked)
+        if masked == new_html:
+            return old_html
+    now = datetime.now(KST)
+    return (new_html.replace(UPDATED_MARK, f"{now.year}년 {now.month}월 {now.day}일")
+            .replace(UPDATED_ISO_MARK, now.date().isoformat()))
+
+
+def page_jsonld(name: str, url: str) -> str:
+    """수정 날짜(dateModified)를 담은 WebPage 구조화 데이터. 날짜 자리는 with_updated_date 가 채운다."""
+    return json.dumps({"@context": "https://schema.org", "@type": "WebPage", "name": name, "url": url,
+                       "inLanguage": "ko-KR", "dateModified": UPDATED_ISO_MARK}, ensure_ascii=False)
+
+
+def area_links_html(regions: list[dict], gu_data: list[dict], prefix: str = "../",
+                    here_dong: dict | None = None, here_gu: dict | None = None) -> str:
+    """모든 페이지 맨 아래 지역 링크 목록(2026-10-01).
+    동 페이지: 같은 구의 다른 동 + 그 구 페이지. 구 페이지: 같은 시·도의 다른 구 페이지.
+    모든 페이지: 폐차 안내 5장, 시·도 16개(시·도 페이지가 생기기 전까지는 첫 화면의 그 시·도 칸 — 구 페이지 목록 포함 — 으로 연결)."""
+    from build_guide import GUIDES
+    from build_index import SIDO_ORDER
+    gu_keys = {(g["sido"], g["sigungu"]) for g in gu_data}
+    blocks = []
+
+    def block(title: str, links: list[tuple[str, str]]) -> str:
+        items = "".join(f'<a href="{esc(h)}">{esc(lbl)}</a>' for h, lbl in links)
+        return f'<h2>{esc(title)}</h2><div class="neighbors">{items}</div>'
+
+    if here_dong:
+        r = here_dong
+        label = r["sigungu"] or SIDO_SHORT[r["sido"]]
+        others = sorted((x for x in regions if x["sido"] == r["sido"] and x["sigungu"] == r["sigungu"] and x["slug"] != r["slug"]),
+                        key=lambda x: x["dong"])
+        links = [(f'{prefix}pages/{x["slug"]}.html', f'{x["dong"]} 폐차') for x in others]
+        if (r["sido"], r["sigungu"]) in gu_keys:
+            links.insert(0, (f'{prefix}gu/{gu_file(r["sido"], r["sigungu"])}', f"{label} 전체 폐차 상담"))
+        if links:
+            blocks.append(block(f"{label} 다른 동 폐차 상담", links))
+    if here_gu:
+        g = here_gu
+        others = sorted((x for x in gu_data if x["sido"] == g["sido"] and x["slug"] != g["slug"]), key=lambda x: x["sigungu"])
+        if others:
+            blocks.append(block(f"{SIDO_SHORT[g['sido']]} 다른 시·군·구 폐차 상담",
+                                [(f'{prefix}gu/{gu_file(x["sido"], x["sigungu"])}', f'{x["sigungu"] or SIDO_SHORT[x["sido"]]} 폐차')
+                                 for x in others]))
+    blocks.append(block("폐차 안내", [(f"{prefix}guide/{x['file']}", x["nav"]) for x in GUIDES]))
+    blocks.append(block("시·도별 폐차 상담", [(f"{prefix}index.html#sido-{SIDO_SHORT[s]}", SIDO_SHORT[s]) for s in SIDO_ORDER]))
+    return ('<nav class="area-links" id="area-links" aria-label="지역·안내 바로가기"><div class="wrap">'
+            + "".join(blocks) + "</div></nav>")
+
+
 def gu_groups(regions: list[dict]) -> dict[str, list[dict]]:
     groups: dict[str, list[dict]] = {}
     for r in regions:
@@ -255,7 +346,7 @@ def breadcrumb(r: dict, gu_pages: set[str]) -> str:
     """첫 화면 위 길 안내: 서울 › 종로구 › 청운동. 구 페이지가 있으면 구 이름에 링크(세종은 시 이름)."""
     g = gu_slug(r["sido"], r["sigungu"])
     gu_label = r["sigungu"] or SIDO_SHORT[r["sido"]]
-    gu_html = f'<a href="../gu/{g}.html">{esc(gu_label)}</a>' if g in gu_pages else esc(gu_label)
+    gu_html = f'<a href="../gu/{esc(gu_file(r["sido"], r["sigungu"]))}">{esc(gu_label)}</a>' if g in gu_pages else esc(gu_label)
     items = ([esc(SIDO_SHORT[r["sido"]])] if r["sigungu"] else []) + [gu_html, esc(r["dong"])]
     return '<nav class="crumbs" aria-label="지역 경로">' + " › ".join(items) + "</nav>"
 
@@ -272,7 +363,7 @@ def parts_range(parts: list[str]) -> str:
 
 
 def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template: str, labels: dict, page_map: dict,
-           combo: tuple[int, int, int] = (0, 0, 0), gu_pages: set[str] = frozenset()) -> str:
+           combo: tuple[int, int, int] = (0, 0, 0), gu_pages: set[str] = frozenset(), gu_data: list[dict] = ()) -> str:
     full = " ".join(x for x in (r["sido"], r["sigungu"], r["dong"]) if x)
     sigungu_dong = " ".join(x for x in (r["sigungu"], r["dong"]) if x)
     title_region = labels[r["slug"]]
@@ -318,17 +409,13 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
         ],
     }
 
-    # 이웃 링크
-    n_title, neighbors = neighbors_for(r, regions)
-    neighbors_html = "".join(
-        f'<a href="{esc(x["slug"])}.html">{esc(x["dong"])} 폐차</a>' for x in neighbors
-    )
-
     # 사례
     c_title, c_sub, picked = cases_for(r, cases, page_map)
     cases_html = case_cards_html(picked)
 
-    meta_title = f"{title_region} 폐차 | 폐차 보상금 vs 수출 시세 비교, 견인비 없음 · {phone_disp}"
+    # 제목 틀 하나로 고정 (2026-10-01, docs/roadmap.md 1-2절)
+    meta_title = f"{title_region} 폐차장 · 폐차 | 폐차 보상금 vs 수출 비교, 견인비 없음 · {phone_disp}"
+    canonical = f"{base}/pages/{r['slug']}.html"
     mark = old_mark(r)
     hero_sub = f"{title_region}{mark} {intro['hero']}" if mark else intro["hero"]
     lm_html = f'<span class="landmark">{esc(r["landmark_name"])}</span>'
@@ -348,8 +435,10 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
     values = {
         "META_TITLE": esc(meta_title),
         "META_DESC": esc(meta_desc),
-        "CANONICAL": f"{base}/pages/{r['slug']}.html",
+        "CANONICAL": canonical,
         "FAQ_JSONLD": json.dumps(faq_ld, ensure_ascii=False),
+        "PAGE_JSONLD": page_jsonld(meta_title, canonical),
+        "UPDATED_ON": UPDATED_MARK,
         "REGION_FULL_NAME": esc(full),
         "SIGUNGU_DONG": esc(sigungu_dong),
         "DONG": esc(r["dong"]),
@@ -377,8 +466,7 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
         "FORM_HIDDEN": form_hidden,
         **contact_parts(cfg, r["dong"]),
         "LOCAL_FAQ_HTML": local_faq_html,
-        "NEIGHBOR_TITLE": esc(n_title),
-        "NEIGHBORS_HTML": neighbors_html,
+        "AREA_LINKS": area_links_html(regions, list(gu_data), here_dong=r),
         "CASES_TITLE": esc(c_title),
         "CASES_SUB": esc(c_sub),
         "CASES_HTML": cases_html,
@@ -426,23 +514,30 @@ def main() -> None:
     changed = []
     for r in targets:
         out_path = OUT / f"{r['slug']}.html"
-        html_text = render(r, regions, cfg, cases, template, labels, page_map, combos[r["slug"]], gu_pages)
-        if not out_path.exists() or out_path.read_text(encoding="utf-8") != html_text:
+        old_text = out_path.read_text(encoding="utf-8") if out_path.exists() else None
+        html_text = with_updated_date(
+            render(r, regions, cfg, cases, template, labels, page_map, combos[r["slug"]], gu_pages, gu_data), old_text)
+        if old_text != html_text:
             out_path.write_text(html_text, encoding="utf-8")
             changed.append(r["slug"])
             print(f"렌더링: pages/{r['slug']}.html")
 
     # 구 페이지(/gu/)는 동 페이지 목록에 따라 달라지므로 늘 함께 다시 만든다
     from build_gu import render_all as render_gu
-    gu_changed = render_gu(regions, cfg, gu_data, groups, cases)
+    gu_changed, gu_dropped = render_gu(regions, cfg, gu_data, groups, cases)
+
+    # 공통 안내 페이지(/guide/, 2026-10-01)
+    from build_guide import render_all as render_guides
+    guide_changed = render_guides(regions, cfg, gu_data)
 
     # 사례 페이지(/cases/)도 동·구 페이지 목록에 따라 "○○동 상담 페이지"·"○○구 상담 페이지" 버튼이 달라지므로 함께 다시 만든다
     from build_cases import render_all_cases
     case_changed = render_all_cases(regions, cfg)
 
     # 내용이 실제로 바뀐 페이지만 sitemap 의 수정일을 갱신한다
-    update_sitemap(ROOT, changed, paths=[f"gu/{g}.html" for g in gu_changed] + case_changed)
-    print(f"완료: {len(targets)}개 중 {len(changed)}개 페이지 변경, 구 페이지 {len(gu_changed)}개 변경, sitemap.xml 갱신")
+    update_sitemap(ROOT, changed, paths=gu_changed + guide_changed + case_changed, drop=gu_dropped)
+    print(f"완료: {len(targets)}개 중 {len(changed)}개 페이지 변경, 구 페이지 {len(gu_changed)}개 변경, "
+          f"안내 페이지 {len(guide_changed)}개 변경, sitemap.xml 갱신")
 
 
 if __name__ == "__main__":

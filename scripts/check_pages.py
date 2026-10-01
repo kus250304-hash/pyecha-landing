@@ -23,7 +23,9 @@ import re
 import sys
 from collections import defaultdict
 from pathlib import Path
+from urllib.parse import quote, unquote
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 ROOT = Path(__file__).resolve().parent.parent
 PAGES_DIR = ROOT / "pages"
 REGIONS_PATH = ROOT / "data" / "regions.json"
@@ -50,7 +52,14 @@ REQUIRED = [
     ('id="process"', "진행 순서 칸"),
     ('id="cases"', "사례 칸"),
     ('id="channel"', "문의 칸"),
+    # 2026-10-01: 메뉴의 '폐차 안내'(안내 페이지 첫 장)와 맨 아래 지역·안내 링크 목록, 수정 날짜
+    ('<a href="../guide/', "메뉴 '폐차 안내'"),
+    ('id="area-links"', "맨 아래 지역 링크 목록"),
+    ('"dateModified": "', "수정 날짜(dateModified)"),
 ]
+# 동 페이지 제목 틀 하나(2026-10-01, docs/roadmap.md 1-2절)
+DONG_TITLE_RE = re.compile(r"<title>(.+?) 폐차장 · 폐차 \| 폐차 보상금 vs 수출 비교, 견인비 없음 · 1600-6011</title>")
+UPDATED_LINE_RE = re.compile(r'<p class="updated">최종 업데이트: \d{4}년 \d{1,2}월 \d{1,2}일</p>')
 SIDO_SHORT = {
     "서울특별시": "서울", "부산광역시": "부산", "대구광역시": "대구", "인천광역시": "인천",
     "대전광역시": "대전", "울산광역시": "울산", "세종특별자치시": "세종", "경기도": "경기",
@@ -145,7 +154,7 @@ def check_links(base: str) -> list[str]:
     """사이트 안 링크가 깨졌는지와 옛 주소가 남았는지 본다. 외부 사이트 링크는 확인하지 않는다."""
     problems = []
     files = ([p for p in ROOT.glob("*.html")] + list(PAGES_DIR.glob("*.html")) + list((ROOT / "cases").glob("*.html"))
-             + list((ROOT / "gu").glob("*.html")))
+             + list((ROOT / "gu").glob("*.html")) + list((ROOT / "guide").glob("*.html")))
     for extra in ("sitemap.xml", "robots.txt"):
         if (ROOT / extra).exists():
             files.append(ROOT / extra)
@@ -160,6 +169,7 @@ def check_links(base: str) -> list[str]:
         for url in set(LINK_RE.findall(text)):
             if not url or url.startswith(("tel:", "sms:", "mailto:", "javascript:", "data:")):
                 continue
+            url = unquote(url)  # 한글 파일 이름(구·안내 페이지)은 %인코딩으로 적힐 수 있다
             if url.startswith(base + "/") or url == base:
                 target = ROOT / url[len(base):].lstrip("/")
             elif re.match(r"^[a-z]+://", url):
@@ -193,6 +203,9 @@ GU_REQUIRED = [
     ('id="process"', "진행 순서 칸"),
     ('id="cases"', "폐차 사례 칸"),
     ('id="consult"', "문의 칸"),
+    ('<a href="../guide/', "메뉴 '폐차 안내'"),
+    ('id="area-links"', "맨 아래 지역 링크 목록"),
+    ('"dateModified": "', "수정 날짜(dateModified)"),
 ]
 AMOUNT_RE = re.compile(r"\d[\d,.]*\s*(원|만원|만 원|천원|억)|₩|견적가|매입가")
 # 구 페이지 제목은 고정 틀 하나(2026-10-01, docs/roadmap.md 1절)
@@ -203,19 +216,32 @@ GU_BAN_RE = re.compile(r"최고가|1등|최대(?!한)|실시간\s*접수|접수\
 
 
 def check_gu_pages(cfg: dict, sitemap: str, all_sidos: set[str]) -> list[str]:
-    """구 페이지(gu/): gu.json 과 파일이 맞는지, 필수 문구·footer·금액·결과 약속 표현·다른 시도 이름·sitemap."""
+    """구 페이지(gu/): gu.json 과 파일이 맞는지, 필수 문구·footer·금액·결과 약속 표현·다른 시도 이름·sitemap.
+    파일 이름은 한글(gu/종로구-폐차장.html, build_site.gu_file). 예전 영문 주소(gu/<slug>.html)는 새 주소로 넘기는 자동 이동 페이지만 허용."""
+    from build_site import gu_file
     problems = []
     gu_path = ROOT / "data" / "gu.json"
     gu_data = json.loads(gu_path.read_text(encoding="utf-8")) if gu_path.exists() else []
     want = {g["slug"]: g for g in gu_data}
-    have = {p.stem for p in (ROOT / "gu").glob("*.html")} if (ROOT / "gu").exists() else set()
-    for slug in sorted(have - set(want)):
-        problems.append(f"gu/{slug}.html: data/gu.json 에 없는 구 페이지")
+    files = {slug: gu_file(g["sido"], g["sigungu"]) for slug, g in want.items()}
+    have = {p.name for p in (ROOT / "gu").glob("*.html")} if (ROOT / "gu").exists() else set()
+    base = cfg["site_base_url"].rstrip("/")
+    for name in sorted(have - set(files.values())):
+        slug = name[:-5]
+        if slug in want:  # 예전 영문 주소: 자동 이동 페이지여야 한다
+            text = (ROOT / "gu" / name).read_text(encoding="utf-8")
+            new = quote(files[slug])
+            if f'http-equiv="refresh" content="0; url={new}"' not in text or f'rel="canonical" href="{base}/gu/{new}"' not in text:
+                problems.append(f"gu/{name}: 새 주소 gu/{files[slug]} 로 넘기는 자동 이동 페이지가 아님")
+            if f"/gu/{name}<" in sitemap:
+                problems.append(f"gu/{name}: 자동 이동 페이지가 sitemap.xml 에 남아 있음")
+        else:
+            problems.append(f"gu/{name}: data/gu.json 에 없는 구 페이지")
     for slug, g in want.items():
         tag = f"구 {slug}"
-        f = ROOT / "gu" / f"{slug}.html"
+        f = ROOT / "gu" / files[slug]
         if not f.exists():
-            problems.append(f"{tag}: gu/{slug}.html 없음 (build_site.py 실행 필요)")
+            problems.append(f"{tag}: gu/{files[slug]} 없음 (build_site.py 실행 필요)")
             continue
         html = f.read_text(encoding="utf-8")
         if PLACEHOLDER_RE.search(html):
@@ -240,7 +266,50 @@ def check_gu_pages(cfg: dict, sitemap: str, all_sidos: set[str]) -> list[str]:
                 problems.append(f"{tag}: 다른 시도 이름 '{sido}' 가 있음")
         if html.count('href="../pages/') < 3:
             problems.append(f"{tag}: 동 페이지 링크가 3개 미만")
-        if f"/gu/{slug}.html" not in sitemap:
+        if f"/gu/{quote(files[slug])}<" not in sitemap:
+            problems.append(f"{tag}: sitemap.xml 에 없음")
+    return problems
+
+
+# 단정 표현·금액 (안내 페이지 전체)
+GUIDE_BAN_RE = re.compile(r"보장|무조건|100%|1위|1등|최저가|최고가|최대(?!한)|실시간\s*접수")
+
+
+def check_guide_pages(cfg: dict, sitemap: str) -> list[str]:
+    """공통 안내 페이지(guide/, 2026-10-01): 5장이 다 있는지, 필수 요소·footer·금액·단정 표현·연락처·sitemap."""
+    from build_guide import GUIDES
+    problems = []
+    names = {g["file"] for g in GUIDES}
+    for p in sorted((ROOT / "guide").glob("*.html")) if (ROOT / "guide").exists() else []:
+        if p.name not in names:
+            problems.append(f"guide/{p.name}: build_guide.py 의 GUIDES 에 없는 안내 페이지")
+    contact = f"전화 {cfg['phone_display']}" + (f" / 문자 {cfg['text_reply_display']}" if cfg.get("text_reply_display") else "")
+    for g in GUIDES:
+        tag = f"안내 {g['file']}"
+        f = ROOT / "guide" / g["file"]
+        if not f.exists():
+            problems.append(f"{tag}: 파일 없음 (build_site.py 실행 필요)")
+            continue
+        html = f.read_text(encoding="utf-8")
+        if PLACEHOLDER_RE.search(html):
+            problems.append(f"{tag}: 템플릿 자리 잔여 {PLACEHOLDER_RE.findall(html)[:3]}")
+        for needle, label in (('href="tel:', "전화 링크"), ('class="bar"', "하단 고정 바"), ("협력업체 네트워크와 함께합니다", "협력업체 고지"),
+                              ('rel="canonical"', "canonical"), ('"FAQPage"', "FAQ 구조화 데이터"), ('class="topnav"', "상단 고정 메뉴"),
+                              ('id="area-links"', "맨 아래 지역 링크 목록"), ('"dateModified": "', "수정 날짜(dateModified)"),
+                              (contact, f"연락처 줄 '{contact}'"), ("상담 후 확인", "'상담 후 확인' 문구")):
+            if needle not in html:
+                problems.append(f"{tag}: {label} 없음")
+        if not UPDATED_LINE_RE.search(html):
+            problems.append(f"{tag}: '최종 업데이트: YYYY년 M월 D일' 줄 없음")
+        if re.search(r'href="sms:1600-?6011', html):
+            problems.append(f"{tag}: 문자 버튼이 대표번호(1600-6011)로 감 — 문자 수신이 안 되는 번호")
+        problems += [f"{tag}: {x}" for x in footer_problems(html, cfg)]
+        body = re.sub(r"<style>.*?</style>|<script[^>]*>.*?</script>", "", html, flags=re.DOTALL)
+        for m in GUIDE_BAN_RE.finditer(body):
+            problems.append(f"{tag}: 단정 표현 '{m.group(0)}'")
+        for m in AMOUNT_RE.finditer(body):
+            problems.append(f"{tag}: 금액 표현 '{m.group(0)}' → …{body[max(0, m.start()-15):m.end()+15]}…")
+        if f"/guide/{quote(g['file'])}<" not in sitemap:
             problems.append(f"{tag}: sitemap.xml 에 없음")
     return problems
 
@@ -372,6 +441,10 @@ def main() -> None:
                 errors.append(f"{tag}: 견적 폼이 {len(forms)}개 (2개여야 함)")
         for problem in footer_problems(html, site_cfg):
             errors.append(f"{tag}: {problem}")
+        if not DONG_TITLE_RE.search(html):
+            errors.append(f"{tag}: 제목이 고정 틀 '○○ 폐차장 · 폐차 | 폐차 보상금 vs 수출 비교, 견인비 없음 · 1600-6011' 과 다름")
+        if not UPDATED_LINE_RE.search(html):
+            errors.append(f"{tag}: '최종 업데이트: YYYY년 M월 D일' 줄 없음")
         body = re.sub(r"<style>.*?</style>|<script[^>]*>.*?</script>", "", html, flags=re.DOTALL)
         for m in PROMISE_RE.finditer(body):
             errors.append(f"{tag}: 결과 약속 표현 '{m.group(0)}' → …{body[max(0, m.start()-15):m.end()+15]}…")
@@ -420,6 +493,7 @@ def main() -> None:
         errors.extend(check_links(site_cfg["site_base_url"].rstrip("/")))
         errors.extend(check_site_pages(site_cfg))
         errors.extend(check_gu_pages(site_cfg, sitemap, all_sidos))
+        errors.extend(check_guide_pages(site_cfg, sitemap))
 
     # 첫 화면의 네이버 서치어드바이저 소유확인 태그
     naver = site_cfg.get("naver_site_verification")

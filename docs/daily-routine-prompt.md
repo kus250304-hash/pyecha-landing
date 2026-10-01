@@ -47,13 +47,13 @@ G2. 후보마다 출력된 JSON 뼈대를 docs/roadmap.md 2절과 scripts/build_
    - intro: 2~3문장. 출력된 그 구 동 페이지 랜드마크 중 구를 대표하는 2~3개를 이름 그대로 쓰고, intro_landmarks 에 {"name", "dong_slug"} 로 적는다. 새 장소를 지어내지 않는다.
    - faqs: 질문·답 3쌍. 그 구의 지역 특성(아파트 지하주차장, 산간·섬 견인 거리, 산업단지 등)을 반영해 구마다 다르게 쓴다.
    - public_info: 말소등록 관할 관청, 노후경유차 조기폐차 지원 공고, 시군구 자동차 등록대수 중 WebSearch 로 확인되는 줄만. 줄마다 label·value·source·url(실제 연 출처)을 적는다. 금액은 쓰지 않는다. 확인 못 한 줄은 넣지 않고 dropped_info 에 이유를 적는다.
-   - 제목·설명(title, description)은 빌더가 고정 틀로 만든다. 루틴이 따로 쓰지 않는다.
+   - 제목·설명(title, description)과 파일 이름(한글 gu/{시군구}-폐차장.html)은 빌더가 고정 틀로 만든다. 루틴이 따로 쓰지 않는다.
    - "보장", "무조건", "100%", "1위", "1등", "최고가", "최대", "최저가", "실시간 접수" 같은 단정 표현과 숫자를 지어내는 표현, 다른 시도 이름, 금액은 쓰지 않는다.
 G3. 채울 수 없는 구(공공 정보가 한 줄도 확인되지 않음, 대표 랜드마크를 고를 수 없음 등)는 data/gu.json 에 넣지 않고 data/gu_held.json(목록, 없으면 새로 만듦)에 {"slug", "sido", "sigungu", "reason"(쉬운 말), "held_on": "YYYY-MM-DD"} 로 남긴다. 다음 날 다시 뽑히지 않는다.
 G4. 채운 구를 data/gu.json 목록 끝에 넣고 `python3 scripts/build_site.py` → `python3 scripts/build_index.py` → `python3 scripts/check_pages.py` 를 실행한다(그 구의 동 페이지 길 안내 링크와 사례 연결, sitemap 이 함께 갱신된다). "구 페이지를 만들 수 없음"이나 검사 오류가 나오면 그 구 항목을 고치고 다시 실행한다. 세 번 고쳐도 안 되는 구는 data/gu.json 에서 빼고 G3 처럼 보류한다. check_pages.py 오류 0건이 될 때까지 커밋하지 않는다.
 
 [반영]
-9. 변경된 파일(data/regions.json, data/batches/held/, data/fact_checks/, data/vehicle_stats.json, data/vehicle_stats_old10_est.json, data/vehicle_stats_total.json, pages/, gu/, data/gu.json, data/gu_held.json, cases/, index.html, sitemap.xml)만 커밋한다. 메시지 첫 줄: "Add N region pages (YYYY-MM-DD), held M" (3시 보고가 이 줄을 찾으므로 바꾸지 않는다). 구 페이지를 만들었으면 둘째 줄부터 "Gu pages: K added, J held" 를 적는다. 반영할 지역이 0개이고 보류만 있으면 보류 파일만 커밋한다(다음 날 다시 뽑히지 않게).
+9. 변경된 파일(data/regions.json, data/batches/held/, data/fact_checks/, data/vehicle_stats.json, data/vehicle_stats_old10_est.json, data/vehicle_stats_total.json, pages/, gu/, guide/, data/gu.json, data/gu_held.json, cases/, index.html, sitemap.xml)만 커밋한다. guide/(공통 안내 5장)는 build_site.py 가 맨 아래 지역 링크를 다시 그릴 때만 바뀌며, 루틴이 글을 고치지 않는다. 메시지 첫 줄: "Add N region pages (YYYY-MM-DD), held M" (3시 보고가 이 줄을 찾으므로 바꾸지 않는다). 구 페이지를 만들었으면 둘째 줄부터 "Gu pages: K added, J held" 를 적는다. 반영할 지역이 0개이고 보류만 있으면 보류 파일만 커밋한다(다음 날 다시 뽑히지 않게).
 10. `python3 scripts/publish_gate.py` 를 실행한다.
    - "통과"가 나오면 `git push origin HEAD:main` 으로 main 에 반영한다.
    - "통과 못 함"이 나오거나 push 가 거절되면 main 에는 push 하지 않는다. 대신 `git push -u origin HEAD:auto/failed-$(TZ=Asia/Seoul date +%Y%m%d)` 로 작업을 남기고 실패 이유를 보고한다. 강제 push, 게이트 건너뛰기, 스크립트를 고쳐 통과시키는 것은 금지한다.

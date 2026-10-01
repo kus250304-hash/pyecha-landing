@@ -25,6 +25,7 @@ ALLOWED_PREFIXES = (
     "data/regions.json", "data/batches/held/", "data/fact_checks/",
     "pages/", "cases/", "index.html", "sitemap.xml",
     "gu/", "data/gu.json",  # 구 페이지(2026-09-29 추가)
+    "guide/",  # 공통 안내 페이지(2026-10-01 추가). 맨 아래 지역 링크가 바뀌면 다시 렌더링된다
     "data/gu_held.json",  # 보류한 구 (2026-10-01 추가, 매일 같은 구를 다시 뽑지 않게)
     "data/vehicle_stats.json", "data/vehicle_stats_old10_est.json", "data/vehicle_stats_total.json",  # 우선순위용 등록대수 통계
 )
