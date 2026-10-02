@@ -300,8 +300,13 @@ UPDATED_RE = re.compile(r'(<p class="updated">최종 업데이트: )([^<]*)(</p>
 UPDATED_ISO_RE = re.compile(r'("dateModified": ")(\d{4}-\d{2}-\d{2})(")')
 
 
-def with_updated_date(new_html: str, old_html: str | None) -> str:
-    """내용(날짜 빼고)이 예전 파일과 같으면 예전 파일을 그대로, 다르면 오늘 날짜를 넣는다. 날짜만 새로 바꾸지 않는다."""
+def with_updated_date(new_html: str, old_html: str | None, keep_dates: bool = False) -> str:
+    """내용(날짜 빼고)이 예전 파일과 같으면 예전 파일을 그대로, 다르면 오늘 날짜를 넣는다. 날짜만 새로 바꾸지 않는다.
+    keep_dates(--keep-dates, 오타 수준 수정용)면 내용이 달라도 예전 파일의 날짜를 그대로 쓴다."""
+    if old_html and keep_dates:
+        on, iso = UPDATED_RE.search(old_html), UPDATED_ISO_RE.search(old_html)
+        if on and iso:
+            return new_html.replace(UPDATED_MARK, on.group(2)).replace(UPDATED_ISO_MARK, iso.group(2))
     if old_html:
         masked = UPDATED_RE.sub(lambda m: m.group(1) + UPDATED_MARK + m.group(3), old_html, count=1)
         masked = UPDATED_ISO_RE.sub(lambda m: m.group(1) + UPDATED_ISO_MARK + m.group(3), masked)
@@ -429,9 +434,11 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
     hero_sub = f"{title_region}{mark} {intro['hero']}" if mark else intro["hero"]
     lm_html = f'<span class="landmark">{esc(r["landmark_name"])}</span>'
     # 이름 뒤 조사는 글자로 고르고, 랜드마크 이름만 강조 표시로 바꿔 끼운다
-    lead = V.fill(intro["lead"], dong=r["dong"], lm="\x00")
+    # (fill 에 lm 을 넘기면 자리표시 글자로 조사를 골라 버리므로 {lm} 은 남겨 두고 실제 이름의 받침으로 고른다)
+    lead = V.fill(intro["lead"], dong=r["dong"])
     for pair, (a, b) in (("{을를}", ("을", "를")), ("{이가}", ("이", "가")), ("{은는}", ("은", "는"))):
-        lead = lead.replace("\x00" + pair, "\x00" + V.josa(r["landmark_name"], a, b))
+        lead = lead.replace("{lm}" + pair, "\x00" + V.josa(r["landmark_name"], a, b))
+    lead = lead.replace("{lm}", "\x00")
     lead = esc(lead).replace("\x00", lm_html)
     if not r["landmark_name"]:  # 동 안에서 확인된 장소가 없어 랜드마크를 비워 둔 동(사실 확인 보류)은 첫 문장 없이 설명만 쓴다
         lead = ""
@@ -495,6 +502,7 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", help="쉼표로 구분한 슬러그 목록")
+    ap.add_argument("--keep-dates", action="store_true", help="동 페이지 최종 업데이트·dateModified 를 예전 날짜 그대로 둠(오타 수준 수정용)")
     args = ap.parse_args()
 
     regions = load_json(REGIONS)
@@ -518,15 +526,18 @@ def main() -> None:
         if missing:
             raise SystemExit(f"regions.json 에 없는 슬러그: {sorted(missing)}")
 
-    changed = []
+    changed, created = [], []
     for r in targets:
         out_path = OUT / f"{r['slug']}.html"
         old_text = out_path.read_text(encoding="utf-8") if out_path.exists() else None
         html_text = with_updated_date(
-            render(r, regions, cfg, cases, template, labels, page_map, combos[r["slug"]], gu_pages, gu_data), old_text)
+            render(r, regions, cfg, cases, template, labels, page_map, combos[r["slug"]], gu_pages, gu_data), old_text,
+            keep_dates=args.keep_dates)
         if old_text != html_text:
             out_path.write_text(html_text, encoding="utf-8")
             changed.append(r["slug"])
+            if old_text is None:
+                created.append(r["slug"])
             print(f"렌더링: pages/{r['slug']}.html")
 
     # 구 페이지(/gu/)는 동 페이지 목록에 따라 달라지므로 늘 함께 다시 만든다
@@ -541,8 +552,8 @@ def main() -> None:
     from build_cases import render_all_cases
     case_changed = render_all_cases(regions, cfg)
 
-    # 내용이 실제로 바뀐 페이지만 sitemap 의 수정일을 갱신한다
-    update_sitemap(ROOT, changed, paths=gu_changed + guide_changed + case_changed, drop=gu_dropped)
+    # 내용이 실제로 바뀐 페이지만 sitemap 의 수정일을 갱신한다(--keep-dates 면 새로 만든 동 페이지만 넣고 기존 수정일은 그대로)
+    update_sitemap(ROOT, created if args.keep_dates else changed, paths=gu_changed + guide_changed + case_changed, drop=gu_dropped)
     print(f"완료: {len(targets)}개 중 {len(changed)}개 페이지 변경, 구 페이지 {len(gu_changed)}개 변경, "
           f"안내 페이지 {len(guide_changed)}개 변경, sitemap.xml 갱신")
 

@@ -11,12 +11,14 @@
 - 필수 문구: 소개의 sec 줄은 "실제 출장 방문이 가능한 지역"을 꼭 포함한다(check_pages.py 가 찾음).
 """
 import hashlib
+import re
 
 N = 5  # 칸마다 벌 수
 
 
 def josa(word: str, with_final: str, without_final: str) -> str:
-    """앞 낱말 끝 글자의 받침에 맞춰 은/는, 이/가, 을/를 을 고른다."""
+    """앞 낱말 끝 글자의 받침에 맞춰 은/는, 이/가, 을/를 을 고른다. 끝의 괄호 설명은 빼고 본다(애오개(아현역) → 애오개를)."""
+    word = re.sub(r"\s*\([^()]*\)$", "", word)
     ch = word[-1] if word else "가"
     if "가" <= ch <= "힣":
         return with_final if (ord(ch) - 0xAC00) % 28 else without_final
