@@ -19,6 +19,11 @@ PC(운영자 컴퓨터)에서 돌리는 "사례 가져오기" 도구. 원본 사
   python scripts/pc_cases.py stage cN             cases/input/<폴더>/ 에 사진 + 정리된 메모.txt 를 넣고 검사
   python scripts/pc_cases.py drop cN "<이유>"     이 건은 오늘 쓰지 않음 (원본에 표시하지 않음)
   python scripts/pc_cases.py scan --more          뺀 만큼 새로 고르기 → 다시 prepare (새로 고른 건만 준비)
+  python scripts/pc_cases.py scan --no-dong --n 20  동 없이 시군구까지만 적힌 사례만 고르기
+
+지역이 동 없이 시·군·구까지만 적힌 사례('충주시', '대구 중구')도 그 시군구가 한 곳으로 정해지면 가져온다.
+이런 사례는 동 페이지에는 붙지 않고 구 페이지(/gu/)에만 붙으며, 구 페이지가 아직 없으면 cases/input 에서
+기다렸다가 구 페이지가 생긴 뒤 build_cases.py 가 처리한다. 시·도까지만('서울') 있거나 여러 구와 맞으면('수원시') 건너뛴다.
   (git commit·push 가 끝난 뒤)
   python scripts/pc_cases.py mark                 stage 한 건마다 원본 폴더에 반영됨.txt 를 만든다
   python scripts/pc_cases.py report               오늘 가져온 건 한 줄 요약
@@ -44,7 +49,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from build_cases import (  # noqa: E402
     MAX_PHOTOS, MEMO_NAMES, PHOTO_EXT, check_folder, compose, ensure_pillow, hidden_info,
-    load_csv_rows, parse_memo, read_text_any, resolve_region,
+    gu_page_exists, load_csv_rows, parse_memo, read_text_any, region_label, resolve_region,
 )
 from build_site import load_json  # noqa: E402
 
@@ -125,8 +130,13 @@ def cmd_scan(args) -> None:
             if not photos:
                 skipped.append((rel, "사진 없음"))
                 continue
+            if args.no_dong and region["dong"]:
+                continue
             key = (region["sido"], region["sigungu"], region["dong"])
-            rank = 0 if key in dong_pages else 1 if key[:2] in gu_pages else 2
+            if region["dong"]:
+                rank = 0 if key in dong_pages else 1 if key[:2] in gu_pages else 2
+            else:  # 동 없는 사례(시군구까지만 확인): 구 페이지에만 붙는다. 구 페이지가 없으면 cases/input 에서 기다린다
+                rank = 1 if gu_page_exists(region) else 2
             cands.append({
                 "tier": tier, "tier_i": ti, "rank": rank, "src": str(folder), "rel": rel,
                 "region": region, "car": body["car"], "photos": len(photos),
@@ -147,12 +157,14 @@ def cmd_scan(args) -> None:
     save_state(state)
 
     label = {0: "동 페이지 있음", 1: "같은 시군구 페이지 있음", 2: "붙을 페이지 아직 없음"}
+    gu_label = {1: "동 없음 · 구 페이지 있음", 2: "동 없음 · 구 페이지 대기"}
     print(f"대상 {len(cands)}건 (이미 반영됨 {marked}건, 조건 미달 {len(skipped)}건). 새로 고른 {len(picks)}건:")
     for cid, c in state["picks"].items():
         if c.get("status") != "picked":
             continue
         r = c["region"]
-        print(f"  {cid}: [{c['tier']}] {r['sigungu'] or r['sido']} {r['dong']} · {c['car']} · 사진 {c['photos']}장 · {label[c['rank']]}")
+        lab = label[c["rank"]] if r["dong"] else gu_label[c["rank"]]
+        print(f"  {cid}: [{c['tier']}] {r['sigungu'] or r['sido']} {r['dong']} · {c['car']} · 사진 {c['photos']}장 · {lab}".replace("  ·", " ·"))
     for rel, why in skipped[:15]:
         print(f"  조건 미달: {rel} — {why}")
     if len(skipped) > 15:
@@ -279,7 +291,7 @@ def cmd_stage(args) -> None:
     tag = hashlib.sha1(c["src"].encode("utf-8")).hexdigest()[:6]  # 원본 폴더 이름(고객 이름이 있을 수 있음)은 쓰지 않는다
     if not memo.get("날짜"):
         memo["날짜"] = "미상"  # 날짜를 지어내지 않는다(사례 페이지에 날짜를 표시하지 않음)
-    name = f"{memo['날짜'] if memo['날짜'] != '미상' else 'nodate'}-{r['dong']}-{tag}"
+    name = f"{memo['날짜'] if memo['날짜'] != '미상' else 'nodate'}-{region_label(r).replace(' ', '-')}-{tag}"
     dest = INPUT_DIR / name
     if dest.exists():
         shutil.rmtree(dest)
@@ -295,7 +307,7 @@ def cmd_stage(args) -> None:
         raise SystemExit(f"{args.cid}: 검사 실패 — {why or f'숨은 정보 남음 {bad}'}")
     c["status"], c["input"] = "staged", f"cases/input/{name}"
     save_state(state)
-    print(f"{args.cid}: {c['input']} 준비됨 ({r['sigungu'] or r['sido']} {r['dong']} · {c['car']}, 사진 {len(info['photos'])}장)")
+    print(f"{args.cid}: {c['input']} 준비됨 ({r['sigungu'] or r['sido']} {r['dong']} · {c['car']}, 사진 {len(info['photos'])}장)".replace("  ·", " ·"))
 
 
 def cmd_drop(args) -> None:
@@ -323,11 +335,11 @@ def cmd_mark(args) -> None:
 def cmd_report(args) -> None:
     state = staging_state()
     done = [c for c in state.get("picks", {}).values() if c.get("status") in ("staged", "marked")]
-    items = ", ".join(f"{(c['region']['sigungu'] or c['region']['sido'])} {c['region']['dong']}·{c['car']}" for c in done)
+    items = ", ".join(f"{(c['region']['sigungu'] or c['region']['sido'])} {c['region']['dong']}".strip() + f"·{c['car']}" for c in done)
     print(f"오늘 가져온 사례 {len(done)}건: {items or '없음'}")
     for cid, c in state.get("picks", {}).items():
         if c.get("status") == "dropped":
-            print(f"  뺀 건 {cid}: {c['region']['dong']} · {c['car']} — {c.get('drop_reason')}")
+            print(f"  뺀 건 {cid}: {region_label(c['region'])} · {c['car']} — {c.get('drop_reason')}")
 
 
 def cmd_clean(args) -> None:
@@ -347,6 +359,7 @@ def main() -> None:
     s.add_argument("--src", default=SRC_DEFAULT)
     s.add_argument("--n", type=int, default=3)
     s.add_argument("--more", action="store_true", help="오늘 고른 건은 두고, 뺀 만큼만 더 고른다")
+    s.add_argument("--no-dong", action="store_true", help="동 없이 시군구까지만 적힌 사례만 고른다(밀린 건 한꺼번에 처리할 때)")
     sub.add_parser("prepare")
     for name in ("mask", "stage"):
         sub.add_parser(name).add_argument("cid")

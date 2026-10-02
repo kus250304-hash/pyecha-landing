@@ -16,7 +16,7 @@ pyecha-landing 저장소(kus250304-hash/pyecha-landing)의 지역 폐차 랜딩�
 1. `git fetch origin main` 후 `git checkout -B auto/pages-$(TZ=Asia/Seoul date +%Y%m%d) origin/main` 으로 작업 브랜치를 만든다(로컬 작업용).
 2. `scripts/publish_gate.py` 와 `scripts/fact_check.py` 가 없으면 아무것도 만들지 말고 "새 반영 파이프라인이 main에 없음"이라고만 보고하고 종료한다.
 3. 저장소의 CLAUDE.md를 읽고 '콘텐츠 원칙', '지역 콘텐츠 작성 규칙', '반영 방법', '사실 확인'을 따른다.
-3-1. `python3 scripts/build_cases.py` 를 실행한다. 사례 원본은 운영자 PC 에만 있고, PC 예약 작업(docs/pc-case-import-prompt.md)이 13:40 무렵 가린 사진과 정리된 메모를 cases/input/ 에 올려 둔다(하루 3건까지). 이 루틴은 PC 폴더를 찾거나 읽으려 하지 않는다. 출력의 "사례 생성:" 줄(지역·차종)과 "지역 페이지 N곳에 표시" 줄, "건너뜀" 줄과 이유를 보고용으로 적어 둔다. cases/input 이 비어 있으면 "처리할 사례 없음"이 나오고 넘어간다. 건너뛴 사례가 있어 종료 코드가 1이어도 나머지 단계는 계속한다(건너뛴 폴더는 cases/input 에 그대로 남으니 보고만 한다).
+3-1. `python3 scripts/build_cases.py` 를 실행한다. 사례 원본은 운영자 PC 에만 있고, PC 예약 작업(docs/pc-case-import-prompt.md)이 13:40 무렵 가린 사진과 정리된 메모를 cases/input/ 에 올려 둔다(하루 3건까지). 이 루틴은 PC 폴더를 찾거나 읽으려 하지 않는다. 출력의 "사례 생성:" 줄(지역·차종)과 "지역 페이지 N곳에 표시" 줄, "건너뜀" 줄과 이유, "대기" 줄(동 없이 시군구까지만 적힌 사례로 그 구 페이지가 아직 없어 cases/input 에 남겨 둔 것, 건수만)을 보고용으로 적어 둔다. 대기 사례는 오류가 아니며 구 페이지가 생긴 다음 날 이 단계에서 자동으로 처리된다. cases/input 이 비어 있으면 "처리할 사례 없음"이 나오고 넘어간다. 건너뛴 사례가 있어 종료 코드가 1이어도 나머지 단계는 계속한다(건너뛴 폴더는 cases/input 에 그대로 남으니 보고만 한다).
 
 [우선순위 통계]
 3-2. `python3 scripts/vehicle_stats.py show` 로 지금 쓰는 등록대수 통계를 본다. "통계 없음"이거나 기준 연월이 2개월보다 오래됐으면 `python3 scripts/vehicle_stats.py molit` 을 실행한다(국토교통부 통계누리에서 최신 월 엑셀을 받아 시군구 자가용 × 시도 노후차 비율로 data/vehicle_stats_old10_est.json 저장. openpyxl 이 없으면 `pip install openpyxl` 후 다시 실행). 접속이 끊기면 몇 분 뒤 한 번 더 해 보고, 그래도 안 되면 넘어가고 보고에 적는다. 숫자를 지어내지 않는다.

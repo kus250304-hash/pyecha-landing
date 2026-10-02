@@ -141,9 +141,28 @@ def load_csv_rows() -> list[dict]:
     ]
 
 
+def _narrow(cands: list[dict], tokens: list[str], last: str) -> tuple[list[dict] | None, str]:
+    """시도·시군구 낱말로 후보를 좁힌다. 시군구 이름을 먼저 본다(경기 '광주시'가 시도 줄임 '광주시'로 읽히지 않게)."""
+    for t in tokens:
+        f = [r for r in cands if t in r["sigungu"].split()]
+        if not f and (t in SIDO_ALIASES or t in {r["sido"] for r in cands}):
+            f = [r for r in cands if r["sido"] == SIDO_ALIASES.get(t, t)]
+        if f:
+            cands = f
+        elif t not in OLD_SIGUNGU:
+            return None, f"'{t}' 과 '{last}' 이 함께 있는 곳이 법정동 목록에 없습니다"
+    return cands, ""
+
+
+def _where(cands: list[dict]) -> str:
+    return ", ".join(" ".join(x for x in (r["sido"], r["sigungu"], r["dong"]) if x) for r in cands[:5])
+
+
 def resolve_region(text: str, rows: list[dict]) -> tuple[dict | None, str]:
     """'용인시 처인구 모현읍', '경기 용인시 처인구 모현읍', '서울특별시 강남구 역삼동' 같은 지역 글을
-    법정동 목록의 한 줄로 바꾼다. (결과, 문제 설명) — 결과가 None 이면 설명이 이유."""
+    법정동 목록의 한 줄로 바꾼다. (결과, 문제 설명) — 결과가 None 이면 설명이 이유.
+    동 없이 시·군·구까지만 있으면('충주시', '대구 중구') 그 시군구가 한 곳으로 정해질 때 dong 이 "" 인 결과를 돌려준다
+    (구 페이지에만 붙는 사례, 2026-10-02). 시·도까지만 있거나('서울') 여러 구와 맞으면('수원시') None."""
     tokens = re.sub(r"[,()]", " ", text).split()
     if not tokens:
         return None, "지역이 비어 있습니다"
@@ -151,21 +170,28 @@ def resolve_region(text: str, rows: list[dict]) -> tuple[dict | None, str]:
     cands = [r for r in rows if r["dong"] == dong]
     if not cands and dong.endswith("면"):  # 면 → 읍 승격(예: 모현면 → 모현읍)
         cands = [r for r in rows if r["dong"] == dong[:-1] + "읍"]
-    if not cands:
+    if cands:
+        cands, why = _narrow(cands, tokens[:-1], dong)
+        if cands is None:
+            return None, why
+        if len(cands) > 1:
+            return None, f"'{text}' 이 여러 곳과 맞습니다({_where(cands)}). 시도·시군구를 더 적어 주세요"
+        return cands[0], ""
+    # 동이 없는 지역: 시·군·구 단위로 찾는다
+    gus = list({(r["sido"], r["sigungu"]): {"sido": r["sido"], "sigungu": r["sigungu"], "dong": ""} for r in rows}.values())
+    sido_only = all(t in SIDO_ALIASES or t in {g["sido"] for g in gus} for t in tokens)
+    if sido_only:
+        sidos = {SIDO_ALIASES.get(t, t) for t in tokens}
+        if sidos == {"세종특별자치시"}:  # 세종은 시군구가 없어 시 전체가 구 페이지 하나
+            return {"sido": "세종특별자치시", "sigungu": "", "dong": ""}, ""
+        return None, f"지역이 시·도('{text}')까지만 있어 시·군·구를 정할 수 없습니다"
+    if not any(dong in g["sigungu"].split() for g in gus):
         return None, f"법정동 목록에 '{dong}' 이 없습니다"
-    for t in tokens[:-1]:
-        if t in SIDO_ALIASES or t in {r["sido"] for r in cands}:
-            sido = SIDO_ALIASES.get(t, t)
-            f = [r for r in cands if r["sido"] == sido]
-        else:
-            f = [r for r in cands if t in r["sigungu"].split()]
-        if f:
-            cands = f
-        elif t not in OLD_SIGUNGU:
-            return None, f"'{t}' 과 '{dong}' 이 함께 있는 곳이 법정동 목록에 없습니다"
+    cands, why = _narrow(gus, tokens, dong)
+    if cands is None:
+        return None, why
     if len(cands) > 1:
-        where = ", ".join(" ".join(x for x in (r["sido"], r["sigungu"], r["dong"]) if x) for r in cands[:5])
-        return None, f"'{text}' 이 여러 곳과 맞습니다({where}). 시도·시군구를 더 적어 주세요"
+        return None, f"'{text}' 이 여러 시·군·구와 맞습니다({_where(cands)}). 시도·구 이름을 더 적어 주세요"
     return cands[0], ""
 
 
@@ -277,6 +303,17 @@ def compose(memo: dict) -> tuple[dict | None, str]:
     return out, ""
 
 
+def region_label(c: dict) -> str:
+    """사례의 가장 작은 지역 이름: 동이 있으면 동, 동 없는 사례는 시군구(세종은 시 이름)."""
+    return c["dong"] or c["sigungu"] or "세종시"
+
+
+def gu_page_exists(c: dict) -> bool:
+    """이 사례의 구 페이지(/gu/)가 지금 있는지. 동 없는 사례는 구 페이지가 생길 때까지 cases/input 에서 기다린다."""
+    from build_site import GU_DATA, gu_slug
+    return gu_slug(c["sido"], c["sigungu"]) in {g["slug"] for g in load_json(GU_DATA, default=[])}
+
+
 def page_slugs_by_region() -> dict[tuple[str, str, str], str]:
     return {(r["sido"], r["sigungu"], r["dong"]): r["slug"] for r in load_json(REGIONS_PATH, [])}
 
@@ -363,7 +400,9 @@ def process_folder(folder: Path, rows: list[dict], page_slugs: dict, used_slugs:
         return None
     region, body, case_date = info["region"], info["body"], info["date"]
 
-    base = f"case-{(case_date or date.today().isoformat()).replace('-', '')}-{make_slug(region['sido'], region['sigungu'], region['dong'])}"
+    from build_site import gu_slug
+    place = make_slug(region["sido"], region["sigungu"], region["dong"]) if region["dong"] else gu_slug(region["sido"], region["sigungu"])
+    base = f"case-{(case_date or date.today().isoformat()).replace('-', '')}-{place}"
     slug, n = base, 2
     while slug in used_slugs:
         slug, n = f"{base}-{n}", n + 1
@@ -378,7 +417,7 @@ def process_folder(folder: Path, rows: list[dict], page_slugs: dict, used_slugs:
         "sido": region["sido"], "sigungu": region["sigungu"], "dong": region["dong"],
         "region_slug": page_slugs.get((region["sido"], region["sigungu"], region["dong"])),
         "car": body["car"],
-        "title": f"{region['dong']} {body['car']} 폐차·수출 비교 상담 사례",
+        "title": f"{region_label(region)} {body['car']} 폐차·수출 비교 상담 사례",
         "summary": first_sentence(body["situation"]),
         "facts": body["facts"],
         "situation": body["situation"], "method": body["method"],
@@ -418,6 +457,8 @@ def render_case(c: dict, cfg: dict, template: str, region_slug: str | None,
         story_html += f"<h2>고객 한마디</h2><blockquote>“{esc(c['quote'])}”</blockquote>"
     if region_slug:
         region_btn = f'<a class="btn btn-quote" href="../pages/{esc(region_slug)}.html" style="background:#fff">{esc(c["dong"])} 폐차 상담 페이지</a>'
+    elif not c["dong"] and gu_page:
+        region_btn = ""  # 동 없는 사례는 아래 구 페이지 버튼 하나만
     else:
         region_btn = '<a class="btn btn-quote" href="../index.html" style="background:#fff">지역별 상담 페이지 보기</a>'
     # 이 사례의 구 페이지가 있으면 그쪽으로도 연결한다(구 페이지 "폐차 사례" 칸에도 이 사례가 보임)
@@ -439,7 +480,7 @@ def render_case(c: dict, cfg: dict, template: str, region_slug: str | None,
         "PHONE_DISPLAY": cfg["phone_display"],
         "YOUTUBE_URL": esc(cfg["youtube_url"]),
         "BLOG_URL": esc(cfg["blog_url"]),
-        **contact_parts(cfg, c["dong"]),
+        **contact_parts(cfg, region_label(c)),
     }
     cleaned = LEADING_COMMENT_RE.sub("<!DOCTYPE html>", template, count=1)
 
@@ -486,8 +527,14 @@ def main() -> None:
     page_slugs = page_slugs_by_region()
     used_slugs = {c["slug"] for c in index}
 
-    done, skipped = [], 0
+    done, skipped, waiting = [], 0, []
     for folder in folders:
+        info, _ = check_folder(folder, rows)
+        if info and not info["region"]["dong"] and not gu_page_exists(info["region"]):
+            r = info["region"]
+            waiting.append(folder.name)
+            print(f"대기 {folder.name}: {r['sigungu'] or r['sido']} 사례(동 없음). 구 페이지가 아직 없어 cases/input 에 둡니다. 구 페이지가 생기면 다음 실행 때 자동으로 붙습니다")
+            continue
         c = process_folder(folder, rows, page_slugs, used_slugs)
         if not c:
             skipped += 1
@@ -496,7 +543,7 @@ def main() -> None:
         DONE_DIR.mkdir(parents=True, exist_ok=True)
         shutil.move(str(folder), str(DONE_DIR / folder.name))
         done.append(c)
-        print(f"사례 생성: cases/{c['slug']}.html ({c['sigungu'] or c['sido']} {c['dong']} · {c['car']}, 사진 {len(c['photos'])}장)")
+        print(f"사례 생성: cases/{c['slug']}.html ({((c['sigungu'] or c['sido']) + ' ' + c['dong']).strip()} · {c['car']}, 사진 {len(c['photos'])}장)")
 
     if done:
         INDEX_PATH.write_text(json.dumps(index, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
@@ -505,6 +552,10 @@ def main() -> None:
         update_sitemap(ROOT, [], paths=[f"cases/{c['slug']}.html" for c in done])
         print(f"지역 페이지 재렌더링 완료, sitemap 에 사례 {len(done)}건 추가")
         for c in done:
+            if not c["dong"]:
+                from build_site import gu_file
+                print(f"  {c['slug']} → 동 없는 사례: 구 페이지 gu/{gu_file(c['sido'], c['sigungu'])} 에만 표시")
+                continue
             shown = [p.stem for p in (ROOT / "pages").glob("*.html") if f"/cases/{c['slug']}.html" in p.read_text(encoding="utf-8")]
             where = ", ".join(sorted(shown)) if shown else "없음(같은 시군구에 동 페이지가 아직 없음. 페이지가 생기면 자동으로 붙음)"
             print(f"  {c['slug']} → 지역 페이지 {len(shown)}곳에 표시: {where}")
@@ -515,7 +566,7 @@ def main() -> None:
                 print(line)
         if result.returncode != 0:
             sys.exit(result.returncode)
-    print(f"완료: 사례 {len(done)}건 처리, {skipped}건 건너뜀")
+    print(f"완료: 사례 {len(done)}건 처리, {skipped}건 건너뜀, {len(waiting)}건 구 페이지 대기")
     if skipped:
         sys.exit(1)
 

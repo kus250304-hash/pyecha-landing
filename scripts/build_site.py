@@ -65,12 +65,15 @@ def pick_local_faqs(r: dict, n: int = 3) -> list[tuple[str, str]]:
 
 def case_page_map(regions: list[dict], cases: list[dict], extra_pages: int) -> dict[str, set[str]]:
     """사례별로 보여줄 페이지: 같은 동 페이지 전부 + 같은 시군구(세종은 시 전체)의 다른 동 페이지 최대 extra_pages 곳.
-    다른 시군구·시도에는 보이지 않는다."""
+    다른 시군구·시도에는 보이지 않는다. 동 없이 시군구까지만 확인된 사례는 동 페이지에 붙이지 않는다(구 페이지에만)."""
     by_gu: dict[tuple[str, str], list[dict]] = {}
     for r in regions:
         by_gu.setdefault((r["sido"], r["sigungu"]), []).append(r)
     mapping = {}
     for c in cases:
+        if not c["dong"]:
+            mapping[c["slug"]] = set()
+            continue
         group = by_gu.get((c["sido"], c["sigungu"]), [])
         same_dong = {r["slug"] for r in group if r["dong"] == c["dong"]}
         others = sorted(r["slug"] for r in group if r["dong"] != c["dong"])
@@ -99,7 +102,7 @@ def case_cards_html(picked: list[dict]) -> str:
     return '<div class="cases" data-nosnippet>' + "".join(
         f'<a class="case" href="../cases/{esc(c["slug"])}.html">'
         + (f'<img src="../cases/images/{esc(c["thumb"])}" alt="" loading="lazy" width="800" height="600">' if c.get("thumb") else "")
-        + f'<div class="body"><span class="region">{esc((c["sigungu"] or c["sido"]) + " " + c["dong"])} 작업 사례</span>'
+        + f'<div class="body"><span class="region">{esc(((c["sigungu"] or c["sido"]) + " " + c["dong"]).strip())} 작업 사례</span>'
         + f'<h3>{esc(c["title"])}</h3><p>{esc(c.get("summary", ""))}</p></div></a>'
         for c in picked
     ) + "</div>"
