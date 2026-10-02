@@ -58,6 +58,9 @@ ROOT = Path(__file__).resolve().parent.parent
 SRC_DEFAULT = r"C:\Users\AOMG\Documents\카카오톡 받은 파일\폐차사진원본"
 TIERS = ("우선", "일반")
 DONE_MARK = "반영됨.txt"
+# 메모의 지역이 틀렸거나 모자란 건을 운영자가 확인해 준 지역으로 바꿔 읽는다(원본 메모는 고치지 않음).
+# [{"folder": "일반\<원본 폴더>", "region": "경기도 수원시 권선구", "confirmed": "날짜 누가 확인"}]
+REGION_FIXES = ROOT / "data" / "case_region_fixes.json"
 STAGING = ROOT / ".cases_staging"
 INPUT_DIR = ROOT / "cases" / "input"
 PC_REQUIRED = ("지역", "차종", "연식", "시동")  # 이 넷이 다 채워진 건만 대상
@@ -103,6 +106,7 @@ def cmd_scan(args) -> None:
     dong_pages = {(r["sido"], r["sigungu"], r["dong"]) for r in regions}
     gu_pages = {(r["sido"], r["sigungu"]) for r in regions}
 
+    fixes = {f["folder"].replace("/", "\\"): f["region"] for f in load_json(REGION_FIXES, default=[]) or []}
     cands, skipped, marked = [], [], 0
     for ti, tier in enumerate(TIERS):
         tier_dir = src / tier
@@ -119,7 +123,8 @@ def cmd_scan(args) -> None:
             if missing:
                 skipped.append((rel, f"메모에 {'·'.join(missing)} 없음"))
                 continue
-            region, why = resolve_region(memo["지역"], rows)
+            # 확인된 지역이 있으면 메모의 지역 대신 쓴다. stage 가 메모.txt 의 지역 칸을 이 결과로 다시 쓴다
+            region, why = resolve_region(fixes.get(rel.replace("/", "\\"), memo["지역"]), rows)
             if not region:
                 skipped.append((rel, why))
                 continue
