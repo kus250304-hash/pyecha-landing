@@ -11,6 +11,8 @@
   네이버에서 경쟁이 적어 웹사이트 영역에 빨리 뜨는 곳. 광역시 자치구는 넣지 않는다. 구가 있는 시(천안시 동남구)는 시 전체 인구로 본다.
 - 같은 구가 양쪽에 걸리면 한 번만(줄 B 로 센다). 한 줄 후보가 모자라면 다른 줄에서 채워 하루 개수를 맞추고, 그 사실을 출력한다.
 - 공통: 동 페이지가 3개 이상 있는 구만(세종은 시 전체), data/gu.json·data/gu_held.json 에 있는 구는 뺀다.
+- 네이버 검색량 우선순위 목록(2026-10-02, data/priority_regions.json): 두 줄 모두 목록 순위가 있는 구를 순위대로 먼저,
+  그다음 위 등록대수 순. 하루 개수와 줄 A/B 나누기는 그대로다.
 
 출력: 첫 줄들에 우선순위 기준, 그다음 후보마다 줄 이름·gu.json 뼈대(JSON)·그 구 동 페이지의 확인된 랜드마크 목록.
 이 스크립트는 파일을 바꾸지 않는다.
@@ -23,6 +25,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import population_stats
+import priority_regions
 import vehicle_stats
 from build_gu import MIN_DONG_PAGES
 from build_site import GU_DATA, REGIONS, gu_groups, load_json
@@ -52,6 +55,14 @@ def ordered_candidates() -> tuple[list[str], list[tuple[str, list[dict]]], list[
         def key(item):
             return (-len(item[1]), item[0])
         heads = ["우선순위 기준: 등록대수 통계 없음 → 동 페이지가 많은 구 순 (보고에 알릴 것)"]
+    prio = priority_regions.load()
+    if prio:
+        base_key = key
+
+        def key(item):  # 검색량 목록 순위가 있는 구 먼저
+            rank = prio.rank_of(item[1][0]["sido"], item[1][0]["sigungu"])
+            return (rank is None, rank or 0, base_key(item))
+        heads.insert(0, f"검색량 우선순위: {prio.label()} 에 있는 구를 순위대로 먼저, 그다음 아래 기준")
     line_a = sorted(cands, key=key)
 
     pops, pmeta = population_stats.load()

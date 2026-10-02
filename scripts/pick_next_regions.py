@@ -27,6 +27,10 @@ data/legal_dong_list.csv 에서 아직 페이지가 없는 동을 골라 오늘 
   3개가 되도록 몰아서 뽑아(이미 1~2개 있으면 모자란 만큼만), 3개가 쌓이면 바로 구 페이지 줄 B 후보가 된다.
   거의 다 찬 시·군(모자란 개수가 적은 곳) → 추정 노후 자가용 대수 많은 순. 이미 3개 이상이거나 후보 동을
   다 합쳐도 3개가 안 되는 시·군은 건너뛴다. 남은 칸은 위 우선순위대로 채운다. 이유는 docs/roadmap.md 6절.
+- 네이버 검색량 우선순위 목록 (2026-10-02, data/priority_regions.json, scripts/priority_regions.py):
+  등록대수 순보다 먼저 쓴다. 시·군 몫은 목록에 있는 시·군을 순위대로 먼저 고르고(그다음 위 순서),
+  나머지 칸은 목록 순위대로 시군구마다 ① 동 이름으로 검색된 동 ② 그 시군구 동 페이지가 3개가 될 때까지
+  채운 뒤, 남은 칸을 등록대수 순으로 채운다. 하루 개수·시·군 몫 개수·보류 규칙은 그대로다.
 """
 import argparse
 import csv
@@ -39,6 +43,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from build_index import SIDO_ORDER
 import population_stats
+import priority_regions
 import vehicle_stats
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -103,7 +108,7 @@ SMALL_TARGET = 3  # 구 페이지를 만들 수 있는 동 페이지 수(build_g
 
 
 def pick_small(candidates: list[dict], regions: list[dict], slots: int, limit: int,
-               stat_of) -> list[dict]:
+               stat_of, rank_of=lambda key: None) -> list[dict]:
     """인구 limit 이하 시·군에서 동 페이지가 3개가 되도록 몰아서 slots 개까지 고른다."""
     pops, meta = population_stats.load()
     if not pops or slots <= 0:
@@ -122,10 +127,11 @@ def pick_small(candidates: list[dict], regions: list[dict], slots: int, limit: i
         need = SMALL_TARGET - have.get(key, 0)
         if need <= 0 or len(cs) < need:
             continue  # 이미 3개 이상이거나, 후보를 다 써도 3개가 안 됨
-        ready.append((need, stat_of(key), key, cs))
-    ready.sort(key=lambda x: (x[0], x[1] is None, -(x[1] or 0), x[2]))
+        ready.append((rank_of(key), need, stat_of(key), key, cs))
+    # 네이버 검색량 목록에 있는 시·군을 순위대로 먼저 → 모자란 개수가 적은 곳 → 등록대수
+    ready.sort(key=lambda x: (x[0] is None, x[0] or 0, x[1], x[2] is None, -(x[2] or 0), x[3]))
     picked, partial = [], None
-    for need, _, key, cs in ready:
+    for _, need, _, key, cs in ready:
         if len(picked) + need <= slots:
             picked += cs[:need]
         elif partial is None:
@@ -176,13 +182,32 @@ def pick(regions: list[dict], count: int, include_myeon: bool, small_count: int 
     csv_pos = {r["법정동코드"]: i for i, r in enumerate(rows)}
     candidates.sort(key=lambda c: csv_pos[c["법정동코드"]])
     basis, counts, meta = vehicle_stats.load()
+    prio = priority_regions.load()
+    candidates.sort(key=lambda c: c["법정동코드"] not in prio.dong_rank)  # 동 이름으로 검색된 동을 시·군 몫에서도 먼저
 
-    # 시·군 몫을 먼저 고르고, 나머지 칸을 원래 순서로 채운다
+    # 시·군 몫을 먼저 고르고, 나머지 칸을 네이버 검색량 목록 → 원래 순서로 채운다
     small = pick_small(candidates, regions, min(small_count, count), small_limit,
-                       lambda key: vehicle_stats.count_for(counts, *key) if basis != "none" else None)
+                       lambda key: vehicle_stats.count_for(counts, *key) if basis != "none" else None,
+                       lambda key: prio.rank_of(*key))
     small_codes = {c["법정동코드"] for c in small}
     rest = [c for c in candidates if c["법정동코드"] not in small_codes]
     count -= len(small)
+    first: list[dict] = []
+    if prio:
+        have: dict[tuple[str, str], int] = {}
+        for r in list(regions) + [{"sido": c["시도"], "sigungu": c["시군구"]} for c in small]:
+            have[(r["sido"], r["sigungu"])] = have.get((r["sido"], r["sigungu"]), 0) + 1
+        first = prio.pick_dongs(rest, have, count)
+        names: dict[str, int] = {}
+        for c in first:
+            nm = " ".join(x for x in (c["시도"], c["시군구"]) if x)
+            names[nm] = names.get(nm, 0) + 1
+        print(f"검색량 우선순위 {len(first)}개 ({prio.label()}): " + (", ".join(f"{k} {n}" for k, n in names.items()) or "목록의 곳이 모두 동 페이지 3개 이상 → 등록대수 순"))
+        first_codes = {c["법정동코드"] for c in first}
+        rest = [c for c in rest if c["법정동코드"] not in first_codes]
+        count -= len(first)
+    else:
+        print("검색량 우선순위: 목록 없음(data/priority_regions.json) → 등록대수 순")
     if basis != "none":
         # 노후차(없으면 전체) 등록대수가 많은 구부터. 통계에 없는 구는 맨 뒤, CSV 순서
         def stat_key(c: dict) -> tuple:
@@ -194,7 +219,7 @@ def pick(regions: list[dict], count: int, include_myeon: bool, small_count: int 
     else:
         picked = fallback_order(rest, regions, rows, count)
         print("우선순위 기준: 등록대수 통계 없음 → 구 페이지가 있는 구, 동 페이지가 많은 구 순 (보고에 알릴 것)")
-    return small + picked
+    return small + first + picked
 
 
 def fallback_order(candidates: list[dict], regions: list[dict], rows: list[dict], count: int) -> list[dict]:
