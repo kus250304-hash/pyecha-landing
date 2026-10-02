@@ -1,5 +1,269 @@
 [
  {
+  "slug": "case-20250319-seoul-yeongdeungpo-singil",
+  "date": "2025-03-19",
+  "sido": "서울특별시",
+  "sigungu": "영등포구",
+  "dong": "신길동",
+  "region_slug": null,
+  "car": "2011년식 카니발",
+  "title": "신길동 2011년식 카니발 폐차·수출 비교 상담 사례",
+  "summary": "2011년식 카니발 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "카니발"
+   ],
+   [
+    "연식",
+    "2011년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ],
+   [
+    "진행 내용",
+    "조기폐차로 진행"
+   ]
+  ],
+  "situation": "2011년식 카니발 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20250319-seoul-yeongdeungpo-singil-1.jpg",
+  "photos": [
+   "case-20250319-seoul-yeongdeungpo-singil-1.jpg",
+   "case-20250319-seoul-yeongdeungpo-singil-2.jpg",
+   "case-20250319-seoul-yeongdeungpo-singil-3.jpg",
+   "case-20250319-seoul-yeongdeungpo-singil-4.jpg",
+   "case-20250319-seoul-yeongdeungpo-singil-5.jpg"
+  ]
+ },
+ {
+  "slug": "case-20240930-gyeonggi-namyangju-byeolnae",
+  "date": "2024-09-30",
+  "sido": "경기도",
+  "sigungu": "남양주시",
+  "dong": "별내동",
+  "region_slug": null,
+  "car": "2009년식 포터2 탑차",
+  "title": "별내동 2009년식 포터2 탑차 폐차·수출 비교 상담 사례",
+  "summary": "2009년식 포터2 탑차 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "포터2 탑차"
+   ],
+   [
+    "연식",
+    "2009년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2009년식 포터2 탑차 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20240930-gyeonggi-namyangju-byeolnae-1.jpg",
+  "photos": [
+   "case-20240930-gyeonggi-namyangju-byeolnae-1.jpg",
+   "case-20240930-gyeonggi-namyangju-byeolnae-2.jpg",
+   "case-20240930-gyeonggi-namyangju-byeolnae-3.jpg",
+   "case-20240930-gyeonggi-namyangju-byeolnae-4.jpg",
+   "case-20240930-gyeonggi-namyangju-byeolnae-5.jpg"
+  ]
+ },
+ {
+  "slug": "case-20230814-daejeon-yuseong-guam",
+  "date": "2023-08-14",
+  "sido": "대전광역시",
+  "sigungu": "유성구",
+  "dong": "구암동",
+  "region_slug": null,
+  "car": "2008년식 제네시스",
+  "title": "구암동 2008년식 제네시스 폐차·수출 비교 상담 사례",
+  "summary": "2008년식 제네시스 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "제네시스"
+   ],
+   [
+    "연식",
+    "2008년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ],
+   [
+    "진행 내용",
+    "수출 쪽과 비교해 진행"
+   ]
+  ],
+  "situation": "2008년식 제네시스 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230814-daejeon-yuseong-guam-1.jpg",
+  "photos": [
+   "case-20230814-daejeon-yuseong-guam-1.jpg",
+   "case-20230814-daejeon-yuseong-guam-2.jpg",
+   "case-20230814-daejeon-yuseong-guam-3.jpg",
+   "case-20230814-daejeon-yuseong-guam-4.jpg",
+   "case-20230814-daejeon-yuseong-guam-5.jpg",
+   "case-20230814-daejeon-yuseong-guam-6.jpg"
+  ]
+ },
+ {
+  "slug": "case-20230607-ulsan-namgu-samsan",
+  "date": "2023-06-07",
+  "sido": "울산광역시",
+  "sigungu": "남구",
+  "dong": "삼산동",
+  "region_slug": "ulsan-namgu-samsan",
+  "car": "2006년식 쏘나타 NF",
+  "title": "삼산동 2006년식 쏘나타 NF 폐차·수출 비교 상담 사례",
+  "summary": "2006년식 쏘나타 NF 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "쏘나타 NF"
+   ],
+   [
+    "연식",
+    "2006년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2006년식 쏘나타 NF 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230607-ulsan-namgu-samsan-1.jpg",
+  "photos": [
+   "case-20230607-ulsan-namgu-samsan-1.jpg",
+   "case-20230607-ulsan-namgu-samsan-2.jpg",
+   "case-20230607-ulsan-namgu-samsan-3.jpg",
+   "case-20230607-ulsan-namgu-samsan-4.jpg",
+   "case-20230607-ulsan-namgu-samsan-5.jpg"
+  ]
+ },
+ {
+  "slug": "case-20230606-gyeonggi-bucheon-sosa-sosabon",
+  "date": "2023-06-06",
+  "sido": "경기도",
+  "sigungu": "부천시 소사구",
+  "dong": "소사본동",
+  "region_slug": null,
+  "car": "2010년식 아우디 A6",
+  "title": "소사본동 2010년식 아우디 A6 폐차·수출 비교 상담 사례",
+  "summary": "2010년식 아우디 A6 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "아우디 A6"
+   ],
+   [
+    "연식",
+    "2010년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ],
+   [
+    "진행 내용",
+    "차령초과말소로 처리"
+   ]
+  ],
+  "situation": "2010년식 아우디 A6 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230606-gyeonggi-bucheon-sosa-sosabon-1.jpg",
+  "photos": [
+   "case-20230606-gyeonggi-bucheon-sosa-sosabon-1.jpg",
+   "case-20230606-gyeonggi-bucheon-sosa-sosabon-2.jpg",
+   "case-20230606-gyeonggi-bucheon-sosa-sosabon-3.jpg",
+   "case-20230606-gyeonggi-bucheon-sosa-sosabon-4.jpg",
+   "case-20230606-gyeonggi-bucheon-sosa-sosabon-5.jpg"
+  ]
+ },
+ {
+  "slug": "case-20230406-gyeongbuk-gumi-songjeong",
+  "date": "2023-04-06",
+  "sido": "경상북도",
+  "sigungu": "구미시",
+  "dong": "송정동",
+  "region_slug": null,
+  "car": "2008년식 그랜드 스타렉스",
+  "title": "송정동 2008년식 그랜드 스타렉스 폐차·수출 비교 상담 사례",
+  "summary": "2008년식 그랜드 스타렉스 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "그랜드 스타렉스"
+   ],
+   [
+    "연식",
+    "2008년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ],
+   [
+    "진행 내용",
+    "차령초과말소로 처리"
+   ]
+  ],
+  "situation": "2008년식 그랜드 스타렉스 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230406-gyeongbuk-gumi-songjeong-1.jpg",
+  "photos": [
+   "case-20230406-gyeongbuk-gumi-songjeong-1.jpg",
+   "case-20230406-gyeongbuk-gumi-songjeong-2.jpg",
+   "case-20230406-gyeongbuk-gumi-songjeong-3.jpg",
+   "case-20230406-gyeongbuk-gumi-songjeong-4.jpg",
+   "case-20230406-gyeongbuk-gumi-songjeong-5.jpg",
+   "case-20230406-gyeongbuk-gumi-songjeong-6.jpg"
+  ]
+ },
+ {
   "slug": "case-20231021-gyeonggi-gwangju-taejeon",
   "date": "2023-10-21",
   "sido": "경기도",

@@ -1,0 +1,361 @@
+[
+ {
+  "code": "1215010300",
+  "slug": "jeonnam-suncheon-yeong",
+  "items": [
+   {
+    "name": "순천 문화의거리",
+    "evidence": "순천시가 2009년 영동·행동·금곡동 일부를 문화의 거리로 지정 (디지털순천문화대전)",
+    "url": "http://suncheon.grandculture.net/suncheon/toc/GC07600937"
+   },
+   {
+    "name": "문화의거리",
+    "evidence": "순천시가 2009년 영동·행동·금곡동 일부를 문화의 거리로 지정 (디지털순천문화대전)",
+    "url": "http://suncheon.grandculture.net/suncheon/toc/GC07600937"
+   },
+   {
+    "name": "옥천",
+    "evidence": "난봉산에서 발원한 옥천이 영동 남쪽 경계를 흐름 (디지털순천문화대전 영동 항목)",
+    "url": "http://suncheon.grandculture.net/suncheon/toc/GC07600079"
+   }
+  ]
+ },
+ {
+  "code": "5213010200",
+  "slug": "jeonbuk-gunsan-sinheung",
+  "items": [
+   {
+    "name": "신흥동 일본식가옥",
+    "evidence": "군산시 구영1길 17(신흥동) 소재 등록문화재, 군산시 문화관광 소개",
+    "url": "https://www.gunsan.go.kr/tour/m2339/view/433875"
+   },
+   {
+    "name": "말랭이마을",
+    "evidence": "군산시 신흥동 34-5번지 일원, 월명산 자락 (군산시 문화관광)",
+    "url": "https://www.gunsan.go.kr/tour/m2080/view/1171773"
+   },
+   {
+    "name": "월명산",
+    "evidence": "말랭이마을이 신흥동 월명산 자락에 있음 (군산시 문화관광)",
+    "url": "https://www.gunsan.go.kr/tour/m2080/view/1171773"
+   }
+  ]
+ },
+ {
+  "code": "2771025000",
+  "slug": "daegu-dalseong-hwawon",
+  "items": [
+   {
+    "name": "화원동산",
+    "evidence": "대구 달성군 화원읍 사문진로1길 40-14(성산리 310) 소재 공원 (대구역사문화대전)",
+    "url": "https://daegu.grandculture.net/daegu/index?category=%EC%A7%80%EB%AA%85/%EA%B8%B0%EA%B4%80%EB%AA%85&depth=2&name=%EB%8B%A4&page=140&search=%EB%8C%80%EA%B5%AC%EA%B4%91%EC%97%AD%EC%8B%9C+%EB%8B%AC%EC%84%B1%EA%B5%B0+%ED%99%94%EC%9B%90%EC%9D%8D+%EC%82%AC%EB%AC%B8%EC%A7%84%EB%A1%9C1%EA%B8%B8+40-14"
+   },
+   {
+    "name": "화원역",
+    "evidence": "화원읍에 2016년 개통한 대구 도시철도 1호선 역 (위키백과 화원읍)",
+    "url": "https://ko.wikipedia.org/wiki/%ED%99%94%EC%9B%90%EC%9D%8D"
+   },
+   {
+    "name": "낙동강",
+    "evidence": "화원동산 전망대에서 낙동강을 조망 (나무위키 화원동산)",
+    "url": "https://namu.wiki/w/%ED%99%94%EC%9B%90%EB%8F%99%EC%82%B0"
+   }
+  ]
+ },
+ {
+  "code": "2771025300",
+  "slug": "daegu-dalseong-nongong",
+  "items": [
+   {
+    "name": "달성군청",
+    "evidence": "대구 달성군 논공읍 달성군청로 33(금포리 1313), 2005년 이전 (대구역사문화대전)",
+    "url": "https://daegu.grandculture.net/daegu/toc/GC40081049"
+   },
+   {
+    "name": "달성1차산업단지",
+    "evidence": "논공읍 북리 쪽에 달성1차산단이 있음 (나무위키 논공읍)",
+    "url": "https://namu.wiki/w/%EB%85%BC%EA%B3%B5%EC%9D%8D"
+   }
+  ]
+ },
+ {
+  "code": "1213010100",
+  "slug": "jeonnam-yeosu-jonghwa",
+  "items": [
+   {
+    "name": "하멜등대",
+    "evidence": "여수시 종화동 458-7 소재 등대 (여수해양공원 하멜등대, 종화동)",
+    "url": "http://fishingmap.co.kr/mobile/m_map_view.php?no=3757"
+   },
+   {
+    "name": "종포해양공원",
+    "evidence": "여수시 이순신광장로 188-1(종화동), 지번 종화동 526-7",
+    "url": "https://www.tripinfo.co.kr/info.html?content_type_id=12&content_id=3008171"
+   }
+  ]
+ },
+ {
+  "code": "1213010200",
+  "slug": "jeonnam-yeosu-sujeong",
+  "items": [
+   {
+    "name": "오동도",
+    "evidence": "여수시 수정동 산1-11 소재 섬, 방파제로 육지와 연결 (나무위키 오동도)",
+    "url": "https://namu.wiki/w/%EC%98%A4%EB%8F%99%EB%8F%84"
+   }
+  ]
+ },
+ {
+  "code": "3171025000",
+  "slug": "ulsan-ulju-onsan",
+  "items": [
+   {
+    "name": "덕신1차시장",
+    "evidence": "울산광역시 울주군 온산읍 덕신리 1280-21 소재 전통시장",
+    "url": "https://ftmt.purpleo.co.kr/view/681"
+   }
+  ]
+ },
+ {
+  "code": "3171025300",
+  "slug": "ulsan-ulju-eonyang",
+  "items": [
+   {
+    "name": "언양알프스시장",
+    "evidence": "울산 울주군 언양읍 장터1길 19(남부리) 소재 전통시장, 나무위키",
+    "url": "https://namu.wiki/w/%EC%96%B8%EC%96%91%EC%95%8C%ED%94%84%EC%8A%A4%EC%8B%9C%EC%9E%A5"
+   }
+  ]
+ },
+ {
+  "code": "4163010100",
+  "slug": "gyeonggi-yangju-yuyang",
+  "items": [
+   {
+    "name": "양주관아지",
+    "evidence": "경기도 양주시 유양동 141-1 소재 경기도 기념물, 위키백과",
+    "url": "https://ko.wikipedia.org/wiki/양주관아지"
+   }
+  ]
+ },
+ {
+  "code": "4163010200",
+  "slug": "gyeonggi-yangju-eodun",
+  "items": [
+   {
+    "name": "한마음청소년수련원",
+    "evidence": "경기도 양주시 어둔동 489(분들로 147-142) 소재 청소년수련원, 디지털양주문화대전",
+    "url": "https://yangju.grandculture.net/yangju/toc/GC04301169"
+   }
+  ]
+ },
+ {
+  "code": "4122011700",
+  "slug": "gyeonggi-pyeongtaek-hapjeong",
+  "items": [
+   {
+    "name": "합정초등학교",
+    "evidence": "경기도 평택시 합정동 소재 공립 초등학교(병설유치원 주소 합정동)",
+    "url": "https://www.daycarekorea.com/child/kinder_detail.php?name=합정초등학교병설유치원&addcode=41220117"
+   }
+  ]
+ },
+ {
+  "code": "4122011900",
+  "slug": "gyeonggi-pyeongtaek-dongsak",
+  "items": [
+   {
+    "name": "동삭동 행정복지센터",
+    "evidence": "평택시 상서재로2길 56-10(동삭동) 소재, 평택시 동삭동 공식 페이지",
+    "url": "https://www.pyeongtaek.go.kr/org/dongsak/main.do?mid=0104240100"
+   }
+  ]
+ },
+ {
+  "code": "4122012000",
+  "slug": "gyeonggi-pyeongtaek-segyo",
+  "items": [
+   {
+    "name": "세교초등학교",
+    "evidence": "평택시 세교공원로 32(지번 세교동 556) 소재 초등학교, 로컬맵 평택두리찾기 세교동 표기",
+    "url": "http://duli.co.kr/web/splus/kmap/view.php?sigun=6410000&gugun=3910000&keyno=data_school_edu02&keyname=%EC%84%B8%EA%B5%90%EC%B4%88%EB%93%B1%ED%95%99%EA%B5%90&dcat=1"
+   }
+  ]
+ },
+ {
+  "code": "4122012100",
+  "slug": "gyeonggi-pyeongtaek-jije",
+  "items": [
+   {
+    "name": "평택지제역",
+    "evidence": "경기도 평택시 경기대로 777(지제동) 소재 1호선·KTX·SRT 역 (위키백과)",
+    "url": "https://ko.wikipedia.org/wiki/%ED%8F%89%ED%83%9D%EC%A7%80%EC%A0%9C%EC%97%AD"
+   }
+  ]
+ },
+ {
+  "code": "4122012200",
+  "slug": "gyeonggi-pyeongtaek-sindae",
+  "items": [
+   {
+    "name": "신대레포츠공원",
+    "evidence": "경기도 평택시 신대동 621-10 소재 레포츠 공원(축구장·테니스장·국궁장)",
+    "url": "https://www.ktriptips.com/kor/tourspot/2747045"
+   }
+  ]
+ },
+ {
+  "code": "4122012300",
+  "slug": "gyeonggi-pyeongtaek-sosa",
+  "items": [
+   {
+    "name": "대동법시행기념비",
+    "evidence": "경기도 유형문화유산, 평택시 소사동 140-1 소재 (국가문화유산포털·한국민족문화대백과)",
+    "url": "https://encykorea.aks.ac.kr/Article/E0014247"
+   }
+  ]
+ },
+ {
+  "code": "4122012400",
+  "slug": "gyeonggi-pyeongtaek-yongi",
+  "items": [
+   {
+    "name": "평택대학교",
+    "evidence": "경기도 평택시 서동대로 3825(용이동) 소재 4년제 대학",
+    "url": "http://localmap.co.kr/web/splus/kmap/view.php?sigun=6410000&gugun=3910000&keyno=data_school_edu02&keyname=%ED%8F%89%ED%83%9D%EB%8C%80%ED%95%99%EA%B5%90&dcat=1"
+   }
+  ]
+ },
+ {
+  "code": "4122012500",
+  "slug": "gyeonggi-pyeongtaek-wolgok",
+  "items": [
+   {
+    "name": "월곡낚시터",
+    "evidence": "경기도 평택시 월곡동 391-1 소재 낚시터(자연저수지 월곡지 옆)",
+    "url": "https://ffpo.purpleo.co.kr/view/615"
+   }
+  ]
+ },
+ {
+  "code": "4122012700",
+  "slug": "gyeonggi-pyeongtaek-jukbaek",
+  "items": [
+   {
+    "name": "배다리생태공원",
+    "evidence": "경기 평택시 죽백6로 20, 평택시 죽백동 소재 생태공원 (관광정보 소개)",
+    "url": "https://www.tripinfo.co.kr/info.html?content_type_id=12&content_id=2750338"
+   }
+  ]
+ },
+ {
+  "code": "4122012800",
+  "slug": "gyeonggi-pyeongtaek-godeok",
+  "items": [
+   {
+    "name": "민세초등학교",
+    "evidence": "경기도 평택시 고덕동 2395-2(고덕국제1로 200), 2024년 9월 개교 공립 초등학교 (학교알리미)",
+    "url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=279ab0b2-e238-41be-a028-f5c9e4865f61"
+   }
+  ]
+ },
+ {
+  "code": "4122025000",
+  "slug": "gyeonggi-pyeongtaek-paengseong",
+  "items": [
+   {
+    "name": "팽성읍객사",
+    "evidence": "평택시 팽성읍 객사리에 있는 조선 시대 객사, 평택시 문화관광 공식 소개",
+    "url": "https://www.pyeongtaek.go.kr/tour/contents.do?mId=0102100000"
+   }
+  ]
+ },
+ {
+  "code": "4122025300",
+  "slug": "gyeonggi-pyeongtaek-anjung",
+  "items": [
+   {
+    "name": "안중시장",
+    "evidence": "경기도 평택시 안중읍 안현로서3길 34, 1·6일 오일장 전통시장 (트래블아이 시장 소개)",
+    "url": "http://www.traveli.co.kr/look/contentsView/10548/1/1/4"
+   }
+  ]
+ },
+ {
+  "code": "4122025600",
+  "slug": "gyeonggi-pyeongtaek-poseung",
+  "items": [
+   {
+    "name": "평택항",
+    "evidence": "경기도 평택시 포승읍 만호리에 있는 항만 (위키백과 항만 문서)",
+    "url": "https://ko.wikipedia.org/wiki/%ED%8F%89%ED%83%9D%C2%B7%EB%8B%B9%EC%A7%84%ED%95%AD"
+   }
+  ]
+ },
+ {
+  "code": "4122025900",
+  "slug": "gyeonggi-pyeongtaek-cheongbuk",
+  "items": [
+   {
+    "name": "청북초등학교",
+    "evidence": "경기도 평택시 청북읍 청북새싹길 25(현곡리), 학교 홈페이지 오시는 길",
+    "url": "https://cheongbuk-e.goept.kr/cheongbuk-e/lm/location/locationMapView.do?mi=3748"
+   }
+  ]
+ },
+ {
+  "code": "5011010700",
+  "slug": "jeju-jeju-geonip",
+  "items": [
+   {
+    "name": "국립제주박물관",
+    "evidence": "제주시 건입동 일주동로 17, 디지털제주문화대전 소개",
+    "url": "https://jeju.grandculture.net/jeju/toc/GC00700262"
+   }
+  ]
+ },
+ {
+  "code": "5011010800",
+  "slug": "jeju-jeju-yongdamil",
+  "items": [
+   {
+    "name": "서문공설시장",
+    "evidence": "제주시 용담1동 135-9(서문로4길 13-2), 디지털제주문화대전",
+    "url": "http://www.grandculture.net/jeju/toc/GC00701088"
+   }
+  ]
+ },
+ {
+  "code": "5011010900",
+  "slug": "jeju-jeju-yongdami",
+  "items": [
+   {
+    "name": "용두암",
+    "evidence": "제주시 용두암길 15(용담이동), 지역문화정보",
+    "url": "https://www.nculture.org/cul/localCultureDetail.do?targetId=228853&contentType=G"
+   }
+  ]
+ },
+ {
+  "code": "5011011000",
+  "slug": "jeju-jeju-yongdamsam",
+  "items": [
+   {
+    "name": "어영공원",
+    "evidence": "제주시 서해안로 451(용담삼동), 제주관광약자접근성안내센터",
+    "url": "https://easyjeju.net/pages.php?p=tourist&no=732"
+   }
+  ]
+ },
+ {
+  "code": "5011011100",
+  "slug": "jeju-jeju-hwabukil",
+  "items": [
+   {
+    "name": "화북포구",
+    "evidence": "제주시 화북1동 4269-20 소재 포구",
+    "url": "https://www.moolban.com/company/7809"
+   }
+  ]
+ }
+]
