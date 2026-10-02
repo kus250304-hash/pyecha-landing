@@ -425,7 +425,10 @@ def main() -> None:
             errors.append(f"{tag}: slug 형식 오류")
         if not r.get("code"):
             errors.append(f"{tag}: 법정동코드(code) 없음")
-        for key, min_len in (("landmark_name", 2), ("landmark_desc", 40), ("service_intro", 80), ("meta", 20)):
+        # landmark_name 은 동 안에서 확인된 장소가 없으면 비워 둘 수 있다(data/fact_checks/road-fix-2026-10-02.json 보류 목록)
+        if r.get("landmark_name") and len(r["landmark_name"].strip()) < 2:
+            errors.append(f"{tag}: landmark_name 이 2자 미만")
+        for key, min_len in (("landmark_desc", 40), ("service_intro", 80), ("meta", 20)):
             if len((r.get(key) or "").strip()) < min_len:
                 errors.append(f"{tag}: {key} 가 비었거나 {min_len}자 미만")
         # 템플릿이 "○○ 인근 출장 방문"처럼 뒤에 말을 붙이므로 랜드마크 이름엔 위치 표현이 들어가면 겹친다

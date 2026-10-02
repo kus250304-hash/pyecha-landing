@@ -433,12 +433,14 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
     for pair, (a, b) in (("{을를}", ("을", "를")), ("{이가}", ("이", "가")), ("{은는}", ("은", "는"))):
         lead = lead.replace("\x00" + pair, "\x00" + V.josa(r["landmark_name"], a, b))
     lead = esc(lead).replace("\x00", lm_html)
+    if not r["landmark_name"]:  # 동 안에서 확인된 장소가 없어 랜드마크를 비워 둔 동(사실 확인 보류)은 첫 문장 없이 설명만 쓴다
+        lead = ""
     parts = r.get("dong_parts") or []
     parts_note = (f'<p style="color:#5E6E70;font-size:14px">이 페이지는 {esc(parts_range(parts))}를 함께 안내합니다.</p>'
                   if parts else "")
     meta_desc = (
         f"{full}{mark} 폐차 전에 폐차 보상금과 수출 시세를 함께 비교해 드립니다. 압류·서류 없음도 상담 가능, "
-        f"당일 접수, 견인비 없음. {r['landmark_name']} 인근 출장 방문. 전화 {phone_disp}"
+        f"당일 접수, 견인비 없음. {r['landmark_name'] or r['dong']} 인근 출장 방문. 전화 {phone_disp}"
     )
 
     values = {

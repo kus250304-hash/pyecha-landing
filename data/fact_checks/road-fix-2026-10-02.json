@@ -1,0 +1,731 @@
+[
+ {
+  "code": "1168010100",
+  "slug": "seoul-gangnam-yeoksam",
+  "region": "서울특별시 강남구 역삼동",
+  "old_landmark_name": "테헤란로",
+  "landmark_name": "역삼역",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "역삼역",
+    "evidence": "서울 지하철 2호선 역삼역, 서울 강남구 테헤란로 지하156 (역삼동), 위키백과 역삼동 문서 교통 항목에 역삼역 기재",
+    "url": "https://ko.wikipedia.org/wiki/역삼동"
+   },
+   {
+    "name": "진선여자고등학교",
+    "evidence": "위키백과 역삼동 문서 교육 항목(역삼2동)에 진선여자중·고등학교 기재",
+    "url": "https://ko.wikipedia.org/wiki/역삼동"
+   }
+  ]
+ },
+ {
+  "code": "1117013000",
+  "slug": "seoul-yongsan-itaewon",
+  "region": "서울특별시 용산구 이태원동",
+  "old_landmark_name": "이태원로",
+  "landmark_name": "이태원역",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "이태원역",
+    "evidence": "6호선 이태원역, 서울 용산구 이태원로 지하177, 지번 이태원동 119-23 (로컬맵 대피시설 '서울특별시 용산구 이태원동')",
+    "url": "http://localmap.co.kr/web/splus/kmap/view.php?sigun=6110000&gugun=3020000&keyno=274&keyname=%EC%A7%80%ED%95%98%EC%B2%A0+%EC%9D%B4%ED%83%9C%EC%9B%90%EC%97%AD&keylink=3020000-S200100059"
+   },
+   {
+    "name": "용산구청",
+    "evidence": "서울특별시 용산구 녹사평대로 150 (이태원동), 용산구청 안내",
+    "url": "https://www.yongsan.go.kr/portal/main/main.do"
+   },
+   {
+    "name": "서울중앙성원",
+    "evidence": "위키백과 이태원동 문서에 국내 첫 이슬람 성원인 서울중앙성원이 이태원동에 있다고 기재",
+    "url": "https://ko.wikipedia.org/wiki/이태원동"
+   }
+  ]
+ },
+ {
+  "code": "2711014800",
+  "slug": "daegu-junggu-dongseongno1ga",
+  "region": "대구광역시 중구 동성로1가",
+  "old_landmark_name": "동성로",
+  "landmark_name": "",
+  "status": "held",
+  "reason": "동성로1가 안에 있다고 주소로 확인되는 잘 알려진 장소를 찾지 못함. 동성아트홀은 2022년 폐관, 교동시장·교동귀금속거리·경상감영공원은 옆 동 주소"
+ },
+ {
+  "code": "4150010100",
+  "slug": "gyeonggi-icheon-changjeon",
+  "region": "경기도 이천시 창전동",
+  "old_landmark_name": "중앙로",
+  "landmark_name": "이천초등학교",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "이천초등학교",
+    "evidence": "경기도 이천시 서희로81번길 20 (창전동 421-21), 1911년 개교",
+    "url": "https://ko.wikipedia.org/wiki/이천초등학교"
+   },
+   {
+    "name": "이천향교",
+    "evidence": "경기도 이천시 창전동 336, 경기도 문화재자료 제22호, 위키백과 창전동(이천시) 문서에도 창전동 소재로 기재",
+    "url": "https://ko.wikipedia.org/wiki/%EC%B0%BD%EC%A0%84%EB%8F%99_(%EC%9D%B4%EC%B2%9C%EC%8B%9C)"
+   }
+  ]
+ },
+ {
+  "code": "1227011500",
+  "slug": "gwangju-namgu-bongseon",
+  "region": "전남광주통합특별시 남구 봉선동",
+  "old_landmark_name": "봉선로",
+  "landmark_name": "남구청",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "남구청",
+    "evidence": "남구청 청사 봉선로 1 (봉선동), 지번 봉선동 1096-1; 디지털광주문화대전 봉선동 문서에도 남구청 기재",
+    "url": "https://www.grandculture.net/gwangju/toc/GC60000180"
+   },
+   {
+    "name": "봉선시장",
+    "evidence": "광주 남구 봉선동 997-1",
+    "url": "http://www.traveli.co.kr/look/contentsView/9859/1/1/3"
+   },
+   {
+    "name": "제석산",
+    "evidence": "디지털광주문화대전: 제석산은 봉선동을 병풍처럼 둘러싸고 있으며 도심 내 공원으로 활용",
+    "url": "https://www.grandculture.net/gwangju/toc/GC60000180"
+   }
+  ]
+ },
+ {
+  "code": "1168011100",
+  "slug": "seoul-gangnam-segok",
+  "region": "서울특별시 강남구 세곡동",
+  "old_landmark_name": "헌릉로",
+  "landmark_name": "강남세곡체육공원",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "강남세곡체육공원",
+    "evidence": "서울시 강남구 세곡동 산1-7, 2024년 1월 개장(테니스장·축구장)",
+    "url": "https://mediahub.seoul.go.kr/archives/2009505"
+   }
+  ]
+ },
+ {
+  "code": "3011010100",
+  "slug": "daejeon-donggu-won",
+  "region": "대전광역시 동구 원동",
+  "old_landmark_name": "대전로",
+  "landmark_name": "대전중앙시장",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "대전중앙시장",
+    "evidence": "대전 동구 대전로 783, 지번 원동 51-1, 공영주차장 원동 51-12·85-2 (동구청 관광 안내)",
+    "url": "https://www.donggu.go.kr/dg/tour/84/7/sights"
+   },
+   {
+    "name": "대전역",
+    "evidence": "대전역은 중앙로 215 (정동 1)로 원동이 아닌 옆 동에 있으나, 동구청 안내에 중앙시장이 '대전역 바로 건너편'이라 기재 - '바로 옆'으로만 써야 함",
+    "url": "https://www.donggu.go.kr/dg/tour/84/7/sights"
+   }
+  ]
+ },
+ {
+  "code": "1211010100",
+  "slug": "jeonnam-mokpo-yongdang",
+  "region": "전남광주통합특별시 목포시 용당동",
+  "old_landmark_name": "용당로",
+  "landmark_name": "목포시청",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "목포시청",
+    "evidence": "목포시 양을로 203 (용당동), 지번 용당동 1188-2",
+    "url": "https://youth.mokpo.go.kr/www/introduce/cityhall/map"
+   },
+   {
+    "name": "목포고등학교",
+    "evidence": "목포시 산정로224번길 11 (용당동); 나무위키 용당동(목포) 문서 교육 항목에도 기재",
+    "url": "https://namu.wiki/w/%EC%9A%A9%EB%8B%B9%EB%8F%99(%EB%AA%A9%ED%8F%AC)"
+   }
+  ]
+ },
+ {
+  "code": "2611010200",
+  "slug": "busan-junggu-daechangdong1ga",
+  "region": "부산광역시 중구 대창동1가",
+  "old_landmark_name": "중앙대로",
+  "landmark_name": "",
+  "status": "held",
+  "reason": "대창동1가 주소로 확인되는 공공 장소가 없음. 부산중부경찰서는 2025년 중앙동4가로 이전했고 남은 후보는 호텔뿐"
+ },
+ {
+  "code": "2711010500",
+  "slug": "daegu-junggu-samdeokdong1ga",
+  "region": "대구광역시 중구 삼덕동1가",
+  "old_landmark_name": "동성로",
+  "landmark_name": "야시골목",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "야시골목",
+    "evidence": "대구역사문화대전: 삼덕동1가의 로데오거리는 인근 봉산동에 걸쳐 형성되어 있는 야시골목",
+    "url": "https://daegu.grandculture.net/daegu/junggu/toc/GC40000542"
+   }
+  ]
+ },
+ {
+  "code": "1221010200",
+  "slug": "gwangju-donggu-geumnamno5ga",
+  "region": "전남광주통합특별시 동구 금남로5가",
+  "old_landmark_name": "금남로",
+  "landmark_name": "금남로5가역",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "금남로5가역",
+    "evidence": "디지털광주문화대전: 금남로5가에는 광주도시철도1호선 금남로5가역을 중심으로 상업·의료·금융시설이 밀집",
+    "url": "https://gwangju.grandculture.net/gwangju/gwangsangu/toc/GC60000140"
+   }
+  ]
+ },
+ {
+  "code": "3111010200",
+  "slug": "ulsan-junggu-haksan",
+  "region": "울산광역시 중구 학산동",
+  "old_landmark_name": "중앙길",
+  "landmark_name": "신중앙시장",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "신중앙시장",
+    "evidence": "울산시장(신중앙시장), 울산 중구 학산동 47-1",
+    "url": "http://www.traveli.co.kr/look/contentsView/10324/1/1/3"
+   }
+  ]
+ },
+ {
+  "code": "4311110200",
+  "slug": "chungbuk-cheongju-sangdang-bukmullo1ga",
+  "region": "충청북도 청주시 상당구 북문로1가",
+  "old_landmark_name": "성안길",
+  "landmark_name": "청주 청녕각",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "청주 청녕각",
+    "evidence": "조선시대 청주목 동헌, 주소 청주시 상당구 상당로69번길 38 (북문로1가)",
+    "url": "https://ko.wikipedia.org/wiki/청주_청녕각"
+   }
+  ]
+ },
+ {
+  "code": "5211110500",
+  "slug": "jeonbuk-jeonju-wansan-gyeongwondong1ga",
+  "region": "전북특별자치도 전주시 완산구 경원동1가",
+  "old_landmark_name": "팔달로",
+  "landmark_name": "전북예술회관",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "전북예술회관",
+    "evidence": "도로명 전주시 완산구 팔달로 161, 지번 (경원동1가)",
+    "url": "https://www.ktourmap.com/spotDetails.jsp?contentId=1626011"
+   }
+  ]
+ },
+ {
+  "code": "1221010300",
+  "slug": "gwangju-donggu-chungjangno5ga",
+  "region": "전남광주통합특별시 동구 충장로5가",
+  "old_landmark_name": "충장로",
+  "landmark_name": "광주극장",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "광주극장",
+    "evidence": "1935년 개관, 현재도 운영 중인 단관극장. 동구 충장로46번길 10, 지번 충장로5가 62-9(검색결과)",
+    "url": "https://namu.wiki/w/광주극장"
+   }
+  ]
+ },
+ {
+  "code": "5111010300",
+  "slug": "gangwon-chuncheon-nakwon",
+  "region": "강원특별자치도 춘천시 낙원동",
+  "old_landmark_name": "춘천 중앙로",
+  "landmark_name": "",
+  "status": "held",
+  "reason": "낙원동 안에 있다고 확인되는 잘 알려진 장소가 없음. 성수고·성수여고는 삼천동으로 이전 예정(2027년 목표)이라 쓰지 않음"
+ },
+ {
+  "code": "4311110500",
+  "slug": "chungbuk-cheongju-sangdang-nammullo1ga",
+  "region": "충청북도 청주시 상당구 남문로1가",
+  "old_landmark_name": "성안로",
+  "landmark_name": "청주읍성 남문터",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "청주읍성 남문터",
+    "evidence": "디지털청주문화대전: '청주읍성의 정문에 해당하는 남문터(현재 남문로1가)'",
+    "url": "https://cheongju.grandculture.net/cheongju/toc/GC00202411"
+   },
+   {
+    "name": "청주순복음교회",
+    "evidence": "지번 청주시 상당구 남문로1가 112-3, 도로명 상당로25번길 17 (디지털청주문화대전)",
+    "url": "https://www.grandculture.net/cheongju/toc/GC00201542"
+   }
+  ]
+ },
+ {
+  "code": "1111010400",
+  "slug": "seoul-jongno-hyoja",
+  "region": "서울특별시 종로구 효자동",
+  "old_landmark_name": "효자로",
+  "landmark_name": "청와대 사랑채",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "청와대 사랑채",
+    "evidence": "도로명 종로구 효자로13길 45, 지번 종로구 효자동 150 (나무위키). 공식 사이트에서 2026년 운영 중(09:00~18:00, 화요일 휴관) 확인",
+    "url": "https://namu.wiki/w/청와대%20사랑채"
+   }
+  ]
+ },
+ {
+  "code": "2611011100",
+  "slug": "busan-junggu-donggwangdong1ga",
+  "region": "부산광역시 중구 동광동1가",
+  "old_landmark_name": "광복로",
+  "landmark_name": "부산데파트",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "부산데파트",
+    "evidence": "1969년 개장한 부산 최초 주상복합 쇼핑센터, 지번 부산 중구 동광동1가 1-10 (부산일보). 재건축이 추진 중이나 상가는 영업 중으로 보도됨(2020년 기사) — 철거 시 교체 필요",
+    "url": "https://www.busan.com/view/busan/view.php?code=2019041419372898124"
+   }
+  ]
+ },
+ {
+  "code": "5111010400",
+  "slug": "gangwon-chuncheon-jungangno1ga",
+  "region": "강원특별자치도 춘천시 중앙로1가",
+  "old_landmark_name": "중앙로",
+  "landmark_name": "한국은행 강원본부",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "한국은행 강원본부",
+    "evidence": "춘천시 중앙로 31 (중앙로1가 60-1번지)",
+    "url": "https://ko.wikipedia.org/wiki/중앙로_(춘천시)"
+   },
+   {
+    "name": "강원일보",
+    "evidence": "본사 강원특별자치도 춘천시 중앙로 23 (중앙로1가)",
+    "url": "https://ko.wikipedia.org/wiki/강원일보"
+   }
+  ]
+ },
+ {
+  "code": "2611010400",
+  "slug": "busan-junggu-jungangdong1ga",
+  "region": "부산광역시 중구 중앙동1가",
+  "old_landmark_name": "해관로",
+  "landmark_name": "",
+  "status": "held",
+  "reason": "중앙동1가는 면적이 매우 작아 이 동 주소로 확인되는 잘 알려진 장소가 없음. 세관·연안여객터미널·중앙역은 중앙동2~4가"
+ },
+ {
+  "code": "2711011000",
+  "slug": "daegu-junggu-sangseo",
+  "region": "대구광역시 중구 상서동",
+  "old_landmark_name": "국채보상로",
+  "landmark_name": "",
+  "status": "held",
+  "reason": "상서동 주소로 확인되는 장소가 없음. 백과사전에 함께 나오는 경상감영공원·종로초등학교·계산성당은 실제 주소가 다른 동"
+ },
+ {
+  "code": "4812110300",
+  "slug": "gyeongnam-changwon-uichang-seosang",
+  "region": "경상남도 창원시 의창구 서상동",
+  "old_landmark_name": "서상로",
+  "landmark_name": "고향의봄도서관",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "고향의봄도서관",
+    "evidence": "창원시 의창구 평산로135번길 32(서상동), 지하 1층에 이원수문학관 — 창원시 도서관 안내",
+    "url": "https://lib.changwon.go.kr/gh/intro/direction.html"
+   },
+   {
+    "name": "이원수문학관",
+    "evidence": "창원시 의창구 평산로135번길 32(서상동), 지하 1층에 이원수문학관 — 창원시 도서관 안내",
+    "url": "https://lib.changwon.go.kr/gh/intro/direction.html"
+   }
+  ]
+ },
+ {
+  "code": "2611011600",
+  "slug": "busan-junggu-daecheongdong1ga",
+  "region": "부산광역시 중구 대청동1가",
+  "old_landmark_name": "대청로",
+  "landmark_name": "부산 중구청",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "부산 중구청",
+    "evidence": "부산 중구 중구로 120 (대청동1가), 지번 대청동1가 1-4",
+    "url": "https://dorojuso.kr/2611011600100010004007538/부산광역시-중구-중구로-120-대청동1가"
+   },
+   {
+    "name": "용두산",
+    "evidence": "대청동1가에 있는 천주교 중앙성당이 '용두산공원 북쪽 어귀'에 있다고 소개(나무위키 대청동 문서) — 바로 옆으로 확인. 용두산공원 자체 주소는 광복동2가",
+    "url": "https://namu.wiki/w/대청동(부산)"
+   }
+  ]
+ },
+ {
+  "code": "2812512900",
+  "slug": "incheon-junggu-sa",
+  "region": "인천광역시 제물포구 사동",
+  "old_landmark_name": "우현로",
+  "landmark_name": "",
+  "status": "held",
+  "reason": "사동 지번으로 확인되는 학교·공원·시장 등이 없음. 답동성당은 답동, 인천기독병원은 율목동, 동인천역은 인현동"
+ },
+ {
+  "code": "2812513000",
+  "slug": "incheon-junggu-sinsaeng",
+  "region": "인천광역시 제물포구 신생동",
+  "old_landmark_name": "제물량로",
+  "landmark_name": "인천여자상업고등학교",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "인천여자상업고등학교",
+    "evidence": "인천광역시 중구 인중로 146 (신생동), 위키백과·학교알리미에 신생동 소재 공립고로 소개",
+    "url": "https://ko.wikipedia.org/wiki/%EC%9D%B8%EC%B2%9C%EC%97%AC%EC%9E%90%EC%83%81%EC%97%85%EA%B3%A0%EB%93%B1%ED%95%99%EA%B5%90"
+   },
+   {
+    "name": "신포동 행정복지센터",
+    "evidence": "인천광역시 제물포구 제물량로 168 (신생동), 옛 중구청 청사 건물",
+    "url": "https://ko.wikipedia.org/wiki/%EC%8B%A0%ED%8F%AC%EB%8F%99_(%EC%9D%B8%EC%B2%9C)"
+   }
+  ]
+ },
+ {
+  "code": "1221010700",
+  "slug": "gwangju-donggu-jang",
+  "region": "전남광주통합특별시 동구 장동",
+  "old_landmark_name": "동명로",
+  "landmark_name": "전남여자고등학교",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "전남여자고등학교",
+    "evidence": "광주 동구 제봉로158번길 8, 지번 광주광역시 동구 장동 39-12 (동구 두리찾기·학교알리미)",
+    "url": "http://duli.co.kr/web/splus/kmap/view.php?sigun=6290000&gugun=3590000&keyno=data_school_edu02&keyname=%EC%A0%84%EB%82%A8%EC%97%AC%EC%9E%90%EA%B3%A0%EB%93%B1%ED%95%99%EA%B5%90"
+   }
+  ]
+ },
+ {
+  "code": "2611012300",
+  "slug": "busan-junggu-bupyeongdong1ga",
+  "region": "부산광역시 중구 부평동1가",
+  "old_landmark_name": "중구로",
+  "landmark_name": "부평동 주민센터",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "부평동 주민센터",
+    "evidence": "부산광역시 중구 중구로29번길 23, 지번 부산 중구 부평동1가 30-27 (부산 중구청 동 안내·114 공공기관 정보)",
+    "url": "https://www.114.co.kr/life/public/detail/6407"
+   }
+  ]
+ },
+ {
+  "code": "5211112100",
+  "slug": "jeonbuk-jeonju-wansan-namnosong",
+  "region": "전북특별자치도 전주시 완산구 남노송동",
+  "old_landmark_name": "기린대로",
+  "landmark_name": "전주풍남초등학교",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "전주풍남초등학교",
+    "evidence": "전북특별자치도 전주시 완산구 견훤왕궁로 16 (남노송동), 지번 남노송동 507-1, 1919년 개교",
+    "url": "https://realty.daangn.com/schools/P100001476"
+   },
+   {
+    "name": "전주제일고등학교",
+    "evidence": "위키백과 노송동 문서에 남노송동 교육시설로 기재",
+    "url": "https://ko.wikipedia.org/wiki/%EB%85%B8%EC%86%A1%EB%8F%99"
+   }
+  ]
+ },
+ {
+  "code": "2812513300",
+  "slug": "incheon-junggu-sinheungdong1ga",
+  "region": "인천광역시 제물포구 신흥동1가",
+  "old_landmark_name": "인중로",
+  "landmark_name": "신흥동 구 인천시장 관사",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "신흥동 구 인천시장 관사(긴담모퉁이집)",
+    "evidence": "인천 중구 답동로 12, 지번 신흥동1가 19-7, 인천시 등록문화유산 '신흥동 구 인천시장 관사'",
+    "url": "https://www.kyeongin.com/article/1722948"
+   }
+  ]
+ },
+ {
+  "code": "3111011000",
+  "slug": "ulsan-junggu-yugok",
+  "region": "울산광역시 중구 유곡동",
+  "old_landmark_name": "유곡로",
+  "landmark_name": "태화초등학교",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "태화초등학교",
+    "evidence": "울산광역시 중구 평동길 25 (유곡동), 1975년 개교 공립초",
+    "url": "https://www.edufindkorea.com/edu/detail.php?uid=1790&schoolgubun=%EC%B4%88%EB%93%B1%ED%95%99%EA%B5%90"
+   },
+   {
+    "name": "함월고등학교",
+    "evidence": "울산광역시 중구 종가3길 25, 유곡동 소재 공립고",
+    "url": "https://ko.wikipedia.org/wiki/%ED%95%A8%EC%9B%94%EA%B3%A0%EB%93%B1%ED%95%99%EA%B5%90"
+   }
+  ]
+ },
+ {
+  "code": "5011010500",
+  "slug": "jeju-jeju-samdoil",
+  "region": "제주특별자치도 제주시 삼도일동",
+  "old_landmark_name": "전농로",
+  "landmark_name": "제주중앙초등학교",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "제주중앙초등학교",
+    "evidence": "제주시 서사로18길 40, 지번 삼도1동 503; 병설유치원 소재지 제주시 삼도일동",
+    "url": "https://www.daycarekorea.com/child/kinder_detail.php?name=%EC%A0%9C%EC%A3%BC%EC%A4%91%EC%95%99%EC%B4%88%EB%93%B1%ED%95%99%EA%B5%90%EB%B3%91%EC%84%A4%EC%9C%A0%EC%B9%98%EC%9B%90&addcode=50110105"
+   },
+   {
+    "name": "농협중앙회 제주지역본부",
+    "evidence": "제주시 서사로 56 (삼도일동)",
+    "url": "https://en.findby.co.kr/details/63172-501103349092-st-652b243d8c641f9e3895b43a"
+   }
+  ]
+ },
+ {
+  "code": "1111011000",
+  "slug": "seoul-jongno-nuha",
+  "region": "서울특별시 종로구 누하동",
+  "old_landmark_name": "필운대로",
+  "landmark_name": "이상범 가옥과 화실",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "누하동 이상범 가옥과 화실",
+    "evidence": "서울 종로구 필운대로 31-7, 31-8 (누하동), 국가등록문화유산 제171호 '서울 누하동 이상범 가옥과 화실'",
+    "url": "https://ko.wikipedia.org/wiki/%EC%84%9C%EC%9A%B8_%EB%88%84%ED%95%98%EB%8F%99_%EC%9D%B4%EC%83%81%EB%B2%94_%EA%B0%80%EC%98%A5%EA%B3%BC_%ED%99%94%EC%8B%A4"
+   }
+  ]
+ },
+ {
+  "code": "2611013100",
+  "slug": "busan-junggu-changseondong1ga",
+  "region": "부산광역시 중구 창선동1가",
+  "old_landmark_name": "광복로",
+  "landmark_name": "",
+  "status": "held",
+  "reason": "창선동1가 주소로 확인된 곳이 쇼핑몰(와이즈파크 광복점) 하나뿐이고 지금도 영업하는지 확인하지 못함"
+ },
+ {
+  "code": "2711011300",
+  "slug": "daegu-junggu-jongno1ga",
+  "region": "대구광역시 중구 종로1가",
+  "old_landmark_name": "종로",
+  "landmark_name": "",
+  "status": "held",
+  "reason": "대구중부경찰서가 종로1가 기관으로 소개되나 2021년부터 임시 청사를 쓰고 있어 지금 그 자리에 있다고 확인하지 못함"
+ },
+ {
+  "code": "5211112300",
+  "slug": "jeonbuk-jeonju-wansan-seowansandong1ga",
+  "region": "전북특별자치도 전주시 완산구 서완산동1가",
+  "old_landmark_name": "용머리로",
+  "landmark_name": "전주완산서초등학교",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "전주완산서초등학교",
+    "evidence": "전북특별자치도 전주시 완산구 안행로 127 (서완산동1가 227-1), 위키백과",
+    "url": "https://ko.wikipedia.org/wiki/%EC%A0%84%EC%A3%BC%EC%99%84%EC%82%B0%EC%84%9C%EC%B4%88%EB%93%B1%ED%95%99%EA%B5%90"
+   },
+   {
+    "name": "용머리고개",
+    "evidence": "전북일보: 용머리고개 여의주마을 생태숲 공원을 서완산동1가 35-1번지 일원에 조성 (서완산동 일원 고개, 동 안 또는 바로 옆)",
+    "url": "http://www.jjan.kr/news/articleView.html?idxno=2100442"
+   }
+  ]
+ },
+ {
+  "code": "1111011100",
+  "slug": "seoul-jongno-okin",
+  "region": "서울특별시 종로구 옥인동",
+  "old_landmark_name": "필운대로",
+  "landmark_name": "수성동계곡",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "수성동계곡",
+    "evidence": "서울 종로구 옥인동 185-3, 인왕산에서 흘러내리는 계곡",
+    "url": "https://kr.trip.com/moments/detail/seoul-234-119389320/"
+   },
+   {
+    "name": "박노수미술관",
+    "evidence": "종로구립 박노수미술관, 서울 종로구 옥인1길 34 (옥인동, 박노수 가옥), 종로구 평생교육포털",
+    "url": "https://lle.jongno.go.kr/site/main/map/lle/158"
+   }
+  ]
+ },
+ {
+  "code": "2611013300",
+  "slug": "busan-junggu-gwangbokdong1ga",
+  "region": "부산광역시 중구 광복동1가",
+  "old_landmark_name": "광복로",
+  "landmark_name": "남포역",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "남포역",
+    "evidence": "부산 도시철도 1호선 남포역(구덕로 지하12), 남포동1가·중앙동7가·광복동1가·남포동4가·남포동2가에 걸쳐 있음, 나무위키",
+    "url": "https://namu.wiki/w/%EB%82%A8%ED%8F%AC%EC%97%AD(%EB%B6%80%EC%82%B0)"
+   }
+  ]
+ },
+ {
+  "code": "2711011100",
+  "slug": "daegu-junggu-su",
+  "region": "대구광역시 중구 수동",
+  "old_landmark_name": "약령길",
+  "landmark_name": "곽병원",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "곽병원",
+    "evidence": "대구광역시 중구 국채보상로 531 (수동), 하이닥 병원 정보",
+    "url": "https://mobile.hidoc.co.kr/find/result/view/H0000152422"
+   },
+   {
+    "name": "대구약령시",
+    "evidence": "대구시 약령시 소개: 남성로·동성로3가·계산1·2가·수동·종로2가·장관동·상서동 일부에 걸쳐 형성",
+    "url": "https://www.daegu.go.kr/dgom/index.do?menu_id=00934388"
+   }
+  ]
+ },
+ {
+  "code": "3011011200",
+  "slug": "daejeon-donggu-sinan",
+  "region": "대전광역시 동구 신안동",
+  "old_landmark_name": "신안동길",
+  "landmark_name": "신안2역사공원",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "신안2역사공원",
+    "evidence": "대전 동구 신안동 232-4번지 일대, 중도일보",
+    "url": "https://m.joongdo.co.kr/view.php?key=20230102010000478"
+   },
+   {
+    "name": "대전 철도보급창고",
+    "evidence": "대전역 동광장의 국가등록문화재 철도보급창고를 신안2역사공원으로 통째로 옮김, 굿모닝충청",
+    "url": "https://www.goodmorningcc.com/news/articleView.html?idxno=296981"
+   }
+  ]
+ },
+ {
+  "code": "3111011200",
+  "slug": "ulsan-junggu-daun",
+  "region": "울산광역시 중구 다운동",
+  "old_landmark_name": "다운로",
+  "landmark_name": "다운중학교",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "다운중학교",
+    "evidence": "울산광역시 중구 다운로 178 (다운동), 학교알리미/위키백과",
+    "url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=5f25f9cf-5cbe-4837-bda7-194a81124f14"
+   }
+  ]
+ },
+ {
+  "code": "4711110600",
+  "slug": "gyeongbuk-pohang-namgu-ilwol",
+  "region": "경상북도 포항시 남구 일월동",
+  "old_landmark_name": "동해안로",
+  "landmark_name": "",
+  "status": "held",
+  "reason": "일월동 주소로 확인되는 이름 있는 장소가 없음. 공항·일월지는 동해면·오천읍, 청림초·행정복지센터는 청림동 주소"
+ },
+ {
+  "code": "2711011500",
+  "slug": "daegu-junggu-sail",
+  "region": "대구광역시 중구 사일동",
+  "old_landmark_name": "중앙대로",
+  "landmark_name": "",
+  "status": "held",
+  "reason": "사일동 안에 있다고 확인되는 학교·공원·관공서가 없음. 검색되는 것은 아파트와 개별 건물 지번뿐"
+ },
+ {
+  "code": "2811013000",
+  "slug": "incheon-jemulpo-yu",
+  "region": "인천광역시 제물포구 유동",
+  "old_landmark_name": "참외전로",
+  "landmark_name": "",
+  "status": "held",
+  "reason": "유동 지번으로 확인되는 장소가 없음. 율목동 행정복지센터는 지번 미확인, 인천기독병원은 율목동 주소"
+ },
+ {
+  "code": "4111312700",
+  "slug": "gyeonggi-suwon-gwonseon-pyeong",
+  "region": "경기도 수원시 권선구 평동",
+  "old_landmark_name": "평동로",
+  "landmark_name": "평동 행정복지센터",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "평동 행정복지센터",
+    "evidence": "수원시 권선구 평동로76번길 13 (평동 35-6), 권선구청 안내·나무위키",
+    "url": "https://ksun.suwon.go.kr/submain_view.asp?TopID=sub07&MenuID=sub07040105"
+   }
+  ]
+ },
+ {
+  "code": "4311111900",
+  "slug": "chungbuk-cheongju-sangdang-yeongun",
+  "region": "충청북도 청주시 상당구 영운동",
+  "old_landmark_name": "단재로",
+  "landmark_name": "영운국민체육센터",
+  "status": "confirmed",
+  "items": [
+   {
+    "name": "영운국민체육센터",
+    "evidence": "충청북도 청주시 상당구 수영로101번길 63 (영운동), 청주시 관광 안내",
+    "url": "https://cjyu.cheongju.go.kr/home/sub.do?menukey=7104&mode=view&sn=1415&code1=apply1"
+   },
+   {
+    "name": "영운공원",
+    "evidence": "영운근린공원, 청주 상당구 영운동 산62 일원(약 12만㎡, 민간공원 개발 추진 중), 충북넷",
+    "url": "http://okcb.net/110904"
+   }
+  ]
+ }
+]
