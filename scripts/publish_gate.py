@@ -32,7 +32,10 @@ ALLOWED_PREFIXES = (
 
 
 def git(*args: str) -> str:
-    return subprocess.run(["git", *args], cwd=ROOT, check=True, capture_output=True, text=True).stdout
+    # core.quotepath=false: 한글 파일 이름(gu/종로구-폐차장.html)을 "gu/\352..." 처럼 따옴표로 감싸지 않게 한다.
+    # 감싸면 허용 폴더(gu/)로 시작하지 않는 것으로 잘못 판정된다(2026-10-01 루틴이 이것 때문에 막힘).
+    return subprocess.run(["git", "-c", "core.quotepath=false", *args], cwd=ROOT, check=True,
+                          capture_output=True, text=True, encoding="utf-8").stdout
 
 
 def main() -> None:
