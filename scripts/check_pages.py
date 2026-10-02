@@ -188,7 +188,7 @@ def check_links(base: str) -> list[str]:
     """사이트 안 링크가 깨졌는지와 옛 주소가 남았는지 본다. 외부 사이트 링크는 확인하지 않는다."""
     problems = []
     files = ([p for p in ROOT.glob("*.html")] + list(PAGES_DIR.glob("*.html")) + list((ROOT / "cases").glob("*.html"))
-             + list((ROOT / "gu").glob("*.html")) + list((ROOT / "guide").glob("*.html")))
+             + list((ROOT / "gu").glob("*.html")) + list((ROOT / "guide").glob("*.html")) + list((ROOT / "si").glob("*.html")))
     for extra in ("sitemap.xml", "robots.txt"):
         if (ROOT / extra).exists():
             files.append(ROOT / extra)
@@ -318,6 +318,78 @@ def check_gu_pages(cfg: dict, sitemap: str, all_sidos: set[str]) -> list[str]:
         if html.count('href="../pages/') < 3:
             problems.append(f"{tag}: 동 페이지 링크가 3개 미만")
         if f"/gu/{quote(files[slug])}<" not in sitemap:
+            problems.append(f"{tag}: sitemap.xml 에 없음")
+    return problems
+
+
+SI_REQUIRED = [r for r in GU_REQUIRED if r[0] != 'class="crumbs"'] + [
+    ('class="crumbs"', "길 안내 줄"),
+    ('id="gu"', "시·군·구 목록 칸"),
+    ('href="#gu">지역별 상담</a>', "메뉴 '지역별 상담'"),
+]
+SI_TITLE_RE = re.compile(r"<title>(.+?) 폐차장 · 폐차 \| 시·군·구별 출장 폐차 · 수출 비교 · 조기폐차 안내 \| 전화 1600-6011</title>")
+
+
+def check_si_pages(cfg: dict, sitemap: str, all_sidos: set[str]) -> list[str]:
+    """시·도 페이지(si/, 2026-10-02): si.json 과 파일이 맞는지, 구 페이지 3개 이상·링크, 필수 문구, 금액·단정 표현,
+    다른 시도 이름, sitemap, 소속 구 페이지와 첫 화면에서 이 페이지로 오는 링크."""
+    from build_si import MIN_GU_PAGES, gu_of, load_si, si_file
+    problems = []
+    si_data = load_si()
+    gu_path = ROOT / "data" / "gu.json"
+    gu_data = json.loads(gu_path.read_text(encoding="utf-8")) if gu_path.exists() else []
+    want = {si_file(s["sido"]): s for s in si_data}
+    have = {p.name for p in (ROOT / "si").glob("*.html")} if (ROOT / "si").exists() else set()
+    for name in sorted(have - set(want)):
+        problems.append(f"si/{name}: data/si.json 에 없는 시·도 페이지")
+    index_html = (ROOT / "index.html").read_text(encoding="utf-8") if (ROOT / "index.html").exists() else ""
+    from build_site import gu_file
+    for name, s in want.items():
+        tag = f"시·도 {s['sido']}"
+        f = ROOT / "si" / name
+        if not f.exists():
+            problems.append(f"{tag}: si/{name} 없음 (build_site.py 실행 필요)")
+            continue
+        html = f.read_text(encoding="utf-8")
+        if PLACEHOLDER_RE.search(html):
+            problems.append(f"{tag}: 템플릿 자리 잔여 {PLACEHOLDER_RE.findall(html)[:3]}")
+        for needle, label in SI_REQUIRED:
+            if needle not in html:
+                problems.append(f"{tag}: {label} 없음")
+        problems += [f"{tag}: {x}" for x in footer_problems(html, cfg)]
+        body = re.sub(r"<style>.*?</style>|<script[^>]*>.*?</script>", "", html, flags=re.DOTALL)
+        for m in PROMISE_RE.finditer(body):
+            problems.append(f"{tag}: 결과 약속 표현 '{m.group(0)}'")
+        for m in GU_BAN_RE.finditer(body):
+            problems.append(f"{tag}: 단정 표현·가짜 숫자 '{m.group(0)}'")
+        for m in AMOUNT_RE.finditer(body):
+            problems.append(f"{tag}: 금액 표현 '{m.group(0)}'")
+        problems += [f"{tag}: {x}" for x in core_problems(html)]
+        for i, form in enumerate(re.findall(r"<form[^>]*>.*?</form>", html, flags=re.DOTALL), 1):
+            if CONSENT_TEXT not in form:
+                problems.append(f"{tag}: 견적 폼 {i}번 버튼 아래에 개인정보처리방침 동의 안내 없음")
+        if NO_SMS_RE.search(html):
+            problems.append(f"{tag}: 문자 버튼이 대표번호(1600-6011)로 감")
+        if not SI_TITLE_RE.search(html):
+            problems.append(f"{tag}: 제목이 고정 틀 '○○ 폐차장 · 폐차 | 시·군·구별 출장 폐차 · 수출 비교 · 조기폐차 안내 | 전화 1600-6011' 과 다름")
+        if not GU_UPDATED_RE.search(html):
+            problems.append(f"{tag}: '최종 업데이트: YYYY년 M월 D일' 줄 없음")
+        for sido in all_sidos - {s["sido"]}:
+            if sido in body:
+                problems.append(f"{tag}: 다른 시도 이름 '{sido}' 가 있음")
+        gus = gu_of(s["sido"], gu_data)
+        if len(gus) < MIN_GU_PAGES:
+            problems.append(f"{tag}: 구 페이지 {len(gus)}개 ({MIN_GU_PAGES}개 이상일 때만 만든다)")
+        for g in gus:
+            gf = gu_file(g["sido"], g["sigungu"])
+            if f'href="../gu/{gf}"' not in html:
+                problems.append(f"{tag}: 구 페이지 gu/{gf} 링크 없음")
+            gtext = (ROOT / "gu" / gf).read_text(encoding="utf-8") if (ROOT / "gu" / gf).exists() else ""
+            if f'href="../si/{name}"' not in gtext:
+                problems.append(f"{tag}: 구 페이지 gu/{gf} 에 이 시·도 페이지 링크 없음")
+        if f'href="si/{name}"' not in index_html:
+            problems.append(f"{tag}: 첫 화면(index.html)에 이 시·도 페이지 링크 없음 (build_index.py 실행 필요)")
+        if f"/si/{quote(name)}<" not in sitemap:
             problems.append(f"{tag}: sitemap.xml 에 없음")
     return problems
 
@@ -558,6 +630,7 @@ def main() -> None:
         errors.extend(check_site_pages(site_cfg))
         errors.extend(check_gu_pages(site_cfg, sitemap, all_sidos))
         errors.extend(check_guide_pages(site_cfg, sitemap))
+        errors.extend(check_si_pages(site_cfg, sitemap, all_sidos))
 
     # 첫 화면의 네이버 서치어드바이저 소유확인 태그
     naver = site_cfg.get("naver_site_verification")

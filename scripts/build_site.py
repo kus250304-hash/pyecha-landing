@@ -323,11 +323,17 @@ def page_jsonld(name: str, url: str) -> str:
                        "inLanguage": "ko-KR", "dateModified": UPDATED_ISO_MARK}, ensure_ascii=False)
 
 
+def sido_link(sido: str, prefix: str = "../") -> str | None:
+    """시·도 페이지(/si/, 2026-10-02)가 있으면 그 주소, 없으면 None."""
+    from build_si import si_file, si_sidos
+    return f"{prefix}si/{si_file(sido)}" if sido in si_sidos() else None
+
+
 def area_links_html(regions: list[dict], gu_data: list[dict], prefix: str = "../",
-                    here_dong: dict | None = None, here_gu: dict | None = None) -> str:
+                    here_dong: dict | None = None, here_gu: dict | None = None, here_si: str | None = None) -> str:
     """모든 페이지 맨 아래 지역 링크 목록(2026-10-01).
-    동 페이지: 같은 구의 다른 동 + 그 구 페이지. 구 페이지: 같은 시·도의 다른 구 페이지.
-    모든 페이지: 폐차 안내 5장, 시·도 16개(시·도 페이지가 생기기 전까지는 첫 화면의 그 시·도 칸 — 구 페이지 목록 포함 — 으로 연결)."""
+    동 페이지: 같은 구의 다른 동 + 그 구 페이지. 구 페이지: 그 시·도 페이지 + 같은 시·도의 다른 구 페이지.
+    모든 페이지: 폐차 안내 5장, 시·도 16개(시·도 페이지가 있으면 그 페이지, 없으면 첫 화면의 그 시·도 칸으로 연결)."""
     from build_guide import GUIDES
     from build_index import SIDO_ORDER
     gu_keys = {(g["sido"], g["sigungu"]) for g in gu_data}
@@ -350,12 +356,15 @@ def area_links_html(regions: list[dict], gu_data: list[dict], prefix: str = "../
     if here_gu:
         g = here_gu
         others = sorted((x for x in gu_data if x["sido"] == g["sido"] and x["slug"] != g["slug"]), key=lambda x: x["sigungu"])
-        if others:
-            blocks.append(block(f"{SIDO_SHORT[g['sido']]} 다른 시·군·구 폐차 상담",
-                                [(f'{prefix}gu/{gu_file(x["sido"], x["sigungu"])}', f'{x["sigungu"] or SIDO_SHORT[x["sido"]]} 폐차')
-                                 for x in others]))
+        links = [(f'{prefix}gu/{gu_file(x["sido"], x["sigungu"])}', f'{x["sigungu"] or SIDO_SHORT[x["sido"]]} 폐차') for x in others]
+        si_href = sido_link(g["sido"], prefix) if g["sigungu"] else None
+        if si_href:
+            links.insert(0, (si_href, f"{SIDO_SHORT[g['sido']]} 전체 폐차 상담"))
+        if links:
+            blocks.append(block(f"{SIDO_SHORT[g['sido']]} 다른 시·군·구 폐차 상담", links))
     blocks.append(block("폐차 안내", [(f"{prefix}guide/{x['file']}", x["nav"]) for x in GUIDES]))
-    blocks.append(block("시·도별 폐차 상담", [(f"{prefix}index.html#sido-{SIDO_SHORT[s]}", SIDO_SHORT[s]) for s in SIDO_ORDER]))
+    blocks.append(block("시·도별 폐차 상담", [(sido_link(s, prefix) or f"{prefix}index.html#sido-{SIDO_SHORT[s]}", SIDO_SHORT[s])
+                                         for s in SIDO_ORDER]))
     return ('<nav class="area-links" id="area-links" aria-label="지역·안내 바로가기"><div class="wrap">'
             + "".join(blocks) + "</div></nav>")
 
@@ -379,7 +388,9 @@ def breadcrumb(r: dict, gu_pages: set[str]) -> str:
     g = gu_slug(r["sido"], r["sigungu"])
     gu_label = r["sigungu"] or SIDO_SHORT[r["sido"]]
     gu_html = f'<a href="../gu/{esc(gu_file(r["sido"], r["sigungu"]))}">{esc(gu_label)}</a>' if g in gu_pages else esc(gu_label)
-    items = ([esc(SIDO_SHORT[r["sido"]])] if r["sigungu"] else []) + [gu_html, esc(r["dong"])]
+    si_href = sido_link(r["sido"]) if r["sigungu"] else None
+    si_html = f'<a href="{esc(si_href)}">{esc(SIDO_SHORT[r["sido"]])}</a>' if si_href else esc(SIDO_SHORT[r["sido"]])
+    items = ([si_html] if r["sigungu"] else []) + [gu_html, esc(r["dong"])]
     return '<nav class="crumbs" aria-label="지역 경로">' + " › ".join(items) + "</nav>"
 
 
@@ -544,6 +555,10 @@ def main() -> None:
     from build_gu import render_all as render_gu
     gu_changed, gu_dropped = render_gu(regions, cfg, gu_data, groups, cases)
 
+    # 시·도 페이지(/si/, 2026-10-02): 그 시·도의 구 페이지를 모아 잇는다
+    from build_si import render_all as render_si
+    si_changed = render_si(regions, cfg, gu_data, cases)
+
     # 공통 안내 페이지(/guide/, 2026-10-01)
     from build_guide import render_all as render_guides
     guide_changed = render_guides(regions, cfg, gu_data)
@@ -553,8 +568,8 @@ def main() -> None:
     case_changed = render_all_cases(regions, cfg)
 
     # 내용이 실제로 바뀐 페이지만 sitemap 의 수정일을 갱신한다(--keep-dates 면 새로 만든 동 페이지만 넣고 기존 수정일은 그대로)
-    update_sitemap(ROOT, created if args.keep_dates else changed, paths=gu_changed + guide_changed + case_changed, drop=gu_dropped)
-    print(f"완료: {len(targets)}개 중 {len(changed)}개 페이지 변경, 구 페이지 {len(gu_changed)}개 변경, "
+    update_sitemap(ROOT, created if args.keep_dates else changed, paths=gu_changed + si_changed + guide_changed + case_changed, drop=gu_dropped)
+    print(f"완료: {len(targets)}개 중 {len(changed)}개 페이지 변경, 구 페이지 {len(gu_changed)}개, 시·도 페이지 {len(si_changed)}개 변경, "
           f"안내 페이지 {len(guide_changed)}개 변경, sitemap.xml 갱신")
 
 

@@ -11,7 +11,8 @@ index.html의 지역 목록 블록과 헤더의 지역 수만 교체하고 나�
 지역·사례 페이지의 footer 는 templates/ 의 템플릿에 들어 있다.
 
 시·도 칸마다 id="sido-<줄임 이름>" 을 달고, 그 시·도의 구 페이지(/gu/) 목록을 맨 위에 넣는다.
-동·구·안내 페이지 맨 아래 "시·도별 폐차 상담" 링크가 이 칸으로 온다(시·도 페이지가 생기기 전까지, 2026-10-01).
+시·도 페이지(/si/, 2026-10-02)가 있는 시·도는 그 칸 맨 위에 시·도 페이지 링크를 넣는다.
+시·도 페이지가 없는 시·도는 동·구·안내 페이지 맨 아래 "시·도별 폐차 상담" 링크가 이 칸으로 온다.
 
 배치 생성 스크립트나 build_site.py를 실행한 뒤 이 스크립트를 실행하면 index.html이 최신 상태가 된다.
 """
@@ -131,13 +132,16 @@ def render_groups(by_sido: dict[str, list[tuple[str, str]]], gu_by_sido: dict[st
             f'        <li><a href="pages/{file_name}">{full_name}</a></li>'
             for full_name, file_name in entries
         )
+        from build_si import si_file, si_sidos
+        si_line = (f'        <p class="gu-links"><a href="si/{html.escape(si_file(sido), quote=True)}">'
+                   f"{SIDO_SHORT[sido]} 전체 폐차 상담 페이지</a></p>\n") if sido in si_sidos() else ""
         gus = sorted(gu_by_sido.get(sido, []))
         gu_line = ("        <p class=\"gu-links\">시·군·구 전체 상담: " + " · ".join(
             f'<a href="gu/{html.escape(f, quote=True)}">{html.escape(name)}</a>' for name, f in gus) + "</p>\n") if gus else ""
         blocks.append(
             f'      <div class="region-group" id="sido-{SIDO_SHORT[sido]}">\n'
             f'        <h2>{sido} <span class="count">({len(entries)})</span></h2>\n'
-            f"{gu_line}"
+            f"{si_line}{gu_line}"
             "        <ul>\n"
             f"{items}\n"
             "        </ul>\n"

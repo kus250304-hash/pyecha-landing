@@ -53,12 +53,21 @@ G2. 후보마다 출력된 JSON 뼈대를 docs/roadmap.md 2절과 scripts/build_
 G3. 채울 수 없는 구(공공 정보가 한 줄도 확인되지 않음, 대표 랜드마크를 고를 수 없음 등)는 data/gu.json 에 넣지 않고 data/gu_held.json(목록, 없으면 새로 만듦)에 {"slug", "sido", "sigungu", "reason"(쉬운 말), "held_on": "YYYY-MM-DD"} 로 남긴다. 다음 날 다시 뽑히지 않는다.
 G4. 채운 구를 data/gu.json 목록 끝에 넣고 `python3 scripts/build_site.py` → `python3 scripts/build_index.py` → `python3 scripts/check_pages.py` 를 실행한다(그 구의 동 페이지 길 안내 링크와 사례 연결, sitemap 이 함께 갱신된다). "구 페이지를 만들 수 없음"이나 검사 오류가 나오면 그 구 항목을 고치고 다시 실행한다. 세 번 고쳐도 안 되는 구는 data/gu.json 에서 빼고 G3 처럼 보류한다. check_pages.py 오류 0건이 될 때까지 커밋하지 않는다.
 
+[시·도 페이지 — 구 페이지(G4)가 끝난 뒤. 2026-10-02 병한님 결정]
+S1. `python3 scripts/build_si.py candidates` 를 실행한다. 구 페이지가 3개 이상인데 시·도 페이지(data/si.json)도 보류(data/si_held.json)도 없는 시·도와 JSON 뼈대가 나온다. "만들 수 있는 시·도가 없습니다"가 나오면 이 단계를 건너뛴다.
+S2. 시·도마다 뼈대를 채운다(scripts/build_si.py 맨 위 규칙):
+   - faqs: 질문·답 3쌍. 질문에 그 시·도 줄임 이름(서울, 대구 …)을 넣고, docs/keyword-insights-2026-10-02.md 4절 주제(조기폐차·압류·상속·서류·말소·방치차·시동 등) 가운데 골라 그 시·도 상황(아파트 지하주차장, 농촌 마당, 섬 등)에 맞게 쓴다. 다른 시·도 FAQ 를 복사하지 않는다.
+   - public_info: 말소등록 관청(시청·구청·차량등록사업소), 그 시·도 노후차 조기폐차 공고 중 WebSearch 로 공식 출처(관청 누리집·정부24·공공기관 보도, 없으면 언론 보도)가 확인되는 줄만. label·value·source·url(실제 연 주소)을 적고 금액은 쓰지 않는다. 확인 못 한 줄은 dropped_info 에 이유를 적는다.
+   - 랜드마크·장소 소개 문장은 넣지 않는다. 구 목록·제목·파일 이름은 빌더가 만든다.
+S3. 공공 정보가 한 줄도 확인되지 않는 시·도는 data/si.json 에 넣지 않고 data/si_held.json(목록, 없으면 새로 만듦)에 {"sido", "reason"(쉬운 말), "held_on": "YYYY-MM-DD"} 로 남긴다.
+S4. 채운 시·도를 data/si.json 목록 끝에 넣고 `python3 scripts/build_site.py` → `python3 scripts/build_index.py` → `python3 scripts/check_pages.py` 를 실행한다. "시·도 페이지를 만들 수 없음"이나 검사 오류가 나오면 고치고 다시 실행한다. 세 번 고쳐도 안 되면 data/si.json 에서 빼고 S3 처럼 보류한다. check_pages.py 오류 0건이 될 때까지 커밋하지 않는다.
+
 [반영]
-9. 변경된 파일(data/regions.json, data/batches/held/, data/fact_checks/, data/vehicle_stats.json, data/vehicle_stats_old10_est.json, data/vehicle_stats_total.json, pages/, gu/, guide/, data/gu.json, data/gu_held.json, cases/, index.html, sitemap.xml)만 커밋한다. guide/(공통 안내 5장)는 build_site.py 가 맨 아래 지역 링크를 다시 그릴 때만 바뀌며, 루틴이 글을 고치지 않는다. 메시지 첫 줄: "Add N region pages (YYYY-MM-DD), held M" (3시 보고가 이 줄을 찾으므로 바꾸지 않는다). 구 페이지를 만들었으면 둘째 줄부터 "Gu pages: K added, J held" 를 적는다. 반영할 지역이 0개이고 보류만 있으면 보류 파일만 커밋한다(다음 날 다시 뽑히지 않게).
+9. 변경된 파일(data/regions.json, data/batches/held/, data/fact_checks/, data/vehicle_stats.json, data/vehicle_stats_old10_est.json, data/vehicle_stats_total.json, pages/, gu/, guide/, data/gu.json, data/gu_held.json, si/, data/si.json, data/si_held.json, cases/, index.html, sitemap.xml)만 커밋한다. guide/(공통 안내 5장)는 build_site.py 가 맨 아래 지역 링크를 다시 그릴 때만 바뀌며, 루틴이 글을 고치지 않는다. 메시지 첫 줄: "Add N region pages (YYYY-MM-DD), held M" (3시 보고가 이 줄을 찾으므로 바꾸지 않는다). 구 페이지를 만들었으면 둘째 줄부터 "Gu pages: K added, J held" 를, 시·도 페이지를 만들었으면 그다음 줄에 "Si pages: K added, J held" 를 적는다. 반영할 지역이 0개이고 보류만 있으면 보류 파일만 커밋한다(다음 날 다시 뽑히지 않게).
 10. `python3 scripts/publish_gate.py` 를 실행한다.
    - "통과"가 나오면 `git push origin HEAD:main` 으로 main 에 반영한다.
    - "통과 못 함"이 나오거나 push 가 거절되면 main 에는 push 하지 않는다. 대신 `git push -u origin HEAD:auto/failed-$(TZ=Asia/Seoul date +%Y%m%d)` 로 작업을 남기고 실패 이유를 보고한다. 강제 push, 게이트 건너뛰기, 스크립트를 고쳐 통과시키는 것은 금지한다.
-11. 보고를 쓰기 전에 docs/roadmap.md 를 읽는다. 7절 "조건이 되면 먼저 알릴 것"의 조건에 해당하는 항목이 있으면 보고 맨 위에 먼저 알린다(무엇을 제안하는지 한두 줄). 제안만 하고 그 작업(시·도 페이지 만들기 등)을 루틴이 직접 하지 않는다.
+11. 보고를 쓰기 전에 docs/roadmap.md 를 읽는다. 7절 "조건이 되면 먼저 알릴 것"의 조건에 해당하는 항목이 있으면 보고 맨 위에 먼저 알린다(무엇을 제안하는지 한두 줄). 제안만 하고 그 작업을 루틴이 직접 하지 않는다(시·도 페이지는 S1~S4 에서 조건이 되면 자동으로 만든다).
 12. 마지막으로 짧게 보고한다(3시 보고):
    - 반영 N개, 보류 M개(보류된 동 이름과 이유, 사람이 거의 살지 않아 건너뛴 동은 판단 근거 포함)
    - 오늘 반영한 사례 N건: 지역(시군구 동)·차종, …  (3-1 의 "사례 생성:" 줄 기준. 0건이면 "오늘 반영한 사례 0건(PC에서 올라온 것 없음)". 붙을 동 페이지가 아직 없는 사례나 건너뛴 사례가 있으면 그 이유도 한 줄)
@@ -67,5 +76,6 @@ G4. 채운 구를 data/gu.json 목록 끝에 넣고 `python3 scripts/build_site.
    - 검색량 우선순위(pick_next_regions.py 의 "검색량 우선순위" 줄). "목록의 곳이 모두 동 페이지 3개 이상"이 나오면 그 사실과 함께 "네이버 키워드 엑셀을 새로 받아 scripts/naver_keywords.py 를 다시 돌릴 때"라고 적는다
    - 우선순위 기준(pick_next_regions.py 의 "우선순위 기준" 줄). 추정 노후 자가용 통계를 못 구해 전체 등록대수 순으로 했거나, 통계가 아예 없어 임시 순서로 했으면 그 사실과 이유를 적는다
    - 구 페이지: 오늘 만든 구 K개 목록(줄 A/B 표시, 시도 시군구), 줄 B 가 모자라 줄 A 로 채운 개수, 공공 정보 중 확인 못 해서 뺀 항목(dropped_info), 보류한 구와 이유, 구 페이지 총 개수(data/gu.json 항목 수)
+   - 시·도 페이지: 오늘 만든 시·도, 확인 못 해서 뺀 공공 정보(dropped_info), 보류한 시·도와 이유, 시·도 페이지 총 개수(data/si.json 항목 수)
    - 실패가 있었으면 그 이유
 ```
