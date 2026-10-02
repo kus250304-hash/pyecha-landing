@@ -3,6 +3,7 @@ cases/input/ 에 올린 사례 폴더(사진 + 메모.txt)를 읽어 사례 페�
 
 사용법
   python3 scripts/build_cases.py
+  python3 scripts/build_cases.py <폴더 이름> …   ← cases/input 안의 그 폴더만
 
 한 사례 = 폴더 하나
   cases/input/2026-09-24-역삼동-그랜저/
@@ -516,7 +517,14 @@ def render_all_cases(regions: list[dict], cfg: dict) -> list[str]:
 
 
 def main() -> None:
+    # 폴더 이름을 주면 cases/input 안의 그 폴더만 처리한다(운영자가 특정 건만 먼저 올릴 때). 없으면 전부
+    names = sys.argv[1:]
     folders = sorted(p for p in INPUT_DIR.glob("*") if p.is_dir()) if INPUT_DIR.exists() else []
+    if names:
+        missing = [n for n in names if not (INPUT_DIR / n).is_dir()]
+        if missing:
+            raise SystemExit(f"cases/input 에 없는 폴더: {', '.join(missing)}")
+        folders = [p for p in folders if p.name in names]
     if not folders:
         print("처리할 사례 없음 (cases/input/ 에 폴더가 없습니다)")
         return

@@ -20,6 +20,7 @@ PC(운영자 컴퓨터)에서 돌리는 "사례 가져오기" 도구. 원본 사
   python scripts/pc_cases.py drop cN "<이유>"     이 건은 오늘 쓰지 않음 (원본에 표시하지 않음)
   python scripts/pc_cases.py scan --more          뺀 만큼 새로 고르기 → 다시 prepare (새로 고른 건만 준비)
   python scripts/pc_cases.py scan --no-dong --n 20  동 없이 시군구까지만 적힌 사례만 고르기
+  python scripts/pc_cases.py scan --only 퇴촌면,쌍령동  폴더 이름으로 특정 건만 고르기(운영자가 지정할 때만)
 
 지역이 동 없이 시·군·구까지만 적힌 사례('충주시', '대구 중구')도 그 시군구가 한 곳으로 정해지면 가져온다.
 이런 사례는 동 페이지에는 붙지 않고 구 페이지(/gu/)에만 붙으며, 구 페이지가 아직 없으면 cases/input 에서
@@ -131,6 +132,8 @@ def cmd_scan(args) -> None:
                 skipped.append((rel, "사진 없음"))
                 continue
             if args.no_dong and region["dong"]:
+                continue
+            if args.only and not any(w in rel for w in args.only.split(",")):
                 continue
             key = (region["sido"], region["sigungu"], region["dong"])
             if region["dong"]:
@@ -359,6 +362,7 @@ def main() -> None:
     s.add_argument("--src", default=SRC_DEFAULT)
     s.add_argument("--n", type=int, default=3)
     s.add_argument("--more", action="store_true", help="오늘 고른 건은 두고, 뺀 만큼만 더 고른다")
+    s.add_argument("--only", default="", help="원본 폴더 이름에 이 글자가 든 건만 고른다(쉼표로 여러 개). 운영자가 특정 건을 지정할 때만")
     s.add_argument("--no-dong", action="store_true", help="동 없이 시군구까지만 적힌 사례만 고른다(밀린 건 한꺼번에 처리할 때)")
     sub.add_parser("prepare")
     for name in ("mask", "stage"):
