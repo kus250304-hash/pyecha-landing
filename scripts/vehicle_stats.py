@@ -34,6 +34,10 @@
 
   python3 scripts/vehicle_stats.py show     # 지금 쓰는 기준과 상위 20개 시군구
 
+구·시 페이지 공공 정보 표의 '자동차 등록대수' 줄(2026-10-03, registration_row):
+  - 추정치(count)가 아니라 엑셀에 있는 실제 숫자(자가용 registered, 전체 total)만 기준 연월·출처와 함께 쓴다.
+  - 빌더(build_gu.py·build_si.py)가 이 파일에서 자동으로 넣는다. 루틴은 등록대수를 웹에서 찾지 않는다.
+
 옛 이름 통계 맞추기(2026-07-01 행정구역 변경 전 자료):
   - 광주광역시·전라남도 → 전남광주통합특별시, 강원도 → 강원특별자치도, 전라북도 → 전북특별자치도
   - 인천 중구 → 제물포구·영종구, 인천 동구 → 제물포구, 인천 서구 → 서해구·검단구.
@@ -246,6 +250,7 @@ def cmd_molit(args: argparse.Namespace) -> None:
     hi, cols = _group_cols(gu, "총계")
     private = "자가용" in cols
     ccol = cols["자가용"] if private else cols["계"]
+    tcol = cols.get("계")  # 전체 등록대수(구·시 페이지 공공 정보 표에 씀, 2026-10-03)
 
     # 시도별 노후차 비율 (14.차종별_상세등록(시도), '합계' 묶음, 모델연도별)
     sd = _sheet(wb, "14.")
@@ -268,6 +273,7 @@ def cmd_molit(args: argparse.Namespace) -> None:
     ratio = {s: old.get(s, 0) / tot[s] for s in tot if tot[s]}
 
     rows: dict[tuple[str, str], list[int]] = {}
+    approx: set[tuple[str, str]] = set()  # 옛 구 숫자를 새 구에 그대로 옮긴 줄(근사값, 페이지에는 안 씀)
     sido = ""
     for r in gu[hi + 2:]:
         if r[0]:
@@ -279,11 +285,15 @@ def cmd_molit(args: argparse.Namespace) -> None:
             raise SystemExit(f"'{sido}' 의 노후차 비율을 14번 시트에서 찾지 못했습니다.")
         full = SIDO_ALIAS.get(sido, sido)
         n = int(r[ccol] or 0)
+        t = int(r[tcol] or 0) if tcol is not None else 0
         for new in SIGUNGU_ALIAS.get((full, g), [g]):
-            cur = rows.setdefault((full, new), [0, 0, 0])
+            cur = rows.setdefault((full, new), [0, 0, 0, 0])
             cur[0] += n
             cur[1] += round(n * ratio[sido])
             cur[2] = round(ratio[sido] * 10000)
+            cur[3] += t
+            if new != g:
+                approx.add((full, new))
     if not rows:
         raise SystemExit("읽은 줄이 없습니다")
 
@@ -294,13 +304,89 @@ def cmd_molit(args: argparse.Namespace) -> None:
         "source": f"국토교통부 자동차등록현황보고({fname}: 02.통계표_시군구, 14.차종별_상세등록(시도))",
         "url": MOLIT_META_URL, "saved_on": date.today().isoformat(),
         "sido_ratio": {SIDO_ALIAS.get(s, s): round(v, 4) for s, v in sorted(ratio.items(), key=lambda x: -x[1])},
-        "rows": [{"sido": s, "sigungu": g, "count": v[1], "registered": v[0], "old_ratio": v[2] / 10000}
+        "rows": [{"sido": s, "sigungu": g, "count": v[1], "registered": v[0], "old_ratio": v[2] / 10000,
+                  **({"total": v[3]} if tcol is not None else {}), **({"approx": True} if (s, g) in approx else {})}
                  for (s, g), v in sorted(rows.items(), key=lambda x: -x[1][1])],
     }
     EST_PATH.write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     print(f"저장: {EST_PATH.relative_to(ROOT)} ({len(rows)}개 시군구, {out['as_of']}, {out['method']})")
     if not private:
         print("알림: 엑셀에 자가용 칸이 없어 전체 등록대수 × 시도 노후차 비율로 계산했습니다.")
+
+
+def _official_rows() -> tuple[dict, dict[tuple[str, str], tuple[int | None, int]]] | None:
+    """페이지에 쓸 실제 등록대수: {(시도, 시군구 공백없음): (전체, 자가용)}. 추정치(count·old_ratio)는 쓰지 않는다.
+    자가용은 추정 파일의 registered(엑셀 그대로), 전체는 그 파일의 total 또는 같은 달 vehicle_stats_total.json.
+    옛 구 숫자를 옮겨 적은 근사 줄(approx)은 뺀다."""
+    if not EST_PATH.exists():
+        return None
+    est = json.loads(EST_PATH.read_text(encoding="utf-8"))
+    if not est.get("rows") or not est.get("private"):
+        return None
+    totals: dict[tuple[str, str], int] = {}
+    if TOTAL_PATH.exists():
+        tot = json.loads(TOTAL_PATH.read_text(encoding="utf-8"))
+        if tot.get("as_of") == est.get("as_of"):
+            totals = {(r["sido"], _key(r["sigungu"])): int(r["count"]) for r in tot.get("rows", [])}
+    out = {}
+    for r in est["rows"]:
+        if r.get("approx"):
+            continue
+        k = (r["sido"], _key(r["sigungu"]))
+        out[k] = (r.get("total", totals.get(k)), int(r["registered"]))
+    return est, out
+
+
+def _fmt(total: int | None, private: int) -> str:
+    return (f"전체 {total:,}대, 그중 자가용 {private:,}대" if total else f"자가용 {private:,}대")
+
+
+def registration_row(sido: str, sigungu: str) -> dict | None:
+    """구 페이지 공공 정보 표의 '자동차 등록대수' 줄(2026-10-03). 국토교통부 자동차등록현황(월별 엑셀)의 시군구 숫자 그대로.
+    - 그 시군구 줄이 있으면 그 숫자.
+    - '천안시 서북구'처럼 구 숫자가 없는 일반구는 그 시 전체(통계의 그 시 줄을 모두 더한 값)를 '○○시 전체 기준'으로 밝혀 쓴다. 구 숫자를 추정하지 않는다.
+    - 통계에 없으면 None(줄을 넣지 않음)."""
+    got = _official_rows()
+    if not got:
+        return None
+    est, rows = got
+    as_of = est["as_of"]
+    k = _key(sigungu) or _key(sido)
+    if (sido, k) in rows:
+        total, private = rows[(sido, k)]
+        value = f"{_fmt(total, private)} ({as_of} 기준)"
+    else:
+        city = sigungu.split()[0] if " " in sigungu else ""
+        parts = [v for (s, g), v in rows.items() if city and s == sido and (g == _key(city) or (g.startswith(_key(city)) and g.endswith("구")))]
+        if not parts:
+            return None
+        total = sum(t for t, _ in parts) if all(t for t, _ in parts) else None
+        value = f"{city} 전체 기준({as_of}): {_fmt(total, sum(p for _, p in parts))}. 통계에 구별 숫자가 없어 시 전체 숫자를 적습니다"
+    return {"label": "자동차 등록대수", "value": value, "auto": True,
+            "source": f"국토교통부 자동차등록현황보고({as_of} 자동차 등록자료 통계, 02.통계표_시군구)", "url": est.get("url") or MOLIT_META_URL}
+
+
+def registration_row_sido(sido: str) -> dict | None:
+    """시·도 페이지의 '자동차 등록대수' 줄: 그 시·도 시군구 줄을 모두 더한 값. 근사 줄이 섞이면 넣지 않는다."""
+    got = _official_rows()
+    if not got:
+        return None
+    est, rows = got
+    if any(r.get("approx") and r["sido"] == sido for r in est["rows"]):
+        return None
+    parts = [v for (s, _), v in rows.items() if s == sido]
+    if not parts:
+        return None
+    total = sum(t for t, _ in parts) if all(t for t, _ in parts) else None
+    return {"label": "자동차 등록대수", "value": f"{_fmt(total, sum(p for _, p in parts))} ({est['as_of']} 기준, 시·군·구 통계 합계)", "auto": True,
+            "source": f"국토교통부 자동차등록현황보고({est['as_of']} 자동차 등록자료 통계, 02.통계표_시군구)", "url": est.get("url") or MOLIT_META_URL}
+
+
+def with_registration(info: list[dict], row: dict | None) -> list[dict]:
+    """공공 정보 줄 목록에 등록대수 줄을 붙인다. 데이터에 이미 등록대수 줄이 있으면 그대로 둔다."""
+    if not row or any("등록대수" in r.get("label", "") for r in info):
+        return list(info)
+    return list(info) + [row]
 
 
 def cmd_show(_: argparse.Namespace) -> None:

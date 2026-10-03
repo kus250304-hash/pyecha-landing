@@ -82,7 +82,8 @@
 - `python3 scripts/vehicle_stats.py molit` 이 최신 엑셀을 받아 `data/vehicle_stats_old10_est.json` 에 저장하고, `python3 scripts/vehicle_stats.py show` 가 지금 기준과 상위 20개 시군구를 보여 줍니다. 매일 루틴이 기준 연월이 2개월보다 오래되면 다시 받습니다.
 - 파일 우선순위: `data/vehicle_stats.json`(실제 시군구 노후차, 지금은 없음) → `data/vehicle_stats_old10_est.json`(추정) → `data/vehicle_stats_total.json`(전체 등록대수). 셋 다 없으면 구 페이지가 있는 구 → 동 페이지가 많은 구 순으로 뽑고 보고에 "등록대수 통계 없음"을 적습니다.
 - 세종은 시군구가 빈칸이라 통계의 "세종특별자치시" 줄을, 화성시처럼 통계만 구로 나뉜 시는 구를 합친 숫자를 씁니다(`vehicle_stats.count_for`).
-- 이 숫자는 순서를 정하는 데만 씁니다. 추정치이므로 페이지 글에는 등록대수나 비율을 쓰지 않으며, 숫자를 지어내거나 손으로 고치지 않습니다.
+- 추정 노후 대수(count)와 비율은 순서를 정하는 데만 쓰고 페이지에 쓰지 않습니다. 숫자를 지어내거나 손으로 고치지 않습니다.
+- 예외(2026-10-03 병한님 결정): 같은 엑셀의 **실제 숫자**(시군구 전체·자가용 등록대수)는 구·시 페이지 공공 정보 표의 "자동차 등록대수" 줄에 기준 연월·출처와 함께 씁니다. 빌더가 `vehicle_stats.registration_row`(시·도는 `registration_row_sido`, 시·군·구 합계)로 자동으로 넣으므로 루틴은 웹에서 찾지 않습니다. 구 숫자가 없는 일반구는 "○○시 전체 기준(기준월)"으로 밝히고 시 숫자를 쓰며 구 숫자를 추정하지 않습니다. 통계에 없거나 옛 구 숫자를 옮겨 적은 근사 줄(approx)이면 비웁니다. "공공 정보가 한 줄도 없음" 보류 판단에서 이 자동 줄은 세지 않습니다.
 
 ### 반영 방법
 - **매일 자동생성 루틴**도 main 에 바로 push 합니다(PR 없음). 루틴의 조건: 사실 확인 기록 + `import_batch.py` 통과 + 커밋 후 `python3 scripts/publish_gate.py` 통과. 게이트가 하나라도 실패하면 main 에 push 하지 않고 작업을 `auto/failed-YYYYMMDD` 브랜치에 남깁니다.

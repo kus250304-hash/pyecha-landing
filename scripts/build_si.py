@@ -95,6 +95,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
     from build_site import (SIDO_SHORT, UPDATED_MARK, area_links_html, case_cards_html, contact_parts, esc, form_parts,
                             gu_file, josa, page_jsonld, with_updated_date)
     import variants as V
+    from vehicle_stats import registration_row_sido, with_registration
 
     si_data = load_si()
     if not si_data:
@@ -122,6 +123,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
             problems.append(f"{sido}: " + "; ".join(errs))
             continue
         si = SIDO_SHORT[sido]
+        info = with_registration(s["public_info"], registration_row_sido(sido))  # 등록대수 줄은 통계 파일에서(2026-10-03)
         meta_title = f"{si} 폐차장 · 폐차 | 시·군·구별 출장 폐차 · 수출 비교 · 조기폐차 안내 | 전화 {phone_disp}"
         text_part = f" / 문자 {text_disp}" if text_disp else ""
         meta_desc = (f"{sido} 폐차 상담. 시·군·구별 출장 방문, 폐차 전에 수출과 비교해 유리한 쪽으로 안내합니다. "
@@ -142,7 +144,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
         info_rows = "\n        ".join(
             f'<tr><th>{esc(row["label"])}</th><td>{esc(row["value"])}'
             f'<small>출처: <a href="{esc(row["url"])}" target="_blank" rel="noopener noreferrer">{esc(row["source"])}</a></small></td></tr>'
-            for row in s["public_info"]
+            for row in info
         )
         jsonld = [
             {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [

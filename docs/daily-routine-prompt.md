@@ -47,17 +47,17 @@ G1. `python3 scripts/pick_next_gu.py` 를 실행한다. 하루 10개 = 줄 A 5�
 G2. 후보마다 출력된 JSON 뼈대를 docs/roadmap.md 2절과 scripts/build_gu.py 맨 위 규칙대로 채운다:
    - intro: 2~3문장. 출력된 그 구 동 페이지 랜드마크 중 구를 대표하는 2~3개를 이름 그대로 쓰고, intro_landmarks 에 {"name", "dong_slug"} 로 적는다. 새 장소를 지어내지 않는다.
    - faqs: 질문·답 3쌍. 그 구의 지역 특성(아파트 지하주차장, 산간·섬 견인 거리, 산업단지 등)을 반영해 구마다 다르게 쓴다.
-   - public_info: 말소등록 관할 관청, 노후경유차 조기폐차 지원 공고, 시군구 자동차 등록대수 중 WebSearch 로 확인되는 줄만. 줄마다 label·value·source·url(실제 연 출처)을 적는다. 금액은 쓰지 않는다. 확인 못 한 줄은 넣지 않고 dropped_info 에 이유를 적는다.
+   - public_info: 말소등록 관할 관청, 노후경유차 조기폐차 지원 공고 중 WebSearch 로 확인되는 줄만. 자동차 등록대수 줄은 빌더가 저장소 통계(data/vehicle_stats_old10_est.json·vehicle_stats_total.json, 국토교통부 자동차등록현황, 기준 연월·출처 포함)에서 자동으로 붙이므로 웹에서 찾지 않고 public_info·dropped_info 에 적지 않는다(통계에 그 구가 없으면 빌더가 줄을 넣지 않는다). 줄마다 label·value·source·url(실제 연 출처)을 적는다. 금액은 쓰지 않는다. 확인 못 한 줄은 넣지 않고 dropped_info 에 이유를 적는다.
    - 제목·설명(title, description)과 파일 이름(한글 gu/{시군구}-폐차장.html)은 빌더가 고정 틀로 만든다. 루틴이 따로 쓰지 않는다.
    - "보장", "무조건", "100%", "1위", "1등", "최고가", "최대", "최저가", "실시간 접수" 같은 단정 표현과 숫자를 지어내는 표현, 다른 시도 이름, 금액은 쓰지 않는다.
-G3. 채울 수 없는 구(공공 정보가 한 줄도 확인되지 않음, 대표 랜드마크를 고를 수 없음 등)는 data/gu.json 에 넣지 않고 data/gu_held.json(목록, 없으면 새로 만듦)에 {"slug", "sido", "sigungu", "reason"(쉬운 말), "held_on": "YYYY-MM-DD"} 로 남긴다. 다음 날 다시 뽑히지 않는다.
+G3. 채울 수 없는 구(웹으로 확인된 공공 정보가 한 줄도 없음 — 자동 등록대수 줄은 세지 않음, 대표 랜드마크를 고를 수 없음 등)는 data/gu.json 에 넣지 않고 data/gu_held.json(목록, 없으면 새로 만듦)에 {"slug", "sido", "sigungu", "reason"(쉬운 말), "held_on": "YYYY-MM-DD"} 로 남긴다. 다음 날 다시 뽑히지 않는다.
 G4. 채운 구를 data/gu.json 목록 끝에 넣고 `python3 scripts/build_site.py` → `python3 scripts/build_index.py` → `python3 scripts/check_pages.py` 를 실행한다(그 구의 동 페이지 길 안내 링크와 사례 연결, sitemap 이 함께 갱신된다). "구 페이지를 만들 수 없음"이나 검사 오류가 나오면 그 구 항목을 고치고 다시 실행한다. 세 번 고쳐도 안 되는 구는 data/gu.json 에서 빼고 G3 처럼 보류한다. check_pages.py 오류 0건이 될 때까지 커밋하지 않는다.
 
 [시·도 페이지 — 구 페이지(G4)가 끝난 뒤. 2026-10-02 병한님 결정]
 S1. `python3 scripts/build_si.py candidates` 를 실행한다. 구 페이지가 3개 이상인데 시·도 페이지(data/si.json)도 보류(data/si_held.json)도 없는 시·도와 JSON 뼈대가 나온다. "만들 수 있는 시·도가 없습니다"가 나오면 이 단계를 건너뛴다.
 S2. 시·도마다 뼈대를 채운다(scripts/build_si.py 맨 위 규칙):
    - faqs: 질문·답 3쌍. 질문에 그 시·도 줄임 이름(서울, 대구 …)을 넣고, docs/keyword-insights-2026-10-02.md 4절 주제(조기폐차·압류·상속·서류·말소·방치차·시동 등) 가운데 골라 그 시·도 상황(아파트 지하주차장, 농촌 마당, 섬 등)에 맞게 쓴다. 다른 시·도 FAQ 를 복사하지 않는다.
-   - public_info: 말소등록 관청(시청·구청·차량등록사업소), 그 시·도 노후차 조기폐차 공고 중 WebSearch 로 공식 출처(관청 누리집·정부24·공공기관 보도, 없으면 언론 보도)가 확인되는 줄만. label·value·source·url(실제 연 주소)을 적고 금액은 쓰지 않는다. 확인 못 한 줄은 dropped_info 에 이유를 적는다.
+   - public_info: 말소등록 관청(시청·구청·차량등록사업소), 그 시·도 노후차 조기폐차 공고 중 WebSearch 로 (자동차 등록대수 줄은 빌더가 통계 파일의 시·군·구 합계로 자동으로 붙이므로 찾지 않는다) 공식 출처(관청 누리집·정부24·공공기관 보도, 없으면 언론 보도)가 확인되는 줄만. label·value·source·url(실제 연 주소)을 적고 금액은 쓰지 않는다. 확인 못 한 줄은 dropped_info 에 이유를 적는다.
    - 랜드마크·장소 소개 문장은 넣지 않는다. 구 목록·제목·파일 이름은 빌더가 만든다.
 S3. 공공 정보가 한 줄도 확인되지 않는 시·도는 data/si.json 에 넣지 않고 data/si_held.json(목록, 없으면 새로 만듦)에 {"sido", "reason"(쉬운 말), "held_on": "YYYY-MM-DD"} 로 남긴다.
 S4. 채운 시·도를 data/si.json 목록 끝에 넣고 `python3 scripts/build_site.py` → `python3 scripts/build_index.py` → `python3 scripts/check_pages.py` 를 실행한다. "시·도 페이지를 만들 수 없음"이나 검사 오류가 나오면 고치고 다시 실행한다. 세 번 고쳐도 안 되면 data/si.json 에서 빼고 S3 처럼 보류한다. check_pages.py 오류 0건이 될 때까지 커밋하지 않는다.

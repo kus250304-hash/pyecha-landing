@@ -10,7 +10,7 @@ gu.json 항목 (확인된 구만 넣는다. 못 채운 구는 넣지 않고 보�
     "intro": "구 소개 2~3문장",
     "intro_landmarks": [{"name": "인왕산", "dong_slug": "seoul-jongno-nusang"}, ...],  # 2~3개, 그 구 동 페이지에서 이미 확인된 랜드마크
     "faqs": [["질문", "답"], ...],                                                    # 3개, 구마다 다르게
-    "public_info": [{"label": "...", "value": "...", "source": "...", "url": "https://..."}],  # 확인된 줄만
+    "public_info": [{"label": "...", "value": "...", "source": "...", "url": "https://..."}],  # 웹으로 확인된 줄만(말소등록 관청·조기폐차 공고)
     "dropped_info": ["확인 못 해 뺀 항목과 이유"],                                   # 보고용, 페이지에는 안 나옴
     "checked_on": "YYYY-MM-DD"
   }
@@ -18,6 +18,11 @@ gu.json 항목 (확인된 구만 넣는다. 못 채운 구는 넣지 않고 보�
 빌더가 막는 것: 동 페이지 3개 미만, 소개에 쓴 랜드마크가 그 구 동 페이지의 확인된 랜드마크가 아님,
 소개에 랜드마크 이름이 없음, FAQ 가 3개가 아님, 공공 정보가 비었거나 출처 주소가 없음, 금액·결과 약속 표현,
 "최고가"·"1등"·"최대"·"실시간 접수" 같은 단정 표현.
+
+자동차 등록대수 줄(2026-10-03): public_info 에 쓰지 않는다. 빌더가 data/vehicle_stats_old10_est.json·vehicle_stats_total.json
+(국토교통부 자동차등록현황, vehicle_stats.registration_row)의 실제 숫자를 기준 연월·출처와 함께 표 끝에 붙인다.
+일반구에 구 숫자가 없으면 "○○시 전체 기준"으로 밝히고, 통계에 없으면 줄을 넣지 않는다.
+"공공 정보가 한 줄도 없음"은 이 자동 줄을 빼고 센다(웹으로 확인된 줄이 하나는 있어야 함).
 
 제목·설명 틀은 하나로 고정한다(2026-10-01, docs/roadmap.md 1절). 문장 틀 여러 벌(variants.py)은 본문에만 쓴다.
 맨 위 "최종 업데이트" 날짜와 구조화 데이터의 dateModified 는 그 페이지 내용이 실제로 바뀐 날(한국 시간)이다.
@@ -34,6 +39,7 @@ from urllib.parse import quote
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import variants as V
+from vehicle_stats import registration_row, with_registration
 
 ROOT = Path(__file__).resolve().parent.parent
 TEMPLATE = ROOT / "templates" / "gu-landing.html"
@@ -134,6 +140,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
             problems.append(f"{g['slug']}: " + "; ".join(errs))
             continue
         sido, sigungu = g["sido"], g["sigungu"]
+        info = with_registration(g["public_info"], registration_row(sido, sigungu))
         gu = sigungu or SIDO_SHORT[sido]
         gu_full = " ".join(x for x in (sido, sigungu) if x)
         title_name = title_names.get(g["slug"], gu)
@@ -164,7 +171,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
         info_rows = "\n        ".join(
             f'<tr><th>{esc(row["label"])}</th><td>{esc(row["value"])}'
             f'<small>출처: <a href="{esc(row["url"])}" target="_blank" rel="noopener noreferrer">{esc(row["source"])}</a></small></td></tr>'
-            for row in g["public_info"]
+            for row in info
         )
         crumbs = [{"@type": "ListItem", "position": 1, "name": "전체 지역", "item": f"{base}/"}]
         si_href = sido_link(sido) if sigungu else None  # 시·도 페이지(/si/, 2026-10-02)가 있으면 링크
