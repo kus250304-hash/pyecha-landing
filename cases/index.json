@@ -1,5 +1,169 @@
 [
  {
+  "slug": "case-20240514-gwangju-donggu-jisan",
+  "date": "2024-05-14",
+  "sido": "전남광주통합특별시",
+  "sigungu": "동구",
+  "dong": "지산동",
+  "region_slug": "gwangju-donggu-jisan",
+  "car": "2007년식 모닝",
+  "title": "지산동 2007년식 모닝 폐차·수출 비교 상담 사례",
+  "summary": "2007년식 모닝 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "모닝"
+   ],
+   [
+    "연식",
+    "2007년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2007년식 모닝 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20240514-gwangju-donggu-jisan-1.jpg",
+  "photos": [
+   "case-20240514-gwangju-donggu-jisan-1.jpg",
+   "case-20240514-gwangju-donggu-jisan-2.jpg",
+   "case-20240514-gwangju-donggu-jisan-3.jpg",
+   "case-20240514-gwangju-donggu-jisan-4.jpg"
+  ]
+ },
+ {
+  "slug": "case-20240306-seoul-gangbuk-suyu",
+  "date": "2024-03-06",
+  "sido": "서울특별시",
+  "sigungu": "강북구",
+  "dong": "수유동",
+  "region_slug": "seoul-gangbuk-suyu",
+  "car": "2007년식 프라이드",
+  "title": "수유동 2007년식 프라이드 폐차·수출 비교 상담 사례",
+  "summary": "2007년식 프라이드 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "프라이드"
+   ],
+   [
+    "연식",
+    "2007년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2007년식 프라이드 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20240306-seoul-gangbuk-suyu-1.jpg",
+  "photos": [
+   "case-20240306-seoul-gangbuk-suyu-1.jpg",
+   "case-20240306-seoul-gangbuk-suyu-2.jpg",
+   "case-20240306-seoul-gangbuk-suyu-3.jpg",
+   "case-20240306-seoul-gangbuk-suyu-4.jpg",
+   "case-20240306-seoul-gangbuk-suyu-5.jpg",
+   "case-20240306-seoul-gangbuk-suyu-6.jpg"
+  ]
+ },
+ {
+  "slug": "case-20230822-jeonbuk-jeonju-wansan",
+  "date": "2023-08-22",
+  "sido": "전북특별자치도",
+  "sigungu": "전주시 완산구",
+  "dong": "",
+  "region_slug": null,
+  "car": "2003년식 오피러스",
+  "title": "전주시 완산구 2003년식 오피러스 폐차·수출 비교 상담 사례",
+  "summary": "2003년식 오피러스 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "오피러스"
+   ],
+   [
+    "연식",
+    "2003년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2003년식 오피러스 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230822-jeonbuk-jeonju-wansan-1.jpg",
+  "photos": [
+   "case-20230822-jeonbuk-jeonju-wansan-1.jpg",
+   "case-20230822-jeonbuk-jeonju-wansan-2.jpg",
+   "case-20230822-jeonbuk-jeonju-wansan-3.jpg",
+   "case-20230822-jeonbuk-jeonju-wansan-4.jpg",
+   "case-20230822-jeonbuk-jeonju-wansan-5.jpg"
+  ]
+ },
+ {
+  "slug": "case-20230711-seoul-gwanak-bongcheon",
+  "date": "2023-07-11",
+  "sido": "서울특별시",
+  "sigungu": "관악구",
+  "dong": "봉천동",
+  "region_slug": "seoul-gwanak-bongcheon",
+  "car": "1999년식 갤로퍼",
+  "title": "봉천동 1999년식 갤로퍼 폐차·수출 비교 상담 사례",
+  "summary": "1999년식 갤로퍼 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "갤로퍼"
+   ],
+   [
+    "연식",
+    "1999년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "1999년식 갤로퍼 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230711-seoul-gwanak-bongcheon-1.jpg",
+  "photos": [
+   "case-20230711-seoul-gwanak-bongcheon-1.jpg",
+   "case-20230711-seoul-gwanak-bongcheon-2.jpg",
+   "case-20230711-seoul-gwanak-bongcheon-3.jpg",
+   "case-20230711-seoul-gwanak-bongcheon-4.jpg",
+   "case-20230711-seoul-gwanak-bongcheon-5.jpg"
+  ]
+ },
+ {
   "slug": "case-20250319-seoul-yeongdeungpo-singil",
   "date": "2025-03-19",
   "sido": "서울특별시",

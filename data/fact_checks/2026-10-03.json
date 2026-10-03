@@ -1,0 +1,322 @@
+[
+ {
+  "code": "4155025000",
+  "slug": "gyeonggi-anseong-gongdo",
+  "items": [
+   {
+    "name": "스타필드 안성",
+    "evidence": "경기도 안성시 공도읍 서동대로 3930-39, 2020년 개장 복합쇼핑몰(관광 정보 소개)",
+    "url": "https://www.ktriptips.com/kor/shopping/3351398"
+   }
+  ]
+ },
+ {
+  "code": "4150010200",
+  "slug": "gyeonggi-icheon-gwango",
+  "items": [
+   {
+    "name": "관고전통시장",
+    "evidence": "경기도 이천시 중리천로31번길 22 (관고동) 전통시장(관광 정보 소개)",
+    "url": "https://info.koreacharts.com/tour/2764919/contents.html"
+   },
+   {
+    "name": "설봉공원",
+    "evidence": "설봉공원 안 이천시립박물관 주소가 경충대로2697번길 172 (관고동), 설봉공원이 관고동에 있다는 관광 소개",
+    "url": "https://www.ktriptips.com/kor/tourspot/125568"
+   }
+  ]
+ },
+ {
+  "code": "4150010300",
+  "slug": "gyeonggi-icheon-jungni",
+  "items": [
+   {
+    "name": "이천종합터미널",
+    "evidence": "경기도 이천시 중리동 219-1 (이섭대천로 1200) 버스터미널",
+    "url": "https://transportation.asamaru.net/%EC%8B%9C%EC%99%B8%EB%B2%84%EC%8A%A4/%ED%84%B0%EB%AF%B8%EB%84%90/%EC%9D%B4%EC%B2%9C%EC%A2%85%ED%95%A9%ED%84%B0%EB%AF%B8%EB%84%90/"
+   },
+   {
+    "name": "이천시청",
+    "evidence": "경기 이천시 부악로 40 (중리동 490) 도로명주소 안내",
+    "url": "https://dorojuso.kr/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%9D%B4%EC%B2%9C%EC%8B%9C/%EC%A4%91%EB%A6%AC%EB%8F%99?page=10"
+   }
+  ]
+ },
+ {
+  "code": "4421010100",
+  "slug": "chungnam-seosan-eupnae",
+  "items": [
+   {
+    "name": "서산시청",
+    "evidence": "서산시청 본관 소재지 관아문길 1 (읍내동)",
+    "url": "https://thevc.kr/chungcheongnamdoseosancityoffice"
+   },
+   {
+    "name": "서산 관아문",
+    "evidence": "서산읍성 안 관아 건물, 외동헌은 시청 본관 자리에서 옮김, 관아문길(읍내동) (관광 정보)",
+    "url": "https://www.ktriptips.com/kor/tourspot/129123"
+   }
+  ]
+ },
+ {
+  "code": "4421010300",
+  "slug": "chungnam-seosan-galsan",
+  "items": [
+   {
+    "name": "서산농수축산물유통센터",
+    "evidence": "충청남도 서산시 안견로 585, 건축물 정보에서 서산시 갈산동 판매시설로 나옴",
+    "url": "https://safehomes.kr/risk-map/충청남도/서산시/갈산동/기타/building/서산농,수,축산물유통센터/11741673"
+   }
+  ]
+ },
+ {
+  "code": "4137010200",
+  "slug": "gyeonggi-osan-busan",
+  "items": [
+   {
+    "name": "오산시티자이",
+    "evidence": "오산시티자이1차1단지 경기 오산시 부산중앙로 11 (부산동 800), 2차 단지도 부산동 (부동산 단지 정보)",
+    "url": "https://zippoom.com/%EC%A7%80%EC%97%AD%EB%B3%84-%EB%B6%80%EB%8F%99%EC%82%B0/%EA%B2%BD%EA%B8%B0-%EC%98%A4%EC%82%B0%EC%8B%9C-%EB%B6%80%EC%82%B0%EB%8F%99/%EC%95%84%ED%8C%8C%ED%8A%B8"
+   }
+  ]
+ },
+ {
+  "code": "4137010300",
+  "slug": "gyeonggi-osan-won",
+  "items": [
+   {
+    "name": "운암고등학교",
+    "evidence": "경기 오산시 운천로 12, 건축물 정보에서 오산시 원동 건물로 나옴",
+    "url": "https://safehomes.kr/risk-map/경기도/오산시/원동/기타/building/운암고등학교/1111110588"
+   },
+   {
+    "name": "운암중학교",
+    "evidence": "건축물 정보에서 오산시 원동 건물로 나옴",
+    "url": "https://safehomes.kr/risk-map/경기도/오산시/원동/기타/building/운암중학교/111117067"
+   }
+  ]
+ },
+ {
+  "code": "4141010100",
+  "slug": "gyeonggi-gunpo-dang",
+  "items": [
+   {
+    "name": "용호중학교",
+    "evidence": "경기 군포시 용호2로54번길 14, 건축물 정보에서 군포시 당동 건물로 나옴",
+    "url": "https://safehomes.kr/risk-map/경기도/군포시/당동/기타/building/용호중학교/111312041"
+   }
+  ]
+ },
+ {
+  "code": "4141010200",
+  "slug": "gyeonggi-gunpo-dangjeong",
+  "items": [
+   {
+    "name": "한세대학교",
+    "evidence": "1979년 군포시 당정동으로 이전, 주소 경기도 군포시 한세로 30 (위키 소개)",
+    "url": "https://itwiki.kr/w/%ED%95%9C%EC%84%B8%EB%8C%80%ED%95%99%EA%B5%90"
+   },
+   {
+    "name": "당정역",
+    "evidence": "수도권 전철 1호선 당정역, 군포시 당정동 소재로 검색 결과에 나옴",
+    "url": "https://m.richgo.ai/auctionMobile/C01DLIFO"
+   }
+  ]
+ },
+ {
+  "code": "4413325000",
+  "slug": "chungnam-cheonan-seobuk-seonghwan",
+  "items": [
+   {
+    "name": "성환역",
+    "evidence": "충청남도 천안시 서북구 성환읍 성환1로 237-5, 경부선·1호선 역 (위키 소개)",
+    "url": "https://itwiki.kr/w/%EC%84%B1%ED%99%98(%EB%82%A8%EC%84%9C%EC%9A%B8%EB%8C%80%ED%95%99)%EC%97%AD"
+   },
+   {
+    "name": "성환이화시장",
+    "evidence": "충청남도 천안시 서북구 성환읍 성환시장길 12, 1914년 개장 전통시장 (관광 정보)",
+    "url": "https://www.ktriptips.com/kor/shopping/132553"
+   }
+  ]
+ },
+ {
+  "code": "4413310100",
+  "slug": "chungnam-cheonan-seobuk-wachon",
+  "items": [
+   {
+    "name": "천안와촌초등학교",
+    "evidence": "충남 천안시 서북구 와촌4길 16, 와촌길 도로는 와촌동(예: 와촌1길 2-11 (와촌동)) (학교 정보)",
+    "url": "https://wiki.onul.works/w/%EC%B2%9C%EC%95%88%EC%99%80%EC%B4%8C%EC%B4%88%EB%93%B1%ED%95%99%EA%B5%90"
+   }
+  ]
+ },
+ {
+  "code": "4159710100",
+  "slug": "gyeonggi-hwaseong-dongtan-neung",
+  "items": [
+   {
+    "name": "푸른초등학교",
+    "evidence": "경기도 화성시 동탄구 동탄공원로 21-38 (능동) 주소 안내",
+    "url": "https://jusoen.com/addreng.asp?p1=18429"
+   }
+  ]
+ },
+ {
+  "code": "4159710200",
+  "slug": "gyeonggi-hwaseong-dongtan-bansong",
+  "items": [
+   {
+    "name": "메타폴리스",
+    "evidence": "메타폴리스 2단계가 화성 반송동 95 일원에 계획, 스타즈호텔 메타폴리스는 반송동 94번지 (언론 보도)",
+    "url": "https://www.kyeongin.com/article/1767352"
+   }
+  ]
+ },
+ {
+  "code": "4159710300",
+  "slug": "gyeonggi-hwaseong-dongtan-seoku",
+  "items": [
+   {
+    "name": "한림대학교동탄성심병원",
+    "evidence": "경기 화성시 큰재봉길 7 (석우동), 2012년 개원, 화성시 석우동 동탄신도시 소재 (경향신문)",
+    "url": "https://www.khan.co.kr/article/201305061720542"
+   }
+  ]
+ },
+ {
+  "code": "4719010200",
+  "slug": "gyeongbuk-gumi-jisan",
+  "items": [
+   {
+    "name": "지산샛강생태공원",
+    "evidence": "경북 구미시 지산동에 있는 생태공원(벚꽃·연꽃 명소)이라고 지역 신문 공동기획 기사가 소개",
+    "url": "https://www.jjan.kr/articleAmp/20241127580292"
+   }
+  ]
+ },
+ {
+  "code": "4719010300",
+  "slug": "gyeongbuk-gumi-doryang",
+  "items": [
+   {
+    "name": "꽃동산공원",
+    "evidence": "구미시 도량동 산24번지 일대 꽃동산 민간공원 조성사업 기사 (경북매일)",
+    "url": "https://kbmaeil.com/article/201909190260670"
+   }
+  ]
+ },
+ {
+  "code": "4833010100",
+  "slug": "gyeongnam-yangsan-dabang",
+  "items": [
+   {
+    "name": "양산 다방동 패총",
+    "evidence": "다방동 안다방 마을 꼭대기에 있는 가야시대 유적, 2023년 양산시 발굴 보도",
+    "url": "https://v.daum.net/v/20230320105240334"
+   }
+  ]
+ },
+ {
+  "code": "4833010200",
+  "slug": "gyeongnam-yangsan-nambu",
+  "items": [
+   {
+    "name": "삽량초등학교",
+    "evidence": "경남 양산시 양주로 55, 건축물 정보에서 양산시 남부동 '중부1(삽량)초등학교'로 나옴",
+    "url": "https://safehomes.kr/risk-map/경상남도/양산시/남부동/기타/building/중부1(삽량)초등학교/126412365"
+   }
+  ]
+ },
+ {
+  "code": "4146310200",
+  "slug": "gyeonggi-yongin-giheung-gugal",
+  "items": [
+   {
+    "name": "강남대학교",
+    "evidence": "경기도 용인시 기흥구 강남로 40(구갈동) 사립대학 (한국민족문화대백과)",
+    "url": "https://encykorea.aks.ac.kr/Article/E0001015"
+   },
+   {
+    "name": "강남대역",
+    "evidence": "용인경전철 강남대(구갈레스피아)역, 기흥구 구갈동 소재 (위키 소개)",
+    "url": "https://itwiki.kr/w/%EA%B0%95%EB%82%A8%EB%8C%80(%EA%B5%AC%EA%B0%88%EB%A0%88%EC%8A%A4%ED%94%BC%EC%95%84)%EC%97%AD"
+   },
+   {
+    "name": "기흥역",
+    "evidence": "경기도 용인시 기흥구 구갈동 수인분당선·에버라인 환승역, 기흥역세권 도시개발구역 (경기일보)",
+    "url": "https://www.kyeonggi.com/article/201503040634641"
+   }
+  ]
+ },
+ {
+  "code": "4148010200",
+  "slug": "gyeonggi-paju-adong",
+  "items": [
+   {
+    "name": "파주시청",
+    "evidence": "파주시청 시청로 50, 별관 시청로 51이 건축물 정보에서 파주시 아동동 건물로 나옴, 시청 일대가 아동동 (파주시 누리집·건축물 정보)",
+    "url": "https://safehomes.kr/risk-map/경기도/파주시/아동동/기타/building/파주시청별관/1120130719"
+   }
+  ]
+ },
+ {
+  "code": "4148010400",
+  "slug": "gyeonggi-paju-yadong",
+  "items": [
+   {
+    "name": "문산제일고등학교",
+    "evidence": "건물정보 페이지 '문산제일고등학교, 문산중학교', 필지 PNU 4148010400(파주시 야동동), 학교 주소 평화로 190",
+    "url": "https://www.knowingasset.com/app/land/building/4148010400103610000"
+   },
+   {
+    "name": "문산중학교",
+    "evidence": "같은 야동동 필지 건물정보에 문산제일고등학교와 함께 나옴",
+    "url": "https://www.knowingasset.com/app/land/building/4148010400103610000"
+   }
+  ]
+ },
+ {
+  "code": "4128110100",
+  "slug": "gyeonggi-goyang-deokyang-jugyo",
+  "items": [
+   {
+    "name": "고양시청",
+    "evidence": "고양시청로 10 (주교동), 시청을 현위치인 주교동에 재건립한다는 경인일보 기사",
+    "url": "https://www.kyeongin.com/article/1764353"
+   }
+  ]
+ },
+ {
+  "code": "4128110200",
+  "slug": "gyeonggi-goyang-deokyang-wondang",
+  "items": [
+   {
+    "name": "서삼릉",
+    "evidence": "고양시 덕양구 서삼릉길 233-126 (원당동), 사적 희릉·효릉·예릉 (관광 정보)",
+    "url": "https://www.ktriptips.com/kor/tourspot/125551"
+   }
+  ]
+ },
+ {
+  "code": "4711310100",
+  "slug": "gyeongbuk-pohang-bukgu-daeheung",
+  "items": [
+   {
+    "name": "옛 포항역",
+    "evidence": "옛 포항역은 북구 대흥동에 있었고 2015년 4월 폐역, 역 부지(대흥동·용흥동 일원) 개발 보도 (서울신문)",
+    "url": "https://m.go.seoul.co.kr/news/2015/04/17/20150417012018"
+   }
+  ]
+ },
+ {
+  "code": "4711310200",
+  "slug": "gyeongbuk-pohang-bukgu-sinheung",
+  "items": [
+   {
+    "name": "신흥어울림센터",
+    "evidence": "신흥동 도시재생 사업으로 생활건강센터·다목적홀이 들어선 시설, 신흥동에 문을 열었다는 경북매일 보도",
+    "url": "https://kbmaeil.com/article/202201240326368"
+   }
+  ]
+ }
+]

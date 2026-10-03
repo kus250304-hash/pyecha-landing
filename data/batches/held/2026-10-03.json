@@ -1,0 +1,87 @@
+[
+ {
+  "code": "4155010200",
+  "slug": "gyeonggi-anseong-sungin",
+  "sido": "경기도",
+  "sigungu": "안성시",
+  "dong": "숭인동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "동 안에서 확인되는 장소 없음(주변 학교·관공서 주소가 숭인동으로 확인되지 않음)",
+   "items": []
+  }
+ },
+ {
+  "code": "4812910100",
+  "slug": "gyeongnam-changwon-jinhae-dongsang",
+  "sido": "경상남도",
+  "sigungu": "창원시 진해구",
+  "dong": "동상동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "동 안에서 확인되는 장소 없음(검색에서 동상동 주소로 확인되는 이름난 장소를 찾지 못함)",
+   "items": []
+  }
+ },
+ {
+  "code": "4812910200",
+  "slug": "gyeongnam-changwon-jinhae-docheon",
+  "sido": "경상남도",
+  "sigungu": "창원시 진해구",
+  "dong": "도천동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "사람이 거의 살지 않는 작은 법정동이고 동 안에서 확인되는 장소 없음(인구 42명·20세대, k-calc 2026년 6월 요약)",
+   "items": []
+  }
+ },
+ {
+  "code": "4812910300",
+  "slug": "gyeongnam-changwon-jinhae-doman",
+  "sido": "경상남도",
+  "sigungu": "창원시 진해구",
+  "dong": "도만동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "동 안에서 확인되는 장소 없음(주민 대부분이 젊은 1인 세대로 군 관련 숙소로 보이나 확인 못 함, 이름난 장소 없음)",
+   "items": []
+  }
+ },
+ {
+  "code": "4711310300",
+  "slug": "gyeongbuk-pohang-bukgu-nambin",
+  "sido": "경상북도",
+  "sigungu": "포항시 북구",
+  "dong": "남빈동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "동 안에서 확인되는 장소 없음(공구상가 묶음만 있고 랜드마크로 확인되는 곳 없음)",
+   "items": []
+  }
+ }
+]
