@@ -423,7 +423,8 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
     )
     # 공통 문장은 여러 벌 중 이 페이지에 배정된 조합(소개, FAQ, 마무리)을 쓴다 (scripts/variants.py)
     intro, closing = V.DONG_INTRO[combo[0]], V.DONG_CLOSING[combo[2]]
-    common_faqs = list(zip(V.COMMON_FAQ_QUESTIONS, V.DONG_FAQ[combo[1]]))
+    # 공통 질문 4개 + 실제 통화 FAQ 풀에서 이 페이지 몫 3개(2026-10-03)
+    common_faqs = list(zip(V.COMMON_FAQ_QUESTIONS, V.DONG_FAQ[combo[1]])) + V.call_faqs(r["slug"], 3)
     common_faq_html = "\n      ".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in common_faqs)
     faq_ld = {
         "@context": "https://schema.org",

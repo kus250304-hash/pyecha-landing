@@ -19,7 +19,7 @@ si.json 항목 (확인된 것만 넣는다. 못 채우면 data/si_held.json 에 
   }
 
 페이지 내용: 첫 화면 전화·문자 버튼과 폼(동·구 페이지와 같은 핵심 문장), 그 시·도 구 페이지 목록(있는 구만, "준비 중" 없음),
-진행 순서, FAQ 3개, 그 시·도 사례 카드(최신 6건), 공공 정보, 협력업체 고지.
+진행 순서, FAQ 3개(+ 실제 통화 FAQ 4개, variants.call_faqs), 그 시·도 사례 카드(최신 6건), 공공 정보, 협력업체 고지.
 제목은 고정 틀 하나: "{시도 줄임} 폐차장 · 폐차 | 시·군·구별 출장 폐차 · 수출 비교 · 조기폐차 안내 | 전화 1600-6011".
 빌더가 막는 것: 구 페이지 3개 미만, FAQ 3개가 아님, 공공 정보 없음·출처 주소 없음, 금액·결과 약속·단정 표현.
 """
@@ -136,7 +136,9 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
         my_cases = sorted((c for c in cases if c["sido"] == sido), key=lambda c: c.get("date") or "", reverse=True)
         cases_sub = (f"{si}에서 진행한 실제 사례입니다. 지역은 카드마다 표시됩니다" if my_cases
                      else f"{si} 사례는 준비 중입니다. 유튜브와 블로그에서 실제 진행 사례를 보실 수 있습니다")
-        faq_html = "\n      ".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in s["faqs"])
+        # 시·도마다 다른 질문 3개 + 실제 통화 FAQ 풀에서 4개(2026-10-03)
+        faqs = [tuple(qa) for qa in s["faqs"]] + V.call_faqs("si:" + sido, 4)
+        faq_html = "\n      ".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in faqs)
         info_rows = "\n        ".join(
             f'<tr><th>{esc(row["label"])}</th><td>{esc(row["value"])}'
             f'<small>출처: <a href="{esc(row["url"])}" target="_blank" rel="noopener noreferrer">{esc(row["source"])}</a></small></td></tr>'
@@ -144,7 +146,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
         )
         jsonld = [
             {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
-                {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in s["faqs"]]},
+                {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faqs]},
             {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
                 {"@type": "ListItem", "position": 1, "name": "전체 지역", "item": f"{base}/"},
                 {"@type": "ListItem", "position": 2, "name": si, "item": canonical}]},

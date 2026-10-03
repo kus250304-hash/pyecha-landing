@@ -158,7 +158,9 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
             f'<a href="../pages/{esc(r["slug"])}.html"><b>{esc(r["dong"])} 폐차</b><span>{esc(r["landmark_name"])}</span></a>'
             for r in dongs
         )
-        faq_html = "\n      ".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in g["faqs"])
+        # 구마다 다른 질문 3개 + 실제 통화 FAQ 풀에서 4개(2026-10-03)
+        faqs = [tuple(qa) for qa in g["faqs"]] + V.call_faqs("gu:" + g["slug"], 4)
+        faq_html = "\n      ".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in faqs)
         info_rows = "\n        ".join(
             f'<tr><th>{esc(row["label"])}</th><td>{esc(row["value"])}'
             f'<small>출처: <a href="{esc(row["url"])}" target="_blank" rel="noopener noreferrer">{esc(row["source"])}</a></small></td></tr>'
@@ -174,7 +176,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
         crumbs.append({"@type": "ListItem", "position": len(crumbs) + 1, "name": gu, "item": canonical})
         jsonld = [
             {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
-                {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in g["faqs"]]},
+                {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faqs]},
             {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": crumbs},
         ]
         # 길 안내: 서울 › 종로구 (구 이름은 이 페이지라 링크 없음, 시·도 페이지가 있으면 시·도 이름에 링크)
