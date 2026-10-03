@@ -440,7 +440,7 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
     cases_html = case_cards_html(picked)
 
     # 제목 틀 하나로 고정 (2026-10-01, docs/roadmap.md 1-2절)
-    meta_title = f"{title_region} 폐차장 · 폐차 | 폐차 보상금 vs 수출 비교, 견인비 없음 · {phone_disp}"
+    meta_title = f"{title_region} 폐차장 · 폐차 | 폐차 보상금 vs 수출 비교, 출장 견인 상담 · {phone_disp}"
     canonical = f"{base}/pages/{r['slug']}.html"
     mark = old_mark(r)
     hero_sub = f"{title_region}{mark} {intro['hero']}" if mark else intro["hero"]
@@ -459,11 +459,12 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
                   if parts else "")
     meta_desc = (
         f"{full}{mark} 폐차 전에 폐차 보상금과 수출 시세를 함께 비교해 드립니다. 압류·서류 없음도 상담 가능, "
-        f"당일 접수, 견인비 없음. {r['landmark_name'] or r['dong']} 인근 출장 방문. 전화 {phone_disp}"
+        f"당일 접수, 견인비는 상담 때 미리 안내. {r['landmark_name'] or r['dong']} 인근 출장 방문. 전화 {phone_disp}"
     )
 
     values = {
         "META_TITLE": esc(meta_title),
+        "TOW_NOTE": esc(V.TOW_NOTE[combo[1]]),
         "META_DESC": esc(meta_desc),
         "CANONICAL": canonical,
         "FAQ_JSONLD": json.dumps(faq_ld, ensure_ascii=False),

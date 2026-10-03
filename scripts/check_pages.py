@@ -65,7 +65,7 @@ CORE_SENTENCES = [
     "차량 확인하면 먼저 입금하고, 그 다음에 차를 가져갑니다",
     "다른 곳 견적 받으셨으면 금액 알려주세요. 비교해 드립니다",
     "차량번호와 연락처만 남기시면 바로 연락드립니다",
-    "견인비 없음",
+    "견인비 대부분 별도 청구 없음",  # 2026-10-03: "견인비 없음" 단정 대신
     "말소 끝나면 말소증을 문자로 보내드립니다",
     "압류·저당·상속·대리인 서류도 상담 가능",
 ]
@@ -92,7 +92,7 @@ def core_problems(html: str) -> list[str]:
 
 
 # 동 페이지 제목 틀 하나(2026-10-01, docs/roadmap.md 1-2절)
-DONG_TITLE_RE = re.compile(r"<title>(.+?) 폐차장 · 폐차 \| 폐차 보상금 vs 수출 비교, 견인비 없음 · 1600-6011</title>")
+DONG_TITLE_RE = re.compile(r"<title>(.+?) 폐차장 · 폐차 \| 폐차 보상금 vs 수출 비교, 출장 견인 상담 · 1600-6011</title>")
 UPDATED_LINE_RE = re.compile(r'<p class="updated">최종 업데이트: \d{4}년 \d{1,2}월 \d{1,2}일</p>')
 SIDO_SHORT = {
     "서울특별시": "서울", "부산광역시": "부산", "대구광역시": "대구", "인천광역시": "인천",
@@ -437,6 +437,22 @@ def check_guide_pages(cfg: dict, sitemap: str) -> list[str]:
     return problems
 
 
+# 견인비 단정 표현(2026-10-03): 먼 거리·시동 불가 등은 견인비를 빼고 안내한 경우가 실제로 있어
+# "견인비 없음", "견인비는 받지 않습니다", "무료 견인"처럼 단정하지 않는다. "대부분 … 특수한 경우는 미리 안내" 취지로 쓴다
+TOW_BAN_RE = re.compile(r"견인비\s*(?:는|가)?\s*(?:없[음습이다]|받지\s*않습니다|안\s*받습니다)|견인비\s*없이|(?:무료\s*(?:견인|탁송)|(?:견인|탁송)\s*무료)")
+
+
+def check_tow_wording() -> list[str]:
+    """동·구·시·안내·사례 페이지(제목·설명·본문·구조화 데이터 전부)에서 견인비 단정 표현을 찾는다."""
+    problems = []
+    for d in ("pages", "gu", "si", "guide", "cases"):
+        for f in sorted((ROOT / d).glob("*.html")) if (ROOT / d).exists() else []:
+            text = re.sub(r"<style>.*?</style>", "", f.read_text(encoding="utf-8"), flags=re.DOTALL)
+            for m in TOW_BAN_RE.finditer(text):
+                problems.append(f"{d}/{f.name}: 견인비 단정 표현 '{m.group(0)}' → …{text[max(0, m.start()-20):m.end()+20]}…")
+    return problems
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", help="쉼표로 구분한 슬러그 목록 (엄격 모드)")
@@ -578,7 +594,7 @@ def main() -> None:
                 continue
             errors.append(f"{tag}: 단정 표현 '{m.group(0)}' → …{body_nostyle[max(0, m.start()-15):m.end()+15]}…")
         if not DONG_TITLE_RE.search(html):
-            errors.append(f"{tag}: 제목이 고정 틀 '○○ 폐차장 · 폐차 | 폐차 보상금 vs 수출 비교, 견인비 없음 · 1600-6011' 과 다름")
+            errors.append(f"{tag}: 제목이 고정 틀 '○○ 폐차장 · 폐차 | 폐차 보상금 vs 수출 비교, 출장 견인 상담 · 1600-6011' 과 다름")
         if not UPDATED_LINE_RE.search(html):
             errors.append(f"{tag}: '최종 업데이트: YYYY년 M월 D일' 줄 없음")
         body = re.sub(r"<style>.*?</style>|<script[^>]*>.*?</script>", "", html, flags=re.DOTALL)
@@ -631,6 +647,7 @@ def main() -> None:
         errors.extend(check_gu_pages(site_cfg, sitemap, all_sidos))
         errors.extend(check_guide_pages(site_cfg, sitemap))
         errors.extend(check_si_pages(site_cfg, sitemap, all_sidos))
+        errors.extend(check_tow_wording())
 
     # 첫 화면의 네이버 서치어드바이저 소유확인 태그
     naver = site_cfg.get("naver_site_verification")
