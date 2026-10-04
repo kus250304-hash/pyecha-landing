@@ -442,6 +442,28 @@ def check_guide_pages(cfg: dict, sitemap: str) -> list[str]:
 TOW_BAN_RE = re.compile(r"견인비\s*(?:는|가)?\s*(?:없[음습이다]|받지\s*않습니다|안\s*받습니다)|견인비\s*없이|(?:무료\s*(?:견인|탁송)|(?:견인|탁송)\s*무료)")
 
 
+# 첫 화면 1+1 줄(2026-10-04): 동·구·시·안내·사례 페이지 제목 바로 아래 한 줄 + 뜻 풀이, 견적 폼 제목
+ONEPLUS_LINE = "폐차 견적 1+1 — 폐차값과 수출값, 둘 다 알려드려요"
+ONEPLUS_NOTE = "1+1은 폐차 견적과 수출 견적, 두 가지를 함께 드린다는 뜻입니다."
+ONEPLUS_FORM = "<h3>폐차·수출 견적 1+1 신청</h3>"
+
+
+def check_oneplus() -> list[str]:
+    problems = []
+    for d in ("pages", "gu", "si", "guide", "cases"):
+        for f in sorted((ROOT / d).glob("*.html")) if (ROOT / d).exists() else []:
+            text = f.read_text(encoding="utf-8")
+            if 'http-equiv="refresh"' in text:
+                continue  # 예전 주소의 자동 이동 페이지
+            h1 = re.search(r"</h1>\s*<p class=\"oneplus\"[^>]*>([^<]*)<small[^>]*>([^<]*)</small>", text)
+            if not h1 or h1.group(1) != ONEPLUS_LINE or h1.group(2) != ONEPLUS_NOTE:
+                problems.append(f"{d}/{f.name}: 제목 바로 아래 '{ONEPLUS_LINE}' 줄과 1+1 뜻 풀이가 없음")
+            forms = len(re.findall(r'<form class="quote-form"', text))
+            if forms and text.count(ONEPLUS_FORM) != forms:
+                problems.append(f"{d}/{f.name}: 견적 폼 제목이 '폐차·수출 견적 1+1 신청' 이 아님")
+    return problems
+
+
 def check_tow_wording() -> list[str]:
     """동·구·시·안내·사례 페이지(제목·설명·본문·구조화 데이터 전부)에서 견인비 단정 표현을 찾는다."""
     problems = []
@@ -648,6 +670,7 @@ def main() -> None:
         errors.extend(check_guide_pages(site_cfg, sitemap))
         errors.extend(check_si_pages(site_cfg, sitemap, all_sidos))
         errors.extend(check_tow_wording())
+        errors.extend(check_oneplus())
 
     # 첫 화면의 네이버 서치어드바이저 소유확인 태그
     naver = site_cfg.get("naver_site_verification")
