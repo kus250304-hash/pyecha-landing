@@ -1,0 +1,278 @@
+[
+ {
+  "code": "4165010100",
+  "slug": "gyeonggi-pocheon-sineup",
+  "items": [
+   {
+    "name": "포천시청",
+    "evidence": "건축물 정보에 포천시청(업무시설), 경기도 포천시 중앙로 87, 법정동 신읍동",
+    "url": "https://safehomes.kr/risk-map/경기도/포천시/신읍동/기타/building/포천시청/112715426"
+   }
+  ]
+ },
+ {
+  "code": "4165010200",
+  "slug": "gyeonggi-pocheon-eoryong",
+  "items": [
+   {
+    "name": "포천 모아엘가 리더스파크",
+    "evidence": "주소 경기 포천시 용정경제로 29(어룡동 21-4), 517세대, 2023년 7월 준공",
+    "url": "https://zippoom.com/%EB%B8%94%EB%A1%9C%EA%B7%B8/%EC%8B%9C%EC%84%B8/%EA%B2%BD%EA%B8%B0-%ED%8F%AC%EC%B2%9C%EC%8B%9C-%EC%95%84%ED%8C%8C%ED%8A%B8-%EB%A7%A4%EB%A7%A4%EA%B0%80-%EC%88%9C%EC%9C%84-%EB%B3%80%ED%99%94/14291"
+   }
+  ]
+ },
+ {
+  "code": "4165010300",
+  "slug": "gyeonggi-pocheon-jajak",
+  "items": [
+   {
+    "name": "포천 자작리 유적",
+    "evidence": "포천 자작리 유적지, 경기도 포천시 자작동 251-2, 경기도 기념물 제220호, 백제 한성기 취락 유적",
+    "url": "https://dh.aks.ac.kr/~heritage/wiki/index.php/%ED%8F%AC%EC%B2%9C_%EC%9E%90%EC%9E%91%EB%A6%AC_%EC%9C%A0%EC%A0%81%EC%A7%80"
+   }
+  ]
+ },
+ {
+  "code": "4427010200",
+  "slug": "chungnam-dangjin-chaeun",
+  "items": [
+   {
+    "name": "당진시보건소",
+    "evidence": "건축물 정보에 당진시보건소, 충청남도 당진시 서부로 56, 법정동 채운동",
+    "url": "https://safehomes.kr/risk-map/충청남도/당진시/채운동/기타/building/당진시보건소/11771100226502"
+   },
+   {
+    "name": "서부로",
+    "evidence": "당진시보건소 주소 충청남도 당진시 서부로 56 (채운동)",
+    "url": "https://safehomes.kr/risk-map/충청남도/당진시/채운동/기타/building/당진시보건소/11771100226502"
+   }
+  ]
+ },
+ {
+  "code": "4715010300",
+  "slug": "gyeongbuk-gimcheon-moam",
+  "items": [
+   {
+    "name": "김천모암초등학교",
+    "evidence": "주소 경북 김천시 모암사랑10길 6(모암사랑길 일대는 모암동 주소, 예: 모암사랑7길 9 (모암동)), 1950년 개교",
+    "url": "https://academy.prompie.com/schools/elementary-school/detail/4fh3l83/김천모암초등학교/"
+   }
+  ]
+ },
+ {
+  "code": "4313010100",
+  "slug": "chungbuk-chungju-seongnae",
+  "items": [
+   {
+    "name": "관아공원",
+    "evidence": "충주 관아공원 주소 충청북도 충주시 관아1길 21 (성내동), 충주목 관아 터, 청녕헌·제금당 남아 있음",
+    "url": "https://www.ktriptips.com/kor/tourspot/1690248"
+   },
+   {
+    "name": "청녕헌",
+    "evidence": "관아공원(성내동) 안에 남아 있는 옛 관아 건물",
+    "url": "https://www.ktriptips.com/kor/tourspot/1690248"
+   },
+   {
+    "name": "제금당",
+    "evidence": "관아공원(성내동) 안에 남아 있는 옛 관아 건물",
+    "url": "https://www.ktriptips.com/kor/tourspot/1690248"
+   }
+  ]
+ },
+ {
+  "code": "4128510100",
+  "slug": "gyeonggi-goyang-ilsandong-siksa",
+  "items": [
+   {
+    "name": "동국대학교 일산병원",
+    "evidence": "경기 고양시 일산동구 동국로 27 (식사동 814) 병원 정보",
+    "url": "https://www.goodoc.co.kr/hospitals/13003"
+   },
+   {
+    "name": "동국대학교",
+    "evidence": "동국대학교 일산병원(식사동 814)의 이름 일부, 병원 정보에 동국대학교와 붙어 있다고 소개",
+    "url": "https://www.goodoc.co.kr/hospitals/13003"
+   },
+   {
+    "name": "일산병원",
+    "evidence": "동국대학교 일산병원 이름 일부, 고양시 일산동구 동국로 27 (식사동 814)",
+    "url": "https://www.goodoc.co.kr/hospitals/13003"
+   },
+   {
+    "name": "위시티",
+    "evidence": "위시티1로 7 (식사동, 위시티블루밍5단지) 주소, 식사동 위시티 주거지구 기사",
+    "url": "https://realty.daangn.com/articles/3475031"
+   }
+  ]
+ },
+ {
+  "code": "4128510200",
+  "slug": "gyeonggi-goyang-ilsandong-jungsan",
+  "items": [
+   {
+    "name": "고봉산",
+    "evidence": "고양시 일산동구 중산동과 성석동에 걸쳐 있는 해발 206m 산(정상 개방 기사)",
+    "url": "https://kyeonggi.com/article/20251222580091"
+   }
+  ]
+ },
+ {
+  "code": "4113510100",
+  "slug": "gyeonggi-seongnam-bundang-bundang",
+  "items": [
+   {
+    "name": "장안타운",
+    "evidence": "성남시 분당구 분당동 66 장안타운건영 아파트, 장안초·장안중 가까움",
+    "url": "https://aptgin.com/home/popup/pp_danji/apt/am228em0"
+   },
+   {
+    "name": "장안초",
+    "evidence": "장안타운(분당동)에서 장안초등학교 112m 거리",
+    "url": "https://aptgin.com/home/popup/pp_danji/apt/am228em0"
+   },
+   {
+    "name": "장안중",
+    "evidence": "장안타운(분당동)에서 장안중학교 141m 거리, 장안중 배정 아파트 목록",
+    "url": "https://m.richgo.ai/realty/place/middle/S090002201/danji"
+   }
+  ]
+ },
+ {
+  "code": "4113510200",
+  "slug": "gyeonggi-seongnam-bundang-sunae",
+  "items": [
+   {
+    "name": "수내역",
+    "evidence": "수내동 소개 글에 '수인분당선 수내역이 지나', 역 둘레 오피스텔 주소 황새울로 (수내동)",
+    "url": "https://zippoom.com/블로그/수내동-오피스텔-전세-월세-살기-좋은-곳/250"
+   }
+  ]
+ },
+ {
+  "code": "4136025300",
+  "slug": "gyeonggi-namyangju-jinjeop",
+  "items": [
+   {
+    "name": "광릉",
+    "evidence": "조선 세조의 능인 광릉은 진접읍 소재(서울신문 기사)",
+    "url": "https://m.seoul.co.kr/news/1992/11/05/19921105014001"
+   }
+  ]
+ },
+ {
+  "code": "4136010100",
+  "slug": "gyeonggi-namyangju-hopyeong",
+  "items": [
+   {
+    "name": "호평중학교",
+    "evidence": "경기도 남양주시 호평동 건물 목록에 호평중학교",
+    "url": "https://safehomes.kr/risk-map/경기도/남양주시/호평동/기타/building/호평중학교/11101100188129"
+   },
+   {
+    "name": "천마산",
+    "evidence": "천마산 등산로 들머리가 호평동, 천마산로 주소가 호평동(서울신문 남양주 천마산 기사)",
+    "url": "https://www.seoul.co.kr/news/2006/12/07/20061207305003"
+   }
+  ]
+ },
+ {
+  "code": "4139010100",
+  "slug": "gyeonggi-siheung-daeya",
+  "items": [
+   {
+    "name": "소래산",
+    "evidence": "소래산은 시흥시 신천동~대야동 일원, 소래산림욕장 주소 소래산길 37 (대야동)",
+    "url": "https://www.gg.go.kr/myggd/vol182/vol182_2_3.php"
+   }
+  ]
+ },
+ {
+  "code": "4139010200",
+  "slug": "gyeonggi-siheung-sincheon",
+  "items": [
+   {
+    "name": "신천역",
+    "evidence": "서해선 신천역은 경기도 시흥시 신천동에 위치(신천동 83-6 일원 신천역 한라비발디 분양 기사)",
+    "url": "https://news.mtn.co.kr/news-detail/2021120114254786261"
+   }
+  ]
+ },
+ {
+  "code": "3611025000",
+  "slug": "sejong-jochiwon",
+  "items": [
+   {
+    "name": "조치원역",
+    "evidence": "1905년 설치된 경부선 조치원역, 조치원읍 원리 조치원역 보행육교 인접 부지 기사",
+    "url": "https://kpinews.kr/newsView/179548251454532&dt=m"
+   }
+  ]
+ },
+ {
+  "code": "4812710100",
+  "slug": "gyeongnam-changwon-masanhoewon-guam",
+  "items": [
+   {
+    "name": "구암중학교",
+    "evidence": "경남 창원시 마산회원구 구암북11길 26, 구암동 지역 공립 중학교",
+    "url": "https://m.richgo.ai/realty/place/middle/S160001358/danji"
+   }
+  ]
+ },
+ {
+  "code": "4812710300",
+  "slug": "gyeongnam-changwon-masanhoewon-bongam",
+  "items": [
+   {
+    "name": "봉암수원지",
+    "evidence": "주소 경상남도 창원시 마산회원구 봉암동 산 88, 2005년 등록문화재 지정 저수지(관광정보 페이지 검색 결과)",
+    "url": "https://info.koreacharts.com/tour/2750713/contents.html"
+   }
+  ]
+ },
+ {
+  "code": "4161025900",
+  "slug": "gyeonggi-gwangju-gonjiam",
+  "items": [
+   {
+    "name": "곤지암역",
+    "evidence": "경강선 곤지암역, 경기 광주시 곤지암읍 곤지암역세권 도시개발구역 기사(곤지암읍 소재)",
+    "url": "https://www.kyeonggi.com/article/20241107580075"
+   }
+  ]
+ },
+ {
+  "code": "4161010100",
+  "slug": "gyeonggi-gwangju-gyeongan",
+  "items": [
+   {
+    "name": "경안시장",
+    "evidence": "'경안동 도심 중심상권으로 경안시장, 이마트, CGV' 기사, 광주시 경안시장 배송 서비스 기사(기존 경안동 일대)",
+    "url": "https://www.kyeonggi.com/article/201810251020393"
+   }
+  ]
+ },
+ {
+  "code": "4161010200",
+  "slug": "gyeonggi-gwangju-ssangnyeong",
+  "items": [
+   {
+    "name": "쌍령공원",
+    "evidence": "'광주시 민간특례사업 쌍령공원 착공' 기사, 쌍령동 일원 공원·주택 조성(2026년 완공 목표)",
+    "url": "https://m.go.seoul.co.kr/news/2023/11/27/20231127500184"
+   }
+  ]
+ },
+ {
+  "code": "4115010300",
+  "slug": "gyeonggi-uijeongbu-jangam",
+  "items": [
+   {
+    "name": "장암역",
+    "evidence": "장암역은 의정부시 장암동 도봉차량기지 안에 지은 7호선 역(서울시 미디어허브)",
+    "url": "https://mediahub.seoul.go.kr/archives/159908"
+   }
+  ]
+ }
+]

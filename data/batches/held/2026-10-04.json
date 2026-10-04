@@ -1,0 +1,155 @@
+[
+ {
+  "code": "4155010300",
+  "slug": "gyeonggi-anseong-yeong",
+  "sido": "경기도",
+  "sigungu": "안성시",
+  "dong": "영동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "영동 안에서 확인되는 장소 없음(검색으로는 시장길 주소만 나오고, 안성중앙시장은 서인동, 낙원역사공원은 낙원동, 안성성당은 구포동으로 확인됨)",
+   "items": []
+  }
+ },
+ {
+  "code": "4427010300",
+  "slug": "chungnam-dangjin-udu",
+  "sido": "충청남도",
+  "sigungu": "당진시",
+  "dong": "우두동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "우두동 안에서 확인되는 장소 없음(검색 결과가 주소와 부동산 매물뿐이고, 영화관 위치는 매물 글에만 있어 근거가 약함)",
+   "items": []
+  }
+ },
+ {
+  "code": "4715010100",
+  "slug": "gyeongbuk-gimcheon-gamho",
+  "sido": "경상북도",
+  "sigungu": "김천시",
+  "dong": "감호동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "동 안에서 확인되는 장소 없음. 검색으로 감호동 주소가 나오는 학교·공원·시장·관공서를 찾지 못했고, 강변 도로 주소만 확인됨(도로명은 랜드마크로 쓰지 않음).",
+   "items": []
+  }
+ },
+ {
+  "code": "4715010200",
+  "slug": "gyeongbuk-gimcheon-yongdu",
+  "sido": "경상북도",
+  "sigungu": "김천시",
+  "dong": "용두동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "동 안에서 확인되는 장소 없음. 검색 결과에 용두동 주소의 작은 병원·식당·주택만 나오고 잘 알려진 장소는 확인되지 않음.",
+   "items": []
+  }
+ },
+ {
+  "code": "4812910400",
+  "slug": "gyeongnam-changwon-jinhae-sinheung",
+  "sido": "경상남도",
+  "sigungu": "창원시 진해구",
+  "dong": "신흥동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "동 안에서 확인되는 장소 없음. 작은 법정동으로 검색 결과에 소형 공동주택 매물만 나오고 잘 알려진 장소는 확인되지 않음.",
+   "items": []
+  }
+ },
+ {
+  "code": "4812910500",
+  "slug": "gyeongnam-changwon-jinhae-hyeon",
+  "sido": "경상남도",
+  "sigungu": "창원시 진해구",
+  "dong": "현동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "동 안에서 확인되는 장소 없음. 작은 법정동으로 검색 결과에 골목길 주소만 나오고 학교·공원·시장 등 장소는 확인되지 않음.",
+   "items": []
+  }
+ },
+ {
+  "code": "4812910600",
+  "slug": "gyeongnam-changwon-jinhae-bibong",
+  "sido": "경상남도",
+  "sigungu": "창원시 진해구",
+  "dong": "비봉동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "비봉동은 진해구 서쪽 끝 법정동으로 전체가 산지이고 대부분 개발제한구역·해군 기지라 사람이 거의 살지 않음(디지털창원문화대전 설명). 동 안에서 확인되는 장소 없음.",
+   "items": []
+  }
+ },
+ {
+  "code": "4711310400",
+  "slug": "gyeongbuk-pohang-bukgu-sangwon",
+  "sido": "경상북도",
+  "sigungu": "포항시 북구",
+  "dong": "상원동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "동 안에서 확인되는 장소 없음. 포항 원도심(중앙동 관할) 작은 법정동으로, 육거리 상권과 가깝다는 말은 있으나 육거리나 다른 시설이 상원동 안에 있다는 근거를 찾지 못함.",
+   "items": []
+  }
+ },
+ {
+  "code": "4812710200",
+  "slug": "gyeongnam-changwon-masanhoewon-ducheok",
+  "sido": "경상남도",
+  "sigungu": "창원시 마산회원구",
+  "dong": "두척동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "두척동은 개발제한구역 산지와 농지가 대부분인 작은 법정동이라, 동 안에 있다고 확인되는 잘 알려진 장소를 찾지 못했습니다(동 안에서 확인되는 장소 없음).",
+   "items": []
+  }
+ }
+]
