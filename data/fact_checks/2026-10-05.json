@@ -1,0 +1,296 @@
+[
+ {
+  "code": "4155010400",
+  "slug": "gyeonggi-anseong-bongnam",
+  "items": [
+   {
+    "name": "안성여자중학교",
+    "evidence": "리치고 학교 정보 제목 '봉남동 안성여자중학교', 오늘학교 아카데미에 주소 경기 안성시 중앙2길 111(봉남동 지역)",
+    "url": "https://m.richgo.ai/realty/place/middle/S090002920"
+   }
+  ]
+ },
+ {
+  "code": "4427010400",
+  "slug": "chungnam-dangjin-wondang",
+  "items": [
+   {
+    "name": "원당중학교",
+    "evidence": "오늘학교 아카데미 학교 정보: 원당중학교는 충남 당진시 원당동에 위치, 주소 충남 당진시 밤절로 72-34",
+    "url": "https://academy.prompie.com/schools/middle-school/detail/2c3akry/"
+   }
+  ]
+ },
+ {
+  "code": "4715010400",
+  "slug": "gyeongbuk-gimcheon-seongnae",
+  "items": [
+   {
+    "name": "김천여자중학교",
+    "evidence": "리치고 학교 정보(김천여자중학교 배정 가능 아파트): 김천시 성내동에 위치, 오늘학교 아카데미 주소 경북 김천시 자산로 168",
+    "url": "https://m.richgo.ai/realty/place/middle/S150001634/danji"
+   }
+  ]
+ },
+ {
+  "code": "4715010500",
+  "slug": "gyeongbuk-gimcheon-pyeonghwa",
+  "items": [
+   {
+    "name": "김천 평화시장",
+    "evidence": "한국관광 정보: 김천 평화시장 주소 경상북도 김천시 김천로 100 (평화동), 김천역 주변에 자리 잡은 시장",
+    "url": "https://www.ktriptips.com/kor/shopping/1764582"
+   },
+   {
+    "name": "김천역",
+    "evidence": "평화시장 소개에 '김천역 주변에 모여 살면서' 시장이 형성됨, 리치고 경매 정보에 평화동 물건이 김천역 북서측 역전 상권으로 소개됨",
+    "url": "https://m.richgo.ai/auctionMobile/C95EIUVK"
+   }
+  ]
+ },
+ {
+  "code": "1219010100",
+  "slug": "jeonnam-gwangyang-hwanggeum",
+  "items": [
+   {
+    "name": "더샵 광양베이센트",
+    "evidence": "MTN 뉴스: 광양 황금지구 1-1블록 727가구 단지, 검색 결과 요약에 광양시 황금동 위치. 한국일보: 황금지구는 황금동 황금지구 토지구획정리사업지구 / 주소 전라남도 광양시 황금동 552-2(황금지구 1-1블록, 검색 결과)",
+    "url": "https://news.mtn.co.kr/news-detail/2021062815134729783"
+   }
+  ]
+ },
+ {
+  "code": "1219010200",
+  "slug": "jeonnam-gwangyang-hwanggil",
+  "items": [
+   {
+    "name": "신광양항역",
+    "evidence": "건축물 정보에 전라남도 광양시 황길동 소재 건물 '신광양항역'(철도시설, 컨부두로 111-1)으로 등재",
+    "url": "https://safehomes.kr/risk-map/전라남도/광양시/황길동/기타/building/신광양항역/12071100193567"
+   }
+  ]
+ },
+ {
+  "code": "4315010100",
+  "slug": "chungbuk-jecheon-uirim",
+  "items": [
+   {
+    "name": "의림초등학교",
+    "evidence": "의림초등학교 주소 충북 제천시 독순로 33(1945년 개교). 도로명주소 목록에서 독순로 33은 의림동으로 표기",
+    "url": "https://academy.prompie.com/schools/elementary-school/detail/ien23ol/의림초등학교/"
+   }
+  ]
+ },
+ {
+  "code": "4315010200",
+  "slug": "chungbuk-jecheon-seobu",
+  "items": [
+   {
+    "name": "제천여자고등학교",
+    "evidence": "학군 정보 페이지 제목 '서부동 제천여자고등학교', 충북 제천시 서부동 소재 공립 고등학교(1942년 설립)",
+    "url": "https://m.richgo.ai/realty/place/high/S110000195"
+   }
+  ]
+ },
+ {
+  "code": "4812710400",
+  "slug": "gyeongnam-changwon-masanhoewon-seokjeon",
+  "items": [
+   {
+    "name": "마산역",
+    "evidence": "마산역은 경남 창원시 마산회원구 석전동에 있는 경전선 철도역, 1977년 석전동 신역사 개업(위키백과 마산역·석전동 문서 검색 결과)",
+    "url": "https://ko.wikipedia.org/wiki/%EB%A7%88%EC%82%B0%EC%97%AD"
+   }
+  ]
+ },
+ {
+  "code": "4311425300",
+  "slug": "chungbuk-cheongju-cheongwon-ochang",
+  "items": [
+   {
+    "name": "오창호수공원",
+    "evidence": "충청북도 청주시 청원구 오창읍 오창공원로 311, 옛 호암저수지를 오창과학산업단지 조성과 함께 공원으로 정비(텔트립 소개 기사)",
+    "url": "https://www.telltrip.com/domestic-travel/ochang-lake-park-winter-walk-city/"
+   },
+   {
+    "name": "오창과학산업단지",
+    "evidence": "충청북도 청주시 청원구 오창읍 일원에 위치한 첨단 산업단지(스마트투데이 기사)",
+    "url": "https://www.smarttoday.co.kr/ko-kr/articles/56994"
+   }
+  ]
+ },
+ {
+  "code": "4311410100",
+  "slug": "chungbuk-cheongju-cheongwon-uam",
+  "items": [
+   {
+    "name": "우암산",
+    "evidence": "우암산 주소 [28536] 충청북도 청주시 청원구 우암동, 산자락에 표충사·용화사(케이트립팁스 관광지 정보)",
+    "url": "https://www.ktriptips.com/kor/tourspot/125825"
+   }
+  ]
+ },
+ {
+  "code": "4311410200",
+  "slug": "chungbuk-cheongju-cheongwon-naedeok",
+  "items": [
+   {
+    "name": "청주대학교",
+    "evidence": "청주대학교 본교 주소 충청북도 청주시 청원구 대성로 298(내덕동), 1957년 현 캠퍼스로 이전(청주대 찾아오시는 길 검색 결과)",
+    "url": "https://www.cju.ac.kr/www/contents.do?key=4477"
+   }
+  ]
+ },
+ {
+  "code": "4128710100",
+  "slug": "gyeonggi-goyang-ilsanseo-ilsan",
+  "items": [
+   {
+    "name": "일산역",
+    "evidence": "경기도 고양시 일산서구 경의로 672, 일산서구 일산동에 있는 경의중앙선 역(K327), 서해선도 정차",
+    "url": "https://itwiki.kr/w/%EC%9D%BC%EC%82%B0(%EC%9D%BC%EC%82%B0%EC%A0%9C%EC%9D%BC%EB%B3%91%EC%9B%90)%EC%97%AD"
+   },
+   {
+    "name": "일산시장",
+    "evidence": "경기도 고양시 일산서구 일청로12번길 9 (일산동), 3·8일 장날, 일산민속5일장 소개",
+    "url": "https://www.ktriptips.com/kor/shopping/132419"
+   }
+  ]
+ },
+ {
+  "code": "4128710200",
+  "slug": "gyeonggi-goyang-ilsanseo-juyeop",
+  "items": [
+   {
+    "name": "주엽역",
+    "evidence": "서울 지하철 3호선(일산선) 310번 역, 경기도 고양시 일산서구 중앙로 1432 (주엽동 166-7), 역 이름도 주엽동에서 땀",
+    "url": "https://rail.blue/railroad/logis/stationinfo.aspx?id=527"
+   }
+  ]
+ },
+ {
+  "code": "4145010100",
+  "slug": "gyeonggi-hanam-cheonhyeon",
+  "items": [
+   {
+    "name": "꿈나무공원",
+    "evidence": "하남시 천현동 615 꿈나무공원 지하에 110면 공영주차장 조성(경기일보 2023 기사)",
+    "url": "https://kyeonggi.com/article/20230220580051"
+   }
+  ]
+ },
+ {
+  "code": "4145010200",
+  "slug": "gyeonggi-hanam-hasangok",
+  "items": [
+   {
+    "name": "캠프콜번",
+    "evidence": "반환 미군기지 캠프콜번 부지, 하남시 하산곡동 209-9 일원 약 23만㎡ 개발 추진(경기신문 등 보도)",
+    "url": "https://www.kyeongin.com/article/1758769"
+   },
+   {
+    "name": "산곡천",
+    "evidence": "산곡천이 상산곡동과 하산곡동, 창우동을 거쳐 한강으로 흘러든다는 하남 장소 소개",
+    "url": "https://xn--ok0b236bp0a.com/place/11834"
+   }
+  ]
+ },
+ {
+  "code": "4111710100",
+  "slug": "gyeonggi-suwon-yeongtong-maetan",
+  "items": [
+   {
+    "name": "삼성전자 수원사업장",
+    "evidence": "삼성전자 본점 경기도 수원시 영통구 삼성로 129 (매탄동), 수원사업장 매탄동 416",
+    "url": "https://www.incruit.com/company/4665501/location"
+   }
+  ]
+ },
+ {
+  "code": "4111710200",
+  "slug": "gyeonggi-suwon-yeongtong-woncheon",
+  "items": [
+   {
+    "name": "아주대학교",
+    "evidence": "아주대학교, 경기도 수원시 영통구 원천동 산 5-1 (월드컵로 206)",
+    "url": "https://zippoom.com/%EB%B6%80%EB%8F%99%EC%82%B0/%EA%B2%BD%EA%B8%B0-%EC%88%98%EC%9B%90%EC%8B%9C-%EC%98%81%ED%86%B5%EA%B5%AC-%EC%9B%90%EC%B2%9C%EB%8F%99-%EC%95%84%EC%A3%BC%EB%8C%80%ED%95%99%EA%B5%90/wmxc6n"
+   },
+   {
+    "name": "아주대학교병원",
+    "evidence": "아주대학교병원, 경기도 수원시 영통구 월드컵로 164 (원천동)",
+    "url": "https://mobile.hidoc.co.kr/find/result/view/H0000152254"
+   }
+  ]
+ },
+ {
+  "code": "4812510100",
+  "slug": "gyeongnam-changwon-masanhappo-gapo",
+  "items": [
+   {
+    "name": "국립마산병원",
+    "evidence": "한국민족문화대백과: 경상남도 창원시 마산합포구 가포동에 있는 국립 결핵 전문 병원(1946년 국립마산결핵요양소로 개원)",
+    "url": "https://encykorea.aks.ac.kr/Article/E0006215"
+   }
+  ]
+ },
+ {
+  "code": "4812510200",
+  "slug": "gyeongnam-changwon-masanhappo-gyobang",
+  "items": [
+   {
+    "name": "서원곡",
+    "evidence": "마산합포구 교방동 서원곡 주차장이 무학산 산행 출발점으로 소개됨(한국교육신문 무학산 산행기)",
+    "url": "https://hangyo.com/mobile/article.html?no=71545"
+   },
+   {
+    "name": "무학산",
+    "evidence": "무학산은 창원시 마산회원구·마산합포구에 걸친 산이며 교방동 서원곡이 등산로 입구",
+    "url": "https://www.seoul.co.kr/news/2009/09/14/20090914028003"
+   }
+  ]
+ },
+ {
+  "code": "4812510300",
+  "slug": "gyeongnam-changwon-masanhappo-gyowon",
+  "items": [
+   {
+    "name": "무학자이 아파트",
+    "evidence": "창원시 마산합포구 교원동 무학자이, 705세대·2011년 입주 단지(리치고 단지 정보)",
+    "url": "https://m.richgo.ai/realty/danji/a0CbiSh"
+   }
+  ]
+ },
+ {
+  "code": "4723010200",
+  "slug": "gyeongbuk-yeongcheon-mangjeong",
+  "items": [
+   {
+    "name": "영천창신타운",
+    "evidence": "'망정동 영천창신타운 아파트' 단지 정보, 당근부동산 '영천창신타운 · 영천시 망정동'",
+    "url": "https://m.richgo.ai/realty/danji/a4OoaML"
+   }
+  ]
+ },
+ {
+  "code": "4723010300",
+  "slug": "gyeongbuk-yeongcheon-yasa",
+  "items": [
+   {
+    "name": "한신더휴영천퍼스트",
+    "evidence": "경상북도 영천시 야사동 671 한신더휴영천퍼스트(공매 물건 주소), 1,147세대 단지",
+    "url": "https://safehomes.kr/risk-map/경상북도/영천시/야사동/아파트/building-public-auction/한신더휴영천퍼스트/1659656"
+   }
+  ]
+ },
+ {
+  "code": "4121010100",
+  "slug": "gyeonggi-gwangmyeong-gwangmyeong",
+  "items": [
+   {
+    "name": "광명전통시장",
+    "evidence": "광명전통시장 위치: 경기도 광명시 광이로13번길 17-5 (광명동), 1972년 형성된 전통시장",
+    "url": "https://info.koreacharts.com/tour/4083800/contents.html"
+   }
+  ]
+ }
+]

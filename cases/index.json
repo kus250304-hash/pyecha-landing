@@ -1,5 +1,46 @@
 [
  {
+  "slug": "case-20230523-jeonnam-mokpo",
+  "date": "2023-05-23",
+  "sido": "전남광주통합특별시",
+  "sigungu": "목포시",
+  "dong": "",
+  "region_slug": null,
+  "car": "2009년식 싼타페",
+  "title": "목포시 2009년식 싼타페 폐차·수출 비교 상담 사례",
+  "summary": "2009년식 싼타페 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "싼타페"
+   ],
+   [
+    "연식",
+    "2009년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2009년식 싼타페 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230523-jeonnam-mokpo-1.jpg",
+  "photos": [
+   "case-20230523-jeonnam-mokpo-1.jpg",
+   "case-20230523-jeonnam-mokpo-2.jpg",
+   "case-20230523-jeonnam-mokpo-3.jpg",
+   "case-20230523-jeonnam-mokpo-4.jpg",
+   "case-20230523-jeonnam-mokpo-5.jpg"
+  ]
+ },
+ {
   "slug": "case-20251201-seoul-nowon-gongneung",
   "date": "2025-12-01",
   "sido": "서울특별시",
