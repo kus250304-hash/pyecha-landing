@@ -1,5 +1,49 @@
 [
  {
+  "slug": "case-20260224-chungnam-dangjin",
+  "date": "2026-02-24",
+  "sido": "충청남도",
+  "sigungu": "당진시",
+  "dong": "",
+  "region_slug": null,
+  "car": "2012년식 포터2",
+  "title": "당진시 2012년식 포터2 폐차·수출 비교 상담 사례",
+  "summary": "2012년식 포터2 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "포터2"
+   ],
+   [
+    "연식",
+    "2012년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ],
+   [
+    "진행 내용",
+    "수출 쪽과 비교해 진행"
+   ]
+  ],
+  "situation": "2012년식 포터2 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20260224-chungnam-dangjin-1.jpg",
+  "photos": [
+   "case-20260224-chungnam-dangjin-1.jpg",
+   "case-20260224-chungnam-dangjin-2.jpg",
+   "case-20260224-chungnam-dangjin-3.jpg",
+   "case-20260224-chungnam-dangjin-4.jpg"
+  ]
+ },
+ {
   "slug": "case-20230523-jeonnam-mokpo",
   "date": "2023-05-23",
   "sido": "전남광주통합특별시",
