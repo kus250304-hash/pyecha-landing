@@ -91,6 +91,7 @@
 - **매일 자동생성 루틴**도 main 에 바로 push 합니다(PR 없음). 루틴의 조건: 사실 확인 기록 + `import_batch.py` 통과 + 커밋 후 `python3 scripts/publish_gate.py` 통과. 게이트가 하나라도 실패하면 main 에 push 하지 않고 작업을 `auto/failed-YYYYMMDD` 브랜치에 남깁니다.
 - 루틴이 main 에 반영할 수 있는 파일은 `data/regions.json`, `data/batches/held/`, `data/fact_checks/`, `pages/`, `gu/`, `data/gu.json`, `cases/`, `index.html`, `sitemap.xml`, 등록대수 통계 파일(`data/vehicle_stats*.json`) 뿐입니다(`publish_gate.py` 가 막음).
 - 모든 변경(스크립트·템플릿·CLAUDE.md·설정 변경, 기존 지역 수정 포함)은 PR 없이 main 에 바로 반영하고, 무엇을 왜 바꿨는지와 검사 결과를 보고에 남깁니다. 반영 전에 `python3 scripts/check_pages.py` 오류 0건을 확인하는 것은 그대로입니다.
+- IndexNow(2026-10-08): main 에 반영한 뒤 `python3 scripts/indexnow.py changed`(그 커밋에서 새로 생기거나 바뀐 페이지, 처음 한 번은 `all` 로 sitemap 전체)로 네이버·공용 IndexNow 에 주소를 알립니다. 키는 `site_config.json` 의 `indexnow_key`, 같은 값의 `{키}.txt` 가 사이트 맨 위 폴더에 있어야 하며 둘 다 지우거나 바꾸지 않습니다. 매일 루틴은 push 성공 뒤 이 명령을 돌리고 결과를 보고에 적습니다(파일을 바꾸지 않아 `publish_gate.py` 와 무관).
 - 위 매일 루틴의 반영 파일 제한(`publish_gate.py`)은 루틴 자체에만 적용됩니다. 루틴은 스크립트·템플릿·설정을 스스로 바꾸지 않습니다.
 - 매일 루틴의 지시문은 `docs/daily-routine-prompt.md` 의 코드 상자 하나에 있습니다. 루틴 설정에는 "이 파일의 코드 상자를 따르라"는 한 줄만 있으므로, 지시문을 바꿀 때는 이 코드 상자 안만 고쳐 main 에 바로 올립니다(코드 상자는 하나만 둡니다).
 
