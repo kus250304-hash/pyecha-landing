@@ -1,0 +1,155 @@
+[
+ {
+  "code": "4725010100",
+  "slug": "gyeongbuk-sangju-seongha",
+  "sido": "경상북도",
+  "sigungu": "상주시",
+  "dong": "성하동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "성하동 안에 있다고 검색으로 확인되는 장소를 찾지 못함(상주중앙시장·상주향교·왕산역사공원 모두 동 위치 근거 없음)",
+   "items": []
+  }
+ },
+ {
+  "code": "4725010200",
+  "slug": "gyeongbuk-sangju-seongdong",
+  "sido": "경상북도",
+  "sigungu": "상주시",
+  "dong": "성동동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "상주역 등 후보 장소가 성동동 안에 있다는 근거를 검색으로 확인하지 못함",
+   "items": []
+  }
+ },
+ {
+  "code": "4812911300",
+  "slug": "gyeongnam-changwon-jinhae-nambin",
+  "sido": "경상남도",
+  "sigungu": "창원시 진해구",
+  "dong": "남빈동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "동 땅 대부분이 해군기지(군사시설)로 보이고 주택·상가 거래 기록이 없음. 사람이 거의 살지 않는 곳으로 판단(검색 결과: 도로명주소 중원로 1(남빈동)이 해군진해기지사령부)",
+   "items": []
+  }
+ },
+ {
+  "code": "4812911400",
+  "slug": "gyeongnam-changwon-jinhae-aenggok",
+  "sido": "경상남도",
+  "sigungu": "창원시 진해구",
+  "dong": "앵곡동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "해군사관학교 부지가 대부분인 군사 지역으로 보이고 민간 시설을 찾지 못함. 사람이 거의 살지 않는 곳으로 판단(위키백과: 해군사관학교는 진해구 앵곡동)",
+   "items": []
+  }
+ },
+ {
+  "code": "4146110200",
+  "slug": "gyeonggi-yongin-cheoin-yeokbuk",
+  "sido": "경기도",
+  "sigungu": "용인시 처인구",
+  "dong": "역북동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "명지대학교 자연캠퍼스 등 후보 장소가 역북동 안에 있다는 근거를 검색으로 확인하지 못함",
+   "items": []
+  }
+ },
+ {
+  "code": "4159510300",
+  "slug": "gyeonggi-hwaseong-byeongjeom-neung",
+  "sido": "경기도",
+  "sigungu": "화성시 병점구",
+  "dong": "능동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "병점구 능동과 동탄구 능동이 나뉘어 있어 찾은 아파트 단지가 병점구 쪽인지 검색으로 확인하지 못함",
+   "items": []
+  }
+ },
+ {
+  "code": "4159310100",
+  "slug": "gyeonggi-hwaseong-hyohaeng-baeyang",
+  "sido": "경기도",
+  "sigungu": "화성시 효행구",
+  "dong": "배양동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "배양동 안에 있다고 확인되는 장소를 찾지 못함(융건릉은 안녕동)",
+   "items": []
+  }
+ },
+ {
+  "code": "4812310100",
+  "slug": "gyeongnam-changwon-seongsan-towol",
+  "sido": "경상남도",
+  "sigungu": "창원시 성산구",
+  "dong": "토월동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "법정동 토월동은 비음산 기슭 작은 땅으로 인구가 매우 적음(검색 결과 2026년 6월 기준 총인구 12명). '토월' 이름의 단지는 상남동 주소",
+   "items": []
+  }
+ },
+ {
+  "code": "4812310200",
+  "slug": "gyeongnam-changwon-seongsan-sapajeong",
+  "sido": "경상남도",
+  "sigungu": "창원시 성산구",
+  "dong": "사파정동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "사파정동 안에 있다고 확인되는 장소를 찾지 못함(사파초·사파중·동양무궁화아파트는 사파동)",
+   "items": []
+  }
+ }
+]

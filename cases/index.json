@@ -1,5 +1,45 @@
 [
  {
+  "slug": "case-20231111-chungbuk-chungju",
+  "date": "2023-11-11",
+  "sido": "충청북도",
+  "sigungu": "충주시",
+  "dong": "",
+  "region_slug": null,
+  "car": "2008년식 카이런",
+  "title": "충주시 2008년식 카이런 폐차·수출 비교 상담 사례",
+  "summary": "2008년식 카이런 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "카이런"
+   ],
+   [
+    "연식",
+    "2008년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2008년식 카이런 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20231111-chungbuk-chungju-1.jpg",
+  "photos": [
+   "case-20231111-chungbuk-chungju-1.jpg",
+   "case-20231111-chungbuk-chungju-2.jpg",
+   "case-20231111-chungbuk-chungju-3.jpg",
+   "case-20231111-chungbuk-chungju-4.jpg"
+  ]
+ },
+ {
   "slug": "case-20260224-chungnam-dangjin",
   "date": "2026-02-24",
   "sido": "충청남도",
