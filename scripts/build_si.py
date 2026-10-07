@@ -30,7 +30,7 @@ from pathlib import Path
 from urllib.parse import quote
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from build_gu import BAN_RE
+from build_gu import BAN_RE, INFO_GRADES, info_value
 
 ROOT = Path(__file__).resolve().parent.parent
 TEMPLATE = ROOT / "templates" / "si-landing.html"
@@ -80,10 +80,12 @@ def validate(s: dict, gus: list[dict]) -> list[str]:
         errs.append("FAQ 는 질문·답 3쌍")
     info = s.get("public_info") or []
     if not info:
-        errs.append("공공 정보가 한 줄도 없음 (확인된 줄이 없으면 이 시·도는 보류)")
+        errs.append("공공 정보가 한 줄도 없음 (검색 요약으로라도 확인된 줄이 없으면 이 시·도는 보류)")
     for row in info:
         if not all(str(row.get(k, "")).strip() for k in ("label", "value", "source")) or not re.match(r"^https?://\S+\.\S+", row.get("url", "")):
             errs.append(f"공공 정보 '{row.get('label')}' 에 내용·출처·주소 중 빠진 것 있음")
+        if row.get("grade") not in INFO_GRADES:
+            errs.append(f"공공 정보 '{row.get('label')}' 의 근거 등급(grade)은 {INFO_GRADES} 중 하나여야 함")
     m = BAN_RE.search(" ".join([x for qa in faqs for x in qa] + [r.get("value", "") for r in info]))
     if m:
         errs.append(f"금액·결과 약속 표현 '{m.group(0)}'")
@@ -142,7 +144,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
         faqs = [tuple(qa) for qa in s["faqs"]] + V.call_faqs("si:" + sido, 4)
         faq_html = "\n      ".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in faqs)
         info_rows = "\n        ".join(
-            f'<tr><th>{esc(row["label"])}</th><td>{esc(row["value"])}'
+            f'<tr><th>{esc(row["label"])}</th><td>{esc(info_value(row))}'
             f'<small>출처: <a href="{esc(row["url"])}" target="_blank" rel="noopener noreferrer">{esc(row["source"])}</a></small></td></tr>'
             for row in info
         )

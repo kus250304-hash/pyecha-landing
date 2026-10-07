@@ -47,6 +47,17 @@ DONG_TEMPLATE = ROOT / "templates" / "region-landing-v2.html"
 OUT = ROOT / "gu"
 MIN_DONG_PAGES = 3
 MAX_CASES = 6
+# 공공 정보 줄의 근거 등급(2026-10-08): opened = 실제로 연 공식 페이지, summary = 검색 결과 요약만으로 확인.
+# summary 줄은 페이지에 '(확인 중)' 을 붙여 보여 주고, 실제로 열어 확인되면 grade 를 opened 로 바꿔 표시를 뗀다.
+INFO_GRADES = ("opened", "summary")
+RECHECK_MARK = "(확인 중)"
+
+
+def info_value(row: dict) -> str:
+    v = str(row.get("value", "")).strip()
+    return f"{v} {RECHECK_MARK}" if row.get("grade") == "summary" else v
+
+
 BAN_RE = re.compile(r"보장|무조건|100%|1위|1등|최저가|최고가|최대(?!한)|실시간\s*접수|\d[\d,.]*\s*(원|만원|만 원|천원|억)|₩")
 
 
@@ -72,8 +83,10 @@ def validate(g: dict, dongs: list[dict]) -> list[str]:
         errs.append(f"동 페이지 {len(dongs)}개 (3개 이상이어야 함)")
     by_slug = {r["slug"]: r for r in dongs}
     lms = g.get("intro_landmarks") or []
-    if not 2 <= len(lms) <= 3:
-        errs.append("소개 랜드마크는 2~3개")
+    # 2~3개. 다만 그 구 동 페이지 중 랜드마크가 확인된 곳이 2곳 미만이면 있는 만큼(최소 1개, 2026-10-08 수지구)
+    need = max(1, min(2, sum(1 for r in dongs if r.get("landmark_name"))))
+    if not need <= len(lms) <= 3:
+        errs.append(f"소개 랜드마크는 {need}~3개")
     for lm in lms:
         r = by_slug.get(lm.get("dong_slug"))
         if not r or r["landmark_name"] != lm.get("name"):
@@ -87,10 +100,12 @@ def validate(g: dict, dongs: list[dict]) -> list[str]:
         errs.append("FAQ 는 질문·답 3쌍")
     info = g.get("public_info") or []
     if not info:
-        errs.append("공공 정보가 한 줄도 없음 (확인된 줄이 없으면 이 구는 보류)")
+        errs.append("공공 정보가 한 줄도 없음 (검색 요약으로라도 확인된 줄이 없으면 이 구는 보류)")
     for row in info:
         if not all(str(row.get(k, "")).strip() for k in ("label", "value", "source")) or not re.match(r"^https?://\S+\.\S+", row.get("url", "")):
             errs.append(f"공공 정보 '{row.get('label')}' 에 내용·출처·주소 중 빠진 것 있음")
+        if row.get("grade") not in INFO_GRADES:
+            errs.append(f"공공 정보 '{row.get('label')}' 의 근거 등급(grade)은 {INFO_GRADES} 중 하나여야 함")
     text = " ".join([g.get("intro", "")] + [x for qa in faqs for x in qa] + [r.get("value", "") for r in info])
     m = BAN_RE.search(text)
     if m:
@@ -170,7 +185,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
         faqs = [tuple(qa) for qa in g["faqs"]] + V.call_faqs("gu:" + g["slug"], 4)
         faq_html = "\n      ".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in faqs)
         info_rows = "\n        ".join(
-            f'<tr><th>{esc(row["label"])}</th><td>{esc(row["value"])}'
+            f'<tr><th>{esc(row["label"])}</th><td>{esc(info_value(row))}'
             f'<small>출처: <a href="{esc(row["url"])}" target="_blank" rel="noopener noreferrer">{esc(row["source"])}</a></small></td></tr>'
             for row in info
         )

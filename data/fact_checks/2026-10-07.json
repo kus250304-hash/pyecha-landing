@@ -41,9 +41,10 @@
   "items": [
    {
     "name": "서호시장",
-    "evidence": "통영시 서호동 소재 전통시장, 서호만을 메운 땅이라 새터시장으로도 부름",
+    "evidence": "통영 서호시장 주소 새터길 42-7(한국관광공사 정보), 같은 주소가 도로명 목록에 '새터길 42-7 (서호동)' — 2026-10-08 재확인",
     "url": "https://www.ktriptips.com/kor/shopping/584736",
-    "grade": "summary_name_only"
+    "grade": "opened",
+    "url_more": "https://dorojuso.kr/%EA%B2%BD%EC%83%81%EB%82%A8%EB%8F%84/%ED%86%B5%EC%98%81%EC%8B%9C/%EB%AA%85%EC%A0%95%EB%8F%99?page=12"
    },
    {
     "name": "새터시장",
@@ -59,9 +60,9 @@
   "items": [
    {
     "name": "공주 반죽동 당간지주",
-    "evidence": "한국민족문화대백과 '공주 반죽동 당간지주' 항목, 반죽동 백제 대통사 터의 보물",
-    "url": "https://encykorea.aks.ac.kr/Article/E0004469",
-    "grade": "summary_name_only"
+    "evidence": "위키백과 '공주 반죽동 당간지주' 소재지 충청남도 공주시 반죽동 302-2번지 — 2026-10-08 재확인",
+    "url": "https://ko.wikipedia.org/wiki/공주_반죽동_당간지주",
+    "grade": "opened"
    }
   ]
  },
@@ -137,9 +138,9 @@
   "items": [
    {
     "name": "포항초등학교",
-    "evidence": "포항시 북구 덕산동에 있는 공립 초등학교, 1917년 개교(위키백과)",
-    "url": "https://ko.wikipedia.org/wiki/%ED%8F%AC%ED%95%AD%EC%B4%88%EB%93%B1%ED%95%99%EA%B5%90",
-    "grade": "summary_name_only"
+    "evidence": "위키백과 '포항초등학교' 위치 경상북도 포항시 북구 서동로47번길 23 (덕산동) — 2026-10-08 재확인",
+    "url": "https://ko.wikipedia.org/wiki/포항초등학교",
+    "grade": "opened"
    }
   ]
  },
@@ -151,7 +152,8 @@
     "name": "수지구청역",
     "evidence": "용인 수지 풍덕천동의 신분당선 수지구청역 소개(KB 부동산 기사)",
     "url": "https://kbthink.com/main/real-estate/real-estate-issue/our-house-issues/our-house-issues-231030.html",
-    "grade": "summary_name_only"
+    "grade": "summary_name_only",
+    "note": "2026-10-08 재확인에서 그 동이 적힌 주소를 찾지 못해 글에서 뺌(랜드마크 비움)"
    }
   ]
  },
@@ -163,7 +165,8 @@
     "name": "동천역",
     "evidence": "용인 수지구 동천동 신분당선 동천역과 환승 시설 소개(메트로신문)",
     "url": "https://www.metroseoul.co.kr/article/2016021600068",
-    "grade": "summary_name_only"
+    "grade": "summary_name_only",
+    "note": "2026-10-08 재확인에서 그 동이 적힌 주소를 찾지 못해 글에서 뺌(랜드마크 비움)"
    }
   ]
  },
@@ -205,7 +208,8 @@
     "name": "병점역",
     "evidence": "병점(엘타워)역은 경기도 화성시 진안동에 있는 수도권 전철 1호선 역(itwiki)",
     "url": "https://itwiki.kr/w/%EB%B3%91%EC%A0%90(%EC%97%98%ED%83%80%EC%9B%8C)%EC%97%AD",
-    "grade": "summary_name_only"
+    "grade": "summary_name_only",
+    "note": "2026-10-08 재확인에서 그 동이 적힌 주소를 찾지 못해 글에서 뺌(랜드마크 비움)"
    }
   ]
  },
@@ -287,9 +291,9 @@
   "items": [
    {
     "name": "양평물맑은시장",
-    "evidence": "경기도청 웹진: 양평 읍내 양평역 옆 개울가 상설시장과 3·8일 오일장",
-    "url": "https://www.gg.go.kr/myggd/vol177/sub3_2.html",
-    "grade": "summary_name_only"
+    "evidence": "양평 상설시장·3·8일 오일장(경기도청 웹진 '양평물맑은시장'), 한국관광공사 '양평장/양평시장' 주소 경기도 양평군 양평읍 양평시장길 11-1 — 2026-10-08 재확인",
+    "url": "https://www.ktriptips.com/kor/shopping/131988",
+    "grade": "opened"
    },
    {
     "name": "양평역",
