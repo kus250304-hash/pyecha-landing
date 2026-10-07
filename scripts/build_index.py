@@ -66,6 +66,19 @@ def naver_codes(cfg: dict) -> list[str]:
     return [code] if isinstance(code, str) else [c for c in code if c]
 
 
+ICON_RE = re.compile(r'[ \t]*<link rel="icon"[^>]*>\n?')
+ICON_TAG = '<link rel="icon" href="favicon.ico" sizes="any">\n'
+
+
+def apply_icon(text: str, name: str) -> str:
+    """맨 위 폴더 favicon.ico 링크를 viewport 태그 바로 아래에 하나 둔다(2026-10-08, 네이버 진단 favicon 400 오류)."""
+    text = ICON_RE.sub("", text)
+    text, n = VIEWPORT_RE.subn(lambda m: m.group(1) + ICON_TAG, text, count=1)
+    if n != 1:
+        raise ValueError(f"{name} 에서 viewport 메타 태그를 찾지 못했습니다")
+    return text
+
+
 def apply_head_meta(text: str) -> str:
     """네이버 서치어드바이저 소유확인 태그를 viewport 태그 바로 아래에 설정 순서대로 하나씩 둔다."""
     codes = naver_codes(json.loads(CONFIG_PATH.read_text(encoding="utf-8")))
@@ -167,7 +180,7 @@ def main() -> None:
 
     cfg = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
     for page in STATIC_PAGES:
-        page.write_text(apply_footer(page.read_text(encoding="utf-8"), cfg, page.name), encoding="utf-8")
+        page.write_text(apply_icon(apply_footer(page.read_text(encoding="utf-8"), cfg, page.name), page.name), encoding="utf-8")
     print(f"index.html 갱신 완료: 총 {total}개 지역, 시도 {len(by_sido)}개 (맨 아래 링크: {', '.join(p.name for p in STATIC_PAGES)})")
 
 

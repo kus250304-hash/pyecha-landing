@@ -464,6 +464,30 @@ def check_oneplus() -> list[str]:
     return problems
 
 
+# 네이버 서치어드바이저 진단(2026-10-08): favicon.ico 가 없어 400 오류, 사진 alt 누락
+IMG_RE = re.compile(r"<img\b[^>]*>", re.IGNORECASE)
+ALT_OK_RE = re.compile(r'\balt="[^"]*\S[^"]*"')
+
+
+def check_icon_and_alt() -> list[str]:
+    """맨 위 폴더 favicon.ico 가 있는지, 모든 페이지 head 에 아이콘 링크가 있는지, alt 가 없거나 빈 img 가 없는지."""
+    problems = [] if (ROOT / "favicon.ico").exists() else ["favicon.ico 가 맨 위 폴더에 없음"]
+    # 검색엔진 소유확인 파일(google….html, naver….html)은 한 줄짜리 확인용이라 뺀다
+    files = [p for p in ROOT.glob("*.html") if not p.name.startswith(("google", "naver"))]
+    for d in ("pages", "gu", "si", "guide", "cases"):
+        files += sorted((ROOT / d).glob("*.html")) if (ROOT / d).exists() else []
+    for f in files:
+        text = f.read_text(encoding="utf-8")
+        rel = f.relative_to(ROOT).as_posix()
+        head = re.search(r"<head>.*?</head>", text, flags=re.DOTALL)
+        if not head or not re.search(r'<link rel="icon" href="(?:\.\./)?favicon\.ico"', head.group(0)):
+            problems.append(f"{rel}: head 에 favicon 링크 없음")
+        bad = [m for m in IMG_RE.findall(text) if not ALT_OK_RE.search(m)]
+        if bad:
+            problems.append(f"{rel}: alt 가 없거나 빈 사진 {len(bad)}개 → {bad[0][:80]}")
+    return problems
+
+
 def check_tow_wording() -> list[str]:
     """동·구·시·안내·사례 페이지(제목·설명·본문·구조화 데이터 전부)에서 견인비 단정 표현을 찾는다."""
     problems = []
@@ -671,6 +695,7 @@ def main() -> None:
         errors.extend(check_si_pages(site_cfg, sitemap, all_sidos))
         errors.extend(check_tow_wording())
         errors.extend(check_oneplus())
+        errors.extend(check_icon_and_alt())
 
     # 첫 화면의 네이버 서치어드바이저 소유확인 태그
     naver = site_cfg.get("naver_site_verification")

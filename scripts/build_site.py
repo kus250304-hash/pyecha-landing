@@ -95,13 +95,19 @@ def cases_for(r: dict, cases: list[dict], page_map: dict[str, set[str]], n: int 
     return f"{area} 작업 사례", f"{area} 안 가까운 동에서 진행한 실제 사례입니다. 지역은 카드마다 표시됩니다", picked
 
 
+def case_alt(c: dict) -> str:
+    """사례 카드 사진 설명(2026-10-08, 네이버 진단 alt 누락): "구미시 송정동 쏘나타 폐차 사례 사진"."""
+    region = ((c.get("sigungu") or c.get("sido") or "") + " " + (c.get("dong") or "")).strip()
+    return " ".join(x for x in (region, c.get("car") or "", "폐차 사례 사진") if x)
+
+
 def case_cards_html(picked: list[dict]) -> str:
     """사례 카드 묶음. 동 페이지와 구 페이지가 같이 쓴다. 사례가 없으면 빈 문자열."""
     if not picked:
         return ""
     return '<div class="cases" data-nosnippet>' + "".join(
         f'<a class="case" href="../cases/{esc(c["slug"])}.html">'
-        + (f'<img src="../cases/images/{esc(c["thumb"])}" alt="" loading="lazy" width="800" height="600">' if c.get("thumb") else "")
+        + (f'<img src="../cases/images/{esc(c["thumb"])}" alt="{esc(case_alt(c))}" loading="lazy" width="800" height="600">' if c.get("thumb") else "")
         + f'<div class="body"><span class="region">{esc(((c["sigungu"] or c["sido"]) + " " + c["dong"]).strip())} 작업 사례</span>'
         + f'<h3>{esc(c["title"])}</h3><p>{esc(c.get("summary", ""))}</p></div></a>'
         for c in picked

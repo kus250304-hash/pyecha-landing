@@ -57,6 +57,7 @@ def redirect_html(gu: str, new_file: str, new_abs: str) -> str:
         "<!DOCTYPE html>\n<html lang=\"ko\">\n<head>\n<meta charset=\"utf-8\">\n"
         f"<title>{gu} 폐차 상담 페이지 주소가 바뀌었습니다</title>\n"
         f"<link rel=\"canonical\" href=\"{new_abs}\">\n"
+        "<link rel=\"icon\" href=\"../favicon.ico\" sizes=\"any\">\n"
         f"<meta http-equiv=\"refresh\" content=\"0; url={rel}\">\n"
         f"<script>location.replace(\"{rel}\");</script>\n"
         "</head>\n<body>\n"
