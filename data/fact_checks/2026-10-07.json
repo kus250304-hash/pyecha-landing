@@ -6,7 +6,8 @@
    {
     "name": "한양대학교구리병원",
     "evidence": "경기 구리시 교문동 249-1 소재 대학병원(병원 정보 페이지)",
-    "url": "https://www.goodoc.co.kr/hospitals/33828"
+    "url": "https://www.goodoc.co.kr/hospitals/33828",
+    "grade": "summary_with_address"
    }
   ]
  },
@@ -17,7 +18,8 @@
    {
     "name": "안동의료원",
     "evidence": "경북 안동시 태사2길 55(북문동), 지번 북문동 470 소재 공공병원",
-    "url": "https://medicaldaily.co.kr/news/20307"
+    "url": "https://medicaldaily.co.kr/news/20307",
+    "grade": "summary_with_address"
    }
   ]
  },
@@ -28,7 +30,8 @@
    {
     "name": "윤이상기념공원",
     "evidence": "경남 통영시 중앙로 27(도천동), 윤이상 생가 터에 조성, 옛 도천테마파크(경향신문 2017)",
-    "url": "https://www.khan.co.kr/article/201709121021001"
+    "url": "https://www.khan.co.kr/article/201709121021001",
+    "grade": "summary_with_address"
    }
   ]
  },
@@ -39,12 +42,14 @@
    {
     "name": "서호시장",
     "evidence": "통영시 서호동 소재 전통시장, 서호만을 메운 땅이라 새터시장으로도 부름",
-    "url": "https://www.ktriptips.com/kor/shopping/584736"
+    "url": "https://www.ktriptips.com/kor/shopping/584736",
+    "grade": "summary_name_only"
    },
    {
     "name": "새터시장",
     "evidence": "서호시장의 다른 이름(서호동, 매립지 '새터')",
-    "url": "https://www.ktriptips.com/kor/shopping/584736"
+    "url": "https://www.ktriptips.com/kor/shopping/584736",
+    "grade": "summary_name_only"
    }
   ]
  },
@@ -55,7 +60,8 @@
    {
     "name": "공주 반죽동 당간지주",
     "evidence": "한국민족문화대백과 '공주 반죽동 당간지주' 항목, 반죽동 백제 대통사 터의 보물",
-    "url": "https://encykorea.aks.ac.kr/Article/E0004469"
+    "url": "https://encykorea.aks.ac.kr/Article/E0004469",
+    "grade": "summary_name_only"
    }
   ]
  },
@@ -66,7 +72,8 @@
    {
     "name": "공주봉황초등학교",
     "evidence": "충남 공주시 봉황동 소재 건물 목록의 봉황초등학교(오거리길 5)",
-    "url": "https://safehomes.kr/risk-map/충청남도/공주시/봉황동/기타/building/봉황초등학교/11711284"
+    "url": "https://safehomes.kr/risk-map/충청남도/공주시/봉황동/기타/building/봉황초등학교/11711284",
+    "grade": "summary_with_address"
    }
   ]
  },
@@ -77,7 +84,8 @@
    {
     "name": "함창읍 행정복지센터",
     "evidence": "상주시 함창읍 행정복지센터(함창중앙로 135)와 함창생활복합센터 사업 기사(경북매일)",
-    "url": "https://kbmaeil.com/article/20250701500233"
+    "url": "https://kbmaeil.com/article/20250701500233",
+    "grade": "summary_with_address"
    }
   ]
  },
@@ -88,17 +96,20 @@
    {
     "name": "영남루",
     "evidence": "경남 밀양시 중앙로 324(내일동 40), 밀양강변 국보 누각",
-    "url": "https://www.busannavi.net/eng/?p=12234"
+    "url": "https://www.busannavi.net/eng/?p=12234",
+    "grade": "summary_with_address"
    },
    {
     "name": "밀양강",
     "evidence": "영남루가 내일동 밀양강변에 있는 누각이라는 소개",
-    "url": "https://www.busannavi.net/eng/?p=12234"
+    "url": "https://www.busannavi.net/eng/?p=12234",
+    "grade": "summary_name_only"
    },
    {
     "name": "밀양아리랑시장",
     "evidence": "밀양시 내일동 소재 시장·상가지대(경남신문)",
-    "url": "https://knnews.co.kr/news/articleView.php?idxno=109"
+    "url": "https://knnews.co.kr/news/articleView.php?idxno=109",
+    "grade": "summary_name_only"
    }
   ]
  },
@@ -109,12 +120,14 @@
    {
     "name": "제황산공원",
     "evidence": "창원시 진해구 중원동로 52(제황산동) 소재 공원",
-    "url": "https://www.ktriptips.com/kor/tourspot/126139"
+    "url": "https://www.ktriptips.com/kor/tourspot/126139",
+    "grade": "summary_with_address"
    },
    {
     "name": "진해탑",
     "evidence": "제황산공원 안 군함 마스트 모양 탑(창원시립 진해박물관), 중원동로 52(제황산동)",
-    "url": "https://koreatriptips.com/cultural-facilities/791089.html"
+    "url": "https://koreatriptips.com/cultural-facilities/791089.html",
+    "grade": "summary_with_address"
    }
   ]
  },
@@ -125,7 +138,8 @@
    {
     "name": "포항초등학교",
     "evidence": "포항시 북구 덕산동에 있는 공립 초등학교, 1917년 개교(위키백과)",
-    "url": "https://ko.wikipedia.org/wiki/%ED%8F%AC%ED%95%AD%EC%B4%88%EB%93%B1%ED%95%99%EA%B5%90"
+    "url": "https://ko.wikipedia.org/wiki/%ED%8F%AC%ED%95%AD%EC%B4%88%EB%93%B1%ED%95%99%EA%B5%90",
+    "grade": "summary_name_only"
    }
   ]
  },
@@ -136,7 +150,8 @@
    {
     "name": "수지구청역",
     "evidence": "용인 수지 풍덕천동의 신분당선 수지구청역 소개(KB 부동산 기사)",
-    "url": "https://kbthink.com/main/real-estate/real-estate-issue/our-house-issues/our-house-issues-231030.html"
+    "url": "https://kbthink.com/main/real-estate/real-estate-issue/our-house-issues/our-house-issues-231030.html",
+    "grade": "summary_name_only"
    }
   ]
  },
@@ -147,7 +162,8 @@
    {
     "name": "동천역",
     "evidence": "용인 수지구 동천동 신분당선 동천역과 환승 시설 소개(메트로신문)",
-    "url": "https://www.metroseoul.co.kr/article/2016021600068"
+    "url": "https://www.metroseoul.co.kr/article/2016021600068",
+    "grade": "summary_name_only"
    }
   ]
  },
@@ -158,12 +174,14 @@
    {
     "name": "용인중앙시장",
     "evidence": "용인시 처인구 김량장동 133-104번지 일원 전통시장, 금학천 변 5일장(한국학 디지털 위키)",
-    "url": "https://dh.aks.ac.kr/Edu/wiki/index.php/%EC%9A%A9%EC%9D%B8%EC%8B%9C%EC%9E%A5_%EC%9A%A9%EC%9D%B8%EC%A4%91%EC%95%99%EC%8B%9C%EC%9E%A5"
+    "url": "https://dh.aks.ac.kr/Edu/wiki/index.php/%EC%9A%A9%EC%9D%B8%EC%8B%9C%EC%9E%A5_%EC%9A%A9%EC%9D%B8%EC%A4%91%EC%95%99%EC%8B%9C%EC%9E%A5",
+    "grade": "summary_with_address"
    },
    {
     "name": "금학천",
     "evidence": "용인중앙시장(김량장동) 옆 금학천 변에 5일장이 선다는 설명",
-    "url": "https://dh.aks.ac.kr/Edu/wiki/index.php/%EC%9A%A9%EC%9D%B8%EC%8B%9C%EC%9E%A5_%EC%9A%A9%EC%9D%B8%EC%A4%91%EC%95%99%EC%8B%9C%EC%9E%A5"
+    "url": "https://dh.aks.ac.kr/Edu/wiki/index.php/%EC%9A%A9%EC%9D%B8%EC%8B%9C%EC%9E%A5_%EC%9A%A9%EC%9D%B8%EC%A4%91%EC%95%99%EC%8B%9C%EC%9E%A5",
+    "grade": "summary_name_only"
    }
   ]
  },
@@ -174,7 +192,8 @@
    {
     "name": "용인시청",
     "evidence": "용인시청 주소 중부대로 1199, 도로명주소 목록상 '중부대로 1199 (삼가동)'",
-    "url": "https://dorojuso.kr/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%9A%A9%EC%9D%B8%EC%8B%9C-%EC%B2%98%EC%9D%B8%EA%B5%AC/%EC%82%BC%EA%B0%80%EB%8F%99?page=6"
+    "url": "https://dorojuso.kr/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%9A%A9%EC%9D%B8%EC%8B%9C-%EC%B2%98%EC%9D%B8%EA%B5%AC/%EC%82%BC%EA%B0%80%EB%8F%99?page=6",
+    "grade": "summary_with_address"
    }
   ]
  },
@@ -185,7 +204,8 @@
    {
     "name": "병점역",
     "evidence": "병점(엘타워)역은 경기도 화성시 진안동에 있는 수도권 전철 1호선 역(itwiki)",
-    "url": "https://itwiki.kr/w/%EB%B3%91%EC%A0%90(%EC%97%98%ED%83%80%EC%9B%8C)%EC%97%AD"
+    "url": "https://itwiki.kr/w/%EB%B3%91%EC%A0%90(%EC%97%98%ED%83%80%EC%9B%8C)%EC%97%AD",
+    "grade": "summary_name_only"
    }
   ]
  },
@@ -196,7 +216,8 @@
    {
     "name": "기안중학교",
     "evidence": "주소 목록 '화성시 효행구/기안동' 아래 기안중학교(효행로291번길 29)",
-    "url": "https://safehomes.kr/risk-map/경기도/화성시-효행구/기안동/기타/building/기안중학교/1124121190"
+    "url": "https://safehomes.kr/risk-map/경기도/화성시-효행구/기안동/기타/building/기안중학교/1124121190",
+    "grade": "summary_with_address"
    }
   ]
  },
@@ -207,12 +228,14 @@
    {
     "name": "수원가톨릭대학교",
     "evidence": "경기도 화성시 효행구 봉담읍 왕림1길 67 소재 대학",
-    "url": "https://phdkim.net/gradinfo/school/993"
+    "url": "https://phdkim.net/gradinfo/school/993",
+    "grade": "summary_with_address"
    },
    {
     "name": "협성대학교",
     "evidence": "화성시 봉담읍에 있는 사립대학, 1977년 개교(기사)",
-    "url": "https://dhnews.co.kr/news/view/179516715310289"
+    "url": "https://dhnews.co.kr/news/view/179516715310289",
+    "grade": "summary_name_only"
    }
   ]
  },
@@ -223,12 +246,14 @@
    {
     "name": "진북동 우성아파트",
     "evidence": "전주 덕진구 진북동 우성아파트, 2,102세대, 1995년 입주(태진로 101)",
-    "url": "https://m.richgo.ai/realty/danji/a9uWqYD"
+    "url": "https://m.richgo.ai/realty/danji/a9uWqYD",
+    "grade": "summary_with_address"
    },
    {
     "name": "우성아파트",
     "evidence": "진북동 우성아파트(진북동 소재 대단지)",
-    "url": "https://m.richgo.ai/realty/danji/a9uWqYD"
+    "url": "https://m.richgo.ai/realty/danji/a9uWqYD",
+    "grade": "summary_with_address"
    }
   ]
  },
@@ -239,7 +264,8 @@
    {
     "name": "모래내시장",
     "evidence": "전주 덕진구 모래내4길 8-8 (인후동2가) 전통시장",
-    "url": "https://www.ktriptips.com/kor/shopping/1187336"
+    "url": "https://www.ktriptips.com/kor/shopping/1187336",
+    "grade": "summary_with_address"
    }
   ]
  },
@@ -250,7 +276,8 @@
    {
     "name": "전북대학교",
     "evidence": "전북대학교 주소 덕진동1가 664-14",
-    "url": "https://mabumbe.com/kb/?p=24530"
+    "url": "https://mabumbe.com/kb/?p=24530",
+    "grade": "summary_with_address"
    }
   ]
  },
@@ -261,12 +288,14 @@
    {
     "name": "양평물맑은시장",
     "evidence": "경기도청 웹진: 양평 읍내 양평역 옆 개울가 상설시장과 3·8일 오일장",
-    "url": "https://www.gg.go.kr/myggd/vol177/sub3_2.html"
+    "url": "https://www.gg.go.kr/myggd/vol177/sub3_2.html",
+    "grade": "summary_name_only"
    },
    {
     "name": "양평역",
     "evidence": "같은 웹진에 물맑은시장이 양평 읍내 양평역 옆에 있다고 소개",
-    "url": "https://www.gg.go.kr/myggd/vol177/sub3_2.html"
+    "url": "https://www.gg.go.kr/myggd/vol177/sub3_2.html",
+    "grade": "summary_name_only"
    }
   ]
  }

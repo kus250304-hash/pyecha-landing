@@ -34,7 +34,8 @@ pyecha-landing 저장소(kus250304-hash/pyecha-landing)의 지역 폐차 랜딩�
 
 [사실 확인 — 반영 전 필수]
 6. `python3 scripts/fact_check.py data/batches/YYYY-MM-DD.json` 을 실행해 지역마다 "확인할 이름"을 본다. 그 이름들과 글에 쓴 모든 장소 이름(랜드마크·역·도로명·시장·학교·공원·관공서·하천·산 등)을 WebSearch 로 하나씩 검색한다(검색어 예: "<시군구> <동> <이름>").
-   - 그 장소가 실제로 있고, 그 동 안(또는 글에 쓴 대로 바로 옆)에 있다는 근거가 검색 결과에 있을 때만 확인됨으로 본다. fact_check.items 에 name, evidence(근거 한 줄), url(실제 검색 결과의 주소)을 적는다. 주소나 근거를 지어내지 않는다.
+   - 그 장소가 실제로 있고, 그 동 안(또는 글에 쓴 대로 바로 옆)에 있다는 근거가 검색 결과에 있을 때만 확인됨으로 본다. fact_check.items 에 name, evidence(근거 한 줄), url(실제 검색 결과의 주소), grade(근거 등급)를 적는다. 주소나 근거를 지어내지 않는다.
+   - 근거 등급(CLAUDE.md '사실 확인'): 페이지를 실제로 열어 확인했으면 "opened". 못 열었으면 검색 결과에 그 동의 주소(지번 "○○동 123-4", 또는 도로명 "○○로 12"와 그 동 이름)가 보일 때만 "summary_with_address" 로 두고 evidence 에 그 주소를 그대로 적는다. 이름만 보이고 동 주소가 안 보이면 확인되지 않은 것이다(다른 장소로 바꾸거나 held).
    - 확인되지 않는 이름은 확인되는 다른 장소나 큰 도로로 바꾸고 다시 확인한다. 그래도 확인이 안 되면 그 지역의 fact_check.status 를 "held", reason 에 쉬운 말 이유(예: "랜드마크 위치를 검색으로 확인하지 못함")를 적는다. 애매하면 confirmed 가 아니라 held 로 둔다.
    - 모든 이름이 확인된 지역만 fact_check.status 를 "confirmed" 로 둔다.
    - WebSearch 를 쓸 수 없으면 모든 지역을 held(이유: "웹 검색을 쓸 수 없어 확인 못 함")로 둔다.
@@ -47,7 +48,7 @@ G1. `python3 scripts/pick_next_gu.py` 를 실행한다. 하루 10개 = 줄 A 5�
 G2. 후보마다 출력된 JSON 뼈대를 docs/roadmap.md 2절과 scripts/build_gu.py 맨 위 규칙대로 채운다:
    - intro: 2~3문장. 출력된 그 구 동 페이지 랜드마크 중 구를 대표하는 2~3개를 이름 그대로 쓰고, intro_landmarks 에 {"name", "dong_slug"} 로 적는다. 새 장소를 지어내지 않는다.
    - faqs: 질문·답 3쌍. 그 구의 지역 특성(아파트 지하주차장, 산간·섬 견인 거리, 산업단지 등)을 반영해 구마다 다르게 쓴다.
-   - public_info: 말소등록 관할 관청, 노후경유차 조기폐차 지원 공고 중 WebSearch 로 확인되는 줄만. 자동차 등록대수 줄은 빌더가 저장소 통계(data/vehicle_stats_old10_est.json·vehicle_stats_total.json, 국토교통부 자동차등록현황, 기준 연월·출처 포함)에서 자동으로 붙이므로 웹에서 찾지 않고 public_info·dropped_info 에 적지 않는다(통계에 그 구가 없으면 빌더가 줄을 넣지 않는다). 줄마다 label·value·source·url(실제 연 출처)을 적는다. 금액은 쓰지 않는다. 확인 못 한 줄은 넣지 않고 dropped_info 에 이유를 적는다.
+   - public_info: 말소등록 관할 관청, 노후경유차 조기폐차 지원 공고 중 실제로 연 공식 페이지(관청 누리집 등)로 확인되는 줄만(검색 결과 요약만 있으면 넣지 않고 dropped_info 에 "요약만 있어 뺌"으로 적는다, CLAUDE.md 근거 등급). 자동차 등록대수 줄은 빌더가 저장소 통계(data/vehicle_stats_old10_est.json·vehicle_stats_total.json, 국토교통부 자동차등록현황, 기준 연월·출처 포함)에서 자동으로 붙이므로 웹에서 찾지 않고 public_info·dropped_info 에 적지 않는다(통계에 그 구가 없으면 빌더가 줄을 넣지 않는다). 줄마다 label·value·source·url(실제 연 출처)을 적는다. 금액은 쓰지 않는다. 확인 못 한 줄은 넣지 않고 dropped_info 에 이유를 적는다.
    - 제목·설명(title, description)과 파일 이름(한글 gu/{시군구}-폐차장.html)은 빌더가 고정 틀로 만든다. 루틴이 따로 쓰지 않는다.
    - "보장", "무조건", "100%", "1위", "1등", "최고가", "최대", "최저가", "실시간 접수" 같은 단정 표현과 숫자를 지어내는 표현, 다른 시도 이름, 금액은 쓰지 않는다.
 G3. 채울 수 없는 구(웹으로 확인된 공공 정보가 한 줄도 없음 — 자동 등록대수 줄은 세지 않음, 대표 랜드마크를 고를 수 없음 등)는 data/gu.json 에 넣지 않고 data/gu_held.json(목록, 없으면 새로 만듦)에 {"slug", "sido", "sigungu", "reason"(쉬운 말), "held_on": "YYYY-MM-DD"} 로 남긴다. 다음 날 다시 뽑히지 않는다.
@@ -57,7 +58,7 @@ G4. 채운 구를 data/gu.json 목록 끝에 넣고 `python3 scripts/build_site.
 S1. `python3 scripts/build_si.py candidates` 를 실행한다. 구 페이지가 3개 이상인데 시·도 페이지(data/si.json)도 보류(data/si_held.json)도 없는 시·도와 JSON 뼈대가 나온다. "만들 수 있는 시·도가 없습니다"가 나오면 이 단계를 건너뛴다.
 S2. 시·도마다 뼈대를 채운다(scripts/build_si.py 맨 위 규칙):
    - faqs: 질문·답 3쌍. 질문에 그 시·도 줄임 이름(서울, 대구 …)을 넣고, docs/keyword-insights-2026-10-02.md 4절 주제(조기폐차·압류·상속·서류·말소·방치차·시동 등) 가운데 골라 그 시·도 상황(아파트 지하주차장, 농촌 마당, 섬 등)에 맞게 쓴다. 다른 시·도 FAQ 를 복사하지 않는다.
-   - public_info: 말소등록 관청(시청·구청·차량등록사업소), 그 시·도 노후차 조기폐차 공고 중 WebSearch 로 (자동차 등록대수 줄은 빌더가 통계 파일의 시·군·구 합계로 자동으로 붙이므로 찾지 않는다) 공식 출처(관청 누리집·정부24·공공기관 보도, 없으면 언론 보도)가 확인되는 줄만. label·value·source·url(실제 연 주소)을 적고 금액은 쓰지 않는다. 확인 못 한 줄은 dropped_info 에 이유를 적는다.
+   - public_info: 말소등록 관청(시청·구청·차량등록사업소), 그 시·도 노후차 조기폐차 공고 중 실제로 연 페이지로(검색 요약만 있으면 넣지 않고 dropped_info 에 적는다) (자동차 등록대수 줄은 빌더가 통계 파일의 시·군·구 합계로 자동으로 붙이므로 찾지 않는다) 공식 출처(관청 누리집·정부24·공공기관 보도, 없으면 언론 보도)가 확인되는 줄만. label·value·source·url(실제 연 주소)을 적고 금액은 쓰지 않는다. 확인 못 한 줄은 dropped_info 에 이유를 적는다.
    - 랜드마크·장소 소개 문장은 넣지 않는다. 구 목록·제목·파일 이름은 빌더가 만든다.
 S3. 공공 정보가 한 줄도 확인되지 않는 시·도는 data/si.json 에 넣지 않고 data/si_held.json(목록, 없으면 새로 만듦)에 {"sido", "reason"(쉬운 말), "held_on": "YYYY-MM-DD"} 로 남긴다.
 S4. 채운 시·도를 data/si.json 목록 끝에 넣고 `python3 scripts/build_site.py` → `python3 scripts/build_index.py` → `python3 scripts/check_pages.py` 를 실행한다. "시·도 페이지를 만들 수 없음"이나 검사 오류가 나오면 고치고 다시 실행한다. 세 번 고쳐도 안 되면 data/si.json 에서 빼고 S3 처럼 보류한다. check_pages.py 오류 0건이 될 때까지 커밋하지 않는다.

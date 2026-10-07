@@ -9,9 +9,11 @@
     "items": [                        # 글에 나오는 장소 이름마다 하나
       {"name": "대동하늘공원",
        "evidence": "대전 동구 대동 산1-68, 동구청 관광명소 소개",   # 그 동(또는 바로 옆)에 있다는 근거
-       "url": "https://www.donggu.go.kr/..."}
+       "url": "https://www.donggu.go.kr/...",
+       "grade": "opened"}             # 근거 등급: opened(실제로 연 페이지) / summary_with_address(요약에 그 동 주소가 보임)
     ]
   }
+  요약에 주소 없이 이름만 보이면 확인되지 않은 것이다(등급 없음 → 반영 거부, 바꾸거나 held).
 
 사용법
   python3 scripts/fact_check.py data/batches/2026-09-29.json   # 항목별로 확인해야 할 이름 목록과 빠진 기록을 보여 준다
@@ -63,6 +65,28 @@ STOP = {
     "세계문화유산", "환승센터", "산업단지", "산복도로", "재래시장", "어린이공원", "소공원", "공영주차장", "주차장", "시장골목", "주택단지", "상업지구",
 }
 ALLOWED_STATUS = ("confirmed", "held")
+# 근거 등급(2026-10-08, CLAUDE.md '사실 확인'):
+#   opened               실제로 연 페이지에서 그 동에 있다는 것을 확인함
+#   summary_with_address 페이지는 못 열었지만 검색 결과(제목·요약)에 그 동의 주소가 보임: 지번 "○○동 123-4",
+#                        또는 도로명 "○○로 12"와 그 동 이름이 같은 근거에 함께 보임 → evidence 에 주소와 동 이름을 그대로 적는다
+#   summary_name_only    (소급 기록에만) 주소 없이 이름·소개만으로 통과했던 옛 기록. 새 기록에는 쓸 수 없다(보류해야 함)
+GRADES = ("opened", "summary_with_address")
+LEGACY_GRADE = "summary_name_only"
+# 주소 모양: 동·가·읍·면·리 + 번지(지번), 또는 ○○로·○○길 + 건물번호(도로명)
+ADDRESS_RE = re.compile(r"[가-힣0-9]+(?:동|가|읍|면|리)\s*(?:산\s*)?\d+(?:-\d+)?(?:번지)?(?!\s*[년개세호층])"
+                        r"|[가-힣0-9]+(?:대로|로|길)\s*\d+(?:-\d+)?(?!\s*[년개세호층])")
+
+
+def base_dong(dong: str) -> str:
+    """'인후동2가' → '인후동', '덕진동1가' → '덕진동' (주소에는 '…동2가'로 적히기도 해서 앞부분으로 비교)."""
+    return re.sub(r"\d+가$", "", dong or "")
+
+
+def address_grade(evidence: str, dong: str) -> str:
+    """요약 근거가 '주소 있음'인지: 주소 모양이 있고, 그 주소 쪽에 그 동 이름이 나와야 한다."""
+    if ADDRESS_RE.search(evidence or "") and base_dong(dong) and base_dong(dong) in evidence:
+        return "summary_with_address"
+    return LEGACY_GRADE
 SIDO_SHORT = {
     "서울특별시": "서울", "부산광역시": "부산", "대구광역시": "대구", "인천광역시": "인천",
     "전남광주통합특별시": "전남광주", "대전광역시": "대전", "울산광역시": "울산", "세종특별자치시": "세종",
@@ -131,6 +155,13 @@ def problems(e: dict) -> list[str]:
         name, ev, url = (str(it.get(k, "")).strip() for k in ("name", "evidence", "url"))
         if not name or not ev or not re.match(r"^https?://\S+\.\S+", url):
             out.append(f"확인 기록 {i}번({name or '이름 없음'})에 name·evidence·url(http 주소) 중 빠진 것 있음")
+        grade = it.get("grade")
+        if grade not in GRADES:
+            out.append(f"확인 기록 {i}번({name})의 근거 등급(grade)은 {GRADES} 중 하나여야 함 (현재 {grade!r}). "
+                       "페이지를 못 열고 요약에 주소도 없으면 그 이름은 확인되지 않은 것 → 바꾸거나 held")
+        elif grade == "summary_with_address" and address_grade(ev, e.get("dong", "")) != grade:
+            out.append(f"확인 기록 {i}번({name})이 summary_with_address 인데 evidence 에 '{e.get('dong')}' 이 적힌 주소"
+                       "(지번 ○○동 123-4 또는 도로명 ○○로 12 (○○동))가 없음")
         checked.append(name)
     missing = [n for n in candidate_names(e) if not covered(n, checked)]
     if missing:
