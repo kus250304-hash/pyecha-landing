@@ -1,0 +1,70 @@
+[
+ {
+  "code": "5221010300",
+  "slug": "jeonbuk-gimje-yong",
+  "sido": "전북특별자치도",
+  "sigungu": "김제시",
+  "dong": "용동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "주민 약 230명(143세대, 2026년 9월 k-calc 주민등록 통계)뿐인 농촌 법정동이고, 행정은 신풍동 주민센터가 맡으며 검색으로 동 안의 알려진 장소를 확인하지 못함",
+   "items": []
+  }
+ },
+ {
+  "code": "1217010100",
+  "slug": "jeonnam-naju-togye",
+  "sido": "전남광주통합특별시",
+  "sigungu": "나주시",
+  "dong": "토계동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "주민 약 260명(165세대, 2026년 9월 k-calc 주민등록 통계)뿐인 작은 마을 법정동이고, 검색 결과가 주소 목록뿐이라 동 안의 알려진 장소를 확인하지 못함",
+   "items": []
+  }
+ },
+ {
+  "code": "4812911600",
+  "slug": "gyeongnam-changwon-jinhae-sokcheon",
+  "sido": "경상남도",
+  "sigungu": "창원시 진해구",
+  "dong": "속천동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "랜드마크 위치를 검색으로 확인하지 못함: 속천항(진해유람선) 주소가 진희로 36 (제황산동)으로 나와 속천동 안이라는 근거가 없고, 동 안에는 아파트 외에 확인되는 장소가 없음",
+   "items": []
+  }
+ },
+ {
+  "code": "4812911700",
+  "slug": "gyeongnam-changwon-jinhae-daejuk",
+  "sido": "경상남도",
+  "sigungu": "창원시 진해구",
+  "dong": "대죽동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "랜드마크 위치를 검색으로 확인하지 못함: 주민 약 690명의 작은 동으로, 건물 목록에 '진해시수협'(대죽동 45)이 보이지만 수협의 현재 위치를 공식 자료로 확인하지 못함",
+   "items": []
+  }
+ }
+]

@@ -1,0 +1,314 @@
+[
+ {
+  "code": "4725010300",
+  "slug": "gyeongbuk-sangju-inbong",
+  "items": [
+   {
+    "name": "상주향청",
+    "evidence": "경상북도 문화유산자료 상주향청, 소재지 경북 상주시 왕산로 282 (인봉동), 국가유산포털",
+    "url": "https://www.heritage.go.kr/heri/cul/culSelectDetail.do?searchCondition=&searchCondition2=&ccbaKdcd=31&ccbaAsno=03360000&ccbaCtcd=37&ccbaCpno=3413703360000&ccbaGcode=CA&ccbaBcode=03&ccbaMcode=01&culPageNo=17&header=div&returnUrl=%2Fheri%2Fcul%2FculSelectDivList.do&pageNo=1_1_3_0",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4725010400",
+  "slug": "gyeongbuk-sangju-bokryong",
+  "items": [
+   {
+    "name": "경상감영공원",
+    "evidence": "상주시 복룡동 165-9번지 일원에 조성된 경상감영공원(2021년 개장), 경북매일 기사",
+    "url": "https://kbmaeil.com/article/202105090306345",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4827010200",
+  "slug": "gyeongnam-milyang-naei",
+  "items": [
+   {
+    "name": "밀양시외버스터미널",
+    "evidence": "경상남도 밀양시 북성로 11-8 (내이동)에 있는 버스터미널, 위키백과",
+    "url": "https://ko.wikipedia.org/wiki/%EB%B0%80%EC%96%91%EC%8B%9C%EC%99%B8%EB%B2%84%EC%8A%A4%ED%84%B0%EB%AF%B8%EB%84%90",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4827010300",
+  "slug": "gyeongnam-milyang-gyo",
+  "items": [
+   {
+    "name": "밀양향교",
+    "evidence": "경상남도 밀양시 교동, 옥교산 자락에 위치 / 주소 밀양시 밀양향교3길 19",
+    "url": "https://mom-mom.net/travel/places/65dbf0978e3cc9b2d878e7a1",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5221010100",
+  "slug": "jeonbuk-gimje-yochon",
+  "items": [
+   {
+    "name": "김제중앙초등학교",
+    "evidence": "전북특별자치도 김제시 동서로 193 (요촌동), 건축물대장 교육연구시설",
+    "url": "https://safehomes.kr/risk-map/전북특별자치도/김제시/요촌동/기타/building/김제중앙초등학교/11931620",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5221010200",
+  "slug": "jeonbuk-gimje-sinpung",
+  "items": [
+   {
+    "name": "김제역",
+    "evidence": "'김제시가 신풍동에 위치한 김제역 주변을…' 전북일보 기사(역 주변 신풍동 33-1번지 공원 계획), 위키백과도 김제시 신풍동 소재로 소개",
+    "url": "https://www.jjan.kr/articleAmp/20240910580014",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1217010200",
+  "slug": "jeonnam-naju-songwol",
+  "items": [
+   {
+    "name": "나주역",
+    "evidence": "위키백과 나주역 문서: 소재지 전남광주통합특별시 나주시 나주역길 56, 본문에 나주시 송월동에 있다고 소개(송월동 문서에도 교통 시설로 나주역 기재)",
+    "url": "https://ko.wikipedia.org/wiki/나주역",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5218010200",
+  "slug": "jeonbuk-jeongeup-jangmyeong",
+  "items": [
+   {
+    "name": "정읍동초등학교",
+    "evidence": "세이프홈즈 장명동 건물 목록에 '정읍동초등학교' 장명동 29로 표시(학교 도로명 주소 전북 정읍시 충정로 176), 위키 자료도 지번을 장명동 29로 기재",
+    "url": "https://safehomes.kr/risk-map/mapindex/jeonbuk-do/jeongeup-si/jangmyeong-dong",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4146110400",
+  "slug": "gyeonggi-yongin-cheoin-nam",
+  "items": [
+   {
+    "name": "명지대학교 자연캠퍼스",
+    "evidence": "명지대 공식 안내 '경기도 용인시 처인구 명지로 116', 도로명주소 목록에 '경기도 용인시 처인구 명지로 116 (남동)' (법정동코드 4146110400)",
+    "url": "https://dorojuso.kr/%EA%B2%BD%EA%B8%B0%EB%8F%84/%EC%9A%A9%EC%9D%B8%EC%8B%9C-%EC%B2%98%EC%9D%B8%EA%B5%AC/%EC%A4%91%EC%95%99%EB%8F%99?page=69",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4159510400",
+  "slug": "gyeonggi-hwaseong-byeongjeom-gisan",
+  "items": [
+   {
+    "name": "신동탄푸르지오",
+    "evidence": "도로명주소 목록 '경기도 화성시 병점구 동탄지성로 405 (기산동, 신동탄푸르지오)'",
+    "url": "https://dorojuso.kr/%EA%B2%BD%EA%B8%B0%EB%8F%84/%ED%99%94%EC%84%B1%EC%8B%9C-%EB%B3%91%EC%A0%90%EA%B5%AC/%EC%A7%84%EC%95%88%EB%8F%99?page=60",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4812310300",
+  "slug": "gyeongnam-changwon-seongsan-gaeumjeong",
+  "items": [
+   {
+    "name": "상남도서관",
+    "evidence": "상남도서관 주소 '경상남도 창원시 성산구 원이대로 810', 도로명주소 목록 '원이대로 810 (가음정동)' (코드 4812310300)",
+    "url": "https://dorojuso.kr/경상남도/창원시-성산구/가음정동",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4812310400",
+  "slug": "gyeongnam-changwon-seongsan-oe",
+  "items": [
+   {
+    "name": "성산패총",
+    "evidence": "서울신문 2013-08-08 '창원시 성산구 외동에 있는 성산패총', 관광정보 주소 '성산구 성산패총로 137'",
+    "url": "https://m.go.seoul.co.kr/news/2013/08/08/20130808010015",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4113110100",
+  "slug": "gyeonggi-seongnam-sujeong-sinheung",
+  "items": [
+   {
+    "name": "희망대공원",
+    "evidence": "관광정보 주소 '[13268] 경기도 성남시 수정구 공원로370번길 26 (신흥동)'",
+    "url": "https://www.ktriptips.com/kor/tourspot/3033036",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4113110300",
+  "slug": "gyeonggi-seongnam-sujeong-sujin",
+  "items": [
+   {
+    "name": "수진역",
+    "evidence": "위키백과 수진역 소재지 '2204 Sujin 1-dong, Sujeong-gu, Seongnam-si'(수진동 2204), 도로명 '수정구 산성대로 지하200'",
+    "url": "https://en.wikipedia.org/wiki/Sujin_station",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4113310100",
+  "slug": "gyeonggi-seongnam-jungwon-seongnam",
+  "items": [
+   {
+    "name": "모란시장",
+    "evidence": "모란민속5일장, 경기도 성남시 중원구 둔촌대로 68 — 본문에 '2018년 2월 중원구 성남동 둔촌대로68로 장터를 옮겨 운영'",
+    "url": "https://www.ktriptips.com/kor/shopping/132266",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4113310300",
+  "slug": "gyeonggi-seongnam-jungwon-geumgwang",
+  "items": [
+   {
+    "name": "황송공원",
+    "evidence": "성남시가 '중원구 금광동 황송공원'에 맨발 황톳길을 조성했다는 보도(금광동 소재 확인)",
+    "url": "https://news.tf.co.kr/read/ogmeta/2119806.htm",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4182025000",
+  "slug": "gyeonggi-gapyeong-gapyeong",
+  "items": [
+   {
+    "name": "가평군청",
+    "evidence": "경기 가평군 가평읍 석봉로 181(읍내리 513) — 검색 결과 요약",
+    "url": "https://zippoom.com/지역별-부동산/경기-가평군/오피스텔",
+    "grade": "summary_with_address"
+   }
+  ]
+ },
+ {
+  "code": "4157010100",
+  "slug": "gyeonggi-gimpo-bukbyeon",
+  "items": [
+   {
+    "name": "김포성당",
+    "evidence": "구 김포성당 소재지 '경기도 김포시 북변로 29-12 (북변동)', 1956년 건립 등록문화재",
+    "url": "https://dh.aks.ac.kr/~heritage/wiki/index.php/구_김포성당",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2644011100",
+  "slug": "busan-gangseo-noksan",
+  "items": [
+   {
+    "name": "녹산중학교",
+    "evidence": "학교 정보 페이지 주소 '부산 강서구 낙동남로 659', 주소 목록에 '부산광역시 강서구 낙동남로 659 (녹산동)'",
+    "url": "https://academy.prompie.com/schools/middle-school/detail/5pc9f6t/",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2644010100",
+  "slug": "busan-gangseo-daejeo1",
+  "items": [
+   {
+    "name": "대저생태공원",
+    "evidence": "부산시 파크골프장 안내 '부산광역시 강서구 대저1동 1-5 (대저생태공원 내)'",
+    "url": "https://www.busan.go.kr/parkgolf/parkgolf03",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4119210100",
+  "slug": "gyeonggi-bucheon-wonmi-wonmi",
+  "items": [
+   {
+    "name": "원미구청",
+    "evidence": "부천시 원미구 부천로136번길 27, 위키백과 원미구 문서에 구청 소재지가 원미동으로 나옴",
+    "url": "https://ko.wikipedia.org/wiki/원미구",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5280025000",
+  "slug": "jeonbuk-buan-buan",
+  "items": [
+   {
+    "name": "부안군청",
+    "evidence": "전북 부안군 부안읍 동중리 소재, 위키백과 부안읍 문서 관공서 항목",
+    "url": "https://ko.wikipedia.org/wiki/부안읍",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5218010300",
+  "slug": "jeonbuk-jeongeup-sang",
+  "items": [
+   {
+    "name": "학산중학교",
+    "evidence": "전북특별자치도 정읍시 학산로 89 (상동)",
+    "url": "https://wiki.onul.works/w/%ED%95%99%EC%82%B0%EC%A4%91%ED%95%99%EA%B5%90_(%EC%A0%84%EB%B6%81)",
+    "grade": "summary_with_address"
+   }
+  ]
+ },
+ {
+  "code": "4481025000",
+  "slug": "chungnam-yesan-yesan",
+  "items": [
+   {
+    "name": "예산역",
+    "evidence": "충청남도 예산군 예산읍 역전로 83, 위키백과 예산역 소재지",
+    "url": "https://ko.wikipedia.org/wiki/예산역",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4481025300",
+  "slug": "chungnam-yesan-sapgyo",
+  "items": [
+   {
+    "name": "삽교역",
+    "evidence": "충청남도 예산군 삽교읍 삽교역로 101-14, 위키백과 삽교역 소재지",
+    "url": "https://ko.wikipedia.org/wiki/삽교역",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4125010100",
+  "slug": "gyeonggi-dongducheon-songnae",
+  "items": [
+   {
+    "name": "송내동 행정복지센터",
+    "evidence": "동두천시 송내동 690번지 일원 신청사(2023년 기공 기사), 위키백과 송내동 문서에도 송내동 행정복지센터 나옴",
+    "url": "https://newsseoul.co.kr/news/view/1065579614076336",
+    "grade": "opened"
+   }
+  ]
+ }
+]

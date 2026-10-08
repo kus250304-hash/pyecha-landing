@@ -1,5 +1,89 @@
 [
  {
+  "slug": "case-20260617-incheon-michuhol-yonghyeon",
+  "date": "2026-06-17",
+  "sido": "인천광역시",
+  "sigungu": "미추홀구",
+  "dong": "용현동",
+  "region_slug": "incheon-michuhol-yonghyeon",
+  "car": "2013년식 봉고3",
+  "title": "용현동 2013년식 봉고3 폐차·수출 비교 상담 사례",
+  "summary": "2013년식 봉고3 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "봉고3"
+   ],
+   [
+    "연식",
+    "2013년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2013년식 봉고3 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20260617-incheon-michuhol-yonghyeon-1.jpg",
+  "photos": [
+   "case-20260617-incheon-michuhol-yonghyeon-1.jpg",
+   "case-20260617-incheon-michuhol-yonghyeon-2.jpg",
+   "case-20260617-incheon-michuhol-yonghyeon-3.jpg",
+   "case-20260617-incheon-michuhol-yonghyeon-4.jpg",
+   "case-20260617-incheon-michuhol-yonghyeon-5.jpg"
+  ],
+  "videos": []
+ },
+ {
+  "slug": "case-20240104-gyeonggi-hwaseong-manse-hyangnam",
+  "date": "2024-01-04",
+  "sido": "경기도",
+  "sigungu": "화성시 만세구",
+  "dong": "향남읍",
+  "region_slug": "gyeonggi-hwaseong-manse-hyangnam",
+  "car": "2007년식 토스카",
+  "title": "향남읍 2007년식 토스카 폐차·수출 비교 상담 사례",
+  "summary": "2007년식 토스카 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "토스카"
+   ],
+   [
+    "연식",
+    "2007년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "어려움"
+   ]
+  ],
+  "situation": "2007년식 토스카 차량으로, 시동은 걸리는 상태였습니다. 운행은 어려운 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20240104-gyeonggi-hwaseong-manse-hyangnam-1.jpg",
+  "photos": [
+   "case-20240104-gyeonggi-hwaseong-manse-hyangnam-1.jpg",
+   "case-20240104-gyeonggi-hwaseong-manse-hyangnam-2.jpg",
+   "case-20240104-gyeonggi-hwaseong-manse-hyangnam-3.jpg",
+   "case-20240104-gyeonggi-hwaseong-manse-hyangnam-4.jpg",
+   "case-20240104-gyeonggi-hwaseong-manse-hyangnam-5.jpg"
+  ],
+  "videos": []
+ },
+ {
   "slug": "case-20261008-chungnam-cheonan-seobuk",
   "date": "",
   "sido": "충청남도",
