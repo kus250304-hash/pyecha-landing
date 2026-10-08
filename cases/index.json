@@ -1,5 +1,52 @@
 [
  {
+  "slug": "case-20261008-chungnam-cheonan-seobuk",
+  "date": "",
+  "sido": "충청남도",
+  "sigungu": "천안시 서북구",
+  "dong": "",
+  "region_slug": null,
+  "car": "2008년식 기아 모닝",
+  "title": "천안시 서북구 2008년식 기아 모닝 폐차·수출 비교 상담 사례",
+  "summary": "2008년식 기아 모닝 차량입니다.",
+  "facts": [
+   [
+    "차종",
+    "기아 모닝"
+   ],
+   [
+    "연식",
+    "2008년식"
+   ]
+  ],
+  "situation": "2008년식 기아 모닝 차량입니다. 트렁크 쪽 사고 이력이 있고 라디에이터가 고장 난 차량이었습니다.",
+  "method": "다른 곳에서 수출 견적을 먼저 받아 보셨다가 다시 연락 주셨고, 차량 상태를 상담으로 확인한 뒤 폐차로 진행했습니다. 사진 없이 영상으로 기록했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": null,
+  "photos": [],
+  "videos": [
+   {
+    "id": "AyCMkIrc2_U",
+    "url": "https://youtu.be/AyCMkIrc2_U",
+    "label": "이 모닝 폐차 진행 영상",
+    "short": false
+   },
+   {
+    "id": "0cH-t9saQ6k",
+    "url": "https://youtube.com/shorts/0cH-t9saQ6k",
+    "label": "트렁크 사고차, 수출 될까요?",
+    "short": true
+   },
+   {
+    "id": "CUnevG0165k",
+    "url": "https://youtube.com/shorts/CUnevG0165k",
+    "label": "높게 부르고 말소 안 해 주는 수법",
+    "short": true
+   }
+  ]
+ },
+ {
   "slug": "case-20231111-chungbuk-chungju",
   "date": "2023-11-11",
   "sido": "충청북도",

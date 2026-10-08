@@ -25,6 +25,7 @@ PC 에서 원본 폴더를 골라 가리고 올리는 단계는 scripts/pc_cases
 """
 import csv
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -58,6 +59,7 @@ KEY_ALIASES = {
     "상황": "상황", "처리": "처리",
     "진행": "진행", "실제진행": "진행", "진행방식": "진행",
     "결과": "결과", "한마디": "한마디",
+    "youtube": "youtube", "유튜브": "youtube",  # 여러 줄 가능: "youtube: <주소> <짧은 설명>"
 }
 # 둘 중 한 형식이 다 있어야 한다: PC 원본 메모 형식 / 예전 직접 작성 형식
 REQUIRED_SETS = (("지역", "차종", "연식", "시동"), ("지역", "차종", "상황", "처리"))
@@ -72,6 +74,8 @@ SITUATION_TEXT = {
     "수출": "수출 쪽과 비교해 진행",
 }
 PHOTO_EXT = {".jpg", ".jpeg", ".png", ".webp"}
+# 유튜브 영상(2026-10-08): youtu.be/ID, youtube.com/shorts/ID, youtube.com/watch?v=ID, youtube.com/embed/ID
+YOUTUBE_RE = re.compile(r"https?://(?:www\.|m\.)?(?:youtu\.be/|youtube\.com/(?:shorts/|embed/|watch\?(?:[^\s]*&)?v=))([A-Za-z0-9_-]{11})\S*")
 MONEY_RE = re.compile(r"\d[\d,.]*\s*(원|만원|만 원|천원|억)|₩|시세|견적가|매입가|매입 가격|보상금\s*\d")
 PROMISE_RE = re.compile(r"보장|무조건|100%|1위|최저가")
 # 이 차가 수출이 된다/안 된다는 단정. 사례 글에는 방식 비교만 쓴다.
@@ -124,7 +128,10 @@ def parse_memo(text: str) -> dict:
         m = re.match(r"^([가-힣A-Za-z ]{1,12}?)\s*[:：]\s*(.*)$", line)
         if m:
             key = KEY_ALIASES.get(m.group(1).replace(" ", ""))  # 모르는 칸이면 None → 그 줄과 이어지는 줄은 버린다
-            if key:
+            if key == "youtube":  # 영상은 여러 줄을 모은다(줄마다 하나)
+                data[key] = (data.get(key, "") + "\n" + m.group(2).strip()).strip()
+                key = None
+            elif key:
                 data[key] = m.group(2).strip()
         elif key:
             data[key] = (data[key] + " " + line).strip()  # 여러 줄로 쓴 값은 이어 붙인다
@@ -232,6 +239,21 @@ def clean_car(v: str) -> str:
     return re.sub(r"\s+", " ", re.sub(r"\s*[(\[][^)\]]*[)\]]", "", v)).strip()
 
 
+def parse_videos(value: str) -> tuple[list[dict], str]:
+    """메모의 youtube 줄들 → [{"id", "url", "label", "short"}]. 주소를 못 읽으면 ([], 이유)."""
+    videos = []
+    for line in (value or "").splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        m = YOUTUBE_RE.search(line)
+        if not m:
+            return [], f"유튜브 주소를 읽을 수 없습니다: '{line[:60]}'"
+        label = (line[:m.start()] + line[m.end():]).strip(" -–—:()（）")
+        videos.append({"id": m.group(1), "url": m.group(0), "label": label, "short": "/shorts/" in m.group(0)})
+    return videos, ""
+
+
 def compose(memo: dict) -> tuple[dict | None, str]:
     """메모 → 사례 글 조각. (결과, 이유) — 결과가 None 이면 이유가 건너뛴 까닭."""
     if not any(all(memo.get(k) for k in s) for s in REQUIRED_SETS):
@@ -288,11 +310,15 @@ def compose(memo: dict) -> tuple[dict | None, str]:
         method = ("차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 "
                   "협력업체와 연결해 진행했습니다.")
 
+    videos, why = parse_videos(memo.get("youtube", ""))
+    if why:
+        return None, why
     out = {
         "car": car_full, "facts": facts, "situation": situation, "method": method,
-        "result": memo.get("결과", ""), "quote": memo.get("한마디", ""),
+        "result": memo.get("결과", ""), "quote": memo.get("한마디", ""), "videos": videos,
     }
-    text = " ".join([out["situation"], out["method"], out["result"], out["quote"]] + [v for _, v in facts])
+    text = " ".join([out["situation"], out["method"], out["result"], out["quote"]] + [v for _, v in facts]
+                    + [v["label"] for v in videos])
     if m := MONEY_RE.search(text):
         return None, f"금액·시세 표현 '{m.group(0)}' 이 있습니다. 메모에서 금액을 빼 주세요"
     if m := PROMISE_RE.search(text):
@@ -382,8 +408,8 @@ def check_folder(folder: Path, rows: list[dict]) -> tuple[dict | None, str]:
     if not body:
         return None, why
     photos = sorted(p for p in folder.iterdir() if p.suffix.lower() in PHOTO_EXT)
-    if not photos:
-        return None, "사진(jpg/png/webp)이 없습니다"
+    if not photos and not body["videos"]:
+        return None, "사진(jpg/png/webp)이나 유튜브 영상(youtube: 줄)이 없습니다"
     if len(photos) > MAX_PHOTOS:
         return None, f"사진이 {len(photos)}장입니다. {MAX_PHOTOS}장까지만 올려 주세요"
     case_date = memo.get("날짜") or (m.group(0) if (m := re.match(r"\d{4}-\d{2}-\d{2}", folder.name)) else date.today().isoformat())
@@ -423,7 +449,8 @@ def process_folder(folder: Path, rows: list[dict], page_slugs: dict, used_slugs:
         "facts": body["facts"],
         "situation": body["situation"], "method": body["method"],
         "result": body["result"], "quote": body["quote"],
-        "thumb": names[0], "photos": names,
+        "thumb": names[0] if names else None, "photos": names,
+        "videos": body["videos"],
     }
 
 
@@ -447,6 +474,22 @@ def render_case(c: dict, cfg: dict, template: str, region_slug: str | None,
         f'<figure><img src="images/{esc(name)}" alt="{esc(c["title"])} 사진 {i}" loading="{"eager" if i == 1 else "lazy"}" width="1200" height="900"></figure>'
         for i, name in enumerate(c["photos"], 1)
     )
+    videos = c.get("videos") or []
+    if photos_html:
+        photos_section = ('  <section>\n    <div class="wrap">\n      <div class="photos">\n        ' + photos_html
+                          + '\n      </div>\n      <p class="photo-note">차량 번호와 개인정보는 가린 사진입니다.</p>\n    </div>\n  </section>\n')
+    else:
+        photos_section = ""
+    video_html = ""
+    if videos:
+        video_html = '<h2>영상으로 보기</h2><div class="videos">' + "".join(
+            f'<figure class="video{" short" if v.get("short") else ""}">'
+            f'<iframe src="https://www.youtube-nocookie.com/embed/{esc(v["id"])}" title="{esc(v.get("label") or c["title"] + " 영상")}" '
+            'loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" '
+            'referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
+            f'<figcaption><a href="{esc(v["url"])}" target="_blank" rel="noopener noreferrer">'
+            f'{esc(v.get("label") or ("쇼츠" if v.get("short") else "영상"))} — 유튜브에서 보기</a></figcaption></figure>'
+            for v in videos) + "</div>"
     story_html = ""
     if c.get("facts"):
         story_html += "<h2>차량 정보</h2><p>" + " · ".join(f"{esc(k)} {esc(v)}" for k, v in c["facts"]) + "</p>"
@@ -470,11 +513,13 @@ def render_case(c: dict, cfg: dict, template: str, region_slug: str | None,
         "GU_BUTTON": gu_btn,
         "META_DESC": esc(f"{full}에서 진행한 {c['car']} 사례. {c['summary']} 폐차와 수출 중 유리한 쪽으로 안내. 전화 {cfg['phone_display']}"),
         "CANONICAL": f"{base}/cases/{c['slug']}.html",
-        "OG_IMAGE": f"{base}/cases/images/{c['thumb']}",
+        "OG_IMAGE": (f"{base}/cases/images/{c['thumb']}" if c.get("thumb")
+                     else f"https://i.ytimg.com/vi/{videos[0]['id']}/hqdefault.jpg" if videos else f"{base}/favicon.ico"),
         "REGION_FULL_NAME": esc(full),
         "TITLE": esc(c["title"]),
         "DATE_TEXT": "{}년 {}월 {}일 진행".format(*(int(x) for x in c["date"].split("-"))) if c["date"] else "",
-        "PHOTOS_HTML": photos_html,
+        "PHOTOS_SECTION": photos_section,
+        "VIDEO_HTML": video_html,
         "STORY_HTML": story_html,
         "REGION_BUTTON": region_btn,
         "PHONE_TEL": cfg["phone_tel"],
@@ -568,7 +613,8 @@ def main() -> None:
             where = ", ".join(sorted(shown)) if shown else "없음(같은 시군구에 동 페이지가 아직 없음. 페이지가 생기면 자동으로 붙음)"
             print(f"  {c['slug']} → 지역 페이지 {len(shown)}곳에 표시: {where}")
         # 기존 페이지 경고는 매번 같으니 오류와 요약 줄만 보여 준다
-        result = subprocess.run([sys.executable, str(SCRIPTS / "check_pages.py")], cwd=ROOT, capture_output=True, text=True)
+        result = subprocess.run([sys.executable, str(SCRIPTS / "check_pages.py")], cwd=ROOT, capture_output=True, text=True,
+                                encoding="utf-8", errors="replace", env={**os.environ, "PYTHONIOENCODING": "utf-8"})
         for line in result.stdout.splitlines():
             if not line.startswith("경고:"):
                 print(line)
