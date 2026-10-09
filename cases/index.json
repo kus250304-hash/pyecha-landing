@@ -1,5 +1,93 @@
 [
  {
+  "slug": "case-20261009-gyeonggi-osan",
+  "date": "",
+  "sido": "경기도",
+  "sigungu": "오산시",
+  "dong": "",
+  "region_slug": null,
+  "car": "2005년식 기아 쏘렌토",
+  "title": "오산시 2005년식 기아 쏘렌토 폐차·수출 비교 상담 사례",
+  "summary": "2005년식 기아 쏘렌토 차량입니다.",
+  "facts": [
+   [
+    "차종",
+    "기아 쏘렌토"
+   ],
+   [
+    "연식",
+    "2005년식"
+   ]
+  ],
+  "situation": "2005년식 기아 쏘렌토 차량입니다. 다른 곳에서 더 준다는 견적을 받았지만 금액과 사기 걱정으로 불안한 마음이 드셨던 차량입니다.",
+  "method": "그 업체에 사업자등록증을 요청해 보니 수출 사무실로 확인돼 불안하셨고, 저희 영상을 보시고 다시 연락 주셨습니다. 두 곳 안내를 비교해 보신 뒤 폐차로 진행했습니다. 사진 없이 영상으로 기록했습니다.",
+  "result": "폐차 진행을 마쳤습니다.",
+  "quote": "",
+  "thumb": null,
+  "photos": [],
+  "videos": [
+   {
+    "id": "Z5mDas0PQ8Q",
+    "url": "https://youtu.be/Z5mDas0PQ8Q",
+    "label": "이 쏘렌토 폐차 진행 영상",
+    "short": false
+   },
+   {
+    "id": "gWXnXRJTG0Q",
+    "url": "https://youtube.com/shorts/gWXnXRJTG0Q",
+    "label": "더 준다던 곳, 사업자 보니 수출 사무실",
+    "short": true
+   },
+   {
+    "id": "H-vWxIpQqJU",
+    "url": "https://youtube.com/shorts/H-vWxIpQqJU",
+    "label": "와서 깎는 수법 조심하세요",
+    "short": true
+   }
+  ]
+ },
+ {
+  "slug": "case-20221202-jeonnam-naju",
+  "date": "2022-12-02",
+  "sido": "전남광주통합특별시",
+  "sigungu": "나주시",
+  "dong": "",
+  "region_slug": null,
+  "car": "2000년식 포터",
+  "title": "나주시 2000년식 포터 폐차·수출 비교 상담 사례",
+  "summary": "2000년식 포터 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "포터"
+   ],
+   [
+    "연식",
+    "2000년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2000년식 포터 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20221202-jeonnam-naju-1.jpg",
+  "photos": [
+   "case-20221202-jeonnam-naju-1.jpg",
+   "case-20221202-jeonnam-naju-2.jpg",
+   "case-20221202-jeonnam-naju-3.jpg",
+   "case-20221202-jeonnam-naju-4.jpg"
+  ],
+  "videos": []
+ },
+ {
   "slug": "case-20230609-gyeonggi-seongnam-jungwon-geumgwang",
   "date": "2023-06-09",
   "sido": "경기도",
