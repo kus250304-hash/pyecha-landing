@@ -1,0 +1,53 @@
+[
+ {
+  "code": "4418010300",
+  "slug": "chungnam-boryeong-hwasan",
+  "sido": "충청남도",
+  "sigungu": "보령시",
+  "dong": "화산동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "화산동 안에 있다고 주소로 확인되는 장소(학교·공원·관공서 등)를 찾지 못함",
+   "items": []
+  }
+ },
+ {
+  "code": "4812911800",
+  "slug": "gyeongnam-changwon-jinhae-angok",
+  "sido": "경상남도",
+  "sigungu": "창원시 진해구",
+  "dong": "안곡동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "안곡동은 인구가 적은 작은 법정동이라 동 안에 있다고 주소로 확인되는 장소를 찾지 못함",
+   "items": []
+  }
+ },
+ {
+  "code": "4812911900",
+  "slug": "gyeongnam-changwon-jinhae-susong",
+  "sido": "경상남도",
+  "sigungu": "창원시 진해구",
+  "dong": "수송동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "수송동 안에 있다고 주소로 확인되는 장소(학교·관공서·시장 등)를 찾지 못함",
+   "items": []
+  }
+ }
+]

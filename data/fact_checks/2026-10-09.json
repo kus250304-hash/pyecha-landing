@@ -1,0 +1,374 @@
+[
+ {
+  "code": "5221010400",
+  "slug": "jeonbuk-gimje-geomsan",
+  "items": [
+   {
+    "name": "검산생활체육공원",
+    "evidence": "전북일보 기사: '검산동 산65-1번지 일원에 검산생활체육공원을 조성할 계획' (김제시 검산동 산65-1)",
+    "url": "https://www.jjan.kr/article/20071225252731",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1217010300",
+  "slug": "jeonnam-naju-anchang",
+  "items": [
+   {
+    "name": "미천서원",
+    "evidence": "한국민족문화대백과 '나주시 안창동 소재 미천서원', 소재지 전남 나주시 안창동 383번지 / 도로명 미천서원길 14-11 (안창동)",
+    "url": "https://encykorea.aks.ac.kr/Article/E0067087",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4125010200",
+  "slug": "gyeonggi-dongducheon-jihaeng",
+  "items": [
+   {
+    "name": "지행역",
+    "evidence": "위키백과 지행역: 주소 경기도 동두천시 평화로 2285, 지번 경기도 동두천시 지행동",
+    "url": "https://ko.wikipedia.org/wiki/지행역",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4125010300",
+  "slug": "gyeonggi-dongducheon-saengyeon",
+  "items": [
+   {
+    "name": "동두천중앙역",
+    "evidence": "위키백과 동두천중앙역: 주소 경기도 동두천시 동두천로 228, 지번 생연동",
+    "url": "https://ko.wikipedia.org/wiki/동두천중앙역",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4721010100",
+  "slug": "gyeongbuk-yeongju-yeongju",
+  "items": [
+   {
+    "name": "후생시장",
+    "evidence": "경북매일 기사: '2015년 4월 영주동 후생시장 내에 도시재생지원센터를 개소했다' (경북 영주시 영주동)",
+    "url": "https://kbmaeil.com/article/201705170192377",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4721010200",
+  "slug": "gyeongbuk-yeongju-sangmang",
+  "items": [
+   {
+    "name": "영광고등학교",
+    "evidence": "위키백과 영광고등학교 (경북): 위치 경상북도 영주시 의상로 62 (상망동)",
+    "url": "https://ko.wikipedia.org/wiki/영광고등학교_(경북)",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4418010100",
+  "slug": "chungnam-boryeong-daecheon",
+  "items": [
+   {
+    "name": "보령문화의전당",
+    "evidence": "충청남도 보령시 대흥로 63 (대천동), 옛 대천역 자리에 세운 문화공간(관광정보 페이지 열어 확인)",
+    "url": "https://www.ktriptips.com/kor/culture/3022653",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4418010200",
+  "slug": "chungnam-boryeong-jukjeong",
+  "items": [
+   {
+    "name": "보령아산병원",
+    "evidence": "충청남도 보령시 죽성로 136 (죽정동), 지번 죽정동 1 (병원 안내 페이지 열어 확인)",
+    "url": "https://www.goodoc.co.kr/hospitals/45613",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4143010100",
+  "slug": "gyeonggi-uiwang-gocheon",
+  "items": [
+   {
+    "name": "의왕시청",
+    "evidence": "[16075] 경기도 의왕시 시청로 11 (고천동), 의왕시 공식 누리집 하단 주소 열어 확인",
+    "url": "https://www.uiwang.go.kr",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2729010100",
+  "slug": "daegu-dalseo-seongdang",
+  "items": [
+   {
+    "name": "대구문화예술회관",
+    "evidence": "문화예술회관, 대구광역시 달서구 공원순환로 201, 법정동 달서구 성당동 (건물 정보 페이지 열어 확인)",
+    "url": "https://safehomes.kr/risk-map/대구광역시/달서구/성당동/기타/building/문화예술회관/1051110",
+    "grade": "opened"
+   },
+   {
+    "name": "두류공원",
+    "evidence": "대구문화예술회관, 대구광역시 달서구 공원순환로 201 (성당동), '대구의 두류공원 내에 위치' (관광 정보 페이지 열어 확인)",
+    "url": "https://www.ktriptips.com/kor/culture/130410",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2714010100",
+  "slug": "daegu-donggu-sinam",
+  "items": [
+   {
+    "name": "국립신암선열공원",
+    "evidence": "대구광역시 동구 동북로71길 33, 신암동 산 27-1 (국가보훈부 국립신암선열공원 누리집)",
+    "url": "https://www.mpva.go.kr/sinam/index.do",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2714010300",
+  "slug": "daegu-donggu-hyomok",
+  "items": [
+   {
+    "name": "효목시장",
+    "evidence": "대구광역시 동구 아양로50길 22-2 (효목동), 1980년 개설 시장 (관광 정보 페이지 열어 확인)",
+    "url": "https://info.koreacharts.com/tour/2744573/contents.html",
+    "grade": "opened"
+   },
+   {
+    "name": "아양교역",
+    "evidence": "같은 페이지: 효목시장(아양로50길 22-2, 효목동)과 가까운 거리에 지하철 아양교역이 있다고 소개",
+    "url": "https://info.koreacharts.com/tour/2744573/contents.html",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4375025000",
+  "slug": "chungbuk-jincheon-jincheon",
+  "items": [
+   {
+    "name": "진천중앙시장",
+    "evidence": "충청북도 진천군 진천읍 중앙북4길 21, 1950년 개설, 매월 5일·10일 오일장 (관광 정보 페이지 열어 확인)",
+    "url": "https://www.ktriptips.com/kor/shopping/132746",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4375025300",
+  "slug": "chungbuk-jincheon-deoksan",
+  "items": [
+   {
+    "name": "한국교육개발원",
+    "evidence": "충청북도 진천군 덕산읍 교학로 7 (두촌리) 본원 주소 (위키 문서 열어 확인)",
+    "url": "https://namu.moe/w/KEDI",
+    "grade": "opened"
+   },
+   {
+    "name": "충북혁신도시",
+    "evidence": "충북혁신도시는 덕산읍 두촌리에 조성 (덕산 위키 문서 검색 요약), 한국교육개발원 본원 교학로 7 두촌리",
+    "url": "https://thewiki.kr/w/덕산",
+    "grade": "summary_with_address"
+   }
+  ]
+ },
+ {
+  "code": "5113025000",
+  "slug": "gangwon-wonju-munmak",
+  "items": [
+   {
+    "name": "원주 반계리 은행나무",
+    "evidence": "강원특별자치도 원주시 문막읍 반저리2길 42 (관광 정보 페이지 열어 확인)",
+    "url": "https://www.ktriptips.com/kor/tourspot/2613436",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5113010100",
+  "slug": "gangwon-wonju-jungang",
+  "items": [
+   {
+    "name": "원주 중앙시장",
+    "evidence": "강원특별자치도 원주시 중앙시장길 27 (중앙동) 시장 내 상가 주소, 경향 기사 '원주시 중앙동, 그곳에는 진짜 시장이 있다'(중앙시장·미로예술시장 소개)",
+    "url": "https://lady.khan.co.kr/travel/article/202005291821001",
+    "grade": "opened"
+   },
+   {
+    "name": "미로예술시장",
+    "evidence": "중앙시장 2층에 있는 시장, 주소 원주시 중앙시장길 6 (중앙시장 2층), 경향 기사에서 중앙동 시장통으로 소개",
+    "url": "https://www.ktriptips.com/kor/shopping/2613433",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4117310100",
+  "slug": "gyeonggi-anyang-dongan-bisan",
+  "items": [
+   {
+    "name": "안양종합운동장",
+    "evidence": "안양종합운동장/비산3동 행정복지센터, 경기도 안양시 동안구 평촌대로 389 (비산동)",
+    "url": "https://safehomes.kr/risk-map/경기도/안양시-동안구/비산동/기타/building/안양종합운동장/비산3동행정복지센터/1094176199",
+    "grade": "summary_with_address"
+   },
+   {
+    "name": "비산3동 행정복지센터",
+    "evidence": "안양종합운동장과 같은 건물, 경기도 안양시 동안구 평촌대로 389 (비산동)",
+    "url": "https://safehomes.kr/risk-map/경기도/안양시-동안구/비산동/기타/building/안양종합운동장/비산3동행정복지센터/1094176199",
+    "grade": "summary_with_address"
+   }
+  ]
+ },
+ {
+  "code": "4117310200",
+  "slug": "gyeonggi-anyang-dongan-gwanyang",
+  "items": [
+   {
+    "name": "안양시청",
+    "evidence": "경기 안양시 동안구 시민대로 235(관양동 1590)",
+    "url": "https://zippoom.com/browse/경기-안양시-동안구-관양동",
+    "grade": "summary_with_address"
+   }
+  ]
+ },
+ {
+  "code": "4374525000",
+  "slug": "chungbuk-jeungpyeong-jeungpyeong",
+  "items": [
+   {
+    "name": "증평역",
+    "evidence": "충청북도 증평군 증평읍에 있는 충북선 역(위키백과 증평역 문서)",
+    "url": "https://ko.wikipedia.org/wiki/증평역",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4874025000",
+  "slug": "gyeongnam-changnyeong-changnyeong",
+  "items": [
+   {
+    "name": "창녕 석빙고",
+    "evidence": "경상남도 창녕군 창녕읍 송현리 261-26",
+    "url": "https://www.ktriptips.com/kor/tourspot/128589",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4874025300",
+  "slug": "gyeongnam-changnyeong-namji",
+  "items": [
+   {
+    "name": "남지체육공원",
+    "evidence": "경상남도 창녕군 남지읍 남지리 835-25",
+    "url": "https://info.koreacharts.com/tour/2750692/contents.html",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1138010100",
+  "slug": "seoul-eunpyeong-susaek",
+  "items": [
+   {
+    "name": "수색역",
+    "evidence": "위키백과: 서울특별시 은평구 수색동에 있는 경의·중앙선 역, 인근 수색 차량기지",
+    "url": "https://ko.wikipedia.org/wiki/수색역",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1138010200",
+  "slug": "seoul-eunpyeong-nokbeon",
+  "items": [
+   {
+    "name": "녹번역",
+    "evidence": "위키백과: 서울특별시 은평구 녹번동에 있는 수도권 전철 3호선 역, 인근에 은평구청",
+    "url": "https://ko.wikipedia.org/wiki/녹번역",
+    "grade": "opened"
+   },
+   {
+    "name": "은평구청",
+    "evidence": "위키백과 녹번역 문서: 역 인근 시설로 은평구청 소개(녹번동)",
+    "url": "https://ko.wikipedia.org/wiki/녹번역",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1279025000",
+  "slug": "jeonnam-haenam-haenam",
+  "items": [
+   {
+    "name": "해남군청",
+    "evidence": "위키백과 해남군청 문서 청사 소재지: 해남읍 성내리 4",
+    "url": "https://ko.wikipedia.org/wiki/해남군청",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4127110100",
+  "slug": "gyeonggi-ansan-sangnok-il",
+  "items": [
+   {
+    "name": "안산식물원",
+    "evidence": "위키백과 일동(안산시) 문서 문화시설에 안산식물원 수록, 주소 상록구 성호로 113(성호공원 안)",
+    "url": "https://ko.wikipedia.org/wiki/일동_(안산시)",
+    "grade": "opened"
+   },
+   {
+    "name": "성호공원",
+    "evidence": "위키백과 일동(안산시) 문서: 일동에서 부곡동에 걸쳐 있는 공원",
+    "url": "https://ko.wikipedia.org/wiki/일동_(안산시)",
+    "grade": "opened"
+   },
+   {
+    "name": "성호기념관",
+    "evidence": "위키백과 일동(안산시) 문서 문화시설에 성호기념관 수록, 주소 상록구 성호로 113 일대",
+    "url": "https://ko.wikipedia.org/wiki/일동_(안산시)",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4127110200",
+  "slug": "gyeonggi-ansan-sangnok-i",
+  "items": [
+   {
+    "name": "한대앞역",
+    "evidence": "위키백과: 경기도 안산시 상록구 이동, 충장로 337에 있는 4호선·수인분당선 환승역",
+    "url": "https://ko.wikipedia.org/wiki/한대앞역",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4143010200",
+  "slug": "gyeonggi-uiwang-i",
+  "items": [
+   {
+    "name": "의왕테크노파크",
+    "evidence": "서울신문 2017-09-21: 의왕시 이동 일원 15만 8708㎡ 부지에 조성되는 일반산업단지",
+    "url": "https://m.go.seoul.co.kr/news/2017/09/21/20170921500126",
+    "grade": "opened"
+   }
+  ]
+ }
+]
