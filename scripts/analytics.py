@@ -71,8 +71,9 @@ def body_end_html(cfg: dict) -> str:
     if not naver:
         return ""
     return "\n".join([BODY_START,
-                      '<script src="https://wcs.pstatic.net/wcslog.js"></script>',
-                      f'<script>if(!window.wcs_add)window.wcs_add={{}};wcs_add["wa"]={_js(naver)};if(window.wcs){{wcs_do();}}</script>',
+                      # wcslog.js 를 동기로 불러오면 모바일 LCP 가 약 1.5초 → 3.2초로 늘어 async 로 불러오고, 다 온 뒤 wcs_do()(2026-10-10 Lighthouse)
+                      f'<script>if(!window.wcs_add)window.wcs_add={{}};wcs_add["wa"]={_js(naver)};</script>',
+                      '<script async src="https://wcs.pstatic.net/wcslog.js" onload="if(window.wcs){wcs_do();}"></script>',
                       BODY_END])
 
 

@@ -212,6 +212,27 @@ def check_business_jsonld() -> list[str]:
     return problems
 
 
+def check_faq_first_sentence() -> list[str]:
+    """FAQ 답 첫 문장 규칙(2026-10-10, variants.FAQ_ANSWER_RULE): 네/아니요로 답할 질문은 "네, "·"아니요, " + 이유 한 줄로 시작.
+    동(regions.json)·구(gu.json)·시(si.json) FAQ, 공통·통화 FAQ 풀, 안내 페이지 FAQ 를 모두 본다."""
+    import variants as V
+    from build_guide import GUIDES
+    sources = [(f"지역 {r['slug']}", r.get("faqs") or []) for r in json.loads(REGIONS_PATH.read_text(encoding="utf-8"))]
+    for name in ("gu", "si"):
+        f = ROOT / "data" / f"{name}.json"
+        if f.exists():
+            sources += [(f"{name}.json {x.get('slug') or x.get('sido')}", x.get("faqs") or []) for x in json.loads(f.read_text(encoding="utf-8"))]
+    sources += [(f"variants.DONG_FAQ[{i}]", list(zip(V.COMMON_FAQ_QUESTIONS, v))) for i, v in enumerate(V.DONG_FAQ)]
+    sources += [("variants.CALL_FAQ", V.CALL_FAQ)] + [(f"안내 {g['file']}", g["faqs"]) for g in GUIDES]
+    problems = []
+    for where, faqs in sources:
+        for q, a in faqs:
+            p = V.faq_answer_problem(q, a)
+            if p:
+                problems.append(f"{where}: FAQ '{q}' — {p}")
+    return problems
+
+
 def check_analytics(cfg: dict) -> list[str]:
     """방문 측정 태그(2026-10-10, scripts/analytics.py): 모든 페이지 <head> 에 GA4 태그가 정확히 하나,
     naver_analytics_id 가 비어 있으면 네이버 애널리틱스 태그 없음. 자동 이동 페이지(옛 영문 주소)는 뺀다.
@@ -806,6 +827,7 @@ def main() -> None:
         errors.extend(check_og_images(site_cfg["site_base_url"].rstrip("/")))
         errors.extend(check_analytics(site_cfg))
         errors.extend(check_business_jsonld())
+        errors.extend(check_faq_first_sentence())
 
     # 첫 화면의 네이버 서치어드바이저 소유확인 태그
     naver = site_cfg.get("naver_site_verification")
