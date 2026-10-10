@@ -19,6 +19,7 @@
 <meta property="og:description" content="{{META_DESC}}">
 <meta property="og:url" content="{{CANONICAL}}">
 <meta property="og:locale" content="ko_KR">
+{{OG_META}}
 <meta name="theme-color" content="#0E5E63">
 <script type="application/ld+json">{{FAQ_JSONLD}}</script>
 <script type="application/ld+json">{{PAGE_JSONLD}}</script>
@@ -48,6 +49,8 @@
     --bar-h: 62px;
   }
   * { box-sizing: border-box; }
+  .og-img { background: #fff; padding: 20px 0 0; }
+  .og-img img { display: block; width: 100%; height: auto; border-radius: 14px; }
   html { scroll-behavior: smooth; }
   body {
     margin: 0;
@@ -285,6 +288,7 @@
 </header>{{RENAMED_NOTE}}
 
 <main>
+{{OG_IMG_HTML}}
 
   <section id="process" style="background:#fff">
     <div class="wrap">

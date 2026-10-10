@@ -31,6 +31,7 @@ from urllib.parse import quote
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from build_gu import BAN_RE, INFO_GRADES, info_value
+import og_image
 
 ROOT = Path(__file__).resolve().parent.parent
 TEMPLATE = ROOT / "templates" / "si-landing.html"
@@ -92,7 +93,8 @@ def validate(s: dict, gus: list[dict]) -> list[str]:
     return errs
 
 
-def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[dict] | None = None) -> list[str]:
+def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[dict] | None = None,
+               keep_dates: bool = False) -> list[str]:
     """si.json 의 시·도 페이지를 모두 렌더링한다. 잘못된 항목이 있으면 멈춘다. 내용이 바뀐 경로("si/…")를 돌려준다."""
     from build_site import (SIDO_SHORT, UPDATED_MARK, area_links_html, case_cards_html, contact_parts, esc, form_parts,
                             gu_file, josa, page_jsonld, with_updated_date)
@@ -172,6 +174,8 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
             **contact_parts(cfg, si),
             **form_parts(cfg, si, sido),
             "SCRIPT": script.replace("{{PHONE_DISPLAY}}", phone_disp),
+            # 대표 이미지(og:image, 2026-10-10): og/{시·도 파일 이름}.png, "{시도} 폐차" + 대표번호
+            **og_image.parts(si_file(sido)[:-5], si, base, phone_disp),
         }
         cleaned = re.sub(r"<!DOCTYPE html>\s*<!--.*?-->", "<!DOCTYPE html>", template, count=1, flags=re.DOTALL)
 
@@ -183,7 +187,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
         html_text = re.sub(r"\{\{(\w+)\}\}", sub, cleaned).replace("{{BAR_COLS}}", values["BAR_COLS"])
         out = OUT / si_file(sido)
         old_text = out.read_text(encoding="utf-8") if out.exists() else None
-        html_text = with_updated_date(html_text, old_text)
+        html_text = with_updated_date(html_text, old_text, keep_dates=keep_dates)
         if old_text != html_text:
             out.write_text(html_text, encoding="utf-8")
             changed.append(si_rel(sido))

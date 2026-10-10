@@ -275,7 +275,7 @@ def guide_text(g: dict) -> str:
     return " ".join(out)
 
 
-def render_all(regions: list[dict], cfg: dict, gu_data: list[dict]) -> list[str]:
+def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], keep_dates: bool = False) -> list[str]:
     """안내 페이지 5장을 렌더링하고, 내용이 바뀐 페이지 경로("guide/…", %인코딩) 목록을 돌려준다."""
     from build_site import UPDATED_MARK, area_links_html, esc, page_jsonld, with_updated_date
 
@@ -341,7 +341,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict]) -> list[str]
         html_text = re.sub(r"\{\{(\w+)\}\}", sub, template).replace("{{BAR_COLS}}", bar_cols)
         out = OUT / g["file"]
         old_text = out.read_text(encoding="utf-8") if out.exists() else None
-        html_text = with_updated_date(html_text, old_text)
+        html_text = with_updated_date(html_text, old_text, keep_dates=keep_dates)
         if old_text != html_text:
             out.write_text(html_text, encoding="utf-8")
             changed.append(f"guide/{quote(g['file'])}")

@@ -28,6 +28,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from sitemap_lib import update_sitemap
 from pick_next_regions import GWANGJU_GU, SIDO_PREFIX, romanize
 import variants as V
+import og_image
 
 ROOT = Path(__file__).resolve().parent.parent
 TEMPLATE = ROOT / "templates" / "region-landing-v2.html"
@@ -505,6 +506,8 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
         "CASES_HTML": cases_html,
         "YOUTUBE_URL": esc(cfg["youtube_url"]),
         "BLOG_URL": esc(cfg["blog_url"]),
+        # 대표 이미지(og:image, 2026-10-10): og/<slug>.png, 동 이름 + 대표번호
+        **og_image.parts(r["slug"], r["dong"] or title_region, base, phone_disp),
     }
 
     cleaned = LEADING_COMMENT_RE.sub("<!DOCTYPE html>", template, count=1)
@@ -521,7 +524,7 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", help="쉼표로 구분한 슬러그 목록")
-    ap.add_argument("--keep-dates", action="store_true", help="동 페이지 최종 업데이트·dateModified 를 예전 날짜 그대로 둠(오타 수준 수정용)")
+    ap.add_argument("--keep-dates", action="store_true", help="동·구·시 페이지 최종 업데이트·dateModified 를 예전 날짜 그대로 둠(오타 수준 수정용)")
     args = ap.parse_args()
 
     regions = load_json(REGIONS)
@@ -561,22 +564,26 @@ def main() -> None:
 
     # 구 페이지(/gu/)는 동 페이지 목록에 따라 달라지므로 늘 함께 다시 만든다
     from build_gu import render_all as render_gu
-    gu_changed, gu_dropped = render_gu(regions, cfg, gu_data, groups, cases)
+    gu_changed, gu_dropped = render_gu(regions, cfg, gu_data, groups, cases, keep_dates=args.keep_dates)
 
     # 시·도 페이지(/si/, 2026-10-02): 그 시·도의 구 페이지를 모아 잇는다
     from build_si import render_all as render_si
-    si_changed = render_si(regions, cfg, gu_data, cases)
+    si_changed = render_si(regions, cfg, gu_data, cases, keep_dates=args.keep_dates)
 
     # 공통 안내 페이지(/guide/, 2026-10-01)
     from build_guide import render_all as render_guides
-    guide_changed = render_guides(regions, cfg, gu_data)
+    guide_changed = render_guides(regions, cfg, gu_data, keep_dates=args.keep_dates)
 
     # 사례 페이지(/cases/)도 동·구 페이지 목록에 따라 "○○동 상담 페이지"·"○○구 상담 페이지" 버튼이 달라지므로 함께 다시 만든다
     from build_cases import render_all_cases
     case_changed = render_all_cases(regions, cfg)
 
     # 내용이 실제로 바뀐 페이지만 sitemap 의 수정일을 갱신한다(--keep-dates 면 새로 만든 동 페이지만 넣고 기존 수정일은 그대로)
-    update_sitemap(ROOT, created if args.keep_dates else changed, paths=gu_changed + si_changed + guide_changed + case_changed, drop=gu_dropped)
+    other = gu_changed + si_changed + guide_changed + case_changed
+    if args.keep_dates:  # 날짜를 그대로 두는 수정이면 sitemap 에 아직 없는 구·시 주소만 넣는다
+        sitemap_text = (ROOT / "sitemap.xml").read_text(encoding="utf-8") if (ROOT / "sitemap.xml").exists() else ""
+        other = [p for p in gu_changed + si_changed if f"/{p}<" not in sitemap_text] + guide_changed + case_changed
+    update_sitemap(ROOT, created if args.keep_dates else changed, paths=other, drop=gu_dropped)
     print(f"완료: {len(targets)}개 중 {len(changed)}개 페이지 변경, 구 페이지 {len(gu_changed)}개, 시·도 페이지 {len(si_changed)}개 변경, "
           f"안내 페이지 {len(guide_changed)}개 변경, sitemap.xml 갱신")
 

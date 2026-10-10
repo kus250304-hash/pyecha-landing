@@ -39,6 +39,7 @@ from urllib.parse import quote
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import variants as V
+import og_image
 from vehicle_stats import registration_row, with_registration
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -121,7 +122,7 @@ def gu_cases(slug: str, cases: list[dict]) -> list[dict]:
 
 
 def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict[str, list[dict]],
-               cases: list[dict] | None = None) -> tuple[list[str], list[str]]:
+               cases: list[dict] | None = None, keep_dates: bool = False) -> tuple[list[str], list[str]]:
     """gu.json 의 구 페이지를 모두 렌더링한다. 잘못된 항목이 있으면 멈춘다.
     돌려주는 값: (내용이 바뀐 구 페이지 경로, sitemap 에서 뺄 예전 영문 주소 경로) — 둘 다 "gu/…" 형식."""
     # build_site 가 이 모듈을 부르므로 여기서 가져온다
@@ -231,6 +232,8 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
             **contact_parts(cfg, gu),
             **form_parts(cfg, " ".join(x for x in (SIDO_SHORT[sido], sigungu) if x), gu_full),
             "SCRIPT": script.replace("{{PHONE_DISPLAY}}", phone_disp),
+            # 대표 이미지(og:image, 2026-10-10): og/{구 파일 이름}.png, "{시군구} 폐차장" + 대표번호
+            **og_image.parts(gu_file(sido, sigungu)[:-5], title_name, base, phone_disp, suffix="폐차장"),
         }
         cleaned = re.sub(r"<!DOCTYPE html>\s*<!--.*?-->", "<!DOCTYPE html>", template, count=1, flags=re.DOTALL)
 
@@ -244,7 +247,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
         html_text = html_text.replace("{{BAR_COLS}}", contact_parts(cfg, gu)["BAR_COLS"])
         out = OUT / gu_file(sido, sigungu)
         old_text = out.read_text(encoding="utf-8") if out.exists() else None
-        html_text = with_updated_date(html_text, old_text)
+        html_text = with_updated_date(html_text, old_text, keep_dates=keep_dates)
         if old_text != html_text:
             out.write_text(html_text, encoding="utf-8")
             changed.append(gu_rel(sido, sigungu))

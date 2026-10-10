@@ -488,6 +488,34 @@ def check_icon_and_alt() -> list[str]:
     return problems
 
 
+# 대표 이미지(og:image, 2026-10-10): 동·구·시 페이지마다 og/ 의 생성 이미지 한 장(scripts/og_image.py)
+OG_META_RE = re.compile(r'<meta property="og:image" content="([^"]+)">')
+
+
+def check_og_images(base: str) -> list[str]:
+    problems = []
+    for d in ("pages", "gu", "si"):
+        for f in sorted((ROOT / d).glob("*.html")) if (ROOT / d).exists() else []:
+            text = f.read_text(encoding="utf-8")
+            if 'http-equiv="refresh"' in text:  # 예전 영문 주소의 자동 이동 페이지
+                continue
+            rel = f"{d}/{f.name}"
+            urls = OG_META_RE.findall(text)
+            if len(urls) != 1 or not urls[0].startswith(f"{base}/og/") or not urls[0].endswith(".png"):
+                problems.append(f"{rel}: og:image(og/ 폴더 PNG 절대 주소)가 정확히 1개 있어야 함")
+                continue
+            img = unquote(urls[0][len(base) + 1:])
+            if not (ROOT / img).exists():
+                problems.append(f"{rel}: 대표 이미지 {img} 파일 없음")
+            for tag in ('<meta property="og:image:width" content="1200">', '<meta property="og:image:height" content="630">',
+                        '<meta name="twitter:card" content="summary_large_image">'):
+                if tag not in text:
+                    problems.append(f"{rel}: {tag} 없음")
+            if f'<img src="../{urls[0][len(base) + 1:]}"' not in text:
+                problems.append(f"{rel}: 본문 맨 위에 대표 이미지 <img> 없음")
+    return problems
+
+
 def check_tow_wording() -> list[str]:
     """동·구·시·안내·사례 페이지(제목·설명·본문·구조화 데이터 전부)에서 견인비 단정 표현을 찾는다."""
     problems = []
@@ -696,6 +724,7 @@ def main() -> None:
         errors.extend(check_tow_wording())
         errors.extend(check_oneplus())
         errors.extend(check_icon_and_alt())
+        errors.extend(check_og_images(site_cfg["site_base_url"].rstrip("/")))
 
     # 첫 화면의 네이버 서치어드바이저 소유확인 태그
     naver = site_cfg.get("naver_site_verification")

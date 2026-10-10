@@ -75,6 +75,7 @@
 - 구·동 페이지 상단 고정 메뉴 4개(진행 순서 / 자주 묻는 질문 / 폐차 사례 / 문의하기)와 끝의 **폐차 안내**(`/guide/` 첫 장)는 템플릿에 있고 `check_pages.py` 가 확인합니다.
 - 2026-10-01 경쟁사 분석 반영(`docs/roadmap.md` 1-2절): 구 페이지 파일 이름은 한글 `gu/{시군구}-폐차장.html`(`build_site.gu_file`, 옛 영문 주소는 자동 이동 페이지로 남김), 동 페이지 제목은 `{동 이름} 폐차장 · 폐차 | 폐차 보상금 vs 수출 비교, 출장 견인 상담 · 1600-6011` 하나로 고정(위 "동 페이지 제목·설명 틀은 바꾸지 않습니다"보다 이 줄이 우선, 설명 틀은 그대로), 동 페이지에도 "최종 업데이트"와 dateModified, 모든 동·구·안내 페이지 맨 아래 지역 링크 목록, 공통 안내 페이지 5장(`/guide/`, `scripts/build_guide.py`). 키워드×동 정보 글은 만들지 않습니다(복제 글이라 어뷰징 위험, roadmap 11절).
 - 실제 통화 FAQ(2026-10-03): 상담 통화에서 뽑은 손님 질문 25개가 `scripts/variants.py` 의 `CALL_FAQ` 에 있고, 동 페이지 3개·구·시 페이지 4개씩 `call_faqs()` 로 붙습니다(첫 질문 "얼마 정도 나와요?"는 늘). 안내 페이지 5장의 "손님이 자주 걱정하는 것" 칸은 `build_guide.py` 의 `WORRIES`. 질문은 손님 표현, 답은 사실 문구만(금액은 "상담 후 확인"). 근거와 쇼츠·블로그 주제는 `docs/faq-insights-2026-10-03.md`.
+- 대표 이미지(og:image, 2026-10-10): 빌드가 동·구·시 페이지마다 `og/{페이지 파일 이름}.png`(1200×630, 빨간 바탕 흰 글씨 두 줄 "{동} 폐차"/"{시군구} 폐차장"/"{시도} 폐차" + 1600-6011)를 만들고 `<head>` og:image·twitter:card 와 본문 맨 위 `<img>` 로 넣습니다(`scripts/og_image.py`, 글꼴 `fonts/Pretendard-Bold.otf`). 같은 글자의 이미지는 다시 만들지 않습니다. 금액·요금 글자는 넣지 않으며 `check_pages.py` 가 확인합니다. 모양만 바꿀 때는 `og_image.VERSION` 을 올리고 `build_site.py --keep-dates`(동·구·시·안내 페이지 날짜 유지).
 - 자세한 규칙과 나중에 검토할 것은 `docs/roadmap.md` 1-1절·2절·6절·10절.
 
 ### 새 동을 고르는 순서 (등록대수 통계)
@@ -89,7 +90,7 @@
 
 ### 반영 방법
 - **매일 자동생성 루틴**도 main 에 바로 push 합니다(PR 없음). 루틴의 조건: 사실 확인 기록 + `import_batch.py` 통과 + 커밋 후 `python3 scripts/publish_gate.py` 통과. 게이트가 하나라도 실패하면 main 에 push 하지 않고 작업을 `auto/failed-YYYYMMDD` 브랜치에 남깁니다.
-- 루틴이 main 에 반영할 수 있는 파일은 `data/regions.json`, `data/batches/held/`, `data/fact_checks/`, `pages/`, `gu/`, `data/gu.json`, `cases/`, `index.html`, `sitemap.xml`, 등록대수 통계 파일(`data/vehicle_stats*.json`) 뿐입니다(`publish_gate.py` 가 막음).
+- 루틴이 main 에 반영할 수 있는 파일은 `data/regions.json`, `data/batches/held/`, `data/fact_checks/`, `pages/`, `gu/`, `data/gu.json`, `cases/`, `og/`, `index.html`, `sitemap.xml`, 등록대수 통계 파일(`data/vehicle_stats*.json`) 뿐입니다(`publish_gate.py` 가 막음).
 - 모든 변경(스크립트·템플릿·CLAUDE.md·설정 변경, 기존 지역 수정 포함)은 PR 없이 main 에 바로 반영하고, 무엇을 왜 바꿨는지와 검사 결과를 보고에 남깁니다. 반영 전에 `python3 scripts/check_pages.py` 오류 0건을 확인하는 것은 그대로입니다.
 - IndexNow(2026-10-08): main 에 반영한 뒤 `python3 scripts/indexnow.py changed`(그 커밋에서 새로 생기거나 바뀐 페이지, 처음 한 번은 `all` 로 sitemap 전체)로 네이버·공용 IndexNow 에 주소를 알립니다. 키는 `site_config.json` 의 `indexnow_key`, 같은 값의 `{키}.txt` 가 사이트 맨 위 폴더에 있어야 하며 둘 다 지우거나 바꾸지 않습니다. 매일 루틴은 push 성공 뒤 이 명령을 돌리고 결과를 보고에 적습니다(파일을 바꾸지 않아 `publish_gate.py` 와 무관).
 - 위 매일 루틴의 반영 파일 제한(`publish_gate.py`)은 루틴 자체에만 적용됩니다. 루틴은 스크립트·템플릿·설정을 스스로 바꾸지 않습니다.
