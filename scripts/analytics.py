@@ -71,9 +71,12 @@ def body_end_html(cfg: dict) -> str:
     if not naver:
         return ""
     return "\n".join([BODY_START,
-                      # wcslog.js 를 동기로 불러오면 모바일 LCP 가 약 1.5초 → 3.2초로 늘어 async 로 불러오고, 다 온 뒤 wcs_do()(2026-10-10 Lighthouse)
-                      f'<script>if(!window.wcs_add)window.wcs_add={{}};wcs_add["wa"]={_js(naver)};</script>',
-                      '<script async src="https://wcs.pstatic.net/wcslog.js" onload="if(window.wcs){wcs_do();}"></script>',
+                      # wcslog.js 를 <script src> 로 두면(async 여도) 처음부터 받아 와 모바일 LCP 가 약 1.5초 → 3.2초로 늘어,
+                      # 페이지가 다 뜬 뒤(load) 불러오고 다 온 뒤 wcs_do() 를 부른다(2026-10-10 Lighthouse)
+                      f'<script>if(!window.wcs_add)window.wcs_add={{}};wcs_add["wa"]={_js(naver)};'
+                      "(function(){function L(){var s=document.createElement('script');s.async=true;s.src='https://wcs.pstatic.net/wcslog.js';"
+                      "s.onload=function(){if(window.wcs){wcs_do();}};document.body.appendChild(s);}"
+                      "if(document.readyState==='complete')L();else window.addEventListener('load',L);})();</script>",
                       BODY_END])
 
 
