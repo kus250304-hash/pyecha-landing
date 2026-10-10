@@ -1,0 +1,362 @@
+[
+ {
+  "code": "4418010400",
+  "slug": "chungnam-boryeong-dongdae",
+  "items": [
+   {
+    "name": "동대초등학교",
+    "evidence": "충청남도 보령시 동대동, 도로명 한내로터리길 137-12 (safehomes 건물 정보 페이지)",
+    "url": "https://safehomes.kr/risk-map/충청남도/보령시/동대동/기타/building/동대초등학교/11721100203354",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4143010300",
+  "slug": "gyeonggi-uiwang-sam",
+  "items": [
+   {
+    "name": "의왕고등학교",
+    "evidence": "경기도 의왕시 삼동, 도로명 덕영대로 115 (safehomes 건물 정보 페이지)",
+    "url": "https://safehomes.kr/risk-map/경기도/의왕시/삼동/기타/building/의왕고등학교/11141100176630",
+    "grade": "opened"
+   },
+   {
+    "name": "덕영대로",
+    "evidence": "경기도 의왕시 덕영대로 115 (삼동, 의왕고등학교 주소)",
+    "url": "https://safehomes.kr/risk-map/경기도/의왕시/삼동/기타/building/의왕고등학교/11141100176630",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4129010100",
+  "slug": "gyeonggi-gwacheon-gwanmun",
+  "items": [
+   {
+    "name": "관문체육공원",
+    "evidence": "경기도 과천시 관문동, 도로명 중앙로 294 (safehomes 건물 정보 페이지). 경인일보·뉴스서울 기사에 관문체육공원(관문동 47)",
+    "url": "https://safehomes.kr/risk-map/경기도/과천시/관문동/기타/building/관문체육공원/11081100178595",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4129010200",
+  "slug": "gyeonggi-gwacheon-munwon",
+  "items": [
+   {
+    "name": "문원체육공원",
+    "evidence": "경기도 과천시 문원로 56 (문원동) — 네이트 여행 기사 위치 정보",
+    "url": "https://view.nate.com/travel/view/401462/",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1281025000",
+  "slug": "jeonnam-muan-muan",
+  "items": [
+   {
+    "name": "초당대학교",
+    "evidence": "전라남도 무안군 무안읍 무안로 380 (phdkim 대학원 정보 페이지, 채용공고에는 무안로 380(성남리))",
+    "url": "https://phdkim.net/gradinfo/school/418",
+    "grade": "opened"
+   },
+   {
+    "name": "무안로",
+    "evidence": "전라남도 무안군 무안읍 무안로 380 (초당대학교 주소)",
+    "url": "https://phdkim.net/gradinfo/school/418",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1281025300",
+  "slug": "jeonnam-muan-illo",
+  "items": [
+   {
+    "name": "회산백련지",
+    "evidence": "[58571] 전남광주통합특별시 무안군 일로읍 백련로 333 (ktriptips 관광지 정보, 무안회산백련지)",
+    "url": "https://www.ktriptips.com/kor/tourspot/127603",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1281025600",
+  "slug": "jeonnam-muan-samhyang",
+  "items": [
+   {
+    "name": "남악중앙공원",
+    "evidence": "KPI뉴스: '전남 무안군은 삼향읍 남악 중앙공원에 ... 대형트리를 점등' (삼향읍 소재로 소개)",
+    "url": "https://www.kpinews.kr/newsView/1065577506099918",
+    "grade": "opened"
+   },
+   {
+    "name": "남악리",
+    "evidence": "검색 요약: 남악건축기술학원 주소 전남 무안군 삼향읍 남악리 1775 (남악리가 삼향읍 소속 법정리)",
+    "url": "https://academy.prompie.com/academies/detail/17pjpke/남악건축기술학원/",
+    "grade": "summary_with_address"
+   }
+  ]
+ },
+ {
+  "code": "5123010100",
+  "slug": "gangwon-samcheok-seongnae",
+  "items": [
+   {
+    "name": "죽서루",
+    "evidence": "위키백과: 죽서루 주소 강원특별자치도 삼척시 성내동, 죽서루길 37 / '삼척 죽서루와 오십천' 지정구역 삼척시 성내동 28번지 등",
+    "url": "https://ko.wikipedia.org/wiki/죽서루",
+    "grade": "opened"
+   },
+   {
+    "name": "오십천",
+    "evidence": "위키백과 죽서루 문서: 명승 '삼척 죽서루와 오십천' 지정구역이 삼척시 성내동 28번지 등 (죽서루가 오십천 절벽 위에 있음)",
+    "url": "https://ko.wikipedia.org/wiki/죽서루",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5123010200",
+  "slug": "gangwon-samcheok-seongbuk",
+  "items": [
+   {
+    "name": "실직군왕릉",
+    "evidence": "디지털삼척문화대전: 실직군왕릉 소재지 강원특별자치도 삼척시 성북동 213-5",
+    "url": "https://samcheok.grandculture.net/samcheok/toc/GC06700325",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1277025000",
+  "slug": "jeonnam-jangheung-jangheung",
+  "items": [
+   {
+    "name": "장흥 토요시장",
+    "evidence": "한국여행정보(ktriptips) 장흥 5일장(토요시장): [59331] 전남광주통합특별시 장흥군 장흥읍 토요시장1길 53",
+    "url": "https://www.ktriptips.com/kor/shopping/132409",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4817010100",
+  "slug": "gyeongnam-jinju-manggyeong",
+  "items": [
+   {
+    "name": "망경초등학교",
+    "evidence": "경남 진주시 천수로 175(망경초등학교 주소, 오늘학교 학교 정보) / 도로명주소 목록 '경상남도 진주시 천수로 175 (망경동)'",
+    "url": "https://dorojuso.kr/%EA%B2%BD%EC%83%81%EB%82%A8%EB%8F%84/%EC%A7%84%EC%A3%BC%EC%8B%9C/%EC%B2%9C%EC%A0%84%EB%8F%99?page=13",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4817010200",
+  "slug": "gyeongnam-jinju-juyak",
+  "items": [
+   {
+    "name": "주약초등학교",
+    "evidence": "경남 진주시 천수로 64(주약초등학교 주소, 오늘학교 학교 정보) / 도로명주소 목록 '경상남도 진주시 천수로 64 (주약동)'",
+    "url": "https://dorojuso.kr/%EA%B2%BD%EC%83%81%EB%82%A8%EB%8F%84/%EC%A7%84%EC%A3%BC%EC%8B%9C/%EC%B2%9C%EC%A0%84%EB%8F%99?page=103",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2815510100",
+  "slug": "incheon-yeongjong-jungsan",
+  "items": [
+   {
+    "name": "인천중산고등학교",
+    "evidence": "건축물 정보 페이지: 인천중산고등학교, 인천광역시 영종구 은하수로 142, 중산동",
+    "url": "https://safehomes.kr/risk-map/인천광역시/중구/중산동/기타/building/인천중산고등학교/10541100263169",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2815510200",
+  "slug": "incheon-yeongjong-unnam",
+  "items": [
+   {
+    "name": "영종중학교",
+    "evidence": "건축물 정보 페이지(운남동 분류): 영종중학교, 인천광역시 영종구 남디로 92",
+    "url": "https://safehomes.kr/risk-map/인천광역시/중구/운남동/기타/building/영종중학교/10541100189924",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4873025000",
+  "slug": "gyeongnam-haman-gaya",
+  "items": [
+   {
+    "name": "말이산고분군",
+    "evidence": "함안말이산고분군, 경남 함안군 가야읍 도항리 581-1",
+    "url": "https://xn--ok0b236bp0a.com/place/26017",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4873025300",
+  "slug": "gyeongnam-haman-chilwon",
+  "items": [
+   {
+    "name": "칠원초등학교",
+    "evidence": "칠원초등학교, 경상남도 함안군 칠원읍 성내길 32",
+    "url": "https://academy.prompie.com/schools/elementary-school/detail/ceubp3t/칠원초등학교/",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1278025000",
+  "slug": "jeonnam-gangjin-gangjin",
+  "items": [
+   {
+    "name": "강진영랑생가",
+    "evidence": "전남광주통합특별시 강진군 강진읍 영랑생가길 15",
+    "url": "https://www.ktriptips.com/kor/tourspot/127111",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2653010100",
+  "slug": "busan-sasang-samnak",
+  "items": [
+   {
+    "name": "삼락생태공원",
+    "evidence": "부산 사상구 삼락동 29-46",
+    "url": "https://www.ktriptips.com/kor/tourspot/1338947",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2653010200",
+  "slug": "busan-sasang-mora",
+  "items": [
+   {
+    "name": "모라역",
+    "evidence": "부산광역시 사상구 사상로 498, 위키백과에서 사상구 모라동에 있는 역으로 설명",
+    "url": "https://ko.wikipedia.org/wiki/모라역",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4373025000",
+  "slug": "chungbuk-okcheon-okcheon",
+  "items": [
+   {
+    "name": "정지용 생가",
+    "evidence": "충청북도 옥천군 옥천읍 향수길 56",
+    "url": "https://www.ktriptips.com/kor/tourspot/127281",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4784025000",
+  "slug": "gyeongbuk-seongju-seongju",
+  "items": [
+   {
+    "name": "성밖숲",
+    "evidence": "성주 경산리 성밖숲, 경상북도 성주군 성주읍 경산리 (일원)",
+    "url": "https://www.ktriptips.com/kor/tourspot/1621189",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2629010700",
+  "slug": "busan-namgu-yongho",
+  "items": [
+   {
+    "name": "오륙도해맞이공원",
+    "evidence": "부산광역시 남구 용호동 950-1",
+    "url": "https://www.ktriptips.com/kor/tourspot/2870289",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2629010800",
+  "slug": "busan-namgu-yongdang",
+  "items": [
+   {
+    "name": "부경대학교 용당캠퍼스",
+    "evidence": "위키백과 '용당동 (부산)' 문서 교육 항목에 용당동 소재 기관으로 부경대학교 용당캠퍼스가 실려 있음",
+    "url": "https://ko.wikipedia.org/wiki/용당동_(부산)",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2635010100",
+  "slug": "busan-haeundae-bansong",
+  "items": [
+   {
+    "name": "반송2동 행정복지센터",
+    "evidence": "위키백과 '반송동 (부산)' 문서에 반송제2동 행정복지센터, 해운대구 신반송로 173으로 실려 있음",
+    "url": "https://ko.wikipedia.org/wiki/반송동_(부산)",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2635010200",
+  "slug": "busan-haeundae-seokdae",
+  "items": [
+   {
+    "name": "석대 도시첨단산업단지",
+    "evidence": "산업일보 기사: 회동·석대 도시첨단산업단지 준공식을 '회동·석대 도시첨단사업단지(석대동)'에서 개최, 석대산단은 석대동 지구",
+    "url": "https://kidd.co.kr/news/170058",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1120010100",
+  "slug": "seoul-seongdong-sangwangsipri",
+  "items": [
+   {
+    "name": "상왕십리역",
+    "evidence": "위키백과 '상왕십리역': 서울 성동구 왕십리로 지하374, 역은 상왕십리동과 하왕십리동의 경계에 있고 역무실이 하왕십리동에 있어 주소가 하왕십리동으로 정해짐",
+    "url": "https://ko.wikipedia.org/wiki/상왕십리역",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1147010100",
+  "slug": "seoul-yangcheon-sinjeong",
+  "items": [
+   {
+    "name": "양천구청",
+    "evidence": "위키백과 '양천구청': 청사 주소 서울특별시 양천구 목동동로 105, 소재지 신정6동(법정동 신정동)",
+    "url": "https://ko.wikipedia.org/wiki/양천구청",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1147010300",
+  "slug": "seoul-yangcheon-sinwol",
+  "items": [
+   {
+    "name": "서서울호수공원",
+    "evidence": "위키백과 '서서울호수공원': 서울특별시 양천구 신월동 68-3, 도로명 남부순환로64길 26",
+    "url": "https://ko.wikipedia.org/wiki/서서울호수공원",
+    "grade": "opened"
+   }
+  ]
+ }
+]

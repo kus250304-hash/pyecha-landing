@@ -1,0 +1,36 @@
+[
+ {
+  "code": "4812912000",
+  "slug": "gyeongnam-changwon-jinhae-hoehyeon",
+  "sido": "경상남도",
+  "sigungu": "창원시 진해구",
+  "dong": "회현동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "동 안에서 확인되는 장소 없음 — 회현동은 작은 법정동으로 검색되는 건물이 빌라·어린이집 정도이고, 잘 알려진 장소가 이 동 안에 있다는 근거를 찾지 못함",
+   "items": []
+  }
+ },
+ {
+  "code": "4812912100",
+  "slug": "gyeongnam-changwon-jinhae-ikseon",
+  "sido": "경상남도",
+  "sigungu": "창원시 진해구",
+  "dong": "익선동",
+  "landmark_name": "",
+  "landmark_desc": "",
+  "service_intro": "",
+  "faqs": [],
+  "meta": "",
+  "fact_check": {
+   "status": "held",
+   "reason": "동 안에서 확인되는 장소 없음 — 익선동은 인구 약 270명의 작은 법정동으로 검색되는 건물이 빌라뿐이고, 잘 알려진 장소가 이 동 안에 있다는 근거를 찾지 못함",
+   "items": []
+  }
+ }
+]

@@ -1,5 +1,131 @@
 [
  {
+  "slug": "case-20230129-gyeongbuk-yeongcheon-geumho",
+  "date": "2023-01-29",
+  "sido": "경상북도",
+  "sigungu": "영천시",
+  "dong": "금호읍",
+  "region_slug": null,
+  "car": "2001년식 프론티어",
+  "title": "금호읍 2001년식 프론티어 폐차·수출 비교 상담 사례",
+  "summary": "2001년식 프론티어 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "프론티어"
+   ],
+   [
+    "연식",
+    "2001년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2001년식 프론티어 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230129-gyeongbuk-yeongcheon-geumho-1.jpg",
+  "photos": [
+   "case-20230129-gyeongbuk-yeongcheon-geumho-1.jpg",
+   "case-20230129-gyeongbuk-yeongcheon-geumho-2.jpg",
+   "case-20230129-gyeongbuk-yeongcheon-geumho-3.jpg",
+   "case-20230129-gyeongbuk-yeongcheon-geumho-4.jpg"
+  ],
+  "videos": []
+ },
+ {
+  "slug": "case-20230105-daegu-donggu-hyomok",
+  "date": "2023-01-05",
+  "sido": "대구광역시",
+  "sigungu": "동구",
+  "dong": "효목동",
+  "region_slug": "daegu-donggu-hyomok",
+  "car": "2000년식 옵티마 리갈",
+  "title": "효목동 2000년식 옵티마 리갈 폐차·수출 비교 상담 사례",
+  "summary": "2000년식 옵티마 리갈 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "옵티마 리갈"
+   ],
+   [
+    "연식",
+    "2000년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2000년식 옵티마 리갈 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230105-daegu-donggu-hyomok-1.jpg",
+  "photos": [
+   "case-20230105-daegu-donggu-hyomok-1.jpg",
+   "case-20230105-daegu-donggu-hyomok-2.jpg",
+   "case-20230105-daegu-donggu-hyomok-3.jpg",
+   "case-20230105-daegu-donggu-hyomok-4.jpg",
+   "case-20230105-daegu-donggu-hyomok-5.jpg",
+   "case-20230105-daegu-donggu-hyomok-6.jpg"
+  ],
+  "videos": []
+ },
+ {
+  "slug": "case-20221218-incheon-seohae-gyeongseo",
+  "date": "2022-12-18",
+  "sido": "인천광역시",
+  "sigungu": "서해구",
+  "dong": "경서동",
+  "region_slug": null,
+  "car": "2001년식 아반떼 XD",
+  "title": "경서동 2001년식 아반떼 XD 폐차·수출 비교 상담 사례",
+  "summary": "2001년식 아반떼 XD 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "아반떼 XD"
+   ],
+   [
+    "연식",
+    "2001년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2001년식 아반떼 XD 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20221218-incheon-seohae-gyeongseo-1.jpg",
+  "photos": [
+   "case-20221218-incheon-seohae-gyeongseo-1.jpg",
+   "case-20221218-incheon-seohae-gyeongseo-2.jpg",
+   "case-20221218-incheon-seohae-gyeongseo-3.jpg",
+   "case-20221218-incheon-seohae-gyeongseo-4.jpg",
+   "case-20221218-incheon-seohae-gyeongseo-5.jpg"
+  ],
+  "videos": []
+ },
+ {
   "slug": "case-20261009-gyeonggi-osan",
   "date": "",
   "sido": "경기도",
