@@ -128,7 +128,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
     돌려주는 값: (내용이 바뀐 구 페이지 경로, sitemap 에서 뺄 예전 영문 주소 경로) — 둘 다 "gu/…" 형식."""
     # build_site 가 이 모듈을 부르므로 여기서 가져온다
     from build_site import (SIDO_SHORT, UPDATED_MARK, area_links_html, case_cards_html, contact_parts, esc, form_parts, gu_file,
-                            gu_rel, gu_title_names, page_jsonld, region_photos, region_photos_html, sido_link,
+                            business_jsonld, gu_rel, gu_title_names, page_jsonld, region_photos, region_photos_html, sido_link,
                             with_updated_date)
 
     if not gu_data:
@@ -204,6 +204,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
             {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
                 {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faqs]},
             {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": crumbs},
+            business_jsonld(gu_full, canonical, og_image.url(gu_file(sido, sigungu)[:-5], base), phone_disp),
         ]
         # 길 안내: 서울 › 종로구 (구 이름은 이 페이지라 링크 없음, 시·도 페이지가 있으면 시·도 이름에 링크)
         si_html = f'<a href="{esc(si_href)}">{esc(SIDO_SHORT[sido])}</a>' if si_href else esc(SIDO_SHORT[sido])

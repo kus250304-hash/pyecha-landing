@@ -181,6 +181,37 @@ def check_site_pages(cfg: dict) -> list[str]:
         if needle not in privacy:
             problems.append(f"privacy.html: '{needle}' 항목 없음")
     return problems
+def check_business_jsonld() -> list[str]:
+    """동·구·시 페이지 구조화 데이터(2026-10-10): FAQPage 와 AutoWrecker 가 각각 하나, AutoWrecker 에
+    name·telephone·areaServed·url·image 가 있고 address·priceRange 는 없음. url 은 그 페이지 canonical, image 는 og:image."""
+    problems = []
+    files = sorted((ROOT / "pages").glob("*.html")) + sorted((ROOT / "si").glob("*.html")) + [
+        f for f in sorted((ROOT / "gu").glob("*.html")) if 'http-equiv="refresh"' not in f.read_text(encoding="utf-8")]
+    for f in files:
+        text = f.read_text(encoding="utf-8")
+        rel = f.relative_to(ROOT).as_posix()
+        items = []
+        for block in re.findall(r'<script type="application/ld\+json">(.*?)</script>', text, flags=re.DOTALL):
+            data = json.loads(block)
+            items += data if isinstance(data, list) else [data]
+        types = [x.get("@type") for x in items]
+        if types.count("FAQPage") != 1 or types.count("AutoWrecker") != 1:
+            problems.append(f"{rel}: 구조화 데이터에 FAQPage·AutoWrecker 가 하나씩 있어야 함 (지금 {types})")
+            continue
+        biz = items[types.index("AutoWrecker")]
+        missing = [k for k in ("name", "telephone", "areaServed", "url", "image") if not biz.get(k)]
+        extra = [k for k in ("address", "priceRange") if k in biz]
+        canon = re.search(r'<link rel="canonical" href="([^"]+)"', text)
+        og = re.search(r'<meta property="og:image" content="([^"]+)"', text)
+        if missing or extra:
+            problems.append(f"{rel}: AutoWrecker 에 {missing} 없음 / 넣으면 안 되는 {extra} 있음")
+        if canon and biz.get("url") != canon.group(1):
+            problems.append(f"{rel}: AutoWrecker url 이 canonical 과 다름")
+        if og and biz.get("image") != og.group(1):
+            problems.append(f"{rel}: AutoWrecker image 가 og:image 와 다름")
+    return problems
+
+
 def check_analytics(cfg: dict) -> list[str]:
     """방문 측정 태그(2026-10-10, scripts/analytics.py): 모든 페이지 <head> 에 GA4 태그가 정확히 하나,
     naver_analytics_id 가 비어 있으면 네이버 애널리틱스 태그 없음. 자동 이동 페이지(옛 영문 주소)는 뺀다.
@@ -772,6 +803,7 @@ def main() -> None:
         errors.extend(check_published())
         errors.extend(check_og_images(site_cfg["site_base_url"].rstrip("/")))
         errors.extend(check_analytics(site_cfg))
+        errors.extend(check_business_jsonld())
 
     # 첫 화면의 네이버 서치어드바이저 소유확인 태그
     naver = site_cfg.get("naver_site_verification")

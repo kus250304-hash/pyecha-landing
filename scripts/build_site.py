@@ -411,6 +411,17 @@ def page_jsonld(name: str, url: str) -> str:
                       ensure_ascii=False)
 
 
+BUSINESS_NAME = "폐차119 폐차·수출 비교 상담"
+
+
+def business_jsonld(area: str, url: str, image: str, phone_disp: str) -> dict:
+    """동·구·시 페이지의 업체 구조화 데이터(2026-10-10): LocalBusiness 하위 AutoWrecker 하나.
+    사업장 주소가 정해지지 않아 address 는 넣지 않고, 금액 정보라 priceRange 도 넣지 않는다(check_pages.py 가 확인)."""
+    return {"@context": "https://schema.org", "@type": "AutoWrecker", "name": BUSINESS_NAME,
+            "telephone": "+82-" + phone_disp.lstrip("0"), "areaServed": {"@type": "AdministrativeArea", "name": area},
+            "url": url, "image": image}
+
+
 def sido_link(sido: str, prefix: str = "../") -> str | None:
     """시·도 페이지(/si/, 2026-10-02)가 있으면 그 주소, 없으면 None."""
     from build_si import si_file, si_sidos
@@ -562,6 +573,7 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
         "CANONICAL": canonical,
         "FAQ_JSONLD": json.dumps(faq_ld, ensure_ascii=False),
         "PAGE_JSONLD": page_jsonld(meta_title, canonical),
+        "BIZ_JSONLD": json.dumps(business_jsonld(full, canonical, og_image.url(r["slug"], base), phone_disp), ensure_ascii=False),
         "UPDATED_ON": UPDATED_MARK,
         "SIGUNGU_DONG": esc(sigungu_dong),
         "DONG": esc(r["dong"]),

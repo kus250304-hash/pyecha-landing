@@ -98,7 +98,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
                keep_dates: bool = False) -> list[str]:
     """si.json 의 시·도 페이지를 모두 렌더링한다. 잘못된 항목이 있으면 멈춘다. 내용이 바뀐 경로("si/…")를 돌려준다."""
     from build_site import (SIDO_SHORT, UPDATED_MARK, area_links_html, case_cards_html, contact_parts, esc, form_parts,
-                            gu_file, josa, page_jsonld, with_updated_date)
+                            gu_file, josa, page_jsonld, with_updated_date, business_jsonld)
     import variants as V
     from vehicle_stats import registration_row_sido, with_registration
 
@@ -157,6 +157,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
             {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
                 {"@type": "ListItem", "position": 1, "name": "전체 지역", "item": f"{base}/"},
                 {"@type": "ListItem", "position": 2, "name": si, "item": canonical}]},
+            business_jsonld(sido, canonical, og_image.url(si_file(sido)[:-5], base), phone_disp),
         ]
         values = {
             "ANALYTICS": analytics.head_html(cfg, "si", si),

@@ -115,6 +115,11 @@ def ensure(stem: str, line1: str, line2: str) -> bool:
     return True
 
 
+def url(stem: str, base: str) -> str:
+    """대표 이미지의 절대 주소(og:image·구조화 데이터 image 에 같이 쓴다)."""
+    return f"{base}/og/{quote(stem)}.png"
+
+
 def parts(stem: str, name: str, base: str, phone_disp: str, suffix: str = "폐차") -> dict:
     """이미지를 만들고 템플릿 자리 OG_META(<head>)·OG_IMG_HTML(사례 칸 옆 작은 카드)를 돌려준다. name 은 지역명."""
     if ensure(stem, f"{name} {suffix}", phone_disp):
