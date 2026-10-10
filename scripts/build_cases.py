@@ -511,6 +511,7 @@ def render_case(c: dict, cfg: dict, template: str, region_slug: str | None,
     from build_site import SIDO_SHORT
     import analytics
     values = {
+        "ANALYTICS_BODY": analytics.body_end_html(cfg),
         "ANALYTICS": analytics.head_html(cfg, "case", analytics.region_name(SIDO_SHORT.get(c["sido"], c["sido"]), c["sigungu"], c["dong"])),
         "META_TITLE": esc(case_meta_title(c, area)),
         "GU_BUTTON": gu_btn,

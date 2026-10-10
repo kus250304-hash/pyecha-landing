@@ -85,7 +85,13 @@ def apply_analytics(text: str, cfg: dict, name: str) -> str:
     import sys
     sys.path.insert(0, str(Path(__file__).resolve().parent))
     import analytics
-    text = re.sub(r"[ \t]*" + re.escape(analytics.START) + r".*?" + re.escape(analytics.END) + r"\n?", "", text, flags=re.DOTALL)
+    for start, end in ((analytics.START, analytics.END), (analytics.BODY_START, analytics.BODY_END)):
+        text = re.sub(r"[ \t]*" + re.escape(start) + r".*?" + re.escape(end) + r"\n?", "", text, flags=re.DOTALL)
+    body = analytics.body_end_html(cfg)  # 네이버 애널리틱스는 </body> 바로 앞
+    if body:
+        if text.count("</body>") != 1:
+            raise ValueError(f"{name} 에서 </body> 를 찾지 못했습니다")
+        text = text.replace("</body>", body + "\n</body>")
     block = analytics.head_html(cfg, STATIC_PAGE_TYPES[name], "전국")
     if not block:
         return text

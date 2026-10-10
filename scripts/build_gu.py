@@ -212,6 +212,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
             ([si_html] if sigungu else []) + [esc(gu)]) + "</nav>"
 
         values = {
+            "ANALYTICS_BODY": analytics.body_end_html(cfg),
             "ANALYTICS": analytics.head_html(cfg, "gu", analytics.region_name(SIDO_SHORT[sido], sigungu)),
             "META_TITLE": esc(meta_title), "META_DESC": esc(meta_desc), "CANONICAL": canonical,
             "JSONLD": json.dumps(jsonld, ensure_ascii=False),

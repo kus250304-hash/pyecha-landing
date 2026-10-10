@@ -321,6 +321,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], keep_dates: 
                 {"@type": "ListItem", "position": 3, "name": g["nav"], "item": canonical}]},
         ]
         values = {
+            "ANALYTICS_BODY": analytics.body_end_html(cfg),
             "ANALYTICS": analytics.head_html(cfg, "guide", "전국"),
             "META_TITLE": esc(meta_title), "META_DESC": esc(meta_desc), "CANONICAL": canonical,
             "JSONLD": json.dumps(jsonld, ensure_ascii=False), "PAGE_JSONLD": page_jsonld(meta_title, canonical),

@@ -231,8 +231,10 @@ def check_analytics(cfg: dict) -> list[str]:
             problems.append(f"{rel}: <head> 에 GA4 태그({ga})가 정확히 1개 있어야 함 (빌드 다시 실행)")
         if not naver and "wcslog.js" in text:
             problems.append(f"{rel}: naver_analytics_id 가 비었는데 네이버 애널리틱스 태그가 있음")
-        if naver and head.count("wcslog.js") != 1:
-            problems.append(f"{rel}: <head> 에 네이버 애널리틱스 태그가 정확히 1개 있어야 함")
+        if naver:
+            tail = text.rsplit("</body>", 1)[0].rstrip()
+            if text.count("wcslog.js") != 1 or text.count(f'wcs_add["wa"]="{naver}"') != 1 or not tail.endswith("<!-- naver-analytics:end -->"):
+                problems.append(f"{rel}: </body> 바로 앞에 네이버 애널리틱스 태그({naver})가 정확히 1개 있어야 함")
     if ga and "Google 애널리틱스" not in (ROOT / "privacy.html").read_text(encoding="utf-8"):
         problems.append("privacy.html: Google 애널리틱스 사용 안내 없음")
     return problems
