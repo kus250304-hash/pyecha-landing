@@ -339,8 +339,8 @@ def sido_link(sido: str, prefix: str = "../") -> str | None:
 def area_links_html(regions: list[dict], gu_data: list[dict], prefix: str = "../",
                     here_dong: dict | None = None, here_gu: dict | None = None, here_si: str | None = None) -> str:
     """모든 페이지 맨 아래 지역 링크 목록(2026-10-01).
-    동 페이지: 같은 구의 다른 동 + 그 구 페이지. 구 페이지: 그 시·도 페이지 + 같은 시·도의 다른 구 페이지.
-    모든 페이지: 폐차 안내 5장, 시·도 16개(시·도 페이지가 있으면 그 페이지, 없으면 첫 화면의 그 시·도 칸으로 연결)."""
+    동 페이지: 같은 구의 다른 동 + 그 구·시·도 페이지(시·도 16개 목록은 넣지 않음, 2026-10-10). 구 페이지: 그 시·도 페이지 + 같은 시·도의 다른 구 페이지.
+    모든 페이지: 폐차 안내 5장, 동 페이지 빼고 시·도 16개(시·도 페이지가 있으면 그 페이지, 없으면 첫 화면의 그 시·도 칸으로 연결)."""
     from build_guide import GUIDES
     from build_index import SIDO_ORDER
     gu_keys = {(g["sido"], g["sigungu"]) for g in gu_data}
@@ -358,6 +358,9 @@ def area_links_html(regions: list[dict], gu_data: list[dict], prefix: str = "../
         links = [(f'{prefix}pages/{x["slug"]}.html', f'{x["dong"]} 폐차') for x in others]
         if (r["sido"], r["sigungu"]) in gu_keys:
             links.insert(0, (f'{prefix}gu/{gu_file(r["sido"], r["sigungu"])}', f"{label} 전체 폐차 상담"))
+        si_href = sido_link(r["sido"], prefix) if r["sigungu"] else None
+        if si_href:
+            links.insert(0, (si_href, f"{SIDO_SHORT[r['sido']]} 전체 폐차 상담"))
         if links:
             blocks.append(block(f"{label} 다른 동 폐차 상담", links))
     if here_gu:
@@ -370,8 +373,9 @@ def area_links_html(regions: list[dict], gu_data: list[dict], prefix: str = "../
         if links:
             blocks.append(block(f"{SIDO_SHORT[g['sido']]} 다른 시·군·구 폐차 상담", links))
     blocks.append(block("폐차 안내", [(f"{prefix}guide/{x['file']}", x["nav"]) for x in GUIDES]))
-    blocks.append(block("시·도별 폐차 상담", [(sido_link(s, prefix) or f"{prefix}index.html#sido-{SIDO_SHORT[s]}", SIDO_SHORT[s])
-                                         for s in SIDO_ORDER]))
+    if not here_dong:  # 동 페이지는 시·도 목록 없이 바닥글의 "전체 지역 보기" 하나로(2026-10-10)
+        blocks.append(block("시·도별 폐차 상담", [(sido_link(s, prefix) or f"{prefix}index.html#sido-{SIDO_SHORT[s]}", SIDO_SHORT[s])
+                                             for s in SIDO_ORDER]))
     return ('<nav class="area-links" id="area-links" aria-label="지역·안내 바로가기"><div class="wrap">'
             + "".join(blocks) + "</div></nav>")
 
