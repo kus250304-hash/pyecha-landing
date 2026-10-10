@@ -135,6 +135,7 @@ def main() -> None:
             p.write_bytes(data)
         for p in new_pages:
             p.unlink(missing_ok=True)
+            (ROOT / "og" / f"{p.stem}.png").unlink(missing_ok=True)  # 새 페이지의 대표 이미지(og_image.py)도 지운다
         run("build_site.py")  # 이웃 링크가 바뀐 기존 페이지도 원래대로
         print("변경 사항을 되돌렸습니다 (regions.json, sitemap.xml, index.html, 새 페이지)")
 
