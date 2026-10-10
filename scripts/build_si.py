@@ -32,6 +32,7 @@ from urllib.parse import quote
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from build_gu import BAN_RE, INFO_GRADES, info_value
 import og_image
+import analytics
 
 ROOT = Path(__file__).resolve().parent.parent
 TEMPLATE = ROOT / "templates" / "si-landing.html"
@@ -158,6 +159,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
                 {"@type": "ListItem", "position": 2, "name": si, "item": canonical}]},
         ]
         values = {
+            "ANALYTICS": analytics.head_html(cfg, "si", si),
             "META_TITLE": esc(meta_title), "META_DESC": esc(meta_desc), "CANONICAL": canonical,
             "JSONLD": json.dumps(jsonld, ensure_ascii=False), "PAGE_JSONLD": page_jsonld(meta_title, canonical),
             "AREA_LINKS": area_links_html(regions, gu_data, here_si=sido),

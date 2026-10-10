@@ -40,6 +40,7 @@ from urllib.parse import quote
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import variants as V
 import og_image
+import analytics
 from vehicle_stats import registration_row, with_registration
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -210,6 +211,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
             ([si_html] if sigungu else []) + [esc(gu)]) + "</nav>"
 
         values = {
+            "ANALYTICS": analytics.head_html(cfg, "gu", analytics.region_name(SIDO_SHORT[sido], sigungu)),
             "META_TITLE": esc(meta_title), "META_DESC": esc(meta_desc), "CANONICAL": canonical,
             "JSONLD": json.dumps(jsonld, ensure_ascii=False),
             "PAGE_JSONLD": page_jsonld(meta_title, canonical),

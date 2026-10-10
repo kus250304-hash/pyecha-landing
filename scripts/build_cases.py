@@ -508,7 +508,10 @@ def render_case(c: dict, cfg: dict, template: str, region_slug: str | None,
     # 이 사례의 구 페이지가 있으면 그쪽으로도 연결한다(구 페이지 "폐차 사례" 칸에도 이 사례가 보임)
     gu_btn = (f'<a class="btn btn-quote" href="../gu/{esc(gu_page)}" style="background:#fff">{esc(area)} 폐차 상담 페이지</a>'
               if gu_page else "")
+    from build_site import SIDO_SHORT
+    import analytics
     values = {
+        "ANALYTICS": analytics.head_html(cfg, "case", analytics.region_name(SIDO_SHORT.get(c["sido"], c["sido"]), c["sigungu"], c["dong"])),
         "META_TITLE": esc(case_meta_title(c, area)),
         "GU_BUTTON": gu_btn,
         "META_DESC": esc(f"{full}에서 진행한 {c['car']} 사례. {c['summary']} 폐차와 수출 중 유리한 쪽으로 안내. 전화 {cfg['phone_display']}"),

@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- analytics:start -->
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config',"G-MLKQDS4TK8");(function(){var P={page_type:"gu",region:"경기 화성시 병점구"};window.pyechaTrack=function(n,pos,cb){var d=false,f=function(){if(!d){d=true;if(cb)cb();}};gtag('event',n,{page_type:P.page_type,region:P.region,position:pos,event_callback:f,event_timeout:1500});if(cb)setTimeout(f,1600);};document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="tel:"],a[href^="sms:"]');if(!a)return;var pos=a.closest('.bar')?'sticky':a.closest('header')?'top':'bottom';window.pyechaTrack(a.getAttribute('href').indexOf('tel:')===0?'call_click':'sms_click',pos);},true);function L(){var s=document.createElement('script');s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id=G-MLKQDS4TK8";document.head.appendChild(s);}if(document.readyState==='complete')L();else window.addEventListener('load',L);})();</script>
+<!-- analytics:end -->
 <title>화성시 병점구 폐차장 · 폐차 | 당일 말소 가능 · 수출 비교 · 조기폐차 안내 | 전화 1600-6011</title>
 <meta name="description" content="화성시 병점구 전 지역 폐차 상담. 폐차 전에 수출과 비교해 유리한 쪽으로 안내합니다. 전화 1600-6011 / 문자 010-9926-7779. 금액은 상담 후 확인.">
 <link rel="canonical" href="https://pyecha119.com/gu/%ED%99%94%EC%84%B1%EC%8B%9C-%EB%B3%91%EC%A0%90%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html">
@@ -457,7 +460,12 @@
       fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
         .then(function (res) { return res.json().then(function (data) { return { ok: res.ok, data: data }; }); })
         .then(function (r) {
-          if (r.ok && r.data.success) { window.location.href = redirect.value; return; }
+          if (r.ok && r.data.success) {
+            // 전송 성공 뒤에만 측정 이벤트(quote_submit)를 보내고 thanks.html 로 이동 (scripts/analytics.py)
+            var go = function () { window.location.href = redirect.value; };
+            if (window.pyechaTrack) window.pyechaTrack('quote_submit', form.closest('header') ? 'top' : 'bottom', go); else go();
+            return;
+          }
           throw new Error(r.data && r.data.message);
         })
         .catch(function () {

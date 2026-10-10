@@ -181,6 +181,32 @@ def check_site_pages(cfg: dict) -> list[str]:
         if needle not in privacy:
             problems.append(f"privacy.html: '{needle}' 항목 없음")
     return problems
+def check_analytics(cfg: dict) -> list[str]:
+    """방문 측정 태그(2026-10-10, scripts/analytics.py): 모든 페이지 <head> 에 GA4 태그가 정확히 하나,
+    naver_analytics_id 가 비어 있으면 네이버 애널리틱스 태그 없음. 자동 이동 페이지(옛 영문 주소)는 뺀다.
+    개인정보처리방침에 Google 애널리틱스 안내가 있어야 한다."""
+    ga, naver = (cfg.get("ga4_id") or "").strip(), (cfg.get("naver_analytics_id") or "").strip()
+    files = [ROOT / "index.html", ROOT / "thanks.html", ROOT / "privacy.html"]
+    for d in ("pages", "gu", "si", "guide", "cases"):
+        files += sorted((ROOT / d).glob("*.html"))
+    problems = []
+    for f in files:
+        text = f.read_text(encoding="utf-8")
+        if 'http-equiv="refresh"' in text:
+            continue
+        head = text.split("</head>", 1)[0]
+        rel = f.relative_to(ROOT).as_posix()
+        if ga and head.count(f"gtag('config',\"{ga}\")") != 1:
+            problems.append(f"{rel}: <head> 에 GA4 태그({ga})가 정확히 1개 있어야 함 (빌드 다시 실행)")
+        if not naver and "wcslog.js" in text:
+            problems.append(f"{rel}: naver_analytics_id 가 비었는데 네이버 애널리틱스 태그가 있음")
+        if naver and head.count("wcslog.js") != 1:
+            problems.append(f"{rel}: <head> 에 네이버 애널리틱스 태그가 정확히 1개 있어야 함")
+    if ga and "Google 애널리틱스" not in (ROOT / "privacy.html").read_text(encoding="utf-8"):
+        problems.append("privacy.html: Google 애널리틱스 사용 안내 없음")
+    return problems
+
+
 LINK_RE = re.compile(r'\b(?:href|src)="([^"#]*)(?:#[^"]*)?"')
 
 
@@ -745,6 +771,7 @@ def main() -> None:
         errors.extend(check_icon_and_alt())
         errors.extend(check_published())
         errors.extend(check_og_images(site_cfg["site_base_url"].rstrip("/")))
+        errors.extend(check_analytics(site_cfg))
 
     # 첫 화면의 네이버 서치어드바이저 소유확인 태그
     naver = site_cfg.get("naver_site_verification")

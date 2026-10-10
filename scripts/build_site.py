@@ -29,6 +29,7 @@ from sitemap_lib import update_sitemap
 from pick_next_regions import GWANGJU_GU, SIDO_PREFIX, romanize
 import variants as V
 import og_image
+import analytics
 
 ROOT = Path(__file__).resolve().parent.parent
 TEMPLATE = ROOT / "templates" / "region-landing-v2.html"
@@ -554,6 +555,7 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
     )
 
     values = {
+        "ANALYTICS": analytics.head_html(cfg, "dong", analytics.region_name(SIDO_SHORT[r["sido"]], r["sigungu"], r["dong"])),
         "META_TITLE": esc(meta_title),
         "TOW_NOTE": esc(V.TOW_NOTE[combo[1]]),
         "META_DESC": esc(meta_desc),

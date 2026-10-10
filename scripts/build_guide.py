@@ -21,6 +21,7 @@ from pathlib import Path
 from urllib.parse import quote
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import analytics
 
 ROOT = Path(__file__).resolve().parent.parent
 TEMPLATE = ROOT / "templates" / "guide.html"
@@ -320,6 +321,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], keep_dates: 
                 {"@type": "ListItem", "position": 3, "name": g["nav"], "item": canonical}]},
         ]
         values = {
+            "ANALYTICS": analytics.head_html(cfg, "guide", "전국"),
             "META_TITLE": esc(meta_title), "META_DESC": esc(meta_desc), "CANONICAL": canonical,
             "JSONLD": json.dumps(jsonld, ensure_ascii=False), "PAGE_JSONLD": page_jsonld(meta_title, canonical),
             "STYLE": style, "SPRITE": sprite, "GUIDE_NAV": nav, "UPDATED_ON": UPDATED_MARK, "BREADCRUMB": crumbs,

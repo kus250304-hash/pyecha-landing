@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<!-- analytics:start -->
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config',"G-MLKQDS4TK8");(function(){var P={page_type:"dong",region:"경기 의정부시 장암동"};window.pyechaTrack=function(n,pos,cb){var d=false,f=function(){if(!d){d=true;if(cb)cb();}};gtag('event',n,{page_type:P.page_type,region:P.region,position:pos,event_callback:f,event_timeout:1500});if(cb)setTimeout(f,1600);};document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="tel:"],a[href^="sms:"]');if(!a)return;var pos=a.closest('.bar')?'sticky':a.closest('header')?'top':'bottom';window.pyechaTrack(a.getAttribute('href').indexOf('tel:')===0?'call_click':'sms_click',pos);},true);function L(){var s=document.createElement('script');s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id=G-MLKQDS4TK8";document.head.appendChild(s);}if(document.readyState==='complete')L();else window.addEventListener('load',L);})();</script>
+<!-- analytics:end -->
 <title>장암동 폐차장 · 폐차 | 폐차 보상금 vs 수출 비교, 출장 견인 상담 · 1600-6011</title>
 <meta name="description" content="경기도 의정부시 장암동 폐차 전에 폐차 보상금과 수출 시세를 함께 비교해 드립니다. 압류·서류 없음도 상담 가능, 당일 접수, 견인비는 상담 때 미리 안내. 장암역 인근 출장 방문. 전화 1600-6011">
 <link rel="canonical" href="https://pyecha119.com/pages/gyeonggi-uijeongbu-jangam.html">
@@ -566,7 +569,12 @@
       fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
         .then(function (res) { return res.json().then(function (data) { return { ok: res.ok, data: data }; }); })
         .then(function (r) {
-          if (r.ok && r.data.success) { window.location.href = redirect.value; return; }
+          if (r.ok && r.data.success) {
+            // 전송 성공 뒤에만 측정 이벤트(quote_submit)를 보내고 thanks.html 로 이동 (scripts/analytics.py)
+            var go = function () { window.location.href = redirect.value; };
+            if (window.pyechaTrack) window.pyechaTrack('quote_submit', form.closest('header') ? 'top' : 'bottom', go); else go();
+            return;
+          }
           throw new Error(r.data && r.data.message);
         })
         .catch(function () {

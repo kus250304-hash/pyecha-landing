@@ -30,6 +30,7 @@ NAVER_META_RE = re.compile(r'[ \t]*<meta name="naver-site-verification"[^>]*>\n?
 VIEWPORT_RE = re.compile(r'(<meta name="viewport"[^>]*>\n)')
 FOOTER_RE = re.compile(r"<footer>.*?</footer>", re.DOTALL)
 STATIC_PAGES = [ROOT / "index.html", ROOT / "thanks.html", ROOT / "privacy.html"]
+STATIC_PAGE_TYPES = {"index.html": "home", "thanks.html": "thanks", "privacy.html": "privacy"}
 
 
 def site_footer(cfg: dict) -> str:
@@ -74,6 +75,21 @@ def apply_icon(text: str, name: str) -> str:
     """맨 위 폴더 favicon.ico 링크를 viewport 태그 바로 아래에 하나 둔다(2026-10-08, 네이버 진단 favicon 400 오류)."""
     text = ICON_RE.sub("", text)
     text, n = VIEWPORT_RE.subn(lambda m: m.group(1) + ICON_TAG, text, count=1)
+    if n != 1:
+        raise ValueError(f"{name} 에서 viewport 메타 태그를 찾지 못했습니다")
+    return text
+
+
+def apply_analytics(text: str, cfg: dict, name: str) -> str:
+    """방문 측정 태그(GA4·네이버 애널리틱스, scripts/analytics.py)를 viewport 태그 바로 아래에 하나 둔다(2026-10-10)."""
+    import sys
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import analytics
+    text = re.sub(r"[ \t]*" + re.escape(analytics.START) + r".*?" + re.escape(analytics.END) + r"\n?", "", text, flags=re.DOTALL)
+    block = analytics.head_html(cfg, STATIC_PAGE_TYPES[name], "전국")
+    if not block:
+        return text
+    text, n = VIEWPORT_RE.subn(lambda m: m.group(1) + block + "\n", text, count=1)
     if n != 1:
         raise ValueError(f"{name} 에서 viewport 메타 태그를 찾지 못했습니다")
     return text
@@ -180,7 +196,8 @@ def main() -> None:
 
     cfg = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
     for page in STATIC_PAGES:
-        page.write_text(apply_icon(apply_footer(page.read_text(encoding="utf-8"), cfg, page.name), page.name), encoding="utf-8")
+        text = apply_icon(apply_footer(page.read_text(encoding="utf-8"), cfg, page.name), page.name)
+        page.write_text(apply_analytics(text, cfg, page.name), encoding="utf-8")
     print(f"index.html 갱신 완료: 총 {total}개 지역, 시도 {len(by_sido)}개 (맨 아래 링크: {', '.join(p.name for p in STATIC_PAGES)})")
 
 
