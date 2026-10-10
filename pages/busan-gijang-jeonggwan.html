@@ -45,8 +45,12 @@
     --bar-h: 62px;
   }
   * { box-sizing: border-box; }
-  .og-img { background: #fff; padding: 20px 0 0; }
-  .og-img img { display: block; width: 100%; height: auto; border-radius: 14px; }
+  /* 대표 이미지(og:image 와 같은 그림)는 첫 화면이 아니라 "폐차 사례" 칸 옆 작은 카드로만 보인다(2026-10-10) */
+  .cases-wrap { display: grid; gap: 16px; }
+  .og-img { margin: 0; }
+  .og-img img { display: block; width: 100%; max-width: 305px; height: auto; margin: 0 auto; border-radius: 10px; }
+  @media (min-width: 900px) { .cases-wrap { grid-template-columns: 1fr 320px; align-items: start; } .og-img img { max-width: 320px; } }
+  .cases-wrap:has(> div:empty) { grid-template-columns: 1fr; }  /* 사례 카드가 없으면 그림 카드만 가운데 */
   html { scroll-behavior: smooth; }
   body {
     margin: 0;
@@ -284,7 +288,6 @@
 </header>
 
 <main>
-<div class="og-img"><div class="wrap"><img src="../og/busan-gijang-jeonggwan.png" alt="정관읍 폐차 상담 1600-6011" width="1200" height="630"></div></div>
 
   <section id="process" style="background:#fff">
     <div class="wrap">
@@ -461,7 +464,7 @@
     <div class="wrap">
       <h2 class="sec-title display">실제 사례 보기</h2>
       <p class="sec-sub">유튜브와 블로그에서 실제 진행 사례를 보실 수 있습니다</p>
-      
+      <div class="cases-wrap"><div></div><figure class="og-img"><img src="../og/busan-gijang-jeonggwan.png" alt="정관읍 폐차 상담 1600-6011" width="1200" height="630" loading="lazy"></figure></div>
       <div class="ext">
         <div class="yt">
           <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>

@@ -512,7 +512,7 @@ def check_og_images(base: str) -> list[str]:
                 if tag not in text:
                     problems.append(f"{rel}: {tag} 없음")
             if f'<img src="../{urls[0][len(base) + 1:]}"' not in text:
-                problems.append(f"{rel}: 본문 맨 위에 대표 이미지 <img> 없음")
+                problems.append(f"{rel}: 폐차 사례 칸에 대표 이미지 카드 <img> 없음")
     return problems
 
 

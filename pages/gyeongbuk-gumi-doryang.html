@@ -45,8 +45,12 @@
     --bar-h: 62px;
   }
   * { box-sizing: border-box; }
-  .og-img { background: #fff; padding: 20px 0 0; }
-  .og-img img { display: block; width: 100%; height: auto; border-radius: 14px; }
+  /* 대표 이미지(og:image 와 같은 그림)는 첫 화면이 아니라 "폐차 사례" 칸 옆 작은 카드로만 보인다(2026-10-10) */
+  .cases-wrap { display: grid; gap: 16px; }
+  .og-img { margin: 0; }
+  .og-img img { display: block; width: 100%; max-width: 305px; height: auto; margin: 0 auto; border-radius: 10px; }
+  @media (min-width: 900px) { .cases-wrap { grid-template-columns: 1fr 320px; align-items: start; } .og-img img { max-width: 320px; } }
+  .cases-wrap:has(> div:empty) { grid-template-columns: 1fr; }  /* 사례 카드가 없으면 그림 카드만 가운데 */
   html { scroll-behavior: smooth; }
   body {
     margin: 0;
@@ -284,7 +288,6 @@
 </header>
 
 <main>
-<div class="og-img"><div class="wrap"><img src="../og/gyeongbuk-gumi-doryang.png" alt="도량동 폐차 상담 1600-6011" width="1200" height="630"></div></div>
 
   <section id="process" style="background:#fff">
     <div class="wrap">
@@ -461,7 +464,7 @@
     <div class="wrap">
       <h2 class="sec-title display">구미시 작업 사례</h2>
       <p class="sec-sub">구미시 안 가까운 동에서 진행한 실제 사례입니다. 지역은 카드마다 표시됩니다</p>
-      <div class="cases" data-nosnippet><a class="case" href="../cases/case-20230406-gyeongbuk-gumi-songjeong.html"><img src="../cases/images/case-20230406-gyeongbuk-gumi-songjeong-1.jpg" alt="구미시 송정동 2008년식 그랜드 스타렉스 폐차 사례 사진" loading="lazy" width="800" height="600"><div class="body"><span class="region">구미시 송정동 작업 사례</span><h3>송정동 2008년식 그랜드 스타렉스 폐차·수출 비교 상담 사례</h3><p>2008년식 그랜드 스타렉스 차량으로, 시동은 걸리는 상태였습니다.</p></div></a></div>
+      <div class="cases-wrap"><div><div class="cases" data-nosnippet><a class="case" href="../cases/case-20230406-gyeongbuk-gumi-songjeong.html"><img src="../cases/images/case-20230406-gyeongbuk-gumi-songjeong-1.jpg" alt="구미시 송정동 2008년식 그랜드 스타렉스 폐차 사례 사진" loading="lazy" width="800" height="600"><div class="body"><span class="region">구미시 송정동 작업 사례</span><h3>송정동 2008년식 그랜드 스타렉스 폐차·수출 비교 상담 사례</h3><p>2008년식 그랜드 스타렉스 차량으로, 시동은 걸리는 상태였습니다.</p></div></a></div></div><figure class="og-img"><img src="../og/gyeongbuk-gumi-doryang.png" alt="도량동 폐차 상담 1600-6011" width="1200" height="630" loading="lazy"></figure></div>
       <div class="ext">
         <div class="yt">
           <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>

@@ -116,7 +116,7 @@ def ensure(stem: str, line1: str, line2: str) -> bool:
 
 
 def parts(stem: str, name: str, base: str, phone_disp: str, suffix: str = "폐차") -> dict:
-    """이미지를 만들고 템플릿 자리 OG_META(<head>)·OG_IMG_HTML(본문 맨 위)를 돌려준다. name 은 지역명."""
+    """이미지를 만들고 템플릿 자리 OG_META(<head>)·OG_IMG_HTML(사례 칸 옆 작은 카드)를 돌려준다. name 은 지역명."""
     if ensure(stem, f"{name} {suffix}", phone_disp):
         print(f"대표 이미지: og/{stem}.png")
     from html import escape
@@ -126,6 +126,6 @@ def parts(stem: str, name: str, base: str, phone_disp: str, suffix: str = "폐�
             f'<meta property="og:image:height" content="{H}">\n'
             f'<meta name="twitter:card" content="summary_large_image">')
     alt = escape(f"{name} 폐차 상담 {phone_disp}")
-    # 모양은 동 페이지 템플릿 <style> 의 .og-img (구·시 페이지도 같은 스타일을 쓴다)
-    img = f'<div class="og-img"><div class="wrap"><img src="../{rel}" alt="{alt}" width="{W}" height="{H}"></div></div>'
+    # "폐차 사례" 칸 옆 작은 카드(모양은 동 페이지 템플릿 <style> 의 .cases-wrap·.og-img, 구·시 페이지도 같은 스타일)
+    img = f'<figure class="og-img"><img src="../{rel}" alt="{alt}" width="{W}" height="{H}" loading="lazy"></figure>'
     return {"OG_META": meta, "OG_IMG_HTML": img}
