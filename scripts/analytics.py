@@ -72,11 +72,13 @@ def body_end_html(cfg: dict) -> str:
         return ""
     return "\n".join([BODY_START,
                       # wcslog.js 를 <script src> 로 두면(async 여도) 처음부터 받아 와 모바일 LCP 가 약 1.5초 → 3.2초로 늘어,
-                      # 페이지가 다 뜬 뒤(load) 불러오고 다 온 뒤 wcs_do() 를 부른다(2026-10-10 Lighthouse)
+                      # 페이지가 다 뜨고(load) 제목 글꼴까지 그려진 뒤 1초 있다가 불러오고, 다 온 뒤 wcs_do() 를 부른다
+                      # (load 직후만 기다리면 글꼴 바뀌는 순간과 겹쳐 시뮬레이션 LCP 가 2.45초, 2026-10-10 Lighthouse)
                       f'<script>if(!window.wcs_add)window.wcs_add={{}};wcs_add["wa"]={_js(naver)};'
                       "(function(){function L(){var s=document.createElement('script');s.async=true;s.src='https://wcs.pstatic.net/wcslog.js';"
                       "s.onload=function(){if(window.wcs){wcs_do();}};document.body.appendChild(s);}"
-                      "if(document.readyState==='complete')L();else window.addEventListener('load',L);})();</script>",
+                      "function W(){(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(function(){setTimeout(L,1000);});}"
+                      "if(document.readyState==='complete')W();else window.addEventListener('load',W);})();</script>",
                       BODY_END])
 
 
