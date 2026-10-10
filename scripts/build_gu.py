@@ -127,7 +127,8 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
     돌려주는 값: (내용이 바뀐 구 페이지 경로, sitemap 에서 뺄 예전 영문 주소 경로) — 둘 다 "gu/…" 형식."""
     # build_site 가 이 모듈을 부르므로 여기서 가져온다
     from build_site import (SIDO_SHORT, UPDATED_MARK, area_links_html, case_cards_html, contact_parts, esc, form_parts, gu_file,
-                            gu_rel, gu_title_names, page_jsonld, sido_link, with_updated_date)
+                            gu_rel, gu_title_names, page_jsonld, region_photos, region_photos_html, sido_link,
+                            with_updated_date)
 
     if not gu_data:
         return [], []
@@ -225,6 +226,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
             "UPDATED_ON": UPDATED_MARK,
             "CASES_SUB": esc(cases_sub),
             "CASES_HTML": case_cards_html(my_cases[:MAX_CASES]),
+            "CASE_PHOTOS_HTML": region_photos_html(region_photos(cases, sido, sigungu, shown=my_cases[:MAX_CASES])),
             "CONSULT_TEXT": esc(V.fill(v_consult, phone=phone_disp)),
             "CLOSING_H2": esc(V.fill(v_close, gu=gu)).replace("&lt;br&gt;", "<br>"),
             "PHONE_TEL": phone_tel, "PHONE_DISPLAY": phone_disp,
@@ -247,7 +249,8 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
         html_text = html_text.replace("{{BAR_COLS}}", contact_parts(cfg, gu)["BAR_COLS"])
         out = OUT / gu_file(sido, sigungu)
         old_text = out.read_text(encoding="utf-8") if out.exists() else None
-        html_text = with_updated_date(html_text, old_text, keep_dates=keep_dates)
+        html_text = with_updated_date(html_text, old_text, keep_dates=keep_dates, path=out,
+                                      alt_paths=(f"gu/{g['slug']}.html",))  # 예전 영문 주소로 처음 만든 날
         if old_text != html_text:
             out.write_text(html_text, encoding="utf-8")
             changed.append(gu_rel(sido, sigungu))

@@ -166,7 +166,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
             "SI": esc(si), "SI_FULL": esc(sido), "SI_JOSA": josa(sido, "은", "는"),
             "GU_LIST_HTML": gu_list, "FAQ_HTML": faq_html, "INFO_ROWS": info_rows,
             "CHECKED_ON": esc(s.get("checked_on", "")), "UPDATED_ON": UPDATED_MARK,
-            "CASES_SUB": esc(cases_sub), "CASES_HTML": case_cards_html(my_cases[:MAX_CASES]),
+            "CASES_SUB": esc(cases_sub), "CASES_HTML": case_cards_html(my_cases[:MAX_CASES]), "CASE_PHOTOS_HTML": "",
             "CONSULT_TEXT": esc(V.fill(V.GU_CONSULT[i % V.N], phone=phone_disp)),
             "CLOSING_H2": esc(V.fill(V.GU_CLOSING[(i + 2) % V.N], gu=si)).replace("&lt;br&gt;", "<br>"),
             "PHONE_TEL": phone_tel, "PHONE_DISPLAY": phone_disp,
@@ -187,7 +187,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
         html_text = re.sub(r"\{\{(\w+)\}\}", sub, cleaned).replace("{{BAR_COLS}}", values["BAR_COLS"])
         out = OUT / si_file(sido)
         old_text = out.read_text(encoding="utf-8") if out.exists() else None
-        html_text = with_updated_date(html_text, old_text, keep_dates=keep_dates)
+        html_text = with_updated_date(html_text, old_text, keep_dates=keep_dates, path=out)
         if old_text != html_text:
             out.write_text(html_text, encoding="utf-8")
             changed.append(si_rel(sido))

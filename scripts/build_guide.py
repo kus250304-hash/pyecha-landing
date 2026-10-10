@@ -341,7 +341,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], keep_dates: 
         html_text = re.sub(r"\{\{(\w+)\}\}", sub, template).replace("{{BAR_COLS}}", bar_cols)
         out = OUT / g["file"]
         old_text = out.read_text(encoding="utf-8") if out.exists() else None
-        html_text = with_updated_date(html_text, old_text, keep_dates=keep_dates)
+        html_text = with_updated_date(html_text, old_text, keep_dates=keep_dates, path=out)
         if old_text != html_text:
             out.write_text(html_text, encoding="utf-8")
             changed.append(f"guide/{quote(g['file'])}")

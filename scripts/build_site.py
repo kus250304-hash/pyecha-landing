@@ -115,6 +115,43 @@ def case_cards_html(picked: list[dict]) -> str:
     ) + "</div>"
 
 
+def region_photos(cases: list[dict], sido: str, sigungu: str, dong: str = "", shown: list[dict] = (),
+                  n: int = 2) -> list[tuple[dict, str]]:
+    """사례 칸 옆 작은 실제 사진 1~2장(2026-10-10): 그 동 사례 → 같은 시군구(세종은 시 전체) → 같은 시·도 사례 중
+    사진이 있는 첫 단계에서 최신 사례부터 고른다. 카드로 이미 보이는 사진(thumb)은 빼고, 사례마다 한 장씩 먼저.
+    사진은 번호판·얼굴·서류를 가린 것만 cases/images 에 들어온다(build_cases.py·pc_cases.py, check_pages.py 가 숨은 정보 검사)."""
+    used = {c.get("thumb") for c in shown}
+    tiers = ([[c for c in cases if c["sido"] == sido and c["sigungu"] == sigungu and c["dong"] == dong]] if dong else []) + [
+        [c for c in cases if c["sido"] == sido and c["sigungu"] == sigungu],
+        [c for c in cases if c["sido"] == sido],
+    ]
+    for tier in tiers:
+        tier = sorted((c for c in tier if c.get("photos")), key=lambda c: (c.get("date") or "", c["slug"]), reverse=True)
+        pool = [[(c, ph) for ph in c["photos"] if ph not in used] for c in tier]
+        picked = [x[0] for x in pool if x] + [y for x in pool for y in x[1:]]
+        if picked:
+            return picked[:n]
+    return []
+
+
+_IMG_SIZE: dict[str, tuple[int, int]] = {}
+
+
+def region_photos_html(picked: list[tuple[dict, str]]) -> str:
+    from PIL import Image
+    out = []
+    for c, ph in picked:
+        if ph not in _IMG_SIZE:
+            with Image.open(ROOT / "cases" / "images" / ph) as im:
+                _IMG_SIZE[ph] = im.size
+        w, h = _IMG_SIZE[ph]
+        region = ((c["sigungu"] or c["sido"]) + " " + c["dong"]).strip()
+        out.append(f'<figure class="case-photo"><a href="../cases/{esc(c["slug"])}.html">'
+                   f'<img src="../cases/images/{esc(ph)}" alt="{esc(case_alt(c))}" width="{w}" height="{h}" loading="lazy"></a>'
+                   f'<figcaption>{esc(region)} 작업 사례</figcaption></figure>')
+    return "".join(out)
+
+
 def contact_parts(cfg: dict, dong: str) -> dict:
     """문자·카카오 버튼, 하단 바 두 번째 버튼, 푸터 사업자 줄. 지역 페이지와 사례 페이지가 같이 쓴다."""
     sms = cfg.get("sms_number")
@@ -307,9 +344,51 @@ UPDATED_RE = re.compile(r'(<p class="updated">최종 업데이트: )([^<]*)(</p>
 UPDATED_ISO_RE = re.compile(r'("dateModified": ")(\d{4}-\d{2}-\d{2})(")')
 
 
-def with_updated_date(new_html: str, old_html: str | None, keep_dates: bool = False) -> str:
+PUBLISHED_MARK = "@@PUBLISHED_ISO@@"
+PUBLISHED_RE = re.compile(r'"datePublished": "(\d{4}-\d{2}-\d{2})"')
+_FIRST_ADDED: dict[str, str] | None = None
+
+
+def first_added() -> dict[str, str]:
+    """git 기록에서 파일마다 처음 추가된 날(YYYY-MM-DD). 한 번만 읽는다. git 이 없으면 빈 목록."""
+    global _FIRST_ADDED
+    if _FIRST_ADDED is None:
+        import subprocess
+        _FIRST_ADDED = {}
+        try:
+            out = subprocess.run(
+                ["git", "-c", "core.quotepath=false", "log", "--no-renames", "--diff-filter=A",
+                 "--format=@%ad", "--date=short", "--name-only", "--", "pages", "gu", "si", "guide"],
+                cwd=ROOT, capture_output=True, text=True, encoding="utf-8", check=True).stdout
+        except (OSError, subprocess.CalledProcessError):
+            out = ""
+        day = ""
+        for line in out.splitlines():
+            if line.startswith("@"):
+                day = line[1:]
+            elif line.strip():
+                _FIRST_ADDED[line.strip()] = day  # 최신 커밋부터 나오므로 마지막 값이 가장 오래된 날
+    return _FIRST_ADDED
+
+
+def published_date(old_html: str | None, path: Path | None, alt_paths: tuple[str, ...] = ()) -> str:
+    """처음 만든 날(datePublished, 2026-10-10): 예전 파일에 적힌 날 → git 에서 처음 추가된 날
+    (구 페이지는 예전 영문 주소 파일도 봄, 가장 이른 날) → 오늘(한국 시간). 한 번 적히면 바뀌지 않는다."""
+    m = PUBLISHED_RE.search(old_html or "")
+    if m:
+        return m.group(1)
+    rels = [path.relative_to(ROOT).as_posix()] if path else []
+    days = [d for d in (first_added().get(x) for x in rels + list(alt_paths)) if d]
+    return min(days) if days else datetime.now(KST).date().isoformat()
+
+
+def with_updated_date(new_html: str, old_html: str | None, keep_dates: bool = False,
+                      path: Path | None = None, alt_paths: tuple[str, ...] = ()) -> str:
     """내용(날짜 빼고)이 예전 파일과 같으면 예전 파일을 그대로, 다르면 오늘 날짜를 넣는다. 날짜만 새로 바꾸지 않는다.
-    keep_dates(--keep-dates, 오타 수준 수정용)면 내용이 달라도 예전 파일의 날짜를 그대로 쓴다."""
+    keep_dates(--keep-dates, 오타 수준 수정용)면 내용이 달라도 예전 파일의 날짜를 그대로 쓴다.
+    datePublished 자리는 published_date 로 먼저 채운다(path 는 이 페이지 파일)."""
+    if PUBLISHED_MARK in new_html:
+        new_html = new_html.replace(PUBLISHED_MARK, published_date(old_html, path, alt_paths))
     if old_html and keep_dates:
         on, iso = UPDATED_RE.search(old_html), UPDATED_ISO_RE.search(old_html)
         if on and iso:
@@ -325,9 +404,10 @@ def with_updated_date(new_html: str, old_html: str | None, keep_dates: bool = Fa
 
 
 def page_jsonld(name: str, url: str) -> str:
-    """수정 날짜(dateModified)를 담은 WebPage 구조화 데이터. 날짜 자리는 with_updated_date 가 채운다."""
+    """처음 만든 날(datePublished)과 수정 날짜(dateModified)를 담은 WebPage 구조화 데이터. 날짜 자리는 with_updated_date 가 채운다."""
     return json.dumps({"@context": "https://schema.org", "@type": "WebPage", "name": name, "url": url,
-                       "inLanguage": "ko-KR", "dateModified": UPDATED_ISO_MARK}, ensure_ascii=False)
+                       "inLanguage": "ko-KR", "datePublished": PUBLISHED_MARK, "dateModified": UPDATED_ISO_MARK},
+                      ensure_ascii=False)
 
 
 def sido_link(sido: str, prefix: str = "../") -> str | None:
@@ -508,6 +588,7 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
         "CASES_TITLE": esc(c_title),
         "CASES_SUB": esc(c_sub),
         "CASES_HTML": cases_html,
+        "CASE_PHOTOS_HTML": region_photos_html(region_photos(cases, r["sido"], r["sigungu"], r["dong"], picked)),
         "YOUTUBE_URL": esc(cfg["youtube_url"]),
         "BLOG_URL": esc(cfg["blog_url"]),
         # 대표 이미지(og:image, 2026-10-10): og/<slug>.png, 동 이름 + 대표번호
@@ -558,7 +639,7 @@ def main() -> None:
         old_text = out_path.read_text(encoding="utf-8") if out_path.exists() else None
         html_text = with_updated_date(
             render(r, regions, cfg, cases, template, labels, page_map, combos[r["slug"]], gu_pages, gu_data), old_text,
-            keep_dates=args.keep_dates)
+            keep_dates=args.keep_dates, path=out_path)
         if old_text != html_text:
             out_path.write_text(html_text, encoding="utf-8")
             changed.append(r["slug"])

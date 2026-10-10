@@ -516,6 +516,25 @@ def check_og_images(base: str) -> list[str]:
     return problems
 
 
+# 처음 만든 날(datePublished, 2026-10-10): 동·구·시·안내 페이지 WebPage 구조화 데이터에 dateModified 와 함께
+PUB_RE = re.compile(r'"datePublished": "(\d{4}-\d{2}-\d{2})", "dateModified": "(\d{4}-\d{2}-\d{2})"')
+
+
+def check_published() -> list[str]:
+    problems = []
+    for d in ("pages", "gu", "si", "guide"):
+        for f in sorted((ROOT / d).glob("*.html")) if (ROOT / d).exists() else []:
+            text = f.read_text(encoding="utf-8")
+            if 'http-equiv="refresh"' in text:
+                continue
+            m = PUB_RE.search(text)
+            if not m:
+                problems.append(f"{d}/{f.name}: 구조화 데이터에 datePublished·dateModified 가 함께 없음")
+            elif m.group(1) > m.group(2):
+                problems.append(f"{d}/{f.name}: datePublished({m.group(1)})가 dateModified({m.group(2)})보다 늦음")
+    return problems
+
+
 def check_tow_wording() -> list[str]:
     """동·구·시·안내·사례 페이지(제목·설명·본문·구조화 데이터 전부)에서 견인비 단정 표현을 찾는다."""
     problems = []
@@ -724,6 +743,7 @@ def main() -> None:
         errors.extend(check_tow_wording())
         errors.extend(check_oneplus())
         errors.extend(check_icon_and_alt())
+        errors.extend(check_published())
         errors.extend(check_og_images(site_cfg["site_base_url"].rstrip("/")))
 
     # 첫 화면의 네이버 서치어드바이저 소유확인 태그

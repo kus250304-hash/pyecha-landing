@@ -18,7 +18,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0E5E63">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "저당이나 압류 있는 차도 폐차 돼요?", "acceptedAnswer": {"@type": "Answer", "text": "많은 경우 가능합니다. 차령 기준을 넘었는지가 핵심이라, 등록원부부터 함께 살펴보겠습니다."}}, {"@type": "Question", "name": "등록증을 잃어버렸는데 폐차 돼요?", "acceptedAnswer": {"@type": "Answer", "text": "서류가 빠져 있어도 먼저 전화 주세요. 등록증 없이 진행하는 방법이 있고, 신분증은 꼭 필요합니다."}}, {"@type": "Question", "name": "시동 안 걸리고 키도 없는데 괜찮아요?", "acceptedAnswer": {"@type": "Answer", "text": "시동 여부와 키 유무에 상관없이 견인차가 방문합니다. 위치를 알려주시면 견인비가 드는 경우인지도 함께 미리 안내해 드립니다."}}, {"@type": "Question", "name": "견인비나 탁송비는 따로 내요?", "acceptedAnswer": {"@type": "Answer", "text": "견인비는 대부분 따로 받지 않습니다. 차가 멀리 있거나 시동이 안 걸려 따로 드는 경우는 진행하기 전에 먼저 설명드립니다."}}, {"@type": "Question", "name": "몇 년 된 차인데 얼마 정도 나와요?", "acceptedAnswer": {"@type": "Answer", "text": "먼저 몇 년식인지, 운행되는지 여쭤봐요. 차량번호로 조회해 봐야 갈리거든요. 사진까지 보내주시면 상담 후 확인해서 정확하게 말씀드릴게요. 폐차 전에 수출 시세와 비교해서 더 높은 쪽으로 안내해요."}}, {"@type": "Question", "name": "세금이나 과태료가 계속 날아오는 거 아니에요?", "acceptedAnswer": {"@type": "Answer", "text": "차에 붙는 세금이나 검사 과태료는 말소가 돼야 더 안 나와요. 압류가 있으면 말소까지 시간이 더 걸려서, 상담 때 기간을 먼저 말씀드려요."}}, {"@type": "Question", "name": "조금만 더 주시면 안 돼요?", "acceptedAnswer": {"@type": "Answer", "text": "사진 보내주시면 더 정확하게 볼 수 있어요. 확인하고 조금이라도 더 드릴 수 있으면 더 드릴게요. 금액은 상담 후 확인해요."}}, {"@type": "Question", "name": "등촌역 인근 오피스텔 지하주차장에서도 방문 가능한가요?", "acceptedAnswer": {"@type": "Answer", "text": "네, 가능합니다. 출입 방법과 주차 층을 알려주시면 방문 일정에 맞춰 찾아갑니다."}}, {"@type": "Question", "name": "등촌동이 실제 방문 가능한 지역인가요?", "acceptedAnswer": {"@type": "Answer", "text": "등촌동은 실제 서비스 가능 지역입니다. 인근 염창동, 화곡동, 가양동에서도 출장 방문 상담이 가능합니다."}}, {"@type": "Question", "name": "강서구청 주변은 주정차 단속이 있는데 괜찮나요?", "acceptedAnswer": {"@type": "Answer", "text": "가능합니다. 단속이 잦은 구간이면 인근 안전한 위치로 이동해 진행합니다."}}]}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "등촌동 폐차장 · 폐차 | 폐차 보상금 vs 수출 비교, 출장 견인 상담 · 1600-6011", "url": "https://pyecha119.com/pages/seoul-gangseo-deungchon.html", "inLanguage": "ko-KR", "dateModified": "2026-10-08"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "등촌동 폐차장 · 폐차 | 폐차 보상금 vs 수출 비교, 출장 견인 상담 · 1600-6011", "url": "https://pyecha119.com/pages/seoul-gangseo-deungchon.html", "inLanguage": "ko-KR", "datePublished": "2026-09-23", "dateModified": "2026-10-08"}</script>
 <style>
   @font-face {
     font-family: 'Jalnan';
@@ -47,10 +47,15 @@
   * { box-sizing: border-box; }
   /* 대표 이미지(og:image 와 같은 그림)는 첫 화면이 아니라 "폐차 사례" 칸 옆 작은 카드로만 보인다(2026-10-10) */
   .cases-wrap { display: grid; gap: 16px; }
-  .og-img { margin: 0; }
+  .og-img { margin: 0; width: 100%; }
   .og-img img { display: block; width: 100%; max-width: 305px; height: auto; margin: 0 auto; border-radius: 10px; }
   @media (min-width: 900px) { .cases-wrap { grid-template-columns: 1fr 320px; align-items: start; } .og-img img { max-width: 320px; } }
   .cases-wrap:has(> div:empty) { grid-template-columns: 1fr; }  /* 사례 카드가 없으면 그림 카드만 가운데 */
+  /* 사례 칸 옆 실제 사진 1~2장(같은 동 → 시군구 → 시·도 사례, 2026-10-10)과 대표 이미지 카드 */
+  .cases-side { display: grid; gap: 12px; justify-items: center; align-content: start; }
+  .case-photo { margin: 0; width: 100%; max-width: 320px; }
+  .case-photo img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 10px; }  /* 세로 사진도 320×240 */
+  .case-photo figcaption { margin-top: 4px; font-size: 13px; color: var(--muted); text-align: center; }
   html { scroll-behavior: smooth; }
   body {
     margin: 0;
@@ -464,7 +469,7 @@
     <div class="wrap">
       <h2 class="sec-title display">실제 사례 보기</h2>
       <p class="sec-sub">유튜브와 블로그에서 실제 진행 사례를 보실 수 있습니다</p>
-      <div class="cases-wrap"><div></div><figure class="og-img"><img src="../og/seoul-gangseo-deungchon.png" alt="등촌동 폐차 상담 1600-6011" width="1200" height="630" loading="lazy"></figure></div>
+      <div class="cases-wrap"><div></div><div class="cases-side" data-nosnippet><figure class="case-photo"><a href="../cases/case-20251201-seoul-nowon-gongneung.html"><img src="../cases/images/case-20251201-seoul-nowon-gongneung-1.jpg" alt="노원구 공릉동 2007년식 세라토 폐차 사례 사진" width="509" height="680" loading="lazy"></a><figcaption>노원구 공릉동 작업 사례</figcaption></figure><figure class="case-photo"><a href="../cases/case-20250319-seoul-yeongdeungpo-singil.html"><img src="../cases/images/case-20250319-seoul-yeongdeungpo-singil-1.jpg" alt="영등포구 신길동 2011년식 카니발 폐차 사례 사진" width="1200" height="900" loading="lazy"></a><figcaption>영등포구 신길동 작업 사례</figcaption></figure><figure class="og-img"><img src="../og/seoul-gangseo-deungchon.png" alt="등촌동 폐차 상담 1600-6011" width="1200" height="630" loading="lazy"></figure></div></div>
       <div class="ext">
         <div class="yt">
           <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
