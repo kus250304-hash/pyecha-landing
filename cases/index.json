@@ -1,5 +1,130 @@
 [
  {
+  "slug": "case-20230424-seoul-eunpyeong-sinsa",
+  "date": "2023-04-24",
+  "sido": "서울특별시",
+  "sigungu": "은평구",
+  "dong": "신사동",
+  "region_slug": null,
+  "car": "2005년식 무쏘",
+  "title": "신사동 2005년식 무쏘 폐차·수출 비교 상담 사례",
+  "summary": "2005년식 무쏘 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "무쏘"
+   ],
+   [
+    "연식",
+    "2005년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2005년식 무쏘 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230424-seoul-eunpyeong-sinsa-1.jpg",
+  "photos": [
+   "case-20230424-seoul-eunpyeong-sinsa-1.jpg",
+   "case-20230424-seoul-eunpyeong-sinsa-2.jpg",
+   "case-20230424-seoul-eunpyeong-sinsa-3.jpg",
+   "case-20230424-seoul-eunpyeong-sinsa-4.jpg",
+   "case-20230424-seoul-eunpyeong-sinsa-5.jpg"
+  ],
+  "videos": []
+ },
+ {
+  "slug": "case-20230314-gyeongnam-gimhae-juchon",
+  "date": "2023-03-14",
+  "sido": "경상남도",
+  "sigungu": "김해시",
+  "dong": "주촌면",
+  "region_slug": null,
+  "car": "2004년식 봉고3 탑차",
+  "title": "주촌면 2004년식 봉고3 탑차 폐차·수출 비교 상담 사례",
+  "summary": "2004년식 봉고3 탑차 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "봉고3 탑차"
+   ],
+   [
+    "연식",
+    "2004년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2004년식 봉고3 탑차 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230314-gyeongnam-gimhae-juchon-1.jpg",
+  "photos": [
+   "case-20230314-gyeongnam-gimhae-juchon-1.jpg",
+   "case-20230314-gyeongnam-gimhae-juchon-2.jpg",
+   "case-20230314-gyeongnam-gimhae-juchon-3.jpg",
+   "case-20230314-gyeongnam-gimhae-juchon-4.jpg",
+   "case-20230314-gyeongnam-gimhae-juchon-5.jpg"
+  ],
+  "videos": []
+ },
+ {
+  "slug": "case-20230211-daegu-bukgu-guam",
+  "date": "2023-02-11",
+  "sido": "대구광역시",
+  "sigungu": "북구",
+  "dong": "구암동",
+  "region_slug": null,
+  "car": "2011년식 K5",
+  "title": "구암동 2011년식 K5 폐차·수출 비교 상담 사례",
+  "summary": "2011년식 K5 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "K5"
+   ],
+   [
+    "연식",
+    "2011년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2011년식 K5 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230211-daegu-bukgu-guam-1.jpg",
+  "photos": [
+   "case-20230211-daegu-bukgu-guam-1.jpg",
+   "case-20230211-daegu-bukgu-guam-2.jpg",
+   "case-20230211-daegu-bukgu-guam-3.jpg",
+   "case-20230211-daegu-bukgu-guam-4.jpg"
+  ],
+  "videos": []
+ },
+ {
   "slug": "case-20230129-gyeongbuk-yeongcheon-geumho",
   "date": "2023-01-29",
   "sido": "경상북도",

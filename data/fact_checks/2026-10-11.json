@@ -1,0 +1,374 @@
+[
+ {
+  "code": "1277025300",
+  "slug": "jeonnam-jangheung-gwansan",
+  "items": [
+   {
+    "name": "정남진 전망대",
+    "evidence": "전남광주통합특별시 장흥군 관산읍 정남진해안로 242-58 (한국관광 정보 페이지)",
+    "url": "https://www.ktriptips.com/kor/tourspot/2514004",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1277025600",
+  "slug": "jeonnam-jangheung-daedeok",
+  "items": [
+   {
+    "name": "대덕초등학교",
+    "evidence": "전남 장흥군 대덕읍 대대로 947 (학교 정보 페이지)",
+    "url": "https://academy.prompie.com/schools/elementary-school/detail/w4dz9j1/",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5117010200",
+  "slug": "gangwon-donghae-pyeongneung",
+  "items": [
+   {
+    "name": "동해시종합버스터미널",
+    "evidence": "강원특별자치도 동해시 동해대로 5443, 지번 평릉동 166-4 (버스 운행정보 페이지)",
+    "url": "https://transportation.asamaru.net/시외버스/터미널/동해시종합버스터미널/",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5117010300",
+  "slug": "gangwon-donghae-songjeong",
+  "items": [
+   {
+    "name": "동해역",
+    "evidence": "한국어 위키백과: 동해역은 강원특별자치도 동해시 송정동에 있는 영동선·삼척선의 철도역",
+    "url": "https://ko.wikipedia.org/wiki/동해역",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4831010100",
+  "slug": "gyeongnam-geoje-neungpo",
+  "items": [
+   {
+    "name": "양지암조각공원",
+    "evidence": "경상남도 거제시 능포로 194, '능포동 일원에 ... 조각가의 작품 21점을 전시하는 예술공원' (관광 정보 페이지)",
+    "url": "https://www.ktriptips.com/kor/tourspot/2755677",
+    "grade": "opened"
+   },
+   {
+    "name": "능포항",
+    "evidence": "경남 거제시 능포동 480-42 (관광 정보 페이지)",
+    "url": "https://www.ktriptips.com/kor/tourspot/2754982",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4831010200",
+  "slug": "gyeongnam-geoje-jangseungpo",
+  "items": [
+   {
+    "name": "장승포항",
+    "evidence": "[53322] 경상남도 거제시 장승로 138 (장승포동)",
+    "url": "https://www.ktriptips.com/kor/tourspot/793469",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5177025000",
+  "slug": "gangwon-jeongseon-jeongseon",
+  "items": [
+   {
+    "name": "정선아리랑시장",
+    "evidence": "[26130] 강원특별자치도 정선군 정선읍 5일장길 40",
+    "url": "https://www.ktriptips.com/kor/shopping/132003",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5177025300",
+  "slug": "gangwon-jeongseon-gohan",
+  "items": [
+   {
+    "name": "고한역",
+    "evidence": "강원특별자치도 정선군 고한읍 고한리 99-41 (고한로 166)",
+    "url": "https://train.asamaru.net/열차역/고한역-태백선/",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5177025600",
+  "slug": "gangwon-jeongseon-sabuk",
+  "items": [
+   {
+    "name": "사북역",
+    "evidence": "강원특별자치도 정선군 사북읍 사북리 산150-14 (지장천로 616-12)",
+    "url": "https://train.asamaru.net/열차역/사북역-태백선/",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4377025300",
+  "slug": "chungbuk-eumseong-geumwang",
+  "items": [
+   {
+    "name": "무극시장",
+    "evidence": "충청북도 음성군 금왕읍 금석로75번길 5",
+    "url": "https://info.koreacharts.com/tour/132018/contents.html",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4812912200",
+  "slug": "gyeongnam-changwon-jinhae-changseon",
+  "items": [
+   {
+    "name": "창선동 근대상가주택",
+    "evidence": "진해 근대역사문화공간 국가등록문화재 등록 기사에 '창선동 근대상가주택'으로 소개(창원시 진해구 창선동)",
+    "url": "https://www.twig24.com/news/local_gs/kynam_gs/2021/11/04/20211104500024",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4812912300",
+  "slug": "gyeongnam-changwon-jinhae-daecheon",
+  "items": [
+   {
+    "name": "진해 근대역사문화공간",
+    "evidence": "국가등록문화재, 위치 '창원시 진해구 대천동과 화천동 일원'",
+    "url": "https://www.twig24.com/news/local_gs/kynam_gs/2021/11/04/20211104500024",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4477025000",
+  "slug": "chungnam-seocheon-janghang",
+  "items": [
+   {
+    "name": "장항항",
+    "evidence": "위키백과 '장항읍' 문서에 장항항(1937년 완성, 1964년 국제항 승격)이 장항읍의 항만으로 소개",
+    "url": "https://ko.wikipedia.org/wiki/장항읍",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4477025300",
+  "slug": "chungnam-seocheon-seocheon",
+  "items": [
+   {
+    "name": "서천군청",
+    "evidence": "위키백과 '서천읍' 문서: 군사리가 서천군청 및 서천읍 행정복지센터 소재지(서천읍 서천로 92)",
+    "url": "https://ko.wikipedia.org/wiki/서천읍",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4311210100",
+  "slug": "chungbuk-cheongju-seowon-sajik",
+  "items": [
+   {
+    "name": "청주종합경기장",
+    "evidence": "경향신문: '서원구 사직동에 있는 청주종합경기장은 1979년 5월 제8회 전국 소년체전을 치르기 위해 건립'",
+    "url": "https://www.khan.co.kr/article/201604042204415",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4311210300",
+  "slug": "chungbuk-cheongju-seowon-mochung",
+  "items": [
+   {
+    "name": "서원대학교",
+    "evidence": "충청북도 청주시 서원구 무심서로 377-3 (모충동, 서원대학교)",
+    "url": "https://www.jinhakpro.com/recruit/24629",
+    "grade": "summary_with_address"
+   }
+  ]
+ },
+ {
+  "code": "4311310400",
+  "slug": "chungbuk-cheongju-heungdeok-uncheon",
+  "items": [
+   {
+    "name": "청주고인쇄박물관",
+    "evidence": "[28472] 충청북도 청주시 흥덕구 직지대로 713 (운천동)",
+    "url": "https://www.ktriptips.com/kor/culture/2804708",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4311310500",
+  "slug": "chungbuk-cheongju-heungdeok-sinbong",
+  "items": [
+   {
+    "name": "청주백제유물전시관",
+    "evidence": "[28459] 충청북도 청주시 흥덕구 1순환로438번길 9 (신봉동)",
+    "url": "https://www.ktriptips.com/kor/culture/1627209",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1154510300",
+  "slug": "seoul-geumcheon-siheung",
+  "items": [
+   {
+    "name": "금천구청",
+    "evidence": "금천구청종합청사, 서울 금천구 시흥대로73길 70 (시흥동)",
+    "url": "https://zippoom.com/region/s/KR1P144/officetel",
+    "grade": "summary_with_address"
+   }
+  ]
+ },
+ {
+  "code": "4111312800",
+  "slug": "gyeonggi-suwon-gwonseon-gosaek",
+  "items": [
+   {
+    "name": "고색역",
+    "evidence": "경기도 수원시 권선구 매송고색로 지하 690, 고색동 소재",
+    "url": "https://ko.wikipedia.org/wiki/고색역",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4111512000",
+  "slug": "gyeonggi-suwon-paldal-paldallo",
+  "items": [
+   {
+    "name": "팔달문",
+    "evidence": "경기도 수원시 팔달구 팔달로2가 138번지 (위키백과 수원 팔달문)",
+    "url": "https://ko.wikipedia.org/wiki/수원_팔달문",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2827510100",
+  "slug": "incheon-seohae-geomam",
+  "items": [
+   {
+    "name": "검암역",
+    "evidence": "인천광역시 서구 검바위로 26 (검암동) / 검바위로 4 (검암동) (위키백과 검암역)",
+    "url": "https://ko.wikipedia.org/wiki/검암역",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2827510200",
+  "slug": "incheon-seohae-gyeongseo",
+  "items": [
+   {
+    "name": "국립생물자원관",
+    "evidence": "인천광역시 서구 환경로 42(경서동 종합환경연구단지)",
+    "url": "https://gusle.kr/%EA%B5%AD%EB%A6%BD%EC%83%9D%EB%AC%BC%EC%9E%90%EC%9B%90%EA%B4%80-%ED%99%88%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%B0%94%EB%A1%9C%EA%B0%80%EA%B8%B0-https-www-nibr-go-kr/",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4471025000",
+  "slug": "chungnam-geumsan-geumsan",
+  "items": [
+   {
+    "name": "금산군청",
+    "evidence": "충청남도 금산군 금산읍 군청길 13 (상리 25-1) (위키백과 금산군청)",
+    "url": "https://ko.wikipedia.org/wiki/금산군청",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4482525000",
+  "slug": "chungnam-taean-taean",
+  "items": [
+   {
+    "name": "태안군청",
+    "evidence": "충청남도 태안군 태안읍 군청로 1 (남문리 90) (위키백과 태안군청)",
+    "url": "https://ko.wikipedia.org/wiki/태안군청",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4482525300",
+  "slug": "chungnam-taean-anmyeon",
+  "items": [
+   {
+    "name": "꽃지해수욕장",
+    "evidence": "충청남도 태안군 안면읍 승언리(광지길), 한국 관광 안내 페이지",
+    "url": "https://www.ktriptips.com/kor/tourspot/126695",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2641010100",
+  "slug": "busan-geumjeong-dugu",
+  "items": [
+   {
+    "name": "스포원파크",
+    "evidence": "부산광역시 금정구 체육공원로399번길 324 (두구동), 장소 안내 페이지",
+    "url": "https://xn--ok0b236bp0a.com/place/8224",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2641010200",
+  "slug": "busan-geumjeong-nopo",
+  "items": [
+   {
+    "name": "부산종합버스터미널",
+    "evidence": "부산광역시 금정구 노포동 133 / 중앙대로 2238, 터미널 운행정보 페이지",
+    "url": "https://transportation.asamaru.net/시외버스/터미널/부산종합버스터미널/",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5173025000",
+  "slug": "gangwon-hoengseong-hoengseong",
+  "items": [
+   {
+    "name": "횡성시장",
+    "evidence": "강원특별자치도 횡성군 횡성읍 삼일로 4, 관광 쇼핑 안내 페이지",
+    "url": "https://www.ktriptips.com/kor/shopping/132271",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2638010100",
+  "slug": "busan-saha-goejeong",
+  "items": [
+   {
+    "name": "괴정역",
+    "evidence": "부산 사하구 괴정동, 낙동대로 지하221 (도시철도 1호선)",
+    "url": "https://itwiki.kr/w/%EA%B4%B4%EC%A0%95(%EB%B0%B1%EC%B2%9C%ED%94%BC%EB%B6%80%EA%B3%BC%EC%9D%98%EC%9B%90)%EC%97%AD",
+    "grade": "opened"
+   },
+   {
+    "name": "낙동대로",
+    "evidence": "괴정역 소재지 낙동대로 지하221, 사하구 괴정동에 있는 역으로 소개",
+    "url": "https://itwiki.kr/w/%EA%B4%B4%EC%A0%95(%EB%B0%B1%EC%B2%9C%ED%94%BC%EB%B6%80%EA%B3%BC%EC%9D%98%EC%9B%90)%EC%97%AD",
+    "grade": "opened"
+   }
+  ]
+ }
+]
