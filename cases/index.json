@@ -1,5 +1,88 @@
 [
  {
+  "slug": "case-20260821-gangwon-jeongseon-gohan",
+  "date": "2026-08-21",
+  "sido": "강원특별자치도",
+  "sigungu": "정선군",
+  "dong": "고한읍",
+  "region_slug": "gangwon-jeongseon-gohan",
+  "car": "2011년식 포르테 쿱",
+  "title": "고한읍 2011년식 포르테 쿱 폐차·수출 비교 상담 사례",
+  "summary": "2011년식 포르테 쿱 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "포르테 쿱"
+   ],
+   [
+    "연식",
+    "2011년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2011년식 포르테 쿱 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20260821-gangwon-jeongseon-gohan-1.jpg",
+  "photos": [
+   "case-20260821-gangwon-jeongseon-gohan-1.jpg",
+   "case-20260821-gangwon-jeongseon-gohan-2.jpg",
+   "case-20260821-gangwon-jeongseon-gohan-3.jpg",
+   "case-20260821-gangwon-jeongseon-gohan-4.jpg",
+   "case-20260821-gangwon-jeongseon-gohan-5.jpg",
+   "case-20260821-gangwon-jeongseon-gohan-6.jpg"
+  ],
+  "videos": []
+ },
+ {
+  "slug": "case-20230512-daegu-dalseo-yongsan",
+  "date": "2023-05-12",
+  "sido": "대구광역시",
+  "sigungu": "달서구",
+  "dong": "용산동",
+  "region_slug": null,
+  "car": "2009년식 베라크루즈",
+  "title": "용산동 2009년식 베라크루즈 폐차·수출 비교 상담 사례",
+  "summary": "2009년식 베라크루즈 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "베라크루즈"
+   ],
+   [
+    "연식",
+    "2009년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2009년식 베라크루즈 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230512-daegu-dalseo-yongsan-1.jpg",
+  "photos": [
+   "case-20230512-daegu-dalseo-yongsan-1.jpg",
+   "case-20230512-daegu-dalseo-yongsan-2.jpg",
+   "case-20230512-daegu-dalseo-yongsan-3.jpg"
+  ],
+  "videos": []
+ },
+ {
   "slug": "case-20230424-seoul-eunpyeong-sinsa",
   "date": "2023-04-24",
   "sido": "서울특별시",

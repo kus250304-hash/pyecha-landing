@@ -1,0 +1,374 @@
+[
+ {
+  "code": "4377025600",
+  "slug": "chungbuk-eumseong-daeso",
+  "items": [
+   {
+    "name": "대소초등학교",
+    "evidence": "충북 음성군 대소면 오태로 110-12 (학교 정보 페이지, 대소면은 지금의 대소읍)",
+    "url": "https://academy.prompie.com/schools/elementary-school/detail/nhyx4mm/대소초등학교/",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5271025000",
+  "slug": "jeonbuk-wanju-samnye",
+  "items": [
+   {
+    "name": "삼례문화예술촌",
+    "evidence": "전북특별자치도 완주군 삼례읍 삼례역로 81-13 (관광 정보 페이지)",
+    "url": "https://www.ktriptips.com/kor/tourspot/2469088",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5271025300",
+  "slug": "jeonbuk-wanju-bongdong",
+  "items": [
+   {
+    "name": "봉동시장",
+    "evidence": "전북특별자치도 완주군 봉동읍 봉동동서로 134-17, 5·10일 장 (쇼핑 정보 페이지)",
+    "url": "https://www.ktriptips.com/kor/shopping/132288",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5271025600",
+  "slug": "jeonbuk-wanju-yongjin",
+  "items": [
+   {
+    "name": "완주군청",
+    "evidence": "한국어 위키백과 용진읍: 2012년 완주군청이 이전하여 완주군청 소재지, 관청 소재지 용진읍 완주로 174",
+    "url": "https://ko.wikipedia.org/wiki/용진읍",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5178025000",
+  "slug": "gangwon-cheolwon-cheolwon",
+  "items": [
+   {
+    "name": "철원 노동당사",
+    "evidence": "강원특별자치도 철원군 철원읍 금강산로 265 (한국관광공사 영문 안내 페이지)",
+    "url": "https://english.visitkorea.or.kr/enu/ATR/SI_EN_3_1_1_1.jsp?cid=264485",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5178025300",
+  "slug": "gangwon-cheolwon-gimhwa",
+  "items": [
+   {
+    "name": "김화초등학교",
+    "evidence": "강원도 철원군 김화읍 김화로 551 (학교 정보 페이지)",
+    "url": "https://academy.prompie.com/schools/elementary-school/detail/lk5tary/",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5178025600",
+  "slug": "gangwon-cheolwon-galmal",
+  "items": [
+   {
+    "name": "삼부연폭포",
+    "evidence": "[24042] 강원특별자치도 철원군 갈말읍 신철원리 산 26-1 (한국관광 정보 페이지, 한탄강 유네스코 세계지질공원)",
+    "url": "https://www.ktriptips.com/kor/tourspot/125652",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5013010100",
+  "slug": "jeju-seogwipo-seogwi",
+  "items": [
+   {
+    "name": "서귀포매일올레시장",
+    "evidence": "[63595] 제주특별자치도 서귀포시 서귀동 340 (한국관광 쇼핑 정보 페이지)",
+    "url": "https://www.ktriptips.com/kor/shopping/1013258",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5013010200",
+  "slug": "jeju-seogwipo-beophwan",
+  "items": [
+   {
+    "name": "법환포구",
+    "evidence": "[63573] 제주특별자치도 서귀포시 법환동 (한국관광 정보 페이지, 제주올레 7코스)",
+    "url": "https://www.ktriptips.com/kor/tourspot/2738728",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2638010200",
+  "slug": "busan-saha-dangni",
+  "items": [
+   {
+    "name": "당리역",
+    "evidence": "한국어 위키백과: 부산광역시 사하구 낙동대로 지하405, 1·3·5·6번 출구는 당리동, 2·4번 출구는 하단동",
+    "url": "https://ko.wikipedia.org/wiki/당리역",
+    "grade": "opened"
+   },
+   {
+    "name": "낙동대로",
+    "evidence": "한국어 위키백과: 당리역 소재지 부산광역시 사하구 낙동대로 지하405, 출구 1·3·5·6번이 당리동",
+    "url": "https://ko.wikipedia.org/wiki/당리역",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1129010100",
+  "slug": "seoul-seongbuk-seongbuk",
+  "items": [
+   {
+    "name": "길상사",
+    "evidence": "[02839] 서울특별시 성북구 선잠로5길 68 (성북동) (한국관광 정보 페이지)",
+    "url": "https://www.ktriptips.com/kor/tourspot/128866",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2823710200",
+  "slug": "incheon-bupyeong-sipjeong",
+  "items": [
+   {
+    "name": "동암역",
+    "evidence": "한국어 위키백과: 소재지 인천광역시 부평구 동암광장로 10, 행정구역상 부평구 십정동",
+    "url": "https://ko.wikipedia.org/wiki/동암역",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2823710300",
+  "slug": "incheon-bupyeong-sangok",
+  "items": [
+   {
+    "name": "산곡역",
+    "evidence": "한국어 위키백과: 소재지 인천광역시 부평구 길주로 지하379 (산곡동)",
+    "url": "https://ko.wikipedia.org/wiki/산곡역",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4425010100",
+  "slug": "chungnam-gyeryong-geumam",
+  "items": [
+   {
+    "name": "계룡시청",
+    "evidence": "한국어 위키백과: 청사 소재지 계룡시 장안길 30 (금암동 10)",
+    "url": "https://ko.wikipedia.org/wiki/계룡시청",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4117110100",
+  "slug": "gyeonggi-anyang-manan-anyang",
+  "items": [
+   {
+    "name": "안양역",
+    "evidence": "한국어 위키백과: 경기도 안양시 만안구 안양동에 있는 경부선의 철도역, 소재지 만안로 244",
+    "url": "https://ko.wikipedia.org/wiki/안양역",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4117110200",
+  "slug": "gyeonggi-anyang-manan-seoksu",
+  "items": [
+   {
+    "name": "안양예술공원",
+    "evidence": "경기도 안양시 만안구 예술공원로131번길 7 (석수동) (관광 정보 페이지)",
+    "url": "https://www.ktriptips.com/kor/tourspot/125514",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4117110300",
+  "slug": "gyeonggi-anyang-manan-bakdal",
+  "items": [
+   {
+    "name": "박달시장",
+    "evidence": "경기도 안양시 만안구 박달우회로124번길 41 (박달동) (쇼핑 정보 페이지)",
+    "url": "https://www.ktriptips.com/kor/shopping/132800",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2771026500",
+  "slug": "daegu-dalseong-hyeonpung",
+  "items": [
+   {
+    "name": "현풍백년도깨비시장",
+    "evidence": "[43003] 대구광역시 달성군 현풍읍 비슬로130길 53-1 (한국관광 정보 페이지, 현풍장)",
+    "url": "https://www.ktriptips.com/kor/shopping/1435275",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2723010100",
+  "slug": "daegu-bukgu-chilseong",
+  "items": [
+   {
+    "name": "칠성시장",
+    "evidence": "한국어 위키백과: 대구광역시 북구 칠성동에 위치한 전통시장 / 관광 정보 페이지 주소 대구광역시 북구 칠성시장로 28",
+    "url": "https://ko.wikipedia.org/wiki/칠성시장",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2723010300",
+  "slug": "daegu-bukgu-goseong",
+  "items": [
+   {
+    "name": "대구시민운동장",
+    "evidence": "대구광역시 북구 고성로 191, 본문 '대구광역시 북구 고성 3동에 위치' (관광 정보 페이지), 위키백과 '고성로 191 (고성동3가 2번지)'",
+    "url": "https://www.ktriptips.com/kor/leisure/1353888",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2632010100",
+  "slug": "busan-bukgu-geumgok",
+  "items": [
+   {
+    "name": "금곡역",
+    "evidence": "한국어 위키백과: 부산광역시 북구 금곡대로 685, 북구 금곡동에 있는 부산 도시철도 2호선 역",
+    "url": "https://ko.wikipedia.org/wiki/금곡역_(부산)",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2632010300",
+  "slug": "busan-bukgu-mandeok",
+  "items": [
+   {
+    "name": "만덕역",
+    "evidence": "한국어 위키백과: 부산광역시 북구 만덕대로 지하291, 북구 만덕동에 있는 부산 도시철도 3호선 역",
+    "url": "https://ko.wikipedia.org/wiki/만덕역",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1130510200",
+  "slug": "seoul-gangbuk-beon",
+  "items": [
+   {
+    "name": "북서울꿈의숲",
+    "evidence": "[01228] 서울특별시 강북구 월계로 173 (번동) (관광 정보 페이지)",
+    "url": "https://www.ktriptips.com/kor/tourspot/822384",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4119410100",
+  "slug": "gyeonggi-bucheon-sosa-sosabon",
+  "items": [
+   {
+    "name": "서울신학대학교",
+    "evidence": "경기도 부천시 소사구 호현로489번길 52 (소사본동) (대학원 공시 정보 페이지)",
+    "url": "https://phdkim.net/gradinfo/school/367",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4119410200",
+  "slug": "gyeonggi-bucheon-sosa-simgokbon",
+  "items": [
+   {
+    "name": "부천역 남부광장",
+    "evidence": "부천시 심곡본동 지역 도시재생 뉴딜사업 선정 기사, 사업 범위 '경인선 부천역 남부광장 일원' (경기일보 2019-11-04)",
+    "url": "https://www.kyeonggi.com/article/201911041096286",
+    "grade": "opened"
+   },
+   {
+    "name": "부천역",
+    "evidence": "부천시 심곡본동 지역 도시재생 뉴딜사업 선정 기사, 사업 범위 '경인선 부천역 남부광장 일원' (경기일보 2019-11-04)",
+    "url": "https://www.kyeonggi.com/article/201911041096286",
+    "grade": "opened"
+   },
+   {
+    "name": "남부광장",
+    "evidence": "부천시 심곡본동 지역 도시재생 뉴딜사업 선정 기사, 사업 범위 '경인선 부천역 남부광장 일원' (경기일보 2019-11-04)",
+    "url": "https://www.kyeonggi.com/article/201911041096286",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4119410300",
+  "slug": "gyeonggi-bucheon-sosa-beombak",
+  "items": [
+   {
+    "name": "범박중학교",
+    "evidence": "경기도 부천시 양지남로 69-16 (범박동) (학교 정보 페이지)",
+    "url": "https://academy.prompie.com/schools/middle-school/detail/3a4kr40/범박중학교/",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4119610100",
+  "slug": "gyeonggi-bucheon-ojeong-ojeong",
+  "items": [
+   {
+    "name": "오정대공원",
+    "evidence": "경기도 부천시 상오정로 183 (오정동) (한국관광 정보 페이지)",
+    "url": "https://www.ktriptips.com/kor/tourspot/2736380",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4119610200",
+  "slug": "gyeonggi-bucheon-ojeong-yeowol",
+  "items": [
+   {
+    "name": "여월농업공원",
+    "evidence": "부천시 오정구 여월동 98-5 일대 옛 여월정수장 부지 (경기일보 2013-04-28 기사)",
+    "url": "https://kyeonggi.com/article/201304280508762",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4119610300",
+  "slug": "gyeonggi-bucheon-ojeong-jak",
+  "items": [
+   {
+    "name": "까치울정수장",
+    "evidence": "'오정구 작동 작동산 중턱에 자리잡은 까치울정수장' (경기일보 기사)",
+    "url": "https://www.kyeonggi.com/article/200210250152387",
+    "grade": "opened"
+   },
+   {
+    "name": "작동산",
+    "evidence": "'오정구 작동 작동산 중턱에 자리잡은 까치울정수장' (경기일보 기사)",
+    "url": "https://www.kyeonggi.com/article/200210250152387",
+    "grade": "opened"
+   }
+  ]
+ }
+]
