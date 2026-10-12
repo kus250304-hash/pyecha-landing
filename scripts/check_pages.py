@@ -379,6 +379,7 @@ def check_gu_pages(cfg: dict, sitemap: str, all_sidos: set[str]) -> list[str]:
                     ('action="https://api.web3forms.com/submit"', "Web3Forms 주소"), ('method="POST"', "POST"),
                     (f'name="access_key" value="{cfg["web3forms_access_key"]}"', "access_key"),
                     ('name="subject" value="[견적문의] ', "메일 제목"), (f'name="redirect" value="{base_url}/thanks.html"', "thanks.html 이동"),
+                    ('name="Page"', "Page 칸"), ('name="PageTitle"', "PageTitle 칸"), ('name="Source"', "Source 칸"), ('name="Referrer"', "Referrer 칸"),
                 ) if needle not in form]
                 if missing:
                     problems.append(f"{tag}: 견적 폼 {i}번에 {', '.join(missing)} 없음 (문의가 전송되지 않음)")
@@ -749,6 +750,7 @@ def main() -> None:
                     (f'name="access_key" value="{site_cfg["web3forms_access_key"]}"', "access_key"),
                     ('name="subject" value="[견적문의] ', "메일 제목"),
                     (f'name="redirect" value="{base}/thanks.html"', "thanks.html 이동"),
+                    ('name="Page"', "Page 칸"), ('name="PageTitle"', "PageTitle 칸"), ('name="Source"', "Source 칸"), ('name="Referrer"', "Referrer 칸"),
                 ) if needle not in f]
                 if problems:
                     errors.append(f"{tag}: 견적 폼 {i}번에 {', '.join(problems)} 없음 (문의가 전송되지 않음)")

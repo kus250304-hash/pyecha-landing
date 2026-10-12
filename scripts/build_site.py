@@ -22,7 +22,7 @@ import sys
 from collections import Counter
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from urllib.parse import quote
+from urllib.parse import quote, unquote
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from sitemap_lib import update_sitemap
@@ -183,9 +183,11 @@ def contact_parts(cfg: dict, dong: str) -> dict:
             "HERO_BUTTONS": hero_btns}
 
 
-def form_parts(cfg: dict, subject_region: str, region_full: str) -> dict:
-    """견적 폼 자리(FORM_ACTION·FORM_METHOD·FORM_HIDDEN·REGION_FULL_NAME). 동·구 페이지가 같이 쓴다.
-    Web3Forms 로 보내고, 받는 메일 제목에 어느 페이지에서 온 문의인지 보이게 한다."""
+def form_parts(cfg: dict, subject_region: str, region_full: str, page_url: str = "", page_title: str = "") -> dict:
+    """견적 폼 자리(FORM_ACTION·FORM_METHOD·FORM_HIDDEN·REGION_FULL_NAME). 동·구·시 페이지가 같이 쓴다.
+    Web3Forms 로 보내고, 받는 메일 제목에 어느 페이지에서 온 문의인지 보이게 한다.
+    숨은 칸 Page·PageTitle·Source·Referrer(2026-10-12)는 템플릿 스크립트가 실제 주소(한글)·src·referrer 로 채우고,
+    스크립트가 막혔을 때는 여기 넣은 기본값(canonical 한글 주소·제목·없음·직접)이 간다."""
     if cfg.get("web3forms_access_key"):
         base = cfg["site_base_url"].rstrip("/")
         hidden = (
@@ -193,6 +195,10 @@ def form_parts(cfg: dict, subject_region: str, region_full: str) -> dict:
             f'<input type="hidden" name="subject" value="{esc("[견적문의] " + subject_region)}">'
             f'<input type="hidden" name="from_name" value="폐차 견적 폼">'
             f'<input type="hidden" name="redirect" value="{base}/thanks.html">'
+            f'<input type="hidden" name="Page" value="{esc(unquote(page_url))}">'
+            f'<input type="hidden" name="PageTitle" value="{esc(page_title)}">'
+            '<input type="hidden" name="Source" value="없음">'
+            '<input type="hidden" name="Referrer" value="직접">'
         )
         action, method = WEB3FORMS_URL, "POST"
     else:
@@ -596,7 +602,7 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
         "PHONE_TEL": phone_tel,
         "PHONE_DISPLAY": phone_disp,
         "HOURS_HTML": hours,
-        **form_parts(cfg, " ".join(x for x in (SIDO_SHORT[r["sido"]], r["sigungu"], r["dong"]) if x), full),
+        **form_parts(cfg, " ".join(x for x in (SIDO_SHORT[r["sido"]], r["sigungu"], r["dong"]) if x), full, canonical, meta_title),
         **contact_parts(cfg, r["dong"]),
         "LOCAL_FAQ_HTML": local_faq_html,
         "AREA_LINKS": area_links_html(regions, list(gu_data), here_dong=r),

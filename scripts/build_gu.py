@@ -236,7 +236,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
             "PHONE_TEL": phone_tel, "PHONE_DISPLAY": phone_disp,
             "YOUTUBE_URL": esc(cfg["youtube_url"]), "BLOG_URL": esc(cfg["blog_url"]),
             **contact_parts(cfg, gu),
-            **form_parts(cfg, " ".join(x for x in (SIDO_SHORT[sido], sigungu) if x), gu_full),
+            **form_parts(cfg, " ".join(x for x in (SIDO_SHORT[sido], sigungu) if x), gu_full, canonical, meta_title),
             "SCRIPT": script.replace("{{PHONE_DISPLAY}}", phone_disp),
             # 대표 이미지(og:image, 2026-10-10): og/{구 파일 이름}.png, "{시군구} 폐차장" + 대표번호
             **og_image.parts(gu_file(sido, sigungu)[:-5], title_name, base, phone_disp, suffix="폐차장"),

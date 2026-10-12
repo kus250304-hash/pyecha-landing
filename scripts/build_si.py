@@ -176,7 +176,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
             "PHONE_TEL": phone_tel, "PHONE_DISPLAY": phone_disp,
             "YOUTUBE_URL": esc(cfg["youtube_url"]), "BLOG_URL": esc(cfg["blog_url"]),
             **contact_parts(cfg, si),
-            **form_parts(cfg, si, sido),
+            **form_parts(cfg, si, sido, canonical, meta_title),
             "SCRIPT": script.replace("{{PHONE_DISPLAY}}", phone_disp),
             # 대표 이미지(og:image, 2026-10-10): og/{시·도 파일 이름}.png, "{시도} 폐차" + 대표번호
             **og_image.parts(si_file(sido)[:-5], si, base, phone_disp),
