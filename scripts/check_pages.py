@@ -18,6 +18,7 @@
 """
 import argparse
 import csv
+import html as html_lib
 import json
 import re
 import sys
@@ -247,7 +248,7 @@ def check_faq_first_sentence() -> list[str]:
     """FAQ 답 첫 문장 규칙(2026-10-10, variants.FAQ_ANSWER_RULE): 네/아니요로 답할 질문은 "네, "·"아니요, " + 이유 한 줄로 시작.
     동(regions.json)·구(gu.json)·시(si.json) FAQ, 공통·통화 FAQ 풀, 안내 페이지 FAQ 를 모두 본다."""
     import variants as V
-    from build_guide import GUIDES
+    from build_guide import ALL_GUIDES as GUIDES
     sources = [(f"지역 {r['slug']}", r.get("faqs") or []) for r in json.loads(REGIONS_PATH.read_text(encoding="utf-8"))]
     for name in ("gu", "si"):
         f = ROOT / "data" / f"{name}.json"
@@ -512,7 +513,7 @@ GUIDE_BAN_RE = re.compile(r"보장|무조건|100%|1위|1등|최저가|최고가|
 
 def check_guide_pages(cfg: dict, sitemap: str) -> list[str]:
     """공통 안내 페이지(guide/, 2026-10-01): 5장이 다 있는지, 필수 요소·footer·금액·단정 표현·연락처·sitemap."""
-    from build_guide import GUIDES
+    from build_guide import ALL_GUIDES as GUIDES
     problems = []
     names = {g["file"] for g in GUIDES}
     for p in sorted((ROOT / "guide").glob("*.html")) if (ROOT / "guide").exists() else []:
@@ -546,7 +547,56 @@ def check_guide_pages(cfg: dict, sitemap: str) -> list[str]:
             problems.append(f"{tag}: 금액 표현 '{m.group(0)}' → …{body[max(0, m.start()-15):m.end()+15]}…")
         if f"/guide/{quote(g['file'])}<" not in sitemap:
             problems.append(f"{tag}: sitemap.xml 에 없음")
+        if "answer" in g:
+            problems += [f"{tag}: {x}" for x in topic_problems(g, html, cfg)]
     return problems
+
+
+def topic_problems(t: dict, html: str, cfg: dict) -> list[str]:
+    """주제 페이지(2026-10-14, scripts/topics.py): 첫 화면이 동 페이지와 같은 순서(길 안내·날짜 → 제목 → 제목 아래 한 문장 →
+    전화 버튼 → 폼 2칸 → 문자 한 줄)인지, 대표 이미지·하단 폼·폼 스크립트·숨은 칸이 있는지.
+    원부·압류·저당 같은 말은 1~3번(압류·차령초과·저당) 페이지 첫 화면에만 쓸 수 있다."""
+    out = []
+    hero = re.search(r'<header class="hero hero-v3">.*?</header>', html, flags=re.DOTALL)
+    if not hero:
+        return ["첫 화면(hero-v3) 없음"]
+    h = hero.group(0)
+    order = ['<div class="hero-meta">', '<h1 class="display">', '<p class="hero-lead">', 'class="btn btn-call hero-call" href="tel:',
+             '<form class="quote-form"', '<p class="hero-sms">']
+    pos = [h.find(x) for x in order]
+    if -1 in pos or pos != sorted(pos):
+        out.append("첫 화면 순서가 '길 안내·날짜 → 제목 → 한 문장 → 전화 버튼 → 폼 → 문자 한 줄' 이 아님")
+    if f'<h1 class="display">{html_lib.escape(t["h1"])}</h1>' not in h:
+        out.append(f"제목(H1)이 '{t['h1']}' 가 아님")
+    form = re.search(r'<form class="quote-form".*?</form>', h, flags=re.DOTALL)
+    fields = re.findall(r'<input (?![^>]*type="(?:hidden|checkbox)")[^>]*name="([^"]+)"', form.group(0)) if form else []
+    if fields != ["plate", "phone"]:
+        out.append(f"첫 화면 폼 칸이 차량번호·연락처 2개가 아님 (지금 {fields})")
+    if "원부" not in t["lead"]:
+        visible = re.sub(r"<[^>]+>", " ", re.sub(r'<input type="hidden"[^>]*>', "", h))
+        m = HERO_BAN_RE.search(visible.replace(t["h1"], ""))
+        if m:
+            out.append(f"첫 화면에 '{m.group(0)}' 같은 어려운 말이 있음")
+    forms = re.findall(r"<form\b[^>]*>.*?</form>", html, flags=re.DOTALL)
+    if len(forms) != 2:
+        out.append(f"견적 폼이 {len(forms)}개 (첫 화면 + 하단, 2개여야 함)")
+    base = cfg["site_base_url"].rstrip("/")
+    for i, f in enumerate(forms, 1):
+        missing = [label for needle, label in (
+            ('name="Page"', "Page 칸"), ('name="PageTitle"', "PageTitle 칸"), ('name="Source"', "Source 칸"), ('name="Referrer"', "Referrer 칸"),
+            (f'name="redirect" value="{base}/thanks.html"', "thanks.html 이동"), (CONSENT_TEXT, "개인정보처리방침 동의 안내"),
+        ) if needle not in f]
+        if missing:
+            out.append(f"견적 폼 {i}번에 {', '.join(missing)} 없음")
+    if "function formatPhone" not in html:
+        out.append("견적 폼 전송 스크립트 없음")
+    if f'<meta property="og:image" content="{base}/og/{quote(t["file"][:-5])}.png">' not in html:
+        out.append("대표 이미지(og:image) 태그 없음")
+    if not (ROOT / "og" / f"{t['file'][:-5]}.png").exists():
+        out.append(f"og/{t['file'][:-5]}.png 파일 없음")
+    if "폐차 사전 " not in html or 'id="answer"' not in html:
+        out.append("한 줄 답 칸이나 '폐차 사전 n/30' 조각이 없음")
+    return out
 
 
 # 견인비 단정 표현(2026-10-03): 먼 거리·시동 불가 등은 견인비를 빼고 안내한 경우가 실제로 있어

@@ -33,15 +33,18 @@ def sms_link(cfg: dict, region: str) -> str:
     return f"sms:{cfg['sms_number']}?&body={quote(body, safe='')}"
 
 
-def hero_top_html(cfg: dict, region: str, form: dict, crumb: str = "", updated: str = "", prefix: str = "../") -> str:
+def hero_top_html(cfg: dict, region: str, form: dict, crumb: str = "", updated: str = "", prefix: str = "../",
+                  h1: str = "", lead: str = "") -> str:
     """<header class="hero hero-v3"> 안쪽. form 은 build_site.form_parts 결과(숨은 칸 Page·PageTitle·Source·Referrer 포함).
-    region 은 H1 의 지역명("역삼동", "강남구", "서울", 홈은 "전국"). crumb·updated 가 비면 ① 줄을 넣지 않는다(홈)."""
+    region 은 H1 의 지역명("역삼동", "강남구", "서울", 홈은 "전국"). crumb·updated 가 비면 ① 줄을 넣지 않는다(홈).
+    주제 페이지(2026-10-14, scripts/topics.py)는 h1 에 주제 제목, lead 에 그 아래 한 문장을 넘긴다(region 은 문자 본문에만 쓰임)."""
     lines = ['  <div class="wrap">']
     if crumb or updated:
         lines.append('    <div class="hero-meta">' + crumb
                      + (f'<p class="updated">최종 업데이트: {updated}</p>' if updated else "") + "</div>")
     lines += [
-        f'    <h1 class="display">{esc(region)} {HERO_H1_TAIL}</h1>',
+        (f'    <h1 class="display">{esc(h1)}</h1>\n    <p class="hero-lead">{esc(lead)}</p>' if h1
+         else f'    <h1 class="display">{esc(region)} {HERO_H1_TAIL}</h1>'),
         f'    <a class="btn btn-call hero-call" href="tel:{esc(cfg["phone_tel"])}">📞 {esc(cfg["phone_display"])} 지금 전화</a>',
         '    <p class="hero-call-note">급하시면 전화가 가장 빠릅니다</p>',
         '    <div class="quote-card quote-mini" id="quote">',

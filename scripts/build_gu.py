@@ -42,6 +42,7 @@ import variants as V
 import og_image
 import analytics
 from first_screen import hero_top_html, why_block_html
+from build_guide import guide_links_html
 from vehicle_stats import registration_row, with_registration
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -221,6 +222,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
             "AREA_LINKS": area_links_html(regions, gu_data, here_gu=g),
             "STYLE": style, "SPRITE": sprite, "BREADCRUMB": crumb_html,
             # 첫 화면(2026-10-13, scripts/first_screen.py)과 폼 바로 아래 "왜 비교해 드리나"
+            "TYPE_LINKS": guide_links_html(),
             "HERO_TOP": hero_top_html(cfg, gu, form_parts(cfg, " ".join(x for x in (SIDO_SHORT[sido], sigungu) if x), gu_full, canonical, meta_title),
                                       crumb=crumb_html, updated=UPDATED_MARK),
             "WHY_BLOCK": why_block_html(f"{gu_full} 폐차 상담 · 당일 접수", V.fill(v_intro["hero"], gu=gu)),

@@ -160,9 +160,10 @@ def contact_parts(cfg: dict, dong: str) -> dict:
     sms_btn = f'<a class="btn btn-sms" {sms_href}><svg><use href="#i-chat"/></svg>문자로 문의</a>' if sms else ""
     kakao = cfg.get("kakao_channel_url")
     kakao_btn = f'<a class="btn btn-kakao" href="{esc(kakao)}" target="_blank" rel="noopener noreferrer">카카오톡 채널</a>' if kakao else ""
+    kakao_bar = (f'<a class="btn btn-kakao" href="{esc(kakao)}" target="_blank" rel="noopener noreferrer">카톡</a>' if kakao else "")
     if sms:
-        bar_second = f'<a class="btn btn-sms" {sms_href}><svg><use href="#i-chat"/></svg>문자</a>'
-        bar_cols = "2fr 1fr"
+        bar_second = f'<a class="btn btn-sms" {sms_href}><svg><use href="#i-chat"/></svg>문자</a>' + kakao_bar
+        bar_cols = "2fr 1fr 1fr" if kakao else "2fr 1fr"
     else:
         bar_second = '<a class="btn btn-quote" href="#quote" style="background:#fff"><svg><use href="#i-chat"/></svg>견적 남기기</a>'
         bar_cols = "3fr 2fr"
@@ -210,6 +211,7 @@ WEB3FORMS_URL = "https://api.web3forms.com/submit"
 
 
 from first_screen import sms_link, hero_top_html, why_block_html  # 첫 화면(2026-10-13)
+from build_guide import guide_links_html  # "폐차 유형별 안내" 칸 링크(2026-10-14)
 
 
 SIDO_SHORT = {
@@ -443,7 +445,7 @@ def area_links_html(regions: list[dict], gu_data: list[dict], prefix: str = "../
     """모든 페이지 맨 아래 지역 링크 목록(2026-10-01).
     동 페이지: 같은 구의 다른 동 + 그 구·시·도 페이지(시·도 16개 목록은 넣지 않음, 2026-10-10). 구 페이지: 그 시·도 페이지 + 같은 시·도의 다른 구 페이지.
     모든 페이지: 폐차 안내 5장, 동 페이지 빼고 시·도 16개(시·도 페이지가 있으면 그 페이지, 없으면 첫 화면의 그 시·도 칸으로 연결)."""
-    from build_guide import GUIDES
+    from build_guide import ALL_GUIDES as GUIDES  # 안내 5장 + 주제 5장(2026-10-14)
     from build_index import SIDO_ORDER
     gu_keys = {(g["sido"], g["sigungu"]) for g in gu_data}
     blocks = []
@@ -609,6 +611,7 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
         **form_parts(cfg, " ".join(x for x in (SIDO_SHORT[r["sido"]], r["sigungu"], r["dong"]) if x), full, canonical, meta_title),
         **contact_parts(cfg, r["dong"]),
         "LOCAL_FAQ_HTML": local_faq_html,
+        "TYPE_LINKS": guide_links_html(),  # 안내·주제 페이지 10장(2026-10-14)
         "HERO_TOP": hero_top_html(cfg, title_region if is_renamed(r) else r["dong"],
                                   form_parts(cfg, " ".join(x for x in (SIDO_SHORT[r["sido"]], r["sigungu"], r["dong"]) if x), full, canonical, meta_title),
                                   crumb=breadcrumb(r, gu_pages), updated=UPDATED_MARK),

@@ -242,6 +242,33 @@ for _g in GUIDES:
     _g["sections"].append(("손님이 자주 걱정하는 것", "실제 상담 전화에서 자주 듣는 걱정과 답입니다", [("list", WORRIES[_g["file"]])]))
 
 
+# 안내 5장의 첫 화면(예전 모양 그대로, 2026-10-14 templates/guide.html 에서 옮김). 주제 페이지는 first_screen.hero_top_html
+OLD_HERO = """<header class="hero">
+  <div class="wrap">
+    <p class="updated">최종 업데이트: {{UPDATED_ON}}</p>
+    {{BREADCRUMB}}
+    <span class="badge">폐차 안내 · 전국 출장 방문 상담</span>
+    <h1 class="display">{{H1}}</h1>
+    <p class="oneplus" style="margin:0 0 16px;font-weight:800;font-size:clamp(16px,4.4vw,19px);line-height:1.4">폐차 견적 1+1 — 폐차값과 수출값, 둘 다 알려드려요<small style="display:block;margin-top:4px;font-size:13px;font-weight:400;opacity:.85">1+1은 폐차 견적과 수출 견적, 두 가지를 함께 드린다는 뜻입니다.</small></p>
+    <p class="sub">{{LEAD}}</p>
+    <a class="btn btn-call" href="tel:{{PHONE_TEL}}"><svg><use href="#i-phone"/></svg>{{PHONE_DISPLAY}} 지금 전화하기</a>
+    <p class="hint">{{CONTACT_LINE}}</p>
+    <div class="trust"><span>전국 협력 네트워크</span><span>견인비 대부분 별도 청구 없음</span><span>당일 접수</span></div>
+  </div>
+</header>
+"""
+
+
+# 주제 페이지 5장(2026-10-14, scripts/topics.py). FAQ 는 실제 통화 FAQ 풀(variants.CALL_FAQ)·공통 질문에서 질문으로 가져온다
+from topics import TOPICS, GUIDE_CROSS_LINKS  # noqa: E402
+import variants as _V  # noqa: E402
+
+_FAQ_POOL = dict(_V.CALL_FAQ) | dict(zip(_V.COMMON_FAQ_QUESTIONS, _V.DONG_FAQ[0]))
+for _t in TOPICS:
+    _t["faqs"] = [(q, _FAQ_POOL[q]) for q in _t["faq_questions"]] + list(_t["faqs_extra"])
+ALL_GUIDES = GUIDES + TOPICS  # 상단 메뉴·맨 아래 "폐차 안내" 링크·유형별 안내 링크는 이 10장
+
+
 def section_html(i: int, h2: str, sub: str, parts: list, esc) -> str:
     body = []
     for kind, val in parts:
@@ -253,6 +280,8 @@ def section_html(i: int, h2: str, sub: str, parts: list, esc) -> str:
             body.append('<ol class="steps">' + "".join(f"<li><b>{esc(b)}</b><span>{esc(s)}</span></li>" for b, s in val) + "</ol>")
         elif kind == "rows":
             body.append('<div class="docs">' + "".join(f'<div class="row"><b>{esc(b)}</b><span>{esc(s)}</span></div>' for b, s in val) + "</div>")
+        elif kind == "links":  # 주제 페이지 링크(2026-10-14)
+            body.append(related_html(val, esc))
         elif kind == "list":
             body.append('<ul class="guide-list">' + "".join(f"<li><b>{esc(b)}</b>{esc(s)}</li>" for b, s in val) + "</ul>")
         else:
@@ -276,11 +305,109 @@ def guide_text(g: dict) -> str:
     return " ".join(out)
 
 
+def guide_links_html(prefix: str = "../") -> str:
+    """동·구·시 페이지 "폐차 유형별 안내" 칸에 넣는 안내 10장 링크 한 줄(2026-10-14)."""
+    from build_site import esc
+    return ('<p class="type-links"><b>유형별 자세한 안내</b> '
+            + " · ".join(f'<a href="{prefix}guide/{esc(x["file"])}">{esc(x["nav"])}</a>' for x in ALL_GUIDES) + "</p>")
+
+
+def related_html(files: list[str], esc) -> str:
+    """안내·주제 페이지 사이 링크 한 줄: "관련 안내: 압류 있는 차 · 차령초과 말소"."""
+    nav = {x["file"]: x["nav"] for x in ALL_GUIDES}
+    return ('<p class="note related">관련 안내: '
+            + " · ".join(f'<a href="{esc(f)}">{esc(nav[f])}</a>' for f in files) + "</p>")
+
+
+def topic_text(t: dict) -> str:
+    out = [t["h1"], t["lead"], t["desc"], t["answer"], t["hook"], t["route"]]
+    out += [x for pair in t["pieces"] + t["worries"] + t["faqs"] for x in pair]
+    return " ".join(out)
+
+
+def topic_sections_html(t: dict, n0: int, cases: list[dict], esc) -> str:
+    """주제 페이지 본문: 한 줄 답 → 조각("폐차 사전 n/30") + 내 차는 어디로(상담) → 걱정 3개 → 같은 상황 사례(있을 때만)."""
+    from build_site import case_cards_html
+    total = len(TOPICS) * 6
+    pieces = "".join(
+        f'<li><span class="piece-no">폐차 사전 {n0 + k}/{total}</span><b>{esc(h)}</b><span>{esc(x)}</span></li>'
+        for k, (h, x) in enumerate(t["pieces"]))
+    out = [
+        '  <section id="answer" style="background:#fff">\n    <div class="wrap">\n'
+        '      <h2 class="sec-title display">한 줄로 답하면</h2>\n'
+        f'      <div class="local answer"><p><b>{esc(t["answer"])}</b></p><p>{esc(t["hook"])}</p></div>\n'
+        f'      {related_html(t["related"], esc)}\n    </div>\n  </section>\n',
+        '  <section id="pieces">\n    <div class="wrap">\n'
+        '      <h2 class="sec-title display">알아 두면 좋은 조건과 절차</h2>\n'
+        '      <p class="sec-sub">규칙은 숨기지 않고 다 적었습니다. 내 차가 어느 쪽인지는 원부와 차 상태를 합쳐 봐야 나옵니다</p>\n'
+        f'      <ol class="steps pieces">{pieces}</ol>\n'
+        '      <div class="route">\n        <h3>내 차는 어디로?</h3>\n'
+        f'        <p>{esc(t["route"])}</p>\n'
+        '        <p class="oneplus">폐차 견적 1+1 — 폐차값과 수출값, 둘 다 알려드려요<small>1+1은 폐차 견적과 수출 견적, 두 가지를 함께 드린다는 뜻입니다.</small></p>\n'
+        '        <p class="exit">차 번호·지역만 문자 주셔도 됩니다. 답만 받고 안 하셔도 됩니다.</p>\n'
+        '      </div>\n    </div>\n  </section>\n',
+        '  <section id="worries" style="background:#fff">\n    <div class="wrap">\n'
+        '      <h2 class="sec-title display">손님이 자주 걱정하는 것</h2>\n'
+        '      <p class="sec-sub">실제 상담 전화에서 자주 듣는 걱정과 답입니다</p>\n'
+        '      <ul class="guide-list">' + "".join(f"<li><b>{esc(h)}</b>{esc(x)}</li>" for h, x in t["worries"]) + "</ul>\n"
+        '    </div>\n  </section>\n',
+    ]
+    by_slug = {c["slug"]: c for c in cases}
+    picked = [by_slug[x] for x in t["cases"] if x in by_slug]
+    if picked:
+        out.append('  <section id="cases">\n    <div class="wrap">\n'
+                   '      <h2 class="sec-title display">같은 상황의 실제 사례</h2>\n'
+                   '      <p class="sec-sub">지역은 카드마다 표시됩니다</p>\n'
+                   f'      {case_cards_html(picked)}\n    </div>\n  </section>\n')
+    return "".join(out)
+
+
+def shorts_html(t: dict, esc) -> str:
+    """유튜브 쇼츠 자리. 주소가 없으면 칸을 그리지 않고 자리 표시만 남긴다."""
+    url = (t.get("shorts") or "").strip()
+    m = re.search(r"(?:shorts/|youtu\.be/|v=)([A-Za-z0-9_-]{6,})", url)
+    if not m:
+        return "<!-- [쇼츠 자리] scripts/topics.py 의 shorts 에 쇼츠 주소를 넣으면 여기에 영상이 들어갑니다 -->\n"
+    vid = m.group(1)
+    return ('  <section id="shorts" style="background:#fff">\n    <div class="wrap">\n'
+            '      <h2 class="sec-title display">영상으로 보기</h2>\n'
+            '      <div class="videos"><figure class="video short">'
+            f'<iframe src="https://www.youtube-nocookie.com/embed/{esc(vid)}" title="{esc(t["nav"])} 쇼츠" loading="lazy" '
+            'allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" '
+            'referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
+            f'<figcaption><a href="{esc(url)}" target="_blank" rel="noopener noreferrer">유튜브에서 보기</a></figcaption></figure></div>\n'
+            '    </div>\n  </section>\n')
+
+
+BOTTOM_FORM = """      <div class="quote-card" style="margin-top:16px;text-align:left">
+        <h3>폐차·수출 견적 1+1 신청</h3>
+        <p class="lead">차량번호와 연락처만 남기시면 바로 연락드립니다</p>
+        <form class="quote-form" action="{FORM_ACTION}" method="{FORM_METHOD}">
+          {FORM_HIDDEN}
+          <input type="hidden" name="region" value="{REGION_FULL_NAME}">
+          <input type="hidden" name="form" value="하단 견적 폼">
+          <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
+          <label for="t2-plate">차량번호</label>
+          <input id="t2-plate" name="plate" type="text" inputmode="text" placeholder="예: 12가 3456" autocomplete="off">
+          <label for="t2-phone">연락처</label>
+          <input id="t2-phone" name="phone" type="tel" inputmode="tel" placeholder="010-0000-0000" maxlength="13" required autocomplete="tel">
+          <label for="t2-car">연식 또는 차종 (선택)</label>
+          <input id="t2-car" name="car" type="text" placeholder="예: 2015 그랜저" autocomplete="off">
+          <button class="btn btn-call" type="submit"><svg><use href="#i-chat"/></svg>폐차·수출 비교 견적 받기</button>
+          <p class="fine">남겨주신 정보는 견적 상담 연락에만 쓰며, 문의 시 <a href="../privacy.html">개인정보처리방침</a>에 동의한 것으로 봅니다.</p>
+        </form>
+      </div>"""
+
+
 def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], keep_dates: bool = False) -> list[str]:
-    """안내 페이지 5장을 렌더링하고, 내용이 바뀐 페이지 경로("guide/…", %인코딩) 목록을 돌려준다."""
-    from build_site import UPDATED_MARK, area_links_html, esc, page_jsonld, with_updated_date
+    """안내 페이지 5장과 주제 페이지 5장(2026-10-14)을 렌더링하고, 내용이 바뀐 페이지 경로("guide/…", %인코딩) 목록을 돌려준다."""
+    from build_site import (CASES_INDEX, UPDATED_MARK, area_links_html, esc, form_parts, load_json, page_jsonld,
+                            with_updated_date)
+    from first_screen import hero_top_html, sms_link
+    import og_image
 
     problems = [f"{g['file']}: 금액·단정 표현 '{m.group(0)}'" for g in GUIDES for m in [BAN_RE.search(guide_text(g))] if m]
+    problems += [f"{t['file']}: 금액·단정 표현 '{m.group(0)}'" for t in TOPICS for m in [BAN_RE.search(topic_text(t))] if m]
     if problems:
         raise SystemExit("안내 페이지를 만들 수 없음:\n  " + "\n  ".join(problems))
 
@@ -288,29 +415,38 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], keep_dates: 
     dong_tpl = DONG_TEMPLATE.read_text(encoding="utf-8")
     style = re.search(r"<style>.*?</style>", dong_tpl, flags=re.DOTALL).group(0)
     sprite = re.search(r'<svg width="0" height="0"[^>]*>.*?</svg>', dong_tpl, flags=re.DOTALL).group(0)
+    script = re.search(r"<script>\s*\(function \(\).*?</script>", dong_tpl, flags=re.DOTALL).group(0)
     base = cfg["site_base_url"].rstrip("/")
     phone_tel, phone_disp = cfg["phone_tel"], cfg["phone_display"]
     text_disp = cfg.get("text_reply_display") or ""
     text_tel = re.sub(r"\D", "", text_disp)
     contact_line = f"전화 {phone_disp}" + (f" / 문자 {text_disp}" if text_disp else "")
+    kakao = cfg.get("kakao_channel_url")
+    kakao_bar = (f'<a class="btn btn-kakao" href="{esc(kakao)}" target="_blank" rel="noopener noreferrer">카톡</a>' if kakao else "")
     if text_tel:
-        from first_screen import sms_link  # 본문 미리 채움, 아이폰·안드로이드 공통 형식(2026-10-13)
         sms_href = f'href="{esc(sms_link({"sms_number": text_tel}, ""))}"'
         sms_btn = f'<a class="btn btn-sms" {sms_href}><svg><use href="#i-chat"/></svg>문자 {esc(text_disp)}</a>'
-        bar_second, bar_cols = f'<a class="btn btn-sms" {sms_href}><svg><use href="#i-chat"/></svg>문자</a>', "2fr 1fr"
+        bar_second = f'<a class="btn btn-sms" {sms_href}><svg><use href="#i-chat"/></svg>문자</a>' + kakao_bar
+        bar_cols = "2fr 1fr 1fr" if kakao else "2fr 1fr"
     else:
         sms_btn, bar_cols = "", "3fr 2fr"
         bar_second = '<a class="btn btn-quote" href="#consult" style="background:#fff"><svg><use href="#i-chat"/></svg>상담 안내</a>'
     area = area_links_html(regions, gu_data)
+    cases = load_json(CASES_INDEX, default=[])
+    cross = {}
+    for f, idx, files in GUIDE_CROSS_LINKS:
+        cross.setdefault(f, {})[idx] = files
 
     OUT.mkdir(exist_ok=True)
     changed = []
-    for g in GUIDES:
+    for n, g in enumerate(ALL_GUIDES):
+        topic = n >= len(GUIDES)
         canonical = f"{base}/guide/{quote(g['file'])}"
-        meta_title = f"{g['title']} | 폐차·수출 비교 상담 · 전화 {phone_disp}"
+        title = g["h1"] if topic else g["title"]
+        meta_title = f"{title} | 폐차·수출 비교 상담 · 전화 {phone_disp}"
         meta_desc = f"{g['desc']} {contact_line}."
         nav = "".join(
-            f'<a href="{esc(x["file"])}"' + (' aria-current="page"' if x is g else "") + f">{esc(x['nav'])}</a>" for x in GUIDES)
+            f'<a href="{esc(x["file"])}"' + (' aria-current="page"' if x is g else "") + f">{esc(x['nav'])}</a>" for x in ALL_GUIDES)
         crumbs = ('<nav class="crumbs" aria-label="경로"><a href="../index.html">전체 지역</a> › '
                   f'<a href="{esc(GUIDES[0]["file"])}">폐차 안내</a> › {esc(g["nav"])}</nav>')
         jsonld = [
@@ -327,8 +463,6 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], keep_dates: 
             "META_TITLE": esc(meta_title), "META_DESC": esc(meta_desc), "CANONICAL": canonical,
             "JSONLD": json.dumps(jsonld, ensure_ascii=False), "PAGE_JSONLD": page_jsonld(meta_title, canonical),
             "STYLE": style, "SPRITE": sprite, "GUIDE_NAV": nav, "UPDATED_ON": UPDATED_MARK, "BREADCRUMB": crumbs,
-            "H1": esc(g["h1"]).replace("&lt;br&gt;", "<br>"), "LEAD": esc(g["lead"]), "CONTACT_LINE": esc(contact_line),
-            "SECTIONS_HTML": "".join(section_html(i, h2, sub, parts, esc) for i, (h2, sub, parts) in enumerate(g["sections"])),
             "FAQ_HTML": "\n      ".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in g["faqs"]),
             "CONSULT_TEXT": esc(f"차 상태와 차가 있는 곳을 알려주시면 폐차와 수출 중 유리한 쪽을 상담 후 확인해 드립니다. "
                                 f"전국 어디든 협력업체가 출장 방문합니다. {contact_line}."),
@@ -336,12 +470,41 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], keep_dates: 
             "PHONE_TEL": phone_tel, "PHONE_DISPLAY": phone_disp,
             "YOUTUBE_URL": esc(cfg["youtube_url"]), "BLOG_URL": esc(cfg["blog_url"]), "AREA_LINKS": area,
         }
+        if topic:
+            # 주제 페이지: 동 페이지와 같은 첫 화면·하단 폼·폼 스크립트(숨은 칸 Page·Source 포함), 대표 이미지
+            n0 = (n - len(GUIDES)) * 6 + 1
+            form = form_parts(cfg, "주제 " + g["nav"], "주제 페이지 " + g["nav"], canonical, meta_title)
+            hero = ('<header class="hero hero-v3">\n'
+                    + hero_top_html(cfg, "", form, crumb=crumbs, updated=UPDATED_MARK, h1=g["h1"], lead=g["lead"])
+                    + "\n</header>")
+            name, suffix = g["og"]
+            values.update({
+                "HERO_HTML": hero,
+                "SECTIONS_HTML": topic_sections_html(g, n0, cases, esc),
+                "AFTER_FAQ": shorts_html(g, esc),
+                "BOTTOM_FORM": BOTTOM_FORM.format(**form),
+                "SCRIPT": script.replace("{{PHONE_DISPLAY}}", phone_disp),
+                "OG_META": og_image.parts(g["file"][:-5], name, base, phone_disp, suffix=suffix)["OG_META"],
+            })
+        else:
+            parts_by_idx = cross.get(g["file"], {})
+            sections = []
+            for i, (h2, sub_, parts) in enumerate(g["sections"]):
+                extra = [("links", parts_by_idx[i])] if i in parts_by_idx else []
+                sections.append(section_html(i, h2, sub_, list(parts) + extra, esc))
+            values.update({
+                "H1": esc(g["h1"]).replace("&lt;br&gt;", "<br>"), "LEAD": esc(g["lead"]), "CONTACT_LINE": esc(contact_line),
+                "SECTIONS_HTML": "".join(sections),
+                "AFTER_FAQ": "", "BOTTOM_FORM": "", "SCRIPT": "", "OG_META": "",
+            })
 
         def sub(m: re.Match) -> str:
             if m.group(1) not in values:
                 raise KeyError(f"안내 템플릿 자리 {m.group(1)} 에 대응하는 값이 없습니다")
             return values[m.group(1)]
 
+        if not topic:
+            values["HERO_HTML"] = re.sub(r"\{\{(\w+)\}\}", sub, OLD_HERO.rstrip("\n"))
         html_text = re.sub(r"\{\{(\w+)\}\}", sub, template).replace("{{BAR_COLS}}", bar_cols)
         out = OUT / g["file"]
         old_text = out.read_text(encoding="utf-8") if out.exists() else None
