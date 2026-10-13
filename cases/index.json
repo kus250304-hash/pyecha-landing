@@ -1,5 +1,170 @@
 [
  {
+  "slug": "case-20230802-busan-saha-gupyeong",
+  "date": "2023-08-02",
+  "sido": "부산광역시",
+  "sigungu": "사하구",
+  "dong": "구평동",
+  "region_slug": null,
+  "car": "2008년식 액티언",
+  "title": "구평동 2008년식 액티언 폐차·수출 비교 상담 사례",
+  "summary": "2008년식 액티언 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "액티언"
+   ],
+   [
+    "연식",
+    "2008년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2008년식 액티언 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230802-busan-saha-gupyeong-1.jpg",
+  "photos": [
+   "case-20230802-busan-saha-gupyeong-1.jpg",
+   "case-20230802-busan-saha-gupyeong-2.jpg",
+   "case-20230802-busan-saha-gupyeong-3.jpg"
+  ],
+  "videos": []
+ },
+ {
+  "slug": "case-20230523-incheon-bupyeong-galsan",
+  "date": "2023-05-23",
+  "sido": "인천광역시",
+  "sigungu": "부평구",
+  "dong": "갈산동",
+  "region_slug": null,
+  "car": "2008년식 프라이드",
+  "title": "갈산동 2008년식 프라이드 폐차·수출 비교 상담 사례",
+  "summary": "2008년식 프라이드 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "프라이드"
+   ],
+   [
+    "연식",
+    "2008년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2008년식 프라이드 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230523-incheon-bupyeong-galsan-1.jpg",
+  "photos": [
+   "case-20230523-incheon-bupyeong-galsan-1.jpg",
+   "case-20230523-incheon-bupyeong-galsan-2.jpg",
+   "case-20230523-incheon-bupyeong-galsan-3.jpg",
+   "case-20230523-incheon-bupyeong-galsan-4.jpg",
+   "case-20230523-incheon-bupyeong-galsan-5.jpg",
+   "case-20230523-incheon-bupyeong-galsan-6.jpg"
+  ],
+  "videos": []
+ },
+ {
+  "slug": "case-20230228-seoul-seongdong",
+  "date": "2023-02-28",
+  "sido": "서울특별시",
+  "sigungu": "성동구",
+  "dong": "",
+  "region_slug": null,
+  "car": "2009년식 모닝",
+  "title": "성동구 2009년식 모닝 폐차·수출 비교 상담 사례",
+  "summary": "2009년식 모닝 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "모닝"
+   ],
+   [
+    "연식",
+    "2009년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2009년식 모닝 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230228-seoul-seongdong-1.jpg",
+  "photos": [
+   "case-20230228-seoul-seongdong-1.jpg",
+   "case-20230228-seoul-seongdong-2.jpg",
+   "case-20230228-seoul-seongdong-3.jpg",
+   "case-20230228-seoul-seongdong-4.jpg"
+  ],
+  "videos": []
+ },
+ {
+  "slug": "case-20221121-gyeonggi-bucheon-sosa-simgokbon",
+  "date": "2022-11-21",
+  "sido": "경기도",
+  "sigungu": "부천시 소사구",
+  "dong": "심곡본동",
+  "region_slug": "gyeonggi-bucheon-sosa-simgokbon",
+  "car": "2008년식 쏘나타 트랜스폼",
+  "title": "심곡본동 2008년식 쏘나타 트랜스폼 폐차·수출 비교 상담 사례",
+  "summary": "2008년식 쏘나타 트랜스폼 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "쏘나타 트랜스폼"
+   ],
+   [
+    "연식",
+    "2008년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2008년식 쏘나타 트랜스폼 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20221121-gyeonggi-bucheon-sosa-simgokbon-1.jpg",
+  "photos": [
+   "case-20221121-gyeonggi-bucheon-sosa-simgokbon-1.jpg",
+   "case-20221121-gyeonggi-bucheon-sosa-simgokbon-2.jpg",
+   "case-20221121-gyeonggi-bucheon-sosa-simgokbon-3.jpg",
+   "case-20221121-gyeonggi-bucheon-sosa-simgokbon-4.jpg"
+  ],
+  "videos": []
+ },
+ {
   "slug": "case-20260821-gangwon-jeongseon-gohan",
   "date": "2026-08-21",
   "sido": "강원특별자치도",

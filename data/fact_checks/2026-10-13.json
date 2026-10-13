@@ -1,0 +1,422 @@
+[
+ {
+  "code": "5219010200",
+  "slug": "jeonbuk-namwon-hajeong",
+  "items": [
+   {
+    "name": "남원우체국",
+    "evidence": "전북특별자치도 남원시 광한북로 66(하정동 189-3) — 위키 문서 위치 항목(검색 결과 요약)",
+    "url": "https://wiki.onul.works/w/%EB%82%A8%EC%9B%90%EC%9A%B0%EC%B2%B4%EA%B5%AD",
+    "grade": "summary_with_address"
+   },
+   {
+    "name": "용남시장",
+    "evidence": "[55763] 전북특별자치도 남원시 동헌길 10 (하정동), 골목형 시장 육성 사업으로 꾸며진 시장(대한민국 구석구석 안내 페이지)",
+    "url": "https://www.ktriptips.com/kor/shopping/132304",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5219010300",
+  "slug": "jeonbuk-namwon-jukhang",
+  "items": [
+   {
+    "name": "예가람 문화공간",
+    "evidence": "전북일보 기사 사진 설명 '남원시 죽항동에 위치한 예가람 문화공간/사진제공=남원시', 미운영 유휴시설을 전시·창작 공간으로 정비하는 사업",
+    "url": "https://www.jjan.kr/article/20230523580140",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5119010200",
+  "slug": "gangwon-taebaek-jangseong",
+  "items": [
+   {
+    "name": "장성광업소",
+    "evidence": "프레시안 기사 사진 설명 '태백시 장성동 대한석탄공사 장성광업소 장성갱구 입구 모습.'",
+    "url": "https://pressian.com/pages/articles/2024070114565508952",
+    "grade": "opened"
+   },
+   {
+    "name": "화광아파트",
+    "evidence": "MTN 기사 '석탄공사는 1978년 태백시 장성동에 화광아파트를 지었다', '철거된 태백 장성 화광아파트 터에는 국민임대주택인 탄탄마을 아파트가 들어섰다'",
+    "url": "https://news.mtn.co.kr/news-detail/2024092612391448719",
+    "grade": "opened"
+   },
+   {
+    "name": "탄탄마을 아파트",
+    "evidence": "MTN 기사 '태백 장성탄탄마을은 국내 1호 광부 아파트인 화광아파트를 허물고 새롭게 탄생한 마을이다'(장성동)",
+    "url": "https://news.mtn.co.kr/news-detail/2024092612391448719",
+    "grade": "opened"
+   },
+   {
+    "name": "태백시 제2청사",
+    "evidence": "MTN 기사 '장성동에는 태백시 제2청사도 지어졌다.'",
+    "url": "https://news.mtn.co.kr/news-detail/2024092612391448719",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4480025000",
+  "slug": "chungnam-hongseong-hongseong",
+  "items": [
+   {
+    "name": "홍주읍성",
+    "evidence": "홍성 홍주읍성 [32228] 충청남도 홍성군 홍성읍 아문길 20-1, 동헌 안회당은 현재 군청 후정에 있음(대한민국 구석구석 안내 페이지)",
+    "url": "https://www.ktriptips.com/kor/tourspot/125959",
+    "grade": "opened"
+   },
+   {
+    "name": "안회당",
+    "evidence": "같은 페이지: '안회당은 홍주목의 동헌으로, 목조 기와 22칸 건물이며 현재 군청 후정에 있습니다'(홍주읍성 안, 홍성읍 아문길 20-1)",
+    "url": "https://www.ktriptips.com/kor/tourspot/125959",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4480025300",
+  "slug": "chungnam-hongseong-gwangcheon",
+  "items": [
+   {
+    "name": "광천전통시장",
+    "evidence": "광천장(4, 9일) 광천전통시장 [32295] 충청남도 홍성군 광천읍 광천로285번길 8-16, 토굴새우젓·광천 재래김으로 유명(대한민국 구석구석 안내 페이지)",
+    "url": "https://www.ktriptips.com/kor/shopping/132042",
+    "grade": "opened"
+   },
+   {
+    "name": "광천역",
+    "evidence": "충청남도 홍성군 광천읍 신진리 429-86 / 광천읍 광천로273번길 85 (장항선 광천역 안내 페이지)",
+    "url": "https://train.asamaru.net/열차역/광천역-장항선/",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4480025600",
+  "slug": "chungnam-hongseong-hongbuk",
+  "items": [
+   {
+    "name": "충남도청",
+    "evidence": "충청남도청 소재지 충청남도 홍성군 홍북읍 충남대로 21(내포신도시), 위키백과 충청남도청 문서",
+    "url": "https://ko.wikipedia.org/wiki/충청남도청",
+    "grade": "opened"
+   },
+   {
+    "name": "내포신도시",
+    "evidence": "위키백과 충청남도청 문서: 청사 소재지 홍성군 홍북읍 충남대로 21 (내포신도시), 예산군·홍성군 경계 지역",
+    "url": "https://ko.wikipedia.org/wiki/충청남도청",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4728010100",
+  "slug": "gyeongbuk-mungyeong-jeomchon",
+  "items": [
+   {
+    "name": "점촌역",
+    "evidence": "위키백과 점촌역: 경상북도 문경시 신흥로 170, 문경시 점촌동에 있는 경북선 역",
+    "url": "https://ko.wikipedia.org/wiki/점촌역",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4728010200",
+  "slug": "gyeongbuk-mungyeong-yeongsin",
+  "items": [
+   {
+    "name": "영강",
+    "evidence": "경북매일 기사: '점촌시내 앞 영강 강둑길은 영신동에서 창동까지 20리', '점촌시내 앞 영신숲 벚꽃길'",
+    "url": "https://kbmaeil.com/article/202503300913907",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4728010300",
+  "slug": "gyeongbuk-mungyeong-heungdeok",
+  "items": [
+   {
+    "name": "흥덕생활공원",
+    "evidence": "경북매일 기사: '문경시 흥덕동 돈달산 자락에 자리한 문경시가족센터 안에 있는 흥덕생활공원 물놀이터'",
+    "url": "https://kbmaeil.com/article/20250728500066",
+    "grade": "opened"
+   },
+   {
+    "name": "돈달산",
+    "evidence": "경북매일 기사: '문경시 흥덕동 돈달산 자락에 자리한 문경시가족센터'",
+    "url": "https://kbmaeil.com/article/20250728500066",
+    "grade": "opened"
+   },
+   {
+    "name": "문경시가족센터",
+    "evidence": "경북매일 기사: '문경시 흥덕동 돈달산 자락에 자리한 문경시가족센터'",
+    "url": "https://kbmaeil.com/article/20250728500066",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "3120010100",
+  "slug": "ulsan-bukgu-changpyeong",
+  "items": [
+   {
+    "name": "북울산역",
+    "evidence": "safehomes 건물정보: 북울산역, 울산광역시 북구 오토밸리로 620, 법정동 창평동, 운수시설(2021-12-24 사용승인)",
+    "url": "https://safehomes.kr/risk-map/울산광역시/북구/창평동/기타/building/북울산역/10801100273575",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "3120010200",
+  "slug": "ulsan-bukgu-hogye",
+  "items": [
+   {
+    "name": "호계초등학교",
+    "evidence": "safehomes 건물정보: 호계초등학교, 울산광역시 북구 동대13길 20, 울산광역시 북구 호계동",
+    "url": "https://safehomes.kr/risk-map/울산광역시/북구/호계동/기타/building/호계초등학교/10801112",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4782025000",
+  "slug": "gyeongbuk-cheongdo-hwayang",
+  "items": [
+   {
+    "name": "청도군청",
+    "evidence": "경상북도 청도군 화양읍 청화로 70 (범곡리), 군청 소재지로 소개(1979년 청도읍에서 화양면 범곡리로 이전)",
+    "url": "https://thewiki.kr/w/청도",
+    "grade": "summary_with_address"
+   }
+  ]
+ },
+ {
+  "code": "4782025300",
+  "slug": "gyeongbuk-cheongdo-cheongdo",
+  "items": [
+   {
+    "name": "청도역",
+    "evidence": "건축물대장 '청도역사' 운수시설, 경상북도 청도군 청도읍 청화로 214 (안전진단 사이트 페이지를 열어 확인)",
+    "url": "https://safehomes.kr/risk-map/경상북도/청도군/청도읍/기타/building/청도역사/12431835",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1162010300",
+  "slug": "seoul-gwanak-namhyeon",
+  "items": [
+   {
+    "name": "서울시립 남서울미술관",
+    "evidence": "서울시 관악구 남부순환로 2076(남현동), 내 손안에 서울 기사 페이지를 열어 확인",
+    "url": "https://mediahub.seoul.go.kr/archives/2004808",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1121510100",
+  "slug": "seoul-gwangjin-junggok",
+  "items": [
+   {
+    "name": "중곡역",
+    "evidence": "서울특별시 광진구 중곡동 167, 서울교통공사 7호선 724번 역(위키 문서 검색 결과)",
+    "url": "https://wiki.onul.works/w/%EC%A4%91%EA%B3%A1%EC%97%AD",
+    "grade": "summary_with_address"
+   }
+  ]
+ },
+ {
+  "code": "1121510200",
+  "slug": "seoul-gwangjin-neung",
+  "items": [
+   {
+    "name": "서울어린이대공원",
+    "evidence": "[04991] 서울특별시 광진구 능동로 216 (능동), 관광 안내 페이지를 열어 확인",
+    "url": "https://www.ktriptips.com/kor/tourspot/126490",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5181025000",
+  "slug": "gangwon-inje-inje",
+  "items": [
+   {
+    "name": "인제군청",
+    "evidence": "강원특별자치도 인제군 인제읍 인제로187번길 8 (상동리), 군청 소재지로 소개(위키 문서 검색 결과)",
+    "url": "https://namu.moe/w/%EC%9D%B8%EC%A0%9C",
+    "grade": "summary_with_address"
+   }
+  ]
+ },
+ {
+  "code": "4886025000",
+  "slug": "gyeongnam-sancheong-sancheong",
+  "items": [
+   {
+    "name": "산청군청",
+    "evidence": "경남 산청군 산청읍 산엔청로 1 산청군청 (주말의소확행 산청편 장소 안내, 열어서 확인)",
+    "url": "https://xn--ok0b236bp0a.com/place/27072",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4773025000",
+  "slug": "gyeongbuk-uiseong-uiseong",
+  "items": [
+   {
+    "name": "의성군청",
+    "evidence": "경북 의성군 의성읍 군청길 31 (의성군청 홈페이지 안내 글, 열어서 확인)",
+    "url": "https://limeade.kr/%EC%9D%98%EC%84%B1%EA%B5%B0%EC%B2%AD-%ED%99%88%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%B0%94%EB%A1%9C%EA%B0%80%EA%B8%B0-https-www-usc-go-kr/",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2717010200",
+  "slug": "daegu-seogu-bisan",
+  "items": [
+   {
+    "name": "북부시외버스터미널",
+    "evidence": "대구북부시외버스터미널, 지번 대구광역시 서구 비산동 1856-3 / 도로명 서대구로 295 (터미널 안내 페이지, 열어서 확인)",
+    "url": "https://transportation.asamaru.net/시외버스/터미널/대구북부시외버스터미널/",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2717010300",
+  "slug": "daegu-seogu-pyeongni",
+  "items": [
+   {
+    "name": "구평리시장",
+    "evidence": "구평리시장, 대구광역시 서구 문화로60길 10 (평리동) (세이프홈즈 건물 정보, 열어서 확인)",
+    "url": "https://safehomes.kr/risk-map/대구광역시/서구/평리동/기타/building/구평리시장/1047128474",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2829010100",
+  "slug": "incheon-geomdan-baekseok",
+  "items": [
+   {
+    "name": "인천백석고등학교",
+    "evidence": "인천백석고등학교, 인천광역시 검단구 서곶로 701 (백석동) (세이프홈즈 건물 정보, 열어서 확인)",
+    "url": "https://safehomes.kr/risk-map/인천광역시/서구/백석동/기타/building/인천백석고등학교/10611987",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2829010200",
+  "slug": "incheon-geomdan-sicheon",
+  "items": [
+   {
+    "name": "시천가람터",
+    "evidence": "시천가람터, 인천광역시 서구 시천동 158-11 (한국수자원공사 경인아라뱃길 찾아오시는길, 열어서 확인)",
+    "url": "https://www.kwater.or.kr/giwaterway/ara/sub01_04_02.do",
+    "grade": "opened"
+   },
+   {
+    "name": "경인아라뱃길",
+    "evidence": "한국수자원공사 경인아라뱃길 안내에 시천가람터(인천광역시 서구 시천동 158-11)가 아라뱃길 시설로 소개됨",
+    "url": "https://www.kwater.or.kr/giwaterway/ara/sub01_04_02.do",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2829010300",
+  "slug": "incheon-geomdan-majeon",
+  "items": [
+   {
+    "name": "마전역",
+    "evidence": "인천 도시철도 2호선 I204, 인천 검단구 마전동 아파트 단지 안에 위치(위키백과 마전역 (인천))",
+    "url": "https://ko.wikipedia.org/wiki/마전역_(인천)",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2650010100",
+  "slug": "busan-suyeong-mangmi",
+  "items": [
+   {
+    "name": "F1963",
+    "evidence": "부산 수영구 구락로123번길 20(KOREA TRIP TIPS), 서울신문 기사 '수영구 망미동 옛 수영공장'을 고친 복합문화공간",
+    "url": "https://m.go.seoul.co.kr/news/2016/08/22/20160822500123",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2650010200",
+  "slug": "busan-suyeong-suyeong",
+  "items": [
+   {
+    "name": "수영사적공원",
+    "evidence": "부산광역시 수영구 수영성로 43 (수영동)",
+    "url": "https://www.ktriptips.com/kor/tourspot/127771",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5176025000",
+  "slug": "gangwon-pyeongchang-pyeongchang",
+  "items": [
+   {
+    "name": "평창올림픽시장",
+    "evidence": "강원특별자치도 평창군 평창읍 평창시장1길 8-1 (구 평창전통시장)",
+    "url": "https://www.ktriptips.com/kor/shopping/132253",
+    "grade": "opened"
+   },
+   {
+    "name": "평창전통시장",
+    "evidence": "평창올림픽시장의 옛 이름, 강원특별자치도 평창군 평창읍 평창시장1길 8-1",
+    "url": "https://www.ktriptips.com/kor/shopping/132253",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4872025000",
+  "slug": "gyeongnam-uiryeong-uiryeong",
+  "items": [
+   {
+    "name": "충익사",
+    "evidence": "경상남도 의령군 의령읍 충익로 1",
+    "url": "https://www.ktriptips.com/kor/tourspot/127296",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2726010200",
+  "slug": "daegu-suseong-manchon",
+  "items": [
+   {
+    "name": "만촌역",
+    "evidence": "대구 도시철도 2호선, 대구 수성구 만촌동 만촌네거리 지하(위키백과 만촌역)",
+    "url": "https://ko.wikipedia.org/wiki/만촌역",
+    "grade": "opened"
+   },
+   {
+    "name": "만촌네거리",
+    "evidence": "만촌역이 만촌네거리 지하에 있음, 대구 수성구 만촌동(위키백과 만촌역)",
+    "url": "https://ko.wikipedia.org/wiki/만촌역",
+    "grade": "opened"
+   }
+  ]
+ }
+]
