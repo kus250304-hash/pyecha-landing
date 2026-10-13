@@ -33,6 +33,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from build_gu import BAN_RE, INFO_GRADES, info_value
 import og_image
 import analytics
+from first_screen import hero_top_html, why_block_html
 
 ROOT = Path(__file__).resolve().parent.parent
 TEMPLATE = ROOT / "templates" / "si-landing.html"
@@ -159,6 +160,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
                 {"@type": "ListItem", "position": 2, "name": si, "item": canonical}]},
             business_jsonld(sido, canonical, og_image.url(si_file(sido)[:-5], base), phone_disp),
         ]
+        si_crumb = f'<nav class="crumbs" aria-label="지역 경로"><a href="../index.html">전체 지역</a> › {esc(si)}</nav>'
         values = {
             "ANALYTICS_BODY": analytics.body_end_html(cfg),
             "ANALYTICS": analytics.head_html(cfg, "si", si),
@@ -166,7 +168,10 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
             "JSONLD": json.dumps(jsonld, ensure_ascii=False), "PAGE_JSONLD": page_jsonld(meta_title, canonical),
             "AREA_LINKS": area_links_html(regions, gu_data, here_si=sido),
             "STYLE": style, "SPRITE": sprite,
-            "BREADCRUMB": f'<nav class="crumbs" aria-label="지역 경로"><a href="../index.html">전체 지역</a> › {esc(si)}</nav>',
+            "BREADCRUMB": si_crumb,
+            # 첫 화면(2026-10-13, scripts/first_screen.py)과 폼 바로 아래 "왜 비교해 드리나"
+            "HERO_TOP": hero_top_html(cfg, si, form_parts(cfg, si, sido, canonical, meta_title), crumb=si_crumb, updated=UPDATED_MARK),
+            "WHY_BLOCK": why_block_html(f"{sido} 폐차 상담 · 당일 접수", f"{sido} 어디서든 전화 한 통이면 가까운 협력업체가 출장 방문합니다."),
             "SI": esc(si), "SI_FULL": esc(sido), "SI_JOSA": josa(sido, "은", "는"),
             "GU_LIST_HTML": gu_list, "FAQ_HTML": faq_html, "INFO_ROWS": info_rows,
             "CHECKED_ON": esc(s.get("checked_on", "")), "UPDATED_ON": UPDATED_MARK,

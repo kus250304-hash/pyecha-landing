@@ -156,7 +156,7 @@ def region_photos_html(picked: list[tuple[dict, str]]) -> str:
 def contact_parts(cfg: dict, dong: str) -> dict:
     """문자·카카오 버튼, 하단 바 두 번째 버튼, 푸터 사업자 줄. 지역 페이지와 사례 페이지가 같이 쓴다."""
     sms = cfg.get("sms_number")
-    sms_href = f'href="sms:{esc(sms)}?body={esc(dong)}%20폐차%20문의드립니다"' if sms else ""
+    sms_href = f'href="{esc(sms_link(cfg, dong))}"' if sms else ""
     sms_btn = f'<a class="btn btn-sms" {sms_href}><svg><use href="#i-chat"/></svg>문자로 문의</a>' if sms else ""
     kakao = cfg.get("kakao_channel_url")
     kakao_btn = f'<a class="btn btn-kakao" href="{esc(kakao)}" target="_blank" rel="noopener noreferrer">카카오톡 채널</a>' if kakao else ""
@@ -207,6 +207,10 @@ def form_parts(cfg: dict, subject_region: str, region_full: str, page_url: str =
 
 
 WEB3FORMS_URL = "https://api.web3forms.com/submit"
+
+
+from first_screen import sms_link, hero_top_html, why_block_html  # 첫 화면(2026-10-13)
+
 
 SIDO_SHORT = {
     "서울특별시": "서울", "부산광역시": "부산", "대구광역시": "대구", "인천광역시": "인천",
@@ -605,6 +609,10 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
         **form_parts(cfg, " ".join(x for x in (SIDO_SHORT[r["sido"]], r["sigungu"], r["dong"]) if x), full, canonical, meta_title),
         **contact_parts(cfg, r["dong"]),
         "LOCAL_FAQ_HTML": local_faq_html,
+        "HERO_TOP": hero_top_html(cfg, title_region if is_renamed(r) else r["dong"],
+                                  form_parts(cfg, " ".join(x for x in (SIDO_SHORT[r["sido"]], r["sigungu"], r["dong"]) if x), full, canonical, meta_title),
+                                  crumb=breadcrumb(r, gu_pages), updated=UPDATED_MARK),
+        "WHY_BLOCK": why_block_html(f"{sigungu_dong} 폐차 상담 · 당일 접수", hero_sub),
         "AREA_LINKS": area_links_html(regions, list(gu_data), here_dong=r),
         "CASES_TITLE": esc(c_title),
         "CASES_SUB": esc(c_sub),

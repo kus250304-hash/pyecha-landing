@@ -17,7 +17,7 @@
 <meta property="og:locale" content="ko_KR">
 <meta name="theme-color" content="#0E5E63">
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "전화로 바로 금액을 알 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "아니요, 정확한 금액은 차 상태를 확인해 상담 후 알려드립니다. 전화로는 차 정보를 듣고 어느 쪽이 나은지 방향을 먼저 말씀드립니다."}}, {"@type": "Question", "name": "상담 때 들은 금액이 나중에 달라지기도 하나요?", "acceptedAnswer": {"@type": "Answer", "text": "네, 현장에서 본 차 상태가 상담 때 들은 것과 다르면 달라질 수 있습니다. 처음에 차 상태를 정확히 알려주시면 좋습니다."}}, {"@type": "Question", "name": "금액을 알아보려면 무엇이 필요한가요?", "acceptedAnswer": {"@type": "Answer", "text": "차량번호와 차종·연식, 시동 여부, 차가 있는 곳을 알려주시면 됩니다. 사진이 있으면 더 정확합니다."}}]}, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "전체 지역", "item": "https://pyecha119.com/"}, {"@type": "ListItem", "position": 2, "name": "폐차 안내", "item": "https://pyecha119.com/guide/%ED%8F%90%EC%B0%A8-%EC%A0%88%EC%B0%A8.html"}, {"@type": "ListItem", "position": 3, "name": "폐차 금액", "item": "https://pyecha119.com/guide/%ED%8F%90%EC%B0%A8-%EA%B8%88%EC%95%A1-%EC%A0%95%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95.html"}]}]</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "폐차 금액은 어떻게 정해지나 | 폐차·수출 비교 상담 · 전화 1600-6011", "url": "https://pyecha119.com/guide/%ED%8F%90%EC%B0%A8-%EA%B8%88%EC%95%A1-%EC%A0%95%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95.html", "inLanguage": "ko-KR", "datePublished": "2026-10-01", "dateModified": "2026-10-12"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "폐차 금액은 어떻게 정해지나 | 폐차·수출 비교 상담 · 전화 1600-6011", "url": "https://pyecha119.com/guide/%ED%8F%90%EC%B0%A8-%EA%B8%88%EC%95%A1-%EC%A0%95%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95.html", "inLanguage": "ko-KR", "datePublished": "2026-10-01", "dateModified": "2026-10-13"}</script>
 <style>
   @font-face {
     font-family: 'Jalnan';
@@ -125,6 +125,42 @@
   .compare-note { margin: 12px 0 0; text-align: center; font-size: 15px; font-weight: 800; }
   .trust { display: flex; flex-wrap: wrap; gap: 8px 16px; justify-content: center; margin-top: 18px; font-size: 14px; font-weight: 700; }
   .trust span::before { content: "✓ "; color: var(--coral-soft); }
+
+  /* hero-v3:start — 첫 화면(2026-10-13). 첫 화면 홈(index.html)도 build_index.py 가 이 칸을 그대로 가져다 쓴다 */
+  header.hero-v3 { background: linear-gradient(160deg, var(--teal) 0%, var(--teal-deep) 100%); color: #fff; padding: 12px 0 18px; text-align: left; word-break: keep-all; overflow-wrap: anywhere; }
+  .hero-v3 h1 { text-wrap: balance; }
+  .hero-v3 .wrap { max-width: 960px; margin: 0 auto; padding-inline: 16px; }
+  .hero-v3 .hero-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; font-size: 11px; opacity: .85; margin: 0 0 8px; }
+  .hero-v3 .hero-meta .crumbs, .hero-v3 .hero-meta .updated { font-size: 11px; margin: 0; opacity: 1; }
+  .hero-v3 .hero-meta .crumbs a { color: #fff; }
+  .hero-v3 h1 { font-size: clamp(22px, 6.2vw, 32px); line-height: 1.3; margin: 0 0 12px; color: #fff; font-weight: 400; }
+  .hero-v3 .btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; border: 0; border-radius: 12px;
+    font-weight: 800; text-decoration: none; cursor: pointer; line-height: 1.2; font-family: inherit; }
+  .hero-v3 .hero-call { min-height: 56px; height: 56px; padding: 0 16px; font-size: 21px; background: var(--coral); color: #fff; box-shadow: 0 6px 18px rgba(229,84,31,.32); }
+  .hero-v3 .hero-call-note { margin: 5px 0 12px; text-align: center; font-size: 12px; opacity: .9; }
+  .hero-v3 .quote-mini { background: #fff; color: var(--ink); border-radius: 14px; padding: 12px 12px 10px; box-shadow: 0 12px 30px rgba(8,62,66,.18); }
+  .hero-v3 .mini-title { margin: 0 0 8px; font-size: 14px; font-weight: 800; color: var(--teal-deep); }
+  .hero-v3 .mini-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .hero-v3 .quote-mini input { width: 100%; min-width: 0; font-size: 17px; padding: 12px; border: 1.5px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink); font-family: inherit; }
+  .hero-v3 .quote-mini input:focus { outline: 3px solid rgba(14,94,99,.25); border-color: var(--teal); }
+  .hero-v3 .quote-mini .btn { margin-top: 8px; min-height: 56px; padding: 8px 12px; flex-direction: column; gap: 2px; font-size: 17px; background: var(--coral); color: #fff; }
+  .hero-v3 .quote-mini .btn span { font-size: 13px; font-weight: 700; opacity: .95; }
+  .hero-v3 .quote-mini .fine { font-size: 11px; color: var(--muted); margin: 6px 0 0; line-height: 1.45; }
+  .hero-v3 .quote-mini .fine a { color: inherit; text-decoration: underline; }
+  .hero-v3 .hero-sms { margin: 10px 0 0; text-align: center; font-size: 15px; font-weight: 700; }
+  .hero-v3 .hero-sms a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+  .hp { position: absolute; left: -9999px; }
+  /* hero-v3:end */
+  /* 폼 바로 아래 "왜 비교해 드리나" 한 칸: 예전 첫 화면의 뱃지·1+1·핵심 문장·신뢰 줄·비교 안내 */
+  .why-compare { background: var(--teal-tint); padding-block: 26px; }
+  .why-compare .badge { display: inline-block; background: #fff; border: 1px solid var(--line); color: var(--teal-deep); border-radius: 999px; padding: 5px 12px; font-size: 13px; font-weight: 700; margin: 10px 0 12px; }
+  .why-compare .oneplus { margin: 0 0 14px; font-weight: 800; font-size: clamp(16px, 4.4vw, 19px); line-height: 1.4; }
+  .why-compare .oneplus small { display: block; margin-top: 4px; font-size: 13px; font-weight: 400; color: var(--muted); }
+  .why-compare .core li::before, .why-compare .trust span::before { color: var(--coral); }
+  .why-compare .hint { margin: 0 0 12px; font-size: 14px; color: var(--muted); }
+  .why-compare .compare-note { text-align: left; }
+  .why-compare .trust { justify-content: flex-start; }
 
   /* 견적 폼 */
   .quote-card { background: var(--card); color: var(--ink); border-radius: var(--radius); padding: 22px 18px; box-shadow: 0 12px 30px rgba(8,62,66,.18); }
@@ -263,7 +299,7 @@
 
 <header class="hero">
   <div class="wrap">
-    <p class="updated">최종 업데이트: 2026년 10월 12일</p>
+    <p class="updated">최종 업데이트: 2026년 10월 13일</p>
     <nav class="crumbs" aria-label="경로"><a href="../index.html">전체 지역</a> › <a href="폐차-절차.html">폐차 안내</a> › 폐차 금액</nav>
     <span class="badge">폐차 안내 · 전국 출장 방문 상담</span>
     <h1 class="display">폐차 금액은<br>어떻게 정해지나요</h1>
@@ -326,7 +362,7 @@
       </div>
       <div class="channel" style="margin-top:18px">
         <a class="btn btn-call" href="tel:16006011"><svg><use href="#i-phone"/></svg>전화 1600-6011</a>
-        <a class="btn btn-sms" href="sms:01099267779?body=폐차%20문의드립니다"><svg><use href="#i-chat"/></svg>문자 010-9926-7779</a>
+        <a class="btn btn-sms" href="sms:01099267779?&amp;body=%ED%8F%90%EC%B0%A8%20%EB%AC%B8%EC%9D%98%20%2F%20%EC%B0%A8%EB%B2%88%ED%98%B8%3A%20"><svg><use href="#i-chat"/></svg>문자 010-9926-7779</a>
       </div>
     </div>
   </section>
@@ -351,7 +387,7 @@
 
 <nav class="bar" aria-label="빠른 문의">
   <a class="btn btn-call" href="tel:16006011"><svg><use href="#i-phone"/></svg>1600-6011 전화</a>
-  <a class="btn btn-sms" href="sms:01099267779?body=폐차%20문의드립니다"><svg><use href="#i-chat"/></svg>문자</a>
+  <a class="btn btn-sms" href="sms:01099267779?&amp;body=%ED%8F%90%EC%B0%A8%20%EB%AC%B8%EC%9D%98%20%2F%20%EC%B0%A8%EB%B2%88%ED%98%B8%3A%20"><svg><use href="#i-chat"/></svg>문자</a>
 </nav>
 
 <!-- naver-analytics:start -->

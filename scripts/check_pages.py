@@ -73,21 +73,52 @@ CORE_SENTENCES = [
 PAGE_BAN_RE = re.compile(r"최고가|1등|최대(?!한)|실시간\s*접수|접수\s*\d+\s*건|당일\s*지급")
 
 
-def core_problems(html: str) -> list[str]:
-    """핵심 문장이 빠졌는지, 첫 화면 순서(제목 → 핵심 문장 → 전화·문자 버튼 → 폼 → 비교 안내)가 맞는지."""
-    out = [f"핵심 문장 '{s}' 없음" for s in CORE_SENTENCES if s not in html]
-    hero = re.search(r'<header class="hero">.*?</header>', html, flags=re.DOTALL)
-    if not hero:
-        return out + ["첫 화면(hero) 없음"]
-    h = hero.group(0)
-    order = ['<h1 class="display">', '<ul class="core">', '<div class="btn-row hero-btns">', '<form class="quote-form"', 'class="compare-note"']
+HERO_H1_RE = re.compile(r'<h1 class="display">[^<]+ 폐차, 차 번호만 주시면 폐차·수출 바로 비교해서 연락드립니다</h1>')
+HERO_BAN_RE = re.compile(r"압류|저당|원부")
+
+
+def hero_problems(h: str, need_meta: bool = True) -> list[str]:
+    """첫 화면(2026-10-13, scripts/first_screen.py): 길 안내·날짜 → 한 문장 H1 → 전화 버튼 → 폼(2칸) → 문자 한 줄 순서,
+    폼 칸은 차량번호·연락처 둘만, 압류·저당·원부 같은 말 없음."""
+    out = []
+    order = (['<div class="hero-meta">'] if need_meta else []) + [
+        '<h1 class="display">', 'class="btn btn-call hero-call" href="tel:', '<form class="quote-form"', '<p class="hero-sms">']
     pos = [h.find(x) for x in order]
     if -1 in pos or pos != sorted(pos):
-        out.append("첫 화면 순서가 '제목 → 핵심 문장 → 전화·문자 버튼 → 폼 → 비교 안내' 가 아님")
-    elif not re.search(r'<h1 class="display">[^<]+ 폐차장 · 폐차</h1>', h):
-        out.append("첫 화면 제목이 '○○ 폐차장 · 폐차' 한 줄이 아님")
-    if 'href="tel:' not in h or 'href="sms:' not in h:
-        out.append("첫 화면에 전화·문자 버튼이 둘 다 있지 않음")
+        out.append("첫 화면 순서가 '길 안내·날짜 → 한 문장 제목 → 전화 버튼 → 폼 → 문자 한 줄' 이 아님")
+    if not HERO_H1_RE.search(h):
+        out.append("첫 화면 제목이 '○○ 폐차, 차 번호만 주시면 폐차·수출 바로 비교해서 연락드립니다' 가 아님")
+    form = re.search(r'<form class="quote-form".*?</form>', h, flags=re.DOTALL)
+    fields = re.findall(r'<input (?![^>]*type="(?:hidden|checkbox)")[^>]*name="([^"]+)"', form.group(0)) if form else []
+    if fields != ["plate", "phone"]:
+        out.append(f"첫 화면 폼 칸이 차량번호·연락처 2개가 아님 (지금 {fields})")
+    visible = re.sub(r"<[^>]+>", " ", re.sub(r'<input type="hidden"[^>]*>', "", h))
+    m = HERO_BAN_RE.search(visible)
+    if m:
+        out.append(f"첫 화면에 '{m.group(0)}' 같은 어려운 말이 있음")
+    if 'href="sms:' not in h:
+        out.append("첫 화면에 문자 링크가 없음")
+    return out
+
+
+def core_problems(html: str) -> list[str]:
+    """핵심 문장이 빠졌는지, 첫 화면(hero) 모양, 폼 바로 아래 "왜 비교해 드리나" 칸에 예전 첫 화면 글(핵심 문장·비교 안내)이 있는지."""
+    out = [f"핵심 문장 '{s}' 없음" for s in CORE_SENTENCES if s not in html]
+    hero = re.search(r'<header class="hero hero-v3">.*?</header>', html, flags=re.DOTALL)
+    if not hero:
+        return out + ["첫 화면(hero) 없음"]
+    out += hero_problems(hero.group(0))
+    why = re.search(r'<section id="why-compare".*?</section>', html, flags=re.DOTALL)
+    if not why or why.start() < hero.end():
+        out.append("폼 바로 아래 '왜 비교해 드리나' 칸이 없음")
+    else:
+        w = why.group(0)
+        for needle in ('<ul class="core">', 'class="compare-note"', 'class="trust"', 'class="oneplus"'):
+            if needle not in w:
+                out.append(f"'왜 비교해 드리나' 칸에 {needle} 없음")
+        nxt = html.find("<section", hero.end())
+        if nxt != why.start():
+            out.append("'왜 비교해 드리나' 칸이 첫 화면 바로 다음이 아님")
     return out
 
 
@@ -536,12 +567,14 @@ def check_oneplus() -> list[str]:
             text = f.read_text(encoding="utf-8")
             if 'http-equiv="refresh"' in text:
                 continue  # 예전 주소의 자동 이동 페이지
-            h1 = re.search(r"</h1>\s*<p class=\"oneplus\"[^>]*>([^<]*)<small[^>]*>([^<]*)</small>", text)
+            # 1+1 줄: 안내·사례 페이지는 제목 바로 아래, 동·구·시 페이지는 폼 바로 아래 "왜 비교해 드리나" 칸(2026-10-13)
+            h1 = re.search(r"<p class=\"oneplus\"[^>]*>([^<]*)<small[^>]*>([^<]*)</small>", text)
             if not h1 or h1.group(1) != ONEPLUS_LINE or h1.group(2) != ONEPLUS_NOTE:
-                problems.append(f"{d}/{f.name}: 제목 바로 아래 '{ONEPLUS_LINE}' 줄과 1+1 뜻 풀이가 없음")
-            forms = len(re.findall(r'<form class="quote-form"', text))
+                problems.append(f"{d}/{f.name}: '{ONEPLUS_LINE}' 줄과 1+1 뜻 풀이가 없음")
+            hero = re.search(r'<header class="hero hero-v3">.*?</header>', text, flags=re.DOTALL)
+            forms = len(re.findall(r'<form class="quote-form"', text)) - (hero.group(0).count('<form class="quote-form"') if hero else 0)
             if forms and text.count(ONEPLUS_FORM) != forms:
-                problems.append(f"{d}/{f.name}: 견적 폼 제목이 '폐차·수출 견적 1+1 신청' 이 아님")
+                problems.append(f"{d}/{f.name}: 아래쪽 견적 폼 제목이 '폐차·수출 견적 1+1 신청' 이 아님")
     return problems
 
 
@@ -830,6 +863,25 @@ def main() -> None:
         errors.extend(check_analytics(site_cfg))
         errors.extend(check_business_jsonld())
         errors.extend(check_faq_first_sentence())
+
+    # 첫 화면 홈(2026-10-13): 지역 목록 위에 동 페이지와 같은 첫 화면(지역명 "전국", 숨은 칸 region "첫 화면 홈")
+    index_text = (ROOT / "index.html").read_text(encoding="utf-8")
+    home = re.search(r'<header class="hero hero-v3">.*?</header>', index_text, flags=re.DOTALL)
+    if not home or home.start() > index_text.find('<div class="region-group"'):
+        errors.append("index.html: 지역 목록 위에 첫 화면(build_index.py 의 apply_home_hero)이 없음")
+    else:
+        h = home.group(0)
+        errors += [f"index.html: {x}" for x in hero_problems(h, need_meta=False)]
+        for needle, label in (('name="region" value="첫 화면 홈"', "region 칸 '첫 화면 홈'"), ('name="Page"', "Page 칸"),
+                              ('name="PageTitle"', "PageTitle 칸"), ('name="Source"', "Source 칸"), ('name="Referrer"', "Referrer 칸"),
+                              (f'name="redirect" value="{site_cfg["site_base_url"].rstrip("/")}/thanks.html"', "thanks.html 이동"),
+                              ('<h1 class="display">전국 폐차,', "제목 '전국 폐차, …'")):
+            if needle not in h:
+                errors.append(f"index.html: 첫 화면 폼에 {label} 없음")
+        if index_text.count("<h1") != 1:
+            errors.append(f"index.html: H1 이 {index_text.count('<h1')}개 (1개여야 함)")
+        if "function formatPhone" not in index_text:
+            errors.append("index.html: 견적 폼 전송 스크립트 없음")
 
     # 첫 화면의 네이버 서치어드바이저 소유확인 태그
     naver = site_cfg.get("naver_site_verification")

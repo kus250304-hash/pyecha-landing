@@ -101,6 +101,49 @@ def apply_analytics(text: str, cfg: dict, name: str) -> str:
     return text
 
 
+HOME_START, HOME_END = "<!-- home-hero:start -->", "<!-- home-hero:end -->"
+HOME_RE = re.compile(re.escape(HOME_START) + r".*?" + re.escape(HOME_END) + r"\n?", re.DOTALL)
+OLD_H1 = "<h1>전국 폐차 비교매입 상담 안내</h1>"
+SITE_TITLE = '<p class="site-title">전국 폐차 비교매입 상담 안내</p>'
+
+
+def apply_home_hero(text: str, cfg: dict) -> str:
+    """첫 화면 홈(2026-10-13): 지역 목록 위(<body> 맨 앞)에 동 페이지와 똑같은 첫 화면(scripts/first_screen.py)을 둔다.
+    지역명은 "전국", 폼의 숨은 칸 region 은 "첫 화면 홈". 모양·폼 스크립트는 동 페이지 템플릿에서 그대로 가져오고,
+    예전 제목 줄(h1)은 글을 그대로 두고 p 로 바꿔 H1 이 하나만 있게 한다. 실행할 때마다 다시 넣으므로 손으로 고치지 않는다."""
+    import sys
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from build_site import form_parts
+    from first_screen import hero_top_html
+    dong_tpl = (ROOT / "templates" / "region-landing-v2.html").read_text(encoding="utf-8")
+    font = re.search(r"@font-face\s*\{.*?\}", dong_tpl, flags=re.DOTALL).group(0)
+    root_vars = re.search(r":root\s*\{.*?\}", dong_tpl, flags=re.DOTALL).group(0)
+    hero_css = re.search(r"/\* hero-v3:start.*?/\* hero-v3:end \*/", dong_tpl, flags=re.DOTALL).group(0)
+    script = re.search(r"<script>\s*\(function \(\).*?</script>", dong_tpl, flags=re.DOTALL).group(0)
+    script = script.replace("{{PHONE_DISPLAY}}", cfg["phone_display"])
+    base = cfg["site_base_url"].rstrip("/")
+    title = re.search(r"<title>(.*?)</title>", text).group(1)
+    form = form_parts(cfg, "첫 화면 홈", "첫 화면 홈", base + "/", title)
+    block = "\n".join([
+        HOME_START,
+        "<style>", font, root_vars, hero_css,
+        "  .hero-v3 .quote-mini p { opacity: 1; }",
+        "  .hero-v3 .display { font-family: \"Jalnan\", \"Apple SD Gothic Neo\", \"Malgun Gothic\", sans-serif; font-weight: 400; }",
+        "  header .site-title { margin: 0 0 8px; font-size: 26px; font-weight: 700; opacity: 1; }",
+        "</style>",
+        '<header class="hero hero-v3">',
+        hero_top_html(cfg, "전국", form, prefix=""),
+        "</header>",
+        script,
+        HOME_END,
+    ])
+    text = HOME_RE.sub("", text).replace(OLD_H1, SITE_TITLE)
+    text, n = re.subn(r"<body>\n", lambda m: m.group(0) + block + "\n", text, count=1)
+    if n != 1:
+        raise ValueError("index.html 에서 <body> 를 찾지 못했습니다")
+    return text
+
+
 def apply_head_meta(text: str) -> str:
     """네이버 서치어드바이저 소유확인 태그를 viewport 태그 바로 아래에 설정 순서대로 하나씩 둔다."""
     codes = naver_codes(json.loads(CONFIG_PATH.read_text(encoding="utf-8")))
@@ -198,6 +241,7 @@ def main() -> None:
     if n_count != 1:
         raise ValueError("index.html에서 지역 수 문구를 찾지 못했습니다")
     text = apply_head_meta(text)
+    text = apply_home_hero(text, json.loads(CONFIG_PATH.read_text(encoding="utf-8")))
     INDEX_PATH.write_text(text, encoding="utf-8")
 
     cfg = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))

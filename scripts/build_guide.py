@@ -294,7 +294,8 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], keep_dates: 
     text_tel = re.sub(r"\D", "", text_disp)
     contact_line = f"전화 {phone_disp}" + (f" / 문자 {text_disp}" if text_disp else "")
     if text_tel:
-        sms_href = f'href="sms:{text_tel}?body=폐차%20문의드립니다"'
+        from first_screen import sms_link  # 본문 미리 채움, 아이폰·안드로이드 공통 형식(2026-10-13)
+        sms_href = f'href="{esc(sms_link({"sms_number": text_tel}, ""))}"'
         sms_btn = f'<a class="btn btn-sms" {sms_href}><svg><use href="#i-chat"/></svg>문자 {esc(text_disp)}</a>'
         bar_second, bar_cols = f'<a class="btn btn-sms" {sms_href}><svg><use href="#i-chat"/></svg>문자</a>', "2fr 1fr"
     else:
