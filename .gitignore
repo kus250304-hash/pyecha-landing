@@ -1,2 +1,5 @@
 __pycache__/
 .cases_staging/
+
+# 비밀 키 파일(네이버 검색광고 API 등)은 올리지 않는다
+*.env
