@@ -2,27 +2,15 @@
  "_comment": "앞으로 만들 동·구 페이지 우선순위(네이버 검색량 순). scripts/naver_keywords.py 가 만들고 scripts/priority_regions.py 를 거쳐 pick_next_regions.py·pick_next_gu.py 가 읽는다. 손으로 고치지 않는다.",
  "made_on": "2026-10-15",
  "source": "data/keywords/region_kw_2026-10-15.csv (네이버 검색광고 API 키워드도구, scripts/naver_region_kw.py). 점수표 docs/region-priority-2026-10-15.md",
- "score": "검색량 합 × 경쟁 계수 × 지방 계수 ÷ (1 + 월평균 노출 광고수) × 하한 계수(100 미만 0.5). 순위 → 검색량 없음(노후차 추정 순) → 2026-10-02 목록에만 있던 곳",
+ "score": "검색량 합 × 경쟁 계수 × 지방 계수 ÷ (1 + 0.3 × 월평균 노출 광고수) × 하한 계수(100 미만 0.5). 순위 → 검색량 없음(노후차 추정 순) → 2026-10-02 목록에만 있던 곳",
  "dong_target_per_gu": 3,
  "gu": [
   {
    "rank": 1,
-   "sido": "경상북도",
-   "sigungu": "고령군",
-   "group": "순위",
-   "score": 27.5,
-   "volume": 55,
-   "keywords": [
-    "고령폐차장 25"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 2,
    "sido": "강원특별자치도",
    "sigungu": "원주시",
    "group": "순위",
-   "score": 26.6,
+   "score": 73.1,
    "volume": 975,
    "keywords": [
     "원주폐차장 850",
@@ -45,11 +33,11 @@
    ]
   },
   {
-   "rank": 3,
+   "rank": 2,
    "sido": "경상북도",
    "sigungu": "구미시",
    "group": "순위",
-   "score": 25.1,
+   "score": 69.0,
    "volume": 920,
    "keywords": [
     "구미폐차장 680",
@@ -63,35 +51,11 @@
    "dongs": []
   },
   {
-   "rank": 4,
-   "sido": "전남광주통합특별시",
-   "sigungu": "구례군",
-   "group": "순위",
-   "score": 22.5,
-   "volume": 45,
-   "keywords": [
-    "구례폐차장 15"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 5,
-   "sido": "전남광주통합특별시",
-   "sigungu": "신안군",
-   "group": "순위",
-   "score": 22.5,
-   "volume": 45,
-   "keywords": [
-    "신안군폐차장 15"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 6,
+   "rank": 3,
    "sido": "제주특별자치도",
    "sigungu": "제주시",
    "group": "순위",
-   "score": 20.9,
+   "score": 57.4,
    "volume": 765,
    "keywords": [
     "제주폐차장 380",
@@ -106,11 +70,11 @@
    "dongs": []
   },
   {
-   "rank": 7,
+   "rank": 4,
    "sido": "경상남도",
    "sigungu": "양산시",
    "group": "순위",
-   "score": 19.1,
+   "score": 52.5,
    "volume": 700,
    "keywords": [
     "양산폐차장 610",
@@ -121,11 +85,11 @@
    "dongs": []
   },
   {
-   "rank": 8,
+   "rank": 5,
    "sido": "경기도",
    "sigungu": "광주시",
    "group": "순위",
-   "score": 18.4,
+   "score": 50.6,
    "volume": 1350,
    "keywords": [
     "광주폐차장 820",
@@ -151,11 +115,11 @@
    ]
   },
   {
-   "rank": 9,
+   "rank": 6,
    "sido": "경상남도",
    "sigungu": "김해시",
    "group": "순위",
-   "score": 18.1,
+   "score": 49.9,
    "volume": 665,
    "keywords": [
     "김해폐차장 560",
@@ -187,23 +151,11 @@
    ]
   },
   {
-   "rank": 10,
-   "sido": "부산광역시",
-   "sigungu": "영도구",
-   "group": "순위",
-   "score": 18.0,
-   "volume": 45,
-   "keywords": [
-    "영도폐차장 15"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 11,
+   "rank": 7,
    "sido": "충청남도",
    "sigungu": "천안시 동남구",
    "group": "순위",
-   "score": 16.8,
+   "score": 46.3,
    "volume": 618,
    "keywords": [
     "천안폐차장 890",
@@ -215,11 +167,11 @@
    "dongs": []
   },
   {
-   "rank": 12,
+   "rank": 8,
    "sido": "충청남도",
    "sigungu": "천안시 서북구",
    "group": "순위",
-   "score": 16.8,
+   "score": 46.3,
    "volume": 618,
    "keywords": [
     "천안폐차장 890",
@@ -242,11 +194,11 @@
    ]
   },
   {
-   "rank": 13,
+   "rank": 9,
    "sido": "충청남도",
    "sigungu": "아산시",
    "group": "순위",
-   "score": 16.0,
+   "score": 43.9,
    "volume": 585,
    "keywords": [
     "아산폐차장 370",
@@ -257,11 +209,11 @@
    "dongs": []
   },
   {
-   "rank": 14,
+   "rank": 10,
    "sido": "강원특별자치도",
    "sigungu": "강릉시",
    "group": "순위",
-   "score": 15.4,
+   "score": 42.4,
    "volume": 565,
    "keywords": [
     "강릉폐차장 500",
@@ -270,11 +222,11 @@
    "dongs": []
   },
   {
-   "rank": 15,
+   "rank": 11,
    "sido": "전남광주통합특별시",
    "sigungu": "목포시",
    "group": "순위",
-   "score": 13.5,
+   "score": 37.1,
    "volume": 495,
    "keywords": [
     "목포폐차장 460",
@@ -283,11 +235,11 @@
    "dongs": []
   },
   {
-   "rank": 16,
+   "rank": 12,
    "sido": "전북특별자치도",
    "sigungu": "전주시 덕진구",
    "group": "순위",
-   "score": 13.5,
+   "score": 37.1,
    "volume": 495,
    "keywords": [
     "전주폐차장 610",
@@ -301,11 +253,11 @@
    "dongs": []
   },
   {
-   "rank": 17,
+   "rank": 13,
    "sido": "전북특별자치도",
    "sigungu": "전주시 완산구",
    "group": "순위",
-   "score": 13.5,
+   "score": 37.1,
    "volume": 495,
    "keywords": [
     "전주폐차장 610",
@@ -319,11 +271,11 @@
    "dongs": []
   },
   {
-   "rank": 18,
+   "rank": 14,
    "sido": "전북특별자치도",
    "sigungu": "군산시",
    "group": "순위",
-   "score": 13.0,
+   "score": 35.6,
    "volume": 475,
    "keywords": [
     "군산폐차장 410",
@@ -334,11 +286,11 @@
    "dongs": []
   },
   {
-   "rank": 19,
+   "rank": 15,
    "sido": "경상남도",
    "sigungu": "진주시",
    "group": "순위",
-   "score": 12.7,
+   "score": 34.9,
    "volume": 465,
    "keywords": [
     "진주폐차장 370",
@@ -348,11 +300,11 @@
    "dongs": []
   },
   {
-   "rank": 20,
+   "rank": 16,
    "sido": "강원특별자치도",
    "sigungu": "춘천시",
    "group": "순위",
-   "score": 12.4,
+   "score": 34.1,
    "volume": 455,
    "keywords": [
     "춘천폐차장 390",
@@ -363,11 +315,11 @@
    "dongs": []
   },
   {
-   "rank": 21,
+   "rank": 17,
    "sido": "세종특별자치시",
    "sigungu": "",
    "group": "순위",
-   "score": 12.4,
+   "score": 34.1,
    "volume": 455,
    "keywords": [
     "세종폐차장 240",
@@ -390,11 +342,11 @@
    ]
   },
   {
-   "rank": 22,
+   "rank": 18,
    "sido": "전북특별자치도",
    "sigungu": "익산시",
    "group": "순위",
-   "score": 12.3,
+   "score": 33.8,
    "volume": 450,
    "keywords": [
     "익산폐차장 390",
@@ -404,11 +356,11 @@
    "dongs": []
   },
   {
-   "rank": 23,
+   "rank": 19,
    "sido": "충청남도",
    "sigungu": "서산시",
    "group": "순위",
-   "score": 12.3,
+   "score": 33.8,
    "volume": 450,
    "keywords": [
     "서산폐차장 400",
@@ -429,11 +381,11 @@
    ]
   },
   {
-   "rank": 24,
+   "rank": 20,
    "sido": "경기도",
    "sigungu": "평택시",
    "group": "순위",
-   "score": 12.2,
+   "score": 33.6,
    "volume": 895,
    "keywords": [
     "평택폐차장 710",
@@ -455,11 +407,11 @@
    ]
   },
   {
-   "rank": 25,
+   "rank": 21,
    "sido": "경상남도",
    "sigungu": "거제시",
    "group": "순위",
-   "score": 11.5,
+   "score": 31.5,
    "volume": 420,
    "keywords": [
     "거제폐차장 350",
@@ -469,23 +421,11 @@
    "dongs": []
   },
   {
-   "rank": 26,
-   "sido": "인천광역시",
-   "sigungu": "서해구",
-   "group": "순위",
-   "score": 11.2,
-   "volume": 45,
-   "keywords": [
-    "서해구폐차장 15"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 27,
+   "rank": 22,
    "sido": "충청남도",
    "sigungu": "당진시",
    "group": "순위",
-   "score": 10.9,
+   "score": 30.0,
    "volume": 400,
    "keywords": [
     "당진폐차장 270",
@@ -497,11 +437,11 @@
    "dongs": []
   },
   {
-   "rank": 28,
+   "rank": 23,
    "sido": "경상북도",
    "sigungu": "경산시",
    "group": "순위",
-   "score": 10.8,
+   "score": 29.6,
    "volume": 395,
    "keywords": [
     "경산폐차장 340",
@@ -511,11 +451,11 @@
    "dongs": []
   },
   {
-   "rank": 29,
+   "rank": 24,
    "sido": "경상남도",
    "sigungu": "창원시 진해구",
    "group": "순위",
-   "score": 10.4,
+   "score": 28.7,
    "volume": 383,
    "keywords": [
     "창원폐차장 780",
@@ -530,11 +470,11 @@
    "dongs": []
   },
   {
-   "rank": 30,
+   "rank": 25,
    "sido": "충청북도",
    "sigungu": "충주시",
    "group": "순위",
-   "score": 10.4,
+   "score": 28.5,
    "volume": 380,
    "keywords": [
     "충주폐차장 300",
@@ -545,11 +485,11 @@
    "dongs": []
   },
   {
-   "rank": 31,
+   "rank": 26,
    "sido": "경기도",
    "sigungu": "양주시",
    "group": "순위",
-   "score": 10.3,
+   "score": 28.3,
    "volume": 755,
    "keywords": [
     "양주폐차장 460",
@@ -561,11 +501,11 @@
    "dongs": []
   },
   {
-   "rank": 32,
+   "rank": 27,
    "sido": "경상북도",
    "sigungu": "김천시",
    "group": "순위",
-   "score": 10.2,
+   "score": 28.1,
    "volume": 375,
    "keywords": [
     "김천폐차장 300",
@@ -576,11 +516,11 @@
    "dongs": []
   },
   {
-   "rank": 33,
+   "rank": 28,
    "sido": "경상북도",
    "sigungu": "포항시 북구",
    "group": "순위",
-   "score": 10.0,
+   "score": 27.6,
    "volume": 368,
    "keywords": [
     "포항폐차장 570",
@@ -592,23 +532,23 @@
    "dongs": []
   },
   {
-   "rank": 34,
-   "sido": "전남광주통합특별시",
-   "sigungu": "서구",
+   "rank": 29,
+   "sido": "경상북도",
+   "sigungu": "고령군",
    "group": "순위",
-   "score": 10.0,
-   "volume": 25,
+   "score": 27.5,
+   "volume": 55,
    "keywords": [
-    "광주서구폐차장 15"
+    "고령폐차장 25"
    ],
    "dongs": []
   },
   {
-   "rank": 35,
+   "rank": 30,
    "sido": "경상북도",
    "sigungu": "포항시 남구",
    "group": "순위",
-   "score": 9.8,
+   "score": 26.8,
    "volume": 358,
    "keywords": [
     "포항폐차장 570",
@@ -620,11 +560,11 @@
    "dongs": []
   },
   {
-   "rank": 36,
+   "rank": 31,
    "sido": "경상북도",
    "sigungu": "경주시",
    "group": "순위",
-   "score": 9.4,
+   "score": 25.9,
    "volume": 345,
    "keywords": [
     "경주폐차장 300",
@@ -633,11 +573,11 @@
    "dongs": []
   },
   {
-   "rank": 37,
+   "rank": 32,
    "sido": "전남광주통합특별시",
    "sigungu": "순천시",
    "group": "순위",
-   "score": 9.3,
+   "score": 25.5,
    "volume": 340,
    "keywords": [
     "순천폐차장 300",
@@ -647,11 +587,11 @@
    "dongs": []
   },
   {
-   "rank": 38,
+   "rank": 33,
    "sido": "충청북도",
    "sigungu": "청주시 서원구",
    "group": "순위",
-   "score": 9.0,
+   "score": 24.7,
    "volume": 329,
    "keywords": [
     "청주폐차장 850",
@@ -664,11 +604,11 @@
    "dongs": []
   },
   {
-   "rank": 39,
+   "rank": 34,
    "sido": "전남광주통합특별시",
    "sigungu": "광양시",
    "group": "순위",
-   "score": 8.6,
+   "score": 23.6,
    "volume": 315,
    "keywords": [
     "광양폐차장 240",
@@ -679,11 +619,11 @@
    "dongs": []
   },
   {
-   "rank": 40,
+   "rank": 35,
    "sido": "충청북도",
    "sigungu": "청주시 상당구",
    "group": "순위",
-   "score": 8.6,
+   "score": 23.5,
    "volume": 314,
    "keywords": [
     "청주폐차장 850",
@@ -695,11 +635,11 @@
    "dongs": []
   },
   {
-   "rank": 41,
+   "rank": 36,
    "sido": "충청북도",
    "sigungu": "청주시 청원구",
    "group": "순위",
-   "score": 8.6,
+   "score": 23.5,
    "volume": 314,
    "keywords": [
     "청주폐차장 850",
@@ -722,11 +662,11 @@
    ]
   },
   {
-   "rank": 42,
+   "rank": 37,
    "sido": "충청북도",
    "sigungu": "청주시 흥덕구",
    "group": "순위",
-   "score": 8.6,
+   "score": 23.5,
    "volume": 314,
    "keywords": [
     "청주폐차장 850",
@@ -738,11 +678,11 @@
    "dongs": []
   },
   {
-   "rank": 43,
+   "rank": 38,
    "sido": "경기도",
    "sigungu": "파주시",
    "group": "순위",
-   "score": 8.5,
+   "score": 23.2,
    "volume": 620,
    "keywords": [
     "파주폐차장 450",
@@ -754,24 +694,11 @@
    "dongs": []
   },
   {
-   "rank": 44,
-   "sido": "전북특별자치도",
-   "sigungu": "남원시",
-   "group": "순위",
-   "score": 8.4,
-   "volume": 225,
-   "keywords": [
-    "남원폐차장 180",
-    "남원시폐차장 25"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 45,
+   "rank": 39,
    "sido": "경기도",
    "sigungu": "안성시",
    "group": "순위",
-   "score": 8.3,
+   "score": 22.9,
    "volume": 610,
    "keywords": [
     "안성폐차장 530",
@@ -792,11 +719,11 @@
    ]
   },
   {
-   "rank": 46,
+   "rank": 40,
    "sido": "충청남도",
    "sigungu": "논산시",
    "group": "순위",
-   "score": 8.3,
+   "score": 22.9,
    "volume": 305,
    "keywords": [
     "논산폐차장 260",
@@ -805,11 +732,11 @@
    "dongs": []
   },
   {
-   "rank": 47,
+   "rank": 41,
    "sido": "충청북도",
    "sigungu": "제천시",
    "group": "순위",
-   "score": 8.3,
+   "score": 22.9,
    "volume": 305,
    "keywords": [
     "제천폐차장 270",
@@ -818,23 +745,11 @@
    "dongs": []
   },
   {
-   "rank": 48,
-   "sido": "충청남도",
-   "sigungu": "부여군",
-   "group": "순위",
-   "score": 8.2,
-   "volume": 110,
-   "keywords": [
-    "부여폐차장 80"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 49,
+   "rank": 42,
    "sido": "경상북도",
    "sigungu": "영천시",
    "group": "순위",
-   "score": 8.2,
+   "score": 22.5,
    "volume": 300,
    "keywords": [
     "영천폐차장 210",
@@ -844,11 +759,48 @@
    "dongs": []
   },
   {
-   "rank": 50,
+   "rank": 43,
+   "sido": "전남광주통합특별시",
+   "sigungu": "구례군",
+   "group": "순위",
+   "score": 22.5,
+   "volume": 45,
+   "keywords": [
+    "구례폐차장 15"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 44,
+   "sido": "전남광주통합특별시",
+   "sigungu": "신안군",
+   "group": "순위",
+   "score": 22.5,
+   "volume": 45,
+   "keywords": [
+    "신안군폐차장 15"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 45,
+   "sido": "전북특별자치도",
+   "sigungu": "남원시",
+   "group": "순위",
+   "score": 21.8,
+   "volume": 225,
+   "keywords": [
+    "남원폐차장 180",
+    "남원시폐차장 25"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 46,
    "sido": "경상북도",
    "sigungu": "안동시",
    "group": "순위",
-   "score": 7.6,
+   "score": 21.0,
    "volume": 280,
    "keywords": [
     "안동폐차장 240",
@@ -858,11 +810,11 @@
    "dongs": []
   },
   {
-   "rank": 51,
+   "rank": 47,
    "sido": "경기도",
    "sigungu": "안산시 상록구",
    "group": "순위",
-   "score": 7.6,
+   "score": 20.9,
    "volume": 558,
    "keywords": [
     "안산폐차장 860",
@@ -876,11 +828,11 @@
    "dongs": []
   },
   {
-   "rank": 52,
+   "rank": 48,
    "sido": "경기도",
    "sigungu": "김포시",
    "group": "순위",
-   "score": 7.6,
+   "score": 20.8,
    "volume": 555,
    "keywords": [
     "김포폐차장 420",
@@ -892,11 +844,11 @@
    "dongs": []
   },
   {
-   "rank": 53,
+   "rank": 49,
    "sido": "경기도",
    "sigungu": "안산시 단원구",
    "group": "순위",
-   "score": 7.5,
+   "score": 20.7,
    "volume": 552,
    "keywords": [
     "안산폐차장 860",
@@ -909,11 +861,11 @@
    "dongs": []
   },
   {
-   "rank": 54,
+   "rank": 50,
    "sido": "충청남도",
    "sigungu": "공주시",
    "group": "순위",
-   "score": 7.1,
+   "score": 19.5,
    "volume": 260,
    "keywords": [
     "공주폐차장 200",
@@ -923,11 +875,11 @@
    "dongs": []
   },
   {
-   "rank": 55,
+   "rank": 51,
    "sido": "경기도",
    "sigungu": "남양주시",
    "group": "순위",
-   "score": 7.0,
+   "score": 19.1,
    "volume": 510,
    "keywords": [
     "남양주폐차장 370",
@@ -949,11 +901,11 @@
    ]
   },
   {
-   "rank": 56,
+   "rank": 52,
    "sido": "경상남도",
    "sigungu": "사천시",
    "group": "순위",
-   "score": 7.0,
+   "score": 19.1,
    "volume": 255,
    "keywords": [
     "사천폐차장 210",
@@ -962,11 +914,11 @@
    "dongs": []
   },
   {
-   "rank": 57,
+   "rank": 53,
    "sido": "경기도",
    "sigungu": "시흥시",
    "group": "순위",
-   "score": 6.6,
+   "score": 18.2,
    "volume": 485,
    "keywords": [
     "시흥폐차장 300",
@@ -990,11 +942,74 @@
    ]
   },
   {
-   "rank": 58,
+   "rank": 54,
+   "sido": "부산광역시",
+   "sigungu": "영도구",
+   "group": "순위",
+   "score": 18.0,
+   "volume": 45,
+   "keywords": [
+    "영도폐차장 15"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 55,
    "sido": "경상남도",
    "sigungu": "창원시 마산합포구",
    "group": "순위",
-   "score": 6.5,
+   "score": 17.8,
+   "volume": 238,
+   "keywords": [
+    "창원폐차장 780",
+    "창원폐차 70",
+    "창원시폐차장 50",
+    "창원시조기폐차 40",
+    "창원시폐차 15",
+    "창원자동차폐차 15"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 56,
+   "sido": "경상남도",
+   "sigungu": "창원시 마산회원구",
+   "group": "순위",
+   "score": 17.8,
+   "volume": 238,
+   "keywords": [
+    "창원폐차장 780",
+    "창원폐차 70",
+    "창원시폐차장 50",
+    "창원시조기폐차 40",
+    "창원시폐차 15",
+    "창원자동차폐차 15"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 57,
+   "sido": "경상남도",
+   "sigungu": "창원시 성산구",
+   "group": "순위",
+   "score": 17.8,
+   "volume": 238,
+   "keywords": [
+    "창원폐차장 780",
+    "창원폐차 70",
+    "창원시폐차장 50",
+    "창원시조기폐차 40",
+    "창원시폐차 15",
+    "창원자동차폐차 15"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 58,
+   "sido": "경상남도",
+   "sigungu": "창원시 의창구",
+   "group": "순위",
+   "score": 17.8,
    "volume": 238,
    "keywords": [
     "창원폐차장 780",
@@ -1008,73 +1023,22 @@
   },
   {
    "rank": 59,
-   "sido": "경상남도",
-   "sigungu": "창원시 마산회원구",
+   "sido": "충청남도",
+   "sigungu": "부여군",
    "group": "순위",
-   "score": 6.5,
-   "volume": 238,
+   "score": 17.4,
+   "volume": 110,
    "keywords": [
-    "창원폐차장 780",
-    "창원폐차 70",
-    "창원시폐차장 50",
-    "창원시조기폐차 40",
-    "창원시폐차 15",
-    "창원자동차폐차 15"
+    "부여폐차장 80"
    ],
    "dongs": []
   },
   {
    "rank": 60,
-   "sido": "경상남도",
-   "sigungu": "창원시 성산구",
-   "group": "순위",
-   "score": 6.5,
-   "volume": 238,
-   "keywords": [
-    "창원폐차장 780",
-    "창원폐차 70",
-    "창원시폐차장 50",
-    "창원시조기폐차 40",
-    "창원시폐차 15",
-    "창원자동차폐차 15"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 61,
-   "sido": "경상남도",
-   "sigungu": "창원시 의창구",
-   "group": "순위",
-   "score": 6.5,
-   "volume": 238,
-   "keywords": [
-    "창원폐차장 780",
-    "창원폐차 70",
-    "창원시폐차장 50",
-    "창원시조기폐차 40",
-    "창원시폐차 15",
-    "창원자동차폐차 15"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 62,
-   "sido": "전북특별자치도",
-   "sigungu": "부안군",
-   "group": "순위",
-   "score": 6.4,
-   "volume": 170,
-   "keywords": [
-    "부안폐차장 140"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 63,
    "sido": "경기도",
    "sigungu": "오산시",
    "group": "순위",
-   "score": 6.3,
+   "score": 17.2,
    "volume": 460,
    "keywords": [
     "오산폐차장 370",
@@ -1085,11 +1049,11 @@
    "dongs": []
   },
   {
-   "rank": 64,
+   "rank": 61,
    "sido": "강원특별자치도",
    "sigungu": "속초시",
    "group": "순위",
-   "score": 6.3,
+   "score": 17.2,
    "volume": 230,
    "keywords": [
     "속초폐차장 190",
@@ -1099,24 +1063,11 @@
    "dongs": []
   },
   {
-   "rank": 65,
-   "sido": "제주특별자치도",
-   "sigungu": "서귀포시",
-   "group": "순위",
-   "score": 6.2,
-   "volume": 165,
-   "keywords": [
-    "서귀포폐차장 130",
-    "서귀포시폐차장 15"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 66,
+   "rank": 62,
    "sido": "전남광주통합특별시",
    "sigungu": "여수시",
    "group": "순위",
-   "score": 6.1,
+   "score": 16.9,
    "volume": 225,
    "keywords": [
     "여수폐차장 180",
@@ -1125,11 +1076,11 @@
    "dongs": []
   },
   {
-   "rank": 67,
+   "rank": 63,
    "sido": "경기도",
    "sigungu": "화성시 동탄구",
    "group": "순위",
-   "score": 6.1,
+   "score": 16.8,
    "volume": 448,
    "keywords": [
     "화성폐차장 530",
@@ -1143,11 +1094,11 @@
    "dongs": []
   },
   {
-   "rank": 68,
+   "rank": 64,
    "sido": "경기도",
    "sigungu": "이천시",
    "group": "순위",
-   "score": 6.1,
+   "score": 16.7,
    "volume": 445,
    "keywords": [
     "이천폐차장 360",
@@ -1157,11 +1108,23 @@
    "dongs": []
   },
   {
-   "rank": 69,
+   "rank": 65,
+   "sido": "전북특별자치도",
+   "sigungu": "부안군",
+   "group": "순위",
+   "score": 16.5,
+   "volume": 170,
+   "keywords": [
+    "부안폐차장 140"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 66,
    "sido": "경상남도",
    "sigungu": "통영시",
    "group": "순위",
-   "score": 5.9,
+   "score": 16.1,
    "volume": 215,
    "keywords": [
     "통영폐차장 180",
@@ -1170,11 +1133,24 @@
    "dongs": []
   },
   {
-   "rank": 70,
+   "rank": 67,
+   "sido": "제주특별자치도",
+   "sigungu": "서귀포시",
+   "group": "순위",
+   "score": 16.0,
+   "volume": 165,
+   "keywords": [
+    "서귀포폐차장 130",
+    "서귀포시폐차장 15"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 68,
    "sido": "경상북도",
    "sigungu": "상주시",
    "group": "순위",
-   "score": 5.7,
+   "score": 15.8,
    "volume": 210,
    "keywords": [
     "상주폐차장 160",
@@ -1194,11 +1170,11 @@
    ]
   },
   {
-   "rank": 71,
+   "rank": 69,
    "sido": "경기도",
    "sigungu": "의정부시",
    "group": "순위",
-   "score": 5.7,
+   "score": 15.6,
    "volume": 415,
    "keywords": [
     "의정부폐차장 340",
@@ -1208,11 +1184,11 @@
    "dongs": []
   },
   {
-   "rank": 72,
+   "rank": 70,
    "sido": "경상북도",
    "sigungu": "영주시",
    "group": "순위",
-   "score": 5.6,
+   "score": 15.4,
    "volume": 205,
    "keywords": [
     "영주폐차장 170",
@@ -1221,11 +1197,11 @@
    "dongs": []
   },
   {
-   "rank": 73,
+   "rank": 71,
    "sido": "경기도",
    "sigungu": "군포시",
    "group": "순위",
-   "score": 5.5,
+   "score": 15.2,
    "volume": 405,
    "keywords": [
     "군포폐차장 340",
@@ -1236,11 +1212,11 @@
    "dongs": []
   },
   {
-   "rank": 74,
+   "rank": 72,
    "sido": "강원특별자치도",
    "sigungu": "동해시",
    "group": "순위",
-   "score": 5.5,
+   "score": 15.0,
    "volume": 200,
    "keywords": [
     "동해폐차장 120",
@@ -1249,11 +1225,11 @@
    "dongs": []
   },
   {
-   "rank": 75,
+   "rank": 73,
    "sido": "경기도",
    "sigungu": "안양시 동안구",
    "group": "순위",
-   "score": 5.4,
+   "score": 14.8,
    "volume": 395,
    "keywords": [
     "안양폐차장 560",
@@ -1265,11 +1241,11 @@
    "dongs": []
   },
   {
-   "rank": 76,
+   "rank": 74,
    "sido": "경기도",
    "sigungu": "안양시 만안구",
    "group": "순위",
-   "score": 5.4,
+   "score": 14.8,
    "volume": 395,
    "keywords": [
     "안양폐차장 560",
@@ -1281,11 +1257,11 @@
    "dongs": []
   },
   {
-   "rank": 77,
+   "rank": 75,
    "sido": "충청남도",
    "sigungu": "홍성군",
    "group": "순위",
-   "score": 5.3,
+   "score": 14.6,
    "volume": 195,
    "keywords": [
     "홍성폐차장 160",
@@ -1294,11 +1270,11 @@
    "dongs": []
   },
   {
-   "rank": 78,
+   "rank": 76,
    "sido": "경기도",
    "sigungu": "수원시 영통구",
    "group": "순위",
-   "score": 5.2,
+   "score": 14.4,
    "volume": 384,
    "keywords": [
     "수원폐차장 1010",
@@ -1312,11 +1288,11 @@
    "dongs": []
   },
   {
-   "rank": 79,
+   "rank": 77,
    "sido": "경기도",
    "sigungu": "수원시 장안구",
    "group": "순위",
-   "score": 5.1,
+   "score": 14.0,
    "volume": 374,
    "keywords": [
     "수원폐차장 1010",
@@ -1330,11 +1306,11 @@
    "dongs": []
   },
   {
-   "rank": 80,
+   "rank": 78,
    "sido": "경기도",
    "sigungu": "수원시 권선구",
    "group": "순위",
-   "score": 5.0,
+   "score": 13.8,
    "volume": 369,
    "keywords": [
     "수원폐차장 1010",
@@ -1347,11 +1323,11 @@
    "dongs": []
   },
   {
-   "rank": 81,
+   "rank": 79,
    "sido": "경기도",
    "sigungu": "수원시 팔달구",
    "group": "순위",
-   "score": 5.0,
+   "score": 13.8,
    "volume": 369,
    "keywords": [
     "수원폐차장 1010",
@@ -1364,11 +1340,11 @@
    "dongs": []
   },
   {
-   "rank": 82,
+   "rank": 80,
    "sido": "경기도",
    "sigungu": "포천시",
    "group": "순위",
-   "score": 4.9,
+   "score": 13.5,
    "volume": 360,
    "keywords": [
     "포천폐차장 300",
@@ -1378,11 +1354,11 @@
    "dongs": []
   },
   {
-   "rank": 83,
+   "rank": 81,
    "sido": "경상남도",
    "sigungu": "밀양시",
    "group": "순위",
-   "score": 4.9,
+   "score": 13.5,
    "volume": 180,
    "keywords": [
     "밀양폐차장 150"
@@ -1390,11 +1366,11 @@
    "dongs": []
   },
   {
-   "rank": 84,
+   "rank": 82,
    "sido": "전북특별자치도",
    "sigungu": "김제시",
    "group": "순위",
-   "score": 4.9,
+   "score": 13.5,
    "volume": 180,
    "keywords": [
     "김제폐차장 150"
@@ -1402,36 +1378,11 @@
    "dongs": []
   },
   {
-   "rank": 85,
-   "sido": "강원특별자치도",
-   "sigungu": "태백시",
-   "group": "순위",
-   "score": 4.9,
-   "volume": 130,
-   "keywords": [
-    "태백폐차장 95",
-    "태백시폐차장 15"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 86,
-   "sido": "전남광주통합특별시",
-   "sigungu": "보성군",
-   "group": "순위",
-   "score": 4.9,
-   "volume": 130,
-   "keywords": [
-    "보성폐차장 100"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 87,
+   "rank": 83,
    "sido": "전남광주통합특별시",
    "sigungu": "나주시",
    "group": "순위",
-   "score": 4.8,
+   "score": 13.1,
    "volume": 175,
    "keywords": [
     "나주폐차장 140",
@@ -1440,11 +1391,11 @@
    "dongs": []
   },
   {
-   "rank": 88,
+   "rank": 84,
    "sido": "경기도",
    "sigungu": "하남시",
    "group": "순위",
-   "score": 4.6,
+   "score": 12.8,
    "volume": 340,
    "keywords": [
     "하남폐차장 230",
@@ -1456,11 +1407,11 @@
    "dongs": []
   },
   {
-   "rank": 89,
+   "rank": 85,
    "sido": "전북특별자치도",
    "sigungu": "정읍시",
    "group": "순위",
-   "score": 4.6,
+   "score": 12.8,
    "volume": 170,
    "keywords": [
     "정읍폐차장 140"
@@ -1468,11 +1419,36 @@
    "dongs": []
   },
   {
-   "rank": 90,
+   "rank": 86,
+   "sido": "강원특별자치도",
+   "sigungu": "태백시",
+   "group": "순위",
+   "score": 12.6,
+   "volume": 130,
+   "keywords": [
+    "태백폐차장 95",
+    "태백시폐차장 15"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 87,
+   "sido": "전남광주통합특별시",
+   "sigungu": "보성군",
+   "group": "순위",
+   "score": 12.6,
+   "volume": 130,
+   "keywords": [
+    "보성폐차장 100"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 88,
    "sido": "충청남도",
    "sigungu": "예산군",
    "group": "순위",
-   "score": 4.5,
+   "score": 12.4,
    "volume": 165,
    "keywords": [
     "예산폐차장 130",
@@ -1481,11 +1457,11 @@
    "dongs": []
   },
   {
-   "rank": 91,
+   "rank": 89,
    "sido": "충청북도",
    "sigungu": "진천군",
    "group": "순위",
-   "score": 4.5,
+   "score": 12.4,
    "volume": 165,
    "keywords": [
     "진천폐차장 130",
@@ -1494,11 +1470,11 @@
    "dongs": []
   },
   {
-   "rank": 92,
+   "rank": 90,
    "sido": "경기도",
    "sigungu": "화성시 병점구",
    "group": "순위",
-   "score": 4.5,
+   "score": 12.3,
    "volume": 328,
    "keywords": [
     "화성폐차장 530",
@@ -1512,11 +1488,11 @@
    "dongs": []
   },
   {
-   "rank": 93,
+   "rank": 91,
    "sido": "경상북도",
    "sigungu": "예천군",
    "group": "순위",
-   "score": 4.4,
+   "score": 12.0,
    "volume": 160,
    "keywords": [
     "예천폐차장 130"
@@ -1524,11 +1500,23 @@
    "dongs": []
   },
   {
-   "rank": 94,
+   "rank": 92,
+   "sido": "인천광역시",
+   "sigungu": "서해구",
+   "group": "순위",
+   "score": 11.2,
+   "volume": 45,
+   "keywords": [
+    "서해구폐차장 15"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 93,
    "sido": "경기도",
    "sigungu": "광명시",
    "group": "순위",
-   "score": 4.0,
+   "score": 11.1,
    "volume": 295,
    "keywords": [
     "광명폐차장 210",
@@ -1538,11 +1526,11 @@
    "dongs": []
   },
   {
-   "rank": 95,
+   "rank": 94,
    "sido": "경상남도",
    "sigungu": "창녕군",
    "group": "순위",
-   "score": 4.0,
+   "score": 10.9,
    "volume": 145,
    "keywords": [
     "창녕폐차장 110",
@@ -1551,11 +1539,11 @@
    "dongs": []
   },
   {
-   "rank": 96,
+   "rank": 95,
    "sido": "경상남도",
    "sigungu": "함양군",
    "group": "순위",
-   "score": 4.0,
+   "score": 10.9,
    "volume": 145,
    "keywords": [
     "함양폐차장 110",
@@ -1564,11 +1552,11 @@
    "dongs": []
   },
   {
-   "rank": 97,
+   "rank": 96,
    "sido": "경상북도",
    "sigungu": "칠곡군",
    "group": "순위",
-   "score": 4.0,
+   "score": 10.9,
    "volume": 145,
    "keywords": [
     "칠곡폐차장 110",
@@ -1588,11 +1576,11 @@
    ]
   },
   {
-   "rank": 98,
+   "rank": 97,
    "sido": "충청북도",
    "sigungu": "증평군",
    "group": "순위",
-   "score": 4.0,
+   "score": 10.9,
    "volume": 145,
    "keywords": [
     "증평폐차장 110",
@@ -1601,11 +1589,11 @@
    "dongs": []
   },
   {
-   "rank": 99,
+   "rank": 98,
    "sido": "경기도",
    "sigungu": "용인시 처인구",
    "group": "순위",
-   "score": 3.9,
+   "score": 10.6,
    "volume": 283,
    "keywords": [
     "용인폐차장 470",
@@ -1618,11 +1606,11 @@
    "dongs": []
   },
   {
-   "rank": 100,
+   "rank": 99,
    "sido": "경기도",
    "sigungu": "고양시 덕양구",
    "group": "순위",
-   "score": 3.8,
+   "score": 10.4,
    "volume": 278,
    "keywords": [
     "고양시폐차장 250",
@@ -1637,24 +1625,45 @@
    "dongs": []
   },
   {
-   "rank": 101,
-   "sido": "경상남도",
-   "sigungu": "함안군",
+   "rank": 100,
+   "sido": "경기도",
+   "sigungu": "부천시 소사구",
    "group": "순위",
-   "score": 3.8,
-   "volume": 100,
+   "score": 10.3,
+   "volume": 273,
    "keywords": [
-    "함안폐차장 65",
-    "함안군폐차장 15"
+    "부천폐차장 550",
+    "부천폐차 55",
+    "부천자동차폐차장 35",
+    "부천시폐차장 20",
+    "부천조기폐차 15",
+    "부천시조기폐차 15"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 101,
+   "sido": "경기도",
+   "sigungu": "부천시 오정구",
+   "group": "순위",
+   "score": 10.3,
+   "volume": 273,
+   "keywords": [
+    "부천폐차장 550",
+    "부천폐차 55",
+    "부천자동차폐차장 35",
+    "부천시폐차장 20",
+    "부천조기폐차 15",
+    "부천시조기폐차 15"
    ],
    "dongs": []
   },
   {
    "rank": 102,
    "sido": "경기도",
-   "sigungu": "부천시 소사구",
+   "sigungu": "부천시 원미구",
    "group": "순위",
-   "score": 3.7,
+   "score": 10.3,
    "volume": 273,
    "keywords": [
     "부천폐차장 550",
@@ -1669,43 +1678,9 @@
   {
    "rank": 103,
    "sido": "경기도",
-   "sigungu": "부천시 오정구",
-   "group": "순위",
-   "score": 3.7,
-   "volume": 273,
-   "keywords": [
-    "부천폐차장 550",
-    "부천폐차 55",
-    "부천자동차폐차장 35",
-    "부천시폐차장 20",
-    "부천조기폐차 15",
-    "부천시조기폐차 15"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 104,
-   "sido": "경기도",
-   "sigungu": "부천시 원미구",
-   "group": "순위",
-   "score": 3.7,
-   "volume": 273,
-   "keywords": [
-    "부천폐차장 550",
-    "부천폐차 55",
-    "부천자동차폐차장 35",
-    "부천시폐차장 20",
-    "부천조기폐차 15",
-    "부천시조기폐차 15"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 105,
-   "sido": "경기도",
    "sigungu": "성남시 분당구",
    "group": "순위",
-   "score": 3.7,
+   "score": 10.3,
    "volume": 273,
    "keywords": [
     "성남폐차장 400",
@@ -1719,11 +1694,11 @@
    "dongs": []
   },
   {
-   "rank": 106,
+   "rank": 104,
    "sido": "전남광주통합특별시",
    "sigungu": "장성군",
    "group": "순위",
-   "score": 3.7,
+   "score": 10.1,
    "volume": 135,
    "keywords": [
     "장성폐차장 100",
@@ -1732,11 +1707,11 @@
    "dongs": []
   },
   {
-   "rank": 107,
+   "rank": 105,
    "sido": "충청남도",
    "sigungu": "보령시",
    "group": "순위",
-   "score": 3.7,
+   "score": 10.1,
    "volume": 135,
    "keywords": [
     "보령폐차장 100",
@@ -1745,11 +1720,23 @@
    "dongs": []
   },
   {
-   "rank": 108,
+   "rank": 106,
+   "sido": "전남광주통합특별시",
+   "sigungu": "서구",
+   "group": "순위",
+   "score": 10.0,
+   "volume": 25,
+   "keywords": [
+    "광주서구폐차장 15"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 107,
    "sido": "경기도",
    "sigungu": "화성시 만세구",
    "group": "순위",
-   "score": 3.6,
+   "score": 9.8,
    "volume": 262,
    "keywords": [
     "화성폐차장 530",
@@ -1772,11 +1759,11 @@
    ]
   },
   {
-   "rank": 109,
+   "rank": 108,
    "sido": "경기도",
    "sigungu": "화성시 효행구",
    "group": "순위",
-   "score": 3.6,
+   "score": 9.8,
    "volume": 262,
    "keywords": [
     "화성폐차장 530",
@@ -1788,14 +1775,27 @@
    "dongs": []
   },
   {
-   "rank": 110,
+   "rank": 109,
    "sido": "충청남도",
    "sigungu": "서천군",
    "group": "순위",
-   "score": 3.5,
+   "score": 9.8,
    "volume": 130,
    "keywords": [
     "서천폐차장 100"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 110,
+   "sido": "경상남도",
+   "sigungu": "함안군",
+   "group": "순위",
+   "score": 9.7,
+   "volume": 100,
+   "keywords": [
+    "함안폐차장 65",
+    "함안군폐차장 15"
    ],
    "dongs": []
   },
@@ -1804,7 +1804,7 @@
    "sido": "경기도",
    "sigungu": "용인시 기흥구",
    "group": "순위",
-   "score": 3.5,
+   "score": 9.5,
    "volume": 253,
    "keywords": [
     "용인폐차장 470",
@@ -1820,7 +1820,7 @@
    "sido": "경기도",
    "sigungu": "용인시 수지구",
    "group": "순위",
-   "score": 3.5,
+   "score": 9.5,
    "volume": 253,
    "keywords": [
     "용인폐차장 470",
@@ -1836,7 +1836,7 @@
    "sido": "경기도",
    "sigungu": "여주시",
    "group": "순위",
-   "score": 3.4,
+   "score": 9.4,
    "volume": 250,
    "keywords": [
     "여주폐차장 210",
@@ -1850,7 +1850,7 @@
    "sido": "전남광주통합특별시",
    "sigungu": "해남군",
    "group": "순위",
-   "score": 3.4,
+   "score": 9.4,
    "volume": 125,
    "keywords": [
     "해남폐차장 90",
@@ -1860,37 +1860,10 @@
   },
   {
    "rank": 115,
-   "sido": "서울특별시",
-   "sigungu": "강동구",
-   "group": "순위",
-   "score": 3.4,
-   "volume": 180,
-   "keywords": [
-    "강동구폐차장 110",
-    "강동폐차장 35",
-    "강동구폐차 25"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 116,
-   "sido": "서울특별시",
-   "sigungu": "노원구",
-   "group": "순위",
-   "score": 3.3,
-   "volume": 175,
-   "keywords": [
-    "노원구폐차장 140",
-    "노원구폐차 15"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 117,
    "sido": "전남광주통합특별시",
    "sigungu": "강진군",
    "group": "순위",
-   "score": 3.3,
+   "score": 9.0,
    "volume": 120,
    "keywords": [
     "강진폐차장 90"
@@ -1898,11 +1871,11 @@
    "dongs": []
   },
   {
-   "rank": 118,
+   "rank": 116,
    "sido": "전남광주통합특별시",
    "sigungu": "무안군",
    "group": "순위",
-   "score": 3.3,
+   "score": 9.0,
    "volume": 120,
    "keywords": [
     "무안폐차장 90"
@@ -1910,11 +1883,11 @@
    "dongs": []
   },
   {
-   "rank": 119,
+   "rank": 117,
    "sido": "충청북도",
    "sigungu": "음성군",
    "group": "순위",
-   "score": 3.3,
+   "score": 9.0,
    "volume": 120,
    "keywords": [
     "음성폐차장 80",
@@ -1924,11 +1897,11 @@
    "dongs": []
   },
   {
-   "rank": 120,
+   "rank": 118,
    "sido": "경기도",
    "sigungu": "고양시 일산동구",
    "group": "순위",
-   "score": 3.2,
+   "score": 8.9,
    "volume": 238,
    "keywords": [
     "고양시폐차장 250",
@@ -1941,11 +1914,11 @@
    "dongs": []
   },
   {
-   "rank": 121,
+   "rank": 119,
    "sido": "경기도",
    "sigungu": "고양시 일산서구",
    "group": "순위",
-   "score": 3.2,
+   "score": 8.8,
    "volume": 233,
    "keywords": [
     "고양시폐차장 250",
@@ -1957,24 +1930,38 @@
    "dongs": []
   },
   {
-   "rank": 122,
-   "sido": "대구광역시",
-   "sigungu": "달서구",
+   "rank": 120,
+   "sido": "서울특별시",
+   "sigungu": "강동구",
    "group": "순위",
-   "score": 3.2,
-   "volume": 105,
+   "score": 8.7,
+   "volume": 180,
    "keywords": [
-    "달서구폐차장 70",
-    "달서구폐차 15"
+    "강동구폐차장 110",
+    "강동폐차장 35",
+    "강동구폐차 25"
    ],
    "dongs": []
   },
   {
-   "rank": 123,
+   "rank": 121,
+   "sido": "서울특별시",
+   "sigungu": "노원구",
+   "group": "순위",
+   "score": 8.5,
+   "volume": 175,
+   "keywords": [
+    "노원구폐차장 140",
+    "노원구폐차 15"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 122,
    "sido": "경기도",
    "sigungu": "성남시 수정구",
    "group": "순위",
-   "score": 3.0,
+   "score": 8.4,
    "volume": 223,
    "keywords": [
     "성남폐차장 400",
@@ -1987,11 +1974,11 @@
    "dongs": []
   },
   {
-   "rank": 124,
+   "rank": 123,
    "sido": "강원특별자치도",
    "sigungu": "삼척시",
    "group": "순위",
-   "score": 3.0,
+   "score": 8.2,
    "volume": 110,
    "keywords": [
     "삼척폐차장 75",
@@ -2000,11 +1987,11 @@
    "dongs": []
   },
   {
-   "rank": 125,
+   "rank": 124,
    "sido": "강원특별자치도",
    "sigungu": "홍천군",
    "group": "순위",
-   "score": 3.0,
+   "score": 8.2,
    "volume": 110,
    "keywords": [
     "홍천폐차장 80"
@@ -2012,11 +1999,11 @@
    "dongs": []
   },
   {
-   "rank": 126,
+   "rank": 125,
    "sido": "강원특별자치도",
    "sigungu": "횡성군",
    "group": "순위",
-   "score": 3.0,
+   "score": 8.2,
    "volume": 110,
    "keywords": [
     "횡성폐차장 80"
@@ -2024,11 +2011,11 @@
    "dongs": []
   },
   {
-   "rank": 127,
+   "rank": 126,
    "sido": "충청남도",
    "sigungu": "금산군",
    "group": "순위",
-   "score": 3.0,
+   "score": 8.2,
    "volume": 110,
    "keywords": [
     "금산폐차장 80"
@@ -2036,11 +2023,11 @@
    "dongs": []
   },
   {
-   "rank": 128,
+   "rank": 127,
    "sido": "경기도",
    "sigungu": "성남시 중원구",
    "group": "순위",
-   "score": 3.0,
+   "score": 8.2,
    "volume": 218,
    "keywords": [
     "성남폐차장 400",
@@ -2052,11 +2039,24 @@
    "dongs": []
   },
   {
+   "rank": 128,
+   "sido": "대구광역시",
+   "sigungu": "달서구",
+   "group": "순위",
+   "score": 8.1,
+   "volume": 105,
+   "keywords": [
+    "달서구폐차장 70",
+    "달서구폐차 15"
+   ],
+   "dongs": []
+  },
+  {
    "rank": 129,
    "sido": "경기도",
    "sigungu": "구리시",
    "group": "순위",
-   "score": 2.9,
+   "score": 7.9,
    "volume": 210,
    "keywords": [
     "구리폐차장 150",
@@ -2069,7 +2069,7 @@
    "sido": "경상남도",
    "sigungu": "거창군",
    "group": "순위",
-   "score": 2.9,
+   "score": 7.9,
    "volume": 105,
    "keywords": [
     "거창폐차장 70",
@@ -2082,7 +2082,7 @@
    "sido": "경상북도",
    "sigungu": "성주군",
    "group": "순위",
-   "score": 2.9,
+   "score": 7.9,
    "volume": 105,
    "keywords": [
     "성주폐차장 75"
@@ -2094,7 +2094,7 @@
    "sido": "전남광주통합특별시",
    "sigungu": "화순군",
    "group": "순위",
-   "score": 2.9,
+   "score": 7.9,
    "volume": 105,
    "keywords": [
     "화순폐차장 70",
@@ -2107,7 +2107,7 @@
    "sido": "충청북도",
    "sigungu": "옥천군",
    "group": "순위",
-   "score": 2.9,
+   "score": 7.9,
    "volume": 105,
    "keywords": [
     "옥천폐차장 70",
@@ -2120,7 +2120,7 @@
    "sido": "대구광역시",
    "sigungu": "동구",
    "group": "순위",
-   "score": 2.8,
+   "score": 7.8,
    "volume": 130,
    "keywords": [
     "대구동구폐차장 120"
@@ -2132,7 +2132,7 @@
    "sido": "충청남도",
    "sigungu": "태안군",
    "group": "순위",
-   "score": 2.7,
+   "score": 7.5,
    "volume": 100,
    "keywords": [
     "태안폐차장 70"
@@ -2141,23 +2141,10 @@
   },
   {
    "rank": 136,
-   "sido": "서울특별시",
-   "sigungu": "강남구",
-   "group": "순위",
-   "score": 2.7,
-   "volume": 145,
-   "keywords": [
-    "강남구폐차장 80",
-    "강남폐차장 45"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 137,
    "sido": "경기도",
    "sigungu": "양평군",
    "group": "순위",
-   "score": 2.7,
+   "score": 7.3,
    "volume": 195,
    "keywords": [
     "양평폐차장 150",
@@ -2166,11 +2153,24 @@
    "dongs": []
   },
   {
+   "rank": 137,
+   "sido": "서울특별시",
+   "sigungu": "강남구",
+   "group": "순위",
+   "score": 7.0,
+   "volume": 145,
+   "keywords": [
+    "강남구폐차장 80",
+    "강남폐차장 45"
+   ],
+   "dongs": []
+  },
+  {
    "rank": 138,
    "sido": "서울특별시",
    "sigungu": "은평구",
    "group": "순위",
-   "score": 2.4,
+   "score": 6.3,
    "volume": 130,
    "keywords": [
     "은평구폐차장 100"
@@ -2179,10 +2179,22 @@
   },
   {
    "rank": 139,
+   "sido": "경기도",
+   "sigungu": "가평군",
+   "group": "순위",
+   "score": 6.0,
+   "volume": 160,
+   "keywords": [
+    "가평폐차장 130"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 140,
    "sido": "서울특별시",
    "sigungu": "송파구",
    "group": "순위",
-   "score": 2.2,
+   "score": 5.8,
    "volume": 120,
    "keywords": [
     "송파구폐차장 80",
@@ -2192,35 +2204,11 @@
    "dongs": []
   },
   {
-   "rank": 140,
-   "sido": "경기도",
-   "sigungu": "가평군",
-   "group": "순위",
-   "score": 2.2,
-   "volume": 160,
-   "keywords": [
-    "가평폐차장 130"
-   ],
-   "dongs": []
-  },
-  {
    "rank": 141,
-   "sido": "전남광주통합특별시",
-   "sigungu": "곡성군",
-   "group": "순위",
-   "score": 2.1,
-   "volume": 55,
-   "keywords": [
-    "곡성폐차장 25"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 142,
    "sido": "서울특별시",
    "sigungu": "중랑구",
    "group": "순위",
-   "score": 2.0,
+   "score": 5.1,
    "volume": 105,
    "keywords": [
     "중랑구폐차장 60",
@@ -2229,11 +2217,11 @@
    "dongs": []
   },
   {
-   "rank": 143,
+   "rank": 142,
    "sido": "서울특별시",
    "sigungu": "성동구",
    "group": "순위",
-   "score": 1.9,
+   "score": 4.8,
    "volume": 100,
    "keywords": [
     "성동구폐차장 70"
@@ -2253,11 +2241,89 @@
    ]
   },
   {
+   "rank": 143,
+   "sido": "서울특별시",
+   "sigungu": "도봉구",
+   "group": "순위",
+   "score": 4.7,
+   "volume": 125,
+   "keywords": [
+    "도봉구폐차장 90",
+    "도봉구폐차 15"
+   ],
+   "dongs": []
+  },
+  {
    "rank": 144,
+   "sido": "인천광역시",
+   "sigungu": "남동구",
+   "group": "순위",
+   "score": 4.7,
+   "volume": 125,
+   "keywords": [
+    "남동구폐차장 80",
+    "남동폐차장 25"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 145,
+   "sido": "경기도",
+   "sigungu": "과천시",
+   "group": "순위",
+   "score": 4.5,
+   "volume": 120,
+   "keywords": [
+    "과천폐차장 90"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 146,
+   "sido": "경기도",
+   "sigungu": "의왕시",
+   "group": "순위",
+   "score": 4.5,
+   "volume": 120,
+   "keywords": [
+    "의왕폐차장 80",
+    "의왕시폐차장 15",
+    "의왕폐차 15"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 147,
+   "sido": "서울특별시",
+   "sigungu": "구로구",
+   "group": "순위",
+   "score": 4.5,
+   "volume": 120,
+   "keywords": [
+    "구로구폐차장 80",
+    "구로구폐차 15",
+    "구로폐차장 15"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 148,
+   "sido": "전남광주통합특별시",
+   "sigungu": "곡성군",
+   "group": "순위",
+   "score": 4.3,
+   "volume": 55,
+   "keywords": [
+    "곡성폐차장 25"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 149,
    "sido": "대전광역시",
    "sigungu": "대덕구",
    "group": "순위",
-   "score": 1.8,
+   "score": 4.3,
    "volume": 45,
    "keywords": [
     "대덕구폐차장 15"
@@ -2276,77 +2342,23 @@
    ]
   },
   {
-   "rank": 145,
-   "sido": "서울특별시",
-   "sigungu": "도봉구",
-   "group": "순위",
-   "score": 1.7,
-   "volume": 125,
-   "keywords": [
-    "도봉구폐차장 90",
-    "도봉구폐차 15"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 146,
-   "sido": "인천광역시",
-   "sigungu": "남동구",
-   "group": "순위",
-   "score": 1.7,
-   "volume": 125,
-   "keywords": [
-    "남동구폐차장 80",
-    "남동폐차장 25"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 147,
-   "sido": "경기도",
-   "sigungu": "과천시",
-   "group": "순위",
-   "score": 1.6,
-   "volume": 120,
-   "keywords": [
-    "과천폐차장 90"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 148,
-   "sido": "경기도",
-   "sigungu": "의왕시",
-   "group": "순위",
-   "score": 1.6,
-   "volume": 120,
-   "keywords": [
-    "의왕폐차장 80",
-    "의왕시폐차장 15",
-    "의왕폐차 15"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 149,
-   "sido": "서울특별시",
-   "sigungu": "구로구",
-   "group": "순위",
-   "score": 1.6,
-   "volume": 120,
-   "keywords": [
-    "구로구폐차장 80",
-    "구로구폐차 15",
-    "구로폐차장 15"
-   ],
-   "dongs": []
-  },
-  {
    "rank": 150,
+   "sido": "경기도",
+   "sigungu": "동두천시",
+   "group": "순위",
+   "score": 4.1,
+   "volume": 110,
+   "keywords": [
+    "동두천폐차장 80"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 151,
    "sido": "경상북도",
    "sigungu": "문경시",
    "group": "순위",
-   "score": 1.6,
+   "score": 4.1,
    "volume": 85,
    "keywords": [
     "문경폐차장 50",
@@ -2355,11 +2367,11 @@
    "dongs": []
   },
   {
-   "rank": 151,
+   "rank": 152,
    "sido": "경상북도",
    "sigungu": "울진군",
    "group": "순위",
-   "score": 1.6,
+   "score": 4.1,
    "volume": 85,
    "keywords": [
     "울진폐차장 50",
@@ -2368,26 +2380,14 @@
    "dongs": []
   },
   {
-   "rank": 152,
+   "rank": 153,
    "sido": "전남광주통합특별시",
    "sigungu": "영암군",
    "group": "순위",
-   "score": 1.6,
+   "score": 4.1,
    "volume": 85,
    "keywords": [
     "영암폐차장 55"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 153,
-   "sido": "경기도",
-   "sigungu": "동두천시",
-   "group": "순위",
-   "score": 1.5,
-   "volume": 110,
-   "keywords": [
-    "동두천폐차장 80"
    ],
    "dongs": []
   },
@@ -2396,7 +2396,7 @@
    "sido": "충청남도",
    "sigungu": "계룡시",
    "group": "순위",
-   "score": 1.5,
+   "score": 3.9,
    "volume": 80,
    "keywords": [
     "계룡폐차장 50"
@@ -2408,7 +2408,7 @@
    "sido": "강원특별자치도",
    "sigungu": "인제군",
    "group": "순위",
-   "score": 1.4,
+   "score": 3.6,
    "volume": 75,
    "keywords": [
     "인제폐차장 45"
@@ -2420,7 +2420,7 @@
    "sido": "전남광주통합특별시",
    "sigungu": "담양군",
    "group": "순위",
-   "score": 1.4,
+   "score": 3.6,
    "volume": 75,
    "keywords": [
     "담양폐차장 45"
@@ -2432,7 +2432,7 @@
    "sido": "경상남도",
    "sigungu": "산청군",
    "group": "순위",
-   "score": 1.3,
+   "score": 3.4,
    "volume": 70,
    "keywords": [
     "산청폐차장 35",
@@ -2445,7 +2445,7 @@
    "sido": "경상남도",
    "sigungu": "합천군",
    "group": "순위",
-   "score": 1.3,
+   "score": 3.4,
    "volume": 70,
    "keywords": [
     "합천폐차장 40"
@@ -2457,7 +2457,7 @@
    "sido": "경상북도",
    "sigungu": "의성군",
    "group": "순위",
-   "score": 1.3,
+   "score": 3.4,
    "volume": 70,
    "keywords": [
     "의성폐차장 40"
@@ -2469,7 +2469,7 @@
    "sido": "경상북도",
    "sigungu": "청도군",
    "group": "순위",
-   "score": 1.3,
+   "score": 3.4,
    "volume": 70,
    "keywords": [
     "청도폐차장 40"
@@ -2481,7 +2481,7 @@
    "sido": "전남광주통합특별시",
    "sigungu": "영광군",
    "group": "순위",
-   "score": 1.3,
+   "score": 3.4,
    "volume": 70,
    "keywords": [
     "영광폐차장 40"
@@ -2490,10 +2490,23 @@
   },
   {
    "rank": 162,
+   "sido": "전남광주통합특별시",
+   "sigungu": "장흥군",
+   "group": "순위",
+   "score": 3.4,
+   "volume": 90,
+   "keywords": [
+    "장흥폐차장 55",
+    "장흥군폐차장 15"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 163,
    "sido": "울산광역시",
    "sigungu": "울주군",
    "group": "순위",
-   "score": 1.3,
+   "score": 3.3,
    "volume": 85,
    "keywords": [
     "울주폐차장 40",
@@ -2513,48 +2526,11 @@
    ]
   },
   {
-   "rank": 163,
-   "sido": "전남광주통합특별시",
-   "sigungu": "장흥군",
-   "group": "순위",
-   "score": 1.2,
-   "volume": 90,
-   "keywords": [
-    "장흥폐차장 55",
-    "장흥군폐차장 15"
-   ],
-   "dongs": []
-  },
-  {
    "rank": 164,
-   "sido": "서울특별시",
-   "sigungu": "동작구",
-   "group": "순위",
-   "score": 1.2,
-   "volume": 65,
-   "keywords": [
-    "동작구폐차장 35"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 165,
-   "sido": "서울특별시",
-   "sigungu": "종로구",
-   "group": "순위",
-   "score": 1.2,
-   "volume": 65,
-   "keywords": [
-    "종로구폐차장 35"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 166,
    "sido": "전북특별자치도",
    "sigungu": "고창군",
    "group": "순위",
-   "score": 1.2,
+   "score": 3.1,
    "volume": 65,
    "keywords": [
     "고창폐차장 35"
@@ -2562,11 +2538,11 @@
    "dongs": []
   },
   {
-   "rank": 167,
+   "rank": 165,
    "sido": "전북특별자치도",
    "sigungu": "완주군",
    "group": "순위",
-   "score": 1.2,
+   "score": 3.1,
    "volume": 65,
    "keywords": [
     "완주폐차장 30",
@@ -2575,11 +2551,11 @@
    "dongs": []
   },
   {
-   "rank": 168,
+   "rank": 166,
    "sido": "전북특별자치도",
    "sigungu": "임실군",
    "group": "순위",
-   "score": 1.2,
+   "score": 3.1,
    "volume": 65,
    "keywords": [
     "임실폐차장 35"
@@ -2587,11 +2563,11 @@
    "dongs": []
   },
   {
-   "rank": 169,
+   "rank": 167,
    "sido": "충청북도",
    "sigungu": "괴산군",
    "group": "순위",
-   "score": 1.2,
+   "score": 3.1,
    "volume": 65,
    "keywords": [
     "괴산폐차장 30",
@@ -2600,11 +2576,11 @@
    "dongs": []
   },
   {
-   "rank": 170,
+   "rank": 168,
    "sido": "울산광역시",
    "sigungu": "남구",
    "group": "순위",
-   "score": 1.2,
+   "score": 3.1,
    "volume": 80,
    "keywords": [
     "울산남구폐차장 70"
@@ -2612,11 +2588,23 @@
    "dongs": []
   },
   {
-   "rank": 171,
+   "rank": 169,
+   "sido": "강원특별자치도",
+   "sigungu": "양양군",
+   "group": "순위",
+   "score": 3.0,
+   "volume": 80,
+   "keywords": [
+    "양양폐차장 50"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 170,
    "sido": "부산광역시",
    "sigungu": "부산진구",
    "group": "순위",
-   "score": 1.1,
+   "score": 2.9,
    "volume": 75,
    "keywords": [
     "부산진구폐차장 45"
@@ -2624,11 +2612,11 @@
    "dongs": []
   },
   {
-   "rank": 172,
+   "rank": 171,
    "sido": "전남광주통합특별시",
    "sigungu": "북구",
    "group": "순위",
-   "score": 1.1,
+   "score": 2.9,
    "volume": 75,
    "keywords": [
     "광주북구폐차장 65"
@@ -2636,11 +2624,11 @@
    "dongs": []
   },
   {
-   "rank": 173,
+   "rank": 172,
    "sido": "전남광주통합특별시",
    "sigungu": "완도군",
    "group": "순위",
-   "score": 1.1,
+   "score": 2.9,
    "volume": 60,
    "keywords": [
     "완도폐차장 30"
@@ -2648,14 +2636,26 @@
    "dongs": []
   },
   {
+   "rank": 173,
+   "sido": "부산광역시",
+   "sigungu": "사하구",
+   "group": "순위",
+   "score": 2.9,
+   "volume": 95,
+   "keywords": [
+    "사하구폐차장 65"
+   ],
+   "dongs": []
+  },
+  {
    "rank": 174,
    "sido": "강원특별자치도",
-   "sigungu": "양양군",
+   "sigungu": "영월군",
    "group": "순위",
-   "score": 1.1,
-   "volume": 80,
+   "score": 2.8,
+   "volume": 75,
    "keywords": [
-    "양양폐차장 50"
+    "영월폐차장 45"
    ],
    "dongs": []
   },
@@ -2664,7 +2664,7 @@
    "sido": "전남광주통합특별시",
    "sigungu": "광산구",
    "group": "순위",
-   "score": 1.1,
+   "score": 2.7,
    "volume": 70,
    "keywords": [
     "광산구폐차장 40"
@@ -2674,117 +2674,9 @@
   {
    "rank": 176,
    "sido": "부산광역시",
-   "sigungu": "사하구",
-   "group": "순위",
-   "score": 1.0,
-   "volume": 95,
-   "keywords": [
-    "사하구폐차장 65"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 177,
-   "sido": "강원특별자치도",
-   "sigungu": "양구군",
-   "group": "순위",
-   "score": 1.0,
-   "volume": 55,
-   "keywords": [
-    "양구폐차장 25"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 178,
-   "sido": "강원특별자치도",
-   "sigungu": "정선군",
-   "group": "순위",
-   "score": 1.0,
-   "volume": 55,
-   "keywords": [
-    "정선폐차장 25"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 179,
-   "sido": "경상북도",
-   "sigungu": "봉화군",
-   "group": "순위",
-   "score": 1.0,
-   "volume": 55,
-   "keywords": [
-    "봉화폐차장 25"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 180,
-   "sido": "서울특별시",
-   "sigungu": "용산구",
-   "group": "순위",
-   "score": 1.0,
-   "volume": 55,
-   "keywords": [
-    "용산구폐차장 25"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 181,
-   "sido": "전남광주통합특별시",
-   "sigungu": "고흥군",
-   "group": "순위",
-   "score": 1.0,
-   "volume": 55,
-   "keywords": [
-    "고흥폐차장 25"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 182,
-   "sido": "충청남도",
-   "sigungu": "청양군",
-   "group": "순위",
-   "score": 1.0,
-   "volume": 55,
-   "keywords": [
-    "청양폐차장 25"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 183,
-   "sido": "충청북도",
-   "sigungu": "보은군",
-   "group": "순위",
-   "score": 1.0,
-   "volume": 55,
-   "keywords": [
-    "보은폐차장 25"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 184,
-   "sido": "강원특별자치도",
-   "sigungu": "영월군",
-   "group": "순위",
-   "score": 1.0,
-   "volume": 75,
-   "keywords": [
-    "영월폐차장 45"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 185,
-   "sido": "부산광역시",
    "sigungu": "기장군",
    "group": "순위",
-   "score": 1.0,
+   "score": 2.7,
    "volume": 90,
    "keywords": [
     "기장폐차장 55",
@@ -2814,11 +2706,107 @@
    ]
   },
   {
-   "rank": 186,
+   "rank": 177,
+   "sido": "강원특별자치도",
+   "sigungu": "양구군",
+   "group": "순위",
+   "score": 2.7,
+   "volume": 55,
+   "keywords": [
+    "양구폐차장 25"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 178,
+   "sido": "강원특별자치도",
+   "sigungu": "정선군",
+   "group": "순위",
+   "score": 2.7,
+   "volume": 55,
+   "keywords": [
+    "정선폐차장 25"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 179,
+   "sido": "경상북도",
+   "sigungu": "봉화군",
+   "group": "순위",
+   "score": 2.7,
+   "volume": 55,
+   "keywords": [
+    "봉화폐차장 25"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 180,
+   "sido": "전남광주통합특별시",
+   "sigungu": "고흥군",
+   "group": "순위",
+   "score": 2.7,
+   "volume": 55,
+   "keywords": [
+    "고흥폐차장 25"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 181,
+   "sido": "충청남도",
+   "sigungu": "청양군",
+   "group": "순위",
+   "score": 2.7,
+   "volume": 55,
+   "keywords": [
+    "청양폐차장 25"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 182,
+   "sido": "충청북도",
+   "sigungu": "보은군",
+   "group": "순위",
+   "score": 2.7,
+   "volume": 55,
+   "keywords": [
+    "보은폐차장 25"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 183,
+   "sido": "서울특별시",
+   "sigungu": "동작구",
+   "group": "순위",
+   "score": 2.6,
+   "volume": 65,
+   "keywords": [
+    "동작구폐차장 35"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 184,
+   "sido": "서울특별시",
+   "sigungu": "종로구",
+   "group": "순위",
+   "score": 2.6,
+   "volume": 65,
+   "keywords": [
+    "종로구폐차장 35"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 185,
    "sido": "부산광역시",
    "sigungu": "해운대구",
    "group": "순위",
-   "score": 1.0,
+   "score": 2.5,
    "volume": 65,
    "keywords": [
     "해운대구폐차장 25",
@@ -2828,23 +2816,47 @@
    "dongs": []
   },
   {
-   "rank": 187,
-   "sido": "인천광역시",
-   "sigungu": "미추홀구",
+   "rank": 186,
+   "sido": "경상북도",
+   "sigungu": "영덕군",
    "group": "순위",
-   "score": 1.0,
-   "volume": 45,
+   "score": 2.4,
+   "volume": 65,
    "keywords": [
-    "미추홀구폐차장 15"
+    "영덕폐차장 35"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 187,
+   "sido": "전북특별자치도",
+   "sigungu": "진안군",
+   "group": "순위",
+   "score": 2.4,
+   "volume": 65,
+   "keywords": [
+    "진안폐차장 35"
    ],
    "dongs": []
   },
   {
    "rank": 188,
    "sido": "충청북도",
+   "sigungu": "단양군",
+   "group": "순위",
+   "score": 2.4,
+   "volume": 65,
+   "keywords": [
+    "단양폐차장 35"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 189,
+   "sido": "충청북도",
    "sigungu": "영동군",
    "group": "순위",
-   "score": 0.9,
+   "score": 2.4,
    "volume": 50,
    "keywords": [
     "영동군폐차장 15",
@@ -2853,47 +2865,23 @@
    "dongs": []
   },
   {
-   "rank": 189,
-   "sido": "경상북도",
-   "sigungu": "영덕군",
-   "group": "순위",
-   "score": 0.9,
-   "volume": 65,
-   "keywords": [
-    "영덕폐차장 35"
-   ],
-   "dongs": []
-  },
-  {
    "rank": 190,
-   "sido": "전북특별자치도",
-   "sigungu": "진안군",
+   "sido": "인천광역시",
+   "sigungu": "미추홀구",
    "group": "순위",
-   "score": 0.9,
-   "volume": 65,
+   "score": 2.4,
+   "volume": 45,
    "keywords": [
-    "진안폐차장 35"
+    "미추홀구폐차장 15"
    ],
    "dongs": []
   },
   {
    "rank": 191,
-   "sido": "충청북도",
-   "sigungu": "단양군",
-   "group": "순위",
-   "score": 0.9,
-   "volume": 65,
-   "keywords": [
-    "단양폐차장 35"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 192,
    "sido": "부산광역시",
    "sigungu": "강서구",
    "group": "순위",
-   "score": 0.9,
+   "score": 2.4,
    "volume": 80,
    "keywords": [
     "부산강서구폐차장 70"
@@ -2912,11 +2900,11 @@
    ]
   },
   {
-   "rank": 193,
+   "rank": 192,
    "sido": "부산광역시",
    "sigungu": "남구",
    "group": "순위",
-   "score": 0.9,
+   "score": 2.4,
    "volume": 80,
    "keywords": [
     "부산남구폐차장 70"
@@ -2924,11 +2912,11 @@
    "dongs": []
   },
   {
-   "rank": 194,
+   "rank": 193,
    "sido": "부산광역시",
    "sigungu": "사상구",
    "group": "순위",
-   "score": 0.9,
+   "score": 2.4,
    "volume": 80,
    "keywords": [
     "사상구폐차장 35",
@@ -2937,11 +2925,11 @@
    "dongs": []
   },
   {
-   "rank": 195,
+   "rank": 194,
    "sido": "강원특별자치도",
    "sigungu": "평창군",
    "group": "순위",
-   "score": 0.8,
+   "score": 2.2,
    "volume": 45,
    "keywords": [
     "평창폐차장 15"
@@ -2949,11 +2937,11 @@
    "dongs": []
   },
   {
-   "rank": 196,
+   "rank": 195,
    "sido": "경상남도",
    "sigungu": "남해군",
    "group": "순위",
-   "score": 0.8,
+   "score": 2.2,
    "volume": 45,
    "keywords": [
     "남해폐차장 15"
@@ -2961,11 +2949,11 @@
    "dongs": []
   },
   {
-   "rank": 197,
+   "rank": 196,
    "sido": "경상남도",
    "sigungu": "의령군",
    "group": "순위",
-   "score": 0.8,
+   "score": 2.2,
    "volume": 45,
    "keywords": [
     "의령폐차장 15"
@@ -2973,11 +2961,11 @@
    "dongs": []
   },
   {
-   "rank": 198,
+   "rank": 197,
    "sido": "경상북도",
    "sigungu": "청송군",
    "group": "순위",
-   "score": 0.8,
+   "score": 2.2,
    "volume": 45,
    "keywords": [
     "청송폐차장 15"
@@ -2985,14 +2973,26 @@
    "dongs": []
   },
   {
-   "rank": 199,
+   "rank": 198,
    "sido": "전남광주통합특별시",
    "sigungu": "함평군",
    "group": "순위",
-   "score": 0.8,
+   "score": 2.2,
    "volume": 45,
    "keywords": [
     "함평폐차장 15"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 199,
+   "sido": "서울특별시",
+   "sigungu": "용산구",
+   "group": "순위",
+   "score": 2.2,
+   "volume": 55,
+   "keywords": [
+    "용산구폐차장 25"
    ],
    "dongs": []
   },
@@ -3001,7 +3001,7 @@
    "sido": "대구광역시",
    "sigungu": "군위군",
    "group": "순위",
-   "score": 0.8,
+   "score": 2.1,
    "volume": 55,
    "keywords": [
     "군위폐차장 25"
@@ -3013,7 +3013,7 @@
    "sido": "대구광역시",
    "sigungu": "달성군",
    "group": "순위",
-   "score": 0.8,
+   "score": 2.1,
    "volume": 55,
    "keywords": [
     "달성군폐차장 25"
@@ -3033,10 +3033,22 @@
   },
   {
    "rank": 202,
+   "sido": "경상남도",
+   "sigungu": "하동군",
+   "group": "순위",
+   "score": 2.1,
+   "volume": 55,
+   "keywords": [
+    "하동폐차장 25"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 203,
    "sido": "경기도",
    "sigungu": "연천군",
    "group": "순위",
-   "score": 0.8,
+   "score": 2.1,
    "volume": 85,
    "keywords": [
     "연천폐차장 50",
@@ -3045,11 +3057,11 @@
    "dongs": []
   },
   {
-   "rank": 203,
+   "rank": 204,
    "sido": "인천광역시",
    "sigungu": "계양구",
    "group": "순위",
-   "score": 0.8,
+   "score": 2.1,
    "volume": 85,
    "keywords": [
     "계양구폐차장 50",
@@ -3058,11 +3070,11 @@
    "dongs": []
   },
   {
-   "rank": 204,
+   "rank": 205,
    "sido": "서울특별시",
    "sigungu": "광진구",
    "group": "순위",
-   "score": 0.8,
+   "score": 1.9,
    "volume": 80,
    "keywords": [
     "광진구폐차장 50"
@@ -3070,11 +3082,11 @@
    "dongs": []
   },
   {
-   "rank": 205,
+   "rank": 206,
    "sido": "서울특별시",
    "sigungu": "성북구",
    "group": "순위",
-   "score": 0.8,
+   "score": 1.9,
    "volume": 80,
    "keywords": [
     "성북구폐차장 50"
@@ -3082,11 +3094,11 @@
    "dongs": []
   },
   {
-   "rank": 206,
+   "rank": 207,
    "sido": "서울특별시",
    "sigungu": "양천구",
    "group": "순위",
-   "score": 0.8,
+   "score": 1.9,
    "volume": 80,
    "keywords": [
     "양천구폐차장 50"
@@ -3094,11 +3106,11 @@
    "dongs": []
   },
   {
-   "rank": 207,
+   "rank": 208,
    "sido": "인천광역시",
    "sigungu": "부평구",
    "group": "순위",
-   "score": 0.8,
+   "score": 1.9,
    "volume": 80,
    "keywords": [
     "부평폐차장 40",
@@ -3107,23 +3119,11 @@
    "dongs": []
   },
   {
-   "rank": 208,
-   "sido": "경상남도",
-   "sigungu": "하동군",
-   "group": "순위",
-   "score": 0.8,
-   "volume": 55,
-   "keywords": [
-    "하동폐차장 25"
-   ],
-   "dongs": []
-  },
-  {
    "rank": 209,
    "sido": "대구광역시",
    "sigungu": "서구",
    "group": "순위",
-   "score": 0.8,
+   "score": 1.9,
    "volume": 50,
    "keywords": [
     "대구서구폐차장 40"
@@ -3135,7 +3135,7 @@
    "sido": "대전광역시",
    "sigungu": "유성구",
    "group": "순위",
-   "score": 0.8,
+   "score": 1.9,
    "volume": 50,
    "keywords": [
     "유성구폐차장 15",
@@ -3148,7 +3148,7 @@
    "sido": "서울특별시",
    "sigungu": "동대문구",
    "group": "순위",
-   "score": 0.7,
+   "score": 1.8,
    "volume": 75,
    "keywords": [
     "동대문구폐차장 30",
@@ -3173,7 +3173,7 @@
    "sido": "서울특별시",
    "sigungu": "서초구",
    "group": "순위",
-   "score": 0.7,
+   "score": 1.8,
    "volume": 75,
    "keywords": [
     "서초구폐차장 45"
@@ -3182,10 +3182,22 @@
   },
   {
    "rank": 213,
+   "sido": "부산광역시",
+   "sigungu": "북구",
+   "group": "순위",
+   "score": 1.8,
+   "volume": 60,
+   "keywords": [
+    "부산북구폐차장 50"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 214,
    "sido": "서울특별시",
    "sigungu": "관악구",
    "group": "순위",
-   "score": 0.7,
+   "score": 1.7,
    "volume": 70,
    "keywords": [
     "관악구폐차장 40"
@@ -3193,11 +3205,11 @@
    "dongs": []
   },
   {
-   "rank": 214,
+   "rank": 215,
    "sido": "서울특별시",
    "sigungu": "영등포구",
    "group": "순위",
-   "score": 0.7,
+   "score": 1.7,
    "volume": 70,
    "keywords": [
     "영등포폐차장 40"
@@ -3205,26 +3217,14 @@
    "dongs": []
   },
   {
-   "rank": 215,
+   "rank": 216,
    "sido": "인천광역시",
    "sigungu": "검단구",
    "group": "순위",
-   "score": 0.7,
+   "score": 1.7,
    "volume": 70,
    "keywords": [
     "검단폐차장 40"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 216,
-   "sido": "부산광역시",
-   "sigungu": "북구",
-   "group": "순위",
-   "score": 0.7,
-   "volume": 60,
-   "keywords": [
-    "부산북구폐차장 50"
    ],
    "dongs": []
   },
@@ -3233,7 +3233,7 @@
    "sido": "서울특별시",
    "sigungu": "금천구",
    "group": "순위",
-   "score": 0.6,
+   "score": 1.7,
    "volume": 90,
    "keywords": [
     "금천구폐차장 60"
@@ -3245,7 +3245,7 @@
    "sido": "전북특별자치도",
    "sigungu": "무주군",
    "group": "순위",
-   "score": 0.6,
+   "score": 1.7,
    "volume": 45,
    "keywords": [
     "무주폐차장 15"
@@ -3257,7 +3257,7 @@
    "sido": "전북특별자치도",
    "sigungu": "순창군",
    "group": "순위",
-   "score": 0.6,
+   "score": 1.7,
    "volume": 45,
    "keywords": [
     "순창폐차장 15"
@@ -3269,7 +3269,7 @@
    "sido": "부산광역시",
    "sigungu": "금정구",
    "group": "순위",
-   "score": 0.6,
+   "score": 1.7,
    "volume": 55,
    "keywords": [
     "금정구폐차장 25"
@@ -3281,7 +3281,7 @@
    "sido": "울산광역시",
    "sigungu": "북구",
    "group": "순위",
-   "score": 0.6,
+   "score": 1.7,
    "volume": 55,
    "keywords": [
     "울산북구폐차장 45"
@@ -3293,7 +3293,7 @@
    "sido": "부산광역시",
    "sigungu": "동구",
    "group": "순위",
-   "score": 0.6,
+   "score": 1.5,
    "volume": 40,
    "keywords": [
     "부산동구폐차장 30"
@@ -3305,7 +3305,7 @@
    "sido": "부산광역시",
    "sigungu": "중구",
    "group": "순위",
-   "score": 0.6,
+   "score": 1.5,
    "volume": 40,
    "keywords": [
     "부산중구폐차장 30"
@@ -3317,7 +3317,7 @@
    "sido": "대구광역시",
    "sigungu": "북구",
    "group": "순위",
-   "score": 0.5,
+   "score": 1.5,
    "volume": 50,
    "keywords": [
     "대구북구폐차장 40"
@@ -3329,7 +3329,7 @@
    "sido": "부산광역시",
    "sigungu": "서구",
    "group": "순위",
-   "score": 0.5,
+   "score": 1.5,
    "volume": 50,
    "keywords": [
     "부산서구폐차장 40"
@@ -3338,34 +3338,10 @@
   },
   {
    "rank": 226,
-   "sido": "대전광역시",
-   "sigungu": "동구",
-   "group": "순위",
-   "score": 0.5,
-   "volume": 35,
-   "keywords": [
-    "대전동구폐차장 25"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 227,
-   "sido": "울산광역시",
-   "sigungu": "동구",
-   "group": "순위",
-   "score": 0.5,
-   "volume": 35,
-   "keywords": [
-    "울산동구폐차장 25"
-   ],
-   "dongs": []
-  },
-  {
-   "rank": 228,
    "sido": "서울특별시",
    "sigungu": "강북구",
    "group": "순위",
-   "score": 0.5,
+   "score": 1.4,
    "volume": 75,
    "keywords": [
     "강북구폐차장 35",
@@ -3374,11 +3350,35 @@
    "dongs": []
   },
   {
+   "rank": 227,
+   "sido": "대전광역시",
+   "sigungu": "동구",
+   "group": "순위",
+   "score": 1.4,
+   "volume": 35,
+   "keywords": [
+    "대전동구폐차장 25"
+   ],
+   "dongs": []
+  },
+  {
+   "rank": 228,
+   "sido": "울산광역시",
+   "sigungu": "동구",
+   "group": "순위",
+   "score": 1.4,
+   "volume": 35,
+   "keywords": [
+    "울산동구폐차장 25"
+   ],
+   "dongs": []
+  },
+  {
    "rank": 229,
    "sido": "서울특별시",
    "sigungu": "서대문구",
    "group": "순위",
-   "score": 0.5,
+   "score": 1.2,
    "volume": 50,
    "keywords": [
     "서대문구폐차장 15",
@@ -3391,7 +3391,7 @@
    "sido": "인천광역시",
    "sigungu": "연수구",
    "group": "순위",
-   "score": 0.5,
+   "score": 1.2,
    "volume": 50,
    "keywords": [
     "연수구폐차장 20"
@@ -3403,7 +3403,7 @@
    "sido": "서울특별시",
    "sigungu": "마포구",
    "group": "순위",
-   "score": 0.4,
+   "score": 1.1,
    "volume": 60,
    "keywords": [
     "마포구폐차장 30"
@@ -3415,7 +3415,7 @@
    "sido": "울산광역시",
    "sigungu": "중구",
    "group": "순위",
-   "score": 0.4,
+   "score": 1.0,
    "volume": 25,
    "keywords": [
     "울산중구폐차장 15"
@@ -3427,7 +3427,7 @@
    "sido": "전남광주통합특별시",
    "sigungu": "남구",
    "group": "순위",
-   "score": 0.4,
+   "score": 1.0,
    "volume": 25,
    "keywords": [
     "광주남구폐차장 15"

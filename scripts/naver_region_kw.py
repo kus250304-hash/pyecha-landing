@@ -21,7 +21,7 @@
 연관 키워드: 같은 조회에서 돌아온 키워드 가운데 그 지역 이름(변형의 앞부분)으로 시작하고 "폐차"가 들어간 것
   (강릉폐차비용·강릉시폐차견적·○○폐차보상금 …)을 같은 지역 줄에 더한다.
 점수 = (변형+연관 키워드 월간 검색량 합, "< 10" 은 5) × 경쟁 계수(낮음 1.0 / 중간 0.6 / 높음 0.3)
-       × 지방 계수(서울·경기·인천 0.5, 광역시 0.8, 그 외 1.0) ÷ (1 + 월평균 노출 광고수)
+       × 지방 계수(서울·경기·인천 0.5, 광역시 0.8, 그 외 1.0) ÷ (1 + 0.3 × 월평균 노출 광고수)
        × 하한 계수(검색량 합 100 미만은 0.5, 2026-10-15 병한님 결정)
   - 경쟁정도·광고수는 "< 10" 이 아닌 키워드 가운데 검색량이 가장 많은 것의 값.
   - PC·모바일이 모두 "< 10"(또는 결과 없음)인 키워드만 있는 지역은 순위에서 빼고 맨 아래 "검색량 없음" 묶음에
@@ -56,6 +56,7 @@ COMP = {"낮음": 1.0, "중간": 0.6, "높음": 0.3}
 METRO = {"부산광역시", "대구광역시", "대전광역시", "울산광역시"}
 CAPITAL = {"서울특별시", "경기도", "인천광역시"}
 FLOOR_VOL, FLOOR_COEF = 100, 0.5
+AD_WEIGHT = 0.3  # 광고수 나누기 가중치(2026-10-15 병한님: ÷(1+광고수) → ÷(1+0.3×광고수))
 FIELDS = ("monthlyPcQcCnt", "monthlyMobileQcCnt")
 
 
@@ -246,7 +247,7 @@ def score_all(targets, own_kw, city_kw, failed) -> list[dict]:
             t["comp"] = x.get("compIdx") or "낮음"
             t["depth"] = float(x.get("plAvgDepth") or 0)
             t["floor"] = FLOOR_COEF if vol < FLOOR_VOL else 1.0
-            t["score"] = vol * COMP.get(t["comp"], 0.3) * t["rc"] / (1 + t["depth"]) * t["floor"]
+            t["score"] = vol * COMP.get(t["comp"], 0.3) * t["rc"] / (1 + AD_WEIGHT * t["depth"]) * t["floor"]
         table.append(t)
     return table
 
@@ -263,7 +264,7 @@ def write_report(date: str, table: list[dict]) -> tuple[list, list]:
         "같이 돌아온 그 지역의 폐차 연관 키워드(비용·견적·보상금 등)를 더했습니다. 원본은 "
         f"`data/keywords/region_kw_{date}.csv`, 만드는 스크립트는 `scripts/naver_region_kw.py`.", "",
         "- 점수 = 검색량 합(\"< 10\"은 5) × 경쟁 계수(낮음 1.0 / 중간 0.6 / 높음 0.3) × 지방 계수(서울·경기·인천 0.5, 광역시 0.8, 그 외 1.0) "
-        f"÷ (1 + 월평균 노출 광고수) × 하한 계수(검색량 합 {FLOOR_VOL} 미만은 {FLOOR_COEF})",
+        f"÷ (1 + {AD_WEIGHT} × 월평균 노출 광고수) × 하한 계수(검색량 합 {FLOOR_VOL} 미만은 {FLOOR_COEF})",
         "- 경쟁정도·광고수는 \"< 10\"이 아닌 키워드 가운데 검색량이 가장 많은 것의 값입니다.",
         "- 일반구는 구 이름 변형에 더해 시 이름 변형(예: 창원시폐차·창원폐차) 검색량을 그 시의 일반구 개수로 나눠 더했습니다.",
         "- PC·모바일이 모두 \"< 10\"인 키워드만 있는 지역은 순위에서 빼고 맨 아래 \"검색량 없음\" 묶음에 노후차 추정 대수 순으로 두었습니다.",
@@ -308,7 +309,7 @@ def write_priority(date: str, ranked: list[dict], none_: list[dict]) -> int:
         "made_on": date,
         "source": f"data/keywords/region_kw_{date}.csv (네이버 검색광고 API 키워드도구, scripts/naver_region_kw.py). "
                   f"점수표 docs/region-priority-{date}.md",
-        "score": "검색량 합 × 경쟁 계수 × 지방 계수 ÷ (1 + 월평균 노출 광고수) × 하한 계수(100 미만 0.5). "
+        "score": "검색량 합 × 경쟁 계수 × 지방 계수 ÷ (1 + 0.3 × 월평균 노출 광고수) × 하한 계수(100 미만 0.5). "
                  "순위 → 검색량 없음(노후차 추정 순) → 2026-10-02 목록에만 있던 곳",
         "dong_target_per_gu": old.get("dong_target_per_gu", 3),
         "gu": gu,
