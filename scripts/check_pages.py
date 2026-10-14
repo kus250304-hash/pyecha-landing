@@ -428,8 +428,12 @@ def check_gu_pages(cfg: dict, sitemap: str, all_sidos: set[str]) -> list[str]:
         for sido in all_sidos - {g["sido"]}:
             if sido in body:
                 problems.append(f"{tag}: 다른 시도 이름 '{sido}' 가 있음")
-        if html.count('href="../pages/') < 3:
-            problems.append(f"{tag}: 동 페이지 링크가 3개 미만")
+        from build_gu import min_dong_pages  # 수도권·광역시 자치구 3개, 그 밖의 지방 시·군 0개(2026-10-15)
+        need = min_dong_pages(g["sido"], g["sigungu"])
+        if html.count('href="../pages/') < need:
+            problems.append(f"{tag}: 동 페이지 링크가 {need}개 미만")
+        if 'href="../pages/' not in html.split('id="dongs"', 1)[-1].split("</section>", 1)[0] and "동별 안내 준비 중" not in html:
+            problems.append(f"{tag}: 동 페이지가 없는데 '동별 안내 준비 중' 줄이 없음")
         if f"/gu/{quote(files[slug])}<" not in sitemap:
             problems.append(f"{tag}: sitemap.xml 에 없음")
     return problems

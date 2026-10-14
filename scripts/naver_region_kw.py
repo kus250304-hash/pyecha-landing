@@ -174,12 +174,12 @@ def raw_row(sido, label, kind, k, x) -> dict:
             "조회결과": ("있음" if is_real(x) else "있음(< 10)") if x else "없음(0으로 셈)"}
 
 
-def fetch(targets: list[tuple[str, str]]) -> tuple[dict, dict, list[dict], list]:
-    """API 조회 → (지역별 키워드, 시별 키워드, CSV 줄, 실패한 지역)."""
+def fetch(targets: list[tuple[str, str]], skip_cities: set = frozenset()) -> tuple[dict, dict, list[dict], list]:
+    """API 조회 → (지역별 키워드, 시별 키워드, CSV 줄, 실패한 지역). skip_cities 는 이미 조회한 시."""
     env = load_env()
     raw, own_kw, city_kw, failed = [], {}, {}, []
     n_gu = gu_count_by_city()
-    for sido, city in sorted({(s, g.split()[0]) for s, g in targets if " " in g}):
+    for sido, city in sorted({(s, g.split()[0]) for s, g in targets if " " in g} - set(skip_cities)):
         hints, prefixes = four(city)
         found = collect(call(env, hints) or [], hints, prefixes)
         city_kw[(sido, city)] = [(k, x) for _, k, x in found]
@@ -323,12 +323,28 @@ def main() -> None:
     ap.add_argument("--date", required=True)
     ap.add_argument("--offline", action="store_true", help="API 없이 저장된 CSV 로 다시 계산")
     ap.add_argument("--write-priority", action="store_true", help="data/priority_regions.json 을 이 순위로 바꿈")
+    ap.add_argument("--add-missing", action="store_true",
+                    help="전국 시군구(legal_dong_list.csv) 중 CSV 에 없는 곳만 API 로 조회해 합침(2026-10-15)")
     args = ap.parse_args()
     regions = json.loads((ROOT / "data" / "regions.json").read_text(encoding="utf-8"))
     gu_data = json.loads((ROOT / "data" / "gu.json").read_text(encoding="utf-8"))
-    targets = sorted({(r["sido"], r["sigungu"]) for r in regions} | {(g["sido"], g["sigungu"]) for g in gu_data})
+    targets = {(r["sido"], r["sigungu"]) for r in regions} | {(g["sido"], g["sigungu"]) for g in gu_data}
     out_csv = ROOT / "data" / "keywords" / f"region_kw_{args.date}.csv"
-    if args.offline:
+    if args.add_missing or args.offline:  # 전국 시군구(2026-10-15부터 CSV 에 전국이 다 들어 있음)
+        targets |= {(r["시도"], r["시군구"]) for r in csv.DictReader((ROOT / "data" / "legal_dong_list.csv").open(encoding="utf-8-sig"))}
+    targets = sorted(targets)
+    if args.add_missing:
+        own_kw, city_kw = from_csv(out_csv, targets)
+        missing = [t for t in targets if t not in own_kw]
+        print(f"CSV 에 있는 곳 {len(own_kw)}곳, 새로 조회할 곳 {len(missing)}곳", flush=True)
+        own2, city2, raw2, failed = fetch(missing, skip_cities=set(city_kw))
+        own_kw.update(own2)
+        city_kw.update(city2)
+        if raw2:
+            with out_csv.open("a", encoding="utf-8", newline="") as f:  # 이어 붙이므로 BOM 없이
+                csv.DictWriter(f, fieldnames=list(raw2[0].keys())).writerows(raw2)
+        targets = [t for t in targets if t in own_kw or t in failed]
+    elif args.offline:
         # CSV 를 만든 날의 대상만 다시 계산(그 뒤 새로 생긴 시군구는 다음 조회 때)
         own_kw, city_kw = from_csv(out_csv, targets)
         targets = [t for t in targets if t in own_kw]

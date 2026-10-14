@@ -27,12 +27,16 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import population_stats
 import priority_regions
 import vehicle_stats
-from build_gu import MIN_DONG_PAGES
-from build_site import GU_DATA, REGIONS, gu_groups, load_json
+import csv
+from build_gu import min_dong_pages
+from build_site import GU_DATA, REGIONS, gu_groups, gu_slug, load_json
 
 ROOT = Path(__file__).resolve().parent.parent
 GU_HELD = ROOT / "data" / "gu_held.json"
 GEN_CONFIG = ROOT / "data" / "generation_config.json"
+LEGAL_DONG_CSV = ROOT / "data" / "legal_dong_list.csv"
+# 구 슬러그 → (시도, 시군구). 동 페이지가 하나도 없는 지방 시·군도 후보가 되므로(2026-10-15) 동 목록과 따로 둔다
+META: dict[str, tuple[str, str]] = {}
 
 
 def ordered_candidates() -> tuple[list[str], list[tuple[str, list[dict]]], list[tuple[str, list[dict]]]]:
@@ -42,12 +46,23 @@ def ordered_candidates() -> tuple[list[str], list[tuple[str, list[dict]]], list[
     regions = load_json(REGIONS)
     groups = gu_groups(regions)
     done = {g["slug"] for g in load_json(GU_DATA, default=[])} | {g["slug"] for g in load_json(GU_HELD, default=[])}
-    cands = [(slug, rs) for slug, rs in groups.items() if slug not in done and len(rs) >= MIN_DONG_PAGES]
+    # 후보: 구 페이지가 아직 없는 전국 시군구. 수도권·광역시 자치구는 동 페이지 3개 이상, 그 밖의 지방 시·군은 0개도 됨
+    # (build_gu.min_dong_pages, 2026-10-15 병한님 결정)
+    keys = {(r["시도"], r["시군구"]) for r in csv.DictReader(LEGAL_DONG_CSV.open(encoding="utf-8-sig"))}
+    keys |= {(r["sido"], r["sigungu"]) for r in regions}
+    cands = []
+    for sido, sigungu in sorted(keys):
+        slug = gu_slug(sido, sigungu)
+        rs = groups.get(slug, [])
+        if slug in done or slug in META or len(rs) < min_dong_pages(sido, sigungu):
+            continue
+        META[slug] = (sido, sigungu)
+        cands.append((slug, rs))
 
     basis, counts, meta = vehicle_stats.load()
     if basis != "none":
         def key(item):
-            n = vehicle_stats.count_for(counts, item[1][0]["sido"], item[1][0]["sigungu"])
+            n = vehicle_stats.count_for(counts, *META[item[0]])
             return (n is None, -(n or 0), item[0])
         label = vehicle_stats.BASIS_LABEL.get(basis, basis)
         heads = [f"우선순위 기준: 시군구별 {label} 등록대수 많은 순 ({meta.get('as_of')}, {meta.get('source')})"]
@@ -60,14 +75,14 @@ def ordered_candidates() -> tuple[list[str], list[tuple[str, list[dict]]], list[
         base_key = key
 
         def key(item):  # 검색량 목록 순위가 있는 구 먼저
-            rank = prio.rank_of(item[1][0]["sido"], item[1][0]["sigungu"])
+            rank = prio.rank_of(*META[item[0]])
             return (rank is None, rank or 0, base_key(item))
         heads.insert(0, f"검색량 우선순위: {prio.label()} 에 있는 구를 순위대로 먼저, 그다음 아래 기준")
     line_a = sorted(cands, key=key)
 
     pops, pmeta = population_stats.load()
     if pops:
-        line_b = [c for c in line_a if population_stats.is_small_si_gun(pops, c[1][0]["sido"], c[1][0]["sigungu"], limit)]
+        line_b = [c for c in line_a if population_stats.is_small_si_gun(pops, *META[c[0]], limit)]
         heads.append(f"줄 B 기준: 인구 {limit:,}명 이하 시·군 ({pmeta.get('as_of')}, {pmeta.get('source')})")
     else:
         line_b = []
@@ -126,12 +141,14 @@ def main() -> None:
     print("오늘 후보: " + ", ".join(f"{line}:{slug}" for line, slug, _ in picked))
     today = datetime.now(timezone(timedelta(hours=9))).date().isoformat()
     for line, slug, rs in picked:
-        r0 = rs[0]
-        print(f"\n=== [줄 {line}] {slug} ({r0['sido']} {r0['sigungu']}) 동 페이지 {len(rs)}개")
+        sido, sigungu = META[slug]
+        print(f"\n=== [줄 {line}] {slug} ({sido} {sigungu}) 동 페이지 {len(rs)}개")
         for r in sorted(rs, key=lambda x: x["dong"]):
             print(f"  - {r['slug']}: {r['dong']} / 랜드마크 {r['landmark_name']}")
+        if len(rs) < 3:
+            print("  (동 페이지가 3개 미만인 지방 시·군: 소개에는 위 랜드마크만 쓸 수 있고, 없으면 장소 이름 없이 쓰며 intro_landmarks 는 빈 목록)")
         skeleton = {
-            "slug": slug, "sido": r0["sido"], "sigungu": r0["sigungu"],
+            "slug": slug, "sido": sido, "sigungu": sigungu,
             "intro": "", "intro_landmarks": [], "faqs": [], "public_info": [], "dropped_info": [],
             "checked_on": today,
         }

@@ -50,6 +50,34 @@ TEMPLATE = ROOT / "templates" / "gu-landing.html"
 DONG_TEMPLATE = ROOT / "templates" / "region-landing-v2.html"
 OUT = ROOT / "gu"
 MIN_DONG_PAGES = 3
+CAPITAL_SIDOS = {"서울특별시", "경기도", "인천광역시"}
+METRO_SIDOS = {"부산광역시", "대구광역시", "대전광역시", "울산광역시"}
+
+
+def min_dong_pages(sido: str, sigungu: str) -> int:
+    """구·시군 페이지에 필요한 동 페이지 수(2026-10-15 병한님 결정): 수도권(서울·경기·인천)과 광역시 자치구는 3개,
+    그 밖의 지방 시·군(광역시의 군, 지방 시의 일반구, 세종·제주 포함)은 0개. 동 목록 칸은 있는 만큼만 보여 주고
+    없으면 "동별 안내 준비 중" 한 줄(render_all)."""
+    from pick_next_regions import GWANGJU_GU
+    if sido in CAPITAL_SIDOS:
+        return MIN_DONG_PAGES
+    is_metro = sido in METRO_SIDOS or (sido == "전남광주통합특별시" and sigungu in GWANGJU_GU)
+    if is_metro and sigungu and " " not in sigungu and sigungu.endswith("구"):
+        return MIN_DONG_PAGES
+    return 0
+
+
+def unverified_places(text: str, allowed: set[str]) -> list[str]:
+    """소개 글에서 장소 이름으로 보이는 낱말 중 allowed(확인된 랜드마크·지역 이름)에 없는 것(fact_check 와 같은 규칙)."""
+    from fact_check import CAND_RE, ROAD_RE, STOP
+    out = []
+    for m in list(CAND_RE.finditer(text)) + list(ROAD_RE.finditer(text)):
+        name = m.group(1)
+        if name in STOP or len(name) < 3 or name.endswith(("으로", "권역")) or any(name in a or a in name for a in allowed if a):
+            continue
+        if name not in out:
+            out.append(name)
+    return out
 MAX_CASES = 6
 # 공공 정보 줄의 근거 등급(2026-10-08): opened = 실제로 연 공식 페이지, summary = 검색 결과 요약만으로 확인.
 # summary 줄은 페이지에 '(확인 중)' 을 붙여 보여 주고, 실제로 열어 확인되면 grade 를 opened 로 바꿔 표시를 뗀다.
@@ -83,12 +111,14 @@ def redirect_html(gu: str, new_file: str, new_abs: str) -> str:
 
 def validate(g: dict, dongs: list[dict]) -> list[str]:
     errs = []
-    if len(dongs) < MIN_DONG_PAGES:
-        errs.append(f"동 페이지 {len(dongs)}개 (3개 이상이어야 함)")
+    need_dongs = min_dong_pages(g["sido"], g["sigungu"])
+    if len(dongs) < need_dongs:
+        errs.append(f"동 페이지 {len(dongs)}개 ({need_dongs}개 이상이어야 함, 수도권·광역시 자치구)")
     by_slug = {r["slug"]: r for r in dongs}
     lms = g.get("intro_landmarks") or []
-    # 2~3개. 다만 그 구 동 페이지 중 랜드마크가 확인된 곳이 2곳 미만이면 있는 만큼(최소 1개, 2026-10-08 수지구)
-    need = max(1, min(2, sum(1 for r in dongs if r.get("landmark_name"))))
+    # 2~3개. 다만 그 구 동 페이지 중 랜드마크가 확인된 곳이 2곳 미만이면 있는 만큼(2026-10-08 수지구).
+    # 동 페이지가 없는 지방 시·군(2026-10-15)은 0개 — 대신 소개에 확인 안 된 장소 이름을 쓰지 못한다(아래)
+    need = min(2, sum(1 for r in dongs if r.get("landmark_name")))
     if not need <= len(lms) <= 3:
         errs.append(f"소개 랜드마크는 {need}~3개")
     for lm in lms:
@@ -97,6 +127,11 @@ def validate(g: dict, dongs: list[dict]) -> list[str]:
             errs.append(f"소개 랜드마크 '{lm.get('name')}' 가 이 구 동 페이지({lm.get('dong_slug')})의 랜드마크가 아님")
         if lm.get("name") and lm["name"] not in g.get("intro", ""):
             errs.append(f"소개 글에 '{lm.get('name')}' 이 없음")
+    if len(dongs) < MIN_DONG_PAGES:
+        allowed = {lm.get("name", "") for lm in lms} | {g["sido"], g["sigungu"], *g["sigungu"].split()}
+        allowed |= {r["dong"] for r in dongs}
+        for name in unverified_places(g.get("intro", ""), allowed):
+            errs.append(f"소개에 확인 안 된 장소 이름 '{name}' (동 페이지가 3개 미만인 곳은 그 동 페이지 랜드마크만 쓸 수 있음)")
     if len(re.findall(r"[다요]\.", g.get("intro", ""))) not in (2, 3):
         errs.append("소개는 2~3문장")
     faqs = g.get("faqs") or []
@@ -185,7 +220,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
         dong_list = "".join(
             f'<a href="../pages/{esc(r["slug"])}.html"><b>{esc(r["dong"])} 폐차</b><span>{esc(r["landmark_name"])}</span></a>'
             for r in dongs
-        )
+        ) or '<p class="note">동별 안내 준비 중</p>'  # 동 페이지가 없는 지방 시·군(2026-10-15)
         # 구마다 다른 질문 3개 + 실제 통화 FAQ 풀에서 4개(2026-10-03)
         faqs = [tuple(qa) for qa in g["faqs"]] + V.call_faqs("gu:" + g["slug"], 4)
         faq_html = "\n      ".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in faqs)
@@ -229,7 +264,8 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
             "GU": esc(gu), "GU_FULL": esc(gu_full), "GU_TOPIC": esc(V.fill("{gu}{은는}", gu=gu)),
             "HERO_SUB": esc(V.fill(v_intro["hero"], gu=gu)),
             "INTRO_HTML": intro_html,
-            "LIST_SUB": esc(V.fill(v_intro["list"], gu=gu)),
+            "LIST_SUB": esc(V.fill(v_intro["list"], gu=gu) if dongs else
+                            f"{gu} 동별 안내 페이지는 차례로 늘어납니다. 동과 상관없이 {gu} 어디든 전화로 출장 방문을 상담할 수 있습니다."),
             "DONG_LIST_HTML": dong_list,
             "FAQ_HTML": faq_html,
             "INFO_ROWS": info_rows,

@@ -139,7 +139,8 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
 
         gu_list = "".join(
             f'<a href="../gu/{esc(gu_file(g["sido"], g["sigungu"]))}"><b>{esc(g["sigungu"])} 폐차장</b>'
-            f'<span>동별 상담 페이지 {dong_count.get((g["sido"], g["sigungu"]), 0)}곳</span></a>'
+            + (f'<span>동별 상담 페이지 {dong_count[(g["sido"], g["sigungu"])]}곳</span></a>' if dong_count.get((g["sido"], g["sigungu"]))
+               else '<span>동별 안내 준비 중</span></a>')
             for g in gus
         )
         my_cases = sorted((c for c in cases if c["sido"] == sido), key=lambda c: c.get("date") or "", reverse=True)
