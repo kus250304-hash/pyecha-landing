@@ -1,0 +1,410 @@
+[
+ {
+  "code": "5119010400",
+  "slug": "gangwon-taebaek-cheolam",
+  "items": [
+   {
+    "name": "철암역",
+    "evidence": "지번 강원특별자치도 태백시 철암동 370-1, 도로명 동태백로 389 (열차역 안내 페이지)",
+    "url": "https://train.asamaru.net/열차역/철암역-영동선/",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1283025000",
+  "slug": "jeonnam-yeonggwang-yeonggwang",
+  "items": [
+   {
+    "name": "영광터미널시장",
+    "evidence": "[57043] 전남광주통합특별시 영광군 영광읍 신남로 192-2, '영광터미널 옆에 위치한' 시장(대한민국 구석구석 안내)",
+    "url": "https://www.ktriptips.com/kor/shopping/2795189",
+    "grade": "opened"
+   },
+   {
+    "name": "영광터미널",
+    "evidence": "같은 페이지 '영광터미널 옆에 위치한 영광터미널시장', 시장 주소 영광읍 신남로 192-2",
+    "url": "https://www.ktriptips.com/kor/shopping/2795189",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1283025300",
+  "slug": "jeonnam-yeonggwang-baeksu",
+  "items": [
+   {
+    "name": "백수해안도로 노을전망대",
+    "evidence": "전남 영광군 백수읍 해안로 1398 (장소 안내 페이지 '백수해안도로 노을전망대')",
+    "url": "https://xn--ok0b236bp0a.com/place/26516",
+    "grade": "opened"
+   },
+   {
+    "name": "백수해안도로",
+    "evidence": "같은 페이지, 백수해안도로 노을전망대 주소 전남 영광군 백수읍 해안로 1398 — 백수읍 바닷가를 따라 나는 해안도로",
+    "url": "https://xn--ok0b236bp0a.com/place/26516",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1283025600",
+  "slug": "jeonnam-yeonggwang-hongnong",
+  "items": [
+   {
+    "name": "계마항",
+    "evidence": "전라남도 영광군 홍농읍 계마리 (홍농읍) — 장소 안내 페이지 '계마항'",
+    "url": "https://xn--ok0b236bp0a.com/place/9101",
+    "grade": "opened"
+   },
+   {
+    "name": "한빛원전",
+    "evidence": "전북일보 기사 '원전 소재지 영광군 홍농읍은 원래 바닷가 근처지만 …'",
+    "url": "https://www.jjan.kr/article/20221213580223",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1285025000",
+  "slug": "jeonnam-wando-wando",
+  "items": [
+   {
+    "name": "완도항 연안 여객터미널",
+    "evidence": "도로명 전남광주통합특별시 완도군 장보고대로 339, 완도읍 건물 목록에 분류(건물 안내 페이지)",
+    "url": "https://safehomes.kr/risk-map/전라남도/완도군/완도읍/기타/building/완도항연안여객터미널/12221100213238",
+    "grade": "opened"
+   },
+   {
+    "name": "완도군청",
+    "evidence": "완도군 누리집 하단 군청 주소 '전남광주통합특별시 완도군 완도읍 청해진남로 51'",
+    "url": "https://www.wando.go.kr/wando/sub.cs?m=782",
+    "grade": "opened"
+   },
+   {
+    "name": "완도항",
+    "evidence": "완도항 연안 여객터미널, 도로명 완도군 장보고대로 339(완도읍 분류)",
+    "url": "https://safehomes.kr/risk-map/전라남도/완도군/완도읍/기타/building/완도항연안여객터미널/12221100213238",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1285025300",
+  "slug": "jeonnam-wando-geumil",
+  "items": [
+   {
+    "name": "금일명사십리해수욕장",
+    "evidence": "위키백과 금일읍 문서 '금일해수욕장: 사동리, 월송리, 동백리 3개 마을에 걸쳐있는 해수욕장으로, 금일 명사십리라고도 하는 해수욕장이다', 완도군 문화관광 해수욕장 목록에도 금일명사십리해수욕장(문의 금일읍 061-550-6193)",
+    "url": "https://ko.wikipedia.org/wiki/%EA%B8%88%EC%9D%BC%EC%9D%8D",
+    "grade": "opened"
+   },
+   {
+    "name": "평일도",
+    "evidence": "위키백과 금일읍 문서 '이 지역을 금일도 또는 평일도라고도 불린다', '동백리, 사동리 … 월송리 … : 평일도'",
+    "url": "https://ko.wikipedia.org/wiki/%EA%B8%88%EC%9D%BC%EC%9D%8D",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1285025600",
+  "slug": "jeonnam-wando-nohwa",
+  "items": [
+   {
+    "name": "산양진항",
+    "evidence": "[59154] 완도군 노화읍 노화서로 563-49, 노화도 최북단 항구로 땅끝마을 등을 잇는 페리 운항(대한민국 구석구석 관광지 안내 페이지)",
+    "url": "https://www.ktriptips.com/kor/tourspot/2778466",
+    "grade": "opened"
+   },
+   {
+    "name": "노화도",
+    "evidence": "산양진항 안내: 완도군 노화읍 노화서로 563-49, '노화도 최북단에 위치한 산양진항' (노화읍이 노화도에 있음)",
+    "url": "https://www.ktriptips.com/kor/tourspot/2778466",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2726010300",
+  "slug": "daegu-suseong-suseong",
+  "items": [
+   {
+    "name": "수성시장역",
+    "evidence": "대구광역시 수성구 명덕로 420, 법정동 수성동2가(건축물대장 기반 건물 정보 페이지)",
+    "url": "https://safehomes.kr/risk-map/대구광역시/수성구/수성동2가/기타/building/수성시장역/10501100224369",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "3023012600",
+  "slug": "daejeon-daedeok-sintanjin",
+  "items": [
+   {
+    "name": "신탄진역",
+    "evidence": "대전광역시 대덕구 신탄진로 807, 지번 동 이름 신탄진동(위키백과 신탄진역 문서)",
+    "url": "https://ko.wikipedia.org/wiki/신탄진역",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "3023010200",
+  "slug": "daejeon-daedeok-daehwa",
+  "items": [
+   {
+    "name": "대전산업단지",
+    "evidence": "대화동 문서: 1973년 제1공업단지, 1975년 제2공업단지 조성으로 대화동이 산업지역이 됨, 공업단지와 오정동 사이에 주거지(위키백과 대화동 (대전) 문서)",
+    "url": "https://ko.wikipedia.org/wiki/대화동_(대전)",
+    "grade": "opened"
+   },
+   {
+    "name": "대전천",
+    "evidence": "대화동 문서: 옛 모습은 구만이와 안구만이 마을의 대전천변 일부에만 남아 있음(위키백과 대화동 (대전) 문서)",
+    "url": "https://ko.wikipedia.org/wiki/대화동_(대전)",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2626010100",
+  "slug": "busan-dongnae-myeongjang",
+  "items": [
+   {
+    "name": "명장초등학교",
+    "evidence": "부산광역시 동래구 복천로 121, 소재 법정동 명장동(건축물대장 기반 건물 정보 페이지)",
+    "url": "https://safehomes.kr/risk-map/부산광역시/동래구/명장동/기타/building/명장초등학교/1033126801",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2824510100",
+  "slug": "incheon-gyeyang-hyoseong",
+  "items": [
+   {
+    "name": "인천효성중학교",
+    "evidence": "인천광역시 계양구 안남로 607, 소재지 계양구 효성동(건축물대장 기반 건물 정보 페이지)",
+    "url": "https://safehomes.kr/risk-map/인천광역시/계양구/효성동/기타/building/인천효성중학교/10601350",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4372025000",
+  "slug": "chungbuk-boeun-boeun",
+  "items": [
+   {
+    "name": "보은군청",
+    "evidence": "군청 소재지 보은읍 군청길 38 (이평리 45) — 위키백과 보은군 문서",
+    "url": "https://ko.wikipedia.org/wiki/보은군",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1141010100",
+  "slug": "seoul-seodaemun-chungjeongno",
+  "items": [
+   {
+    "name": "충정로역",
+    "evidence": "2호선 서울 서대문구 서소문로 지하17 (충정로3가), 5호선 충정로 지하28-1 (충정로3가) — 위키백과",
+    "url": "https://ko.wikipedia.org/wiki/충정로역",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4180025000",
+  "slug": "gyeonggi-yeoncheon-yeoncheon",
+  "items": [
+   {
+    "name": "연천역",
+    "evidence": "경기도 연천군 연천읍 연천로 273-7, 연천읍 차탄리 소재 — 위키백과",
+    "url": "https://ko.wikipedia.org/wiki/연천역",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4180025300",
+  "slug": "gyeonggi-yeoncheon-jeongok",
+  "items": [
+   {
+    "name": "전곡역",
+    "evidence": "경기도 연천군 전곡읍 전곡역로 75 — 위키백과",
+    "url": "https://ko.wikipedia.org/wiki/전곡역",
+    "grade": "opened"
+   },
+   {
+    "name": "전곡선사박물관",
+    "evidence": "[11027] 경기도 연천군 전곡읍 평화로443번길 2 — 대한민국 구석구석 안내 페이지",
+    "url": "https://www.ktriptips.com/kor/culture/1284966",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2818510100",
+  "slug": "incheon-yeonsu-okryeon",
+  "items": [
+   {
+    "name": "인천상륙작전기념관",
+    "evidence": "[21942] 인천광역시 연수구 청량로 138 (옥련동) — 대한민국 구석구석 안내 페이지",
+    "url": "https://www.ktriptips.com/kor/culture/130060",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4374025000",
+  "slug": "chungbuk-yeongdong-yeongdong",
+  "items": [
+   {
+    "name": "영동역",
+    "evidence": "충청북도 영동군 영동읍 계산로 87, 영동읍 계산리 소재 — 위키백과",
+    "url": "https://ko.wikipedia.org/wiki/영동역",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "3017010100",
+  "slug": "daejeon-seogu-boksu",
+  "items": [
+   {
+    "name": "대전복수초등학교",
+    "evidence": "대전광역시 서구 복수중로34번길 29, 건물 정보 페이지가 서구 복수동 소속으로 표시",
+    "url": "https://safehomes.kr/risk-map/대전광역시/서구/복수동/기타/building/대전복수초등학교/10731100238799",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "3017010200",
+  "slug": "daejeon-seogu-byeon",
+  "items": [
+   {
+    "name": "대전변동초등학교",
+    "evidence": "대전광역시 서구 유등로 373, 건물 정보 페이지가 서구 변동 소속으로 표시",
+    "url": "https://safehomes.kr/risk-map/대전광역시/서구/변동/기타/building/대전변동초등학교/10731100225801",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2647010100",
+  "slug": "busan-yeonje-geoje",
+  "items": [
+   {
+    "name": "부산법원종합청사",
+    "evidence": "부산광역시 연제구 법원로 31, 건물 정보 페이지가 연제구 거제동 소속으로 표시(검색 요약: 법원로 31(거제동 1500))",
+    "url": "https://safehomes.kr/risk-map/부산광역시/연제구/거제동/기타/building/부산법원종합청사/1040122138",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5011011300",
+  "slug": "jeju-jeju-samyangil",
+  "items": [
+   {
+    "name": "불탑사",
+    "evidence": "제주특별자치도 제주시 원당로16길 41 (삼양일동) — 장소 안내 페이지",
+    "url": "https://xn--ok0b236bp0a.com/place/11482",
+    "grade": "opened"
+   },
+   {
+    "name": "원당봉",
+    "evidence": "불탑사(원당로16길 41, 삼양일동)가 해발 170.4m 원당봉 기슭에 있다는 장소 안내 설명, 원당로 17-1 (삼양일동) 매물 주소 표기",
+    "url": "https://xn--ok0b236bp0a.com/place/11482",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5011011400",
+  "slug": "jeju-jeju-samyangi",
+  "items": [
+   {
+    "name": "삼양초등학교",
+    "evidence": "제주특별자치도 제주시 삼양이동 2181-28 (지석14길 7), 건축물 정보 페이지(이름 표기 '삼영초등학교', 영문 7, Jiseok 14-gil, Samyang 2(i)-dong) + 학교 정보 사이트 주소 제주시 지석14길 7",
+    "url": "https://knowingasset.com/app/land/building/5011011400121810028",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5011011500",
+  "slug": "jeju-jeju-samyangsam",
+  "items": [
+   {
+    "name": "벌랑마을",
+    "evidence": "'3을나의 제2집성촌인 삼양3동 해변가 마을인 벌랑(伐浪, 파도가 치다)' — 뉴스N제주 칼럼 원문. 도로명 '제주시 벌랑1길 43-2 (삼양삼동)', '벌랑길 55 (삼양삼동)'으로 벌랑이 법정동 삼양삼동임을 함께 확인(dorojuso.kr)",
+    "url": "https://www.newsnjeju.com/news/articleView.html?idxno=215515",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5011011600",
+  "slug": "jeju-jeju-bonggae",
+  "items": [
+   {
+    "name": "제주절물자연휴양림",
+    "evidence": "제주특별자치도 제주시 명림로 584 (봉개동) — 장소 안내 페이지",
+    "url": "https://xn--ok0b236bp0a.com/place/11884",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5011011700",
+  "slug": "jeju-jeju-arail",
+  "items": [
+   {
+    "name": "제주대학교",
+    "evidence": "63243 제주특별자치도 제주시 제주대학로 102 (아라일동 1, 제주대학교) — 국제일본문화연구센터 기관 정보 페이지",
+    "url": "https://sekai.nichibun.ac.jp/institution/edit/8395",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5011011800",
+  "slug": "jeju-jeju-arai",
+  "items": [
+   {
+    "name": "아라중학교",
+    "evidence": "아라이동 아라중학교, 주소 제주특별자치도 제주시 아라이동 1419 (학교 정보 페이지). 학교알리미 도로명 제주시 간월동로 30",
+    "url": "https://realty.daangn.com/schools/T100000429",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5011011900",
+  "slug": "jeju-jeju-orail",
+  "items": [
+   {
+    "name": "제주종합경기장",
+    "evidence": "1163-4 Ora 1-dong, Jeju City (오라일동 1163-4) — 위키백과 Jeju Stadium 문서 위치 항목",
+    "url": "https://en.wikipedia.org/wiki/Jeju_Stadium",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5011012000",
+  "slug": "jeju-jeju-orai",
+  "items": [
+   {
+    "name": "제주아트센터",
+    "evidence": "제주아트센터 (제주시 오라이동, 오남로 231), 문화및집회시설 건물 정보 페이지 + 관광 안내 [63147] 제주특별자치도 제주시 오남로 231",
+    "url": "https://safehomes.kr/risk-map/제주특별자치도/제주시/오라이동/기타/building/제주아트센터/12761100197162",
+    "grade": "opened"
+   }
+  ]
+ }
+]
