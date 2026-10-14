@@ -104,12 +104,21 @@ def main() -> None:
     ap.add_argument("--count", type=int, help="시험용: 전체 개수(줄마다 절반)")
     args = ap.parse_args()
     cfg = load_json(GEN_CONFIG, default={})
-    if args.count:
-        count_a, count_b = args.count - args.count // 2, args.count // 2
+    if cfg.get("gu_daily_count") and not args.count:
+        # 2026-10-15 병한님 결정: 하루 gu_daily_count(20)개를 priority_regions.json 순서대로, 구 페이지가 아직 없는 곳만.
+        # 줄 A/B 나누기는 쓰지 않는다(목록에 없는 구는 그다음 등록대수 순).
+        count = int(cfg["gu_daily_count"])
+        heads, line_a, _ = ordered_candidates()
+        heads = [h for h in heads if not h.startswith("줄 B 기준")]
+        picked = [("P", *c) for c in line_a[:count]]
+        heads.append(f"하루 {count}개(data/generation_config.json gu_daily_count), 후보 {len(line_a)}곳 중 {len(picked)}곳"
+                     + ("" if len(picked) >= count else f" — 동 페이지 3개 이상인 구가 모자라 {count - len(picked)}개 덜 만듦"))
     else:
-        count_a, count_b = int(cfg.get("gu_line_a_count", 5)), int(cfg.get("gu_line_b_count", 5))
-
-    heads, picked = pick(count_a, count_b)
+        if args.count:
+            count_a, count_b = args.count - args.count // 2, args.count // 2
+        else:
+            count_a, count_b = int(cfg.get("gu_line_a_count", 5)), int(cfg.get("gu_line_b_count", 5))
+        heads, picked = pick(count_a, count_b)
     print("\n".join(heads))
     if not picked:
         print("만들 수 있는 구가 없습니다 (동 페이지 3개 이상인 구가 모두 끝났거나 보류됨)")

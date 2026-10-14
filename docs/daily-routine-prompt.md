@@ -22,7 +22,7 @@ pyecha-landing 저장소(kus250304-hash/pyecha-landing)의 지역 폐차 랜딩�
 3-2. `python3 scripts/vehicle_stats.py show` 로 지금 쓰는 등록대수 통계를 본다. "통계 없음"이거나 기준 연월이 2개월보다 오래됐으면 `python3 scripts/vehicle_stats.py molit` 을 실행한다(국토교통부 통계누리에서 최신 월 엑셀을 받아 시군구 자가용 × 시도 노후차 비율로 data/vehicle_stats_old10_est.json 저장. openpyxl 이 없으면 `pip install openpyxl` 후 다시 실행). 접속이 끊기면 몇 분 뒤 한 번 더 해 보고, 그래도 안 되면 넘어가고 보고에 적는다. 숫자를 지어내지 않는다.
 
 [생성]
-4. `python3 scripts/pick_next_regions.py` 를 실행한다. "시·군 몫" 줄(인구 30만 이하 시·군에서 한 시·군에 동 페이지 3개가 되도록 몰아서 뽑은 10개, 이유는 docs/roadmap.md 6절), "검색량 우선순위" 줄(네이버 검색량 목록 data/priority_regions.json 순서대로 먼저 뽑은 것, docs/keyword-insights-2026-10-02.md)과 "우선순위 기준" 줄을 보고에 그대로 옮긴다. 개수와 고른 동은 data/generation_config.json 과 출력을 그대로 따르며 여기서 바꾸지 않는다. 시·군 몫의 동이 보류되면 그 시·군은 3개가 안 될 수 있다. 그래도 다음 날 다시 모자란 만큼 뽑히므로 따로 손대지 않는다. "선택 가능한 동이 없습니다"가 나오면 "전체 완료됨"이라고 보고하고 종료한다.
+4. `python3 scripts/pick_next_regions.py` 를 실행한다. 하루 동 페이지 10개(data/generation_config.json 의 daily_count, 2026-10-15부터)는 모두 네이버 검색량 목록 data/priority_regions.json 순서대로 뽑힌다(그 시군구에서 동 이름으로 검색된 동 먼저, 그다음 구 페이지를 만들 수 있게 동 페이지 3개가 될 때까지, 목록과 점수 기준은 docs/region-priority-2026-10-15.md). "검색량 우선순위" 줄과 "우선순위 기준" 줄을 보고에 그대로 옮긴다. 개수와 고른 동은 data/generation_config.json 과 출력을 그대로 따르며 여기서 바꾸지 않는다. "시·군 몫" 줄이 나오면(small_si_gun_daily_count 가 0 이 아닐 때) 그 줄도 옮긴다. 동이 보류되면 그 시군구는 3개가 안 될 수 있다. 그래도 다음 날 다시 모자란 만큼 뽑히므로 따로 손대지 않는다. "선택 가능한 동이 없습니다"가 나오면 "전체 완료됨"이라고 보고하고 종료한다.
 5. 만들어진 data/batches/YYYY-MM-DD.json 의 각 항목에서 landmark_name, landmark_desc, service_intro, faqs(질문·답 4~5쌍), meta 를 채운다. 규칙:
    - 지역마다 내용이 달라야 한다. 문장을 복사해 동 이름만 바꾸지 않는다.
    - 랜드마크는 그 동에 실제로 있는 장소만 쓴다. 도로명(○○로·○○길·○○대로)은 랜드마크로 쓰지 않는다. 그 동 안에 있다고 확인되는 장소가 없으면 지어내지 말고 그 동을 held(이유: "동 안에서 확인되는 장소 없음")로 두고 넘어간다. 주민센터는 그 이름의 주민센터가 실제로 있을 때만 쓴다.
@@ -44,7 +44,7 @@ pyecha-landing 저장소(kus250304-hash/pyecha-landing)의 지역 폐차 랜딩�
 8. scripts/, templates/, CLAUDE.md, data/generation_config.json, data/site_config.json, data/priority_regions.json, data/keywords/, .github/, docs/ 는 수정하지 않는다. 그쪽에 문제가 있으면 보고만 한다.
 
 [구 페이지 — 동 페이지 반영(7번)이 끝난 뒤. 2026-10-01 종로구 견본 승인]
-G1. `python3 scripts/pick_next_gu.py` 를 실행한다. 하루 10개 = 줄 A 5개(추정 노후 자가용 대수 순) + 줄 B 5개(인구 30만 이하 시·군 중 같은 순서)를 번갈아 고른 목록이 나온다(이유는 docs/roadmap.md 6절). 개수와 순서는 출력 그대로 따르고 바꾸지 않는다(두 줄 모두 네이버 검색량 목록 data/priority_regions.json 에 있는 구가 먼저 나온다). 맨 위 "검색량 우선순위"·"우선순위 기준"·"줄 B 기준" 줄과, 한 줄이 모자라 다른 줄로 채웠다는 줄이 있으면 그 줄을 보고용으로 적어 둔다. "만들 수 있는 구가 없습니다"가 나오면 구 페이지 단계를 건너뛴다. 인구 통계 파일(data/population_sigungu.json)은 루틴이 바꾸지 않는다.
+G1. `python3 scripts/pick_next_gu.py` 를 실행한다. 2026-10-15부터 하루 구·시군 페이지 20개(data/generation_config.json 의 gu_daily_count) = 네이버 검색량 목록 data/priority_regions.json 순서대로, 구 페이지가 아직 없는 곳만(동 페이지 3개 이상) 고른 목록이 나온다(줄 표시는 "P"). 개수와 순서는 출력 그대로 따르고 바꾸지 않는다. 맨 위 "검색량 우선순위"·"우선순위 기준"·"하루 20개 … 후보 N곳 중 M곳" 줄을 보고용으로 적어 둔다(후보가 모자라 20개보다 적게 만든 날은 그 사실이 이 줄에 나온다). 20개를 다 채우지 못해도 오류가 아니다. "만들 수 있는 구가 없습니다"가 나오면 구 페이지 단계를 건너뛴다. 인구 통계 파일(data/population_sigungu.json)은 루틴이 바꾸지 않는다.
 G2. 후보마다 출력된 JSON 뼈대를 docs/roadmap.md 2절과 scripts/build_gu.py 맨 위 규칙대로 채운다:
    - intro: 2~3문장. 출력된 그 구 동 페이지 랜드마크 중 구를 대표하는 2~3개를 이름 그대로 쓰고, intro_landmarks 에 {"name", "dong_slug"} 로 적는다. 새 장소를 지어내지 않는다.
    - faqs: 질문·답 3쌍. 그 구의 지역 특성(아파트 지하주차장, 산간·섬 견인 거리, 산업단지 등)을 반영해 구마다 다르게 쓴다.
@@ -74,10 +74,10 @@ S4. 채운 시·도를 data/si.json 목록 끝에 넣고 `python3 scripts/build_
    - 반영 N개, 보류 M개(보류된 동 이름과 이유, 사람이 거의 살지 않아 건너뛴 동은 판단 근거 포함)
    - 오늘 반영한 사례 N건: 지역(시군구 동)·차종, …  (3-1 의 "사례 생성:" 줄 기준. 0건이면 "오늘 반영한 사례 0건(PC에서 올라온 것 없음)". 붙을 동 페이지가 아직 없는 사례나 건너뛴 사례가 있으면 그 이유도 한 줄)
    - 동 페이지 총 개수(data/regions.json 항목 수)
-   - 시·군 몫(pick_next_regions.py 의 "시·군 몫" 줄)과 그중 오늘 동 페이지 3개를 채운 시·군
+   - 오늘 동 페이지 3개를 채워 구 페이지를 만들 수 있게 된 시군구(시·군 몫 줄이 있으면 그 줄도)
    - 검색량 우선순위(pick_next_regions.py 의 "검색량 우선순위" 줄). "목록의 곳이 모두 동 페이지 3개 이상"이 나오면 그 사실과 함께 "네이버 키워드 엑셀을 새로 받아 scripts/naver_keywords.py 를 다시 돌릴 때"라고 적는다
    - 우선순위 기준(pick_next_regions.py 의 "우선순위 기준" 줄). 추정 노후 자가용 통계를 못 구해 전체 등록대수 순으로 했거나, 통계가 아예 없어 임시 순서로 했으면 그 사실과 이유를 적는다
-   - 구 페이지: 오늘 만든 구 K개 목록(줄 A/B 표시, 시도 시군구), 줄 B 가 모자라 줄 A 로 채운 개수, 공공 정보 중 확인 못 해서 뺀 항목(dropped_info), 보류한 구와 이유, 구 페이지 총 개수(data/gu.json 항목 수)
+   - 구 페이지: 오늘 만든 구 K개 목록(순위·시도 시군구, priority_regions.json 순), 후보가 모자라 20개보다 적게 만들었으면 그 수, 공공 정보 중 확인 못 해서 뺀 항목(dropped_info), 보류한 구와 이유, 구 페이지 총 개수(data/gu.json 항목 수)
    - 시·도 페이지: 오늘 만든 시·도, 확인 못 해서 뺀 공공 정보(dropped_info), 보류한 시·도와 이유, 시·도 페이지 총 개수(data/si.json 항목 수)
    - 어제 GA4 기준 전화 클릭·문자 클릭·폼 전송 건수와 상위 5개 페이지: GA4(측정 ID 는 data/site_config.json 의 ga4_id)에서 어제(한국 시간) 이벤트 call_click·sms_click·quote_submit 건수와, 세 이벤트 합이 많은 페이지 5개를 한 줄로 적는다. GA4 API 에 접근할 수 없으면(인증 정보 없음·권한 없음·네트워크 실패) 이 줄은 "GA4 연동 필요"로 적고 넘어간다. 숫자를 지어내지 않는다
    - IndexNow 전송 결과: 보낸 주소 N개, 네이버 응답 코드, 공용 응답 코드 (10-1 출력 그대로. push 를 못 해서 안 보냈으면 "안 보냄(push 실패)")
