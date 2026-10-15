@@ -124,16 +124,37 @@ def apply_home_hero(text: str, cfg: dict) -> str:
     base = cfg["site_base_url"].rstrip("/")
     title = re.search(r"<title>(.*?)</title>", text).group(1)
     form = form_parts(cfg, "첫 화면 홈", "첫 화면 홈", base + "/", title)
+    from build_site import contact_parts
+    bar = contact_parts(cfg, "")  # 하단 띠 오른쪽 버튼(문자, 카카오 주소가 있으면 카톡도)
+    # 띠 아이콘(전화·문자)은 동 페이지 템플릿의 아이콘 묶음에서 두 개만 가져온다
+    sprite = ('<svg width="0" height="0" style="position:absolute" aria-hidden="true">'
+              + "".join(re.search(rf'<symbol id="{i}".*?</symbol>', dong_tpl, flags=re.DOTALL).group(0) for i in ("i-phone", "i-chat"))
+              + "</svg>")
     block = "\n".join([
         HOME_START,
         "<style>", font, root_vars, hero_css,
         "  .hero-v3 .quote-mini p { opacity: 1; }",
         "  .hero-v3 .display { font-family: \"Jalnan\", \"Apple SD Gothic Neo\", \"Malgun Gothic\", sans-serif; font-weight: 400; }",
         "  header .site-title { margin: 0 0 8px; font-size: 26px; font-weight: 700; opacity: 1; }",
+        # 하단 고정 띠(2026-10-15): 지역 페이지와 같은 모양·같은 링크. 클릭은 analytics.py 가 .bar 안이면 position=sticky 로 센다
+        "  body { padding-bottom: calc(62px + env(safe-area-inset-bottom, 0px)); }",
+        f"  .bar {{ position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; display: grid; grid-template-columns: {bar['BAR_COLS']}; gap: 8px;"
+        " padding: 8px 10px calc(8px + env(safe-area-inset-bottom, 0px)); background: rgba(245,248,248,.96); backdrop-filter: blur(8px); border-top: 1px solid var(--line); }",
+        "  .bar .btn { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; padding: 12px 20px; border-radius: 12px;"
+        " font-size: 17px; font-weight: 800; text-decoration: none; line-height: 1.2; font-family: inherit; }",
+        "  .bar .btn svg { width: 22px; height: 22px; flex: none; }",
+        "  .bar .btn-call { background: var(--coral); color: #fff; box-shadow: 0 6px 18px rgba(229,84,31,.32); }",
+        "  .bar .btn-sms { background: var(--teal); color: #fff; }",
+        "  .bar .btn-kakao { background: #FEE500; color: #191919; }",
         "</style>",
+        sprite,
         '<header class="hero hero-v3">',
         hero_top_html(cfg, "전국", form, prefix=""),
         "</header>",
+        '<nav class="bar" aria-label="빠른 문의">',
+        f'  <a class="btn btn-call" href="tel:{cfg["phone_tel"]}"><svg><use href="#i-phone"/></svg>{cfg["phone_display"]} 전화</a>',
+        f"  {bar['BAR_SECOND']}",
+        "</nav>",
         script,
         HOME_END,
     ])

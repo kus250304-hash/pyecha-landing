@@ -74,7 +74,7 @@ CORE_SENTENCES = [
 PAGE_BAN_RE = re.compile(r"최고가|1등|최대(?!한)|실시간\s*접수|접수\s*\d+\s*건|당일\s*지급")
 
 
-HERO_H1_RE = re.compile(r'<h1 class="display">[^<]+ 폐차, 차 번호만 주시면 폐차·수출 바로 비교해서 연락드립니다</h1>')
+HERO_H1_RE = re.compile(r'<h1 class="display">[^<]+ 폐차, 차 번호만 주시면 <span class="nw">폐차·수출</span> 바로 비교해서 연락드립니다</h1>')
 HERO_BAN_RE = re.compile(r"압류|저당|원부")
 
 

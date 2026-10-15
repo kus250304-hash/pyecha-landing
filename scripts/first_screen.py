@@ -26,6 +26,11 @@ MINI_TITLE = "전화가 부담스러우면 차 번호만 남겨 주세요"
 CONSENT_HTML = '남겨주신 정보는 견적 상담 연락에만 쓰며, 문의 시 <a href="{prefix}privacy.html">개인정보처리방침</a>에 동의한 것으로 봅니다.'
 
 
+def nowrap(html_text: str) -> str:
+    """제목의 "폐차·수출"이 줄바꿈될 때 "폐차·" / "·수출"로 점이 따로 떨어지지 않게 한 덩어리로 묶는다(2026-10-15, CSS .nw)."""
+    return html_text.replace("폐차·수출", '<span class="nw">폐차·수출</span>')
+
+
 def sms_link(cfg: dict, region: str) -> str:
     """문자 버튼 주소: 휴대폰에서 누르면 문자 창이 열리고 본문이 미리 채워진다.
     "?&body=" 는 아이폰(&body)·안드로이드(?body) 둘 다 읽는 형식. 손님은 끝에 차번호만 적으면 된다."""
@@ -43,8 +48,8 @@ def hero_top_html(cfg: dict, region: str, form: dict, crumb: str = "", updated: 
         lines.append('    <div class="hero-meta">' + crumb
                      + (f'<p class="updated">최종 업데이트: {updated}</p>' if updated else "") + "</div>")
     lines += [
-        (f'    <h1 class="display">{esc(h1)}</h1>\n    <p class="hero-lead">{esc(lead)}</p>' if h1
-         else f'    <h1 class="display">{esc(region)} {HERO_H1_TAIL}</h1>'),
+        (f'    <h1 class="display">{nowrap(esc(h1))}</h1>\n    <p class="hero-lead">{esc(lead)}</p>' if h1
+         else f'    <h1 class="display">{esc(region)} {nowrap(esc(HERO_H1_TAIL))}</h1>'),
         f'    <a class="btn btn-call hero-call" href="tel:{esc(cfg["phone_tel"])}">📞 {esc(cfg["phone_display"])} 지금 전화</a>',
         '    <p class="hero-call-note">급하시면 전화가 가장 빠릅니다</p>',
         '    <div class="quote-card quote-mini" id="quote">',

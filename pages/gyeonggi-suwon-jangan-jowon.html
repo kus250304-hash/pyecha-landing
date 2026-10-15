@@ -134,6 +134,7 @@
   /* hero-v3:start — 첫 화면(2026-10-13). 첫 화면 홈(index.html)도 build_index.py 가 이 칸을 그대로 가져다 쓴다 */
   header.hero-v3 { background: linear-gradient(160deg, var(--teal) 0%, var(--teal-deep) 100%); color: #fff; padding: 12px 0 18px; text-align: left; word-break: keep-all; overflow-wrap: anywhere; }
   .hero-v3 h1 { text-wrap: balance; }
+  .nw { white-space: nowrap; }  /* 제목의 "폐차·수출" 한 덩어리(first_screen.nowrap) */
   .hero-v3 .hero-lead { margin: -4px 0 12px; font-size: 15px; font-weight: 700; line-height: 1.45; opacity: .95; }  /* 주제 페이지 제목 아래 한 문장 */
   .hero-v3 .wrap { max-width: 960px; margin: 0 auto; padding-inline: 16px; }
   .hero-v3 .hero-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; font-size: 11px; opacity: .85; margin: 0 0 8px; }
@@ -306,7 +307,7 @@
 <header class="hero hero-v3">
   <div class="wrap">
     <div class="hero-meta"><nav class="crumbs" aria-label="지역 경로"><a href="../si/경기-폐차장.html">경기</a> › <a href="../gu/수원시-장안구-폐차장.html">수원시 장안구</a> › 조원동</nav><p class="updated">최종 업데이트: 2026년 10월 13일</p></div>
-    <h1 class="display">조원동 폐차, 차 번호만 주시면 폐차·수출 바로 비교해서 연락드립니다</h1>
+    <h1 class="display">조원동 폐차, 차 번호만 주시면 <span class="nw">폐차·수출</span> 바로 비교해서 연락드립니다</h1>
     <a class="btn btn-call hero-call" href="tel:16006011">📞 1600-6011 지금 전화</a>
     <p class="hero-call-note">급하시면 전화가 가장 빠릅니다</p>
     <div class="quote-card quote-mini" id="quote">
