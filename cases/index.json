@@ -1,5 +1,129 @@
 [
  {
+  "slug": "case-20241231-incheon-yeonsu-okryeon",
+  "date": "2024-12-31",
+  "sido": "인천광역시",
+  "sigungu": "연수구",
+  "dong": "옥련동",
+  "region_slug": "incheon-yeonsu-okryeon",
+  "car": "2008년식 모닝",
+  "title": "옥련동 2008년식 모닝 폐차·수출 비교 상담 사례",
+  "summary": "2008년식 모닝 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "모닝"
+   ],
+   [
+    "연식",
+    "2008년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2008년식 모닝 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20241231-incheon-yeonsu-okryeon-1.jpg",
+  "photos": [
+   "case-20241231-incheon-yeonsu-okryeon-1.jpg",
+   "case-20241231-incheon-yeonsu-okryeon-2.jpg",
+   "case-20241231-incheon-yeonsu-okryeon-3.jpg",
+   "case-20241231-incheon-yeonsu-okryeon-4.jpg",
+   "case-20241231-incheon-yeonsu-okryeon-5.jpg"
+  ],
+  "videos": []
+ },
+ {
+  "slug": "case-20230917-daegu-seogu-bisan",
+  "date": "2023-09-17",
+  "sido": "대구광역시",
+  "sigungu": "서구",
+  "dong": "비산동",
+  "region_slug": "daegu-seogu-bisan",
+  "car": "2010년식 스포티지",
+  "title": "비산동 2010년식 스포티지 폐차·수출 비교 상담 사례",
+  "summary": "2010년식 스포티지 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "스포티지"
+   ],
+   [
+    "연식",
+    "2010년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2010년식 스포티지 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230917-daegu-seogu-bisan-1.jpg",
+  "photos": [
+   "case-20230917-daegu-seogu-bisan-1.jpg",
+   "case-20230917-daegu-seogu-bisan-2.jpg",
+   "case-20230917-daegu-seogu-bisan-3.jpg",
+   "case-20230917-daegu-seogu-bisan-4.jpg"
+  ],
+  "videos": []
+ },
+ {
+  "slug": "case-20230613-gangwon-pyeongchang-jinbu",
+  "date": "2023-06-13",
+  "sido": "강원특별자치도",
+  "sigungu": "평창군",
+  "dong": "진부면",
+  "region_slug": null,
+  "car": "2008년식 아반떼 HD",
+  "title": "진부면 2008년식 아반떼 HD 폐차·수출 비교 상담 사례",
+  "summary": "2008년식 아반떼 HD 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "아반떼 HD"
+   ],
+   [
+    "연식",
+    "2008년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2008년식 아반떼 HD 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230613-gangwon-pyeongchang-jinbu-1.jpg",
+  "photos": [
+   "case-20230613-gangwon-pyeongchang-jinbu-1.jpg",
+   "case-20230613-gangwon-pyeongchang-jinbu-2.jpg",
+   "case-20230613-gangwon-pyeongchang-jinbu-3.jpg",
+   "case-20230613-gangwon-pyeongchang-jinbu-4.jpg"
+  ],
+  "videos": []
+ },
+ {
   "slug": "case-20221128-gyeonggi-suwon-gwonseon",
   "date": "2022-11-28",
   "sido": "경기도",

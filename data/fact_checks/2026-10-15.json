@@ -1,0 +1,122 @@
+[
+ {
+  "code": "4783025300",
+  "slug": "gyeongbuk-goryeong-daegaya",
+  "items": [
+   {
+    "name": "대가야박물관",
+    "evidence": "[40138] 경상북도 고령군 대가야읍 대가야로 1203 (관광 안내 페이지 주소)",
+    "url": "https://www.ktriptips.com/kor/culture/130099",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1273025000",
+  "slug": "jeonnam-gurye-gurye",
+  "items": [
+   {
+    "name": "구례5일시장",
+    "evidence": "구례 오일장 주소: 전남 구례군 구례읍 5일시장작은길 20 (관광 안내 페이지)",
+    "url": "https://xn--ok0b236bp0a.com/place/15589",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1287025000",
+  "slug": "jeonnam-sinan-jido",
+  "items": [
+   {
+    "name": "지도초등학교",
+    "evidence": "학교 정보 페이지 주소: 전남 신안군 지도읍 서촌길 52-1",
+    "url": "https://academy.prompie.com/schools/elementary-school/detail/4r83mfj/",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1287025300",
+  "slug": "jeonnam-sinan-aphae",
+  "items": [
+   {
+    "name": "신안군청",
+    "evidence": "신안군청 누리집 하단 주소: (58827) 전남광주통합특별시 신안군 압해읍 천사로 1004",
+    "url": "https://www.shinan.go.kr/",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4476025000",
+  "slug": "chungnam-buyeo-buyeo",
+  "items": [
+   {
+    "name": "정림사지",
+    "evidence": "정림사지 위치: 충청남도 부여군 부여읍 정림로 83 (농촌진흥청 웹진 소개, 지번 부여읍 동남리 254)",
+    "url": "https://www.rda.go.kr/webzine/2026/08/3_2.html",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1275025000",
+  "slug": "jeonnam-boseong-boseong",
+  "items": [
+   {
+    "name": "보성역",
+    "evidence": "위키백과 보성역: 소재지 전남광주통합특별시 보성군 보성읍 현충로 90, 보성읍 보성리",
+    "url": "https://ko.wikipedia.org/wiki/보성역",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1275025300",
+  "slug": "jeonnam-boseong-beolgyo",
+  "items": [
+   {
+    "name": "벌교역",
+    "evidence": "위키백과 벌교역: 소재지 전남광주통합특별시 보성군 벌교읍 채동선로 228",
+    "url": "https://ko.wikipedia.org/wiki/벌교역",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4790025000",
+  "slug": "gyeongbuk-yecheon-yecheon",
+  "items": [
+   {
+    "name": "예천역",
+    "evidence": "위키백과 예천역: 소재지 경상북도 예천군 예천읍 역전길 4, 예천읍 서본리",
+    "url": "https://ko.wikipedia.org/wiki/예천역",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4790025300",
+  "slug": "gyeongbuk-yecheon-homyeong",
+  "items": [
+   {
+    "name": "경북도청 신도시",
+    "evidence": "위키백과 호명읍: 경상북도청신도시는 예천군 호명읍과 안동시 풍천면에 걸쳐 있으며 호명읍에서는 산합리·직산리 일대, 2024-02-01 호명면이 호명읍으로 승격",
+    "url": "https://ko.wikipedia.org/wiki/호명읍",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4887025000",
+  "slug": "gyeongnam-hamyang-hamyang",
+  "items": [
+   {
+    "name": "함양 상림",
+    "evidence": "위키백과 함양 상림: 경상남도 함양군 함양읍 대덕리 246번지",
+    "url": "https://ko.wikipedia.org/wiki/함양_상림",
+    "grade": "opened"
+   }
+  ]
+ }
+]
