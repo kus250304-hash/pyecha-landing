@@ -1,0 +1,140 @@
+[
+ {
+  "code": "1284025000",
+  "slug": "jeonnam-jangseong-jangseong",
+  "items": [
+   {
+    "name": "장성역",
+    "evidence": "전남광주통합특별시 장성군 장성읍 영천리 1273-5 / 장성읍 역전로 87, 열차역 정보 페이지",
+    "url": "https://train.asamaru.net/열차역/장성역-호남선/",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4888025000",
+  "slug": "gyeongnam-geochang-geochang",
+  "items": [
+   {
+    "name": "거창군청",
+    "evidence": "경남 거창군 거창읍 중앙로 103 거창군청 (축제 안내 페이지 주소)",
+    "url": "https://xn--ok0b236bp0a.com/place/3525",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1276025000",
+  "slug": "jeonnam-hwasun-hwasun",
+  "items": [
+   {
+    "name": "화순 남산공원",
+    "evidence": "[58122] 전남광주통합특별시 화순군 화순읍 진각로 93, 관광지 정보 '남산공원(화순)'",
+    "url": "https://www.ktriptips.com/kor/tourspot/127355",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1272025000",
+  "slug": "jeonnam-gokseong-gokseong",
+  "items": [
+   {
+    "name": "곡성역",
+    "evidence": "전라남도 곡성군 곡성읍 곡성로 920, 장소 정보 페이지 '곡성역'",
+    "url": "https://xn--ok0b236bp0a.com/place/22177",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4793025000",
+  "slug": "gyeongbuk-uljin-uljin",
+  "items": [
+   {
+    "name": "연호공원",
+    "evidence": "[767805] 경상북도 울진군 울진읍 연지리 820-84, 관광지 정보 '연호공원'",
+    "url": "https://www.ktriptips.com/kor/tourspot/4103018",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4793025300",
+  "slug": "gyeongbuk-uljin-pyeonghae",
+  "items": [
+   {
+    "name": "월송정",
+    "evidence": "경상북도 울진군 평해읍 월송정로 517, 관동팔경 정자·해송 숲 소개(한국관광 정보 페이지)",
+    "url": "https://www.ktriptips.com/kor/tourspot/126220",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1280025000",
+  "slug": "jeonnam-yeongam-yeongam",
+  "items": [
+   {
+    "name": "영암군청",
+    "evidence": "우편번호 58415 전남광주통합특별시 영암군 영암읍 군청로 1(영암군 누리집 하단)",
+    "url": "https://www.yeongam.go.kr",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1280025300",
+  "slug": "jeonnam-yeongam-samho",
+  "items": [
+   {
+    "name": "대불국가산업단지",
+    "evidence": "한국민족문화대백과: 전남광주통합특별시 영암군 삼호읍에 있는 조선업종 집적화 생산 단지(단지 내 주소 예: 영암군 삼호읍 대불산단8로1길 11)",
+    "url": "https://encykorea.aks.ac.kr/Article/E0014434",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1271025000",
+  "slug": "jeonnam-damyang-damyang",
+  "items": [
+   {
+    "name": "죽녹원",
+    "evidence": "[57336] 전남광주통합특별시 담양군 담양읍 죽녹원로 119, 성안산 일대 대숲 2003년 개원(한국관광 정보 페이지)",
+    "url": "https://www.ktriptips.com/kor/tourspot/128834",
+    "grade": "opened"
+   },
+   {
+    "name": "성안산",
+    "evidence": "죽녹원 소개: 담양군이 성안산 일대를 조성하여 2003년 개원, 주소 담양군 담양읍 죽녹원로 119",
+    "url": "https://www.ktriptips.com/kor/tourspot/128834",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4889025000",
+  "slug": "gyeongnam-hapcheon-hapcheon",
+  "items": [
+   {
+    "name": "함벽루",
+    "evidence": "경상남도 합천군 죽죽길 80 (합천읍, 연호사), 누각 아래로 황강이 흐름(한국학 디지털 문화유산 자료)",
+    "url": "https://dh.aks.ac.kr/~heritage/wiki/index.php/합천_함벽루",
+    "grade": "opened"
+   },
+   {
+    "name": "연호사",
+    "evidence": "함벽루 주소: 경상남도 합천군 죽죽길 80 (합천읍, 연호사)",
+    "url": "https://dh.aks.ac.kr/~heritage/wiki/index.php/합천_함벽루",
+    "grade": "opened"
+   },
+   {
+    "name": "황강",
+    "evidence": "함벽루(합천읍 죽죽길 80) 옆으로 흐르는 하천이 황강",
+    "url": "https://dh.aks.ac.kr/~heritage/wiki/index.php/합천_함벽루",
+    "grade": "opened"
+   }
+  ]
+ }
+]
