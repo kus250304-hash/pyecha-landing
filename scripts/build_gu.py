@@ -223,7 +223,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
             for r in dongs
         ) or '<p class="note">동별 안내 준비 중</p>'  # 동 페이지가 없는 지방 시·군(2026-10-15)
         # 구마다 다른 질문 3개 + 실제 통화 FAQ 풀에서 4개(2026-10-03)
-        faqs = [tuple(qa) for qa in g["faqs"]] + V.call_faqs("gu:" + g["slug"], 4)
+        faqs = [V.far_faq(gu)] + [tuple(qa) for qa in g["faqs"]] + V.call_faqs("gu:" + g["slug"], 4)  # 맨 위 안심 FAQ(2026-10-16)
         faq_html = "\n      ".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in faqs)
         info_rows = "\n        ".join(
             f'<tr><th>{esc(row["label"])}</th><td>{esc(info_value(row))}'

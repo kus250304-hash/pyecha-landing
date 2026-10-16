@@ -148,7 +148,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
         cases_sub = (f"{si}에서 진행한 실제 사례입니다. 지역은 카드마다 표시됩니다" if my_cases
                      else f"{si} 사례는 준비 중입니다. 유튜브와 블로그에서 실제 진행 사례를 보실 수 있습니다")
         # 시·도마다 다른 질문 3개 + 실제 통화 FAQ 풀에서 4개(2026-10-03)
-        faqs = [tuple(qa) for qa in s["faqs"]] + V.call_faqs("si:" + sido, 4)
+        faqs = [V.far_faq(si)] + [tuple(qa) for qa in s["faqs"]] + V.call_faqs("si:" + sido, 4)  # 맨 위 안심 FAQ(2026-10-16)
         faq_html = "\n      ".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in faqs)
         info_rows = "\n        ".join(
             f'<tr><th>{esc(row["label"])}</th><td>{esc(info_value(row))}'

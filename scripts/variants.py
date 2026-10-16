@@ -229,6 +229,15 @@ CALL_FAQ = [
 ]
 
 
+# 안심 FAQ(2026-10-16 병한님): 동·구·시 페이지 FAQ 맨 위에 늘 넣는다. "지점이 있다"는 말은 쓰지 않는다
+FAR_FAQ_Q = "폐차장이 멀면 어떻게 하나요?"
+
+
+def far_faq(region: str) -> tuple[str, str]:
+    return (FAR_FAQ_Q, f"네, 괜찮아요 — 전국 협력 폐차장 네트워크라 {region}도 기사가 직접 갑니다. "
+                       "차량 확인 후 먼저 입금하고 그다음 차를 가져가요. 먼 거리·시동 불가는 비용을 상담 때 미리 안내합니다.")
+
+
 def call_faqs(key: str, n: int) -> list[tuple[str, str]]:
     """실제 통화 FAQ 를 n 개 고른다. 첫 줄("얼마")은 늘 넣고, 나머지는 key(슬러그 등)마다 다른 출발점·간격으로 고른다."""
     rest = CALL_FAQ[1:]

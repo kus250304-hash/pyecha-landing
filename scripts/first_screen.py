@@ -5,7 +5,8 @@
 휴대폰 한 화면(390px) 안에 ①~⑥이 다 들어가게 한다.
   ① 길 안내(시›구›동) + 최종 업데이트 (작게 한 줄)
   ② 한 문장 H1: "{지역명} 폐차, 차 번호만 주시면 폐차·수출 바로 비교해서 연락드립니다"
-  ③ 전화 버튼(폼보다 위, 높이 56px) + "급하시면 전화가 가장 빠릅니다"
+  ③ 전화 버튼(폼보다 위, 높이 56px) + 바로 아래 안심 한 줄 "{지역명} 어디든 기사가 직접 방문 — 입금 확인 후 차를 가져갑니다"
+     (동·구·시 페이지만, 2026-10-16) + "급하시면 전화가 가장 빠릅니다"
   ④ 견적 폼 2칸(차량번호·연락처). 연식·차종 칸은 맨 아래 두 번째 폼에만 있다
   ⑤ 버튼 하나 "차 번호로 비교 견적 받기 — 폐차값·수출값 둘 다 (1+1)"
   ⑥ 문자 한 줄(카카오 채널 주소가 있으면 "· 카톡 상담")
@@ -51,6 +52,8 @@ def hero_top_html(cfg: dict, region: str, form: dict, crumb: str = "", updated: 
         (f'    <h1 class="display">{nowrap(esc(h1))}</h1>\n    <p class="hero-lead">{esc(lead)}</p>' if h1
          else f'    <h1 class="display">{esc(region)} {nowrap(esc(HERO_H1_TAIL))}</h1>'),
         f'    <a class="btn btn-call hero-call" href="tel:{esc(cfg["phone_tel"])}">📞 {esc(cfg["phone_display"])} 지금 전화</a>',
+        *([f'    <p class="hero-visit">{esc(region)} 어디든 기사가 직접 방문 — 입금 확인 후 차를 가져갑니다</p>']
+          if region and region != "전국" and not h1 else []),  # 동·구·시 페이지만(홈·주제 페이지 제외)
         '    <p class="hero-call-note">급하시면 전화가 가장 빠릅니다</p>',
         '    <div class="quote-card quote-mini" id="quote">',
         f'      <p class="mini-title">{MINI_TITLE}</p>',

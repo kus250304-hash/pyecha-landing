@@ -109,6 +109,18 @@ def core_problems(html: str) -> list[str]:
     if not hero:
         return out + ["첫 화면(hero) 없음"]
     out += hero_problems(hero.group(0))
+    # 안심 문장(2026-10-16): 전화 버튼 바로 아래 한 줄, FAQ 맨 위 "폐차장이 멀면 어떻게 하나요?", "지점이 있다"는 말 금지
+    h = hero.group(0)
+    call, visit = h.find('hero-call" href="tel:'), h.find('<p class="hero-visit">')
+    if visit == -1 or not re.search(r'<p class="hero-visit">[^<]+ 어디든 기사가 직접 방문 — 입금 확인 후 차를 가져갑니다</p>', h):
+        out.append("전화 버튼 아래 안심 한 줄('○○ 어디든 기사가 직접 방문 — 입금 확인 후 차를 가져갑니다')이 없음")
+    elif not (call < visit < h.find('<form class="quote-form"')):
+        out.append("안심 한 줄이 전화 버튼 바로 아래(폼 위)가 아님")
+    first_q = re.search(r"<details><summary>([^<]*)</summary>", html[hero.end():])
+    if not first_q or first_q.group(1) != "폐차장이 멀면 어떻게 하나요?":
+        out.append("FAQ 맨 위가 '폐차장이 멀면 어떻게 하나요?' 가 아님")
+    if m := re.search(r"지점(이|을|에)?\s*(있|운영|둔|두고)", re.sub(r"<[^>]+>", " ", html)):
+        out.append(f"'{m.group(0)}' — 지점이 있다는 표현은 쓰지 않음")
     why = re.search(r'<section id="why-compare".*?</section>', html, flags=re.DOTALL)
     if not why or why.start() < hero.end():
         out.append("폼 바로 아래 '왜 비교해 드리나' 칸이 없음")
