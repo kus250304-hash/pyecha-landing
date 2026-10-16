@@ -103,6 +103,59 @@ def photo_files(folder: Path) -> list[Path]:
     return sorted(p for p in folder.iterdir() if p.is_file() and p.suffix.lower() in PHOTO_EXT)
 
 
+VIDEO_EXT = {".mp4", ".mov", ".3gp", ".m4v"}
+FRAME_SKIP_TAIL = 5      # 영상 마지막 5초(지역·차종을 말하는 부분)는 사진으로 쓰지 않는다
+FRAME_CANDIDATES = 12    # 영상에서 뽑는 서로 다른 장면 후보 수(Claude 가 이 중 4장을 고름)
+
+
+def video_files(folder: Path) -> list[Path]:
+    return sorted(p for p in folder.iterdir() if p.is_file() and p.suffix.lower() in VIDEO_EXT)
+
+
+def video_frames(videos: list[Path], limit: int = FRAME_CANDIDATES):
+    """사진이 없는 사례: 영상에서 서로 다른 장면을 골라 PIL 이미지로 돌려준다(2026-10-16 [2]).
+    차를 한 바퀴 돌며 찍은 영상이 많아, 쓸 수 있는 구간(마지막 5초 제외)을 장면 수만큼 나눠 구간마다 가장 선명한 한 장을 고르고,
+    바로 앞 장면과 색 분포가 거의 같으면 뺀다. 번호판이 보이는 장면은 Claude 가 미리보기에서 고르지 않는다(가리지 말고 건너뜀)."""
+    import cv2
+    from PIL import Image
+    shots = []  # (영상, 프레임 번호 목록)
+    for v in videos:
+        cap = cv2.VideoCapture(str(v))
+        fps = cap.get(cv2.CAP_PROP_FPS) or 30
+        end = int(cap.get(cv2.CAP_PROP_FRAME_COUNT) or 0) - int(fps * FRAME_SKIP_TAIL)
+        cap.release()
+        if end > 0:
+            shots.append((v, fps, end))
+    total = sum(e for _, _, e in shots)
+    picked, last = [], None
+    for v, fps, end in shots:
+        n = max(1, round(limit * end / total)) if total else 0
+        cap = cv2.VideoCapture(str(v))
+        step = max(1, int(fps / 4))
+        for k in range(n):
+            lo, hi = end * k // n, end * (k + 1) // n
+            best = None
+            for idx in range(lo, hi, step):
+                cap.set(cv2.CAP_PROP_POS_FRAMES, idx)
+                ok, frame = cap.read()
+                if not ok:
+                    break
+                sharp = cv2.Laplacian(cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY), cv2.CV_64F).var()
+                if best is None or sharp > best[0]:
+                    best = (sharp, frame)
+            if best is None:
+                continue
+            hsv = cv2.cvtColor(cv2.resize(best[1], (160, 90)), cv2.COLOR_BGR2HSV)
+            h = cv2.calcHist([hsv], [0, 1], None, [16, 8], [0, 180, 0, 256])
+            cv2.normalize(h, h)
+            if last is not None and cv2.compareHist(h, last, cv2.HISTCMP_BHATTACHARYYA) < 0.03:
+                continue
+            last = h
+            picked.append(Image.fromarray(cv2.cvtColor(best[1], cv2.COLOR_BGR2RGB)))
+        cap.release()
+    return picked
+
+
 def staging_state() -> dict:
     return load_json(STAGING / "scan.json", default={}) or {}
 
@@ -151,9 +204,9 @@ def cmd_scan(args) -> None:
             if not body:
                 skipped.append((rel, why))
                 continue
-            photos = photo_files(folder)
+            photos = photo_files(folder) or video_files(folder)  # 사진이 없으면 영상에서 뽑는다
             if not photos:
-                skipped.append((rel, "사진 없음"))
+                skipped.append((rel, "사진·영상 없음"))
                 continue
             if args.no_dong and region["dong"]:
                 continue
@@ -221,6 +274,14 @@ def cmd_prepare(args) -> None:
             shutil.rmtree(d)
         d.mkdir(parents=True)
         previews = []
+        if not photo_files(folder) and video_files(folder):
+            for i, im in enumerate(video_frames(video_files(folder)), 1):
+                im.thumbnail((1600, 1600))
+                name = f"p{i:02d}.jpg"
+                Image.frombytes("RGB", im.size, im.tobytes()).save(d / name, "JPEG", quality=85)
+                previews.append(name)
+            c["from_video"] = True
+            print(f"  {cid}: 사진이 없어 영상에서 장면 {len(previews)}장을 뽑음(앞·뒤·옆·계기판 4장을 고르고 번호판 보이는 장면은 건너뛰기)")
         for i, p in enumerate(photo_files(folder), 1):
             try:
                 with Image.open(p) as im:
