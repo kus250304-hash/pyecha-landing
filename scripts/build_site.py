@@ -30,6 +30,7 @@ from pick_next_regions import GWANGJU_GU, SIDO_PREFIX, romanize
 import variants as V
 import og_image
 import analytics
+import shorts
 
 ROOT = Path(__file__).resolve().parent.parent
 TEMPLATE = ROOT / "templates" / "region-landing-v2.html"
@@ -113,7 +114,7 @@ def case_cards_html(picked: list[dict]) -> str:
         + f'<div class="body"><span class="region">{esc(((c["sigungu"] or c["sido"]) + " " + c["dong"]).strip())} 작업 사례</span>'
         + f'<h3>{esc(c["title"])}</h3><p>{esc(c.get("summary", ""))}</p></div></a>'
         for c in picked
-    ) + "</div>"
+    ) + "</div>" + shorts.cards_video_html(picked)  # 짝 맞춘 쇼츠 하나(페이지당 1개, 누를 때만 불러옴, [4])
 
 
 def region_photos(cases: list[dict], sido: str, sigungu: str, dong: str = "", shown: list[dict] = (),

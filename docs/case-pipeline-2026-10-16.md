@@ -36,3 +36,24 @@
 - `build_cases.read_spoken` 이 읽어 사례 페이지 "진행 방식" 다음에 "영상에서 한 말" 칸(인용 상자, 줄바꿈 유지)으로 넣는다. 문장은 고치거나 꾸미지 않는다. 800자(`SPOKEN_MAX`)까지 받는다.
 - 메모와 같은 검사(`build_cases.banned_text`: 금액·시세, 결과 약속, 수출 된다/안 된다 단정, 고객 정보)에 걸리면 그 사례는 처리하지 않고 이유를 알린다.
 - 블로그 초안은 같은 문장을 쓰지 않고 따로 다듬는다(`폐차119_블로그/CLAUDE.md` 절대 규칙에 추가).
+
+## [4] 쇼츠 끼우기
+
+- 스크립트 `scripts/shorts.py`. 매일 루틴(`docs/daily-routine-prompt.md` 3-0)이 `python3 scripts/shorts.py match` 를 사례 빌드 전에 돌린다. 지금 짝 목록은 `python3 scripts/shorts.py show`.
+- 읽는 곳: `https://www.youtube.com/feeds/videos.xml?channel_id=UCZrqa9lcMlGWDHHitO0ie0w` (@pecha-export, 최근 15개). 주소가 `/shorts/` 인 영상만 본다.
+- 짝 맞추기(`match_case`): 제목+설명(띄어쓰기 무시)에 사례의 차종이 있고
+  1. 사례의 동 이름이나 시군구 이름이 있으면 그 사례(그런 사례가 하나일 때만)
+  2. 없으면 "○○○○년식"이 사례 연식과 같고 그런 사례가 하나뿐일 때
+  - 사례 메모에 이미 넣은 영상(youtube 줄)은 그 사례로 본다.
+  - 제목·설명에 금액(숫자+원/만 원/억, 시세·견적가·매입가)이나 결과 약속 표현이 있으면 넣지 않는다.
+  - 둘 이상과 맞거나 하나도 안 맞으면 "짝 못 찾음". RSS 에서 빠져도 `data/shorts_matches.json` 에 남아 매일 다시 맞춰 본다(사례가 나중에 생기면 그때 붙음).
+  - 사람이 고칠 때: 그 영상 항목에 `"case": "<사례 slug>", "manual": true`.
+- 넣는 곳
+  - 사례 페이지: "영상으로 보기" 칸(메모의 영상 + 짝 맞춘 쇼츠).
+  - 동·구·시·안내 페이지: 사례 카드 묶음 바로 아래, 보이는 사례 중 짝 맞춘 쇼츠가 있는 첫 사례의 영상 1개(`shorts.cards_video_html`).
+- 모양: 썸네일(i.ytimg.com, loading="lazy")과 재생 단추만 두고, 누르면 그때 youtube-nocookie 영상 창을 만든다(lite embed). autoplay 를 넣지 않아 저절로 재생되지 않는다. 쇼츠는 9:16(폭 320px까지), 긴 영상은 16:9.
+- 구조화 데이터: 영상 칸마다 VideoObject(name, description, thumbnailUrl, uploadDate=RSS 올린 날, embedUrl, contentUrl). name 은 영상 제목이 아니라 "○○구 ○○동 ○○ 사례 영상", description 은 사례 요약.
+- 영상 제목은 페이지 글자에 쓰지 않는다(제목에 "수출 안 됩니다" 같은 단정이나 금액이 있을 수 있어 콘텐츠 원칙과 부딪힘).
+- 검사: `check_pages.check_video_embeds` 가 미리 넣은 iframe, 자동재생, 사례 페이지 밖에서 영상 칸 2개 이상, 필수 칸 빠진 VideoObject 를 오류로 막는다.
+- 날짜: 영상 칸이 새로 들어간 페이지만 내용이 바뀌므로 그 페이지만 "최종 업데이트"·dateModified·sitemap lastmod 가 바뀐다(기존 `with_updated_date` 방식).
+- 보고: 3시 보고에 오늘 짝 맞춘 쇼츠와 "짝 못 찾음" 목록.

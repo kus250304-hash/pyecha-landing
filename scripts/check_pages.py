@@ -703,6 +703,28 @@ def check_published() -> list[str]:
     return problems
 
 
+def check_video_embeds() -> list[str]:
+    """영상 칸(2026-10-16 [4]): 유튜브는 썸네일을 누를 때만 불러온다(페이지에 iframe 을 미리 넣지 않음), 자동재생 금지,
+    동·구·시·안내 페이지는 사례 칸 영상 1개까지, 영상이 있으면 VideoObject 는 uploadDate·thumbnailUrl 을 갖춘다."""
+    problems = []
+    for d in ("pages", "gu", "si", "guide", "cases"):
+        for f in sorted((ROOT / d).glob("*.html")) if (ROOT / d).exists() else []:
+            text = f.read_text(encoding="utf-8")
+            if "<iframe" in text:
+                problems.append(f"{d}/{f.name}: iframe 이 미리 들어 있음(영상은 scripts/shorts.py lite_html 로 누를 때만 불러오기)")
+            if re.search(r"autoplay=1|[?&]autoplay", text):
+                problems.append(f"{d}/{f.name}: 영상 자동재생 설정이 있음")
+            n = text.count('class="yt-lite')
+            if d != "cases" and n > 1:
+                problems.append(f"{d}/{f.name}: 영상 칸이 {n}개(페이지당 1개)")
+            for block in re.findall(r'<script type="application/ld\+json">(.*?)</script>', text, flags=re.DOTALL):
+                data = json.loads(block)
+                for x in data if isinstance(data, list) else [data]:
+                    if x.get("@type") == "VideoObject" and not (x.get("uploadDate") and x.get("thumbnailUrl") and x.get("name")):
+                        problems.append(f"{d}/{f.name}: VideoObject 에 name·thumbnailUrl·uploadDate 가 다 있어야 함")
+    return problems
+
+
 def check_tow_wording() -> list[str]:
     """동·구·시·안내·사례 페이지(제목·설명·본문·구조화 데이터 전부)에서 견인비 단정 표현을 찾는다."""
     problems = []
@@ -910,6 +932,7 @@ def main() -> None:
         errors.extend(check_guide_pages(site_cfg, sitemap))
         errors.extend(check_si_pages(site_cfg, sitemap, all_sidos))
         errors.extend(check_tow_wording())
+        errors.extend(check_video_embeds())
         errors.extend(check_oneplus())
         errors.extend(check_icon_and_alt())
         errors.extend(check_published())

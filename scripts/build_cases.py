@@ -509,16 +509,21 @@ def render_case(c: dict, cfg: dict, template: str, region_slug: str | None,
                           + '\n      </div>\n      <p class="photo-note">차량 번호와 개인정보는 가린 사진입니다.</p>\n    </div>\n  </section>\n')
     else:
         photos_section = ""
+    # 영상(2026-10-16 [4]): 메모의 youtube 줄 + 짝 맞춘 쇼츠. 누를 때만 불러오고(lite embed) 자동재생하지 않는다.
+    # 페이지 글자에는 영상 제목 대신 우리 문구("○○동 ○○ 사례 영상")를 쓴다
+    import shorts
+    short = shorts.short_for(c["slug"])
+    if short and all(v["id"] != short["id"] for v in videos):
+        videos = videos + [{"id": short["id"], "url": f"https://www.youtube.com/shorts/{short['id']}", "label": "", "short": True}]
     video_html = ""
     if videos:
-        video_html = '<h2>영상으로 보기</h2><div class="videos">' + "".join(
-            f'<figure class="video{" short" if v.get("short") else ""}">'
-            f'<iframe src="https://www.youtube-nocookie.com/embed/{esc(v["id"])}" title="{esc(v.get("label") or c["title"] + " 영상")}" '
-            'loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" '
-            'referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
-            f'<figcaption><a href="{esc(v["url"])}" target="_blank" rel="noopener noreferrer">'
-            f'{esc(v.get("label") or ("쇼츠" if v.get("short") else "영상"))} — 유튜브에서 보기</a></figcaption></figure>'
-            for v in videos) + "</div>"
+        label = shorts.case_label(c)
+        video_html = ('<h2>영상으로 보기</h2><div class="videos">'
+                      + "".join(shorts.lite_html(v["id"], v.get("label") or label, url=v.get("url", ""), short=v.get("short", True))
+                              for v in videos) + "</div>"
+                      + shorts.lite_assets())
+        if short:
+            video_html += shorts.video_ld(short, label, c.get("summary", ""), f"{base}/cases/{c['slug']}.html")
     story_html = ""
     if c.get("facts"):
         story_html += "<h2>차량 정보</h2><p>" + " · ".join(f"{esc(k)} {esc(v)}" for k, v in c["facts"]) + "</p>"

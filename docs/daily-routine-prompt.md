@@ -16,6 +16,7 @@ pyecha-landing 저장소(kus250304-hash/pyecha-landing)의 지역 폐차 랜딩�
 1. `git fetch origin main` 후 `git checkout -B auto/pages-$(TZ=Asia/Seoul date +%Y%m%d) origin/main` 으로 작업 브랜치를 만든다(로컬 작업용).
 2. `scripts/publish_gate.py` 와 `scripts/fact_check.py` 가 없으면 아무것도 만들지 말고 "새 반영 파이프라인이 main에 없음"이라고만 보고하고 종료한다.
 3. 저장소의 CLAUDE.md를 읽고 '콘텐츠 원칙', '지역 콘텐츠 작성 규칙', '반영 방법', '사실 확인'을 따른다.
+3-0. `python3 scripts/shorts.py match` 를 실행한다(유튜브 채널 @pecha-export 의 새 쇼츠 목록(RSS)을 읽어 제목·설명의 차종·지역·연식으로 사례와 짝을 맞추고 data/shorts_matches.json 에 쌓음). 짝 맞춘 쇼츠는 다음 단계부터 빌드가 사례 페이지와 그 사례 카드가 보이는 페이지(페이지당 1개)에 썸네일을 누를 때만 불러오는 영상 칸으로 넣는다. 출력의 "짝 맞춤 (오늘)" 줄과 "짝 못 찾음" 줄(제목·이유·주소)을 보고용으로 적어 둔다. RSS 를 못 읽어도 오류가 아니며 보고만 한다. 짝을 손으로 고치지 않는다.
 3-1. `python3 scripts/build_cases.py` 를 실행한다. 사례 원본은 운영자 PC 에만 있고, PC 예약 작업(docs/pc-case-import-prompt.md)이 13:40 무렵 가린 사진과 정리된 메모를 cases/input/ 에 올려 둔다(하루 3건까지). 이 루틴은 PC 폴더를 찾거나 읽으려 하지 않는다. 출력의 "사례 생성:" 줄(지역·차종)과 "지역 페이지 N곳에 표시" 줄, "건너뜀" 줄과 이유, "대기" 줄(동 없이 시군구까지만 적힌 사례로 그 구 페이지가 아직 없어 cases/input 에 남겨 둔 것, 건수만)을 보고용으로 적어 둔다. 대기 사례는 오류가 아니며 구 페이지가 생긴 다음 날 이 단계에서 자동으로 처리된다. cases/input 이 비어 있으면 "처리할 사례 없음"이 나오고 넘어간다. 건너뛴 사례가 있어 종료 코드가 1이어도 나머지 단계는 계속한다(건너뛴 폴더는 cases/input 에 그대로 남으니 보고만 한다).
 
 [우선순위 통계]
@@ -64,7 +65,7 @@ S3. 공공 정보가 검색 요약으로도 한 줄도 확인되지 않는 시·
 S4. 채운 시·도를 data/si.json 목록 끝에 넣고 `python3 scripts/build_site.py` → `python3 scripts/build_index.py` → `python3 scripts/check_pages.py` 를 실행한다. "시·도 페이지를 만들 수 없음"이나 검사 오류가 나오면 고치고 다시 실행한다. 세 번 고쳐도 안 되면 data/si.json 에서 빼고 S3 처럼 보류한다. check_pages.py 오류 0건이 될 때까지 커밋하지 않는다.
 
 [반영]
-9. 변경된 파일(data/regions.json, data/batches/held/, data/fact_checks/, data/vehicle_stats.json, data/vehicle_stats_old10_est.json, data/vehicle_stats_total.json, pages/, gu/, guide/, data/gu.json, data/gu_held.json, si/, data/si.json, data/si_held.json, cases/, og/, index.html, sitemap.xml)만 커밋한다. og/ 는 build_site.py 가 새 동·구·시 페이지마다 자동으로 만드는 대표 이미지(썸네일)이며 루틴이 손으로 만들거나 고치지 않는다. guide/(공통 안내 5장)는 build_site.py 가 맨 아래 지역 링크를 다시 그릴 때만 바뀌며, 루틴이 글을 고치지 않는다. 메시지 첫 줄: "Add N region pages (YYYY-MM-DD), held M" (3시 보고가 이 줄을 찾으므로 바꾸지 않는다). 구 페이지를 만들었으면 둘째 줄부터 "Gu pages: K added, J held" 를, 시·도 페이지를 만들었으면 그다음 줄에 "Si pages: K added, J held" 를 적는다. 반영할 지역이 0개이고 보류만 있으면 보류 파일만 커밋한다(다음 날 다시 뽑히지 않게).
+9. 변경된 파일(data/regions.json, data/batches/held/, data/fact_checks/, data/vehicle_stats.json, data/vehicle_stats_old10_est.json, data/vehicle_stats_total.json, data/shorts_matches.json, pages/, gu/, guide/, data/gu.json, data/gu_held.json, si/, data/si.json, data/si_held.json, cases/, og/, index.html, sitemap.xml)만 커밋한다. og/ 는 build_site.py 가 새 동·구·시 페이지마다 자동으로 만드는 대표 이미지(썸네일)이며 루틴이 손으로 만들거나 고치지 않는다. guide/(공통 안내 5장)는 build_site.py 가 맨 아래 지역 링크를 다시 그릴 때만 바뀌며, 루틴이 글을 고치지 않는다. 메시지 첫 줄: "Add N region pages (YYYY-MM-DD), held M" (3시 보고가 이 줄을 찾으므로 바꾸지 않는다). 구 페이지를 만들었으면 둘째 줄부터 "Gu pages: K added, J held" 를, 시·도 페이지를 만들었으면 그다음 줄에 "Si pages: K added, J held" 를 적는다. 반영할 지역이 0개이고 보류만 있으면 보류 파일만 커밋한다(다음 날 다시 뽑히지 않게).
 10. `python3 scripts/publish_gate.py` 를 실행한다.
    - "통과"가 나오면 `git push origin HEAD:main` 으로 main 에 반영한다.
    - "통과 못 함"이 나오거나 push 가 거절되면 main 에는 push 하지 않는다. 대신 `git push -u origin HEAD:auto/failed-$(TZ=Asia/Seoul date +%Y%m%d)` 로 작업을 남기고 실패 이유를 보고한다. 강제 push, 게이트 건너뛰기, 스크립트를 고쳐 통과시키는 것은 금지한다.
@@ -81,6 +82,7 @@ S4. 채운 시·도를 data/si.json 목록 끝에 넣고 `python3 scripts/build_
    - 구 페이지: 오늘 만든 구 K개 목록(순위·시도 시군구, priority_regions.json 순), 후보가 모자라 20개보다 적게 만들었으면 그 수, 공공 정보 중 확인 못 해서 뺀 항목(dropped_info), 보류한 구와 이유, 구 페이지 총 개수(data/gu.json 항목 수)
    - 시·도 페이지: 오늘 만든 시·도, 확인 못 해서 뺀 공공 정보(dropped_info), 보류한 시·도와 이유, 시·도 페이지 총 개수(data/si.json 항목 수)
    - 어제 GA4 기준 전화 클릭·문자 클릭·폼 전송 건수와 상위 5개 페이지: GA4(측정 ID 는 data/site_config.json 의 ga4_id)에서 어제(한국 시간) 이벤트 call_click·sms_click·quote_submit 건수와, 세 이벤트 합이 많은 페이지 5개를 한 줄로 적는다. GA4 API 에 접근할 수 없으면(인증 정보 없음·권한 없음·네트워크 실패) 이 줄은 "GA4 연동 필요"로 적고 넘어간다. 숫자를 지어내지 않는다
+   - 쇼츠 짝: 오늘 짝 맞춘 쇼츠(제목 → 사례 지역·차종), "짝 못 찾음" 목록(3-0 출력 그대로: 올린 날·제목·이유·주소). 짝 못 찾음이 0개면 "짝 못 찾음 없음"
    - IndexNow 전송 결과: 보낸 주소 N개, 네이버 응답 코드, 공용 응답 코드 (10-1 출력 그대로. push 를 못 해서 안 보냈으면 "안 보냄(push 실패)")
    - 실패가 있었으면 그 이유
 ```
