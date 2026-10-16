@@ -1,8 +1,10 @@
 [
- {"name": "파주 마이카스", "address": "", "lat": null, "lon": null, "radius_m": 700},
- {"name": "평택 진승", "address": "", "lat": null, "lon": null, "radius_m": 700},
- {"name": "양주", "address": "", "lat": null, "lon": null, "radius_m": 700},
- {"name": "안산", "address": "", "lat": null, "lon": null, "radius_m": 700},
- {"name": "수원 장안구 수출 사무실", "address": "", "lat": null, "lon": null, "radius_m": 500},
- {"name": "단산 해체장", "address": "", "lat": null, "lon": null, "radius_m": 700}
+ {"name": "마이카스일산종합폐차산업(파주)", "address": "경기 파주시 월롱면 누현1길 53", "lat": 37.78734, "lon": 126.79404, "radius_m": 700, "source": "업무위키 판매처 명단, 좌표 카카오맵 2026-10-16"},
+ {"name": "진승폐차산업(평택 진위면)", "address": "경기 평택시 진위면 남부대로 630-27", "lat": 37.12242, "lon": 127.09553, "radius_m": 700, "source": "업무위키 전국 폐차장 표, 좌표 카카오맵 2026-10-16"},
+ {"name": "신천폐차산업(양주)", "address": "경기 양주시 은현면 운하로528번길 12", "lat": 37.88506, "lon": 127.04452, "radius_m": 700, "source": "업무위키 전국 폐차장 표, 좌표 카카오맵 2026-10-16"},
+ {"name": "장원폐차장(양주)", "address": "경기 양주시 남면 감악산로 69", "lat": 37.87158, "lon": 126.98196, "radius_m": 700, "source": "병한님 2026-10-16, 좌표 카카오맵 2026-10-16"},
+ {"name": "안산종합폐차장(안산)", "address": "경기 안산시 단원구 선이로4길 16", "lat": 37.34336, "lon": 126.79984, "radius_m": 700, "source": "업무위키 전국 폐차장 표, 좌표 카카오맵 2026-10-16"},
+ {"name": "안성종합폐차장(안성)", "address": "경기 안성시 공도읍 서동대로 4340", "lat": 37.00483, "lon": 127.18485, "radius_m": 700, "source": "업무위키 판매처 명단, 좌표 카카오맵 2026-10-16"},
+ {"name": "수원 장안구 수출 사무실", "address": "", "lat": null, "lon": null, "radius_m": 500, "source": "주소 나중에(병한님)"},
+ {"name": "단산 해체장", "address": "", "lat": null, "lon": null, "radius_m": 700, "source": "주소 나중에(병한님)"}
 ]
