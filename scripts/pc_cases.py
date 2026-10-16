@@ -58,12 +58,26 @@ ROOT = Path(__file__).resolve().parent.parent
 SRC_DEFAULT = r"C:\Users\AOMG\Documents\카카오톡 받은 파일\폐차사진원본"
 TIERS = ("우선", "일반")
 DONE_MARK = "반영됨.txt"
-# 메모의 지역이 틀렸거나 모자란 건을 운영자가 확인해 준 지역으로 바꿔 읽는다(원본 메모는 고치지 않음).
+# 메모가 틀렸거나 모자란 건을 운영자가 확인해 준 값으로 바꿔 읽는다(원본 메모는 고치지 않음).
 # [{"folder": "일반\<원본 폴더>", "region": "경기도 수원시 권선구", "confirmed": "날짜 누가 확인"}]
+#   "region" 대신·함께 "memo": {"날짜": "2023-01-27", ...} 를 쓰면 그 칸을 덮어쓴다(표에 있는 칸만).
+#   "hold": "<이유>" 가 있으면 운영자가 답할 때까지 고르지 않는다.
 REGION_FIXES = ROOT / "data" / "case_region_fixes.json"
 STAGING = ROOT / ".cases_staging"
 INPUT_DIR = ROOT / "cases" / "input"
 PC_REQUIRED = ("지역", "차종", "연식", "시동")  # 이 넷이 다 채워진 건만 대상
+PC_MEMO_KEYS = ("날짜", "지역", "차종", "연식", "시동", "운행", "상황", "처리", "결과", "한마디")
+
+
+def load_fixes() -> dict:
+    return {f["folder"].replace("/", "\\"): f for f in load_json(REGION_FIXES, default=[]) or []}
+
+
+def apply_fix(memo: dict, fix: dict | None) -> dict:
+    """확인된 메모 칸을 덮어쓴다. 표에 없는 칸(고객명 등)은 받지 않는다."""
+    if fix:
+        memo.update({k: str(v).strip() for k, v in (fix.get("memo") or {}).items() if k in PC_MEMO_KEYS and str(v).strip()})
+    return memo
 
 
 def blocked(name: str) -> bool:
@@ -106,7 +120,7 @@ def cmd_scan(args) -> None:
     dong_pages = {(r["sido"], r["sigungu"], r["dong"]) for r in regions}
     gu_pages = {(r["sido"], r["sigungu"]) for r in regions}
 
-    fixes = {f["folder"].replace("/", "\\"): f["region"] for f in load_json(REGION_FIXES, default=[]) or []}
+    fixes = load_fixes()
     cands, skipped, marked = [], [], 0
     for ti, tier in enumerate(TIERS):
         tier_dir = src / tier
@@ -118,13 +132,17 @@ def cmd_scan(args) -> None:
                 marked += 1
                 continue
             memo_path = next(folder / n for n in MEMO_NAMES if (folder / n).exists())
-            memo = parse_memo(read_text_any(memo_path))
+            fix = fixes.get(rel.replace("/", "\\"))
+            if fix and fix.get("hold"):
+                skipped.append((rel, f"보류: {fix['hold']}"))
+                continue
+            memo = apply_fix(parse_memo(read_text_any(memo_path)), fix)
             missing = [k for k in PC_REQUIRED if not memo.get(k)]
             if missing:
                 skipped.append((rel, f"메모에 {'·'.join(missing)} 없음"))
                 continue
             # 확인된 지역이 있으면 메모의 지역 대신 쓴다. stage 가 메모.txt 의 지역 칸을 이 결과로 다시 쓴다
-            region, why = resolve_region(fixes.get(rel.replace("/", "\\"), memo["지역"]), rows)
+            region, why = resolve_region((fix or {}).get("region") or memo["지역"], rows)
             if not region:
                 skipped.append((rel, why))
                 continue
@@ -292,7 +310,9 @@ def cmd_stage(args) -> None:
     src_folder = Path(c["src"])
     assert_allowed(src_folder, Path(state["src"]))
     memo_path = next(src_folder / n for n in MEMO_NAMES if (src_folder / n).exists())
-    memo = parse_memo(read_text_any(memo_path))  # 표에 있는 칸만 읽힘(고객명·연락처 등은 버려짐)
+    # 표에 있는 칸만 읽힘(고객명·연락처 등은 버려짐). 운영자가 확인해 준 칸은 덮어쓴다
+    rel = str(src_folder.relative_to(Path(state["src"])))
+    memo = apply_fix(parse_memo(read_text_any(memo_path)), load_fixes().get(rel.replace("/", "\\")))
     r = c["region"]
     memo["지역"] = " ".join(x for x in (r["sido"], r["sigungu"], r["dong"]) if x)
     memo["차종"] = c["car"].split("년식 ", 1)[-1]
@@ -304,7 +324,7 @@ def cmd_stage(args) -> None:
     if dest.exists():
         shutil.rmtree(dest)
     dest.mkdir(parents=True)
-    order = ("날짜", "지역", "차종", "연식", "시동", "운행", "상황", "처리", "결과", "한마디")
+    order = PC_MEMO_KEYS
     (dest / "메모.txt").write_text("".join(f"{k}: {memo[k]}\n" for k in order if memo.get(k)), encoding="utf-8")
     for p in sorted((STAGING / args.cid / "out").glob("[0-9]*.jpg"), key=lambda p: int(p.stem)):
         shutil.copy2(p, dest / p.name)
