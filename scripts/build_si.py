@@ -132,7 +132,8 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
         si = SIDO_SHORT[sido]
         info = with_registration(s["public_info"], registration_row_sido(sido))  # 등록대수 줄은 통계 파일에서(2026-10-03)
         meta_title = f"{si} 폐차장 · 폐차 | 시·군·구별 출장 폐차 · 수출 비교 · 조기폐차 안내 | 전화 {phone_disp}"
-        text_part = f" / 문자 {text_disp}" if text_disp else ""
+        # 설명 글에는 010 번호를 넣지 않는다(네이버가 "010-****-****"로 가림, 2026-10-16). 본문·버튼의 번호는 그대로
+        text_part = " · 문자 상담 가능" if text_disp else ""
         meta_desc = (f"{sido} 폐차 상담. 시·군·구별 출장 방문, 폐차 전에 수출과 비교해 유리한 쪽으로 안내합니다. "
                      f"전화 {phone_disp}{text_part}. 금액은 상담 후 확인.")
         canonical = f"{base}/{si_rel(sido)}"

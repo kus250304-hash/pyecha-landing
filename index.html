@@ -11,6 +11,12 @@
 <meta name="naver-site-verification" content="c6088e5e29147aa84496bd36f652f81dae622855" />
 <title>전국 폐차 비교매입 상담 - 지역별 안내</title>
 <meta name="description" content="전국 동 단위 폐차 비교매입 상담 안내 페이지 모음입니다.">
+<!-- og:start -->
+<meta property="og:image" content="https://pyecha119.com/og/home.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<!-- og:end -->
 <style>
   :root {
     --color-primary: #1a5f3f;
@@ -236,7 +242,9 @@
       var label = btn.innerHTML;
       btn.disabled = true;
       btn.textContent = '보내는 중…';
-      // 메일 제목 "[견적문의] {지역} · {차번호} · {전화번호}", 본문 맨 위 "저장용 이름: 폐차/랜딩/{지역}/{차번호}"(연락처 저장 복사용).
+      // 메일 제목 "[견적문의] {지역} · {차번호} · {전화번호}", 본문 맨 위 SaveName "폐차/랜딩/{지역}/{차번호}"(연락처 저장 복사용)
+      // 바로 아래 SaveLink(save.html#n=번호&t=저장용 이름, 전화·문자·연락처 저장 버튼). 번호는 # 뒤에만 넣는다(?쿼리 금지).
+      // 항목 이름은 영어로 쓴다(한글 항목 이름은 메일에서 깨짐, 2026-10-16). 값은 한글 그대로.
       // 전화번호는 휴대폰 메일 앱이 번호로 알아보게 010-0000-0000 꼴로 보낸다. 지역은 원래 제목 칸의 "[견적문의] " 뒤 글자.
       var phoneEl = form.querySelector('input[name="phone"]');
       if (phoneEl) phoneEl.value = formatPhone(phoneEl.value);
@@ -247,7 +255,10 @@
       var plate = plateEl ? plateEl.value.replace(/\s+/g, '') : '';
       var phone = phoneEl ? phoneEl.value : '';
       var body = new FormData();
-      body.append('저장용 이름', '폐차/랜딩/' + region + '/' + (plate || '차번호없음'));
+      var saveName = '폐차/랜딩/' + region + '/' + (plate || '차번호없음');
+      body.append('SaveName', saveName);
+      body.append('SaveLink', redirect.value.replace(/thanks\.html$/, 'save.html')
+        + '#n=' + phone.replace(/[^0-9]/g, '') + '&t=' + encodeURIComponent(saveName));
       new FormData(form).forEach(function (v, k) {
         if (k === 'subject') v = '[견적문의] ' + region + ' · ' + (plate || '차번호없음') + ' · ' + phone;
         body.append(k, v);

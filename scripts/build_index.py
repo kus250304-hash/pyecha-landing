@@ -6,7 +6,7 @@ regions.json 이 이미 지역별 sido/sigungu/dong을 갖고 있으므로 페�
 index.html의 지역 목록 블록과 헤더의 지역 수만 교체하고 나머지는 그대로 둔다.
 검색엔진 소유확인 메타 태그(site_config.json 의 naver_site_verification)는 실행할 때마다
 <head> 안에 다시 넣으므로 index.html 을 손으로 고쳐도 지워지지 않는다.
-사이트 맨 위 폴더의 페이지(index.html·thanks.html·privacy.html)의 <footer> 도 실행할 때마다
+사이트 맨 위 폴더의 페이지(index.html·thanks.html·privacy.html·save.html)의 <footer> 도 실행할 때마다
 공통 내용(대표번호·개인정보처리방침·블로그·유튜브 링크)으로 다시 채운다.
 지역·사례 페이지의 footer 는 templates/ 의 템플릿에 들어 있다.
 
@@ -31,6 +31,8 @@ VIEWPORT_RE = re.compile(r'(<meta name="viewport"[^>]*>\n)')
 FOOTER_RE = re.compile(r"<footer>.*?</footer>", re.DOTALL)
 STATIC_PAGES = [ROOT / "index.html", ROOT / "thanks.html", ROOT / "privacy.html"]
 STATIC_PAGE_TYPES = {"index.html": "home", "thanks.html": "thanks", "privacy.html": "privacy"}
+# 견적 메일 "바로 저장" 페이지(2026-10-16): footer 만 채우고 통계 코드는 넣지 않는다(주소 # 뒤에 전화번호가 있음)
+NO_ANALYTICS_PAGES = [ROOT / "save.html"]
 
 
 def site_footer(cfg: dict) -> str:
@@ -177,6 +179,24 @@ def apply_head_meta(text: str) -> str:
         raise ValueError("index.html 에서 viewport 메타 태그를 찾지 못했습니다")
     return text
 
+HOME_OG_RE = re.compile(r"[ \t]*<!-- og:start -->.*?<!-- og:end -->\n?", re.DOTALL)
+
+
+def apply_home_og(text: str, cfg: dict) -> str:
+    """첫 화면 홈 대표 이미지(2026-10-16): og/home.png("전국 / 폐차 / 1600-6011", scripts/og_image.py)와
+    og:image 태그를 description 태그 바로 아래에 둔다. 실행할 때마다 다시 넣으므로 손으로 고치지 않는다."""
+    import sys
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import og_image
+    base = cfg["site_base_url"].rstrip("/")
+    meta = og_image.parts("home", "전국", base, cfg["phone_display"])["OG_META"]
+    text = HOME_OG_RE.sub("", text)
+    text, n = re.subn(r'(<meta name="description"[^>]*>\n)', lambda m: m.group(1) + "<!-- og:start -->\n" + meta + "\n<!-- og:end -->\n", text, count=1)
+    if n != 1:
+        raise ValueError("index.html 에서 description 메타 태그를 찾지 못했습니다")
+    return text
+
+
 SIDO_ORDER = [
     "서울특별시", "부산광역시", "대구광역시", "인천광역시", "전남광주통합특별시",
     "대전광역시", "울산광역시", "세종특별자치시", "경기도", "강원특별자치도",
@@ -263,12 +283,15 @@ def main() -> None:
         raise ValueError("index.html에서 지역 수 문구를 찾지 못했습니다")
     text = apply_head_meta(text)
     text = apply_home_hero(text, json.loads(CONFIG_PATH.read_text(encoding="utf-8")))
+    text = apply_home_og(text, json.loads(CONFIG_PATH.read_text(encoding="utf-8")))
     INDEX_PATH.write_text(text, encoding="utf-8")
 
     cfg = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
     for page in STATIC_PAGES:
         text = apply_icon(apply_footer(page.read_text(encoding="utf-8"), cfg, page.name), page.name)
         page.write_text(apply_analytics(text, cfg, page.name), encoding="utf-8")
+    for page in NO_ANALYTICS_PAGES:
+        page.write_text(apply_icon(apply_footer(page.read_text(encoding="utf-8"), cfg, page.name), page.name), encoding="utf-8")
     print(f"index.html 갱신 완료: 총 {total}개 지역, 시도 {len(by_sido)}개 (맨 아래 링크: {', '.join(p.name for p in STATIC_PAGES)})")
 
 

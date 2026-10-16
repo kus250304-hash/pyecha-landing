@@ -656,6 +656,30 @@ def check_icon_and_alt() -> list[str]:
     return problems
 
 
+def check_save_page(base: str) -> list[str]:
+    """견적 메일 "바로 저장" 페이지(save.html, 2026-10-16): 전화번호가 주소 # 뒤에 있으므로
+    통계 코드(GA4·네이버 애널리틱스)·바깥 스크립트가 없고, noindex 이며, sitemap 에 없고, ?쿼리를 읽지 않아야 한다."""
+    f = ROOT / "save.html"
+    if not f.exists():
+        return ["save.html 없음(견적 메일 SaveLink 가 가리키는 페이지)"]
+    text = f.read_text(encoding="utf-8")
+    problems = []
+    for bad, label in (("gtag", "GA4"), ("googletagmanager", "GA4"), ("wcslog", "네이버 애널리틱스"), ("analytics:start", "통계 코드"),
+                       ("<script src", "바깥 스크립트"), ("location.search", "?쿼리 읽기")):
+        if bad in text:
+            problems.append(f"save.html: {label} 가 있으면 안 됨 ({bad})")
+    if '<meta name="robots" content="noindex' not in text:
+        problems.append("save.html: noindex 메타 태그 없음")
+    if "location.hash" not in text:
+        problems.append("save.html: 주소 # 뒤 값을 읽지 않음")
+    sm = ROOT / "sitemap.xml"
+    if sm.exists() and "save.html" in sm.read_text(encoding="utf-8"):
+        problems.append("sitemap.xml: save.html 이 들어 있음")
+    if 'href="save.html"' in (ROOT / "index.html").read_text(encoding="utf-8"):
+        problems.append("index.html: save.html 링크가 있음(지역 목록에서 빼야 함)")
+    return problems
+
+
 # 대표 이미지(og:image, 2026-10-10): 동·구·시 페이지마다 og/ 의 생성 이미지 한 장(scripts/og_image.py)
 OG_META_RE = re.compile(r'<meta property="og:image" content="([^"]+)">')
 
@@ -914,6 +938,7 @@ def main() -> None:
         errors.extend(check_icon_and_alt())
         errors.extend(check_published())
         errors.extend(check_og_images(site_cfg["site_base_url"].rstrip("/")))
+        errors.extend(check_save_page(site_cfg["site_base_url"].rstrip("/")))
         errors.extend(check_analytics(site_cfg))
         errors.extend(check_business_jsonld())
         errors.extend(check_faq_first_sentence())

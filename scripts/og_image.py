@@ -5,10 +5,11 @@ og/<파일 이름>.png 한 장: 1200×630 (2026-10-10 4차 디자인)
 - 바탕: 왼쪽 위 #E63946 → 오른쪽 아래 #9B1C1C 사선 그라데이션, 그 위 오른쪽 아래에 흰색 12% 세단 옆모습
   실루엣(코드로 그린 단순 도형, 가운데 정사각형 폭의 90%).
 - 글자는 두 줄만: 흰 "{지역명} 폐차"(구는 "… 폐차장"), 노란(#FFD60A) 검정 외곽선 6px "1600-6011".
-- 5차 B안(2026-10-10 확정): 1200×630 전체를 쓴다(정사각형 규칙 없음). 두 줄 모두 한 줄로(나누지 않음),
-  가로 1120px(양옆 40px)을 꽉 채우고, 세로는 지역명 55%·전화번호 35%가 되게 글자를 세로로 늘린다
-  (기본 크기로 그린 글자를 1120×346, 1120×220 으로 늘림. 이름이 길수록 길쭉해짐). 두 줄 사이 10px.
-  네이버가 가운데 정사각형으로 자르면 양끝 글자가 잘릴 수 있다(알고 정한 것).
+- 5차 B안(2026-10-10 확정)의 색·바탕(그라데이션·세단 실루엣)은 그대로 둔다.
+- 6차(2026-10-16 병한님 결정): 네이버 모바일이 썸네일을 가운데 정사각형만 잘라 보여 주므로("릉시 폐차 / 00-60")
+  글자를 모두 가운데 630×630 안에 세 줄로 놓는다: 1줄 흰 지역명, 2줄 흰 "폐차"(구는 "폐차장"), 3줄 노란 "1600-6011".
+  "천안시 동남구"처럼 띄어쓰기가 있는 이름은 지역명을 두 줄로 나누고, 그래도 넓으면 글자를 줄인다.
+  글자는 가운데 정사각형 안쪽 폭 TEXT_W(양옆 여백 포함)를 넘지 않고, 세로로 STRETCH 만큼 늘린다(B안처럼 굵고 길쭉하게).
 글꼴은 저장소의 fonts/Pretendard-Black.otf(SIL OFL)만 쓴다. 금액·요금 글자는 넣지 않는다.
 
 같은 글자로 이미 만든 파일이 있으면 다시 쓰지 않는다(PNG 안의 og-text 값으로 비교).
@@ -22,14 +23,16 @@ OUT = ROOT / "og"
 FONT = ROOT / "fonts" / "Pretendard-Black.otf"
 W, H = 1200, 630
 SQ = 630                             # 자동차 실루엣 크기 기준(가운데 정사각형 한 변)
-TEXT_W = W - 2 * 40                  # 글자 폭 1120px
+TEXT_W = SQ - 2 * 36                 # 글자 폭 최대 558px(가운데 정사각형 안, 양옆 36px)
 TOP_C, BOTTOM_C = "#E63946", "#9B1C1C"
 FG, PHONE, OUTLINE, STROKE = "#FFFFFF", "#FFD60A", "#000000", 6
-REGION_H, PHONE_H = 0.55, 0.35       # 글자 높이 / 이미지 높이
-GAP = 10
+NAME_H, NAME2_H = 210, 132          # 지역명 한 줄일 때 / 두 줄일 때 한 줄 최대 높이(px)
+WORD_H, PHONE_H = 160, 118           # "폐차" 줄, 전화번호 줄 최대 높이(px)
+STRETCH = 1.2                        # 글자를 세로로 늘리는 비율
+GAP = 12
 BASE_SIZE = 200                      # 이 크기로 그린 뒤 목표 칸으로 늘린다
 CAR_ALPHA = round(255 * 0.12)
-VERSION = "6"  # 디자인을 바꾸면 올린다(모든 이미지를 다시 만든다)
+VERSION = "7"  # 디자인을 바꾸면 올린다(모든 이미지를 다시 만든다)
 
 
 def _font(size: float):
@@ -37,14 +40,26 @@ def _font(size: float):
     return ImageFont.truetype(str(FONT), max(10, int(size)))
 
 
-def _text_layer(text: str, fill: str, box: tuple[int, int], stroke: int = 0):
-    """글자를 BASE_SIZE 로 그려 box(가로, 세로) 크기로 늘린 투명 그림."""
+def _text_layer(text: str, fill: str, max_h: int, stroke: int = 0):
+    """글자를 BASE_SIZE 로 그려 세로로 STRETCH 배 늘린 뒤, 폭 TEXT_W·높이 max_h 안에 들어가게 줄인 투명 그림."""
     from PIL import Image, ImageDraw
     f = _font(BASE_SIZE)
     l, t, r, b = f.getbbox(text, stroke_width=stroke)
     im = Image.new("RGBA", (r - l, b - t), (0, 0, 0, 0))
     ImageDraw.Draw(im).text((-l, -t), text, font=f, fill=fill, stroke_width=stroke, stroke_fill=OUTLINE)
-    return im.resize(box, Image.LANCZOS)
+    w, h = im.width, im.height * STRETCH
+    k = min(TEXT_W / w, max_h / h)
+    return im.resize((max(1, round(w * k)), max(1, round(h * k))), Image.LANCZOS)
+
+
+def split_name(name: str) -> list[str]:
+    """띄어쓰기가 있으면 두 줄로(글자 수가 가장 고르게 나뉘는 자리), 없으면 한 줄."""
+    words = name.split()
+    if len(words) < 2:
+        return [name]
+    cuts = [(abs(len(" ".join(words[:i])) - len(" ".join(words[i:]))), i) for i in range(1, len(words))]
+    i = min(cuts)[1]
+    return [" ".join(words[:i]), " ".join(words[i:])]
 
 
 def _gradient():
@@ -83,23 +98,26 @@ def _car_mask():
     return m.point(lambda v: v * CAR_ALPHA // 255)
 
 
-def draw(line1: str, line2: str):
+def draw(name: str, word: str, phone: str):
+    """1200×630, 글자는 모두 가운데 630×630 안: 지역명(1~2줄) / word / 전화번호."""
     from PIL import Image
     img = _gradient()
     img.paste(Image.new("RGB", (W, H), FG), (0, 0), _car_mask())
-    a = _text_layer(line1, FG, (TEXT_W, round(H * REGION_H)))
-    b = _text_layer(line2, PHONE, (TEXT_W, round(H * PHONE_H)), STROKE)
-    y = (H - (a.height + GAP + b.height)) // 2
-    x = (W - TEXT_W) // 2
-    img.paste(a, (x, y), a)
-    img.paste(b, (x, y + a.height + GAP), b)
+    lines = split_name(name)
+    layers = [_text_layer(x, FG, NAME_H if len(lines) == 1 else NAME2_H) for x in lines]
+    layers += [_text_layer(word, FG, WORD_H), _text_layer(phone, PHONE, PHONE_H, STROKE)]
+    total = sum(a.height for a in layers) + GAP * (len(layers) - 1)
+    y = (H - total) // 2
+    for a in layers:
+        img.paste(a, ((W - a.width) // 2, y), a)
+        y += a.height + GAP
     return img
 
 
-def ensure(stem: str, line1: str, line2: str) -> bool:
+def ensure(stem: str, name: str, word: str, phone: str) -> bool:
     """og/<stem>.png 를 만든다. 같은 글자로 만든 파일이 이미 있으면 그대로 두고 False."""
     from PIL import Image, PngImagePlugin
-    key = f"{VERSION}|{line1}|{line2}"
+    key = f"{VERSION}|{name}|{word}|{phone}"
     path = OUT / f"{stem}.png"
     if path.exists():
         try:
@@ -111,7 +129,7 @@ def ensure(stem: str, line1: str, line2: str) -> bool:
     OUT.mkdir(exist_ok=True)
     info = PngImagePlugin.PngInfo()
     info.add_text("og-text", key)
-    draw(line1, line2).save(path, format="PNG", pnginfo=info, optimize=True)
+    draw(name, word, phone).save(path, format="PNG", pnginfo=info, optimize=True)
     return True
 
 
@@ -122,7 +140,7 @@ def url(stem: str, base: str) -> str:
 
 def parts(stem: str, name: str, base: str, phone_disp: str, suffix: str = "폐차") -> dict:
     """이미지를 만들고 템플릿 자리 OG_META(<head>)·OG_IMG_HTML(사례 칸 옆 작은 카드)를 돌려준다. name 은 지역명."""
-    if ensure(stem, f"{name} {suffix}", phone_disp):
+    if ensure(stem, name, suffix, phone_disp):
         print(f"대표 이미지: og/{stem}.png")
     from html import escape
     rel = f"og/{quote(stem)}.png"

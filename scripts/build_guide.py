@@ -444,7 +444,8 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], keep_dates: 
         canonical = f"{base}/guide/{quote(g['file'])}"
         title = g["h1"] if topic else g["title"]
         meta_title = f"{title} | 폐차·수출 비교 상담 · 전화 {phone_disp}"
-        meta_desc = f"{g['desc']} {contact_line}."
+        # 설명 글에는 010 번호를 넣지 않는다(네이버가 가림, 2026-10-16). 본문의 contact_line 은 그대로
+        meta_desc = f"{g['desc']} 전화 {phone_disp}" + (" · 문자 상담 가능." if text_disp else ".")
         nav = "".join(
             f'<a href="{esc(x["file"])}"' + (' aria-current="page"' if x is g else "") + f">{esc(x['nav'])}</a>" for x in ALL_GUIDES)
         crumbs = ('<nav class="crumbs" aria-label="경로"><a href="../index.html">전체 지역</a> › '

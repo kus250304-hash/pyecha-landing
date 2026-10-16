@@ -7,12 +7,12 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config',"G-MLKQDS4TK8");(function(){var P={page_type:"si",region:"경남"};window.pyechaTrack=function(n,pos,cb){var d=false,f=function(){if(!d){d=true;if(cb)cb();}};gtag('event',n,{page_type:P.page_type,region:P.region,position:pos,event_callback:f,event_timeout:1500});try{if(window.wcs&&typeof wcs.event==='function')wcs.event(n,P.page_type+'_'+pos);}catch(e){}if(cb)setTimeout(f,1600);};document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="tel:"],a[href^="sms:"]');if(!a)return;var pos=a.closest('.bar')?'sticky':a.closest('header')?'top':'bottom';window.pyechaTrack(a.getAttribute('href').indexOf('tel:')===0?'call_click':'sms_click',pos);},true);function L(){var s=document.createElement('script');s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id=G-MLKQDS4TK8";document.head.appendChild(s);}if(document.readyState==='complete')L();else window.addEventListener('load',L);})();</script>
 <!-- analytics:end -->
 <title>경남 폐차장 · 폐차 | 시·군·구별 출장 폐차 · 수출 비교 · 조기폐차 안내 | 전화 1600-6011</title>
-<meta name="description" content="경상남도 폐차 상담. 시·군·구별 출장 방문, 폐차 전에 수출과 비교해 유리한 쪽으로 안내합니다. 전화 1600-6011 / 문자 010-9926-7779. 금액은 상담 후 확인.">
+<meta name="description" content="경상남도 폐차 상담. 시·군·구별 출장 방문, 폐차 전에 수출과 비교해 유리한 쪽으로 안내합니다. 전화 1600-6011 · 문자 상담 가능. 금액은 상담 후 확인.">
 <link rel="canonical" href="https://pyecha119.com/si/%EA%B2%BD%EB%82%A8-%ED%8F%90%EC%B0%A8%EC%9E%A5.html">
 <link rel="icon" href="../favicon.ico" sizes="any">
 <meta property="og:type" content="website">
 <meta property="og:title" content="경남 폐차장 · 폐차 | 시·군·구별 출장 폐차 · 수출 비교 · 조기폐차 안내 | 전화 1600-6011">
-<meta property="og:description" content="경상남도 폐차 상담. 시·군·구별 출장 방문, 폐차 전에 수출과 비교해 유리한 쪽으로 안내합니다. 전화 1600-6011 / 문자 010-9926-7779. 금액은 상담 후 확인.">
+<meta property="og:description" content="경상남도 폐차 상담. 시·군·구별 출장 방문, 폐차 전에 수출과 비교해 유리한 쪽으로 안내합니다. 전화 1600-6011 · 문자 상담 가능. 금액은 상담 후 확인.">
 <meta property="og:url" content="https://pyecha119.com/si/%EA%B2%BD%EB%82%A8-%ED%8F%90%EC%B0%A8%EC%9E%A5.html">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://pyecha119.com/og/%EA%B2%BD%EB%82%A8-%ED%8F%90%EC%B0%A8%EC%9E%A5.png">
@@ -549,7 +549,9 @@
       var label = btn.innerHTML;
       btn.disabled = true;
       btn.textContent = '보내는 중…';
-      // 메일 제목 "[견적문의] {지역} · {차번호} · {전화번호}", 본문 맨 위 "저장용 이름: 폐차/랜딩/{지역}/{차번호}"(연락처 저장 복사용).
+      // 메일 제목 "[견적문의] {지역} · {차번호} · {전화번호}", 본문 맨 위 SaveName "폐차/랜딩/{지역}/{차번호}"(연락처 저장 복사용)
+      // 바로 아래 SaveLink(save.html#n=번호&t=저장용 이름, 전화·문자·연락처 저장 버튼). 번호는 # 뒤에만 넣는다(?쿼리 금지).
+      // 항목 이름은 영어로 쓴다(한글 항목 이름은 메일에서 깨짐, 2026-10-16). 값은 한글 그대로.
       // 전화번호는 휴대폰 메일 앱이 번호로 알아보게 010-0000-0000 꼴로 보낸다. 지역은 원래 제목 칸의 "[견적문의] " 뒤 글자.
       var phoneEl = form.querySelector('input[name="phone"]');
       if (phoneEl) phoneEl.value = formatPhone(phoneEl.value);
@@ -560,7 +562,10 @@
       var plate = plateEl ? plateEl.value.replace(/\s+/g, '') : '';
       var phone = phoneEl ? phoneEl.value : '';
       var body = new FormData();
-      body.append('저장용 이름', '폐차/랜딩/' + region + '/' + (plate || '차번호없음'));
+      var saveName = '폐차/랜딩/' + region + '/' + (plate || '차번호없음');
+      body.append('SaveName', saveName);
+      body.append('SaveLink', redirect.value.replace(/thanks\.html$/, 'save.html')
+        + '#n=' + phone.replace(/[^0-9]/g, '') + '&t=' + encodeURIComponent(saveName));
       new FormData(form).forEach(function (v, k) {
         if (k === 'subject') v = '[견적문의] ' + region + ' · ' + (plate || '차번호없음') + ' · ' + phone;
         body.append(k, v);

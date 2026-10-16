@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="favicon.ico" sizes="any">
+<!--
+  견적 메일의 "바로 저장" 링크(SaveLink)로 여는 운영자용 페이지(2026-10-16).
+  주소 # 뒤(fragment)의 n=전화번호, t=저장용 이름을 읽어 전화·문자·연락처 저장(.vcf) 버튼을 만든다.
+  번호는 # 뒤에만 있어 서버·통계로 가지 않는다. 그래서 이 페이지에는 GA4·네이버 애널리틱스 같은 통계 코드를 넣지 않고,
+  검색에도 나오지 않게(noindex) 하며 sitemap·지역 목록에도 넣지 않는다(check_pages.py 가 확인).
+  footer 는 build_index.py 가 site_config.json 값으로 다시 채운다.
+-->
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>견적 문의 연락처 저장</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Apple SD Gothic Neo", "Malgun Gothic", -apple-system, sans-serif; color: #222; background: #f5f8f8; line-height: 1.5; }
+  main { max-width: 480px; margin: 0 auto; padding: 24px 16px 32px; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  .name { font-size: 16px; color: #555; margin: 0 0 4px; word-break: break-all; }
+  .num { font-size: 32px; font-weight: 800; letter-spacing: .5px; margin: 0 0 20px; }
+  .btn { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 72px; margin: 0 0 14px; padding: 16px;
+         border: 0; border-radius: 16px; font-size: 22px; font-weight: 800; text-decoration: none; font-family: inherit; cursor: pointer; }
+  .call { background: #E5541F; color: #fff; }
+  .sms { background: #0F766E; color: #fff; }
+  .save { background: #fff; color: #124D2C; border: 3px solid #124D2C; }
+  .note { font-size: 14px; color: #6b7280; margin: 8px 0 0; }
+  .empty { display: none; font-size: 17px; }
+  footer { max-width: 480px; margin: 0 auto; padding: 16px; font-size: 13px; color: #6b7280; }
+  footer a { color: inherit; }
+</style>
+</head>
+<body>
+<main>
+  <div id="box">
+    <h1>견적 문의 연락처</h1>
+    <p class="name" id="name"></p>
+    <p class="num" id="num"></p>
+    <a class="btn call" id="call" href="#">전화 걸기</a>
+    <a class="btn sms" id="sms" href="#">문자 보내기</a>
+    <button class="btn save" id="save" type="button">연락처 저장</button>
+    <p class="note">연락처 저장을 누르면 연락처 파일(.vcf)이 내려받아집니다. 파일을 열면 휴대폰 연락처에 추가됩니다.</p>
+  </div>
+  <p class="empty" id="empty">연락처 정보가 없습니다. 견적 메일의 SaveLink 주소를 그대로 눌러 주세요.</p>
+</main>
+<footer>
+  <p>전국 폐차 비교매입 상담 · 전국 폐차 협력업체 네트워크 연계 서비스</p>
+  <p>대표번호 <a href="tel:16006011">1600-6011</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="index.html">전체 지역 보기</a></p>
+  <p><a href="https://blog.naver.com/abh77790" target="_blank" rel="noopener noreferrer">폐차119 블로그</a> · <a href="http://www.youtube.com/@pecha-export" target="_blank" rel="noopener noreferrer">유튜브</a></p>
+</footer>
+<script>
+(function () {
+  var p = new URLSearchParams(location.hash.replace(/^#/, ''));
+  var n = (p.get('n') || '').replace(/[^0-9]/g, '');
+  var t = (p.get('t') || '').trim() || '폐차 견적 문의';
+  if (!n) {
+    document.getElementById('box').style.display = 'none';
+    document.getElementById('empty').style.display = 'block';
+    return;
+  }
+  function show(v) {
+    if (v.length === 11) return v.slice(0, 3) + '-' + v.slice(3, 7) + '-' + v.slice(7);
+    if (v.length === 10) return v.slice(0, 3) + '-' + v.slice(3, 6) + '-' + v.slice(6);
+    return v;
+  }
+  document.getElementById('name').textContent = t;
+  document.getElementById('num').textContent = show(n);
+  document.getElementById('call').href = 'tel:' + n;
+  document.getElementById('sms').href = 'sms:' + n;
+  document.getElementById('save').addEventListener('click', function () {
+    var esc = function (s) { return s.replace(/\\/g, '\\\\').replace(/([,;])/g, '\\$1'); };
+    var vcf = ['BEGIN:VCARD', 'VERSION:3.0', 'N:' + esc(t) + ';;;;', 'FN:' + esc(t), 'TEL;TYPE=CELL:' + show(n), 'END:VCARD', ''].join('\r\n');
+    var url = URL.createObjectURL(new Blob([vcf], { type: 'text/vcard;charset=utf-8' }));
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'contact-' + n.slice(-4) + '.vcf';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(url); a.remove(); }, 1000);
+  });
+})();
+</script>
+</body>
+</html>
