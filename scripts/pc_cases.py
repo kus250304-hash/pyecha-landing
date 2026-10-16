@@ -49,7 +49,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from build_cases import (  # noqa: E402
-    MAX_PHOTOS, MEMO_NAMES, PHOTO_EXT, check_folder, compose, ensure_pillow, hidden_info,
+    MAX_PHOTOS, MEMO_NAMES, PHOTO_EXT, SPOKEN_NAME, check_folder, compose, ensure_pillow, hidden_info,
     gu_page_exists, load_csv_rows, parse_memo, read_text_any, region_label, resolve_region,
 )
 from build_site import load_json  # noqa: E402
@@ -106,6 +106,16 @@ def photo_files(folder: Path) -> list[Path]:
 VIDEO_EXT = {".mp4", ".mov", ".3gp", ".m4v"}
 FRAME_SKIP_TAIL = 5      # 영상 마지막 5초(지역·차종을 말하는 부분)는 사진으로 쓰지 않는다
 FRAME_CANDIDATES = 12    # 영상에서 뽑는 서로 다른 장면 후보 수(Claude 가 이 중 4장을 고름)
+
+
+def spoken_file(folder: Path) -> Path | None:
+    """원본 폴더의 대본·녹음용 문장 .txt(2026-10-16 [3]). 메모·반영됨 표시·문자 백업이 아닌 .txt 중
+    이름에 대본/문장/멘트/녹음이 들어간 것, 없으면 그런 .txt 가 하나뿐일 때 그것."""
+    skip = set(MEMO_NAMES) | {DONE_MARK}
+    txts = [p for p in folder.iterdir() if p.is_file() and p.suffix.lower() == ".txt"
+            and p.name not in skip and not blocked(p.name) and "문자" not in p.name]
+    named = [p for p in txts if any(w in p.stem for w in ("대본", "문장", "멘트", "녹음"))]
+    return (named or (txts if len(txts) == 1 else [None]))[0]
 
 
 def video_files(folder: Path) -> list[Path]:
@@ -391,6 +401,8 @@ def cmd_stage(args) -> None:
     (dest / "메모.txt").write_text("".join(f"{k}: {memo[k]}\n" for k in order if memo.get(k)), encoding="utf-8")
     for p in sorted((STAGING / args.cid / "out").glob("[0-9]*.jpg"), key=lambda p: int(p.stem)):
         shutil.copy2(p, dest / p.name)
+    if sp := spoken_file(src_folder):  # 대본은 문장 그대로 옮긴다(검사는 아래 check_folder 가 함)
+        (dest / SPOKEN_NAME).write_text(read_text_any(sp).strip() + "\n", encoding="utf-8")
     info, why = check_folder(dest, load_csv_rows())
     bad = [p.name for p in photo_files(dest) if hidden_info(p)]
     if not info or bad:

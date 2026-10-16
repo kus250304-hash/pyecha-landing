@@ -319,15 +319,40 @@ def compose(memo: dict) -> tuple[dict | None, str]:
     }
     text = " ".join([out["situation"], out["method"], out["result"], out["quote"]] + [v for _, v in facts]
                     + [v["label"] for v in videos])
+    why = banned_text(text)
+    return (None, why) if why else (out, "")
+
+
+def banned_text(text: str) -> str:
+    """사례 글(메모·대본)에 쓰면 안 되는 표현이 있으면 그 이유, 없으면 ""."""
     if m := MONEY_RE.search(text):
-        return None, f"금액·시세 표현 '{m.group(0)}' 이 있습니다. 메모에서 금액을 빼 주세요"
+        return f"금액·시세 표현 '{m.group(0)}' 이 있습니다. 메모에서 금액을 빼 주세요"
     if m := PROMISE_RE.search(text):
-        return None, f"결과를 약속하는 표현 '{m.group(0)}' 이 있습니다"
+        return f"결과를 약속하는 표현 '{m.group(0)}' 이 있습니다"
     if m := EXPORT_CLAIM_RE.search(text):
-        return None, f"수출이 된다/안 된다는 단정 '{m.group(0)}' 이 있습니다"
+        return f"수출이 된다/안 된다는 단정 '{m.group(0)}' 이 있습니다"
     if m := CUSTOMER_RE.search(text):
-        return None, f"고객 정보로 보이는 글 '{m.group(0)}' 이 있습니다(전화번호·차량번호·상세 주소 금지)"
-    return out, ""
+        return f"고객 정보로 보이는 글 '{m.group(0)}' 이 있습니다(전화번호·차량번호·상세 주소 금지)"
+    return ""
+
+
+# 영상 대본·녹음용 문장(2026-10-16 [3]): 사례 폴더에 있으면 사례 페이지 "영상에서 한 말" 칸에 문장 그대로 넣는다
+SPOKEN_NAME = "대본.txt"
+SPOKEN_MAX = 800
+
+
+def read_spoken(folder: Path) -> tuple[str, str]:
+    """(대본 글, 문제 설명). 대본이 없으면 ("", "")."""
+    p = folder / SPOKEN_NAME
+    if not p.exists():
+        return "", ""
+    text = "\n".join(line.strip() for line in read_text_any(p).splitlines() if line.strip())
+    if not text:
+        return "", ""
+    if len(text) > SPOKEN_MAX:
+        return "", f"대본이 {len(text)}자입니다. {SPOKEN_MAX}자까지만 넣어 주세요"
+    why = banned_text(text)
+    return ("", f"대본: {why}") if why else (text, "")
 
 
 def region_label(c: dict) -> str:
@@ -412,12 +437,15 @@ def check_folder(folder: Path, rows: list[dict]) -> tuple[dict | None, str]:
         return None, "사진(jpg/png/webp)이나 유튜브 영상(youtube: 줄)이 없습니다"
     if len(photos) > MAX_PHOTOS:
         return None, f"사진이 {len(photos)}장입니다. {MAX_PHOTOS}장까지만 올려 주세요"
+    spoken, why = read_spoken(folder)
+    if why:
+        return None, why
     case_date = memo.get("날짜") or (m.group(0) if (m := re.match(r"\d{4}-\d{2}-\d{2}", folder.name)) else date.today().isoformat())
     if case_date in ("미상", "모름"):  # PC 원본 메모에 날짜가 없던 건: 날짜를 지어내지 않고 표시하지 않는다
         case_date = ""
     elif not re.fullmatch(r"\d{4}-\d{2}-\d{2}", case_date):
         return None, f"날짜는 2026-09-24 형식으로 적어 주세요 (현재 '{case_date}')"
-    return {"memo": memo, "region": region, "body": body, "photos": photos, "date": case_date}, ""
+    return {"memo": memo, "region": region, "body": body, "photos": photos, "date": case_date, "spoken": spoken}, ""
 
 
 def process_folder(folder: Path, rows: list[dict], page_slugs: dict, used_slugs: set[str]) -> dict | None:
@@ -451,6 +479,7 @@ def process_folder(folder: Path, rows: list[dict], page_slugs: dict, used_slugs:
         "result": body["result"], "quote": body["quote"],
         "thumb": names[0] if names else None, "photos": names,
         "videos": body["videos"],
+        "spoken": info["spoken"],
     }
 
 
@@ -497,6 +526,9 @@ def render_case(c: dict, cfg: dict, template: str, region_slug: str | None,
     if c["result"]:
         story.append(("결과", c["result"]))
     story_html += "".join(f"<h2>{esc(h)}</h2><p>{esc(t)}</p>" for h, t in story)
+    if c.get("spoken"):  # 문장 그대로(고치거나 꾸미지 않음)
+        story_html += ("<h2>영상에서 한 말</h2><blockquote class=\"spoken\">"
+                       + "<br>".join(esc(line) for line in c["spoken"].split("\n")) + "</blockquote>")
     if c["quote"]:
         story_html += f"<h2>고객 한마디</h2><blockquote>“{esc(c['quote'])}”</blockquote>"
     if region_slug:

@@ -46,6 +46,7 @@ HOLD_MD = ROOT / "cases" / "input" / "인박스-확인-필요.md"
 VIDEO_EXT = {".mp4", ".mov", ".3gp", ".m4v"}
 IMAGE_EXT = {".jpg", ".jpeg", ".png", ".webp", ".heic"}
 AUDIO_EXT = {".mp3", ".m4a", ".wav", ".aac", ".amr"}
+TEXT_EXT = {".txt"}     # 대본·녹음용 문장(사례 페이지 "영상에서 한 말"로 감, [3])
 GROUP_GAP_MIN = 30      # 올린 시간이 이보다 떨어지면 다른 차
 TAIL_SEC = 5            # 영상 마지막 몇 초의 말을 읽나
 AUDIO_MAX_SEC = 60      # 녹음은 앞 60초만 글로 바꾼다
@@ -54,7 +55,8 @@ MEMO_KEYS = ("날짜", "지역", "차종", "연식", "시동", "운행", "상황
 
 def kind_of(p: Path) -> str:
     e = p.suffix.lower()
-    return "video" if e in VIDEO_EXT else "image" if e in IMAGE_EXT else "audio" if e in AUDIO_EXT else ""
+    return ("video" if e in VIDEO_EXT else "image" if e in IMAGE_EXT else "audio" if e in AUDIO_EXT
+            else "text" if e in TEXT_EXT else "")
 
 
 def inbox_files(inbox: Path) -> list[Path]:
@@ -313,6 +315,10 @@ def cmd_apply(args) -> None:
         if not p.exists():
             continue
         # 사진·영상은 폴더 바로 아래(사례 사진 후보), 조회 캡처·녹음은 자료/ (사례 사진으로 뽑히지 않음)
+        if i["kind"] == "text":  # 첫 대본은 폴더 바로 아래 대본.txt(사례 페이지로 감), 나머지는 자료/
+            to = dest / "대본.txt" if not (dest / "대본.txt").exists() else dest / "자료" / i["file"]
+            shutil.move(str(p), str(to))
+            continue
         to = dest / "자료" if (i["file"] in side or i["kind"] == "audio") else dest
         shutil.move(str(p), str(to / i["file"]))
     g.update(status="applied", folder=f"우선\\{dest.name}", car=ans["차종"], region=memo["지역"])
