@@ -550,7 +550,23 @@
       var label = btn.innerHTML;
       btn.disabled = true;
       btn.textContent = '보내는 중…';
-      fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
+      // 메일 제목 "[견적문의] {지역} · {차번호} · {전화번호}", 본문 맨 위 "저장용 이름: 폐차/랜딩/{지역}/{차번호}"(연락처 저장 복사용).
+      // 전화번호는 휴대폰 메일 앱이 번호로 알아보게 010-0000-0000 꼴로 보낸다. 지역은 원래 제목 칸의 "[견적문의] " 뒤 글자.
+      var phoneEl = form.querySelector('input[name="phone"]');
+      if (phoneEl) phoneEl.value = formatPhone(phoneEl.value);
+      var subjEl = form.querySelector('input[name="subject"]');
+      var plateEl = form.querySelector('input[name="plate"]');
+      var region = subjEl ? (subjEl.getAttribute('data-region') || subjEl.value.replace(/^\[견적문의\]\s*/, '')) : '';
+      if (subjEl) subjEl.setAttribute('data-region', region);
+      var plate = plateEl ? plateEl.value.replace(/\s+/g, '') : '';
+      var phone = phoneEl ? phoneEl.value : '';
+      var body = new FormData();
+      body.append('저장용 이름', '폐차/랜딩/' + region + '/' + (plate || '차번호없음'));
+      new FormData(form).forEach(function (v, k) {
+        if (k === 'subject') v = '[견적문의] ' + region + ' · ' + (plate || '차번호없음') + ' · ' + phone;
+        body.append(k, v);
+      });
+      fetch(form.action, { method: 'POST', body: body, headers: { Accept: 'application/json' } })
         .then(function (res) { return res.json().then(function (data) { return { ok: res.ok, data: data }; }); })
         .then(function (r) {
           if (r.ok && r.data.success) {
