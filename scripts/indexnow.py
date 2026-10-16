@@ -5,13 +5,15 @@ IndexNow 로 새 페이지·바뀐 페이지 주소를 검색엔진에 알린다
   python3 scripts/indexnow.py all              # sitemap.xml 의 모든 주소 (처음 한 번)
   python3 scripts/indexnow.py changed          # 마지막 커밋(HEAD)에서 새로 생기거나 바뀐 .html 의 주소만
   python3 scripts/indexnow.py changed <커밋>   # 그 커밋에서 바뀐 것 (기본 HEAD)
+  python3 scripts/indexnow.py new [커밋]       # 그 커밋에서 새로 생긴 .html 의 주소만 (2026-10-16부터 기본으로 쓰는 것)
   --dry-run                                    # 보내지 않고 주소 수와 앞 몇 개만 출력
 
 - 키: data/site_config.json 의 indexnow_key. 사이트 맨 위 폴더 {키}.txt 가 같은 값을 담고 있어야 한다(keyLocation).
 - 보내는 곳: 네이버 https://searchadvisor.naver.com/indexnow, 공용 https://api.indexnow.org/indexnow.
   한 번에 최대 10,000개씩 JSON(POST)으로 보낸다. 200·202 가 정상 접수.
 - sitemap.xml 에 있는 주소만 보낸다. 예전 주소의 자동 이동 페이지, 검색엔진 소유확인 파일은 sitemap 에 없으므로 빠진다.
-- 네트워크 실패나 오류 응답은 멈추지 않고 출력만 한다(종료 코드 0). 매일 루틴이 push 뒤에 changed 를 돌린다.
+- 네트워크 실패나 오류 응답은 멈추지 않고 출력만 한다(종료 코드 0). 매일 루틴이 push 뒤에 new 를 돌린다.
+- 2026-10-16 병한님 결정: 디자인·문구만 바꾼 커밋은 보내지 않고, 새 페이지가 생긴 커밋에서 new 로 새 주소만 보낸다.
 """
 import argparse
 import json
@@ -37,11 +39,11 @@ def sitemap_urls() -> list[str]:
     return re.findall(r"<loc>\s*(.*?)\s*</loc>", SITEMAP.read_text(encoding="utf-8"))
 
 
-def changed_urls(base: str, rev: str) -> list[str]:
-    """그 커밋에서 새로 생기거나(A) 바뀐(M) 또는 이름이 바뀐(R) .html 파일 → sitemap 에 있는 주소."""
+def changed_urls(base: str, rev: str, kinds: str = "AM") -> list[str]:
+    """그 커밋에서 새로 생기거나(A) 바뀐(M) .html 파일 → sitemap 에 있는 주소. kinds="A" 면 새로 생긴 것만."""
     out = subprocess.run(["git", "-c", "core.quotepath=false", "diff", "--name-status", "--no-renames", f"{rev}~1", rev],
                          cwd=ROOT, check=True, capture_output=True, text=True, encoding="utf-8").stdout
-    paths = [line.split("\t", 1)[1] for line in out.splitlines() if line[:1] in "AM" and line.endswith(".html")]
+    paths = [line.split("\t", 1)[1] for line in out.splitlines() if line[:1] in kinds and line.endswith(".html")]
     listed = {unquote(u): u for u in sitemap_urls()}
     urls = []
     for p in paths:
@@ -67,8 +69,8 @@ def post(endpoint: str, payload: dict) -> str:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("mode", choices=["all", "changed"])
-    ap.add_argument("rev", nargs="?", default="HEAD", help="changed 일 때 기준 커밋 (기본 HEAD)")
+    ap.add_argument("mode", choices=["all", "changed", "new"])
+    ap.add_argument("rev", nargs="?", default="HEAD", help="changed·new 일 때 기준 커밋 (기본 HEAD)")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
 
@@ -82,7 +84,7 @@ def main() -> None:
         return
 
     try:
-        urls = sitemap_urls() if args.mode == "all" else changed_urls(base, args.rev)
+        urls = sitemap_urls() if args.mode == "all" else changed_urls(base, args.rev, "A" if args.mode == "new" else "AM")
     except subprocess.CalledProcessError as e:
         print(f"IndexNow: 바뀐 파일을 읽지 못함 ({e.stderr.strip()[:200]})")
         return

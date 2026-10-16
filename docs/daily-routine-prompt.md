@@ -68,7 +68,7 @@ S4. 채운 시·도를 data/si.json 목록 끝에 넣고 `python3 scripts/build_
 10. `python3 scripts/publish_gate.py` 를 실행한다.
    - "통과"가 나오면 `git push origin HEAD:main` 으로 main 에 반영한다.
    - "통과 못 함"이 나오거나 push 가 거절되면 main 에는 push 하지 않는다. 대신 `git push -u origin HEAD:auto/failed-$(TZ=Asia/Seoul date +%Y%m%d)` 로 작업을 남기고 실패 이유를 보고한다. 강제 push, 게이트 건너뛰기, 스크립트를 고쳐 통과시키는 것은 금지한다.
-10-1. main 에 push 가 성공했을 때만 `python3 scripts/indexnow.py changed` 를 실행하고 응답 코드와 보낸 개수를 보고에 적는다(네이버·공용 IndexNow 에 오늘 커밋에서 새로 생기거나 바뀐 페이지 주소를 알림). 파일을 만들거나 바꾸지 않으므로 커밋할 것은 없다. 응답이 200·202 가 아니거나 네트워크 실패가 나와도 다시 push 하거나 고치지 말고 보고만 한다. push 를 못 했으면(auto/failed 브랜치) 실행하지 않는다.
+10-1. main 에 push 가 성공했을 때만 `python3 scripts/indexnow.py new` 를 실행하고 응답 코드와 보낸 개수를 보고에 적는다(네이버·공용 IndexNow 에 오늘 커밋에서 새로 생긴 페이지 주소만 알림. 기존 페이지가 바뀐 것만으로는 보내지 않음). 파일을 만들거나 바꾸지 않으므로 커밋할 것은 없다. 응답이 200·202 가 아니거나 네트워크 실패가 나와도 다시 push 하거나 고치지 말고 보고만 한다. push 를 못 했으면(auto/failed 브랜치) 실행하지 않는다.
 11. 보고를 쓰기 전에 docs/roadmap.md 를 읽는다. 7절 "조건이 되면 먼저 알릴 것"의 조건에 해당하는 항목이 있으면 보고 맨 위에 먼저 알린다(무엇을 제안하는지 한두 줄). 제안만 하고 그 작업을 루틴이 직접 하지 않는다(시·도 페이지는 S1~S4 에서 조건이 되면 자동으로 만든다).
 12. 마지막으로 짧게 보고한다(3시 보고):
    - 반영 N개, 보류 M개(보류된 동 이름과 이유, 사람이 거의 살지 않아 건너뛴 동은 판단 근거 포함)
