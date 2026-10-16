@@ -11,7 +11,7 @@ PC(운영자 컴퓨터)에서 돌리는 "사례 가져오기" 도구. 원본 사
   "반영됨.txt" 가 있는 폴더는 이미 가져간 것이라 건너뛴다.
 
 순서
-  python scripts/pc_cases.py scan [--n 3]        대상 고르기 → .cases_staging/scan.json
+  python scripts/pc_cases.py scan [--n N]        대상 고르기(기본: 밀린 동안 5건, 아니면 3건) → .cases_staging/scan.json
   python scripts/pc_cases.py prepare              고른 건마다 .cases_staging/cN/ 에 미리보기(p01.jpg…)와 모아보기(sheet1.jpg…)
       → 사람(또는 Claude)이 미리보기를 보고 .cases_staging/cN/select.json 을 쓴다 (형식은 아래)
   python scripts/pc_cases.py mask cN              가리기 적용 → .cases_staging/cN/out/1.jpg… (+ out/check.jpg)
@@ -66,6 +66,7 @@ REGION_FIXES = ROOT / "data" / "case_region_fixes.json"
 STAGING = ROOT / ".cases_staging"
 INPUT_DIR = ROOT / "cases" / "input"
 PC_REQUIRED = ("지역", "차종", "연식", "시동")  # 이 넷이 다 채워진 건만 대상
+DAILY, BACKLOG_DAILY = 3, 5  # 하루 건수. 밀린 대상이 있는 동안은 5건(2026-10-16 병한님 결정)
 PC_MEMO_KEYS = ("날짜", "지역", "차종", "연식", "시동", "운행", "상황", "처리", "결과", "한마디")
 
 
@@ -176,7 +177,8 @@ def cmd_scan(args) -> None:
         if old.get("date") == state["date"]:
             state["picks"] = old.get("picks", {})
     taken = {c["src"] for c in state["picks"].values()}
-    need = args.n - sum(1 for c in state["picks"].values() if c.get("status") != "dropped")
+    n = args.n or (BACKLOG_DAILY if len(cands) > DAILY else DAILY)
+    need = n - sum(1 for c in state["picks"].values() if c.get("status") != "dropped")
     picks = [c for c in cands if c["src"] not in taken][: max(0, need)]
     for c in picks:
         state["picks"][f"c{len(state['picks']) + 1}"] = {**c, "status": "picked"}
@@ -385,7 +387,7 @@ def main() -> None:
     sub = ap.add_subparsers(dest="cmd", required=True)
     s = sub.add_parser("scan")
     s.add_argument("--src", default=SRC_DEFAULT)
-    s.add_argument("--n", type=int, default=3)
+    s.add_argument("--n", type=int, default=0, help="몇 건 고를지. 0(기본)이면 대상이 3건보다 많은 동안(밀림) 5건, 아니면 3건")
     s.add_argument("--more", action="store_true", help="오늘 고른 건은 두고, 뺀 만큼만 더 고른다")
     s.add_argument("--only", default="", help="원본 폴더 이름에 이 글자가 든 건만 고른다(쉼표로 여러 개). 운영자가 특정 건을 지정할 때만")
     s.add_argument("--no-dong", action="store_true", help="동 없이 시군구까지만 적힌 사례만 고른다(밀린 건 한꺼번에 처리할 때)")

@@ -1,0 +1,8 @@
+[
+ {"name": "파주 마이카스", "address": "", "lat": null, "lon": null, "radius_m": 700},
+ {"name": "평택 진승", "address": "", "lat": null, "lon": null, "radius_m": 700},
+ {"name": "양주", "address": "", "lat": null, "lon": null, "radius_m": 700},
+ {"name": "안산", "address": "", "lat": null, "lon": null, "radius_m": 700},
+ {"name": "수원 장안구 수출 사무실", "address": "", "lat": null, "lon": null, "radius_m": 500},
+ {"name": "단산 해체장", "address": "", "lat": null, "lon": null, "radius_m": 700}
+]
