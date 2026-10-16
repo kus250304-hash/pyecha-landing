@@ -6,7 +6,7 @@ regions.json 이 이미 지역별 sido/sigungu/dong을 갖고 있으므로 페�
 index.html의 지역 목록 블록과 헤더의 지역 수만 교체하고 나머지는 그대로 둔다.
 검색엔진 소유확인 메타 태그(site_config.json 의 naver_site_verification)는 실행할 때마다
 <head> 안에 다시 넣으므로 index.html 을 손으로 고쳐도 지워지지 않는다.
-사이트 맨 위 폴더의 페이지(index.html·thanks.html·privacy.html·save.html)의 <footer> 도 실행할 때마다
+사이트 맨 위 폴더의 페이지(index.html·thanks.html·privacy.html)의 <footer> 도 실행할 때마다
 공통 내용(대표번호·개인정보처리방침·블로그·유튜브 링크)으로 다시 채운다.
 지역·사례 페이지의 footer 는 templates/ 의 템플릿에 들어 있다.
 
@@ -31,8 +31,6 @@ VIEWPORT_RE = re.compile(r'(<meta name="viewport"[^>]*>\n)')
 FOOTER_RE = re.compile(r"<footer>.*?</footer>", re.DOTALL)
 STATIC_PAGES = [ROOT / "index.html", ROOT / "thanks.html", ROOT / "privacy.html"]
 STATIC_PAGE_TYPES = {"index.html": "home", "thanks.html": "thanks", "privacy.html": "privacy"}
-# 견적 메일 "바로 저장" 페이지(2026-10-16): footer 만 채우고 통계 코드는 넣지 않는다(주소 # 뒤에 전화번호가 있음)
-NO_ANALYTICS_PAGES = [ROOT / "save.html"]
 
 
 def site_footer(cfg: dict) -> str:
@@ -290,8 +288,6 @@ def main() -> None:
     for page in STATIC_PAGES:
         text = apply_icon(apply_footer(page.read_text(encoding="utf-8"), cfg, page.name), page.name)
         page.write_text(apply_analytics(text, cfg, page.name), encoding="utf-8")
-    for page in NO_ANALYTICS_PAGES:
-        page.write_text(apply_icon(apply_footer(page.read_text(encoding="utf-8"), cfg, page.name), page.name), encoding="utf-8")
     print(f"index.html 갱신 완료: 총 {total}개 지역, 시도 {len(by_sido)}개 (맨 아래 링크: {', '.join(p.name for p in STATIC_PAGES)})")
 
 

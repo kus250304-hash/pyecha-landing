@@ -560,9 +560,7 @@
       var label = btn.innerHTML;
       btn.disabled = true;
       btn.textContent = '보내는 중…';
-      // 메일 제목 "[견적문의] {지역} · {차번호} · {전화번호}", 본문 맨 위 SaveName "폐차/랜딩/{지역}/{차번호}"(연락처 저장 복사용)
-      // 바로 아래 SaveLink(save.html#n=번호&t=저장용 이름, 전화·문자·연락처 저장 버튼). 번호는 # 뒤에만 넣는다(?쿼리 금지).
-      // 항목 이름은 영어로 쓴다(한글 항목 이름은 메일에서 깨짐, 2026-10-16). 값은 한글 그대로.
+      // 메일 제목 "[견적문의] {지역} · {차번호} · {전화번호}"(2026-10-16). 본문 항목은 폼 칸 그대로(저장용 이름·링크 칸은 넣지 않음).
       // 전화번호는 휴대폰 메일 앱이 번호로 알아보게 010-0000-0000 꼴로 보낸다. 지역은 원래 제목 칸의 "[견적문의] " 뒤 글자.
       var phoneEl = form.querySelector('input[name="phone"]');
       if (phoneEl) phoneEl.value = formatPhone(phoneEl.value);
@@ -572,15 +570,8 @@
       if (subjEl) subjEl.setAttribute('data-region', region);
       var plate = plateEl ? plateEl.value.replace(/\s+/g, '') : '';
       var phone = phoneEl ? phoneEl.value : '';
-      var body = new FormData();
-      var saveName = '폐차/랜딩/' + region + '/' + (plate || '차번호없음');
-      body.append('SaveName', saveName);
-      body.append('SaveLink', redirect.value.replace(/thanks\.html$/, 'save.html')
-        + '#n=' + phone.replace(/[^0-9]/g, '') + '&t=' + encodeURIComponent(saveName));
-      new FormData(form).forEach(function (v, k) {
-        if (k === 'subject') v = '[견적문의] ' + region + ' · ' + (plate || '차번호없음') + ' · ' + phone;
-        body.append(k, v);
-      });
+      var body = new FormData(form);
+      body.set('subject', '[견적문의] ' + region + ' · ' + (plate || '차번호없음') + ' · ' + phone);
       fetch(form.action, { method: 'POST', body: body, headers: { Accept: 'application/json' } })
         .then(function (res) { return res.json().then(function (data) { return { ok: res.ok, data: data }; }); })
         .then(function (r) {
