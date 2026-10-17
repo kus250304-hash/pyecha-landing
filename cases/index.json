@@ -1,5 +1,222 @@
 [
  {
+  "slug": "case-20261010-jeonnam-mokpo-yonghae",
+  "date": "2026-10-10",
+  "sido": "전남광주통합특별시",
+  "sigungu": "목포시",
+  "dong": "용해동",
+  "region_slug": "jeonnam-mokpo-yonghae",
+  "car": "2010년식 에쿠스",
+  "title": "용해동 2010년식 에쿠스 폐차·수출 비교 상담 사례",
+  "summary": "2010년식 에쿠스 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "에쿠스"
+   ],
+   [
+    "연식",
+    "2010년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ],
+   [
+    "진행 내용",
+    "차령초과말소로 처리"
+   ]
+  ],
+  "situation": "2010년식 에쿠스 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "압류 24건, 차령초과말소로 폐차",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20261010-jeonnam-mokpo-yonghae-1.jpg",
+  "photos": [
+   "case-20261010-jeonnam-mokpo-yonghae-1.jpg",
+   "case-20261010-jeonnam-mokpo-yonghae-2.jpg",
+   "case-20261010-jeonnam-mokpo-yonghae-3.jpg",
+   "case-20261010-jeonnam-mokpo-yonghae-4.jpg",
+   "case-20261010-jeonnam-mokpo-yonghae-5.jpg"
+  ],
+  "videos": [],
+  "spoken": ""
+ },
+ {
+  "slug": "case-20231009-gyeonggi-namyangju-hwado",
+  "date": "2023-10-09",
+  "sido": "경기도",
+  "sigungu": "남양주시",
+  "dong": "화도읍",
+  "region_slug": null,
+  "car": "2004년식 렉스턴",
+  "title": "화도읍 2004년식 렉스턴 폐차·수출 비교 상담 사례",
+  "summary": "2004년식 렉스턴 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "렉스턴"
+   ],
+   [
+    "연식",
+    "2004년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2004년식 렉스턴 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20231009-gyeonggi-namyangju-hwado-1.jpg",
+  "photos": [
+   "case-20231009-gyeonggi-namyangju-hwado-1.jpg",
+   "case-20231009-gyeonggi-namyangju-hwado-2.jpg",
+   "case-20231009-gyeonggi-namyangju-hwado-3.jpg"
+  ],
+  "videos": [],
+  "spoken": ""
+ },
+ {
+  "slug": "case-20230912-gyeonggi-uiwang-naeson",
+  "date": "2023-09-12",
+  "sido": "경기도",
+  "sigungu": "의왕시",
+  "dong": "내손동",
+  "region_slug": null,
+  "car": "2011년식 쏘렌토R",
+  "title": "내손동 2011년식 쏘렌토R 폐차·수출 비교 상담 사례",
+  "summary": "2011년식 쏘렌토R 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "쏘렌토R"
+   ],
+   [
+    "연식",
+    "2011년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2011년식 쏘렌토R 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230912-gyeonggi-uiwang-naeson-1.jpg",
+  "photos": [
+   "case-20230912-gyeonggi-uiwang-naeson-1.jpg",
+   "case-20230912-gyeonggi-uiwang-naeson-2.jpg",
+   "case-20230912-gyeonggi-uiwang-naeson-3.jpg",
+   "case-20230912-gyeonggi-uiwang-naeson-4.jpg",
+   "case-20230912-gyeonggi-uiwang-naeson-5.jpg"
+  ],
+  "videos": [],
+  "spoken": ""
+ },
+ {
+  "slug": "case-20230904-ulsan-bukgu-sanha",
+  "date": "2023-09-04",
+  "sido": "울산광역시",
+  "sigungu": "북구",
+  "dong": "산하동",
+  "region_slug": null,
+  "car": "2011년식 베라크루즈",
+  "title": "산하동 2011년식 베라크루즈 폐차·수출 비교 상담 사례",
+  "summary": "2011년식 베라크루즈 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "베라크루즈"
+   ],
+   [
+    "연식",
+    "2011년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2011년식 베라크루즈 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230904-ulsan-bukgu-sanha-1.jpg",
+  "photos": [
+   "case-20230904-ulsan-bukgu-sanha-1.jpg",
+   "case-20230904-ulsan-bukgu-sanha-2.jpg",
+   "case-20230904-ulsan-bukgu-sanha-3.jpg",
+   "case-20230904-ulsan-bukgu-sanha-4.jpg",
+   "case-20230904-ulsan-bukgu-sanha-5.jpg",
+   "case-20230904-ulsan-bukgu-sanha-6.jpg"
+  ],
+  "videos": [],
+  "spoken": ""
+ },
+ {
+  "slug": "case-20230127-gyeongbuk-yeongju-hyucheon",
+  "date": "2023-01-27",
+  "sido": "경상북도",
+  "sigungu": "영주시",
+  "dong": "휴천동",
+  "region_slug": "gyeongbuk-yeongju-hucheon",
+  "car": "2002년식 SM5",
+  "title": "휴천동 2002년식 SM5 폐차·수출 비교 상담 사례",
+  "summary": "2002년식 SM5 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "SM5"
+   ],
+   [
+    "연식",
+    "2002년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2002년식 SM5 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230127-gyeongbuk-yeongju-hyucheon-1.jpg",
+  "photos": [
+   "case-20230127-gyeongbuk-yeongju-hyucheon-1.jpg",
+   "case-20230127-gyeongbuk-yeongju-hyucheon-2.jpg",
+   "case-20230127-gyeongbuk-yeongju-hyucheon-3.jpg",
+   "case-20230127-gyeongbuk-yeongju-hyucheon-4.jpg"
+  ],
+  "videos": [],
+  "spoken": ""
+ },
+ {
   "slug": "case-20230903-gyeonggi-osan-yangsan",
   "date": "2023-09-03",
   "sido": "경기도",
