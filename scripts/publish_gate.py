@@ -29,6 +29,7 @@ ALLOWED_PREFIXES = (
     "data/gu_held.json",  # 보류한 구 (2026-10-01 추가, 매일 같은 구를 다시 뽑지 않게)
     "si/", "data/si.json", "data/si_held.json",  # 시·도 페이지(2026-10-02 추가)
     "data/shorts_matches.json",  # 쇼츠↔사례 짝 목록(2026-10-16 추가, scripts/shorts.py match)
+    "docs/index-requests.md",  # 구글 색인 요청 기록(2026-10-18, scripts/pick_index_requests.py --write 만 덧붙임)
     "og/",  # 동·구·시 페이지 대표 이미지(2026-10-10 추가, build_site.py 가 새 페이지마다 만든다)
     "data/vehicle_stats.json", "data/vehicle_stats_old10_est.json", "data/vehicle_stats_total.json",  # 우선순위용 등록대수 통계
 )

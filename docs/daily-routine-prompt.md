@@ -42,7 +42,8 @@ pyecha-landing 저장소(kus250304-hash/pyecha-landing)의 지역 폐차 랜딩�
    - WebSearch 를 쓸 수 없으면 모든 지역을 held(이유: "웹 검색을 쓸 수 없어 확인 못 함")로 둔다.
    - fact_check.py 를 다시 돌려 "확인 기록 문제 있는 항목: 0개"가 될 때까지 고친다.
 7. `python3 scripts/import_batch.py data/batches/YYYY-MM-DD.json` 을 실행한다. 보류 항목은 data/batches/held/ 로, 확인된 항목만 반영·렌더링·검사된다. 오류가 나오면 변경이 자동으로 되돌려지므로 배치 파일을 고치고 다시 실행한다(세 번 고쳐도 안 되는 항목은 held 로 바꾼다). 통과 전에는 커밋하지 않는다.
-8. scripts/, templates/, CLAUDE.md, data/generation_config.json, data/site_config.json, data/priority_regions.json, data/keywords/, .github/, docs/ 는 수정하지 않는다. 그쪽에 문제가 있으면 보고만 한다.
+8. scripts/, templates/, CLAUDE.md, data/generation_config.json, data/site_config.json, data/priority_regions.json, data/keywords/, .github/, docs/ 는 수정하지 않는다(단 docs/index-requests.md 는 8-1 의 스크립트만 덧붙인다). 그쪽에 문제가 있으면 보고만 한다.
+8-1. 커밋하기 전에 `python3 scripts/pick_index_requests.py --write` 를 실행한다(2026-10-18). 오늘 구글 서치 콘솔에 병한님이 손으로 요청할 주소 10개를 ① 오늘 새로 만든 구·시 페이지 ② docs/index-requests.md 의 "문의가 온 페이지"와 같은 시·군의 구·동 페이지 ③ 점수표 순위 높은 지방 시·군 구 페이지 순으로, 그 파일에 이미 있는 주소는 빼고 골라 그 파일에 오늘 날짜로 덧붙인다. 출력(번호·한글 주소·이유, 다음 줄 인코딩된 주소)을 12단계 보고 맨 끝에 쓴다. 파일을 손으로 고치지 않는다.
 
 [구 페이지 — 동 페이지 반영(7번)이 끝난 뒤. 2026-10-01 종로구 견본 승인]
 G1. `python3 scripts/pick_next_gu.py` 를 실행한다. 2026-10-15부터 하루 구·시군 페이지 20개(data/generation_config.json 의 gu_daily_count) = 네이버 검색량 목록 data/priority_regions.json 순서대로, 구 페이지가 아직 없는 곳만 고른 목록이 나온다(줄 표시는 "P"). 수도권(서울·경기·인천)과 광역시 자치구는 동 페이지 3개 이상인 곳만, 그 밖의 지방 시·군은 동 페이지가 1개나 0개여도 후보다(build_gu.min_dong_pages, 2026-10-15). 개수와 순서는 출력 그대로 따르고 바꾸지 않는다. 맨 위 "검색량 우선순위"·"우선순위 기준"·"하루 20개 … 후보 N곳 중 M곳" 줄을 보고용으로 적어 둔다(후보가 모자라 20개보다 적게 만든 날은 그 사실이 이 줄에 나온다). 20개를 다 채우지 못해도 오류가 아니다. "만들 수 있는 구가 없습니다"가 나오면 구 페이지 단계를 건너뛴다. 인구 통계 파일(data/population_sigungu.json)은 루틴이 바꾸지 않는다.
@@ -65,7 +66,7 @@ S3. 공공 정보가 검색 요약으로도 한 줄도 확인되지 않는 시·
 S4. 채운 시·도를 data/si.json 목록 끝에 넣고 `python3 scripts/build_site.py` → `python3 scripts/build_index.py` → `python3 scripts/check_pages.py` 를 실행한다. "시·도 페이지를 만들 수 없음"이나 검사 오류가 나오면 고치고 다시 실행한다. 세 번 고쳐도 안 되면 data/si.json 에서 빼고 S3 처럼 보류한다. check_pages.py 오류 0건이 될 때까지 커밋하지 않는다.
 
 [반영]
-9. 변경된 파일(data/regions.json, data/batches/held/, data/fact_checks/, data/vehicle_stats.json, data/vehicle_stats_old10_est.json, data/vehicle_stats_total.json, data/shorts_matches.json, pages/, gu/, guide/, data/gu.json, data/gu_held.json, si/, data/si.json, data/si_held.json, cases/, og/, index.html, sitemap.xml)만 커밋한다. og/ 는 build_site.py 가 새 동·구·시 페이지마다 자동으로 만드는 대표 이미지(썸네일)이며 루틴이 손으로 만들거나 고치지 않는다. guide/(공통 안내 5장)는 build_site.py 가 맨 아래 지역 링크를 다시 그릴 때만 바뀌며, 루틴이 글을 고치지 않는다. 메시지 첫 줄: "Add N region pages (YYYY-MM-DD), held M" (3시 보고가 이 줄을 찾으므로 바꾸지 않는다). 구 페이지를 만들었으면 둘째 줄부터 "Gu pages: K added, J held" 를, 시·도 페이지를 만들었으면 그다음 줄에 "Si pages: K added, J held" 를 적는다. 반영할 지역이 0개이고 보류만 있으면 보류 파일만 커밋한다(다음 날 다시 뽑히지 않게).
+9. 변경된 파일(data/regions.json, data/batches/held/, data/fact_checks/, data/vehicle_stats.json, data/vehicle_stats_old10_est.json, data/vehicle_stats_total.json, data/shorts_matches.json, pages/, gu/, guide/, data/gu.json, data/gu_held.json, si/, data/si.json, data/si_held.json, cases/, og/, index.html, sitemap.xml, docs/index-requests.md)만 커밋한다. og/ 는 build_site.py 가 새 동·구·시 페이지마다 자동으로 만드는 대표 이미지(썸네일)이며 루틴이 손으로 만들거나 고치지 않는다. guide/(공통 안내 5장)는 build_site.py 가 맨 아래 지역 링크를 다시 그릴 때만 바뀌며, 루틴이 글을 고치지 않는다. 메시지 첫 줄: "Add N region pages (YYYY-MM-DD), held M" (3시 보고가 이 줄을 찾으므로 바꾸지 않는다). 구 페이지를 만들었으면 둘째 줄부터 "Gu pages: K added, J held" 를, 시·도 페이지를 만들었으면 그다음 줄에 "Si pages: K added, J held" 를 적는다. 반영할 지역이 0개이고 보류만 있으면 보류 파일만 커밋한다(다음 날 다시 뽑히지 않게).
 10. `python3 scripts/publish_gate.py` 를 실행한다.
    - "통과"가 나오면 `git push origin HEAD:main` 으로 main 에 반영한다.
    - "통과 못 함"이 나오거나 push 가 거절되면 main 에는 push 하지 않는다. 대신 `git push -u origin HEAD:auto/failed-$(TZ=Asia/Seoul date +%Y%m%d)` 로 작업을 남기고 실패 이유를 보고한다. 강제 push, 게이트 건너뛰기, 스크립트를 고쳐 통과시키는 것은 금지한다.
@@ -90,4 +91,5 @@ S4. 채운 시·도를 data/si.json 목록 끝에 넣고 `python3 scripts/build_
    - 쇼츠 짝: 오늘 짝 맞춘 쇼츠(제목 → 사례 지역·차종), "짝 못 찾음" 목록(3-0 출력 그대로: 올린 날·제목·이유·주소). 짝 못 찾음이 0개면 "짝 못 찾음 없음"
    - IndexNow 전송 결과: 보낸 주소 N개, 네이버 응답 코드, 공용 응답 코드 (10-1 출력 그대로. push 를 못 해서 안 보냈으면 "안 보냄(push 실패)")
    - 실패가 있었으면 그 이유
+   - 맨 끝에 "오늘 구글 색인 요청 10개"(8-1 출력): 번호와 한글 주소·이유를 한 줄로 쓰고, 그 아래에 인코딩된 전체 주소(https://pyecha119.com/…)를 주소 하나당 코드 상자 하나씩 따로 둔다(한 상자에 몰지 않는다). 마지막 줄에 "구글 서치 콘솔 → 왼쪽 'URL 검사' → 주소 붙여 넣기 → '색인 생성 요청'"을 적는다. 네이버·공용 IndexNow 는 10-1 대로 따로 자동 전송한다.
 ```
