@@ -320,8 +320,12 @@ def related_html(files: list[str], esc) -> str:
 
 
 def topic_text(t: dict) -> str:
-    out = [t["h1"], t["lead"], t["desc"], t["answer"], t["hook"], t["route"]]
+    out = [t["h1"], t["lead"], t["desc"], t["answer"], t["hook"], t["route"], t.get("case_note", "")]
     out += [x for pair in t["pieces"] + t["worries"] + t["faqs"] for x in pair]
+    if t.get("hook_source"):
+        out.append(t["hook_source"][0])
+    if t.get("table"):
+        out += list(t["table"][0]) + [x for row in t["table"][1] for x in row]
     return " ".join(out)
 
 
@@ -336,12 +340,15 @@ def topic_sections_html(t: dict, n0: int, cases: list[dict], esc) -> str:
         '  <section id="answer" style="background:#fff">\n    <div class="wrap">\n'
         '      <h2 class="sec-title display">한 줄로 답하면</h2>\n'
         f'      <div class="local answer"><p><b>{esc(t["answer"])}</b></p><p>{esc(t["hook"])}</p></div>\n'
-        f'      {related_html(t["related"], esc)}\n    </div>\n  </section>\n',
+        + (f'      <p class="note source">출처: <a href="{esc(t["hook_source"][1])}" target="_blank" rel="noopener noreferrer">'
+           f'{esc(t["hook_source"][0])}</a></p>\n' if t.get("hook_source") else "")
+        + f'      {related_html(t["related"], esc)}\n    </div>\n  </section>\n',
         '  <section id="pieces">\n    <div class="wrap">\n'
         '      <h2 class="sec-title display">알아 두면 좋은 조건과 절차</h2>\n'
         '      <p class="sec-sub">규칙은 숨기지 않고 다 적었습니다. 내 차가 어느 쪽인지는 원부와 차 상태를 합쳐 봐야 나옵니다</p>\n'
         f'      <ol class="steps pieces">{pieces}</ol>\n'
-        '      <div class="route">\n        <h3>내 차는 어디로?</h3>\n'
+        + table_html(t.get("table"), esc)
+        + '      <div class="route">\n        <h3>내 차는 어디로?</h3>\n'
         f'        <p>{esc(t["route"])}</p>\n'
         '        <p class="oneplus">폐차 견적 1+1 — 폐차값과 수출값, 둘 다 알려드려요<small>1+1은 폐차 견적과 수출 견적, 두 가지를 함께 드린다는 뜻입니다.</small></p>\n'
         '        <p class="exit">차 번호·지역만 문자 주셔도 됩니다. 답만 받고 안 하셔도 됩니다.</p>\n'
@@ -354,12 +361,27 @@ def topic_sections_html(t: dict, n0: int, cases: list[dict], esc) -> str:
     ]
     by_slug = {c["slug"]: c for c in cases}
     picked = [by_slug[x] for x in t["cases"] if x in by_slug]
-    if picked:
+    note = t.get("case_note", "")  # 사례 칸 바로 위 한 줄(2026-10-18). 카드가 없어도 이 줄만 있으면 칸을 그린다
+    if picked or note:
         out.append('  <section id="cases">\n    <div class="wrap">\n'
                    '      <h2 class="sec-title display">같은 상황의 실제 사례</h2>\n'
-                   '      <p class="sec-sub">지역은 카드마다 표시됩니다</p>\n'
-                   f'      {case_cards_html(picked)}\n    </div>\n  </section>\n')
+                   + ('      <p class="sec-sub">지역은 카드마다 표시됩니다</p>\n' if picked else "")
+                   + (f'      <p class="note">{esc(note)}</p>\n' if note else "")
+                   + (f'      {case_cards_html(picked)}\n' if picked else "")
+                   + '    </div>\n  </section>\n')
     return "".join(out)
+
+
+def table_html(table, esc) -> str:
+    """조각 아래 표 하나(2026-10-18, topics.py 의 table = (머리줄, [줄…]))."""
+    if not table:
+        return ""
+    head, rows = table
+    return ('      <div class="table-wrap"><table class="guide-table">'
+            "<thead><tr>" + "".join(f'<th scope="col">{esc(h)}</th>' for h in head) + "</tr></thead><tbody>"
+            + "".join("<tr>" + "".join((f'<th scope="row">{esc(c)}</th>' if i == 0 else f"<td>{esc(c)}</td>")
+                                        for i, c in enumerate(r)) + "</tr>" for r in rows)
+            + "</tbody></table></div>\n")
 
 
 def shorts_html(t: dict, esc) -> str:
@@ -377,6 +399,17 @@ def shorts_html(t: dict, esc) -> str:
             'referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
             f'<figcaption><a href="{esc(url)}" target="_blank" rel="noopener noreferrer">유튜브에서 보기</a></figcaption></figure></div>\n'
             '    </div>\n  </section>\n')
+
+
+# 주제 페이지에만 넣는 CSS(2026-10-18): 안내 5장은 내용이 그대로라 템플릿 <style> 끝 {{TOPIC_STYLE}} 은 빈칸
+TOPIC_STYLE = """
+  /* 조각 아래 표·출처 한 줄(2026-10-18) */
+  .table-wrap { margin-top: 16px; overflow-x: auto; }
+  .guide-table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 12px; overflow: hidden; font-size: 14px; }
+  .guide-table th, .guide-table td { padding: 10px 12px; border-bottom: 1px solid rgba(23,40,43,.08); text-align: left; vertical-align: top; }
+  .guide-table thead th { background: var(--teal-deep); color: #fff; font-weight: 700; }
+  .guide-table tbody th { color: var(--teal-deep); }
+  .note.source a { color: inherit; }"""
 
 
 BOTTOM_FORM = """      <div class="quote-card" style="margin-top:16px;text-align:left">
@@ -443,7 +476,8 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], keep_dates: 
         topic = n >= len(GUIDES)
         canonical = f"{base}/guide/{quote(g['file'])}"
         title = g["h1"] if topic else g["title"]
-        meta_title = f"{title} | 폐차·수출 비교 상담 · 전화 {phone_disp}"
+        # 주제 페이지 제목 꼬리(2026-10-18): topics.py 의 tail("원부 확인 상담" / "폐차·수출 비교 상담") + 대표번호
+        meta_title = f"{title} | {g.get('tail') or '폐차·수출 비교 상담'} · 전화 {phone_disp}"
         # 설명 글에는 010 번호를 넣지 않는다(네이버가 가림, 2026-10-16). 본문의 contact_line 은 그대로
         meta_desc = f"{g['desc']} 전화 {phone_disp}" + (" · 문자 상담 가능." if text_disp else ".")
         nav = "".join(
@@ -465,8 +499,12 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], keep_dates: 
             "JSONLD": json.dumps(jsonld, ensure_ascii=False), "PAGE_JSONLD": page_jsonld(meta_title, canonical),
             "STYLE": style, "SPRITE": sprite, "GUIDE_NAV": nav, "UPDATED_ON": UPDATED_MARK, "BREADCRUMB": crumbs,
             "FAQ_HTML": "\n      ".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in g["faqs"]),
-            "CONSULT_TEXT": esc(f"차 상태와 차가 있는 곳을 알려주시면 폐차와 수출 중 유리한 쪽을 상담 후 확인해 드립니다. "
-                                f"전국 어디든 협력업체가 출장 방문합니다. {contact_line}."),
+            # 압류 페이지(no_export, 2026-10-18)는 수출 비교 대신 원부 확인으로 쓴다
+            "CONSULT_SUB": esc("차 번호로 원부부터 같이 봅니다" if g.get("no_export") else "폐차 전에 수출과 비교해서 유리한 쪽으로"),
+            "CONSULT_TEXT": esc(("차 번호와 차가 있는 곳을 알려주시면 원부를 보고 압류를 풀고 폐차할지, 차령초과말소로 갈지 상담 후 확인해 드립니다. "
+                                 if g.get("no_export") else
+                                 "차 상태와 차가 있는 곳을 알려주시면 폐차와 수출 중 유리한 쪽을 상담 후 확인해 드립니다. ")
+                                + f"전국 어디든 협력업체가 출장 방문합니다. {contact_line}."),
             "SMS_BUTTON": sms_btn, "BAR_SECOND": bar_second,
             "PHONE_TEL": phone_tel, "PHONE_DISPLAY": phone_disp,
             "YOUTUBE_URL": esc(cfg["youtube_url"]), "BLOG_URL": esc(cfg["blog_url"]), "AREA_LINKS": area,
@@ -483,8 +521,10 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], keep_dates: 
                 "HERO_HTML": hero,
                 "SECTIONS_HTML": topic_sections_html(g, n0, cases, esc),
                 "AFTER_FAQ": shorts_html(g, esc),
-                "BOTTOM_FORM": BOTTOM_FORM.format(**form),
+                "BOTTOM_FORM": BOTTOM_FORM.format(**form).replace(
+                    "폐차·수출 비교 견적 받기", "차 번호로 원부 확인 상담 받기" if g.get("no_export") else "폐차·수출 비교 견적 받기"),
                 "SCRIPT": script.replace("{{PHONE_DISPLAY}}", phone_disp),
+                "TOPIC_STYLE": TOPIC_STYLE,
                 "OG_META": og_image.parts(g["file"][:-5], name, base, phone_disp, suffix=suffix)["OG_META"],
             })
         else:
@@ -496,7 +536,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], keep_dates: 
             values.update({
                 "H1": esc(g["h1"]).replace("&lt;br&gt;", "<br>"), "LEAD": esc(g["lead"]), "CONTACT_LINE": esc(contact_line),
                 "SECTIONS_HTML": "".join(sections),
-                "AFTER_FAQ": "", "BOTTOM_FORM": "", "SCRIPT": "", "OG_META": "",
+                "AFTER_FAQ": "", "BOTTOM_FORM": "", "SCRIPT": "", "OG_META": "", "TOPIC_STYLE": "",
             })
 
         def sub(m: re.Match) -> str:

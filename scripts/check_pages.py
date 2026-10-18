@@ -582,7 +582,8 @@ def topic_problems(t: dict, html: str, cfg: dict) -> list[str]:
     pos = [h.find(x) for x in order]
     if -1 in pos or pos != sorted(pos):
         out.append("첫 화면 순서가 '길 안내·날짜 → 제목 → 한 문장 → 전화 버튼 → 폼 → 문자 한 줄' 이 아님")
-    if f'<h1 class="display">{html_lib.escape(t["h1"])}</h1>' not in h:
+    from first_screen import nowrap  # 빌더가 "폐차·수출"을 한 덩어리로 묶으므로 같은 모양으로 비교(2026-10-18)
+    if f'<h1 class="display">{nowrap(html_lib.escape(t["h1"]))}</h1>' not in h:
         out.append(f"제목(H1)이 '{t['h1']}' 가 아님")
     form = re.search(r'<form class="quote-form".*?</form>', h, flags=re.DOTALL)
     fields = re.findall(r'<input (?![^>]*type="(?:hidden|checkbox)")[^>]*name="([^"]+)"', form.group(0)) if form else []
