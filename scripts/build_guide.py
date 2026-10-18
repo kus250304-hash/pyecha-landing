@@ -336,11 +336,16 @@ def related_html(files: list[str], esc) -> str:
 def topic_text(t: dict) -> str:
     out = [t["h1"], t["lead"], t["desc"], t["answer"], t["hook"], t["route"], t.get("case_note", "")]
     out += [x for pair in t["pieces"] + t["worries"] + t["faqs"] for x in pair]
-    if t.get("hook_source"):
-        out.append(t["hook_source"][0])
+    out += [label for label, _ in sources(t)]
     if t.get("table"):
         out += list(t["table"][0]) + [x for row in t["table"][1] for x in row]
     return " ".join(out)
+
+
+def sources(t: dict) -> list[tuple[str, str]]:
+    """hook 뒤 출처: (글, 주소) 한 쌍 또는 여러 쌍 목록(2026-10-18) → 목록으로."""
+    src = t.get("hook_source") or []
+    return [src] if isinstance(src, tuple) else list(src)
 
 
 def topic_sections_html(t: dict, n0: int, cases: list[dict], esc) -> str:
@@ -354,8 +359,9 @@ def topic_sections_html(t: dict, n0: int, cases: list[dict], esc) -> str:
         '  <section id="answer" style="background:#fff">\n    <div class="wrap">\n'
         '      <h2 class="sec-title display">한 줄로 답하면</h2>\n'
         f'      <div class="local answer"><p><b>{esc(t["answer"])}</b></p><p>{esc(t["hook"])}</p></div>\n'
-        + (f'      <p class="note source">출처: <a href="{esc(t["hook_source"][1])}" target="_blank" rel="noopener noreferrer">'
-           f'{esc(t["hook_source"][0])}</a></p>\n' if t.get("hook_source") else "")
+        + ('      <p class="note source">출처: ' + " · ".join(
+            f'<a href="{esc(url)}" target="_blank" rel="noopener noreferrer">{esc(label)}</a>' for label, url in sources(t))
+           + "</p>\n" if sources(t) else "")
         + f'      {related_html(t["related"], esc)}\n    </div>\n  </section>\n',
         '  <section id="pieces">\n    <div class="wrap">\n'
         '      <h2 class="sec-title display">알아 두면 좋은 조건과 절차</h2>\n'
