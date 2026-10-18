@@ -13,7 +13,9 @@ IndexNow 로 새 페이지·바뀐 페이지 주소를 검색엔진에 알린다
   한 번에 최대 10,000개씩 JSON(POST)으로 보낸다. 200·202 가 정상 접수.
 - sitemap.xml 에 있는 주소만 보낸다. 예전 주소의 자동 이동 페이지, 검색엔진 소유확인 파일은 sitemap 에 없으므로 빠진다.
 - 네트워크 실패나 오류 응답은 멈추지 않고 출력만 한다(종료 코드 0). 매일 루틴이 push 뒤에 new 를 돌린다.
-- 2026-10-16 병한님 결정: 디자인·문구만 바꾼 커밋은 보내지 않고, 새 페이지가 생긴 커밋에서 new 로 새 주소만 보낸다.
+- 2026-10-16 병한님 결정: 매일 루틴은 new 로 새 주소만 보낸다.
+- 2026-10-18 병한님 결정: 제목·본문이 실제로 바뀐 페이지는 changed 로 보내도 되고, 날짜(최종 업데이트·dateModified)만 바뀐 페이지는
+  changed 가 스스로 뺀다(date_only_change).
 """
 import argparse
 import json
@@ -39,11 +41,32 @@ def sitemap_urls() -> list[str]:
     return re.findall(r"<loc>\s*(.*?)\s*</loc>", SITEMAP.read_text(encoding="utf-8"))
 
 
+DATE_RES = [re.compile(r'(<p class="updated">최종 업데이트: )[^<]*(</p>)'), re.compile(r'("dateModified": ")[^"]*(")')]
+
+
+def date_only_change(rev: str, path: str) -> bool:
+    """그 커밋에서 이 페이지가 날짜 줄만 바뀌었으면 True."""
+    def show(r: str) -> str:
+        return subprocess.run(["git", "-c", "core.quotepath=false", "show", f"{r}:{path}"], cwd=ROOT,
+                              capture_output=True, text=True, encoding="utf-8").stdout
+
+    def mask(t: str) -> str:
+        for rx in DATE_RES:
+            t = rx.sub(lambda m: m.group(1) + m.group(2), t)
+        return t
+    return mask(show(f"{rev}~1")) == mask(show(rev))
+
+
 def changed_urls(base: str, rev: str, kinds: str = "AM") -> list[str]:
     """그 커밋에서 새로 생기거나(A) 바뀐(M) .html 파일 → sitemap 에 있는 주소. kinds="A" 면 새로 생긴 것만."""
     out = subprocess.run(["git", "-c", "core.quotepath=false", "diff", "--name-status", "--no-renames", f"{rev}~1", rev],
                          cwd=ROOT, check=True, capture_output=True, text=True, encoding="utf-8").stdout
-    paths = [line.split("\t", 1)[1] for line in out.splitlines() if line[:1] in kinds and line.endswith(".html")]
+    rows = [line.split("\t", 1) for line in out.splitlines() if line[:1] in kinds and line.endswith(".html")]
+    # 2026-10-18 병한님 결정: 날짜("최종 업데이트"·dateModified)만 바뀐 페이지는 보내지 않는다. 제목·본문이 바뀐 페이지는 보낸다
+    paths = [p for st, p in rows if st[:1] == "A" or not date_only_change(rev, p)]
+    skipped = len(rows) - len(paths)
+    if skipped:
+        print(f"IndexNow: 날짜만 바뀐 페이지 {skipped}개는 뺌")
     listed = {unquote(u): u for u in sitemap_urls()}
     urls = []
     for p in paths:
