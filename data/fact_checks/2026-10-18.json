@@ -1,0 +1,128 @@
+[
+ {
+  "code": "4479025000",
+  "slug": "chungnam-cheongyang-cheongyang",
+  "items": [
+   {
+    "name": "청양군청",
+    "evidence": "위키백과 '청양군' 문서: 군청 소재지 문화예술로 222 (송방리), 청양읍",
+    "url": "https://ko.wikipedia.org/wiki/청양군",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4777025000",
+  "slug": "gyeongbuk-yeongdeok-yeongdeok",
+  "items": [
+   {
+    "name": "영덕군청",
+    "evidence": "위키백과 '영덕군' 문서: 군청 소재지 영덕읍 군청길 116(남석리)",
+    "url": "https://ko.wikipedia.org/wiki/영덕군",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5272025000",
+  "slug": "jeonbuk-jinan-jinan",
+  "items": [
+   {
+    "name": "진안군청",
+    "evidence": "위키백과 '진안읍' 문서: 읍 안의 관공서로 진안군청, 교통 항목에 진안시외버스터미널",
+    "url": "https://ko.wikipedia.org/wiki/진안읍",
+    "grade": "opened"
+   },
+   {
+    "name": "진안시외버스터미널",
+    "evidence": "위키백과 '진안읍' 문서 교통 항목에 진안시외버스터미널이 진안읍 시설로 나옴",
+    "url": "https://ko.wikipedia.org/wiki/진안읍",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4380025000",
+  "slug": "chungbuk-danyang-danyang",
+  "items": [
+   {
+    "name": "단양군청",
+    "evidence": "위키백과 '단양읍' 문서: 군청이 있는 별곡리 일대가 읍내의 중심가",
+    "url": "https://ko.wikipedia.org/wiki/단양읍",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4380025300",
+  "slug": "chungbuk-danyang-maepo",
+  "items": [
+   {
+    "name": "매포읍행정복지센터",
+    "evidence": "위키백과 '매포읍' 문서: 관청 소재지 평동14길 12 (평동리)",
+    "url": "https://ko.wikipedia.org/wiki/매포읍",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4884025000",
+  "slug": "gyeongnam-namhae-namhae",
+  "items": [
+   {
+    "name": "남해전통시장",
+    "evidence": "경상남도 남해군 남해읍 화전로 110 (관광 안내 페이지 열어서 확인)",
+    "url": "https://www.ktriptips.com/kor/shopping/2755359",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4775025000",
+  "slug": "gyeongbuk-cheongsong-cheongsong",
+  "items": [
+   {
+    "name": "청송군청",
+    "evidence": "청사 소재지 청송읍 군청로 51 (월막리 330), 위키백과 청송군 문서 열어서 확인",
+    "url": "https://ko.wikipedia.org/wiki/청송군",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1282025000",
+  "slug": "jeonnam-hampyeong-hampyeong",
+  "items": [
+   {
+    "name": "함평엑스포공원",
+    "evidence": "함평군 함평읍 곤재로 27, 한국장애인개발원 웹진 열어서 확인",
+    "url": "https://www.koddi.or.kr/webzine/didimdol/vol296/subpage_201.html",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "2772025000",
+  "slug": "daegu-gunwi-gunwi",
+  "items": [
+   {
+    "name": "군위군청",
+    "evidence": "군위군청은 군위읍 동부리에 있음(중앙길 134 일대, 동부리 324-4), 위키백과 군위읍 문서 열어서 확인",
+    "url": "https://ko.wikipedia.org/wiki/군위읍",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4885025000",
+  "slug": "gyeongnam-hadong-hadong",
+  "items": [
+   {
+    "name": "하동역",
+    "evidence": "경상남도 하동군 하동읍 비파리 239 / 하동읍 너뱅이길 30, 열차 정보 페이지 열어서 확인",
+    "url": "https://train.asamaru.net/%EC%97%B4%EC%B0%A8%EC%97%AD/%ED%95%98%EB%8F%99%EC%97%AD-%EA%B2%BD%EC%A0%84%EC%84%A0/",
+    "grade": "opened"
+   }
+  ]
+ }
+]

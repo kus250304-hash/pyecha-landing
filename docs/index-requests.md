@@ -41,3 +41,16 @@
 - https://pyecha119.com/gu/%EC%A0%84%EC%A3%BC%EC%8B%9C-%EC%99%84%EC%82%B0%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/전주시-완산구-폐차장.html (점수표 13위)
 - https://pyecha119.com/gu/%EA%B5%B0%EC%82%B0%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/군산시-폐차장.html (점수표 14위)
 - https://pyecha119.com/gu/%EC%A7%84%EC%A3%BC%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/진주시-폐차장.html (점수표 15위)
+
+## 2026-10-18
+
+- https://pyecha119.com/pages/gyeonggi-hwaseong-manse-saesol.html — pages/gyeonggi-hwaseong-manse-saesol.html (문의 온 곳(화성시 동탄구)과 같은 시·군의 동 페이지)
+- https://pyecha119.com/pages/gangwon-gangneung-gyo.html — pages/gangwon-gangneung-gyo.html (문의 온 곳(강릉시)과 같은 시·군의 동 페이지)
+- https://pyecha119.com/pages/gyeonggi-hwaseong-manse-ujeong.html — pages/gyeonggi-hwaseong-manse-ujeong.html (문의 온 곳(화성시 동탄구)과 같은 시·군의 동 페이지)
+- https://pyecha119.com/gu/%EA%B3%84%EC%96%91%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/계양구-폐차장.html (오늘 새로 만든 구 페이지)
+- https://pyecha119.com/gu/%EA%B4%91%EC%A7%84%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/광진구-폐차장.html (오늘 새로 만든 구 페이지)
+- https://pyecha119.com/gu/%EB%8C%80%EA%B5%AC-%EC%84%9C%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/대구-서구-폐차장.html (오늘 새로 만든 구 페이지)
+- https://pyecha119.com/gu/%EB%B6%80%EC%82%B0-%EB%B6%81%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/부산-북구-폐차장.html (오늘 새로 만든 구 페이지)
+- https://pyecha119.com/gu/%EA%B4%80%EC%95%85%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/관악구-폐차장.html (오늘 새로 만든 구 페이지)
+- https://pyecha119.com/gu/%EC%98%81%EB%93%B1%ED%8F%AC%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/영등포구-폐차장.html (오늘 새로 만든 구 페이지)
+- https://pyecha119.com/gu/%EA%B2%80%EB%8B%A8%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/검단구-폐차장.html (오늘 새로 만든 구 페이지)
