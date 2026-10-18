@@ -28,6 +28,20 @@ TEMPLATE = ROOT / "templates" / "guide.html"
 DONG_TEMPLATE = ROOT / "templates" / "region-landing-v2.html"
 OUT = ROOT / "guide"
 BAN_RE = re.compile(r"보장|무조건|100%|1위|1등|최저가|최고가|최대(?!한)|실시간\s*접수|\d[\d,.]*\s*(원|만원|만 원|천원|억)|₩")
+# 법령 과태료·범칙금 금액(2026-10-18 병한님): 같은 문장에 이 낱말이 있으면 안내 페이지에서만 통과(폐차 금액·견적은 여전히 금지)
+FINE_WORD_RE = re.compile(r"과태료|범칙금|가산금")
+
+
+def fine_amount(text: str, start: int, end: int) -> bool:
+    """text[start:end] 의 금액이 과태료·범칙금·가산금을 말하는 문장 안에 있는지(문장 끝은 . ! ? 와 태그 꺾쇠로 자른다)."""
+    s = max(text.rfind(c, 0, start) for c in ".!?<>\n") + 1
+    ends = [i for i in (text.find(c, end) for c in ".!?<>\n") if i != -1]
+    return bool(FINE_WORD_RE.search(text[s:min(ends) if ends else len(text)]))
+
+
+def ban_hits(text: str) -> list[str]:
+    """BAN_RE 에 걸린 낱말. 과태료·범칙금 문장의 금액은 뺀다."""
+    return [m.group(0) for m in BAN_RE.finditer(text) if not (m.group(1) and fine_amount(text, m.start(), m.end()))]
 
 # 글 조각: ("p", 문단) ("steps", [(제목, 설명)]) ("rows", [(이름, 내용)]) ("list", [(굵은 글씨, 설명)]) ("note", 작은 글씨)
 GUIDES = [
@@ -259,14 +273,14 @@ OLD_HERO = """<header class="hero">
 """
 
 
-# 주제 페이지 5장(2026-10-14, scripts/topics.py). FAQ 는 실제 통화 FAQ 풀(variants.CALL_FAQ)·공통 질문에서 질문으로 가져온다
+# 주제 페이지(2026-10-14 5장, 2026-10-18 6장, scripts/topics.py). FAQ 는 실제 통화 FAQ 풀(variants.CALL_FAQ)·공통 질문에서 질문으로 가져온다
 from topics import TOPICS, GUIDE_CROSS_LINKS  # noqa: E402
 import variants as _V  # noqa: E402
 
 _FAQ_POOL = dict(_V.CALL_FAQ) | dict(zip(_V.COMMON_FAQ_QUESTIONS, _V.DONG_FAQ[0]))
 for _t in TOPICS:
     _t["faqs"] = [(q, _FAQ_POOL[q]) for q in _t["faq_questions"]] + list(_t["faqs_extra"])
-ALL_GUIDES = GUIDES + TOPICS  # 상단 메뉴·맨 아래 "폐차 안내" 링크·유형별 안내 링크는 이 10장
+ALL_GUIDES = GUIDES + TOPICS  # 상단 메뉴·맨 아래 "폐차 안내" 링크·유형별 안내 링크는 이 11장(2026-10-18)
 
 
 def section_html(i: int, h2: str, sub: str, parts: list, esc) -> str:
@@ -439,8 +453,8 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], keep_dates: 
     from first_screen import hero_top_html, sms_link
     import og_image
 
-    problems = [f"{g['file']}: 금액·단정 표현 '{m.group(0)}'" for g in GUIDES for m in [BAN_RE.search(guide_text(g))] if m]
-    problems += [f"{t['file']}: 금액·단정 표현 '{m.group(0)}'" for t in TOPICS for m in [BAN_RE.search(topic_text(t))] if m]
+    problems = [f"{g['file']}: 금액·단정 표현 '{x}'" for g in GUIDES for x in ban_hits(guide_text(g))]
+    problems += [f"{t['file']}: 금액·단정 표현 '{x}'" for t in TOPICS for x in ban_hits(topic_text(t))]
     if problems:
         raise SystemExit("안내 페이지를 만들 수 없음:\n  " + "\n  ".join(problems))
 

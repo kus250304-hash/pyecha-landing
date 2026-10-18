@@ -559,7 +559,10 @@ def check_guide_pages(cfg: dict, sitemap: str) -> list[str]:
         body = re.sub(r"<style>.*?</style>|<script[^>]*>.*?</script>", "", html, flags=re.DOTALL)
         for m in GUIDE_BAN_RE.finditer(body):
             problems.append(f"{tag}: 단정 표현 '{m.group(0)}'")
+        from build_guide import fine_amount  # 법령 과태료·범칙금 금액은 안내 페이지에서만 통과(2026-10-18)
         for m in AMOUNT_RE.finditer(body):
+            if m.group(1) and fine_amount(body, m.start(), m.end()):
+                continue
             problems.append(f"{tag}: 금액 표현 '{m.group(0)}' → …{body[max(0, m.start()-15):m.end()+15]}…")
         if f"/guide/{quote(g['file'])}<" not in sitemap:
             problems.append(f"{tag}: sitemap.xml 에 없음")
