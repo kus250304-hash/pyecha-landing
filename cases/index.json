@@ -1,5 +1,262 @@
 [
  {
+  "slug": "case-20250121-daegu-dalseong-okpo",
+  "date": "2025-01-21",
+  "sido": "대구광역시",
+  "sigungu": "달성군",
+  "dong": "옥포읍",
+  "region_slug": null,
+  "car": "2008년식 모닝",
+  "title": "옥포읍 2008년식 모닝 폐차·수출 비교 상담 사례",
+  "summary": "2008년식 모닝 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "모닝"
+   ],
+   [
+    "연식",
+    "2008년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2008년식 모닝 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20250121-daegu-dalseong-okpo-1.jpg",
+  "photos": [
+   "case-20250121-daegu-dalseong-okpo-1.jpg",
+   "case-20250121-daegu-dalseong-okpo-2.jpg",
+   "case-20250121-daegu-dalseong-okpo-3.jpg",
+   "case-20250121-daegu-dalseong-okpo-4.jpg",
+   "case-20250121-daegu-dalseong-okpo-5.jpg"
+  ],
+  "videos": [],
+  "spoken": ""
+ },
+ {
+  "slug": "case-20250107-gyeonggi-gimpo-pungmu",
+  "date": "2025-01-07",
+  "sido": "경기도",
+  "sigungu": "김포시",
+  "dong": "풍무동",
+  "region_slug": null,
+  "car": "2009년식 i30",
+  "title": "풍무동 2009년식 i30 폐차·수출 비교 상담 사례",
+  "summary": "2009년식 i30 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "i30"
+   ],
+   [
+    "연식",
+    "2009년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2009년식 i30 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20250107-gyeonggi-gimpo-pungmu-1.jpg",
+  "photos": [
+   "case-20250107-gyeonggi-gimpo-pungmu-1.jpg",
+   "case-20250107-gyeonggi-gimpo-pungmu-2.jpg",
+   "case-20250107-gyeonggi-gimpo-pungmu-3.jpg",
+   "case-20250107-gyeonggi-gimpo-pungmu-4.jpg",
+   "case-20250107-gyeonggi-gimpo-pungmu-5.jpg"
+  ],
+  "videos": [],
+  "spoken": ""
+ },
+ {
+  "slug": "case-20241206-gwangju-seogu-ssangchon",
+  "date": "2024-12-06",
+  "sido": "전남광주통합특별시",
+  "sigungu": "서구",
+  "dong": "쌍촌동",
+  "region_slug": null,
+  "car": "2005년식 포터2 더블캡",
+  "title": "쌍촌동 2005년식 포터2 더블캡 폐차·수출 비교 상담 사례",
+  "summary": "2005년식 포터2 더블캡 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "포터2 더블캡"
+   ],
+   [
+    "연식",
+    "2005년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2005년식 포터2 더블캡 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20241206-gwangju-seogu-ssangchon-1.jpg",
+  "photos": [
+   "case-20241206-gwangju-seogu-ssangchon-1.jpg",
+   "case-20241206-gwangju-seogu-ssangchon-2.jpg",
+   "case-20241206-gwangju-seogu-ssangchon-3.jpg",
+   "case-20241206-gwangju-seogu-ssangchon-4.jpg",
+   "case-20241206-gwangju-seogu-ssangchon-5.jpg"
+  ],
+  "videos": [],
+  "spoken": ""
+ },
+ {
+  "slug": "case-20241111-gyeongbuk-uljin-hupo",
+  "date": "2024-11-11",
+  "sido": "경상북도",
+  "sigungu": "울진군",
+  "dong": "후포면",
+  "region_slug": null,
+  "car": "2007년식 스포티지",
+  "title": "후포면 2007년식 스포티지 폐차·수출 비교 상담 사례",
+  "summary": "2007년식 스포티지 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "스포티지"
+   ],
+   [
+    "연식",
+    "2007년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2007년식 스포티지 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20241111-gyeongbuk-uljin-hupo-1.jpg",
+  "photos": [
+   "case-20241111-gyeongbuk-uljin-hupo-1.jpg",
+   "case-20241111-gyeongbuk-uljin-hupo-2.jpg",
+   "case-20241111-gyeongbuk-uljin-hupo-3.jpg",
+   "case-20241111-gyeongbuk-uljin-hupo-4.jpg",
+   "case-20241111-gyeongbuk-uljin-hupo-5.jpg"
+  ],
+  "videos": [],
+  "spoken": ""
+ },
+ {
+  "slug": "case-20240524-gyeonggi-suwon-gwonseon-guun",
+  "date": "2024-05-24",
+  "sido": "경기도",
+  "sigungu": "수원시 권선구",
+  "dong": "구운동",
+  "region_slug": null,
+  "car": "2010년식 그랜저",
+  "title": "구운동 2010년식 그랜저 폐차·수출 비교 상담 사례",
+  "summary": "2010년식 그랜저 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "그랜저"
+   ],
+   [
+    "연식",
+    "2010년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2010년식 그랜저 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20240524-gyeonggi-suwon-gwonseon-guun-1.jpg",
+  "photos": [
+   "case-20240524-gyeonggi-suwon-gwonseon-guun-1.jpg",
+   "case-20240524-gyeonggi-suwon-gwonseon-guun-2.jpg",
+   "case-20240524-gyeonggi-suwon-gwonseon-guun-3.jpg",
+   "case-20240524-gyeonggi-suwon-gwonseon-guun-4.jpg",
+   "case-20240524-gyeonggi-suwon-gwonseon-guun-5.jpg"
+  ],
+  "videos": [],
+  "spoken": ""
+ },
+ {
+  "slug": "case-20230523-daegu-bukgu",
+  "date": "2023-05-23",
+  "sido": "대구광역시",
+  "sigungu": "북구",
+  "dong": "",
+  "region_slug": null,
+  "car": "2010년식 카니발",
+  "title": "북구 2010년식 카니발 폐차·수출 비교 상담 사례",
+  "summary": "2010년식 카니발 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "카니발"
+   ],
+   [
+    "연식",
+    "2010년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2010년식 카니발 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230523-daegu-bukgu-1.jpg",
+  "photos": [
+   "case-20230523-daegu-bukgu-1.jpg",
+   "case-20230523-daegu-bukgu-2.jpg",
+   "case-20230523-daegu-bukgu-3.jpg",
+   "case-20230523-daegu-bukgu-4.jpg"
+  ],
+  "videos": [],
+  "spoken": ""
+ },
+ {
   "slug": "case-20240520-gyeonggi-paju-gwangtan",
   "date": "2024-05-20",
   "sido": "경기도",

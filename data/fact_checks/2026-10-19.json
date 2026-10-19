@@ -1,0 +1,182 @@
+[
+ {
+  "code": "5273025000",
+  "slug": "jeonbuk-muju-muju",
+  "items": [
+   {
+    "name": "무주반딧불시장",
+    "evidence": "전북특별자치도 무주군 무주읍 장터로 2 (1·6일장, 상설시장 함께 운영)",
+    "url": "https://www.ktriptips.com/kor/shopping/132297",
+    "grade": "opened"
+   },
+   {
+    "name": "무주군청",
+    "evidence": "무주군 무주읍 주계로 97 (무주군 통계 PDF 위치 표)",
+    "url": "https://www.muju.go.kr/download/statistics/2016/02.pdf",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5277025000",
+  "slug": "jeonbuk-sunchang-sunchang",
+  "items": [
+   {
+    "name": "순창장류체험관",
+    "evidence": "전북특별자치도 순창군 순창읍 민속마을길 55 (전통 고추장 민속마을 앞)",
+    "url": "https://www.ktriptips.com/kor/tourspot/1437668",
+    "grade": "opened"
+   },
+   {
+    "name": "순창군청",
+    "evidence": "전북 순창군 순창읍 경천로 33 (지번 순화리 315-4)",
+    "url": "https://icems2021.com/2025/12/31/%EC%88%9C%EC%B0%BD%EA%B5%B0%EC%B2%AD-%EC%A1%B0%EC%A7%81%EB%8F%84-%EB%B0%8F-%EB%B6%80%EC%84%9C%EB%B3%84-%EC%A0%84%ED%99%94%EB%B2%88%ED%98%B8-%EC%B4%9D%EC%A0%95%EB%A6%AC/",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4882025000",
+  "slug": "gyeongnam-goseong-goseong",
+  "items": [
+   {
+    "name": "고성 송학동 고분군",
+    "evidence": "경상남도 고성군 고성읍 송학리 470 (한국관광공사 자료 기반 관광정보)",
+    "url": "https://www.ktriptips.com/kor/tourspot/128664",
+    "grade": "opened"
+   },
+   {
+    "name": "고성군청",
+    "evidence": "경상남도 고성군 고성읍 성내로 130 (강남구 자매도시 소개 페이지)",
+    "url": "https://www.gangnam.go.kr/board/alliance/28/view.do?mid=FM0407",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1286025000",
+  "slug": "jeonnam-jindo-jindo",
+  "items": [
+   {
+    "name": "진도향토문화회관",
+    "evidence": "전라남도 진도군 진도읍 진도대로 7197 (토요민속여행 상설공연 장소)",
+    "url": "https://xn--ok0b236bp0a.com/place/2038",
+    "grade": "opened"
+   },
+   {
+    "name": "철마공원",
+    "evidence": "전남광주통합특별시 진도군 진도읍 철마길 17 (한국관광공사 자료 기반)",
+    "url": "https://info.koreacharts.com/tour/1623912/contents.html",
+    "grade": "opened"
+   },
+   {
+    "name": "진도군청",
+    "evidence": "진도군 연감 검색 결과: 군청은 진도읍 철마길 25에 위치",
+    "url": "https://app.jindo.go.kr/data/home/yearbook/57/s02.pdf",
+    "grade": "summary_with_address"
+   }
+  ]
+ },
+ {
+  "code": "5182025000",
+  "slug": "gangwon-goseong-ganseong",
+  "items": [
+   {
+    "name": "간성시장",
+    "evidence": "강원특별자치도 고성군 간성읍 간성시장2길 9-3 (2·7일장, 1965년 개설)",
+    "url": "https://www.ktriptips.com/kor/shopping/132783",
+    "grade": "opened"
+   },
+   {
+    "name": "고성군종합운동장",
+    "evidence": "강원 고성군 간성읍 수성로 87 (고성군민의날·수성문화제 장소 종합운동장)",
+    "url": "https://xn--ok0b236bp0a.com/place/3028",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5182025300",
+  "slug": "gangwon-goseong-geojin",
+  "items": [
+   {
+    "name": "거진항",
+    "evidence": "[24713] 강원 고성군 거진읍 거진리 (관광정보 페이지)",
+    "url": "https://www.ktriptips.com/kor/tourspot/128749",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5274025000",
+  "slug": "jeonbuk-jangsu-jangsu",
+  "items": [
+   {
+    "name": "논개사당",
+    "evidence": "전라북도 장수군 장수읍 한누리로 393 (장소 안내 페이지, 논개사당(의암사))",
+    "url": "https://xn--ok0b236bp0a.com/place/12048",
+    "grade": "opened"
+   },
+   {
+    "name": "장수시장",
+    "evidence": "장수읍 장수리 460-15, 전북특별자치도 장수군 시장로 11, 판매시설(장수시장)",
+    "url": "https://safehomes.kr/risk-map/전북특별자치도/장수군/장수읍/기타/building/장수읍장수리460-15판매시설(장수군)/119711211",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5179025000",
+  "slug": "gangwon-hwacheon-hwacheon",
+  "items": [
+   {
+    "name": "붕어섬",
+    "evidence": "[24131] 강원특별자치도 화천군 화천읍 강변로 2-54 (관광정보 페이지)",
+    "url": "https://www.ktriptips.com/kor/tourspot/128101",
+    "grade": "opened"
+   },
+   {
+    "name": "화천시장",
+    "evidence": "[24129] 강원특별자치도 화천군 화천읍 중앙로4길 12 (남한 최북단 전통시장 소개)",
+    "url": "https://www.ktriptips.com/kor/shopping/132397",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4776025000",
+  "slug": "gyeongbuk-yeongyang-yeongyang",
+  "items": [
+   {
+    "name": "영양군청",
+    "evidence": "경상북도 영양군 군청길 37, 영양읍 업무시설 '영양군청' 건물",
+    "url": "https://safehomes.kr/risk-map/경상북도/영양군/영양읍/기타/building/영양군청/12411100189157",
+    "grade": "opened"
+   },
+   {
+    "name": "영양문화원",
+    "evidence": "경북 영양군 영양읍 군민회관길 7 영양문화원 (영양산나물축제 주최 주소)",
+    "url": "https://xn--ok0b236bp0a.com/place/2334",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4794025000",
+  "slug": "gyeongbuk-ulleung-ulleung",
+  "items": [
+   {
+    "name": "도동항",
+    "evidence": "[40227] 경상북도 울릉군 울릉읍 도동리 (관광정보 페이지)",
+    "url": "https://www.ktriptips.com/kor/tourspot/128768",
+    "grade": "opened"
+   },
+   {
+    "name": "울릉군청",
+    "evidence": "경북 울릉군 울릉읍 도동2길 66 울릉군청 (관광 안내 페이지 위치안내)",
+    "url": "https://xn--ok0b236bp0a.com/place/12835",
+    "grade": "opened"
+   }
+  ]
+ }
+]

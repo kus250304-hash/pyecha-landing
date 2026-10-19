@@ -69,3 +69,16 @@
 ## 2026-10-19 — 요청 못 함(구글 서치 콘솔 할당량 초과)
 
 오늘은 하루 할당량을 넘겨 색인 요청을 하지 못했습니다. 최우선 칸의 주제 페이지 6장은 10월 20일 목록 맨 앞으로 갑니다.
+
+## 2026-10-19 — 요청 못 함(이날 할당량 초과로 루틴이 고른 목록만 적음, 다음 날 다시 고름)
+
+- https://pyecha119.com/guide/%EC%95%95%EB%A5%98-%EC%9E%88%EB%8A%94-%EC%B0%A8-%ED%8F%90%EC%B0%A8.html — guide/압류-있는-차-폐차.html (최우선 칸)
+- https://pyecha119.com/guide/%EC%B0%A8%EB%A0%B9%EC%B4%88%EA%B3%BC-%ED%8F%90%EC%B0%A8.html — guide/차령초과-폐차.html (최우선 칸)
+- https://pyecha119.com/guide/%EC%83%81%EC%86%8D%EC%B0%A8-%EB%B2%95%EC%9D%B8%EC%B0%A8-%EC%84%9C%EB%A5%98.html — guide/상속차-법인차-서류.html (최우선 칸)
+- https://pyecha119.com/guide/%EC%8B%9C%EB%8F%99-%EC%95%88-%EA%B1%B8%EB%A6%AC%EB%8A%94-%EC%B0%A8.html — guide/시동-안-걸리는-차.html (최우선 칸)
+- https://pyecha119.com/guide/%EB%B0%A9%EC%B9%98%EC%B0%A8-%EC%98%A4%EB%9E%98-%EC%84%B8%EC%9B%8C%EB%91%94-%EC%B0%A8.html — guide/방치차-오래-세워둔-차.html (최우선 칸)
+- https://pyecha119.com/guide/%EC%A0%80%EB%8B%B9%EB%A7%8C-%EC%9E%88%EB%8A%94-%EC%B0%A8.html — guide/저당만-있는-차.html (최우선 칸)
+- https://pyecha119.com/pages/gyeonggi-hwaseong-manse-hyangnam.html — pages/gyeonggi-hwaseong-manse-hyangnam.html (문의 온 곳(화성시 동탄구)과 같은 시·군의 동 페이지)
+- https://pyecha119.com/pages/gangwon-gangneung-chodang.html — pages/gangwon-gangneung-chodang.html (문의 온 곳(강릉시)과 같은 시·군의 동 페이지)
+- https://pyecha119.com/pages/gyeonggi-hwaseong-byeongjeom-gisan.html — pages/gyeonggi-hwaseong-byeongjeom-gisan.html (문의 온 곳(화성시 동탄구)과 같은 시·군의 동 페이지)
+- https://pyecha119.com/gu/%EB%8F%99%EB%9E%98%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/동래구-폐차장.html (오늘 새로 만든 구 페이지)
