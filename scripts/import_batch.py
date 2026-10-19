@@ -127,7 +127,9 @@ def main() -> None:
         sys.exit(1)
 
     # 실패하면 되돌릴 수 있도록 손대는 파일을 기억해 둔다
-    snapshots = {p: p.read_bytes() for p in (REGIONS_PATH, SITEMAP_PATH, INDEX_PATH) if p.exists()}
+    # 사이트맵은 인덱스 + 나눈 파일 + 본문 해시 기록(2026-10-20, sitemap_lib.py)
+    sitemap_files = [SITEMAP_PATH, *sorted(ROOT.glob("sitemap-*.xml")), ROOT / "data" / "page_hashes.json"]
+    snapshots = {p: p.read_bytes() for p in (REGIONS_PATH, INDEX_PATH, *sitemap_files) if p.exists()}
     new_pages = [PAGES_DIR / f"{e['slug']}.html" for e in entries if not (PAGES_DIR / f"{e['slug']}.html").exists()]
 
     def rollback() -> None:

@@ -14,6 +14,7 @@ import csv
 import html
 import re
 import statistics
+import sys
 from collections import Counter, defaultdict
 from itertools import combinations
 from pathlib import Path
@@ -305,7 +306,9 @@ def main() -> None:
     no_og = [p["slug"] for p in pages if 'property="og:' not in p["raw"]]
 
     # ---- sitemap / 내부 링크 ----
-    sitemap_locs = set(re.findall(r"<loc>(.*?)</loc>", SITEMAP_PATH.read_text(encoding="utf-8")))
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import sitemap_lib
+    sitemap_locs = {u for u in sitemap_lib.all_locs(ROOT) if "/pages/" in u or u == f"{SITE_BASE}/"}  # 인덱스 방식(2026-10-20)
     expected = {f"{SITE_BASE}/pages/{p['slug']}.html" for p in pages} | {f"{SITE_BASE}/"}
     missing_in_sitemap = sorted(expected - sitemap_locs)
     stale_in_sitemap = sorted(sitemap_locs - expected)

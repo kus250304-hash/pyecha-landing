@@ -25,7 +25,7 @@ from pathlib import Path
 from urllib.parse import quote, unquote
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from sitemap_lib import update_sitemap
+from sitemap_lib import write_sitemaps
 from pick_next_regions import GWANGJU_GU, SIDO_PREFIX, romanize
 import variants as V
 import og_image
@@ -399,20 +399,18 @@ def published_date(old_html: str | None, path: Path | None, alt_paths: tuple[str
 
 def with_updated_date(new_html: str, old_html: str | None, keep_dates: bool = False,
                       path: Path | None = None, alt_paths: tuple[str, ...] = ()) -> str:
-    """내용(날짜 빼고)이 예전 파일과 같으면 예전 파일을 그대로, 다르면 오늘 날짜를 넣는다. 날짜만 새로 바꾸지 않는다.
-    keep_dates(--keep-dates, 오타 수준 수정용)면 내용이 달라도 예전 파일의 날짜를 그대로 쓴다.
+    """본문(sitemap_lib.content_hash: 제목·H1·본문 글·FAQ·사례 카드·공공정보 표)이 예전 파일과 같으면 예전 날짜를,
+    다르면 오늘 날짜를 넣는다(2026-10-20부터. 머리글·길 안내·맨 아래 지역 링크·바닥글·스크립트·CSS·메타 태그만 바뀐
+    공통 틀 변경은 날짜를 두고 새 틀은 반영한다). 사이트맵 lastmod 도 같은 해시로 정해 둘이 늘 같다.
+    keep_dates(--keep-dates, 오타 수준 수정용)면 본문이 달라도 예전 파일의 날짜를 그대로 쓴다.
     datePublished 자리는 published_date 로 먼저 채운다(path 는 이 페이지 파일)."""
+    from sitemap_lib import content_hash
     if PUBLISHED_MARK in new_html:
         new_html = new_html.replace(PUBLISHED_MARK, published_date(old_html, path, alt_paths))
-    if old_html and keep_dates:
+    if old_html and (keep_dates or content_hash(old_html) == content_hash(new_html)):
         on, iso = UPDATED_RE.search(old_html), UPDATED_ISO_RE.search(old_html)
         if on and iso:
             return new_html.replace(UPDATED_MARK, on.group(2)).replace(UPDATED_ISO_MARK, iso.group(2))
-    if old_html:
-        masked = UPDATED_RE.sub(lambda m: m.group(1) + UPDATED_MARK + m.group(3), old_html, count=1)
-        masked = UPDATED_ISO_RE.sub(lambda m: m.group(1) + UPDATED_ISO_MARK + m.group(3), masked)
-        if masked == new_html:
-            return old_html
     now = datetime.now(KST)
     return (new_html.replace(UPDATED_MARK, f"{now.year}년 {now.month}월 {now.day}일")
             .replace(UPDATED_ISO_MARK, now.date().isoformat()))
@@ -699,14 +697,12 @@ def main() -> None:
     from build_cases import render_all_cases
     case_changed = render_all_cases(regions, cfg)
 
-    # 내용이 실제로 바뀐 페이지만 sitemap 의 수정일을 갱신한다(--keep-dates 면 새로 만든 동 페이지만 넣고 기존 수정일은 그대로)
-    other = gu_changed + si_changed + guide_changed + case_changed
-    if args.keep_dates:  # 날짜를 그대로 두는 수정이면 sitemap 에 아직 없는 구·시·안내 주소만 넣는다(안내 페이지는 2026-10-19부터)
-        sitemap_text = (ROOT / "sitemap.xml").read_text(encoding="utf-8") if (ROOT / "sitemap.xml").exists() else ""
-        other = [p for p in gu_changed + si_changed + guide_changed if f"/{p}<" not in sitemap_text] + case_changed
-    update_sitemap(ROOT, created if args.keep_dates else changed, paths=other, drop=gu_dropped)
+    # 사이트맵 인덱스와 나눈 파일을 통째로 다시 만든다(2026-10-20, sitemap_lib.py). lastmod 는 본문 해시가 바뀐 페이지만
+    # 오늘로(--keep-dates 면 해시만 새로 적고 날짜는 그대로). 자동 이동 페이지(gu_dropped 의 옛 영문 주소)는 저절로 빠진다
+    counts = write_sitemaps(ROOT, keep_dates=args.keep_dates)
     print(f"완료: {len(targets)}개 중 {len(changed)}개 페이지 변경, 구 페이지 {len(gu_changed)}개, 시·도 페이지 {len(si_changed)}개 변경, "
-          f"안내 페이지 {len(guide_changed)}개 변경, sitemap.xml 갱신")
+          f"안내 페이지 {len(guide_changed)}개 변경, 사이트맵 {sum(counts.values())}개 주소("
+          + ", ".join(f"{k} {v}" for k, v in counts.items()) + ")")
 
 
 if __name__ == "__main__":

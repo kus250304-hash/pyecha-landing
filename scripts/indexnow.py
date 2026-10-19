@@ -2,7 +2,7 @@
 IndexNow 로 새 페이지·바뀐 페이지 주소를 검색엔진에 알린다 (2026-10-08).
 
 사용법
-  python3 scripts/indexnow.py all              # sitemap.xml 의 모든 주소 (처음 한 번)
+  python3 scripts/indexnow.py all              # 사이트맵(인덱스의 나눈 파일 전부)의 모든 주소 (처음 한 번)
   python3 scripts/indexnow.py changed          # 마지막 커밋(HEAD)에서 새로 생기거나 바뀐 .html 의 주소만
   python3 scripts/indexnow.py changed <커밋>   # 그 커밋에서 바뀐 것 (기본 HEAD)
   python3 scripts/indexnow.py new [커밋]       # 그 커밋에서 새로 생긴 .html 의 주소만 (2026-10-16부터 기본으로 쓰는 것)
@@ -11,7 +11,7 @@ IndexNow 로 새 페이지·바뀐 페이지 주소를 검색엔진에 알린다
 - 키: data/site_config.json 의 indexnow_key. 사이트 맨 위 폴더 {키}.txt 가 같은 값을 담고 있어야 한다(keyLocation).
 - 보내는 곳: 네이버 https://searchadvisor.naver.com/indexnow, 공용 https://api.indexnow.org/indexnow.
   한 번에 최대 10,000개씩 JSON(POST)으로 보낸다. 200·202 가 정상 접수.
-- sitemap.xml 에 있는 주소만 보낸다. 예전 주소의 자동 이동 페이지, 검색엔진 소유확인 파일은 sitemap 에 없으므로 빠진다.
+- 사이트맵(sitemap.xml 인덱스의 나눈 파일들)에 있는 주소만 보낸다. 예전 주소의 자동 이동 페이지, 검색엔진 소유확인 파일은 sitemap 에 없으므로 빠진다.
 - 네트워크 실패나 오류 응답은 멈추지 않고 출력만 한다(종료 코드 0). 매일 루틴이 push 뒤에 new 를 돌린다.
 - 2026-10-16 병한님 결정: 매일 루틴은 new 로 새 주소만 보낸다.
 - 2026-10-18 병한님 결정: 제목·본문이 실제로 바뀐 페이지는 changed 로 보내도 되고, 날짜(최종 업데이트·dateModified)만 바뀐 페이지는
@@ -29,7 +29,6 @@ from urllib.parse import quote, unquote, urlparse
 
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG = ROOT / "data" / "site_config.json"
-SITEMAP = ROOT / "sitemap.xml"
 ENDPOINTS = [
     ("네이버", "https://searchadvisor.naver.com/indexnow"),
     ("공용", "https://api.indexnow.org/indexnow"),
@@ -38,7 +37,10 @@ BATCH = 10_000
 
 
 def sitemap_urls() -> list[str]:
-    return re.findall(r"<loc>\s*(.*?)\s*</loc>", SITEMAP.read_text(encoding="utf-8"))
+    """사이트맵 인덱스(sitemap.xml)에 적힌 나눈 파일 전부의 페이지 주소(2026-10-20부터 인덱스 방식, sitemap_lib.py)."""
+    sys.path.insert(0, str(ROOT / "scripts"))
+    import sitemap_lib
+    return sitemap_lib.all_locs(ROOT)
 
 
 DATE_RES = [re.compile(r'(<p class="updated">최종 업데이트: )[^<]*(</p>)'), re.compile(r'("dateModified": ")[^"]*(")')]

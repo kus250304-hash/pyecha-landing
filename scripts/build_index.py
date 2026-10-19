@@ -177,6 +177,18 @@ def apply_head_meta(text: str) -> str:
         raise ValueError("index.html 에서 viewport 메타 태그를 찾지 못했습니다")
     return text
 
+CANONICAL_RE = re.compile(r'[ \t]*<link rel="canonical"[^>]*>\n?')
+
+
+def apply_home_canonical(text: str, cfg: dict) -> str:
+    """첫 화면 canonical(2026-10-20): 사이트맵 주소({site_base_url}/)와 같게 <title> 바로 아래에 하나."""
+    tag = f'<link rel="canonical" href="{html.escape(cfg["site_base_url"].rstrip("/"), quote=True)}/">\n'
+    text, n = re.subn(r"(</title>\n)", lambda m: m.group(1) + tag, CANONICAL_RE.sub("", text), count=1)
+    if n != 1:
+        raise ValueError("index.html 에서 <title> 을 찾지 못했습니다")
+    return text
+
+
 HOME_OG_RE = re.compile(r"[ \t]*<!-- og:start -->.*?<!-- og:end -->\n?", re.DOTALL)
 
 
@@ -282,6 +294,7 @@ def main() -> None:
     text = apply_head_meta(text)
     text = apply_home_hero(text, json.loads(CONFIG_PATH.read_text(encoding="utf-8")))
     text = apply_home_og(text, json.loads(CONFIG_PATH.read_text(encoding="utf-8")))
+    text = apply_home_canonical(text, json.loads(CONFIG_PATH.read_text(encoding="utf-8")))
     INDEX_PATH.write_text(text, encoding="utf-8")
 
     cfg = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
@@ -289,6 +302,13 @@ def main() -> None:
         text = apply_icon(apply_footer(page.read_text(encoding="utf-8"), cfg, page.name), page.name)
         page.write_text(apply_analytics(text, cfg, page.name), encoding="utf-8")
     print(f"index.html 갱신 완료: 총 {total}개 지역, 시도 {len(by_sido)}개 (맨 아래 링크: {', '.join(p.name for p in STATIC_PAGES)})")
+
+    # 첫 화면 본문(지역 목록)이 바뀌었을 수 있으니 사이트맵도 다시(2026-10-20, 본문 해시가 같으면 날짜 그대로)
+    import sys
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from sitemap_lib import write_sitemaps
+    counts = write_sitemaps(ROOT)
+    print("사이트맵: " + ", ".join(f"{k} {v}" for k, v in counts.items()))
 
 
 if __name__ == "__main__":

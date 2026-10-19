@@ -318,7 +318,7 @@ def check_links(base: str) -> list[str]:
     problems = []
     files = ([p for p in ROOT.glob("*.html")] + list(PAGES_DIR.glob("*.html")) + list((ROOT / "cases").glob("*.html"))
              + list((ROOT / "gu").glob("*.html")) + list((ROOT / "guide").glob("*.html")) + list((ROOT / "si").glob("*.html")))
-    for extra in ("sitemap.xml", "robots.txt"):
+    for extra in ["robots.txt"] + sorted(p.name for p in ROOT.glob("sitemap*.xml")):
         if (ROOT / extra).exists():
             files.append(ROOT / extra)
     for f in files:
@@ -767,7 +767,8 @@ def main() -> None:
 
     regions = json.loads(REGIONS_PATH.read_text(encoding="utf-8"))
     site_cfg = json.loads(SITE_CONFIG_PATH.read_text(encoding="utf-8"))
-    sitemap = SITEMAP_PATH.read_text(encoding="utf-8") if SITEMAP_PATH.exists() else ""
+    import sitemap_lib
+    sitemap = sitemap_lib.all_text(ROOT)  # 사이트맵 인덱스 + 나눈 파일 전부(2026-10-20)
     sigungu_sidos, dong_sidos = load_name_index()
     all_sidos = set(SIDO_SHORT) | OLD_SIDOS
 
@@ -964,6 +965,11 @@ def main() -> None:
         errors.extend(check_analytics(site_cfg))
         errors.extend(check_business_jsonld())
         errors.extend(check_faq_first_sentence())
+        # 사이트맵(2026-10-20, sitemap_lib.check): 인덱스·나눈 파일, 주소 수 = 실제 페이지 수, 주소 = canonical,
+        # 자동 이동·noindex 없음, lastmod = 본문 해시 기록 = dateModified, robots.txt Sitemap 한 줄
+        # (실제 사이트의 200 응답은 python3 scripts/sitemap_lib.py check --live)
+        import sitemap_lib
+        errors.extend(sitemap_lib.check(ROOT))
 
     # 첫 화면 홈(2026-10-13): 지역 목록 위에 동 페이지와 같은 첫 화면(지역명 "전국", 숨은 칸 region "첫 화면 홈")
     index_text = (ROOT / "index.html").read_text(encoding="utf-8")

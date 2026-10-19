@@ -52,7 +52,9 @@
 ## 사이트 주소
 
 - 사이트 주소는 **https://pyecha119.com** 입니다(저장소 맨 위 `CNAME` 파일로 GitHub Pages에 연결). 옛 주소 `kus250304-hash.github.io/pyecha-landing` 는 쓰지 않습니다.
-- 주소는 `data/site_config.json` 의 `site_base_url` 한 곳에서만 관리합니다. canonical·og:url·폼 이동 주소·sitemap.xml 은 모두 여기서 만들어지므로 페이지나 스크립트에 주소를 직접 쓰지 않습니다.
+- 주소는 `data/site_config.json` 의 `site_base_url` 한 곳에서만 관리합니다. canonical·og:url·폼 이동 주소·사이트맵은 모두 여기서 만들어지므로 페이지나 스크립트에 주소를 직접 쓰지 않습니다.
+- 사이트맵(2026-10-20 병한님 결정, `scripts/sitemap_lib.py`): `sitemap.xml` 은 사이트맵 인덱스이고, `sitemap-core.xml`(첫 화면·/gu/·/si/·/guide/), `sitemap-cases.xml`(/cases/), `sitemap-dong-1.xml`·`-2.xml`(/pages/ 를 법정동코드 순으로 고르게 나눔, 파일 수 = max(2, ⌈개수/500⌉)라 1,000개를 넘으면 -3 이 저절로 생김)을 빌드(`build_site.py`·`build_index.py` 등)가 매번 통째로 다시 만듭니다. 자동 이동 페이지(옛 영문 주소)와 noindex 페이지(thanks·privacy)는 넣지 않습니다. robots.txt 의 Sitemap 줄은 `sitemap.xml` 하나뿐입니다.
+- lastmod·"최종 업데이트"·dateModified 는 같은 본문 해시(`sitemap_lib.content_hash`: 제목·H1·본문 글·FAQ·사례 카드·공공정보 표. 머리글·길 안내·맨 아래 지역 링크·바닥글·스크립트·CSS·메타 태그·날짜 줄은 뺌)가 바뀐 날만 바뀝니다. 해시는 `data/page_hashes.json` 에 페이지마다 저장되며 손으로 고치지 않습니다. 공통 틀만 바꾼 빌드는 날짜가 그대로이고, 조사 교정 같은 오타 수준 수정은 `build_site.py --keep-dates` 로 돌립니다. `check_pages.py` 가 사이트맵 주소 수 = 실제 페이지 수, 주소 = canonical, lastmod = 해시 기록 = dateModified, robots.txt 를 검사하고, 실제 사이트의 200 응답은 `python3 scripts/sitemap_lib.py check --live` 로 봅니다.
 - 네이버 서치어드바이저 소유확인 코드는 `site_config.json` 의 `naver_site_verification` 에 목록으로 있고(적힌 순서대로 태그가 들어감, 기존 코드는 지우지 않음), `build_index.py` 가 실행될 때마다 첫 화면(`index.html`) `<head>` 에 메타 태그로 넣습니다. `index.html` 에 직접 쓰지 않습니다. 구글 소유확인은 DNS로 되어 있으므로 따로 넣지 않습니다.
 - 사이트 안 링크는 `../index.html`, `seoul-gangnam-yeoksam.html` 처럼 상대 경로로 씁니다. `check_pages.py` 가 모든 링크가 실제 파일을 가리키는지와 옛 주소가 남았는지 검사합니다.
 
@@ -75,7 +77,7 @@
   1. `python3 scripts/pick_next_regions.py` → `data/batches/YYYY-MM-DD.json` 뼈대 생성 (개수는 `data/generation_config.json`의 `daily_count`(3), 보류 폴더에 있는 동은 다시 뽑지 않음, 순서는 아래 "새 동을 고르는 순서" 맨 위 2026-10-20 규칙. 고를 동이 없으면 뼈대를 만들지 않음)
   2. 뼈대의 `landmark_name`, `landmark_desc`, `service_intro`, `faqs`(질문·답 쌍 4개 이상), `meta` 를 채움
   3. **사실 확인**: 아래 "사실 확인" 규칙대로 지역마다 `fact_check` 를 채움. `python3 scripts/fact_check.py data/batches/YYYY-MM-DD.json` 이 확인해야 할 이름과 빠진 기록을 보여 줌
-  4. `python3 scripts/import_batch.py data/batches/YYYY-MM-DD.json` → 보류 항목을 `data/batches/held/` 로 옮기고, 확인된 항목만 regions.json 반영, 렌더링, `index.html`·`sitemap.xml` 갱신, `check_pages.py` 검사까지 한 번에 실행. 실패하면 모두 되돌려지므로 배치 파일을 고치고 다시 실행
+  4. `python3 scripts/import_batch.py data/batches/YYYY-MM-DD.json` → 보류 항목을 `data/batches/held/` 로 옮기고, 확인된 항목만 regions.json 반영, 렌더링, `index.html`·사이트맵 갱신, `check_pages.py` 검사까지 한 번에 실행. 실패하면 모두 되돌려지므로 배치 파일을 고치고 다시 실행
 - `python3 scripts/check_pages.py` 는 언제든 전체 페이지를 검사합니다. 오류가 있는 상태로는 반영하지 않습니다.
 
 ### 구 페이지 (/gu/, 2026-10-01 규칙)
@@ -84,7 +86,7 @@
 - 시·도 페이지(/si/{시도 줄임}-폐차장.html, 2026-10-02 병한님 결정)는 그 시·도의 구 페이지를 모아 잇는 허브입니다. 구 페이지가 3개 이상인 시·도만 만들고(세종 제외), 매일 루틴이 조건이 된 시·도를 자동으로 만듭니다. 데이터 `data/si.json`(FAQ 3개·공식 출처 공공 정보), 보류 `data/si_held.json`, 템플릿 `templates/si-landing.html`, 빌더 `scripts/build_si.py`(`build_site.py` 가 함께 부름, `build_si.py candidates` 로 후보). 랜드마크 문장은 넣지 않고, 구 목록은 있는 구만(준비 중 표시 없음). 제목 틀 `{시도} 폐차장 · 폐차 | 시·군·구별 출장 폐차 · 수출 비교 · 조기폐차 안내 | 전화 1600-6011`. 구·동 페이지 길 안내와 첫 화면이 시·도 페이지로 연결되며 `check_pages.py` 가 확인합니다.
 - 설명(description·og:description, 2026-10-16)에는 010 문자 번호를 넣지 않습니다(네이버가 "010-****-****"로 가림). "전화 1600-6011 · 문자 상담 가능"처럼 쓰고, 본문·버튼의 010 번호는 그대로 둡니다.
 - 제목·설명은 고정 틀 하나이며 빌더가 만듭니다: `{시군구} 폐차장 · 폐차 | 출장 견인 · 말소증 문자 · 수출 비교 | 전화 1600-6011`(2026-10-18 병한님 결정: "당일 말소 가능"은 압류 차에 맞지 않아 뺐고, 압류 단어는 첫 화면·제목에 쓰지 않음). 문장 틀 여러 벌은 본문에만 씁니다. 동 페이지 제목·설명 틀은 바꾸지 않습니다.
-- 맨 위 "최종 업데이트" 날짜는 내용이 실제로 바뀐 날만 바뀝니다. 날짜만 새로 고치지 않습니다.
+- 맨 위 "최종 업데이트" 날짜는 내용이 실제로 바뀐 날만 바뀝니다(2026-10-20부터 본문 해시 기준, 위 "사이트 주소"의 lastmod 줄). 날짜만 새로 고치지 않습니다.
 - 첫 화면(2026-10-13 병한님 설계, `scripts/first_screen.py`, 동·구·시 페이지와 첫 화면 홈 공통): 휴대폰 390px 한 화면 안에 ① 길 안내 + 최종 업데이트(작게 한 줄) ② 한 문장 H1 "{지역명} 폐차, 차 번호만 주시면 폐차·수출 바로 비교해서 연락드립니다" ③ 전화 버튼(폼보다 위, 56px) ④ 견적 폼 2칸(차량번호·연락처, 연식·차종은 맨 아래 두 번째 폼에만) ⑤ 버튼 하나 ⑥ 문자 한 줄(sms:…?&body= 본문 미리 채움). 첫 화면에는 압류·저당·원부 같은 말을 쓰지 않습니다. 예전 첫 화면의 뱃지·1+1 줄·핵심 문장·신뢰 줄·비교 안내는 폼 바로 아래 "왜 비교해 드리나" 칸으로 옮겼습니다. 첫 화면 홈(index.html)은 `build_index.py` 가 같은 첫 화면("전국", 숨은 칸 region "첫 화면 홈")을 지역 목록 위에 넣으므로 손으로 고치지 않습니다. `check_pages.py` 가 순서·칸 수·금지 낱말을 확인합니다.
 - 안심 문장(2026-10-16 병한님): 동·구·시 페이지 첫 화면 전화 버튼 바로 아래(폼 위)에 "{지역명} 어디든 기사가 직접 방문 — 입금 확인 후 차를 가져갑니다" 한 줄(`first_screen.py`, 첫 화면 홈·안내 주제 페이지에는 넣지 않음), FAQ 맨 위에 "폐차장이 멀면 어떻게 하나요?" → "네, 괜찮아요 — 전국 협력 폐차장 네트워크라 {지역명}도 기사가 직접 갑니다. 차량 확인 후 먼저 입금하고 그다음 차를 가져가요. 먼 거리·시동 불가는 비용을 상담 때 미리 안내합니다."(`variants.far_faq`, FAQPage 구조화 데이터에도 들어감). "지점이 있다"는 표현은 쓰지 않습니다. `check_pages.py` 가 세 가지를 확인합니다.
 - 구·동 페이지 상단 고정 메뉴 4개(진행 순서 / 자주 묻는 질문 / 폐차 사례 / 문의하기)와 끝의 **폐차 안내**(`/guide/` 첫 장)는 템플릿에 있고 `check_pages.py` 가 확인합니다.
@@ -112,7 +114,7 @@
 
 ### 반영 방법
 - **매일 자동생성 루틴**(매일 오전 6시 2분, 보고 오전 6시 55분. 2026-10-20부터, 예전 오후 2시 2분)도 main 에 바로 push 합니다(PR 없음). 루틴의 조건: 사실 확인 기록 + `import_batch.py` 통과 + 커밋 후 `python3 scripts/publish_gate.py` 통과. 게이트가 하나라도 실패하면 main 에 push 하지 않고 작업을 `auto/failed-YYYYMMDD` 브랜치에 남깁니다.
-- 루틴이 main 에 반영할 수 있는 파일은 `data/regions.json`, `data/batches/held/`, `data/fact_checks/`, `pages/`, `gu/`, `data/gu.json`, `cases/`, `og/`, `index.html`, `sitemap.xml`, `data/shorts_matches.json`, 등록대수 통계 파일(`data/vehicle_stats*.json`) 뿐입니다(`publish_gate.py` 가 막음).
+- 루틴이 main 에 반영할 수 있는 파일은 `data/regions.json`, `data/batches/held/`, `data/fact_checks/`, `pages/`, `gu/`, `data/gu.json`, `cases/`, `og/`, `index.html`, `sitemap.xml`·`sitemap-*.xml`·`data/page_hashes.json`(2026-10-20), `data/shorts_matches.json`, 등록대수 통계 파일(`data/vehicle_stats*.json`) 뿐입니다(`publish_gate.py` 가 막음).
 - 모든 변경(스크립트·템플릿·CLAUDE.md·설정 변경, 기존 지역 수정 포함)은 PR 없이 main 에 바로 반영하고, 무엇을 왜 바꿨는지와 검사 결과를 보고에 남깁니다. 반영 전에 `python3 scripts/check_pages.py` 오류 0건을 확인하는 것은 그대로입니다.
 - 구글 색인 요청(2026-10-18, 2026-10-20 10개 → 5개): 매일 루틴이 커밋 전에 `python3 scripts/pick_index_requests.py --write` 로 그날 병한님이 서치 콘솔에 손으로 요청할 5개(① 그 파일 "최우선" 칸 중 아직 요청 안 된 주소(지금은 주제 페이지 6장) ② `docs/index-requests.md` "문의가 온 페이지"와 같은 시·군의 구·시군 페이지 ③ 시·도 페이지 14장 중 미요청 ④ 점수표 상위 지방 시·군 구 페이지 순. 동 페이지(/pages/)는 어떤 경우에도 고르지 않음. 날짜 칸에 이미 적힌 주소는 뺌. 바로 앞 날짜 칸 제목에 "요청 못 함"이 있으면 그 칸의 같은 5개를 다시 맨 앞에)를 골라 그 파일에 날짜와 함께 덧붙이고, 아침 보고(오전 6시 55분) 맨 끝에 인코딩된 주소를 하나당 코드 상자 하나씩 적습니다. 문의가 오면 그 파일 "문의가 온 페이지" 칸에 한 줄 더합니다.
 - IndexNow(2026-10-08, 2026-10-16·2026-10-18 병한님 결정으로 바꿈): main 에 반영한 뒤 네이버·공용 IndexNow 에 알립니다. **새 페이지와 제목·본문이 실제로 바뀐 페이지는 보내도 되고, 날짜("최종 업데이트"·dateModified)만 바뀐 페이지는 보내지 않습니다.** 새 페이지는 `python3 scripts/indexnow.py new`, 제목·본문을 고친 커밋은 `python3 scripts/indexnow.py changed`(날짜만 바뀐 페이지는 스크립트가 스스로 뺌). `all` 은 쓰지 않습니다. 매일 루틴은 지금처럼 `new` 만 돌립니다. 키는 `site_config.json` 의 `indexnow_key`, 같은 값의 `{키}.txt` 가 사이트 맨 위 폴더에 있어야 하며 둘 다 지우거나 바꾸지 않습니다. 매일 루틴은 push 성공 뒤 `new` 를 돌리고 결과를 보고에 적습니다(파일을 바꾸지 않아 `publish_gate.py` 와 무관).
