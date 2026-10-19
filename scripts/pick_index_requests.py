@@ -7,11 +7,14 @@
   python3 scripts/pick_index_requests.py --write   # 고른 주소를 docs/index-requests.md 에 오늘 날짜로 덧붙임
 
 고르는 순서(2026-10-18 병한님 결정: 10개 중 3개는 ②에 먼저 배정, 그다음 ① → 남은 ② → ③)
+  ⓪ 맨 앞(2026-10-19 병한님): docs/index-requests.md 의 "## 최우선" 칸 주소 중 아직 요청 안 된 것(적힌 순서대로)
   ① 오늘 새로 만든 구·시 페이지(페이지의 datePublished 가 오늘, 한국 시간)
   ② 문의가 온 페이지(docs/index-requests.md 의 "문의가 온 페이지" 칸)와 같은 시·군의 구·동 페이지
      (일반구면 같은 시의 다른 구 페이지와 그 구들의 동 페이지까지, 구 페이지 → 동 페이지 순)
   ③ docs/region-priority 점수표(data/priority_regions.json) 순위 높은 지방 시·군(build_gu.min_dong_pages 가 0)의 구 페이지
-  docs/index-requests.md 에 이미 있는 주소는 뺀다. 주소는 %인코딩한 전체 주소.
+  docs/index-requests.md 의 날짜 칸("## 2026-10-18" 등)에 있는 주소는 요청한 것으로 보고 뺀다. 주소는 %인코딩한 전체 주소.
+  날짜 칸 제목에 "요청 못 함"이 있으면(할당량 초과 등) 그 칸 주소는 요청 안 한 것으로 보고 다음 날 다시 고른다.
+  오늘 날짜 칸이 이미 "요청 못 함"으로 적혀 있으면 --write 도 같은 표시를 단 칸으로 덧붙인다.
 """
 import argparse
 import json
@@ -38,16 +41,29 @@ def today() -> str:
     return datetime.now(timezone(timedelta(hours=9))).date().isoformat()
 
 
+DATE_HEAD_RE = re.compile(r"\d{4}-\d{2}-\d{2}")
+NOT_DONE = "요청 못 함"  # 날짜 칸 제목에 이 말이 있으면 그 칸 주소는 요청 안 한 것(2026-10-19)
+
+
+def sections(text: str) -> list[tuple[str, str]]:
+    """"## 제목" 칸들 [(제목, 본문)]."""
+    return [(p.split("\n", 1)[0].strip(), p.split("\n", 1)[1] if "\n" in p else "") for p in text.split("\n## ")[1:]]
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--write", action="store_true")
+    ap.add_argument("--date", help="이 날짜(YYYY-MM-DD)로 고르기(미리 보기용, 기본 오늘 한국 시간)")
     args = ap.parse_args()
     base = load_json(CONFIG)["site_base_url"].rstrip("/")
     regions, gu_data = load_json(REGIONS), load_json(GU_DATA, default=[])
     text = LOG.read_text(encoding="utf-8") if LOG.exists() else ""
-    done = set(URL_RE.findall(text))
-    inquiry = text.split("## 문의가 온 페이지", 1)[1].split("\n## ", 1)[0] if "## 문의가 온 페이지" in text else ""
-    day = today()
+    secs = sections(text)
+    done = {u for head, body in secs if DATE_HEAD_RE.match(head) and NOT_DONE not in head for u in URL_RE.findall(body)}
+    priority = [u for head, body in secs if head.startswith("최우선") for u in URL_RE.findall(body)]
+    inquiry = next((body for head, body in secs if head.startswith("문의가 온 페이지")), "")
+    day = args.date or today()
+    day_not_done = any(head.startswith(day) and NOT_DONE in head for head, _ in secs)
 
     def gu_url(sido, sigungu):
         return f"{base}/gu/{quote(gu_file(sido, sigungu))}"
@@ -111,9 +127,10 @@ def main() -> None:
         if k in gu_keys and min_dong_pages(*k) == 0:
             add(gu_url(*k), f"점수표 {e['rank']}위 지방 시·군")
 
-    # 2026-10-18 병한님 결정: 10개 중 3개는 ②(문의 온 시·군)에 먼저 배정 → ① 새 페이지 → 남은 ② → ③
+    # ⓪ 최우선 칸(2026-10-19) → 10개 중 3개는 ②(문의 온 시·군)에 먼저 배정 → ① 새 페이지 → 남은 ② → ③ (2026-10-18)
+    first = [(u, "최우선 칸") for u in priority if u not in done]
     picked: list[tuple[str, str]] = []
-    for u, why in lists["inquiry"][:INQUIRY_FIRST] + lists["new"] + lists["inquiry"][INQUIRY_FIRST:] + lists["rank"]:
+    for u, why in first + lists["inquiry"][:INQUIRY_FIRST] + lists["new"] + lists["inquiry"][INQUIRY_FIRST:] + lists["rank"]:
         if u not in {x for x, _ in picked} and len(picked) < COUNT:
             picked.append((u, why))
     print(f"오늘 구글 색인 요청 {len(picked)}개 ({day}, docs/index-requests.md 에 있던 {len(done)}개는 뺌)")
@@ -122,7 +139,8 @@ def main() -> None:
     if args.write and picked:
         if not text.endswith("\n"):
             text += "\n"
-        text += f"\n## {day}\n\n" + "".join(f"- {u} — {unquote(u[len(base) + 1:])} ({why})\n" for u, why in picked)
+        head = f"{day} — {NOT_DONE}(이날 할당량 초과로 루틴이 고른 목록만 적음, 다음 날 다시 고름)" if day_not_done else day
+        text += f"\n## {head}\n\n" + "".join(f"- {u} — {unquote(u[len(base) + 1:])} ({why})\n" for u, why in picked)
         LOG.write_text(text, encoding="utf-8")
         print(f"docs/index-requests.md 에 {len(picked)}개 덧붙임")
 
