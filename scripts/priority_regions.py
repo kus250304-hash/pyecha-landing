@@ -41,6 +41,30 @@ class Priority:
     def label(self) -> str:
         return f"data/priority_regions.json ({self.data.get('made_on')} 네이버 검색량, {len(self.entries)}곳)"
 
+    def pick_rural(self, candidates: list[dict], have: dict[tuple[str, str], int], count: int) -> list[dict]:
+        """순위 높은 지방 시·군(build_gu.min_dong_pages 가 0) 중 동 페이지가 0~2개인 곳을 target 개까지 채워 count 개까지.
+        구 페이지와 동 페이지가 같은 시·군에 같이 생기게 한다(동 이름으로 검색된 동 먼저). have 는 바꾸지 않는다."""
+        from build_gu import min_dong_pages
+        have = dict(have)
+        by_gu: dict[tuple[str, str], list[dict]] = {}
+        for c in candidates:
+            by_gu.setdefault((c["시도"], c["시군구"]), []).append(c)
+        picked: list[dict] = []
+        for e in self.entries:
+            key = (e["sido"], e["sigungu"])
+            if min_dong_pages(*key) != 0:
+                continue
+            cs = by_gu.get(key, [])
+            named = [c for c in cs if c["법정동코드"] in self.dong_rank]
+            for c in named + [c for c in cs if c not in named]:
+                if len(picked) >= count:
+                    return picked
+                if have.get(key, 0) >= self.target:
+                    break
+                picked.append(c)
+                have[key] = have.get(key, 0) + 1
+        return picked
+
     def pick_dongs(self, candidates: list[dict], have: dict[tuple[str, str], int], count: int) -> list[dict]:
         """후보(legal_dong_list.csv 줄) 중 목록 순서대로 count 개까지. have = 시군구별 이미 있는(또는 오늘 뽑은) 동 페이지 수."""
         have = dict(have)
@@ -56,22 +80,11 @@ class Priority:
             key = (c["시도"], c["시군구"])
             have[key] = have.get(key, 0) + 1
 
-        # 2026-10-15 병한님 결정: 먼저 순위 높은 지방 시·군(build_gu.min_dong_pages 가 0) 중 동 페이지가 0~2개인 곳을
-        # target 개까지 채워, 구 페이지와 동 페이지가 같은 시·군에 같이 생기게 한다(동 이름으로 검색된 동 먼저)
-        from build_gu import min_dong_pages
-        for e in self.entries:
-            key = (e["sido"], e["sigungu"])
-            if min_dong_pages(*key) != 0 or have.get(key, 0) >= self.target:
-                continue
-            cs = by_gu.get(key, [])
-            named = [c for c in cs if c["법정동코드"] in self.dong_rank]
-            for c in named + [c for c in cs if c not in named]:
-                if len(picked) >= count:
-                    return picked
-                if have.get(key, 0) >= self.target:
-                    break
-                if c["법정동코드"] not in taken:
-                    take(c)
+        # 2026-10-15 병한님 결정: 먼저 순위 높은 지방 시·군 중 동 페이지가 0~2개인 곳을 target 개까지(pick_rural)
+        for c in self.pick_rural(candidates, have, count):
+            take(c)
+        if len(picked) >= count:
+            return picked
         # 그다음 순위대로: 그 시군구에서 ① 동 이름으로 검색된 동(장안동 등, 개수와 상관없이) ② 동 페이지가 target 개가 될 때까지
         for e in self.entries:
             key = (e["sido"], e["sigungu"])

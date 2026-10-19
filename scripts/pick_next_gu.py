@@ -2,7 +2,8 @@
 오늘 만들 구 페이지(/gu/) 후보를 고른다. 매일 루틴이 동 페이지를 반영한 뒤에 실행한다.
 
 사용법
-  python3 scripts/pick_next_gu.py            # data/generation_config.json 의 gu_line_a_count + gu_line_b_count 개(5 + 5)
+  python3 scripts/pick_next_gu.py            # data/generation_config.json 의 gu_daily_count 개(20, 남은 후보가 없으면 0개),
+                                             # 그 칸이 아예 없을 때만 gu_line_a_count + gu_line_b_count 개(5 + 5)
   python3 scripts/pick_next_gu.py --count 4  # 시험용: 줄마다 절반씩
 
 두 줄을 번갈아 뽑는다 (2026-10-01, docs/roadmap.md 6절)
@@ -119,15 +120,21 @@ def main() -> None:
     ap.add_argument("--count", type=int, help="시험용: 전체 개수(줄마다 절반)")
     args = ap.parse_args()
     cfg = load_json(GEN_CONFIG, default={})
-    if cfg.get("gu_daily_count") and not args.count:
+    if "gu_daily_count" in cfg and not args.count:
         # 2026-10-15 병한님 결정: 하루 gu_daily_count(20)개를 priority_regions.json 순서대로, 구 페이지가 아직 없는 곳만.
         # 줄 A/B 나누기는 쓰지 않는다(목록에 없는 구는 그다음 등록대수 순).
+        # 2026-10-20: 남은 후보가 없으면 그날 0개로 저절로 넘어가고, gu_daily_count 를 0 으로 두면 줄 A/B 로 가지 않고 0개.
         count = int(cfg["gu_daily_count"])
         heads, line_a, _ = ordered_candidates()
         heads = [h for h in heads if not h.startswith("줄 B 기준")]
         picked = [("P", *c) for c in line_a[:count]]
-        heads.append(f"하루 {count}개(data/generation_config.json gu_daily_count), 후보 {len(line_a)}곳 중 {len(picked)}곳"
-                     + ("" if len(picked) >= count else f" — 동 페이지 3개 이상인 구가 모자라 {count - len(picked)}개 덜 만듦"))
+        if not line_a or count == 0:
+            why = "gu_daily_count 가 0" if count == 0 else "남은 구·시군이 모두 만들어졌거나 보류됨(수도권·광역시 자치구는 동 페이지 3장이 차면 다시 후보)"
+            heads.append(f"오늘 구·시군 페이지 0개(자동): {why}")
+            picked = []
+        else:
+            heads.append(f"하루 {count}개(data/generation_config.json gu_daily_count), 후보 {len(line_a)}곳 중 {len(picked)}곳"
+                         + ("" if len(picked) >= count else f" — 남은 후보가 모자라 {count - len(picked)}개 덜 만듦"))
     else:
         if args.count:
             count_a, count_b = args.count - args.count // 2, args.count // 2
@@ -136,7 +143,7 @@ def main() -> None:
         heads, picked = pick(count_a, count_b)
     print("\n".join(heads))
     if not picked:
-        print("만들 수 있는 구가 없습니다 (동 페이지 3개 이상인 구가 모두 끝났거나 보류됨)")
+        print("만들 수 있는 구가 없습니다 → 구 페이지 단계를 건너뜀")
         return
     print("오늘 후보: " + ", ".join(f"{line}:{slug}" for line, slug, _ in picked))
     today = datetime.now(timezone(timedelta(hours=9))).date().isoformat()

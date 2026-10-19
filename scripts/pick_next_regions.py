@@ -9,7 +9,14 @@ data/legal_dong_list.csv 에서 아직 페이지가 없는 동을 골라 오늘 
 채워져 있고 landmark_name/landmark_desc/service_intro/faqs/meta 는 비어 있다. 이 빈 칸을
 채운 뒤 scripts/import_batch.py 로 넘긴다. 오늘 파일이 이미 있으면 새로 만들지 않는다.
 
-선택 규칙
+선택 규칙 (2026-10-20 병한님 결정, docs/roadmap.md 13절 — generation_config.json 의 dong_rule 이 "inquiry_rural" 일 때.
+아래 "- 우선순위" 이하 옛 규칙보다 우선하며, 개수는 daily_count(3)가 상한이자 기본)
+  ① docs/index-requests.md "문의가 온 페이지" 칸에 있는 시·군(일반구면 같은 시의 모든 구)의 동 중 동 페이지가 없는 법정동을
+     인구 많은 순으로(scripts/population_stats.py 법정동별 인구, data/population_dong.json → 없으면 그 자리에서 받음,
+     못 받으면 CSV 순서). 문의 온 시·군이 여럿이면 번갈아 하나씩.
+  ② data/priority_regions.json 순위 높은 지방 시·군 중 동 페이지가 0~2장인 곳(priority_regions.pick_rural).
+  둘 다 없으면 그날은 동을 만들지 않는다(옛 규칙의 등록대수 순으로 넘어가지 않음).
+아래 공통 규칙(제외·○가 묶음·면)은 그대로 쓴다.
 - 법정동코드 기준으로 regions.json 에 이미 있는 동은 제외
 - 사실 확인에서 보류된 동(data/batches/held/*.json)도 제외 (매일 같은 동을 다시 뽑지 않게)
 - 같은 시군구에서 '숫자+가'만 다른 동(종로1가~6가 등)은 따로 만들지 않고 한 페이지로 묶는다:
@@ -148,7 +155,70 @@ def pick_small(candidates: list[dict], regions: list[dict], slots: int, limit: i
     return picked
 
 
-def pick(regions: list[dict], count: int, include_myeon: bool, small_count: int = 0, small_limit: int = 300000) -> list[dict]:
+def pick_inquiry_rural(candidates: list[dict], regions: list[dict], count: int) -> list[dict]:
+    """2026-10-20 규칙: ① 문의 온 시·군의 동(인구 많은 순) ② 점수표 지방 시·군 중 동 페이지 0~2장. 둘 다 없으면 빈 목록."""
+    import pick_index_requests as pir
+    from build_site import CONFIG, GU_DATA, load_json
+    base = load_json(CONFIG)["site_base_url"].rstrip("/")
+    places = pir.inquiry_places(pir.inquiry_text(), base, regions, load_json(GU_DATA, default=[]))
+    all_keys = {(c["시도"], c["시군구"]) for c in candidates} | {(r["sido"], r["sigungu"]) for r in regions}
+    cache = population_stats.dong_load()
+    queues: list[tuple[str, list[dict]]] = []
+    seen: set[tuple[str, str]] = set()
+    no_pop: list[str] = []
+    for key in places:
+        group = [k for k in pir.inquiry_group(key, all_keys) if k not in seen]
+        if key not in group and key not in seen:
+            group.insert(0, key)
+        seen |= set(group)
+        pop: dict[str, int] = {}
+        cs = [c for c in candidates if (c["시도"], c["시군구"]) in group]
+        for k in group:
+            code5 = next((c["법정동코드"][:5] for c in cs if (c["시도"], c["시군구"]) == k), None)
+            got = population_stats.dong_populations(*k, code5, cache) if code5 else {}
+            if got is None:
+                no_pop.append(f"{k[0]} {k[1]}")
+            pop.update({(k, d): n for d, n in (got or {}).items()})
+
+        def people(c: dict) -> int | None:
+            k = (c["시도"], c["시군구"])
+            names = c.get("_parts") or [c["읍면동"]]
+            ns = [pop.get((k, d)) for d in names]
+            return None if all(n is None for n in ns) else sum(n or 0 for n in ns)
+        city = key[1].split()[0]
+        queues.append((city, sorted(cs, key=lambda c: (people(c) is None, -(people(c) or 0)))))
+    first: list[dict] = []
+    while len(first) < count and any(q for _, q in queues):
+        for _, q in queues:
+            if q and len(first) < count:
+                first.append(q.pop(0))
+    names: dict[str, int] = {}
+    for c in first:
+        names[c["시군구"]] = names.get(c["시군구"], 0) + 1
+    print(f"① 문의 온 시·군 {len(first)}개 ({', '.join(c for c, _ in queues) or '문의 온 곳 없음'}): "
+          + (", ".join(f"{k} {n}" for k, n in names.items()) or "남은 동 없음")
+          + f" — 인구 많은 순({cache.get('as_of') or '그 자리에서 받음'}, {population_stats.DONG_SOURCE})")
+    if no_pop:
+        print(f"  동별 인구를 못 받아 CSV 순서로 고른 곳: {', '.join(no_pop)} (보고에 알릴 것)")
+
+    have: dict[tuple[str, str], int] = {}
+    for r in list(regions) + [{"sido": c["시도"], "sigungu": c["시군구"]} for c in first]:
+        have[(r["sido"], r["sigungu"])] = have.get((r["sido"], r["sigungu"]), 0) + 1
+    first_codes = {c["법정동코드"] for c in first}
+    prio = priority_regions.load()
+    rural = prio.pick_rural([c for c in candidates if c["법정동코드"] not in first_codes], have, count - len(first)) if prio else []
+    names = {}
+    for c in rural:
+        names[c["시군구"]] = names.get(c["시군구"], 0) + 1
+    print(f"② 점수표 지방 시·군(동 페이지 0~2장) {len(rural)}개 ({prio.label() if prio else '목록 없음'}): "
+          + (", ".join(f"{k} {n}" for k, n in names.items()) or "해당 없음"))
+    if not first and not rural:
+        print("오늘 만들 동 없음: ①·② 모두 해당 동이 없어 동 페이지를 만들지 않습니다(2026-10-20 규칙)")
+    return first + rural
+
+
+def pick(regions: list[dict], count: int, include_myeon: bool, small_count: int = 0, small_limit: int = 300000,
+         rule: str = "") -> list[dict]:
     """아직 페이지가 없는 후보 가운데 우선순위대로 count 개를 고른다(○가 묶음은 _parts·_dong 을 단다)."""
     rows = list(csv.DictReader(CSV_PATH.open(encoding="utf-8-sig")))
     covered_codes = {r["code"] for r in regions if r.get("code")}
@@ -181,6 +251,8 @@ def pick(regions: list[dict], count: int, include_myeon: bool, small_count: int 
 
     csv_pos = {r["법정동코드"]: i for i, r in enumerate(rows)}
     candidates.sort(key=lambda c: csv_pos[c["법정동코드"]])
+    if rule == "inquiry_rural":
+        return pick_inquiry_rural(candidates, regions, count)
     basis, counts, meta = vehicle_stats.load()
     prio = priority_regions.load()
     candidates.sort(key=lambda c: c["법정동코드"] not in prio.dong_rank)  # 동 이름으로 검색된 동을 시·군 몫에서도 먼저
@@ -250,23 +322,27 @@ def fallback_order(candidates: list[dict], regions: list[dict], rows: list[dict]
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--count", type=int, help="생성 개수 (기본: generation_config.json 의 daily_count)")
+    ap.add_argument("--count", type=int, help="생성 개수 (기본: generation_config.json 의 daily_count, 시험용)")
     ap.add_argument("--date", help="배치 파일 날짜 (기본: 오늘, 한국 시간)")
     args = ap.parse_args()
 
     cfg = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
-    count = args.count or int(cfg["daily_count"])
+    count = args.count if args.count is not None else int(cfg["daily_count"])
     date = args.date or datetime.now(KST).strftime("%Y-%m-%d")
     out_path = BATCH_DIR / f"{date}.json"
     if out_path.exists():
         print(f"이미 있음: {out_path.relative_to(ROOT)} — 이 파일을 채워서 import_batch.py 로 넘기세요")
         return
     regions = json.loads(REGIONS_PATH.read_text(encoding="utf-8"))
+    rule = cfg.get("dong_rule", "")
     picked = pick(regions, count, bool(cfg.get("include_myeon", False)),
-                  int(cfg.get("small_si_gun_daily_count", 0)), int(cfg.get("gu_line_b_max_population", 300000)))
+                  int(cfg.get("small_si_gun_daily_count", 0)), int(cfg.get("gu_line_b_max_population", 300000)), rule)
     used_slugs = {r["slug"] for r in regions}
     if not picked:
-        print("선택 가능한 동이 없습니다 (전체 완료됨)")
+        if rule == "inquiry_rural":
+            print("배치 파일을 만들지 않음 → 동 단계(5~7번)를 건너뛰고 구 페이지 단계로")
+        else:
+            print("선택 가능한 동이 없습니다 (전체 완료됨)")
         return
 
     entries = []
