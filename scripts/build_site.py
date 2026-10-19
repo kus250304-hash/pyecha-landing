@@ -104,8 +104,9 @@ def case_alt(c: dict) -> str:
     return " ".join(x for x in (region, c.get("car") or "", "폐차 사례 사진") if x)
 
 
-def case_cards_html(picked: list[dict]) -> str:
-    """사례 카드 묶음. 동 페이지와 구 페이지가 같이 쓴다. 사례가 없으면 빈 문자열."""
+def case_cards_html(picked: list[dict], video: bool = True) -> str:
+    """사례 카드 묶음. 동 페이지와 구 페이지가 같이 쓴다. 사례가 없으면 빈 문자열.
+    video=False 는 주제 페이지(2026-10-19): 쇼츠를 "영상으로 보기" 칸에 따로 그린다(build_guide.topic_shorts)."""
     if not picked:
         return ""
     return '<div class="cases" data-nosnippet>' + "".join(
@@ -114,7 +115,7 @@ def case_cards_html(picked: list[dict]) -> str:
         + f'<div class="body"><span class="region">{esc(((c["sigungu"] or c["sido"]) + " " + c["dong"]).strip())} 작업 사례</span>'
         + f'<h3>{esc(c["title"])}</h3><p>{esc(c.get("summary", ""))}</p></div></a>'
         for c in picked
-    ) + "</div>" + shorts.cards_video_html(picked)  # 짝 맞춘 쇼츠 하나(페이지당 1개, 누를 때만 불러옴, [4])
+    ) + "</div>" + (shorts.cards_video_html(picked) if video else "")  # 짝 맞춘 쇼츠 하나(페이지당 1개, 누를 때만 불러옴, [4])
 
 
 def region_photos(cases: list[dict], sido: str, sigungu: str, dong: str = "", shown: list[dict] = (),

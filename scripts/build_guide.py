@@ -379,15 +379,14 @@ def topic_sections_html(t: dict, n0: int, cases: list[dict], esc) -> str:
         '      <ul class="guide-list">' + "".join(f"<li><b>{esc(h)}</b>{esc(x)}</li>" for h, x in t["worries"]) + "</ul>\n"
         '    </div>\n  </section>\n',
     ]
-    by_slug = {c["slug"]: c for c in cases}
-    picked = [by_slug[x] for x in t["cases"] if x in by_slug]
+    picked = topic_cases(t, cases)[0][:TOPIC_CASES_MAX]
     note = t.get("case_note", "")  # 사례 칸 바로 위 한 줄(2026-10-18). 카드가 없어도 이 줄만 있으면 칸을 그린다
     if picked or note:
         out.append('  <section id="cases">\n    <div class="wrap">\n'
                    '      <h2 class="sec-title display">같은 상황의 실제 사례</h2>\n'
                    + ('      <p class="sec-sub">지역은 카드마다 표시됩니다</p>\n' if picked else "")
                    + (f'      <p class="note">{esc(note)}</p>\n' if note else "")
-                   + (f'      {case_cards_html(picked)}\n' if picked else "")
+                   + (f'      {case_cards_html(picked, video=False)}\n' if picked else "")
                    + '    </div>\n  </section>\n')
     return "".join(out)
 
@@ -404,21 +403,88 @@ def table_html(table, esc) -> str:
             + "</tbody></table></div>\n")
 
 
-def shorts_html(t: dict, esc) -> str:
-    """유튜브 쇼츠 자리. 주소가 없으면 칸을 그리지 않고 자리 표시만 남긴다."""
-    url = (t.get("shorts") or "").strip()
-    m = re.search(r"(?:shorts/|youtu\.be/|v=)([A-Za-z0-9_-]{6,})", url)
-    if not m:
+# 주제 페이지 사례·쇼츠 자동 붙이기(2026-10-19 병한님)
+TOPIC_CASES_MAX = 4   # 주제마다 사례 카드 최신 4건까지(손으로 고른 cases 가 맨 앞)
+TOPIC_SHORTS_MAX = 2  # 쇼츠 최대 2개(check_pages 가 주제 페이지만 2개까지 허용)
+# 사례 카드 글자(제목·요약·지역)에 섞이면 그 사례를 뺀다: 전화번호·차번호·금액
+CARD_LEAK_RE = re.compile(r"\d{2,4}-\d{3,4}-\d{4}|01[016789]\d{7,8}|\d{2,3}\s?[가-힣]\s?\d{4}|\d[\d,.]*\s*(?:원|만원|만 원|천원|억)|₩")
+
+
+def case_text(c: dict) -> str:
+    """주제 낱말을 찾는 글: situation·method·summary·facts("시동 불가"처럼 이름과 값을 붙여)."""
+    return " ".join([c.get("situation") or "", c.get("method") or "", c.get("summary") or ""]
+                    + [f"{k} {v}" for k, v in c.get("facts") or []])
+
+
+def case_date(c: dict) -> str:
+    m = re.search(r"case-(\d{4})(\d{2})(\d{2})", c["slug"])
+    return c.get("date") or (f"{m.group(1)}-{m.group(2)}-{m.group(3)}" if m else "")
+
+
+def card_leak(c: dict) -> str:
+    """카드에 보이는 글자에 전화번호·차번호·금액이 있으면 그 낱말, 없으면 빈 문자열."""
+    region = ((c.get("sigungu") or c.get("sido") or "") + " " + (c.get("dong") or "")).strip()
+    m = CARD_LEAK_RE.search(" ".join([c.get("title") or "", c.get("summary") or "", region]))
+    return m.group(0) if m else ""
+
+
+def topic_cases(t: dict, cases: list[dict]) -> tuple[list[dict], list[tuple[str, str]]]:
+    """주제에 붙는 사례 전부(손으로 고른 것 → 낱말이 맞는 사례 최신순)와 카드 글자 때문에 뺀 사례 [(slug, 이유)]."""
+    by_slug = {c["slug"]: c for c in cases}
+    manual = [by_slug[x] for x in t["cases"] if x in by_slug]
+    words = t.get("case_words") or []
+    auto = sorted((c for c in cases if c not in manual and any(w in case_text(c) for w in words)),
+                  key=lambda c: (case_date(c), c["slug"]), reverse=True)
+    picked, skipped = [], []
+    for c in manual + auto:
+        leak = card_leak(c)
+        if leak:
+            skipped.append((c["slug"], leak))
+        else:
+            picked.append(c)
+    return picked, skipped
+
+
+def topic_shorts(t: dict, attached: list[dict]) -> list[dict]:
+    """주제 페이지 쇼츠 최대 2개: topics.py 의 shorts 가 먼저, 그다음 붙은 사례 순서대로 그 사례에 짝 맞춘 쇼츠(최근 것부터).
+    글자는 영상 제목 대신 우리 문구("○○동 ○○ 사례 영상")만 쓴다."""
+    import shorts
+    videos = shorts.load_matches().get("videos", {})
+    out = []
+    m = re.search(r"(?:shorts/|youtu\.be/|v=)([A-Za-z0-9_-]{6,})", (t.get("shorts") or "").strip())
+    if m:
+        v = videos.get(m.group(1))
+        if v and v.get("published"):
+            out.append({"id": m.group(1), **v, "label": f"{t['nav']} 영상", "desc": t["answer"], "page": ""})
+        else:
+            print(f"  주의: {t['file']} 의 shorts {m.group(1)} 은 data/shorts_matches.json 에 올린 날이 없어 넣지 않음")
+    for c in attached:
+        for vid, v in sorted(videos.items(), key=lambda kv: kv[1].get("published", ""), reverse=True):
+            if v.get("case") == c["slug"] and v.get("published") and vid not in {x["id"] for x in out}:
+                out.append({"id": vid, **v, "label": shorts.case_label(c), "desc": c.get("summary", ""),
+                            "page": f"cases/{c['slug']}.html"})
+    out = out[:TOPIC_SHORTS_MAX]
+    for i, v in enumerate(out):  # 같은 사례 영상이 둘이면 "… 사례 영상 2"로 구별
+        if any(x["label"] == v["label"] for x in out[:i]):
+            v["label"] = f"{v['label']} {i + 1}"
+    return out
+
+
+def shorts_html(t: dict, esc, attached: list[dict] = (), base: str = "") -> str:
+    """유튜브 쇼츠 칸(2026-10-19): 사례 페이지와 같은 lite embed(누를 때만 불러옴, 자동재생 없음) + VideoObject.
+    쇼츠가 없으면 칸을 그리지 않고 자리 표시만 남긴다."""
+    import shorts
+    picked = topic_shorts(t, list(attached))
+    if not picked:
         return "<!-- [쇼츠 자리] scripts/topics.py 의 shorts 에 쇼츠 주소를 넣으면 여기에 영상이 들어갑니다 -->\n"
-    vid = m.group(1)
     return ('  <section id="shorts" style="background:#fff">\n    <div class="wrap">\n'
             '      <h2 class="sec-title display">영상으로 보기</h2>\n'
-            '      <div class="videos"><figure class="video short">'
-            f'<iframe src="https://www.youtube-nocookie.com/embed/{esc(vid)}" title="{esc(t["nav"])} 쇼츠" loading="lazy" '
-            'allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" '
-            'referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
-            f'<figcaption><a href="{esc(url)}" target="_blank" rel="noopener noreferrer">유튜브에서 보기</a></figcaption></figure></div>\n'
-            '    </div>\n  </section>\n')
+            '      <div class="topic-videos" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px">'
+            + "".join(shorts.lite_html(v["id"], v["label"]) for v in picked) + "</div>\n"
+            + "      " + shorts.lite_assets()
+            + "".join(shorts.video_ld(v, v["label"], v["desc"], f"{base.rstrip('/')}/{v['page']}" if base and v["page"] else "")
+                      for v in picked)
+            + "\n    </div>\n  </section>\n")
 
 
 # 주제 페이지에만 넣는 CSS(2026-10-18): 안내 5장은 내용이 그대로라 템플릿 <style> 끝 {{TOPIC_STYLE}} 은 빈칸
@@ -540,7 +606,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], keep_dates: 
             values.update({
                 "HERO_HTML": hero,
                 "SECTIONS_HTML": topic_sections_html(g, n0, cases, esc),
-                "AFTER_FAQ": shorts_html(g, esc),
+                "AFTER_FAQ": shorts_html(g, esc, topic_cases(g, cases)[0], base),
                 "BOTTOM_FORM": BOTTOM_FORM.format(**form).replace(
                     "폐차·수출 비교 견적 받기", "차 번호로 원부 확인 상담 받기" if g.get("no_export") else "폐차·수출 비교 견적 받기"),
                 "SCRIPT": script.replace("{{PHONE_DISPLAY}}", phone_disp),

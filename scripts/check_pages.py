@@ -722,6 +722,8 @@ def check_published() -> list[str]:
 def check_video_embeds() -> list[str]:
     """영상 칸(2026-10-16 [4]): 유튜브는 썸네일을 누를 때만 불러온다(페이지에 iframe 을 미리 넣지 않음), 자동재생 금지,
     동·구·시·안내 페이지는 사례 칸 영상 1개까지, 영상이 있으면 VideoObject 는 uploadDate·thumbnailUrl 을 갖춘다."""
+    from build_guide import TOPICS, TOPIC_SHORTS_MAX  # 주제 페이지는 "영상으로 보기" 칸에 2개까지(2026-10-19)
+    topic_files = {t["file"] for t in TOPICS}
     problems = []
     for d in ("pages", "gu", "si", "guide", "cases"):
         for f in sorted((ROOT / d).glob("*.html")) if (ROOT / d).exists() else []:
@@ -731,8 +733,9 @@ def check_video_embeds() -> list[str]:
             if re.search(r"autoplay=1|[?&]autoplay", text):
                 problems.append(f"{d}/{f.name}: 영상 자동재생 설정이 있음")
             n = text.count('class="yt-lite')
-            if d != "cases" and n > 1:
-                problems.append(f"{d}/{f.name}: 영상 칸이 {n}개(페이지당 1개)")
+            limit = TOPIC_SHORTS_MAX if d == "guide" and f.name in topic_files else 1
+            if d != "cases" and n > limit:
+                problems.append(f"{d}/{f.name}: 영상 칸이 {n}개(페이지당 {limit}개)")
             for block in re.findall(r'<script type="application/ld\+json">(.*?)</script>', text, flags=re.DOTALL):
                 data = json.loads(block)
                 for x in data if isinstance(data, list) else [data]:
