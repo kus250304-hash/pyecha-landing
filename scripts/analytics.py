@@ -4,6 +4,8 @@
 site_config.json
   ga4_id               → Google 애널리틱스 4 측정 ID. 비어 있으면 GA 태그와 이벤트를 넣지 않는다.
   naver_analytics_id   → 네이버 애널리틱스 사이트 ID. 비어 있으면 넣지 않는다(ID 를 받으면 채움).
+  ahrefs_site_verification → Ahrefs 소유 확인 코드(2026-10-20). 이 묶음 맨 앞에 <meta name="ahrefs-site-verification"> 로
+                         모든 페이지에 하나씩 들어간다. 비어 있으면 넣지 않는다. 네이버 소유확인 태그는 첫 화면에만(build_index.py).
 
 이벤트(GA4): 전화 버튼 call_click, 문자 버튼 sms_click, 견적 폼 전송 성공 quote_submit.
 매개변수: page_type(dong/gu/si/guide/case/home/thanks/privacy), region(페이지 지역 이름, 손님 정보 아님),
@@ -15,6 +17,7 @@ gtag.js 는 페이지가 다 뜬 뒤(load) 불러 첫 화면 속도에 영향을
 dataLayer 에 쌓였다가 gtag.js 가 오면 함께 보내진다.
 네이버 애널리틱스(wcslog.js)는 body_end_html 이 </body> 바로 앞에 넣고, 같은 이벤트를 wcs.event(이름, "page_type_position")로도 보낸다.
 """
+import html
 import json
 
 START = "<!-- analytics:start -->"
@@ -33,8 +36,9 @@ def head_html(cfg: dict, page_type: str, region: str = "") -> str:
     if page_type not in PAGE_TYPES:
         raise ValueError(f"알 수 없는 page_type: {page_type}")
     ga, naver = (cfg.get("ga4_id") or "").strip(), (cfg.get("naver_analytics_id") or "").strip()
+    verify = verify_html(cfg)
     if not ga and not naver:
-        return ""
+        return "\n".join([START, verify, END]) if verify else ""
     js = ["<script>"]
     if ga:
         js.append("window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}"
@@ -58,7 +62,13 @@ def head_html(cfg: dict, page_type: str, region: str = "") -> str:
         js.append(f"function L(){{var s=document.createElement('script');s.async=true;s.src={_js(src)};document.head.appendChild(s);}}"
                   "if(document.readyState==='complete')L();else window.addEventListener('load',L);")
     js.append("})();</script>")
-    return "\n".join([START, "".join(js), END])
+    return "\n".join([START] + ([verify] if verify else []) + ["".join(js), END])
+
+
+def verify_html(cfg: dict) -> str:
+    """Ahrefs 소유 확인 메타 태그(2026-10-20). ahrefs_site_verification 이 비면 빈 문자열."""
+    code = (cfg.get("ahrefs_site_verification") or "").strip()
+    return f'<meta name="ahrefs-site-verification" content="{html.escape(code, quote=True)}">' if code else ""
 
 
 BODY_START = "<!-- naver-analytics:start -->"

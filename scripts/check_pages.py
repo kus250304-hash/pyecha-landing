@@ -280,8 +280,10 @@ def check_faq_first_sentence() -> list[str]:
 def check_analytics(cfg: dict) -> list[str]:
     """방문 측정 태그(2026-10-10, scripts/analytics.py): 모든 페이지 <head> 에 GA4 태그가 정확히 하나,
     naver_analytics_id 가 비어 있으면 네이버 애널리틱스 태그 없음. 자동 이동 페이지(옛 영문 주소)는 뺀다.
-    개인정보처리방침에 Google 애널리틱스 안내가 있어야 한다."""
+    개인정보처리방침에 Google 애널리틱스 안내가 있어야 한다.
+    ahrefs_site_verification 이 있으면 모든 페이지 <head> 에 Ahrefs 소유 확인 태그가 정확히 하나(2026-10-20)."""
     ga, naver = (cfg.get("ga4_id") or "").strip(), (cfg.get("naver_analytics_id") or "").strip()
+    ahrefs = (cfg.get("ahrefs_site_verification") or "").strip()
     files = [ROOT / "index.html", ROOT / "thanks.html", ROOT / "privacy.html"]
     for d in ("pages", "gu", "si", "guide", "cases"):
         files += sorted((ROOT / d).glob("*.html"))
@@ -294,6 +296,9 @@ def check_analytics(cfg: dict) -> list[str]:
         rel = f.relative_to(ROOT).as_posix()
         if ga and head.count(f"gtag('config',\"{ga}\")") != 1:
             problems.append(f"{rel}: <head> 에 GA4 태그({ga})가 정확히 1개 있어야 함 (빌드 다시 실행)")
+        if ahrefs and (head.count(f'<meta name="ahrefs-site-verification" content="{ahrefs}">') != 1
+                       or text.count("ahrefs-site-verification") != 1):
+            problems.append(f"{rel}: <head> 에 Ahrefs 소유 확인 태그가 정확히 1개 있어야 함 (빌드 다시 실행)")
         if not naver and "wcslog.js" in text:
             problems.append(f"{rel}: naver_analytics_id 가 비었는데 네이버 애널리틱스 태그가 있음")
         if naver:
