@@ -310,6 +310,46 @@ def check_analytics(cfg: dict) -> list[str]:
     return problems
 
 
+def check_breadcrumbs(base: str) -> list[str]:
+    """탐색경로 구조화 데이터(BreadcrumbList, 2026-10-20 구글 "'item' 입력란 누락" 오류): 모든 칸에 item(주소)이 있고,
+    position 이 1부터 차례대로이며, 주소가 실제 페이지(자동 이동 페이지 아님)이고, 마지막 칸은 그 페이지 canonical."""
+    files = [ROOT / "index.html"]
+    for d in ("si", "gu", "pages", "guide", "cases"):
+        files += sorted((ROOT / d).glob("*.html"))
+    problems = []
+    for f in files:
+        text = f.read_text(encoding="utf-8")
+        if 'http-equiv="refresh"' in text:
+            continue
+        rel = f.relative_to(ROOT).as_posix()
+        canon = re.search(r'<link rel="canonical" href="([^"]+)"', text)
+        for blk in re.findall(r'<script type="application/ld\+json">(.*?)</script>', text, re.S):
+            try:
+                data = json.loads(blk)
+            except ValueError:
+                problems.append(f"{rel}: 구조화 데이터 JSON 을 읽을 수 없음")
+                continue
+            for obj in data if isinstance(data, list) else [data]:
+                if not isinstance(obj, dict) or obj.get("@type") != "BreadcrumbList":
+                    continue
+                items = obj.get("itemListElement") or []
+                if not items:
+                    problems.append(f"{rel}: 탐색경로(BreadcrumbList)에 칸이 없음")
+                for i, it in enumerate(items, 1):
+                    url = it.get("item")
+                    if it.get("position") != i:
+                        problems.append(f"{rel}: 탐색경로 {i}번째 칸 position 이 {it.get('position')} (1부터 차례대로여야 함)")
+                    if not isinstance(url, str) or not url:
+                        problems.append(f"{rel}: 탐색경로 {i}번째 칸({it.get('name')})에 item(주소)이 없음")
+                        continue
+                    target = ROOT / (unquote(url[len(base) + 1:]) or "index.html") if url.startswith(base + "/") else None
+                    if target is None or not target.is_file() or 'http-equiv="refresh"' in target.read_text(encoding="utf-8"):
+                        problems.append(f"{rel}: 탐색경로 {i}번째 칸 주소 {unquote(url)} 가 실제 페이지가 아님")
+                if items and canon and items[-1].get("item") != canon.group(1):
+                    problems.append(f"{rel}: 탐색경로 마지막 칸 주소가 이 페이지 canonical 과 다름")
+    return problems
+
+
 LINK_RE = re.compile(r'\b(?:href|src)="([^"#]*)(?:#[^"]*)?"')
 
 
@@ -963,6 +1003,7 @@ def main() -> None:
         errors.extend(check_published())
         errors.extend(check_og_images(site_cfg["site_base_url"].rstrip("/")))
         errors.extend(check_analytics(site_cfg))
+        errors.extend(check_breadcrumbs(site_cfg["site_base_url"].rstrip("/")))
         errors.extend(check_business_jsonld())
         errors.extend(check_faq_first_sentence())
         # 사이트맵(2026-10-20, sitemap_lib.check): 인덱스·나눈 파일, 주소 수 = 실제 페이지 수, 주소 = canonical,

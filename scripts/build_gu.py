@@ -232,11 +232,12 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
         )
         crumbs = [{"@type": "ListItem", "position": 1, "name": "전체 지역", "item": f"{base}/"}]
         si_href = sido_link(sido) if sigungu else None  # 시·도 페이지(/si/, 2026-10-02)가 있으면 링크
-        if sigungu:
-            crumbs.append({"@type": "ListItem", "position": 2, "name": SIDO_SHORT[sido]})
-            if si_href:
-                from build_si import si_rel
-                crumbs[-1]["item"] = f"{base}/{si_rel(sido)}"
+        if si_href:
+            # 탐색경로 구조화 데이터에는 실제로 있는 페이지 칸만 넣는다(2026-10-20, 구글 "'item' 입력란 누락" 오류).
+            # 시·도 페이지가 아직 없으면 그 칸을 빼고 번호를 다시 매기며, 생기면 다음 빌드 때 저절로 들어간다.
+            # 화면의 길 안내 글자(crumb_html)는 시·도 이름을 그대로 보여 준다
+            from build_si import si_rel
+            crumbs.append({"@type": "ListItem", "position": 2, "name": SIDO_SHORT[sido], "item": f"{base}/{si_rel(sido)}"})
         crumbs.append({"@type": "ListItem", "position": len(crumbs) + 1, "name": gu, "item": canonical})
         jsonld = [
             {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
