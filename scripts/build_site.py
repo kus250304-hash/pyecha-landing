@@ -701,9 +701,9 @@ def main() -> None:
 
     # 내용이 실제로 바뀐 페이지만 sitemap 의 수정일을 갱신한다(--keep-dates 면 새로 만든 동 페이지만 넣고 기존 수정일은 그대로)
     other = gu_changed + si_changed + guide_changed + case_changed
-    if args.keep_dates:  # 날짜를 그대로 두는 수정이면 sitemap 에 아직 없는 구·시 주소만 넣는다
+    if args.keep_dates:  # 날짜를 그대로 두는 수정이면 sitemap 에 아직 없는 구·시·안내 주소만 넣는다(안내 페이지는 2026-10-19부터)
         sitemap_text = (ROOT / "sitemap.xml").read_text(encoding="utf-8") if (ROOT / "sitemap.xml").exists() else ""
-        other = [p for p in gu_changed + si_changed if f"/{p}<" not in sitemap_text] + guide_changed + case_changed
+        other = [p for p in gu_changed + si_changed + guide_changed if f"/{p}<" not in sitemap_text] + case_changed
     update_sitemap(ROOT, created if args.keep_dates else changed, paths=other, drop=gu_dropped)
     print(f"완료: {len(targets)}개 중 {len(changed)}개 페이지 변경, 구 페이지 {len(gu_changed)}개, 시·도 페이지 {len(si_changed)}개 변경, "
           f"안내 페이지 {len(guide_changed)}개 변경, sitemap.xml 갱신")

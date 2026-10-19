@@ -319,11 +319,27 @@ def guide_text(g: dict) -> str:
     return " ".join(out)
 
 
+# 동·구·시 페이지 "폐차 유형별 안내" 칸 끝(2026-10-19 병한님): "이런 차도 됩니다" 버튼 5개 + 나머지 안내 작은 글자 한 줄.
+# 첫 화면(hero)에는 넣지 않는다(압류 같은 낱말이 있어 check_pages 첫 화면 검사에 걸림)
+TYPE_BUTTONS = [("압류 있는 차", "압류-있는-차-폐차.html"), ("11년 넘은 차 말소", "차령초과-폐차.html"),
+                ("상속·법인차", "상속차-법인차-서류.html"), ("시동 안 걸리는 차", "시동-안-걸리는-차.html"),
+                ("오래 세워둔 차", "방치차-오래-세워둔-차.html")]
+TYPE_MORE = [("저당만 있는 차", "저당만-있는-차.html"), ("폐차 절차", "폐차-절차.html"), ("필요 서류", "폐차-필요-서류.html"),
+             ("수출 비교", "폐차-수출-비교.html"), ("금액 정하는 방법", "폐차-금액-정하는-방법.html"), ("조기폐차", "조기폐차-지원-안내.html")]
+
+
 def guide_links_html(prefix: str = "../") -> str:
-    """동·구·시 페이지 "폐차 유형별 안내" 칸에 넣는 안내 10장 링크 한 줄(2026-10-14)."""
+    """동·구·시 페이지 "폐차 유형별 안내" 칸에 넣는 안내 11장 링크: 버튼 5개 + 작은 글자 한 줄(2026-10-19)."""
     from build_site import esc
-    return ('<p class="type-links"><b>유형별 자세한 안내</b> '
-            + " · ".join(f'<a href="{prefix}guide/{esc(x["file"])}">{esc(x["nav"])}</a>' for x in ALL_GUIDES) + "</p>")
+    files = [f for _, f in TYPE_BUTTONS + TYPE_MORE]
+    if sorted(files) != sorted(x["file"] for x in ALL_GUIDES):  # 안내 페이지를 새로 만들면 여기 둘 중 한 곳에 넣어야 한다
+        raise SystemExit("build_guide.TYPE_BUTTONS·TYPE_MORE 가 안내·주제 페이지 목록과 다름")
+
+    def a(label: str, f: str) -> str:
+        return f'<a href="{prefix}guide/{esc(f)}">{esc(label)}</a>'
+    return ('<div class="type-links"><p class="type-title">이런 차도 됩니다</p>'
+            '<div class="type-btns">' + "".join(a(l, f) for l, f in TYPE_BUTTONS) + "</div>"
+            '<p class="type-more">다른 안내: ' + " · ".join(a(l, f) for l, f in TYPE_MORE) + "</p></div>")
 
 
 def related_html(files: list[str], esc) -> str:
