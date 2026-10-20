@@ -1,18 +1,18 @@
 """
-index.html의 지역 목록을 data/regions.json 기준으로 다시 생성한다.
+index.html 의 첫 화면 아래 링크 칸과 헤더의 지역 수를 다시 만든다.
 
-regions.json 이 이미 지역별 sido/sigungu/dong을 갖고 있으므로 페이지 HTML을
-스크래핑하지 않고 직접 읽는다(템플릿의 title/badge 형식이 바뀌어도 영향받지 않음).
-index.html의 지역 목록 블록과 헤더의 지역 수만 교체하고 나머지는 그대로 둔다.
+2026-10-20 병한님 결정: 예전처럼 시·도 14·구 232·동 833을 전부 잇는 목록을 두지 않고 네 칸만 둔다
+(render_home_links): 지역별 폐차 상담(시·도 버튼) / 이런 차도 됩니다(주제 6장 버튼 + 안내 5장 작은 글자) /
+문의 많은 지역(pick_index_requests.popular_gu 10곳, 매 빌드 갱신) / 최근 폐차 사례(cases/index.json 최신 6건).
+구·동은 시·도 페이지의 "구 → 동 목록"으로 간다(첫 화면 → 시·도 → 동 2클릭).
 검색엔진 소유확인 메타 태그(site_config.json 의 naver_site_verification)는 실행할 때마다
 <head> 안에 다시 넣으므로 index.html 을 손으로 고쳐도 지워지지 않는다.
 사이트 맨 위 폴더의 페이지(index.html·thanks.html·privacy.html)의 <footer> 도 실행할 때마다
 공통 내용(대표번호·개인정보처리방침·블로그·유튜브 링크)으로 다시 채운다.
 지역·사례 페이지의 footer 는 templates/ 의 템플릿에 들어 있다.
 
-시·도 칸마다 id="sido-<줄임 이름>" 을 달고, 그 시·도의 구 페이지(/gu/) 목록을 맨 위에 넣는다.
-시·도 페이지(/si/, 2026-10-02)가 있는 시·도는 그 칸 맨 위에 시·도 페이지 링크를 넣는다.
-시·도 페이지가 없는 시·도는 동·구·안내 페이지 맨 아래 "시·도별 폐차 상담" 링크가 이 칸으로 온다.
+시·도 버튼마다 id="sido-<줄임 이름>" 을 단다. 시·도 페이지가 없는 시·도는 버튼 대신 그 시·도의 구(없으면 동) 페이지
+링크를 작게 두고, 동·구·안내 페이지 맨 아래 "시·도별 폐차 상담" 링크(index.html#sido-○○)가 그 자리로 온다.
 
 배치 생성 스크립트나 build_site.py를 실행한 뒤 이 스크립트를 실행하면 index.html이 최신 상태가 된다.
 """
@@ -214,7 +214,6 @@ SIDO_ORDER = [
     "경상남도", "제주특별자치도",
 ]
 
-GROUPS_RE = re.compile(r'(?<=</div>\n\n)(      <div class="region-group"[^>]*>.*</div>\n)(?=</main>)', re.DOTALL)
 COUNT_RE = re.compile(r"(지역별 상담 페이지 \(현재 )\d+(개 지역\))")
 
 
@@ -249,34 +248,83 @@ def collect_gu() -> dict[str, list[tuple[str, str]]]:
     return by_sido
 
 
-def render_groups(by_sido: dict[str, list[tuple[str, str]]], gu_by_sido: dict[str, list[tuple[str, str]]] | None = None) -> str:
-    from build_site import SIDO_SHORT
-    gu_by_sido = gu_by_sido or {}
-    blocks = []
+HOME_LINKS_RE = re.compile(r'<main class="container">.*?</main>', re.DOTALL)
+HOME_LINKS_STYLE = """<style>
+  .home-sec { margin: 28px 0; }
+  .home-sec h2 { margin: 0 0 6px; font-size: 21px; color: var(--color-primary); }
+  .home-sec .sub { margin: 0 0 12px; color: var(--color-muted); font-size: 14px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chips a, .chips .chip-group { display: inline-block; padding: 10px 14px; border: 1px solid #d6dee0; border-radius: 10px;
+    background: #fff; color: inherit; text-decoration: none; font-weight: 700; font-size: 15px; }
+  .chips a:hover { border-color: var(--color-primary); color: var(--color-primary); }
+  .chips .chip-group a { padding: 0; border: 0; font-weight: 400; text-decoration: underline; }
+  .chips.big a { padding: 12px 16px; font-size: 16px; }
+  .home-sec .more { margin: 10px 0 0; font-size: 13px; color: var(--color-muted); }
+  .home-sec .more a { color: inherit; }
+  .case-list { list-style: none; margin: 0; padding: 0; }
+  .case-list li { padding: 10px 0; border-bottom: 1px solid #e3e8ea; }
+  .case-list a { font-weight: 700; color: inherit; }
+  .case-list span { display: block; font-size: 13px; color: var(--color-muted); }
+  .fine-print { margin: 32px 0 8px; font-size: 13px; color: var(--color-muted); }
+</style>"""
+
+
+def render_home_links(by_sido: dict[str, list[tuple[str, str]]]) -> str:
+    """첫 화면 아래 네 칸(2026-10-20 병한님 결정): 지역별 폐차 상담(시·도 버튼) / 이런 차도 됩니다(주제 6장 버튼 + 안내 5장 작은 글자) /
+    문의 많은 지역(pick_index_requests.popular_gu, 10곳) / 최근 폐차 사례(cases/index.json 최신 6건).
+    예전처럼 구·동 전체 목록은 넣지 않는다(시·도 페이지에 있음). 시·도 페이지가 아직 없는 시·도는 버튼 대신
+    그 시·도의 구(없으면 동) 페이지 링크를 작게 두고, 다른 페이지의 index.html#sido-○○ 링크가 닿게 버튼마다 id 를 단다."""
+    import sys
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from build_site import SIDO_SHORT, gu_file
+    from build_si import si_file, si_sidos
+    from build_guide import GUIDES, TOPICS, TYPE_BUTTONS
+    from pick_index_requests import popular_gu
+    esc = lambda v: html.escape(v, quote=True)
+    sis = si_sidos()
+    gu_by_sido = collect_gu()
+    chips = []
     for sido in SIDO_ORDER:
-        entries = sorted(by_sido.get(sido, []))
-        if not entries:
+        short = SIDO_SHORT[sido]
+        if sido in sis:
+            chips.append(f'<a id="sido-{esc(short)}" href="si/{esc(si_file(sido))}">{esc(short)}</a>')
             continue
-        items = "\n".join(
-            f'        <li><a href="pages/{file_name}">{full_name}</a></li>'
-            for full_name, file_name in entries
-        )
-        from build_si import si_file, si_sidos
-        si_line = (f'        <p class="gu-links"><a href="si/{html.escape(si_file(sido), quote=True)}">'
-                   f"{SIDO_SHORT[sido]} 전체 폐차 상담 페이지</a></p>\n") if sido in si_sidos() else ""
-        gus = sorted(gu_by_sido.get(sido, []))
-        gu_line = ("        <p class=\"gu-links\">시·군·구 전체 상담: " + " · ".join(
-            f'<a href="gu/{html.escape(f, quote=True)}">{html.escape(name)}</a>' for name, f in gus) + "</p>\n") if gus else ""
-        blocks.append(
-            f'      <div class="region-group" id="sido-{SIDO_SHORT[sido]}">\n'
-            f'        <h2>{sido} <span class="count">({len(entries)})</span></h2>\n'
-            f"{si_line}{gu_line}"
-            "        <ul>\n"
-            f"{items}\n"
-            "        </ul>\n"
-            "      </div>\n"
-        )
-    return "".join(blocks)
+        links = ([(n, "gu/" + f) for n, f in sorted(gu_by_sido.get(sido, []))]
+                 or [(full.split()[-1], "pages/" + f) for full, f in sorted(by_sido.get(sido, []))])
+        if links:
+            chips.append(f'<span class="chip-group" id="sido-{esc(short)}">{esc(short)}: '
+                         + " · ".join(f'<a href="{esc(h)}">{esc(n)}</a>' for n, h in links) + "</span>")
+    label = dict((f, l) for l, f in TYPE_BUTTONS)
+    topics = "".join(f'<a href="guide/{esc(t["file"])}">{esc(label.get(t["file"], t["nav"]))}</a>' for t in TOPICS)
+    guides = " · ".join(f'<a href="guide/{esc(g["file"])}">{esc(g["nav"])}</a>' for g in GUIDES)
+    popular = "".join(f'<a href="gu/{esc(gu_file(sd, sg))}">{esc(sg or SIDO_SHORT[sd])} 폐차 안내</a>' for sd, sg in popular_gu(10))
+    cases_path = ROOT / "cases" / "index.json"
+    cases = json.loads(cases_path.read_text(encoding="utf-8")) if cases_path.exists() else []
+    cases = sorted((c for c in cases if (ROOT / "cases" / f"{c['slug']}.html").exists()),
+                   key=lambda c: (c.get("date") or "", c["slug"]), reverse=True)[:6]
+    case_items = "".join(
+        f'<li><a href="cases/{esc(c["slug"])}.html">{esc(c["title"])}</a>'
+        f'<span>{esc(" ".join(x for x in (SIDO_SHORT.get(c["sido"], c["sido"]), c["sigungu"], c["dong"]) if x))}'
+        + (f' · {esc(c["date"])}' if c.get("date") else "") + "</span></li>" for c in cases)
+    parts = [
+        '<main class="container">', HOME_LINKS_STYLE,
+        '<section class="home-sec" id="regions"><h2>지역별 폐차 상담</h2>'
+        '<p class="sub">시·도를 고르면 시·군·구와 동별 상담 페이지가 나옵니다</p>'
+        f'<div class="chips">{"".join(chips)}</div></section>',
+        '<section class="home-sec" id="types"><h2>이런 차도 됩니다</h2>'
+        '<p class="sub">압류·말소·상속·시동·방치·저당, 상황별로 정리했습니다</p>'
+        f'<div class="chips big">{topics}</div><p class="more">폐차 안내: {guides}</p></section>',
+        '<section class="home-sec" id="popular"><h2>문의 많은 지역</h2>'
+        '<p class="sub">문의가 온 곳과 상담이 많은 시·군입니다</p>'
+        f'<div class="chips">{popular}</div></section>',
+    ]
+    if case_items:
+        parts.append('<section class="home-sec" id="recent-cases"><h2>최근 폐차 사례</h2>'
+                     '<p class="sub">실제로 진행한 사례입니다. 지역은 사례마다 표시됩니다</p>'
+                     f'<ul class="case-list">{case_items}</ul></section>')
+    parts += ['<p class="fine-print">본 사이트는 전국 폐차 협력업체 네트워크와 함께 상담과 연결을 도와드리는 서비스입니다. '
+              '차량 상태와 조건에 따라 폐차와 수출 비교매입 중 더 적합한 방법을 안내해 드립니다.</p>', "</main>"]
+    return "\n".join(parts)
 
 
 def main() -> None:
@@ -284,10 +332,9 @@ def main() -> None:
     total = sum(len(v) for v in by_sido.values())
 
     text = INDEX_PATH.read_text(encoding="utf-8")
-    gu_by_sido = collect_gu()
-    text, n_groups = GROUPS_RE.subn(lambda _: render_groups(by_sido, gu_by_sido), text, count=1)
+    text, n_groups = HOME_LINKS_RE.subn(lambda _: render_home_links(by_sido), text, count=1)
     if n_groups != 1:
-        raise ValueError("index.html에서 지역 목록 블록을 찾지 못했습니다")
+        raise ValueError("index.html에서 <main class=\"container\"> 블록을 찾지 못했습니다")
     text, n_count = COUNT_RE.subn(rf"\g<1>{total}\g<2>", text, count=1)
     if n_count != 1:
         raise ValueError("index.html에서 지역 수 문구를 찾지 못했습니다")

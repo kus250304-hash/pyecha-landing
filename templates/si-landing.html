@@ -29,6 +29,11 @@
   .gu-list a { display: block; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; color: inherit; text-decoration: none; }
   .gu-list a b { display: block; font-size: 16px; }
   .gu-list a span { display: block; font-size: 13px; color: #5E6E70; margin-top: 2px; }
+  .dong-title { margin: 26px 0 4px; font-size: 18px; }
+  .dong-group { margin-top: 14px; }
+  .dong-group h3 { margin: 0; font-size: 16px; }
+  .dong-group h3 a { color: var(--teal-deep); }
+  .dong-group h3 small { font-weight: 400; color: #5E6E70; font-size: 13px; margin-left: 4px; }
   .info { width: 100%; border-collapse: collapse; margin-top: 14px; background: #fff; border-radius: 14px; overflow: hidden; font-size: 15px; }
   .info th, .info td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--line); }
   .info th { width: 30%; background: var(--ground); font-weight: 800; }
@@ -57,6 +62,7 @@
       <h2 class="sec-title display">{{SI}} 시·군·구별 폐차 상담</h2>
       <p class="sec-sub">{{SI_FULL}}{{SI_JOSA}} 실제 출장 방문이 가능한 지역입니다. 차가 있는 곳의 페이지에서 동별 안내를 보실 수 있습니다</p>
       <div class="gu-list">{{GU_LIST_HTML}}</div>
+      {{DONG_LIST_HTML}}
     </div>
   </section>
 

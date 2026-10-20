@@ -6,7 +6,8 @@ data/si.json + data/gu.json 으로 시·도 페이지(si/<시도 줄임 이름>-
   python3 scripts/build_si.py              # si.json 의 시·도 페이지 전부 (build_site.py 도 끝에 이 함수를 부른다)
   python3 scripts/build_si.py candidates   # 만들 수 있는데 아직 없는 시·도와 si.json 뼈대 (파일을 바꾸지 않음)
 
-조건: 그 시·도에 구 페이지(data/gu.json)가 3개 이상(MIN_GU_PAGES). 세종은 시 하나가 곧 구 페이지라 만들지 않는다.
+조건: 그 시·도에 구 페이지(data/gu.json)가 3개 이상(MIN_GU_PAGES). 예외(2026-10-20 병한님 결정, SI_EXCEPTIONS):
+제주(시가 제주시·서귀포시 둘뿐)와 세종(구가 없고 시 전체가 구 페이지 하나)은 구 페이지가 1개 이상이면 만든다.
 si.json·si_held.json 에 있는 시·도는 후보에서 빠진다.
 
 si.json 항목 (확인된 것만 넣는다. 못 채우면 data/si_held.json 에 이유와 함께 보류)
@@ -19,6 +20,7 @@ si.json 항목 (확인된 것만 넣는다. 못 채우면 data/si_held.json 에 
   }
 
 페이지 내용: 첫 화면 전화·문자 버튼과 폼(동·구 페이지와 같은 핵심 문장), 그 시·도 구 페이지 목록(있는 구만, "준비 중" 없음),
+구 → 동 목록(그 시·도의 동 페이지 전부를 시·군·구별로 묶음, 2026-10-20 — 첫 화면 → 시·도 → 동이 2클릭),
 진행 순서, FAQ 3개(+ 실제 통화 FAQ 4개, variants.call_faqs), 그 시·도 사례 카드(최신 6건), 공공 정보, 협력업체 고지.
 제목은 고정 틀 하나: "{시도 줄임} 폐차장 · 폐차 | 시·군·구별 출장 폐차 · 수출 비교 · 조기폐차 안내 | 전화 1600-6011".
 빌더가 막는 것: 구 페이지 3개 미만, FAQ 3개가 아님, 공공 정보 없음·출처 주소 없음, 금액·결과 약속·단정 표현.
@@ -43,6 +45,7 @@ OUT = ROOT / "si"
 SI_DATA = ROOT / "data" / "si.json"
 SI_HELD = ROOT / "data" / "si_held.json"
 MIN_GU_PAGES = 3
+SI_EXCEPTIONS = {"제주특별자치도", "세종특별자치시"}  # 구 페이지 1개 이상이면 만듦(2026-10-20)
 MAX_CASES = 6
 
 
@@ -51,13 +54,46 @@ def si_file(sido: str) -> str:
     return f"{SIDO_SHORT[sido]}-폐차장.html"
 
 
+def si_og_stem(sido: str) -> str:
+    """대표 이미지 파일 이름(og/<stem>.png). 세종처럼 구 페이지(gu/세종-폐차장.html)와 파일 이름이 같으면
+    서로 덮어쓰지 않게 앞에 "si-" 를 붙인다(2026-10-20)."""
+    stem = si_file(sido)[:-5]
+    return "si-" + stem if (ROOT / "gu" / si_file(sido)).exists() else stem
+
+
 def si_rel(sido: str) -> str:
     return "si/" + quote(si_file(sido))
 
 
 def gu_of(sido: str, gu_data: list[dict]) -> list[dict]:
-    """그 시·도의 구 페이지(세종처럼 시군구가 빈 것은 뺀다)."""
-    return sorted((g for g in gu_data if g["sido"] == sido and g["sigungu"]), key=lambda g: g["sigungu"])
+    """그 시·도의 구 페이지. 시군구가 빈 것(세종 시 전체 페이지)은 세종 예외일 때만 넣는다."""
+    return sorted((g for g in gu_data if g["sido"] == sido and (g["sigungu"] or sido in SI_EXCEPTIONS)),
+                  key=lambda g: g["sigungu"])
+
+
+def min_gu(sido: str) -> int:
+    return 1 if sido in SI_EXCEPTIONS else MIN_GU_PAGES
+
+
+def dong_list_html(regions: list[dict], gu_data: list[dict], sido: str, esc, gu_file) -> str:
+    """구 → 동 목록(2026-10-20): 그 시·도의 동 페이지 전부를 시·군·구별로 묶는다. 구 페이지가 있으면 구 이름에 링크."""
+    from build_site import SIDO_SHORT
+    gu_keys = {(g["sido"], g["sigungu"]) for g in gu_data}
+    groups: dict[str, list[dict]] = {}
+    for r in regions:
+        if r["sido"] == sido and (ROOT / "pages" / f'{r["slug"]}.html').exists():
+            groups.setdefault(r["sigungu"], []).append(r)
+    if not groups:
+        return ""
+    out = []
+    for sigungu in sorted(groups):
+        name = sigungu or SIDO_SHORT[sido]
+        head = (f'<a href="../gu/{esc(gu_file(sido, sigungu))}">{esc(name)}</a>' if (sido, sigungu) in gu_keys else esc(name))
+        links = "".join(f'<a href="../pages/{esc(r["slug"])}.html">{esc(r["dong"])}</a>'
+                        for r in sorted(groups[sigungu], key=lambda r: r["dong"]))
+        out.append(f'<div class="dong-group"><h3>{head} <small>동 {len(groups[sigungu])}곳</small></h3>'
+                   f'<div class="neighbors">{links}</div></div>')
+    return ('<h3 class="dong-title">동별 상담 페이지</h3><div class="dong-groups">' + "".join(out) + "</div>")
 
 
 def load_si() -> list[dict]:
@@ -72,13 +108,13 @@ def si_sidos() -> set[str]:
 def candidates(gu_data: list[dict]) -> list[str]:
     done = si_sidos() | ({s["sido"] for s in json.loads(SI_HELD.read_text(encoding="utf-8"))} if SI_HELD.exists() else set())
     from build_index import SIDO_ORDER
-    return [s for s in SIDO_ORDER if s not in done and len(gu_of(s, gu_data)) >= MIN_GU_PAGES]
+    return [s for s in SIDO_ORDER if s not in done and len(gu_of(s, gu_data)) >= min_gu(s)]
 
 
 def validate(s: dict, gus: list[dict]) -> list[str]:
     errs = []
-    if len(gus) < MIN_GU_PAGES:
-        errs.append(f"구 페이지 {len(gus)}개 ({MIN_GU_PAGES}개 이상이어야 함)")
+    if len(gus) < min_gu(s["sido"]):
+        errs.append(f"구 페이지 {len(gus)}개 ({min_gu(s['sido'])}개 이상이어야 함)")
     faqs = s.get("faqs") or []
     if len(faqs) != 3 or any(len(qa) != 2 or not all(x.strip() for x in qa) for qa in faqs):
         errs.append("FAQ 는 질문·답 3쌍")
@@ -139,11 +175,12 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
         canonical = f"{base}/{si_rel(sido)}"
 
         gu_list = "".join(
-            f'<a href="../gu/{esc(gu_file(g["sido"], g["sigungu"]))}"><b>{esc(g["sigungu"])} 폐차장</b>'
+            f'<a href="../gu/{esc(gu_file(g["sido"], g["sigungu"]))}"><b>{esc(g["sigungu"] or si)} 폐차장</b>'
             + (f'<span>동별 상담 페이지 {dong_count[(g["sido"], g["sigungu"])]}곳</span></a>' if dong_count.get((g["sido"], g["sigungu"]))
                else '<span>동별 안내 준비 중</span></a>')
             for g in gus
         )
+        dong_list = dong_list_html(regions, gu_data, sido, esc, gu_file)
         my_cases = sorted((c for c in cases if c["sido"] == sido), key=lambda c: c.get("date") or "", reverse=True)
         cases_sub = (f"{si}에서 진행한 실제 사례입니다. 지역은 카드마다 표시됩니다" if my_cases
                      else f"{si} 사례는 준비 중입니다. 유튜브와 블로그에서 실제 진행 사례를 보실 수 있습니다")
@@ -161,7 +198,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
             {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
                 {"@type": "ListItem", "position": 1, "name": "전체 지역", "item": f"{base}/"},
                 {"@type": "ListItem", "position": 2, "name": si, "item": canonical}]},
-            business_jsonld(sido, canonical, og_image.url(si_file(sido)[:-5], base), phone_disp),
+            business_jsonld(sido, canonical, og_image.url(si_og_stem(sido), base), phone_disp),
         ]
         si_crumb = f'<nav class="crumbs" aria-label="지역 경로"><a href="../index.html">전체 지역</a> › {esc(si)}</nav>'
         values = {
@@ -177,7 +214,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
             "HERO_TOP": hero_top_html(cfg, si, form_parts(cfg, si, sido, canonical, meta_title), crumb=si_crumb, updated=UPDATED_MARK),
             "WHY_BLOCK": why_block_html(f"{sido} 폐차 상담 · 당일 접수", f"{sido} 어디서든 전화 한 통이면 가까운 협력업체가 출장 방문합니다."),
             "SI": esc(si), "SI_FULL": esc(sido), "SI_JOSA": josa(sido, "은", "는"),
-            "GU_LIST_HTML": gu_list, "FAQ_HTML": faq_html, "INFO_ROWS": info_rows,
+            "GU_LIST_HTML": gu_list, "DONG_LIST_HTML": dong_list, "FAQ_HTML": faq_html, "INFO_ROWS": info_rows,
             "CHECKED_ON": esc(s.get("checked_on", "")), "UPDATED_ON": UPDATED_MARK,
             "CASES_SUB": esc(cases_sub), "CASES_HTML": case_cards_html(my_cases[:MAX_CASES]), "CASE_PHOTOS_HTML": "",
             "CONSULT_TEXT": esc(V.fill(V.GU_CONSULT[i % V.N], phone=phone_disp)),
@@ -188,7 +225,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
             **form_parts(cfg, si, sido, canonical, meta_title),
             "SCRIPT": script.replace("{{PHONE_DISPLAY}}", phone_disp),
             # 대표 이미지(og:image, 2026-10-10): og/{시·도 파일 이름}.png, "{시도} 폐차" + 대표번호
-            **og_image.parts(si_file(sido)[:-5], si, base, phone_disp),
+            **og_image.parts(si_og_stem(sido), si, base, phone_disp),
         }
         cleaned = re.sub(r"<!DOCTYPE html>\s*<!--.*?-->", "<!DOCTYPE html>", template, count=1, flags=re.DOTALL)
 

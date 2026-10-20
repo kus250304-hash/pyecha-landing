@@ -11,7 +11,7 @@
 
 lastmod: 페이지 본문(제목·H1·본문 글·FAQ·사례 카드·공공정보 표)의 해시(content_hash)를 data/page_hashes.json 에
 페이지마다 저장해 두고, 해시가 바뀐 날만 오늘로 바꾼다. 머리글(header)·길 안내·맨 아래 지역 링크(nav)·바닥글·
-스크립트·CSS·메타 태그·"최종 업데이트" 날짜는 해시에 넣지 않으므로 공통 틀만 바뀐 빌드에서는 날짜가 그대로다.
+스크립트·CSS·메타 태그·"최종 업데이트" 날짜·모든 페이지 공통 "이런 차도 됩니다" 링크 묶음은 해시에 넣지 않으므로 공통 틀만 바뀐 빌드에서는 날짜가 그대로다.
 조사 교정 같은 오타 수준 수정은 build_site.py --keep-dates 로 돌리면 해시만 새로 적고 날짜는 둔다.
 처음 한 번(해시 기록이 없을 때)은 지금 사이트맵에 적힌 날짜를 그대로 쓴다. 동·구·시·안내 페이지의
 "최종 업데이트"·dateModified 도 같은 content_hash 로 정한다(build_site.with_updated_date).
@@ -47,6 +47,8 @@ LOC_RE = re.compile(r"<loc>\s*(.*?)\s*</loc>(?:\s*<lastmod>\s*(.*?)\s*</lastmod>
 # 해시에서 빼는 것: 공통 틀(머리글·길 안내·지역 링크·바닥글·하단 고정 바)과 화면에 안 보이는 것
 STRIP_TAGS = ("script", "style", "noscript", "template", "svg", "header", "nav", "footer", "form")
 UPDATED_P_RE = re.compile(r'<p class="updated">.*?</p>', re.S)  # "최종 업데이트: …"(빌드 중에는 @@UPDATED_ON@@ 자리표)
+# 모든 동·구·시 페이지에 똑같이 들어가는 "이런 차도 됩니다" 링크 묶음(build_guide.guide_links_html)도 공통 틀로 본다(2026-10-20)
+TYPE_LINKS_RE = re.compile(r'<div class="type-links">.*?<p class="type-more">.*?</p></div>', re.S)
 
 
 def today() -> str:
@@ -60,7 +62,7 @@ def _text(fragment: str) -> str:
 def content_text(page_html: str) -> str:
     """lastmod 를 정하는 본문 글: 제목 + H1 + 본문(공통 틀·스크립트·날짜 줄을 뺀 보이는 글)."""
     title = re.search(r"<title>(.*?)</title>", page_html, re.S)
-    body = UPDATED_P_RE.sub(" ", page_html.split("<body", 1)[-1])
+    body = TYPE_LINKS_RE.sub(" ", UPDATED_P_RE.sub(" ", page_html.split("<body", 1)[-1]))
     h1 = " ".join(_text(x) for x in re.findall(r"<h1\b[^>]*>(.*?)</h1>", body, re.S))
     for tag in STRIP_TAGS:
         body = re.sub(rf"<{tag}\b.*?</{tag}>", " ", body, flags=re.S | re.I)

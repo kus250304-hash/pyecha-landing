@@ -58,7 +58,7 @@ G3. 채울 수 없는 구(검색 요약으로도 확인된 공공 정보가 한 
 G4. 채운 구를 data/gu.json 목록 끝에 넣고 `python3 scripts/build_site.py` → `python3 scripts/build_index.py` → `python3 scripts/check_pages.py` 를 실행한다(그 구의 동 페이지 길 안내 링크와 사례 연결, sitemap 이 함께 갱신된다). "구 페이지를 만들 수 없음"이나 검사 오류가 나오면 그 구 항목을 고치고 다시 실행한다. 세 번 고쳐도 안 되는 구는 data/gu.json 에서 빼고 G3 처럼 보류한다. check_pages.py 오류 0건이 될 때까지 커밋하지 않는다.
 
 [시·도 페이지 — 구 페이지(G4)가 끝난 뒤. 2026-10-02 병한님 결정]
-S1. `python3 scripts/build_si.py candidates` 를 실행한다. 구 페이지가 3개 이상인데 시·도 페이지(data/si.json)도 보류(data/si_held.json)도 없는 시·도와 JSON 뼈대가 나온다. "만들 수 있는 시·도가 없습니다"가 나오면 이 단계를 건너뛴다.
+S1. `python3 scripts/build_si.py candidates` 를 실행한다. 구 페이지가 3개 이상(제주·세종은 1개 이상, 2026-10-20)인데 시·도 페이지(data/si.json)도 보류(data/si_held.json)도 없는 시·도와 JSON 뼈대가 나온다. "만들 수 있는 시·도가 없습니다"가 나오면 이 단계를 건너뛴다.
 S2. 시·도마다 뼈대를 채운다(scripts/build_si.py 맨 위 규칙):
    - faqs: 질문·답 3쌍. 질문에 그 시·도 줄임 이름(서울, 대구 …)을 넣고, docs/keyword-insights-2026-10-02.md 4절 주제(조기폐차·압류·상속·서류·말소·방치차·시동 등) 가운데 골라 그 시·도 상황(아파트 지하주차장, 농촌 마당, 섬 등)에 맞게 쓴다. 다른 시·도 FAQ 를 복사하지 않는다.
    - public_info: 말소등록 관청(시청·구청·차량등록사업소), 그 시·도 노후차 조기폐차 공고 중 확인되는 줄(자동차 등록대수 줄은 빌더가 통계 파일의 시·군·구 합계로 자동으로 붙이므로 찾지 않는다). label·value·source·url·grade 를 적고 금액은 쓰지 않는다. 실제로 연 공식 페이지면 grade "opened", 검색 결과 요약만이면 grade "summary"(페이지에 '(확인 중)'). 요약으로도 확인 못 한 줄은 dropped_info 에 이유를 적는다.

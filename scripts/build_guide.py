@@ -323,17 +323,20 @@ def guide_text(g: dict) -> str:
 # 첫 화면(hero)에는 넣지 않는다(압류 같은 낱말이 있어 check_pages 첫 화면 검사에 걸림)
 TYPE_BUTTONS = [("압류 있는 차", "압류-있는-차-폐차.html"), ("11년 넘은 차 말소", "차령초과-폐차.html"),
                 ("상속·법인차", "상속차-법인차-서류.html"), ("시동 안 걸리는 차", "시동-안-걸리는-차.html"),
-                ("오래 세워둔 차", "방치차-오래-세워둔-차.html")]
-TYPE_MORE = [("저당만 있는 차", "저당만-있는-차.html"), ("폐차 절차", "폐차-절차.html"), ("필요 서류", "폐차-필요-서류.html"),
+                ("오래 세워둔 차", "방치차-오래-세워둔-차.html"), ("저당만 있는 차", "저당만-있는-차.html")]
+# 버튼 = 주제 페이지 6장 전부(2026-10-20 저당을 작은 글자에서 버튼으로 옮김), 작은 글자 = 안내 5장
+TYPE_MORE = [("폐차 절차", "폐차-절차.html"), ("필요 서류", "폐차-필요-서류.html"),
              ("수출 비교", "폐차-수출-비교.html"), ("금액 정하는 방법", "폐차-금액-정하는-방법.html"), ("조기폐차", "조기폐차-지원-안내.html")]
 
 
 def guide_links_html(prefix: str = "../") -> str:
-    """동·구·시 페이지 "폐차 유형별 안내" 칸에 넣는 안내 11장 링크: 버튼 5개 + 작은 글자 한 줄(2026-10-19)."""
+    """동·구·시 페이지 "이런 차도 됩니다" 칸에 넣는 안내 11장 링크: 주제 6장 버튼 + 안내 5장 작은 글자 한 줄(2026-10-19, 2026-10-20 버튼 6개)."""
     from build_site import esc
     files = [f for _, f in TYPE_BUTTONS + TYPE_MORE]
     if sorted(files) != sorted(x["file"] for x in ALL_GUIDES):  # 안내 페이지를 새로 만들면 여기 둘 중 한 곳에 넣어야 한다
         raise SystemExit("build_guide.TYPE_BUTTONS·TYPE_MORE 가 안내·주제 페이지 목록과 다름")
+    if sorted(f for _, f in TYPE_BUTTONS) != sorted(t["file"] for t in TOPICS):  # 버튼은 주제 페이지 전부(2026-10-20)
+        raise SystemExit("build_guide.TYPE_BUTTONS 는 주제 페이지(topics.TOPICS) 전부여야 함")
 
     def a(label: str, f: str) -> str:
         return f'<a href="{prefix}guide/{esc(f)}">{esc(label)}</a>'
@@ -568,6 +571,16 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], keep_dates: 
         bar_second = '<a class="btn btn-quote" href="#consult" style="background:#fff"><svg><use href="#i-chat"/></svg>상담 안내</a>'
     area = area_links_html(regions, gu_data)
     cases = load_json(CASES_INDEX, default=[])
+    # 주제 페이지 맨 아래 "문의 많은 지역"(2026-10-20): 첫 화면과 같은 구·시군 10곳(pick_index_requests.popular_gu)
+    from build_site import SIDO_SHORT, gu_file
+    from pick_index_requests import popular_gu
+    popular = popular_gu(10)
+    popular_html = ('  <section id="popular" style="background:#fff">\n    <div class="wrap">\n'
+                    '      <h2 class="sec-title display">문의 많은 지역</h2>\n'
+                    '      <p class="sec-sub">문의가 온 곳과 상담이 많은 시·군입니다. 차가 있는 곳의 페이지에서 동별 안내를 보실 수 있습니다</p>\n'
+                    '      <div class="neighbors">'
+                    + "".join(f'<a href="../gu/{esc(gu_file(sd, sg))}">{esc(sg or SIDO_SHORT[sd])} 폐차 안내</a>' for sd, sg in popular)
+                    + "</div>\n    </div>\n  </section>") if popular else ""
     cross = {}
     for f, idx, files in GUIDE_CROSS_LINKS:
         cross.setdefault(f, {})[idx] = files
@@ -627,6 +640,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], keep_dates: 
                     "폐차·수출 비교 견적 받기", "차 번호로 원부 확인 상담 받기" if g.get("no_export") else "폐차·수출 비교 견적 받기"),
                 "SCRIPT": script.replace("{{PHONE_DISPLAY}}", phone_disp),
                 "TOPIC_STYLE": TOPIC_STYLE,
+                "POPULAR_HTML": popular_html,
                 "OG_META": og_image.parts(g["file"][:-5], name, base, phone_disp, suffix=suffix)["OG_META"],
             })
         else:
@@ -638,7 +652,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], keep_dates: 
             values.update({
                 "H1": esc(g["h1"]).replace("&lt;br&gt;", "<br>"), "LEAD": esc(g["lead"]), "CONTACT_LINE": esc(contact_line),
                 "SECTIONS_HTML": "".join(sections),
-                "AFTER_FAQ": "", "BOTTOM_FORM": "", "SCRIPT": "", "OG_META": "", "TOPIC_STYLE": "",
+                "AFTER_FAQ": "", "BOTTOM_FORM": "", "SCRIPT": "", "OG_META": "", "TOPIC_STYLE": "", "POPULAR_HTML": "",
             })
 
         def sub(m: re.Match) -> str:

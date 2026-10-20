@@ -5,6 +5,7 @@ IndexNow 로 새 페이지·바뀐 페이지 주소를 검색엔진에 알린다
   python3 scripts/indexnow.py all              # 사이트맵(인덱스의 나눈 파일 전부)의 모든 주소 (처음 한 번)
   python3 scripts/indexnow.py changed          # 마지막 커밋(HEAD)에서 새로 생기거나 바뀐 .html 의 주소만
   python3 scripts/indexnow.py changed <커밋>   # 그 커밋에서 바뀐 것 (기본 HEAD)
+  python3 scripts/indexnow.py changed --body-only  # 본문이 실제로 바뀐 페이지와 새 페이지만(공통 틀만 바뀐 페이지 뺌)
   python3 scripts/indexnow.py new [커밋]       # 그 커밋에서 새로 생긴 .html 의 주소만 (2026-10-16부터 기본으로 쓰는 것)
   --dry-run                                    # 보내지 않고 주소 수와 앞 몇 개만 출력
 
@@ -59,8 +60,20 @@ def date_only_change(rev: str, path: str) -> bool:
     return mask(show(f"{rev}~1")) == mask(show(rev))
 
 
-def changed_urls(base: str, rev: str, kinds: str = "AM") -> list[str]:
-    """그 커밋에서 새로 생기거나(A) 바뀐(M) .html 파일 → sitemap 에 있는 주소. kinds="A" 면 새로 생긴 것만."""
+def body_unchanged(rev: str, path: str) -> bool:
+    """그 커밋에서 이 페이지의 본문 해시(sitemap_lib.content_hash)가 그대로면 True(공통 틀·구조화 데이터·날짜만 바뀜)."""
+    sys.path.insert(0, str(ROOT / "scripts"))
+    import sitemap_lib
+
+    def show(r: str) -> str:
+        return subprocess.run(["git", "-c", "core.quotepath=false", "show", f"{r}:{path}"], cwd=ROOT,
+                              capture_output=True, text=True, encoding="utf-8").stdout
+    return sitemap_lib.content_hash(show(f"{rev}~1")) == sitemap_lib.content_hash(show(rev))
+
+
+def changed_urls(base: str, rev: str, kinds: str = "AM", body_only: bool = False) -> list[str]:
+    """그 커밋에서 새로 생기거나(A) 바뀐(M) .html 파일 → sitemap 에 있는 주소. kinds="A" 면 새로 생긴 것만.
+    body_only(--body-only, 2026-10-20)면 본문 해시가 그대로인 페이지(공통 틀만 바뀐 페이지)도 뺀다."""
     out = subprocess.run(["git", "-c", "core.quotepath=false", "diff", "--name-status", "--no-renames", f"{rev}~1", rev],
                          cwd=ROOT, check=True, capture_output=True, text=True, encoding="utf-8").stdout
     rows = [line.split("\t", 1) for line in out.splitlines() if line[:1] in kinds and line.endswith(".html")]
@@ -69,6 +82,11 @@ def changed_urls(base: str, rev: str, kinds: str = "AM") -> list[str]:
     skipped = len(rows) - len(paths)
     if skipped:
         print(f"IndexNow: 날짜만 바뀐 페이지 {skipped}개는 뺌")
+    if body_only:
+        kept = [p for st, p in rows if p in paths and (st[:1] == "A" or not body_unchanged(rev, p))]
+        if len(kept) != len(paths):
+            print(f"IndexNow: 본문이 그대로인(공통 틀만 바뀐) 페이지 {len(paths) - len(kept)}개는 뺌 (--body-only)")
+        paths = kept
     listed = {unquote(u): u for u in sitemap_urls()}
     urls = []
     for p in paths:
@@ -97,6 +115,8 @@ def main() -> None:
     ap.add_argument("mode", choices=["all", "changed", "new"])
     ap.add_argument("rev", nargs="?", default="HEAD", help="changed·new 일 때 기준 커밋 (기본 HEAD)")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--body-only", action="store_true",
+                    help="changed 에서 본문 해시가 그대로인 페이지(공통 틀·구조화 데이터만 바뀐 페이지)는 빼고 보냄(2026-10-20)")
     args = ap.parse_args()
 
     cfg = json.loads(CONFIG.read_text(encoding="utf-8"))
@@ -109,7 +129,7 @@ def main() -> None:
         return
 
     try:
-        urls = sitemap_urls() if args.mode == "all" else changed_urls(base, args.rev, "A" if args.mode == "new" else "AM")
+        urls = sitemap_urls() if args.mode == "all" else changed_urls(base, args.rev, "A" if args.mode == "new" else "AM", args.body_only)
     except subprocess.CalledProcessError as e:
         print(f"IndexNow: 바뀐 파일을 읽지 못함 ({e.stderr.strip()[:200]})")
         return

@@ -71,6 +71,21 @@ def inquiry_group(key: tuple[str, str], keys) -> list[tuple[str, str]]:
     return ([key] if key in keys else []) + group
 
 
+def popular_gu(limit: int = 10) -> list[tuple[str, str]]:
+    """첫 화면·주제 페이지 "문의 많은 지역"(2026-10-20): 문의가 온 페이지의 구·시군 페이지(적힌 순서) →
+    점수표(data/priority_regions.json) 상위 지방 시·군(build_gu.min_dong_pages 가 0)의 구 페이지. 구 페이지 파일이 있는 곳만, limit 개.
+    빌드할 때마다 다시 고르므로 문의가 더해지거나 구 페이지가 생기면 저절로 바뀐다."""
+    base = load_json(CONFIG)["site_base_url"].rstrip("/")
+    gu_data = load_json(GU_DATA, default=[])
+    have = {(g["sido"], g["sigungu"]) for g in gu_data if (ROOT / "gu" / gu_file(g["sido"], g["sigungu"])).exists()}
+    out = [k for k in inquiry_places(inquiry_text(), base, load_json(REGIONS), gu_data) if k in have]
+    for e in load_json(ROOT / "data" / "priority_regions.json", default={}).get("gu", []):
+        k = (e["sido"], e["sigungu"])
+        if k in have and k not in out and min_dong_pages(*k) == 0:
+            out.append(k)
+    return out[:limit]
+
+
 def inquiry_text() -> str:
     text = LOG.read_text(encoding="utf-8") if LOG.exists() else ""
     return next((body for head, body in sections(text) if head.startswith("문의가 온 페이지")), "")

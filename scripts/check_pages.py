@@ -507,7 +507,7 @@ SI_TITLE_RE = re.compile(r"<title>(.+?) 폐차장 · 폐차 \| 시·군·구별 
 def check_si_pages(cfg: dict, sitemap: str, all_sidos: set[str]) -> list[str]:
     """시·도 페이지(si/, 2026-10-02): si.json 과 파일이 맞는지, 구 페이지 3개 이상·링크, 필수 문구, 금액·단정 표현,
     다른 시도 이름, sitemap, 소속 구 페이지와 첫 화면에서 이 페이지로 오는 링크."""
-    from build_si import MIN_GU_PAGES, gu_of, load_si, si_file
+    from build_si import gu_of, load_si, min_gu, si_file
     problems = []
     si_data = load_si()
     gu_path = ROOT / "data" / "gu.json"
@@ -552,8 +552,13 @@ def check_si_pages(cfg: dict, sitemap: str, all_sidos: set[str]) -> list[str]:
             if sido in body:
                 problems.append(f"{tag}: 다른 시도 이름 '{sido}' 가 있음")
         gus = gu_of(s["sido"], gu_data)
-        if len(gus) < MIN_GU_PAGES:
-            problems.append(f"{tag}: 구 페이지 {len(gus)}개 ({MIN_GU_PAGES}개 이상일 때만 만든다)")
+        if len(gus) < min_gu(s["sido"]):
+            problems.append(f"{tag}: 구 페이지 {len(gus)}개 ({min_gu(s['sido'])}개 이상일 때만 만든다, 제주·세종은 1개)")
+        # 구 → 동 목록(2026-10-20): 그 시·도의 동 페이지 전부가 시·도 페이지에 링크돼 첫 화면 → 시·도 → 동이 2클릭
+        for slug in sorted(r["slug"] for r in json.loads(REGIONS_PATH.read_text(encoding="utf-8"))
+                           if r["sido"] == s["sido"] and (PAGES_DIR / f'{r["slug"]}.html').exists()):
+            if f'href="../pages/{slug}.html"' not in html:
+                problems.append(f"{tag}: 동 페이지 pages/{slug}.html 링크 없음(구 → 동 목록)")
         for g in gus:
             gf = gu_file(g["sido"], g["sigungu"])
             if f'href="../gu/{gf}"' not in html:
@@ -1015,8 +1020,8 @@ def main() -> None:
     # 첫 화면 홈(2026-10-13): 지역 목록 위에 동 페이지와 같은 첫 화면(지역명 "전국", 숨은 칸 region "첫 화면 홈")
     index_text = (ROOT / "index.html").read_text(encoding="utf-8")
     home = re.search(r'<header class="hero hero-v3">.*?</header>', index_text, flags=re.DOTALL)
-    if not home or home.start() > index_text.find('<div class="region-group"'):
-        errors.append("index.html: 지역 목록 위에 첫 화면(build_index.py 의 apply_home_hero)이 없음")
+    if not home or home.start() > index_text.find('<main class="container">'):
+        errors.append("index.html: 아래 링크 칸들 위에 첫 화면(build_index.py 의 apply_home_hero)이 없음")
     else:
         h = home.group(0)
         errors += [f"index.html: {x}" for x in hero_problems(h, need_meta=False)]
@@ -1028,6 +1033,21 @@ def main() -> None:
                 errors.append(f"index.html: 첫 화면 폼에 {label} 없음")
         if index_text.count("<h1") != 1:
             errors.append(f"index.html: H1 이 {index_text.count('<h1')}개 (1개여야 함)")
+    # 첫 화면 아래 네 칸(2026-10-20, build_index.render_home_links): 동 페이지 전체 목록 대신 시·도 버튼·주제 6장·문의 많은 지역·최근 사례
+    main_part = re.search(r'<main class="container">.*?</main>', index_text, flags=re.DOTALL)
+    main_part = main_part.group(0) if main_part else ""
+    for sec in ("regions", "types", "popular"):
+        if f'id="{sec}"' not in main_part:
+            errors.append(f"index.html: 첫 화면 아래 '{sec}' 칸이 없음 (build_index.py)")
+    from build_guide import TOPICS
+    for t in TOPICS:
+        if f'href="guide/{t["file"]}"' not in main_part:
+            errors.append(f"index.html: '이런 차도 됩니다' 칸에 주제 페이지 {t['file']} 버튼이 없음")
+    if 'href="pages/' in main_part.split('id="recent-cases"')[0]:
+        errors.append("index.html: 첫 화면에 동 페이지 목록이 남아 있음(시·도 페이지에서 동으로 감)")
+    for short in SIDO_SHORT.values():
+        if f'id="sido-{short}"' not in main_part and any(r["sido"] == k for k, v in SIDO_SHORT.items() if v == short for r in regions):
+            errors.append(f"index.html: '지역별 폐차 상담' 칸에 {short}(id=sido-{short})가 없음")
         if "function formatPhone" not in index_text:
             errors.append("index.html: 견적 폼 전송 스크립트 없음")
 
