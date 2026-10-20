@@ -100,6 +100,14 @@ KIND = (("pages/", "동"), ("gu/", "구"), ("si/", "시도"), ("guide/", "주제
 
 def inquiries(span: tuple[date, date]) -> str:
     """docs/index-requests.md "문의가 온 페이지" 칸에서 그 주 날짜 줄을 페이지 종류별로 셈(적힌 것만)."""
+    counts = inquiry_counts(span)
+    if not counts:
+        return "기록 0건"
+    return " · ".join(f"{k} {n}" for k, n in counts.items()) + " (기록된 문의 기준)"
+
+
+def inquiry_counts(span: tuple[date, date]) -> dict[str, int]:
+    """{페이지 종류: 건수} — docs/index-requests.md "문의가 온 페이지" 칸의 그 주 날짜 줄."""
     text = DOC.parent.joinpath("index-requests.md").read_text(encoding="utf-8")
     sec = next((p.split("\n", 1)[1] for p in text.split("\n## ")[1:] if p.startswith("문의가 온 페이지")), "")
     counts: dict[str, int] = {}
@@ -111,9 +119,22 @@ def inquiries(span: tuple[date, date]) -> str:
         path = unquote(u.group(0)).split("/", 3)[3] if u.group(0).count("/") >= 3 else ""
         kind = next((k for p, k in KIND if path.startswith(p)), "첫 화면")
         counts[kind] = counts.get(kind, 0) + 1
-    if not counts:
-        return "기록 0건"
-    return " · ".join(f"{k} {n}" for k, n in counts.items()) + " (기록된 문의 기준)"
+    return counts
+
+
+def goal_lines() -> list[str]:
+    """표 바로 위의 "북극성:"·"3개월 목표" 줄(docs/weekly-check.md, 2026-10-20). 글은 그 파일에서 고친다."""
+    text = DOC.read_text(encoding="utf-8") if DOC.exists() else ""
+    head = text.split(START, 1)[0]
+    return [ln.strip() for ln in head.splitlines() if ln.strip().startswith(("북극성:", "3개월 목표"))]
+
+
+def daily_avg_line(span: tuple[date, date]) -> str:
+    """이번 주 하루 평균 문의 수. 저장소에서는 기록된 문의(index-requests.md)만 셀 수 있고,
+    전화 클릭·폼·문자 전체(GA4)는 캡처를 받아야 한다. 숫자를 지어내지 않는다."""
+    n = sum(inquiry_counts(span).values())
+    return (f"이번 주 하루 평균 문의 {n / 7:.1f}건(기록된 문의 {n}건 ÷ 7일, "
+            f"전화 클릭·폼·문자 전체는 GA4 {NEED})")
 
 
 def doc_rows() -> dict[str, list[str]]:
@@ -140,6 +161,7 @@ def table(report_day: date) -> tuple[str, list[str]]:
     }
     old = doc_rows()
     lines = [f"주: 지난주 {last[0]:%m/%d}~{last[1]:%m/%d} · 이번 주 {this[0]:%m/%d}~{this[1]:%m/%d} (보고 {report_day.isoformat()})",
+             daily_avg_line(this),
              "", "| 번호 | 숫자 이름 | 지난주 | 이번 주 | 목표 | 출처 |", "|---|---|---|---|---|---|"]
     missing = []
     for num, name in ROWS:
@@ -160,7 +182,11 @@ def main() -> None:
     args = ap.parse_args()
     day = date.fromisoformat(args.date) if args.date else datetime.now(KST).date()
     md, missing = table(day)
-    print(md)
+    # 보고에는 표 맨 위에 북극성(옆에 이번 주 하루 평균 문의)·3개월 목표 줄을 같이 보인다(파일의 표 칸에는 평균 줄만 들어감)
+    rows = md.splitlines()
+    for ln in goal_lines():
+        print(f"{ln} — {rows[1]}" if ln.startswith("북극성:") else ln)
+    print("\n".join(rows[:1] + rows[2:]))  # 평균 줄은 북극성 옆에 이미 보였으니 표 위에서는 뺀다
     print("\n비어 있는 칸(캡처 필요): " + (", ".join(missing) if missing else "없음"))
     if args.write:
         text = DOC.read_text(encoding="utf-8")
