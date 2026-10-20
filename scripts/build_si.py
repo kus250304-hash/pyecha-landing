@@ -7,7 +7,9 @@ data/si.json + data/gu.json 으로 시·도 페이지(si/<시도 줄임 이름>-
   python3 scripts/build_si.py candidates   # 만들 수 있는데 아직 없는 시·도와 si.json 뼈대 (파일을 바꾸지 않음)
 
 조건: 그 시·도에 구 페이지(data/gu.json)가 3개 이상(MIN_GU_PAGES). 예외(2026-10-20 병한님 결정, SI_EXCEPTIONS):
-제주(시가 제주시·서귀포시 둘뿐)와 세종(구가 없고 시 전체가 구 페이지 하나)은 구 페이지가 1개 이상이면 만든다.
+제주(시가 제주시·서귀포시 둘뿐)는 구 페이지가 1개 이상이면 만든다. 세종은 같은 날 만들었다가 구 페이지
+(gu/세종-폐차장.html)와 제목이 겹쳐 되돌렸다(병한님 3번 결정): 시·도 페이지를 만들지 않고 data/si_held.json 에 보류,
+이미 알린 si/세종-폐차장.html 은 구 페이지로 넘겨주는 자동 이동 페이지로 둔다(SI_REDIRECTS, 사이트맵에는 안 들어감).
 si.json·si_held.json 에 있는 시·도는 후보에서 빠진다.
 
 si.json 항목 (확인된 것만 넣는다. 못 채우면 data/si_held.json 에 이유와 함께 보류)
@@ -45,13 +47,29 @@ OUT = ROOT / "si"
 SI_DATA = ROOT / "data" / "si.json"
 SI_HELD = ROOT / "data" / "si_held.json"
 MIN_GU_PAGES = 3
-SI_EXCEPTIONS = {"제주특별자치도", "세종특별자치시"}  # 구 페이지 1개 이상이면 만듦(2026-10-20)
+SI_EXCEPTIONS = {"제주특별자치도"}  # 구 페이지 1개 이상이면 만듦(2026-10-20)
+# 시·도 페이지 대신 자동 이동 페이지로 두는 주소: si/ 파일 이름 → (지역 이름, 옮겨 갈 경로). 2026-10-20 세종
+SI_REDIRECTS = {"세종-폐차장.html": ("세종", "gu/세종-폐차장.html")}
 MAX_CASES = 6
 
 
 def si_file(sido: str) -> str:
     from build_site import SIDO_SHORT
     return f"{SIDO_SHORT[sido]}-폐차장.html"
+
+
+def redirect_html(label: str, target: str, target_abs: str) -> str:
+    """si/ 안의 옛 주소를 다른 페이지로 넘겨주는 자동 이동 페이지(meta refresh, canonical 은 옮겨 갈 주소)."""
+    rel = "../" + quote(target)
+    return ("<!DOCTYPE html>\n<html lang=\"ko\">\n<head>\n<meta charset=\"utf-8\">\n"
+            f"<title>{label} 폐차 상담 페이지로 이동합니다</title>\n"
+            f"<link rel=\"canonical\" href=\"{target_abs}\">\n"
+            "<link rel=\"icon\" href=\"../favicon.ico\" sizes=\"any\">\n"
+            f"<meta http-equiv=\"refresh\" content=\"0; url={rel}\">\n"
+            f"<script>location.replace(\"{rel}\");</script>\n"
+            "</head>\n<body>\n"
+            f"<p><a href=\"{rel}\">{label} 폐차 상담 페이지로 이동</a></p>\n"
+            "</body>\n</html>\n")
 
 
 def si_og_stem(sido: str) -> str:
@@ -66,7 +84,7 @@ def si_rel(sido: str) -> str:
 
 
 def gu_of(sido: str, gu_data: list[dict]) -> list[dict]:
-    """그 시·도의 구 페이지. 시군구가 빈 것(세종 시 전체 페이지)은 세종 예외일 때만 넣는다."""
+    """그 시·도의 구 페이지. 시군구가 빈 것(세종 시 전체 페이지)은 SI_EXCEPTIONS 에 있을 때만 넣는다."""
     return sorted((g for g in gu_data if g["sido"] == sido and (g["sigungu"] or sido in SI_EXCEPTIONS)),
                   key=lambda g: g["sigungu"])
 
@@ -242,6 +260,12 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
             out.write_text(html_text, encoding="utf-8")
             changed.append(si_rel(sido))
             print(f"렌더링: si/{out.name}")
+    for name, (label, target) in SI_REDIRECTS.items():  # 시·도 페이지 대신 자동 이동(2026-10-20 세종)
+        out = OUT / name
+        text = redirect_html(label, target, f"{base}/{quote(target)}")
+        if not out.exists() or out.read_text(encoding="utf-8") != text:
+            out.write_text(text, encoding="utf-8")
+            print(f"자동 이동: si/{name} → {target}")
     if problems:
         raise SystemExit("시·도 페이지를 만들 수 없음:\n  " + "\n  ".join(problems))
     return changed

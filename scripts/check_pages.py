@@ -229,8 +229,8 @@ def check_business_jsonld() -> list[str]:
     """동·구·시 페이지 구조화 데이터(2026-10-10): FAQPage 와 AutoWrecker 가 각각 하나, AutoWrecker 에
     name·telephone·areaServed·url·image 가 있고 address·priceRange 는 없음. url 은 그 페이지 canonical, image 는 og:image."""
     problems = []
-    files = sorted((ROOT / "pages").glob("*.html")) + sorted((ROOT / "si").glob("*.html")) + [
-        f for f in sorted((ROOT / "gu").glob("*.html")) if 'http-equiv="refresh"' not in f.read_text(encoding="utf-8")]
+    files = sorted((ROOT / "pages").glob("*.html")) + [  # 자동 이동 페이지(옛 영문 구 주소·si/세종)는 뺀다
+        f for d in ("si", "gu") for f in sorted((ROOT / d).glob("*.html")) if 'http-equiv="refresh"' not in f.read_text(encoding="utf-8")]
     for f in files:
         text = f.read_text(encoding="utf-8")
         rel = f.relative_to(ROOT).as_posix()
@@ -514,7 +514,11 @@ def check_si_pages(cfg: dict, sitemap: str, all_sidos: set[str]) -> list[str]:
     gu_data = json.loads(gu_path.read_text(encoding="utf-8")) if gu_path.exists() else []
     want = {si_file(s["sido"]): s for s in si_data}
     have = {p.name for p in (ROOT / "si").glob("*.html")} if (ROOT / "si").exists() else set()
+    from build_si import SI_REDIRECTS
     for name in sorted(have - set(want)):
+        text = (ROOT / "si" / name).read_text(encoding="utf-8")
+        if name in SI_REDIRECTS and 'http-equiv="refresh"' in text:
+            continue  # 시·도 페이지 대신 둔 자동 이동 페이지(2026-10-20 세종 → gu/세종-폐차장.html)
         problems.append(f"si/{name}: data/si.json 에 없는 시·도 페이지")
     index_html = (ROOT / "index.html").read_text(encoding="utf-8") if (ROOT / "index.html").exists() else ""
     from build_site import gu_file

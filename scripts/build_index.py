@@ -291,7 +291,9 @@ def render_home_links(by_sido: dict[str, list[tuple[str, str]]]) -> str:
             continue
         links = ([(n, "gu/" + f) for n, f in sorted(gu_by_sido.get(sido, []))]
                  or [(full.split()[-1], "pages/" + f) for full, f in sorted(by_sido.get(sido, []))])
-        if links:
+        if len(links) == 1:  # 구 페이지 하나가 곧 시 전체인 곳(세종, 2026-10-20)은 그 페이지로 가는 버튼
+            chips.append(f'<a id="sido-{esc(short)}" href="{esc(links[0][1])}">{esc(short)}</a>')
+        elif links:
             chips.append(f'<span class="chip-group" id="sido-{esc(short)}">{esc(short)}: '
                          + " · ".join(f'<a href="{esc(h)}">{esc(n)}</a>' for n, h in links) + "</span>")
     label = dict((f, l) for l, f in TYPE_BUTTONS)
