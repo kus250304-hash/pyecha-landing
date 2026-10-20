@@ -152,6 +152,57 @@ def validate(g: dict, dongs: list[dict]) -> list[str]:
     return errs
 
 
+def landmark_line(r: dict) -> str:
+    """동 목록 한 줄(2026-10-20): 그 동 페이지 landmark_desc 의 첫 문장 그대로(사실 확인을 거친 글). 비면 랜드마크 이름.
+    동 페이지에서만 허용되는 장소 설명("국내 최대 규모의 ○○" 등)이나 금액·약속 표현이 든 문장은 구 페이지 검사
+    (check_pages.GU_BAN_RE 등)를 그대로 지키도록 쓰지 않고 랜드마크 이름만 쓴다. 문장을 고쳐 쓰지 않는다."""
+    desc = (r.get("landmark_desc") or "").strip()
+    first = re.split(r"(?<=다\.)\s+", desc, maxsplit=1)[0] if desc else ""
+    if first and (LINE_BAN_RE.search(first) or BAN_RE.search(first)):
+        first = ""
+    return first or r.get("landmark_name", "")
+
+
+LINE_BAN_RE = re.compile(r"최고가|1등|최대(?!한)|실시간\s*접수|보장|무조건|100%|1위|최저가")
+
+
+_LEGAL: dict[tuple[str, str], list[dict]] = {}
+
+
+def other_dongs(sido: str, sigungu: str, dongs: list[dict]) -> list[str]:
+    """그 시군구의 법정 읍·면·동(data/legal_dong_list.csv) 중 동 페이지가 없는 것의 이름(2026-10-20).
+    "종로1가~6가"처럼 숫자+가 만 다른 동은 한 이름("종로1~6가")으로 묶는다. 이름 말고는 아무것도 쓰지 않는다."""
+    import csv
+    if not _LEGAL:
+        for row in csv.DictReader((ROOT / "data" / "legal_dong_list.csv").open(encoding="utf-8-sig")):
+            _LEGAL.setdefault((row["시도"], row["시군구"]), []).append(row)
+    covered_codes = {r.get("code") for r in dongs}
+    covered_names = {r["dong"] for r in dongs} | {p for r in dongs for p in r.get("dong_parts", [])}
+    plain: set[str] = set()
+    ga: dict[str, list[int]] = {}
+    for row in _LEGAL.get((sido, sigungu), []):
+        name = row["읍면동"]
+        if row["법정동코드"] in covered_codes or name in covered_names:
+            continue
+        m = re.fullmatch(r"(.+?)(\d+)가", name)
+        if m and m.group(1) not in covered_names:
+            ga.setdefault(m.group(1), []).append(int(m.group(2)))
+        elif not m:
+            plain.add(name)
+    for base, nums in ga.items():
+        nums.sort()
+        plain.add(f"{base}{nums[0]}가" if len(nums) == 1 else f"{base}{nums[0]}~{nums[-1]}가")
+    return sorted(plain)
+
+
+def nearby_cases(slug: str, sido: str, cases: list[dict], n: int = 3) -> list[dict]:
+    """같은 시·도의 다른 시군구 사례 최신 n건(그 구 사례가 모자랄 때 "가까운 지역 사례", 2026-10-20)."""
+    from build_site import gu_slug
+    others = [c for c in cases if c["sido"] == sido and gu_slug(c["sido"], c["sigungu"]) != slug
+              and (ROOT / "cases" / f"{c['slug']}.html").exists()]
+    return sorted(others, key=lambda c: (c.get("date") or "", c["slug"]), reverse=True)[:n]
+
+
 def gu_cases(slug: str, cases: list[dict]) -> list[dict]:
     """이 구(세종은 시 전체)에서 진행한 사례, 최신순."""
     from build_site import gu_slug
@@ -218,10 +269,22 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
             cases_sub = f"{gu} 사례는 준비 중입니다. 유튜브와 블로그에서 실제 진행 사례를 보실 수 있습니다"
 
         intro_html = f"<p>{esc(g['intro'].strip())}</p>"
+        # 동 목록(2026-10-20 보강): 동 이름 + 그 동 페이지에서 이미 사실 확인을 거친 랜드마크 문장 첫 줄(regions.json 그대로)
         dong_list = "".join(
-            f'<a href="../pages/{esc(r["slug"])}.html"><b>{esc(r["dong"])} 폐차</b><span>{esc(r["landmark_name"])}</span></a>'
+            f'<a href="../pages/{esc(r["slug"])}.html"><b>{esc(r["dong"])} 폐차</b><span>{esc(landmark_line(r))}</span></a>'
             for r in dongs
         ) or '<p class="note">동별 안내 준비 중</p>'  # 동 페이지가 없는 지방 시·군(2026-10-15)
+        others = other_dongs(sido, sigungu, dongs)
+        other_html = (f'<p class="note other-dongs">{esc(gu)}의 그 밖의 읍·면·동: {esc(" · ".join(others))}</p>'
+                      if others else "")
+        # 그 구 사례가 3건보다 적으면 같은 시·도의 다른 시군구 사례 최신 3건을 "가까운 지역 사례"로 뒤에 붙인다(2026-10-20)
+        nearby = nearby_cases(g["slug"], sido, cases) if len(my_cases) < 3 else []
+        if not my_cases and nearby:
+            cases_sub = f"{gu} 사례는 아직 없어 같은 {SIDO_SHORT[sido]} 안 가까운 지역 사례를 보여 드립니다"
+        nearby_html = ('<h3 class="nearby-title">가까운 지역 사례</h3><ul class="nearby-cases">' + "".join(
+            f'<li><a href="../cases/{esc(c["slug"])}.html">{esc(c["title"])}</a>'
+            f'<span>{esc(" ".join(x for x in (c["sigungu"] or SIDO_SHORT[sido], c["dong"]) if x))} 작업 사례'
+            + (f' · {esc(c["date"])}' if c.get("date") else "") + "</span></li>" for c in nearby) + "</ul>") if nearby else ""
         # 구마다 다른 질문 3개 + 실제 통화 FAQ 풀에서 4개(2026-10-03)
         faqs = [V.far_faq(gu)] + [tuple(qa) for qa in g["faqs"]] + V.call_faqs("gu:" + g["slug"], 4)  # 맨 위 안심 FAQ(2026-10-16)
         faq_html = "\n      ".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in faqs)
@@ -269,6 +332,8 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
             "LIST_SUB": esc(V.fill(v_intro["list"], gu=gu) if dongs else
                             f"{gu} 동별 안내 페이지는 차례로 늘어납니다. 동과 상관없이 {gu} 어디든 전화로 출장 방문을 상담할 수 있습니다."),
             "DONG_LIST_HTML": dong_list,
+            "OTHER_DONGS_HTML": other_html,
+            "NEARBY_CASES_HTML": nearby_html,
             "FAQ_HTML": faq_html,
             "INFO_ROWS": info_rows,
             "CHECKED_ON": esc(g.get("checked_on", "")),

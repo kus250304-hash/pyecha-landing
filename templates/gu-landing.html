@@ -28,6 +28,12 @@
   .gu-list a { display: block; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; color: inherit; text-decoration: none; }
   .gu-list a b { display: block; font-size: 16px; }
   .gu-list a span { display: block; font-size: 13px; color: #5E6E70; margin-top: 2px; }
+  .other-dongs { margin-top: 14px; line-height: 1.8; }
+  .nearby-title { margin: 22px 0 6px; font-size: 17px; }
+  .nearby-cases { list-style: none; margin: 0; padding: 0; }
+  .nearby-cases li { padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .nearby-cases a { font-weight: 700; color: inherit; }
+  .nearby-cases span { display: block; font-size: 13px; color: #5E6E70; }
   .info { width: 100%; border-collapse: collapse; margin-top: 14px; background: #fff; border-radius: 14px; overflow: hidden; font-size: 15px; }
   .info th, .info td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--line); }
   .info th { width: 30%; background: var(--ground); font-weight: 800; }
@@ -87,6 +93,7 @@
       <h2 class="sec-title display">{{GU}} 동별 폐차 상담</h2>
       <p class="sec-sub">{{LIST_SUB}}</p>
       <div class="gu-list">{{DONG_LIST_HTML}}</div>
+      {{OTHER_DONGS_HTML}}
     </div>
   </section>
 
@@ -103,6 +110,7 @@
       <h2 class="sec-title display">{{GU}} 폐차 사례</h2>
       <p class="sec-sub">{{CASES_SUB}}</p>
       <div class="cases-wrap"><div>{{CASES_HTML}}</div><div class="cases-side" data-nosnippet>{{CASE_PHOTOS_HTML}}{{OG_IMG_HTML}}</div></div>
+      {{NEARBY_CASES_HTML}}
       <div class="ext">
         <div class="yt">
           <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
