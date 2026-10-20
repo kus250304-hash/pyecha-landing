@@ -108,12 +108,23 @@ FRAME_SKIP_TAIL = 5      # 영상 마지막 5초(지역·차종을 말하는 부
 FRAME_CANDIDATES = 12    # 영상에서 뽑는 서로 다른 장면 후보 수(Claude 가 이 중 4장을 고름)
 
 
+def not_spoken(p: Path) -> bool:
+    """등록증 사진 목록처럼 대본이 아닌 .txt 인지 첫 줄로 본다."""
+    try:
+        first = p.read_text(encoding="utf-8-sig", errors="replace").lstrip().splitlines()[:1]
+    except OSError:
+        return False
+    return bool(first) and any(w in first[0] for w in ("등록증", "쓰지 말"))
+
+
 def spoken_file(folder: Path) -> Path | None:
     """원본 폴더의 대본·녹음용 문장 .txt(2026-10-16 [3]). 메모·반영됨 표시·문자 백업이 아닌 .txt 중
-    이름에 대본/문장/멘트/녹음이 들어간 것, 없으면 그런 .txt 가 하나뿐일 때 그것."""
+    이름에 대본/문장/멘트/녹음이 들어간 것, 없으면 그런 .txt 가 하나뿐일 때 그것.
+    첫 줄에 "등록증"·"쓰지 말"이 있는 .txt(등록증 사진 파일 이름 목록, 2026-10-20)는 대본이 아니다."""
     skip = set(MEMO_NAMES) | {DONE_MARK}
     txts = [p for p in folder.iterdir() if p.is_file() and p.suffix.lower() == ".txt"
-            and p.name not in skip and not blocked(p.name) and "문자" not in p.name]
+            and p.name not in skip and not blocked(p.name) and "문자" not in p.name
+            and not not_spoken(p)]
     named = [p for p in txts if any(w in p.stem for w in ("대본", "문장", "멘트", "녹음"))]
     return (named or (txts if len(txts) == 1 else [None]))[0]
 
