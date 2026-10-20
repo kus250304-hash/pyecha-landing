@@ -23,7 +23,9 @@ PC에서 하는 "사례 가져오기" 작업이다. 원본 사진·메모는 이
 
 [준비]
 1. `git rev-parse --show-toplevel` 로 지금 폴더가 pyecha-landing 저장소인지 확인한다. 아니면 멈추고 "실패: 0건, 이유: 저장소 폴더가 아님"이라고 보고한다.
-2. `git checkout main` 후 `git pull origin main`. 커밋하지 않은 변경이 있으면(.claude/ 아래 파일은 빼고) 멈추고 "실패: 0건, 이유: 커밋하지 않은 변경 있음"이라고 보고한다.
+2. `git checkout main` 후 `git pull origin main`. 커밋하지 않은 변경이 있으면(.claude/ 아래 파일은 빼고) `git status --short` 로 본다.
+   - 변경이 CLAUDE.md 나 docs/ 아래 문서뿐이면(병한님이 손으로 고친 규칙) 내용은 고치지 않고 그 파일만 `git add` → `git commit -m "Docs: 병한님이 고친 문서 반영 (YYYY-MM-DD)"` → `git push origin main`(거절되면 pull --rebase 후 한 번 더) 하고 계속 진행한다. 커밋한 파일 이름을 보고에 적는다.
+   - 그 밖의 파일에 변경이 있으면 멈추고 "실패: 0건, 이유: 커밋하지 않은 변경 있음(<파일 이름>)"이라고 보고한다.
 3. `python -m pip install -q pillow` (python 이 안 되면 py 로). 이후 명령도 같은 것으로 실행한다.
 3-1. 오늘(한국 시간) 이미 올렸는지 본다: `git log origin/main --since=00:00 --format=%s` 에 "Add N case inputs (오늘 날짜)" 가 있으면 아무것도 하지 않고 "성공: 오늘 이미 N건 올라감(커밋 <번호>)"이라고 보고하고 끝낸다(13:55 재시도 실행이 13:40 실행을 두 번 하지 않게).
 3-2. 이어 하기: .cases_staging/scan.json 이 있고 그 안의 "date" 가 오늘이며 status 가 marked 가 아닌 건이 있으면, 앞 실행이 중간에 끊긴 것이다. 이때는 4단계 scan 을 하지 않는다(scan 은 오늘 고른 목록을 지운다). 대신 `python scripts/pc_cases.py prepare` 로 아직 준비 안 된(picked) 건만 준비하고, 건마다 status 를 보고 이어 간다: prepared → 6~8단계, masked → 8단계 확인 뒤 10단계, staged → 11단계로. 이어서 한 사실을 보고에 적는다.
