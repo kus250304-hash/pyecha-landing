@@ -83,3 +83,11 @@
 - https://pyecha119.com/pages/gangwon-gangneung-chodang.html — pages/gangwon-gangneung-chodang.html (문의 온 곳(강릉시)과 같은 시·군의 동 페이지)
 - https://pyecha119.com/pages/gyeonggi-hwaseong-byeongjeom-gisan.html — pages/gyeonggi-hwaseong-byeongjeom-gisan.html (문의 온 곳(화성시 동탄구)과 같은 시·군의 동 페이지)
 - https://pyecha119.com/gu/%EB%8F%99%EB%9E%98%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/동래구-폐차장.html (오늘 새로 만든 구 페이지)
+
+## 2026-10-21
+
+- https://pyecha119.com/guide/%EC%95%95%EB%A5%98-%EC%9E%88%EB%8A%94-%EC%B0%A8-%ED%8F%90%EC%B0%A8.html — guide/압류-있는-차-폐차.html (2026-10-19 요청 못 함 → 다시)
+- https://pyecha119.com/guide/%EC%B0%A8%EB%A0%B9%EC%B4%88%EA%B3%BC-%ED%8F%90%EC%B0%A8.html — guide/차령초과-폐차.html (2026-10-19 요청 못 함 → 다시)
+- https://pyecha119.com/guide/%EC%83%81%EC%86%8D%EC%B0%A8-%EB%B2%95%EC%9D%B8%EC%B0%A8-%EC%84%9C%EB%A5%98.html — guide/상속차-법인차-서류.html (2026-10-19 요청 못 함 → 다시)
+- https://pyecha119.com/guide/%EC%8B%9C%EB%8F%99-%EC%95%88-%EA%B1%B8%EB%A6%AC%EB%8A%94-%EC%B0%A8.html — guide/시동-안-걸리는-차.html (2026-10-19 요청 못 함 → 다시)
+- https://pyecha119.com/guide/%EB%B0%A9%EC%B9%98%EC%B0%A8-%EC%98%A4%EB%9E%98-%EC%84%B8%EC%9B%8C%EB%91%94-%EC%B0%A8.html — guide/방치차-오래-세워둔-차.html (2026-10-19 요청 못 함 → 다시)

@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://pyecha119.com/cases/case-20221015-gyeonggi-icheon.html</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-10-21</lastmod>
   </url>
   <url>
     <loc>https://pyecha119.com/cases/case-20221121-gyeonggi-bucheon-sosa-simgokbon.html</loc>
@@ -59,6 +59,10 @@
   <url>
     <loc>https://pyecha119.com/cases/case-20230424-seoul-eunpyeong-sinsa.html</loc>
     <lastmod>2026-10-13</lastmod>
+  </url>
+  <url>
+    <loc>https://pyecha119.com/cases/case-20230511-daegu-junggu.html</loc>
+    <lastmod>2026-10-21</lastmod>
   </url>
   <url>
     <loc>https://pyecha119.com/cases/case-20230512-daegu-dalseo-yongsan.html</loc>
@@ -201,6 +205,10 @@
     <lastmod>2026-10-19</lastmod>
   </url>
   <url>
+    <loc>https://pyecha119.com/cases/case-20241119-gyeongbuk-uljin-hupo.html</loc>
+    <lastmod>2026-10-21</lastmod>
+  </url>
+  <url>
     <loc>https://pyecha119.com/cases/case-20241206-gwangju-seogu-ssangchon.html</loc>
     <lastmod>2026-10-19</lastmod>
   </url>
@@ -221,12 +229,24 @@
     <lastmod>2026-10-19</lastmod>
   </url>
   <url>
+    <loc>https://pyecha119.com/cases/case-20250314-chungnam-seosan-jang.html</loc>
+    <lastmod>2026-10-21</lastmod>
+  </url>
+  <url>
     <loc>https://pyecha119.com/cases/case-20250319-seoul-yeongdeungpo-singil.html</loc>
     <lastmod>2026-10-18</lastmod>
   </url>
   <url>
     <loc>https://pyecha119.com/cases/case-20250320-incheon-yeonsu-okryeon.html</loc>
     <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://pyecha119.com/cases/case-20250410-gyeonggi-siheung-wolgot.html</loc>
+    <lastmod>2026-10-21</lastmod>
+  </url>
+  <url>
+    <loc>https://pyecha119.com/cases/case-20250718-daejeon-seogu-wolpyeong.html</loc>
+    <lastmod>2026-10-21</lastmod>
   </url>
   <url>
     <loc>https://pyecha119.com/cases/case-20251201-seoul-nowon-gongneung.html</loc>
@@ -255,5 +275,9 @@
   <url>
     <loc>https://pyecha119.com/cases/case-20261010-jeonnam-mokpo-yonghae.html</loc>
     <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://pyecha119.com/cases/case-20261019-gyeonggi-hwaseong-dongtan.html</loc>
+    <lastmod>2026-10-21</lastmod>
   </url>
 </urlset>

@@ -1,5 +1,263 @@
 [
  {
+  "slug": "case-20261019-gyeonggi-hwaseong-dongtan",
+  "date": "2026-10-19",
+  "sido": "경기도",
+  "sigungu": "화성시 동탄구",
+  "dong": "",
+  "region_slug": null,
+  "car": "2014년식 스파크 밴",
+  "title": "화성시 동탄구 2014년식 스파크 밴 폐차·수출 비교 상담 사례",
+  "summary": "2014년식 스파크 밴 차량으로, 시동이 걸리지 않는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "스파크 밴"
+   ],
+   [
+    "연식",
+    "2014년식"
+   ],
+   [
+    "시동",
+    "안 걸림"
+   ],
+   [
+    "운행",
+    "어려움"
+   ],
+   [
+    "문의 내용",
+    "시동 불가 견인 폐차"
+   ]
+  ],
+  "situation": "2014년식 스파크 밴 차량으로, 시동이 걸리지 않는 상태였습니다. 운행은 어려운 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20261019-gyeonggi-hwaseong-dongtan-1.jpg",
+  "photos": [
+   "case-20261019-gyeonggi-hwaseong-dongtan-1.jpg",
+   "case-20261019-gyeonggi-hwaseong-dongtan-2.jpg"
+  ],
+  "videos": [],
+  "spoken": ""
+ },
+ {
+  "slug": "case-20250718-daejeon-seogu-wolpyeong",
+  "date": "2025-07-18",
+  "sido": "대전광역시",
+  "sigungu": "서구",
+  "dong": "월평동",
+  "region_slug": null,
+  "car": "2007년식 아반떼 HD",
+  "title": "월평동 2007년식 아반떼 HD 폐차·수출 비교 상담 사례",
+  "summary": "2007년식 아반떼 HD 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "아반떼 HD"
+   ],
+   [
+    "연식",
+    "2007년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2007년식 아반떼 HD 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20250718-daejeon-seogu-wolpyeong-1.jpg",
+  "photos": [
+   "case-20250718-daejeon-seogu-wolpyeong-1.jpg",
+   "case-20250718-daejeon-seogu-wolpyeong-2.jpg",
+   "case-20250718-daejeon-seogu-wolpyeong-3.jpg",
+   "case-20250718-daejeon-seogu-wolpyeong-4.jpg",
+   "case-20250718-daejeon-seogu-wolpyeong-5.jpg",
+   "case-20250718-daejeon-seogu-wolpyeong-6.jpg"
+  ],
+  "videos": [],
+  "spoken": ""
+ },
+ {
+  "slug": "case-20250410-gyeonggi-siheung-wolgot",
+  "date": "2025-04-10",
+  "sido": "경기도",
+  "sigungu": "시흥시",
+  "dong": "월곶동",
+  "region_slug": null,
+  "car": "2012년식 모닝",
+  "title": "월곶동 2012년식 모닝 폐차·수출 비교 상담 사례",
+  "summary": "2012년식 모닝 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "모닝"
+   ],
+   [
+    "연식",
+    "2012년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2012년식 모닝 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20250410-gyeonggi-siheung-wolgot-1.jpg",
+  "photos": [
+   "case-20250410-gyeonggi-siheung-wolgot-1.jpg",
+   "case-20250410-gyeonggi-siheung-wolgot-2.jpg",
+   "case-20250410-gyeonggi-siheung-wolgot-3.jpg",
+   "case-20250410-gyeonggi-siheung-wolgot-4.jpg"
+  ],
+  "videos": [],
+  "spoken": ""
+ },
+ {
+  "slug": "case-20250314-chungnam-seosan-jang",
+  "date": "2025-03-14",
+  "sido": "충청남도",
+  "sigungu": "서산시",
+  "dong": "장동",
+  "region_slug": null,
+  "car": "2010년식 뉴 SM5",
+  "title": "장동 2010년식 뉴 SM5 폐차·수출 비교 상담 사례",
+  "summary": "2010년식 뉴 SM5 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "뉴 SM5"
+   ],
+   [
+    "연식",
+    "2010년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2010년식 뉴 SM5 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20250314-chungnam-seosan-jang-1.jpg",
+  "photos": [
+   "case-20250314-chungnam-seosan-jang-1.jpg",
+   "case-20250314-chungnam-seosan-jang-2.jpg",
+   "case-20250314-chungnam-seosan-jang-3.jpg",
+   "case-20250314-chungnam-seosan-jang-4.jpg",
+   "case-20250314-chungnam-seosan-jang-5.jpg"
+  ],
+  "videos": [],
+  "spoken": ""
+ },
+ {
+  "slug": "case-20241119-gyeongbuk-uljin-hupo",
+  "date": "2024-11-19",
+  "sido": "경상북도",
+  "sigungu": "울진군",
+  "dong": "후포면",
+  "region_slug": null,
+  "car": "2007년식 스포티지",
+  "title": "후포면 2007년식 스포티지 폐차·수출 비교 상담 사례",
+  "summary": "2007년식 스포티지 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "스포티지"
+   ],
+   [
+    "연식",
+    "2007년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2007년식 스포티지 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20241119-gyeongbuk-uljin-hupo-1.jpg",
+  "photos": [
+   "case-20241119-gyeongbuk-uljin-hupo-1.jpg",
+   "case-20241119-gyeongbuk-uljin-hupo-2.jpg",
+   "case-20241119-gyeongbuk-uljin-hupo-3.jpg",
+   "case-20241119-gyeongbuk-uljin-hupo-4.jpg"
+  ],
+  "videos": [],
+  "spoken": ""
+ },
+ {
+  "slug": "case-20230511-daegu-junggu",
+  "date": "2023-05-11",
+  "sido": "대구광역시",
+  "sigungu": "중구",
+  "dong": "",
+  "region_slug": null,
+  "car": "2009년식 포터2 탑차",
+  "title": "중구 2009년식 포터2 탑차 폐차·수출 비교 상담 사례",
+  "summary": "2009년식 포터2 탑차 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "포터2 탑차"
+   ],
+   [
+    "연식",
+    "2009년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2009년식 포터2 탑차 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230511-daegu-junggu-1.jpg",
+  "photos": [
+   "case-20230511-daegu-junggu-1.jpg",
+   "case-20230511-daegu-junggu-2.jpg",
+   "case-20230511-daegu-junggu-3.jpg",
+   "case-20230511-daegu-junggu-4.jpg",
+   "case-20230511-daegu-junggu-5.jpg"
+  ],
+  "videos": [],
+  "spoken": ""
+ },
+ {
   "slug": "case-20250121-daegu-dalseong-okpo",
   "date": "2025-01-21",
   "sido": "대구광역시",

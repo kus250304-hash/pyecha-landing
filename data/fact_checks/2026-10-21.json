@@ -1,0 +1,44 @@
+[
+ {
+  "code": "4159125600",
+  "slug": "gyeonggi-hwaseong-manse-namyang",
+  "items": [
+   {
+    "name": "화성시청",
+    "evidence": "화성시청 찾아오시는길: 18274 경기도 화성시 남양읍 시청로 159",
+    "url": "https://www.hscity.go.kr/www/intro/ctyhllInfo/ctyhllOtlnmap.jsp",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "5115012500",
+  "slug": "gangwon-gangneung-ipam",
+  "items": [
+   {
+    "name": "강릉중학교",
+    "evidence": "강원특별자치도 강릉시 강중길44번길 8 (입암동)",
+    "url": "https://thewiki.kr/w/강릉중",
+    "grade": "summary_with_address"
+   }
+  ]
+ },
+ {
+  "code": "4159710500",
+  "slug": "gyeonggi-hwaseong-dongtan-cheonggye",
+  "items": [
+   {
+    "name": "동탄중앙어울림센터",
+    "evidence": "동탄중앙어울림센터, 동탄4동 행정복지센터 경기 화성시 동탄대로시범길 133(청계동 530)",
+    "url": "https://zippoom.com/지역별-부동산/경기-화성시-청계동/오피스텔/순위",
+    "grade": "summary_with_address"
+   },
+   {
+    "name": "동탄4동 행정복지센터",
+    "evidence": "경기 화성시 동탄대로시범길 133(청계동 530)",
+    "url": "https://zippoom.com/지역별-부동산/경기-화성시-청계동/오피스텔/순위",
+    "grade": "summary_with_address"
+   }
+  ]
+ }
+]
