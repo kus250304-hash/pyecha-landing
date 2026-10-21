@@ -1,5 +1,131 @@
 [
  {
+  "slug": "case-20260721-gyeongbuk-gumi-jinpyeong",
+  "date": "2026-07-21",
+  "sido": "경상북도",
+  "sigungu": "구미시",
+  "dong": "진평동",
+  "region_slug": null,
+  "car": "2012년식 쏘나타",
+  "title": "진평동 2012년식 쏘나타 폐차·수출 비교 상담 사례",
+  "summary": "2012년식 쏘나타 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "쏘나타"
+   ],
+   [
+    "연식",
+    "2012년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2012년식 쏘나타 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20260721-gyeongbuk-gumi-jinpyeong-1.jpg",
+  "photos": [
+   "case-20260721-gyeongbuk-gumi-jinpyeong-1.jpg",
+   "case-20260721-gyeongbuk-gumi-jinpyeong-2.jpg",
+   "case-20260721-gyeongbuk-gumi-jinpyeong-3.jpg",
+   "case-20260721-gyeongbuk-gumi-jinpyeong-4.jpg",
+   "case-20260721-gyeongbuk-gumi-jinpyeong-5.jpg"
+  ],
+  "videos": [],
+  "spoken": ""
+ },
+ {
+  "slug": "case-20251017-chungnam-seosan-onseok",
+  "date": "2025-10-17",
+  "sido": "충청남도",
+  "sigungu": "서산시",
+  "dong": "온석동",
+  "region_slug": null,
+  "car": "2008년식 포터2",
+  "title": "온석동 2008년식 포터2 폐차·수출 비교 상담 사례",
+  "summary": "2008년식 포터2 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "포터2"
+   ],
+   [
+    "연식",
+    "2008년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2008년식 포터2 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20251017-chungnam-seosan-onseok-1.jpg",
+  "photos": [
+   "case-20251017-chungnam-seosan-onseok-1.jpg",
+   "case-20251017-chungnam-seosan-onseok-2.jpg",
+   "case-20251017-chungnam-seosan-onseok-3.jpg"
+  ],
+  "videos": [],
+  "spoken": ""
+ },
+ {
+  "slug": "case-20230705-busan-busanjin-gaegeum",
+  "date": "2023-07-05",
+  "sido": "부산광역시",
+  "sigungu": "부산진구",
+  "dong": "개금동",
+  "region_slug": null,
+  "car": "2004년식 체어맨",
+  "title": "개금동 2004년식 체어맨 폐차·수출 비교 상담 사례",
+  "summary": "2004년식 체어맨 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "체어맨"
+   ],
+   [
+    "연식",
+    "2004년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2004년식 체어맨 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 협력업체와 연결해 진행했습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230705-busan-busanjin-gaegeum-1.jpg",
+  "photos": [
+   "case-20230705-busan-busanjin-gaegeum-1.jpg",
+   "case-20230705-busan-busanjin-gaegeum-2.jpg",
+   "case-20230705-busan-busanjin-gaegeum-3.jpg",
+   "case-20230705-busan-busanjin-gaegeum-4.jpg"
+  ],
+  "videos": [],
+  "spoken": ""
+ },
+ {
   "slug": "case-20261019-gyeonggi-hwaseong-dongtan",
   "date": "2026-10-19",
   "sido": "경기도",

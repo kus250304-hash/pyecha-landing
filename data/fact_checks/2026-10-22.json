@@ -1,0 +1,86 @@
+[
+ {
+  "code": "4719025300",
+  "slug": "gyeongbuk-gumi-goa",
+  "items": [
+   {
+    "name": "고아읍행정복지센터",
+    "evidence": "위키백과 고아읍 문서: 관청 소재지 선산대로 980 (관심리)",
+    "url": "https://ko.wikipedia.org/wiki/%EA%B3%A0%EC%95%84%EC%9D%8D",
+    "grade": "opened"
+   },
+   {
+    "name": "선산대로",
+    "evidence": "위키백과 고아읍 문서: 고아읍 관청 소재지 선산대로 980 (관심리)",
+    "url": "https://ko.wikipedia.org/wiki/%EA%B3%A0%EC%95%84%EC%9D%8D",
+    "grade": "opened"
+   },
+   {
+    "name": "낙동강",
+    "evidence": "위키백과 고아읍 문서: 낙동강이 고아읍 동쪽 경계를 이룸",
+    "url": "https://ko.wikipedia.org/wiki/%EA%B3%A0%EC%95%84%EC%9D%8D",
+    "grade": "opened"
+   },
+   {
+    "name": "원호리",
+    "evidence": "위키백과 고아읍 문서 법정리 목록에 원호리",
+    "url": "https://ko.wikipedia.org/wiki/%EA%B3%A0%EC%95%84%EC%9D%8D",
+    "grade": "opened"
+   },
+   {
+    "name": "문성리",
+    "evidence": "위키백과 고아읍 문서 법정리 목록에 문성리",
+    "url": "https://ko.wikipedia.org/wiki/%EA%B3%A0%EC%95%84%EC%9D%8D",
+    "grade": "opened"
+   },
+   {
+    "name": "관심리",
+    "evidence": "위키백과 고아읍 문서 법정리 목록·관청 소재지에 관심리",
+    "url": "https://ko.wikipedia.org/wiki/%EA%B3%A0%EC%95%84%EC%9D%8D",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4159710600",
+  "slug": "gyeonggi-hwaseong-dongtan-yeongcheon",
+  "items": [
+   {
+    "name": "동탄5동 행정복지센터",
+    "evidence": "위키백과 동탄5동 문서: 동탄5동 행정복지센터 동탄순환대로 84(영천동 539-9), 법정동 영천동·중동",
+    "url": "https://ko.wikipedia.org/wiki/%EB%8F%99%ED%83%845%EB%8F%99",
+    "grade": "opened"
+   },
+   {
+    "name": "동탄순환대로",
+    "evidence": "동탄5동 행정복지센터 주소 동탄순환대로 84(영천동 539-9)",
+    "url": "https://ko.wikipedia.org/wiki/%EB%8F%99%ED%83%845%EB%8F%99",
+    "grade": "opened"
+   },
+   {
+    "name": "동탄2신도시",
+    "evidence": "영천동 846-3 감정평가서 \"준주거지역(동탄2지구), 지구단위계획구역(화성동탄(2))\"",
+    "url": "https://m.richgo.ai/auctionMobile/C58RLUUR",
+    "grade": "summary_with_address"
+   }
+  ]
+ },
+ {
+  "code": "4413310400",
+  "slug": "chungnam-cheonan-seobuk-dujeong",
+  "items": [
+   {
+    "name": "두정역",
+    "evidence": "두정역은 서북구 두정동에 있음, 소재지 충청남도 천안시 서북구 두정로 289",
+    "url": "https://itwiki.kr/w/%EB%91%90%EC%A0%95%EC%97%AD",
+    "grade": "opened"
+   },
+   {
+    "name": "수도권 전철 1호선",
+    "evidence": "두정역은 수도권 전철 1호선 역(두정동 소재)",
+    "url": "https://itwiki.kr/w/%EB%91%90%EC%A0%95%EC%97%AD",
+    "grade": "opened"
+   }
+  ]
+ }
+]

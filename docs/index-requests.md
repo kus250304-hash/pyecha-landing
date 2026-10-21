@@ -98,3 +98,11 @@
 - https://pyecha119.com/guide/%EC%83%81%EC%86%8D%EC%B0%A8-%EB%B2%95%EC%9D%B8%EC%B0%A8-%EC%84%9C%EB%A5%98.html — guide/상속차-법인차-서류.html (2026-10-19 요청 못 함 → 다시)
 - https://pyecha119.com/guide/%EC%8B%9C%EB%8F%99-%EC%95%88-%EA%B1%B8%EB%A6%AC%EB%8A%94-%EC%B0%A8.html — guide/시동-안-걸리는-차.html (2026-10-19 요청 못 함 → 다시)
 - https://pyecha119.com/guide/%EB%B0%A9%EC%B9%98%EC%B0%A8-%EC%98%A4%EB%9E%98-%EC%84%B8%EC%9B%8C%EB%91%94-%EC%B0%A8.html — guide/방치차-오래-세워둔-차.html (2026-10-19 요청 못 함 → 다시)
+
+## 2026-10-22
+
+- https://pyecha119.com/guide/%EC%A0%80%EB%8B%B9%EB%A7%8C-%EC%9E%88%EB%8A%94-%EC%B0%A8.html — guide/저당만-있는-차.html (최우선 칸)
+- https://pyecha119.com/gu/%EC%88%98%EC%98%81%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/수영구-폐차장.html (문의 온 곳(수영구)과 같은 시·군의 구 페이지)
+- https://pyecha119.com/gu/%EA%B2%BD%EC%82%B0%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/경산시-폐차장.html (문의 온 곳(경산시)과 같은 시·군의 구 페이지)
+- https://pyecha119.com/gu/%EC%84%9C%EC%9A%B8-%EA%B0%95%EC%84%9C%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/서울-강서구-폐차장.html (문의 온 곳(강서구)과 같은 시·군의 구 페이지)
+- https://pyecha119.com/si/%EC%84%9C%EC%9A%B8-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — si/서울-폐차장.html (시·도 페이지)
