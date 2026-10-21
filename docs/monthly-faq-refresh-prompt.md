@@ -6,7 +6,7 @@
 - 예약 작업의 폴더: PC 에 받아 둔 pyecha-landing 저장소 폴더
 - 예약 작업의 지시문: "저장소의 docs/monthly-faq-refresh-prompt.md 파일을 열어서, 그 안의 코드 상자에 있는 지시문을 처음부터 끝까지 그대로 따라 실행해."
 - 실제 지시문은 **아래 코드 상자 하나**뿐입니다. 바꿀 때는 이 코드 상자 안만 고쳐 main 에 올립니다.
-- 초안 상태: `data/faq_pool.json` 과 `scripts/faq_pool.py` 가 아직 없습니다(roadmap 12절 "첫 실행 전에 할 준비"). 없으면 아래 2번의 예외대로 진행합니다.
+- 준비 완료(2026-10-21): `data/faq_pool.json` 과 `scripts/faq_pool.py` 가 있습니다(roadmap 12절). 문구만 바꿀 때는 `data/faq_pool.json` 의 그 항목 q·a 를 고치고 `faq_pool.py assign` 으로 검사합니다.
 
 ```text
 너는 pyecha-landing 저장소의 월 1회 FAQ 풀 갱신 담당이다. 저장소의 CLAUDE.md '콘텐츠 원칙'과 docs/roadmap.md 12절을 먼저 읽고 따른다.
@@ -25,7 +25,7 @@
    - 금액 숫자로만 답할 수 있는 질문(예: "고철값 얼마예요?"), 고객 한 사람 사정에만 맞는 질문, 이름·전화번호·차량번호·상세주소가 들어간 문장은 넣지 않고 보고에 이유를 적는다.
    - 질문 지역 이름(시·군·구·동)은 빼고 일반 질문으로 쓴다(풀은 전국 페이지에 나간다).
 5. 새 걱정 종류: 손님심리지도.md 에 지금 안내 페이지(scripts/build_guide.py 의 WORRIES)에 없는 걱정이 생겼으면, 맞는 안내 페이지 한 장에 (걱정, 답) 한 줄을 넣는다. 통계 숫자(언급 통화 수·비율)는 넣지 않는다.
-6. 추가: data/faq_pool.json 이 있으면 `python3 scripts/faq_pool.py add` 로 넣고(겹침·금지 표현·개인정보 검사를 통과해야 함) `python3 scripts/faq_pool.py assign` 으로 페이지 배정을 다시 한다. 없으면 CALL_FAQ 끝에 붙인다(첫 질문 "몇 년 된 차인데 얼마 정도 나와요?"는 맨 앞에 그대로 둔다).
+6. 추가: data/faq_pool.json 이 있으면 새 질문을 [{"q": …, "a": …, "source_month": "YYYY-MM"}] 꼴 JSON 파일(저장소 밖 임시 폴더)로 써서 `python3 scripts/faq_pool.py add <파일>` 로 넣고(겹침·금지 표현·개인정보 검사를 통과해야 함) `python3 scripts/faq_pool.py assign` 으로 페이지 배정을 다시 한다. 없으면 CALL_FAQ 끝에 붙인다(첫 질문 "몇 년 된 차인데 얼마 정도 나와요?"는 맨 앞에 그대로 둔다).
 7. `python3 scripts/build_site.py` → `python3 scripts/build_index.py` → `python3 scripts/check_pages.py` 를 실행한다. 오류가 0건이 될 때까지 문구를 고친다. 세 번 고쳐도 안 되는 질문은 빼고 보고에 적는다.
 8. 개인정보 마지막 확인: 바뀐 파일 전체(git diff)에서 사람 이름, 010·지역번호 전화번호(1600-6011·010-9926-7779 제외), 차량번호(예: 12가3456), 번지·동호수 주소가 없는지 본다. 있으면 그 문장을 빼고 다시 7번.
 9. 커밋: 메시지 첫 줄 "FAQ pool refresh (YYYY-MM): N added, M reworded". `git pull --rebase origin main` 후 main 에 push 한다(PR 없음). 실패하면 push 하지 않고 브랜치 auto/faq-failed-YYYYMMDD 에 남긴다.

@@ -20,17 +20,17 @@
 
 ## 문의가 온 페이지
 
-문의가 들어오면 날짜·경로와 함께 한 줄씩 더합니다(②의 기준). "거래 기록부"라고 적힌 줄은 병한-업무위키 `폐차/거래기록` 에서 유입경로가 "랜딩"인 거래를 옮긴 것으로(2026-10-21), 어느 페이지로 들어왔는지 기록이 없어 그 시·군의 구 페이지 주소를 적었습니다.
+문의가 들어오면 날짜·경로와 함께 한 줄씩 더합니다(②의 기준). "랜딩 문의(상태: …)" 줄은 PC 예약 작업 "폐차 사례 가져오기"가 매일 `python scripts/inquiry_log.py --write` 로 병한-업무위키 거래 기록부(`폐차/거래기록`)에서 유입경로가 랜딩·폼인 거래를 옮긴 것입니다(2026-10-21부터, 상태도 거래 기록부대로 고침). 어느 페이지로 들어왔는지 기록이 없어 그 시·군의 구 페이지 주소를 적습니다. 손으로 따로 적지 않아도 됩니다.
 
-- 2026-10-21, 거래 기록부(랜딩 문의) — https://pyecha119.com/gu/%EA%B5%AC%EB%AF%B8%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (구미시)
+- 2026-10-21, 랜딩 문의(상태: 진행) — https://pyecha119.com/gu/%EA%B5%AC%EB%AF%B8%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (구미시)
 - 2026-10-18 오후 12시 42분, 네이버 모바일 검색 → 상단 폼 문의, 30분 만에 거래 성사 — https://pyecha119.com/gu/%ED%99%94%EC%84%B1%EC%8B%9C-%EB%8F%99%ED%83%84%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (화성시 동탄구)
-- 2026-10-17, 거래 기록부(랜딩 문의) — https://pyecha119.com/gu/%EA%B9%80%ED%95%B4%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (김해시)
-- 2026-10-16, 거래 기록부(랜딩 문의, 거래 성사) — https://pyecha119.com/gu/%EC%B2%9C%EC%95%88%EC%8B%9C-%EB%8F%99%EB%82%A8%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (천안시, 구는 기록 없음 → 동남구 주소, 서북구도 같은 시라 함께 고름)
-- 2026-10-14, 거래 기록부(랜딩 문의) — https://pyecha119.com/gu/%EC%88%98%EC%98%81%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (부산 수영구)
+- 2026-10-17, 랜딩 문의(상태: 진행) — https://pyecha119.com/gu/%EA%B9%80%ED%95%B4%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (김해시)
+- 2026-10-16, 랜딩 문의(상태: 거래 성사) — https://pyecha119.com/gu/%EC%B2%9C%EC%95%88%EC%8B%9C-%EB%8F%99%EB%82%A8%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (천안시 동남구)
+- 2026-10-14, 랜딩 문의(상태: 진행) — https://pyecha119.com/gu/%EC%88%98%EC%98%81%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (수영구)
 - 2026-10-14, 네이버 검색 문의 — https://pyecha119.com/gu/%EA%B0%95%EB%A6%89%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (강릉시)
-- 2026-10-12, 거래 기록부(랜딩 문의, 거래 성사) — https://pyecha119.com/gu/%EA%B2%BD%EC%82%B0%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (경산시)
-- 2026-10-09, 거래 기록부(랜딩 문의, 거래 성사) — https://pyecha119.com/gu/%EB%AA%A9%ED%8F%AC%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (목포시)
-- 2026-10-09, 거래 기록부(랜딩 문의) — https://pyecha119.com/gu/%EC%84%9C%EC%9A%B8-%EA%B0%95%EC%84%9C%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (서울 강서구)
+- 2026-10-12, 랜딩 문의(상태: 거래 성사) — https://pyecha119.com/gu/%EA%B2%BD%EC%82%B0%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (경산시)
+- 2026-10-09, 랜딩 문의(상태: 거래 성사) — https://pyecha119.com/gu/%EB%AA%A9%ED%8F%AC%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (목포시)
+- 2026-10-09, 랜딩 문의(상태: 진행) — https://pyecha119.com/gu/%EC%84%9C%EC%9A%B8-%EA%B0%95%EC%84%9C%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (서울 강서구)
 
 ## 2026-10-15
 
