@@ -23,6 +23,7 @@ import json
 import re
 import sys
 from collections import defaultdict
+from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import quote, unquote
 
@@ -554,7 +555,8 @@ def check_si_pages(cfg: dict, sitemap: str, all_sidos: set[str]) -> list[str]:
             problems.append(f"{tag}: 제목이 고정 틀 '○○ 폐차장 · 폐차 | 시·군·구별 출장 폐차 · 수출 비교 · 조기폐차 안내 | 전화 1600-6011' 과 다름")
         if not GU_UPDATED_RE.search(html):
             problems.append(f"{tag}: '최종 업데이트: YYYY년 M월 D일' 줄 없음")
-        for sido in all_sidos - {s["sido"]}:
+        from build_si import SI_OLD_SIDOS  # 전남광주 페이지의 옛 이름 병기(2026-10-22)
+        for sido in all_sidos - {s["sido"]} - SI_OLD_SIDOS.get(s["sido"], set()):
             if sido in body:
                 problems.append(f"{tag}: 다른 시도 이름 '{sido}' 가 있음")
         gus = gu_of(s["sido"], gu_data)
@@ -605,7 +607,8 @@ def check_guide_pages(cfg: dict, sitemap: str) -> list[str]:
                               ('rel="canonical"', "canonical"), ('"FAQPage"', "FAQ 구조화 데이터"), ('class="topnav"', "상단 고정 메뉴"),
                               ('id="area-links"', "맨 아래 지역 링크 목록"), ('"dateModified": "', "수정 날짜(dateModified)"),
                               (contact, f"연락처 줄 '{contact}'"), ("상담 후 확인", "'상담 후 확인' 문구")):
-            if needle not in html:
+            # 본문 대표번호는 tel: 링크(2026-10-22)라 연락처 줄은 링크 태그를 벗기고 본다
+            if needle not in (re.sub(r"<a [^>]*>|</a>", "", html) if needle == contact else html):
                 problems.append(f"{tag}: {label} 없음")
         if not UPDATED_LINE_RE.search(html):
             problems.append(f"{tag}: '최종 업데이트: YYYY년 M월 D일' 줄 없음")
@@ -781,8 +784,11 @@ def check_og_images(base: str) -> list[str]:
                         '<meta name="twitter:card" content="summary_large_image">'):
                 if tag not in text:
                     problems.append(f"{rel}: {tag} 없음")
-            if f'<img src="../{path[len(base) + 1:]}"' not in text:
+            card = f'<img src="../{path[len(base) + 1:]}"' in text
+            if d == "si" and not card:
                 problems.append(f"{rel}: 폐차 사례 칸에 대표 이미지 카드 <img> 없음")
+            elif d != "si" and card:  # 동·구 페이지 사례 칸 옆에는 실제 사례 사진만(2026-10-22 눈가리개 감사 5번)
+                problems.append(f"{rel}: 폐차 사례 칸 옆에 OG 배너 그림이 들어 있음(실제 사례 사진만 넣음)")
     return problems
 
 
@@ -852,6 +858,94 @@ def check_site_name(cfg: dict) -> list[str]:
     if not title or not title.group(1).startswith(cfg["site_name"]):
         problems.append(f"index.html: <title> 이 사이트 이름 {cfg['site_name']} 으로 시작하지 않음 (build_index.py)")
     return problems
+
+
+def html_files() -> list[Path]:
+    """검사할 모든 사이트 페이지(자동 이동 페이지 빼고)."""
+    files = [ROOT / n for n in ("index.html", "thanks.html", "privacy.html")]
+    for d in ("pages", "gu", "si", "guide", "cases"):
+        files += sorted((ROOT / d).glob("*.html")) if (ROOT / d).exists() else []
+    return [f for f in files if f.exists() and 'http-equiv="refresh"' not in f.read_text(encoding="utf-8")]
+
+
+AREA_SIDO_RE = re.compile(r'<h2>시·도별 폐차 상담</h2><div class="neighbors">(.*?)</div>', re.S)
+
+
+def check_sido_links() -> list[str]:
+    """시·도 링크 통일(2026-10-22 눈가리개 감사 3번, build_site.sido_href): 첫 화면 #sido 앵커로 가는 링크가 없고,
+    맨 아래 "시·도별 폐차 상담" 링크는 모두 si/ 페이지(세종만 gu/세종-폐차장.html)."""
+    problems = []
+    for f in html_files():
+        text = f.read_text(encoding="utf-8")
+        rel = f.relative_to(ROOT).as_posix()
+        if re.search(r'href="[^"]*#sido', text):
+            problems.append(f"{rel}: 첫 화면 #sido 앵커로 가는 시·도 링크가 남아 있음(build_site.sido_href 로)")
+        for block in AREA_SIDO_RE.findall(text):
+            for href in re.findall(r'href="([^"]+)"', block):
+                if not re.search(r"(^|/)si/[^/]+\.html$|(^|/)gu/세종-폐차장\.html$", href):
+                    problems.append(f"{rel}: 시·도 링크 {href} 가 시·도 페이지(si/)가 아님")
+    return problems
+
+
+class _PhoneText(HTMLParser):
+    """본문 글 속 링크 아닌 대표번호 찾기(메타 태그·스크립트·제목·버튼 안은 뺌)."""
+    SKIP = {"a", "script", "style", "title", "head", "svg", "template", "noscript", "textarea", "option", "button"}
+    VOID = {"br", "img", "meta", "link", "input", "source", "use", "path", "hr", "wbr"}
+
+    def __init__(self, phone: str):
+        super().__init__()
+        self.phone, self.stack, self.hits = phone, [], []
+
+    def handle_starttag(self, tag, attrs):
+        if tag not in self.VOID:
+            self.stack.append(tag)
+
+    def handle_endtag(self, tag):
+        if tag in self.stack:
+            while self.stack and self.stack.pop() != tag:
+                pass
+
+    def handle_data(self, data):
+        if self.phone in data and not self.SKIP.intersection(self.stack):
+            self.hits.append(data.strip()[:60])
+
+
+def check_phone_links(cfg: dict) -> list[str]:
+    """본문 속 대표번호 글자는 모두 tel: 링크(2026-10-22 눈가리개 감사 10번, build_site.tel_text). GA4 call_click 에 잡힌다."""
+    problems = []
+    for f in html_files():
+        p = _PhoneText(cfg["phone_display"])
+        p.feed(f.read_text(encoding="utf-8"))
+        for hit in p.hits[:2]:
+            problems.append(f"{f.relative_to(ROOT).as_posix()}: 링크가 아닌 대표번호 글자 → {hit}")
+    return problems
+
+
+# 손님이 묻지 않는 지역 FAQ(2026-10-22 눈가리개 감사 11번). 새 페이지는 이런 질문을 쓰지 않는다(docs/daily-routine-prompt.md)
+FAQ_BAD_RE = re.compile(r"(방문|서비스|출장)\s*가능한\s*지역인가요|가능 지역인가요|실제\s*(방문|서비스)\s*가능한")
+
+
+def check_dong_wording(regions: list[dict]) -> list[str]:
+    """동 페이지 경고 두 가지: ① 한 문장에 같은 동이 주어로 두 번("교동은 …, 교동은 …", 2번)
+    ② 손님이 묻지 않는 지역 FAQ("실제 방문 가능한 지역인가요?" 류, 11번)."""
+    out = []
+    for r in regions:
+        f = PAGES_DIR / f"{r['slug']}.html"
+        if not f.exists():
+            continue
+        text = f.read_text(encoding="utf-8")
+        body = re.sub(r"<(script|style)[^>]*>.*?</\1>", " ", text.split("<body", 1)[-1], flags=re.S)
+        body = re.sub(r"<(p|h[1-6]|li|div|summary|details|section|br|td|th)\b[^>]*>", "\n", body)  # 칸이 바뀌면 문장도 끊는다
+        body = html_lib.unescape(re.sub(r"<[^>]+>", "", body))
+        subj = re.compile(rf"{re.escape(r['dong'])}(은|는|에는) ")
+        for sent in re.split(r"(?<=[.!?])\s+|\n", body):
+            if len(subj.findall(sent)) >= 2:
+                out.append(f"{r['slug']}: 한 문장에 '{r['dong']}' 가 주어로 두 번 → {sent.strip()[:70]}")
+                break
+        for q, _ in r.get("faqs", []):
+            if FAQ_BAD_RE.search(q):
+                out.append(f"{r['slug']}: 손님이 묻지 않는 지역 FAQ → {q}")
+    return out
 
 
 def check_tow_wording() -> list[str]:
@@ -1071,6 +1165,10 @@ def main() -> None:
         errors.extend(check_breadcrumbs(site_cfg["site_base_url"].rstrip("/")))
         errors.extend(check_business_jsonld())
         errors.extend(check_faq_first_sentence())
+        # 눈가리개 감사(2026-10-22): 시·도 링크 통일(3번), 본문 대표번호 tel: 링크(10번), 동 페이지 문장·FAQ 경고(2·11번)
+        errors.extend(check_sido_links())
+        errors.extend(check_phone_links(site_cfg))
+        warnings.extend(check_dong_wording(regions))
         # 사이트맵(2026-10-20, sitemap_lib.check): 인덱스·나눈 파일, 주소 수 = 실제 페이지 수, 주소 = canonical,
         # 자동 이동·noindex 없음, lastmod = 본문 해시 기록 = dateModified, robots.txt Sitemap 한 줄
         # (실제 사이트의 200 응답은 python3 scripts/sitemap_lib.py check --live)

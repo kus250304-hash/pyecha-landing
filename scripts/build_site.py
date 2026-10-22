@@ -434,17 +434,36 @@ def business_jsonld(area: str, url: str, image: str, phone_disp: str) -> dict:
             "url": url, "image": image}
 
 
+def tel_text(fragment: str) -> str:
+    """본문 글(이미 esc 한 HTML 조각) 속 대표번호 글자를 tel: 링크로(2026-10-22 눈가리개 감사 10번).
+    링크 모양이 같아 GA4 call_click(analytics 의 a[href^="tel:"] 클릭 감시)에 그대로 잡힌다. 메타 태그·구조화 데이터에는 쓰지 않는다."""
+    cfg = load_json(CONFIG)
+    return fragment.replace(cfg["phone_display"], f'<a href="tel:{esc(cfg["phone_tel"])}">{esc(cfg["phone_display"])}</a>')
+
+
 def sido_link(sido: str, prefix: str = "../") -> str | None:
     """시·도 페이지(/si/, 2026-10-02)가 있으면 그 주소, 없으면 None."""
     from build_si import si_file, si_sidos
     return f"{prefix}si/{si_file(sido)}" if sido in si_sidos() else None
 
 
+def sido_href(sido: str, prefix: str = "../") -> str:
+    """시·도로 가는 링크의 공통 조각(2026-10-22 눈가리개 감사 3번): 시·도 페이지(/si/)가 있으면 그 페이지,
+    없고 구 페이지 하나가 곧 시 전체인 곳(세종)은 그 구 페이지, 둘 다 없으면 첫 화면. 첫 화면 #sido 앵커로는 보내지 않는다."""
+    href = sido_link(sido, prefix)
+    if href:
+        return href
+    gus = [g for g in load_json(GU_DATA, default=[]) if g["sido"] == sido and (ROOT / "gu" / gu_file(sido, g["sigungu"])).exists()]
+    if len(gus) == 1:
+        return f"{prefix}gu/{gu_file(sido, gus[0]['sigungu'])}"
+    return f"{prefix}index.html"
+
+
 def area_links_html(regions: list[dict], gu_data: list[dict], prefix: str = "../",
                     here_dong: dict | None = None, here_gu: dict | None = None, here_si: str | None = None) -> str:
     """모든 페이지 맨 아래 지역 링크 목록(2026-10-01).
     동 페이지: 같은 구의 다른 동 + 그 구·시·도 페이지(시·도 16개 목록은 넣지 않음, 2026-10-10). 구 페이지: 그 시·도 페이지 + 같은 시·도의 다른 구 페이지.
-    모든 페이지: 폐차 안내 5장, 동 페이지 빼고 시·도 16개(시·도 페이지가 있으면 그 페이지, 없으면 첫 화면의 그 시·도 칸으로 연결)."""
+    모든 페이지: 폐차 안내 5장, 동 페이지 빼고 시·도 16개(sido_href: 시·도 페이지, 세종은 구 페이지)."""
     from build_guide import ALL_GUIDES as GUIDES  # 안내 5장 + 주제 5장(2026-10-14)
     from build_index import SIDO_ORDER
     gu_keys = {(g["sido"], g["sigungu"]) for g in gu_data}
@@ -478,8 +497,7 @@ def area_links_html(regions: list[dict], gu_data: list[dict], prefix: str = "../
             blocks.append(block(f"{SIDO_SHORT[g['sido']]} 다른 시·군·구 폐차 상담", links))
     blocks.append(block("폐차 안내", [(f"{prefix}guide/{x['file']}", x["nav"]) for x in GUIDES]))
     if not here_dong:  # 동 페이지는 시·도 목록 없이 바닥글의 "전체 지역 보기" 하나로(2026-10-10)
-        blocks.append(block("시·도별 폐차 상담", [(sido_link(s, prefix) or f"{prefix}index.html#sido-{SIDO_SHORT[s]}", SIDO_SHORT[s])
-                                             for s in SIDO_ORDER]))
+        blocks.append(block("시·도별 폐차 상담", [(sido_href(s, prefix), SIDO_SHORT[s]) for s in SIDO_ORDER]))
     return ('<nav class="area-links" id="area-links" aria-label="지역·안내 바로가기"><div class="wrap">'
             + "".join(blocks) + "</div></nav>")
 
@@ -534,7 +552,7 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
     # 지역 FAQ
     local_faqs = pick_local_faqs(r)
     local_faq_html = "".join(
-        f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in local_faqs
+        f"<details><summary>{esc(q)}</summary><p>{tel_text(esc(a))}</p></details>" for q, a in local_faqs
     )
     # 공통 문장은 여러 벌 중 이 페이지에 배정된 조합(소개, FAQ, 마무리)을 쓴다 (scripts/variants.py)
     intro, closing = V.DONG_INTRO[combo[0]], V.DONG_CLOSING[combo[2]]
@@ -542,7 +560,7 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
     # 맨 위는 안심 FAQ(2026-10-16) → 공통 질문 4개 → 실제 통화 FAQ 풀에서 이 페이지 몫 3개(2026-10-03)
     common_faqs = ([V.far_faq(title_region if is_renamed(r) else r["dong"])]
                    + list(zip(V.COMMON_FAQ_QUESTIONS, V.DONG_FAQ[combo[1]])) + V.call_faqs(r["slug"], 3))
-    common_faq_html = "\n      ".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in common_faqs)
+    common_faq_html = "\n      ".join(f"<details><summary>{esc(q)}</summary><p>{tel_text(esc(a))}</p></details>" for q, a in common_faqs)
     faq_ld = {
         "@context": "https://schema.org",
         "@type": "FAQPage",
@@ -571,6 +589,17 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
     lead = esc(lead).replace("\x00", lm_html)
     if not r["landmark_name"]:  # 동 안에서 확인된 장소가 없어 랜드마크를 비워 둔 동(사실 확인 보류)은 첫 문장 없이 설명만 쓴다
         lead = ""
+    desc_html = esc(r["landmark_desc"])
+    # "교동은 강릉역 인근 지역으로, 교동은 …"처럼 한 문장에 같은 동이 주어로 두 번 붙는 것 막기(2026-10-22 눈가리개 감사 2번).
+    # landmark_desc 는 구 페이지 동 목록에도 첫 문장 그대로 쓰는 독립 문장이라 데이터는 두고, 이어 붙이는 자리에서
+    # 설명이 이미 "{동}은/는 …"으로 시작하면 "{동}은 {랜드마크} 인근 지역으로, " 첫마디를 빼고 설명 안의 랜드마크를 강조한다
+    first_sent = re.split(r"(?<=다\.)\s+", r["landmark_desc"], maxsplit=1)[0]
+    subj = re.search(rf"{re.escape(r['dong'])}(은|는|에는) ", first_sent) if r["dong"] else None
+    if lead and subj and intro["lead"].startswith("{dong}{은는} {lm} 인근 지역으로"):
+        if r["landmark_name"] in r["landmark_desc"]:
+            lead, desc_html = "", desc_html.replace(esc(r["landmark_name"]), lm_html, 1)
+        elif subj.start() == 0:
+            desc_html = esc(r["landmark_desc"][subj.end():])
     parts = r.get("dong_parts") or []
     parts_note = (f'<p style="color:#5E6E70;font-size:14px">이 페이지는 {esc(parts_range(parts))}를 함께 안내합니다.</p>'
                   if parts else "")
@@ -606,7 +635,7 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
         "CLOSING_H2": esc(V.fill(closing["h2"], dong=r["dong"])).replace("&lt;br&gt;", "<br>"),
         "CLOSING_LEAD": esc(closing["lead"]),
         "LANDMARK_NAME": esc(r["landmark_name"]),
-        "LANDMARK_DESC": esc(r["landmark_desc"]),
+        "LANDMARK_DESC": desc_html,
         "SERVICE_INTRO": esc(r["service_intro"]),
         "PHONE_TEL": phone_tel,
         "PHONE_DISPLAY": phone_disp,
@@ -628,6 +657,7 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
         "BLOG_URL": esc(cfg["blog_url"]),
         # 대표 이미지(og:image, 2026-10-10): og/<slug>.png, 동 이름 + 대표번호
         **og_image.parts(r["slug"], r["dong"] or title_region, base, phone_disp),
+        "OG_IMG_HTML": "",  # 사례 칸 옆에는 실제 사례 사진만, 없으면 비움(2026-10-22 눈가리개 감사 5번, og:image 태그는 그대로)
     }
 
     cleaned = LEADING_COMMENT_RE.sub("<!DOCTYPE html>", template, count=1)

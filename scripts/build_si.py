@@ -53,6 +53,11 @@ SI_REDIRECTS = {"세종-폐차장.html": ("세종", "gu/세종-폐차장.html")}
 MAX_CASES = 6
 
 
+# 행정구역 통합으로 이름이 바뀐 시·도: 시·도 페이지 제목·H1·첫 문단에 한 번씩 옛 이름을 같이 쓴다(2026-10-22).
+# check_pages 는 이 시·도 페이지에서만 SI_OLD_SIDOS 의 옛 이름을 다른 시·도 이름으로 보지 않는다
+SI_OLD_NAMES = {"전남광주통합특별시": "광주·전남 (옛 광주광역시·전라남도)"}
+SI_OLD_SIDOS = {"전남광주통합특별시": {"광주광역시", "전라남도"}}
+
 def si_file(sido: str) -> str:
     from build_site import SIDO_SHORT
     return f"{SIDO_SHORT[sido]}-폐차장.html"
@@ -154,7 +159,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
                keep_dates: bool = False) -> list[str]:
     """si.json 의 시·도 페이지를 모두 렌더링한다. 잘못된 항목이 있으면 멈춘다. 내용이 바뀐 경로("si/…")를 돌려준다."""
     from build_site import (SIDO_SHORT, UPDATED_MARK, area_links_html, case_cards_html, contact_parts, esc, form_parts,
-                            gu_file, josa, page_jsonld, with_updated_date, business_jsonld)
+                            gu_file, josa, page_jsonld, tel_text, with_updated_date, business_jsonld)
     import variants as V
     from vehicle_stats import registration_row_sido, with_registration
 
@@ -185,7 +190,10 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
             continue
         si = SIDO_SHORT[sido]
         info = with_registration(s["public_info"], registration_row_sido(sido))  # 등록대수 줄은 통계 파일에서(2026-10-03)
-        meta_title = f"{si} 폐차장 · 폐차 | 시·군·구별 출장 폐차 · 수출 비교 · 조기폐차 안내 | 전화 {phone_disp}"
+        # 통합 전 이름 병기(2026-10-22 눈가리개 감사 9번): 제목·H1·첫 문단에 한 번씩. 다른 시·도는 그대로
+        old = SI_OLD_NAMES.get(sido)
+        si_label = f"{si} · {old}" if old else si
+        meta_title = f"{si_label} 폐차장 · 폐차 | 시·군·구별 출장 폐차 · 수출 비교 · 조기폐차 안내 | 전화 {phone_disp}"
         # 설명 글에는 010 번호를 넣지 않는다(네이버가 "010-****-****"로 가림, 2026-10-16). 본문·버튼의 번호는 그대로
         text_part = " · 문자 상담 가능" if text_disp else ""
         meta_desc = (f"{sido} 폐차 상담. 시·군·구별 출장 방문, 폐차 전에 수출과 비교해 유리한 쪽으로 안내합니다. "
@@ -204,7 +212,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
                      else f"{si} 사례는 준비 중입니다. 유튜브와 블로그에서 실제 진행 사례를 보실 수 있습니다")
         # 시·도마다 다른 질문 3개 + 실제 통화 FAQ 풀에서 4개(2026-10-03)
         faqs = [V.far_faq(si)] + [tuple(qa) for qa in s["faqs"]] + V.call_faqs("si:" + sido, 4)  # 맨 위 안심 FAQ(2026-10-16)
-        faq_html = "\n      ".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in faqs)
+        faq_html = "\n      ".join(f"<details><summary>{esc(q)}</summary><p>{tel_text(esc(a))}</p></details>" for q, a in faqs)
         info_rows = "\n        ".join(
             f'<tr><th>{esc(row["label"])}</th><td>{esc(info_value(row))}'
             f'<small>출처: <a href="{esc(row["url"])}" target="_blank" rel="noopener noreferrer">{esc(row["source"])}</a></small></td></tr>'
@@ -229,13 +237,13 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
             "BREADCRUMB": si_crumb,
             # 첫 화면(2026-10-13, scripts/first_screen.py)과 폼 바로 아래 "왜 비교해 드리나"
             "TYPE_LINKS": guide_links_html(),
-            "HERO_TOP": hero_top_html(cfg, si, form_parts(cfg, si, sido, canonical, meta_title), crumb=si_crumb, updated=UPDATED_MARK),
+            "HERO_TOP": hero_top_html(cfg, si_label, form_parts(cfg, si, sido, canonical, meta_title), crumb=si_crumb, updated=UPDATED_MARK),
             "WHY_BLOCK": why_block_html(f"{sido} 폐차 상담 · 당일 접수", f"{sido} 어디서든 전화 한 통이면 가까운 협력업체가 출장 방문합니다."),
-            "SI": esc(si), "SI_FULL": esc(sido), "SI_JOSA": josa(sido, "은", "는"),
+            "SI": esc(si), "SI_FULL": esc(f"{sido} — {old}" if old else sido), "SI_JOSA": josa(sido, "은", "는"),
             "GU_LIST_HTML": gu_list, "DONG_LIST_HTML": dong_list, "FAQ_HTML": faq_html, "INFO_ROWS": info_rows,
             "CHECKED_ON": esc(s.get("checked_on", "")), "UPDATED_ON": UPDATED_MARK,
             "CASES_SUB": esc(cases_sub), "CASES_HTML": case_cards_html(my_cases[:MAX_CASES]), "CASE_PHOTOS_HTML": "",
-            "CONSULT_TEXT": esc(V.fill(V.GU_CONSULT[i % V.N], phone=phone_disp)),
+            "CONSULT_TEXT": tel_text(esc(V.fill(V.GU_CONSULT[i % V.N], phone=phone_disp))),
             "CLOSING_H2": esc(V.fill(V.GU_CLOSING[(i + 2) % V.N], gu=si)).replace("&lt;br&gt;", "<br>"),
             "PHONE_TEL": phone_tel, "PHONE_DISPLAY": phone_disp,
             "YOUTUBE_URL": esc(cfg["youtube_url"]), "BLOG_URL": esc(cfg["blog_url"]),

@@ -57,6 +57,7 @@
   @media (min-width: 900px) { .cases-wrap { grid-template-columns: 1fr 320px; align-items: start; } .og-img img { max-width: 320px; } }
   .cases-wrap:has(> div:empty) { grid-template-columns: 1fr; }  /* 사례 카드가 없으면 그림 카드만 가운데 */
   /* 사례 칸 옆 실제 사진 1~2장(같은 동 → 시군구 → 시·도 사례, 2026-10-10)과 대표 이미지 카드 */
+  .cases-side:empty { display: none; }  /* 실제 사례 사진이 없으면 칸을 비움(2026-10-22) */
   .cases-side { display: grid; gap: 12px; justify-items: center; align-content: start; }
   .case-photo { margin: 0; width: 100%; max-width: 320px; }
   .case-photo img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 10px; }  /* 세로 사진도 320×240 */
@@ -305,6 +306,7 @@
   .related { margin-top: 12px; }
   .related a { color: var(--teal-deep); font-weight: 700; }
   .pieces li::before { display: none; }
+  .series { margin: 0 0 6px; font-size: 13px; font-weight: 800; color: var(--coral-deep); } .series span { font-weight: 400; color: #5E6E70; }
   .pieces .piece-no { display: inline-block; color: var(--coral-deep); font-size: 12px; font-weight: 800; margin-bottom: 4px; }
   .route { margin-top: 18px; background: var(--card); border: 2px solid var(--teal); border-radius: 14px; padding: 16px; }
   .route h3 { font-size: 18px; margin-bottom: 6px; color: var(--teal-deep); }
@@ -369,6 +371,7 @@
 <main>
   <section id="answer" style="background:#fff">
     <div class="wrap">
+      <p class="series">폐차 사전 1편 — 압류 있는 차 <span>(조각 1~6번)</span></p>
       <h2 class="sec-title display">한 줄로 답하면</h2>
       <div class="local answer"><p><b>네, 압류가 있어도 폐차할 수 있습니다. 다만 압류가 몇 건이고 어디서 건 압류인지에 따라 &#x27;압류를 풀고 일반 폐차&#x27;와 &#x27;압류가 남은 채 차령초과말소&#x27; 중 길이 갈립니다.</b></p><p>차를 세워 두는 동안에도 자동차세는 해마다 나오고, 정기검사를 넘기면 검사 과태료가 붙습니다. 둘 다 말소가 돼야 멈춥니다.</p></div>
       <p class="note related">관련 안내: <a href="차령초과-폐차.html">차령초과 말소</a> · <a href="저당만-있는-차.html">저당만 있는 차</a> · <a href="폐차-절차.html">폐차 절차</a> · <a href="폐차-필요-서류.html">필요 서류</a></p>
@@ -378,7 +381,7 @@
     <div class="wrap">
       <h2 class="sec-title display">알아 두면 좋은 조건과 절차</h2>
       <p class="sec-sub">규칙은 숨기지 않고 다 적었습니다. 내 차가 어느 쪽인지는 원부와 차 상태를 합쳐 봐야 나옵니다</p>
-      <ol class="steps pieces"><li><span class="piece-no">폐차 사전 1/36</span><b>압류는 원부에 하나씩 적힙니다</b><span>자동차등록원부에 압류한 곳(시·군·구청, 세무서, 법원 등)과 건수가 하나씩 적혀 있습니다. 정부24에서 본인 차 원부(갑)를 직접 떼어 볼 수 있고, 차 번호만 주시면 상담 때 대신 봐 드립니다.</span></li><li><span class="piece-no">폐차 사전 2/36</span><b>압류한 곳마다 푸는 곳이 다릅니다</b><span>자동차세·과태료 압류는 그 시·군·구청, 국세 압류는 세무서, 법원 압류는 채권자나 법원 절차로 풉니다. 체납을 정리하면 압류를 건 곳에서 해제합니다.</span></li><li><span class="piece-no">폐차 사전 3/36</span><b>건수가 적으면 풀고 일반 폐차</b><span>압류가 한두 건이고 바로 정리할 수 있으면 해제한 뒤 일반 폐차로 가는 편이 빠를 수 있습니다. 일반 폐차는 방문 일정부터 바로 잡습니다.</span></li><li><span class="piece-no">폐차 사전 4/36</span><b>많거나 오래됐으면 차령초과말소</b><span>차령 기준(승용차 11년 이상 등)을 넘긴 차는 압류가 남아 있어도 말소를 신청할 수 있습니다(자동차관리법 제13조 제1항 제7호). 조건은 차령초과말소 안내에 정리했습니다.</span></li><li><span class="piece-no">폐차 사전 5/36</span><b>본인도 모르는 압류가 많습니다</b><span>주정차 과태료 압류는 고지서를 못 봐 모르는 경우가 흔합니다. 과태료를 다 냈어도 전산에서 압류가 안 내려간 채 남는 일이 자주 있어, 압류를 건 곳에 해제를 따로 요청해야 진행됩니다.</span></li><li><span class="piece-no">폐차 사전 6/36</span><b>경매가 진행 중이면 다릅니다</b><span>압류 뒤 경매 같은 환가 절차가 진행 중인 차는 차령초과말소 대상이 아닐 수 있습니다. 지자체마다 처리가 달라 원부 보고 상담 때 확인해 드립니다.</span></li></ol>
+      <ol class="steps pieces"><li><span class="piece-no">사전 1번</span><b>압류는 원부에 하나씩 적힙니다</b><span>자동차등록원부에 압류한 곳(시·군·구청, 세무서, 법원 등)과 건수가 하나씩 적혀 있습니다. 정부24에서 본인 차 원부(갑)를 직접 떼어 볼 수 있고, 차 번호만 주시면 상담 때 대신 봐 드립니다.</span></li><li><span class="piece-no">사전 2번</span><b>압류한 곳마다 푸는 곳이 다릅니다</b><span>자동차세·과태료 압류는 그 시·군·구청, 국세 압류는 세무서, 법원 압류는 채권자나 법원 절차로 풉니다. 체납을 정리하면 압류를 건 곳에서 해제합니다.</span></li><li><span class="piece-no">사전 3번</span><b>건수가 적으면 풀고 일반 폐차</b><span>압류가 한두 건이고 바로 정리할 수 있으면 해제한 뒤 일반 폐차로 가는 편이 빠를 수 있습니다. 일반 폐차는 방문 일정부터 바로 잡습니다.</span></li><li><span class="piece-no">사전 4번</span><b>많거나 오래됐으면 차령초과말소</b><span>차령 기준(승용차 11년 이상 등)을 넘긴 차는 압류가 남아 있어도 말소를 신청할 수 있습니다(자동차관리법 제13조 제1항 제7호). 조건은 차령초과말소 안내에 정리했습니다.</span></li><li><span class="piece-no">사전 5번</span><b>본인도 모르는 압류가 많습니다</b><span>주정차 과태료 압류는 고지서를 못 봐 모르는 경우가 흔합니다. 과태료를 다 냈어도 전산에서 압류가 안 내려간 채 남는 일이 자주 있어, 압류를 건 곳에 해제를 따로 요청해야 진행됩니다.</span></li><li><span class="piece-no">사전 6번</span><b>경매가 진행 중이면 다릅니다</b><span>압류 뒤 경매 같은 환가 절차가 진행 중인 차는 차령초과말소 대상이 아닐 수 있습니다. 지자체마다 처리가 달라 원부 보고 상담 때 확인해 드립니다.</span></li></ol>
       <div class="route">
         <h3>내 차는 어디로?</h3>
         <p>압류가 몇 건인지, 어디 압류인지, 차령이 기준을 넘었는지, 저당도 같이 있는지를 합쳐 봐야 &#x27;해제 후 폐차&#x27;인지 &#x27;차령초과말소&#x27;인지가 나옵니다. 이건 원부를 봐야 갈리는 일이라 상담으로 확인해 드립니다. 차령초과말소로 차가 말소돼도 압류의 원인이 된 세금·과태료·빚은 그대로 남습니다.</p>
@@ -426,7 +429,7 @@
       <h2 class="sec-title display">상담 안내</h2>
       <p class="sec-sub">차 번호로 원부부터 같이 봅니다</p>
       <div class="local">
-        <p>차 번호와 차가 있는 곳을 알려주시면 원부를 보고 압류를 풀고 폐차할지, 차령초과말소로 갈지 상담 후 확인해 드립니다. 전국 어디든 협력업체가 출장 방문합니다. 전화 1600-6011 / 문자 010-9926-7779.</p>
+        <p>차 번호와 차가 있는 곳을 알려주시면 원부를 보고 압류를 풀고 폐차할지, 차령초과말소로 갈지 상담 후 확인해 드립니다. 전국 어디든 협력업체가 출장 방문합니다. 전화 <a href="tel:16006011">1600-6011</a> / 문자 010-9926-7779.</p>
       </div>
       <div class="channel" style="margin-top:18px">
         <a class="btn btn-call" href="tel:16006011"><svg><use href="#i-phone"/></svg>전화 1600-6011</a>
@@ -461,14 +464,14 @@
   </section>
   <section id="popular" style="background:#fff">
     <div class="wrap">
-      <h2 class="sec-title display">문의 많은 지역</h2>
-      <p class="sec-sub">문의가 온 곳과 상담이 많은 시·군입니다. 차가 있는 곳의 페이지에서 동별 안내를 보실 수 있습니다</p>
+      <h2 class="sec-title display">최근 문의 지역</h2>
+      <p class="sec-sub">최근 문의가 온 곳과 상담이 많은 시·군입니다. 차가 있는 곳의 페이지에서 동별 안내를 보실 수 있습니다</p>
       <div class="neighbors"><a href="../gu/구미시-폐차장.html">구미시 폐차 안내</a><a href="../gu/목포시-폐차장.html">목포시 폐차 안내</a><a href="../gu/화성시-동탄구-폐차장.html">화성시 동탄구 폐차 안내</a><a href="../gu/김해시-폐차장.html">김해시 폐차 안내</a><a href="../gu/천안시-동남구-폐차장.html">천안시 동남구 폐차 안내</a><a href="../gu/수영구-폐차장.html">수영구 폐차 안내</a><a href="../gu/강릉시-폐차장.html">강릉시 폐차 안내</a><a href="../gu/경산시-폐차장.html">경산시 폐차 안내</a><a href="../gu/서울-강서구-폐차장.html">강서구 폐차 안내</a><a href="../gu/원주시-폐차장.html">원주시 폐차 안내</a></div>
     </div>
   </section>
 </main>
 
-<nav class="area-links" id="area-links" aria-label="지역·안내 바로가기"><div class="wrap"><h2>폐차 안내</h2><div class="neighbors"><a href="../guide/폐차-절차.html">폐차 절차</a><a href="../guide/폐차-필요-서류.html">필요 서류</a><a href="../guide/조기폐차-지원-안내.html">조기폐차 지원</a><a href="../guide/폐차-수출-비교.html">폐차 vs 수출</a><a href="../guide/폐차-금액-정하는-방법.html">폐차 금액</a><a href="../guide/압류-있는-차-폐차.html">압류 있는 차</a><a href="../guide/차령초과-폐차.html">차령초과 말소</a><a href="../guide/저당만-있는-차.html">저당만 있는 차</a><a href="../guide/시동-안-걸리는-차.html">시동 안 걸리는 차</a><a href="../guide/상속차-법인차-서류.html">상속·법인·대리인</a><a href="../guide/방치차-오래-세워둔-차.html">오래 세워둔 차</a></div><h2>시·도별 폐차 상담</h2><div class="neighbors"><a href="../si/서울-폐차장.html">서울</a><a href="../si/부산-폐차장.html">부산</a><a href="../si/대구-폐차장.html">대구</a><a href="../si/인천-폐차장.html">인천</a><a href="../si/전남광주-폐차장.html">전남광주</a><a href="../si/대전-폐차장.html">대전</a><a href="../si/울산-폐차장.html">울산</a><a href="../index.html#sido-세종">세종</a><a href="../si/경기-폐차장.html">경기</a><a href="../si/강원-폐차장.html">강원</a><a href="../si/충북-폐차장.html">충북</a><a href="../si/충남-폐차장.html">충남</a><a href="../si/전북-폐차장.html">전북</a><a href="../si/경북-폐차장.html">경북</a><a href="../si/경남-폐차장.html">경남</a><a href="../si/제주-폐차장.html">제주</a></div></div></nav>
+<nav class="area-links" id="area-links" aria-label="지역·안내 바로가기"><div class="wrap"><h2>폐차 안내</h2><div class="neighbors"><a href="../guide/폐차-절차.html">폐차 절차</a><a href="../guide/폐차-필요-서류.html">필요 서류</a><a href="../guide/조기폐차-지원-안내.html">조기폐차 지원</a><a href="../guide/폐차-수출-비교.html">폐차 vs 수출</a><a href="../guide/폐차-금액-정하는-방법.html">폐차 금액</a><a href="../guide/압류-있는-차-폐차.html">압류 있는 차</a><a href="../guide/차령초과-폐차.html">차령초과 말소</a><a href="../guide/저당만-있는-차.html">저당만 있는 차</a><a href="../guide/시동-안-걸리는-차.html">시동 안 걸리는 차</a><a href="../guide/상속차-법인차-서류.html">상속·법인·대리인</a><a href="../guide/방치차-오래-세워둔-차.html">오래 세워둔 차</a></div><h2>시·도별 폐차 상담</h2><div class="neighbors"><a href="../si/서울-폐차장.html">서울</a><a href="../si/부산-폐차장.html">부산</a><a href="../si/대구-폐차장.html">대구</a><a href="../si/인천-폐차장.html">인천</a><a href="../si/전남광주-폐차장.html">전남광주</a><a href="../si/대전-폐차장.html">대전</a><a href="../si/울산-폐차장.html">울산</a><a href="../gu/세종-폐차장.html">세종</a><a href="../si/경기-폐차장.html">경기</a><a href="../si/강원-폐차장.html">강원</a><a href="../si/충북-폐차장.html">충북</a><a href="../si/충남-폐차장.html">충남</a><a href="../si/전북-폐차장.html">전북</a><a href="../si/경북-폐차장.html">경북</a><a href="../si/경남-폐차장.html">경남</a><a href="../si/제주-폐차장.html">제주</a></div></div></nav>
 
 <p class="fine-print">본 서비스는 전국 폐차 협력업체 네트워크와 함께합니다. 차량 상태와 조건에 따라 폐차와 수출 비교매입 중 더 적합한 방법을 안내해 드립니다.</p>
 

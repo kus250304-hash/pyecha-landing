@@ -217,7 +217,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
     # build_site 가 이 모듈을 부르므로 여기서 가져온다
     from build_site import (SIDO_SHORT, UPDATED_MARK, area_links_html, case_cards_html, contact_parts, esc, form_parts, gu_file,
                             business_jsonld, gu_rel, gu_title_names, page_jsonld, region_photos, region_photos_html, sido_link,
-                            with_updated_date)
+                            tel_text, with_updated_date)
 
     if not gu_data:
         return [], []
@@ -287,7 +287,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
             + (f' · {esc(c["date"])}' if c.get("date") else "") + "</span></li>" for c in nearby) + "</ul>") if nearby else ""
         # 구마다 다른 질문 3개 + 실제 통화 FAQ 풀에서 4개(2026-10-03)
         faqs = [V.far_faq(gu)] + [tuple(qa) for qa in g["faqs"]] + V.call_faqs("gu:" + g["slug"], 4)  # 맨 위 안심 FAQ(2026-10-16)
-        faq_html = "\n      ".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in faqs)
+        faq_html = "\n      ".join(f"<details><summary>{esc(q)}</summary><p>{tel_text(esc(a))}</p></details>" for q, a in faqs)
         info_rows = "\n        ".join(
             f'<tr><th>{esc(row["label"])}</th><td>{esc(info_value(row))}'
             f'<small>출처: <a href="{esc(row["url"])}" target="_blank" rel="noopener noreferrer">{esc(row["source"])}</a></small></td></tr>'
@@ -341,7 +341,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
             "CASES_SUB": esc(cases_sub),
             "CASES_HTML": case_cards_html(my_cases[:MAX_CASES]),
             "CASE_PHOTOS_HTML": region_photos_html(region_photos(cases, sido, sigungu, shown=my_cases[:MAX_CASES])),
-            "CONSULT_TEXT": esc(V.fill(v_consult, phone=phone_disp)),
+            "CONSULT_TEXT": tel_text(esc(V.fill(v_consult, phone=phone_disp))),
             "CLOSING_H2": esc(V.fill(v_close, gu=gu)).replace("&lt;br&gt;", "<br>"),
             "PHONE_TEL": phone_tel, "PHONE_DISPLAY": phone_disp,
             "YOUTUBE_URL": esc(cfg["youtube_url"]), "BLOG_URL": esc(cfg["blog_url"]),
@@ -350,6 +350,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
             "SCRIPT": script.replace("{{PHONE_DISPLAY}}", phone_disp),
             # 대표 이미지(og:image, 2026-10-10): og/{구 파일 이름}.png, "{시군구} 폐차장" + 대표번호
             **og_image.parts(gu_file(sido, sigungu)[:-5], title_name, base, phone_disp, suffix="폐차장"),
+            "OG_IMG_HTML": "",  # 사례 칸 옆에는 실제 사례 사진만, 없으면 비움(2026-10-22 눈가리개 감사 5번)
         }
         cleaned = re.sub(r"<!DOCTYPE html>\s*<!--.*?-->", "<!DOCTYPE html>", template, count=1, flags=re.DOTALL)
 

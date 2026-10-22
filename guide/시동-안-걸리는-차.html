@@ -57,6 +57,7 @@
   @media (min-width: 900px) { .cases-wrap { grid-template-columns: 1fr 320px; align-items: start; } .og-img img { max-width: 320px; } }
   .cases-wrap:has(> div:empty) { grid-template-columns: 1fr; }  /* 사례 카드가 없으면 그림 카드만 가운데 */
   /* 사례 칸 옆 실제 사진 1~2장(같은 동 → 시군구 → 시·도 사례, 2026-10-10)과 대표 이미지 카드 */
+  .cases-side:empty { display: none; }  /* 실제 사례 사진이 없으면 칸을 비움(2026-10-22) */
   .cases-side { display: grid; gap: 12px; justify-items: center; align-content: start; }
   .case-photo { margin: 0; width: 100%; max-width: 320px; }
   .case-photo img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 10px; }  /* 세로 사진도 320×240 */
@@ -305,6 +306,7 @@
   .related { margin-top: 12px; }
   .related a { color: var(--teal-deep); font-weight: 700; }
   .pieces li::before { display: none; }
+  .series { margin: 0 0 6px; font-size: 13px; font-weight: 800; color: var(--coral-deep); } .series span { font-weight: 400; color: #5E6E70; }
   .pieces .piece-no { display: inline-block; color: var(--coral-deep); font-size: 12px; font-weight: 800; margin-bottom: 4px; }
   .route { margin-top: 18px; background: var(--card); border: 2px solid var(--teal); border-radius: 14px; padding: 16px; }
   .route h3 { font-size: 18px; margin-bottom: 6px; color: var(--teal-deep); }
@@ -369,6 +371,7 @@
 <main>
   <section id="answer" style="background:#fff">
     <div class="wrap">
+      <p class="series">폐차 사전 4편 — 시동 안 걸리는 차 <span>(조각 19~24번)</span></p>
       <h2 class="sec-title display">한 줄로 답하면</h2>
       <div class="local answer"><p><b>네, 시동이 안 걸리는 차나 고장차도 폐차와 수출을 비교할 수 있습니다. 시동이 안 걸리는 이유(배터리 방전인지 엔진·미션 고장인지)와 연식·차종에 따라 어느 쪽이 나은지가 달라지기 때문입니다.</b></p><p>세워 둔 해마다 자동차세가 나오고, 정기검사를 넘기면 검사 과태료가 붙습니다. 책임보험(의무보험)은 말소 전까지 유지하셔야 과태료가 안 붙어요.</p></div>
       <p class="note related">관련 안내: <a href="방치차-오래-세워둔-차.html">오래 세워둔 차</a> · <a href="폐차-수출-비교.html">폐차 vs 수출</a> · <a href="폐차-금액-정하는-방법.html">폐차 금액</a> · <a href="폐차-절차.html">폐차 절차</a></p>
@@ -378,7 +381,7 @@
     <div class="wrap">
       <h2 class="sec-title display">알아 두면 좋은 조건과 절차</h2>
       <p class="sec-sub">규칙은 숨기지 않고 다 적었습니다. 내 차가 어느 쪽인지는 원부와 차 상태를 합쳐 봐야 나옵니다</p>
-      <ol class="steps pieces"><li><span class="piece-no">폐차 사전 19/36</span><b>견인차가 갑니다</b><span>시동이 안 걸려도, 키가 없어도, 사고로 움직이지 못해도 견인차가 차가 있는 곳으로 갑니다. 견인비는 대부분 별도 청구 없이 진행하며, 먼 거리·시동 불가 같은 특수한 경우는 상담 때 미리 안내합니다.</span></li><li><span class="piece-no">폐차 사전 20/36</span><b>배터리 방전과 고장은 다릅니다</b><span>점프로 시동이 걸리면 기사가 직접 운전해 가져가는 탁송이 되고, 엔진·변속기 고장이면 견인차가 실어 옵니다. 어느 쪽인지에 따라 비용과 금액이 달라지니 언제부터 안 걸렸는지, 점프는 해 봤는지 알려 주세요.</span></li><li><span class="piece-no">폐차 사전 21/36</span><b>수출은 연식·차종·상태로 갈립니다</b><span>폐차보다 수출이 더 받는 차가 있습니다. 시동이 안 걸린다고 바로 폐차로 정해지지 않아서, 폐차 전에 수출 시세와 비교해서 더 높은 쪽으로 안내합니다.</span></li><li><span class="piece-no">폐차 사전 22/36</span><b>사진 세 장</b><span>앞, 옆, 뒤로 번호판이 나오게 세 장만 보내 주세요. 사진을 보고 전화드립니다.</span></li><li><span class="piece-no">폐차 사전 23/36</span><b>차가 있는 곳 알려주기</b><span>지하주차장 층수와 천장 높이, 골목 폭, 차 앞뒤가 비어 있는지 알려주시면 맞는 견인 방식으로 준비합니다.</span></li><li><span class="piece-no">폐차 사전 24/36</span><b>말소 전까지 챙길 것</b><span>책임보험(의무보험)은 말소 전까지 유지하셔야 과태료가 안 붙어요. 말소 끝나면 말소증을 문자로 보내드리니 그걸로 보험을 정리하시면 됩니다.</span></li></ol>
+      <ol class="steps pieces"><li><span class="piece-no">사전 19번</span><b>견인차가 갑니다</b><span>시동이 안 걸려도, 키가 없어도, 사고로 움직이지 못해도 견인차가 차가 있는 곳으로 갑니다. 견인비는 대부분 별도 청구 없이 진행하며, 먼 거리·시동 불가 같은 특수한 경우는 상담 때 미리 안내합니다.</span></li><li><span class="piece-no">사전 20번</span><b>배터리 방전과 고장은 다릅니다</b><span>점프로 시동이 걸리면 기사가 직접 운전해 가져가는 탁송이 되고, 엔진·변속기 고장이면 견인차가 실어 옵니다. 어느 쪽인지에 따라 비용과 금액이 달라지니 언제부터 안 걸렸는지, 점프는 해 봤는지 알려 주세요.</span></li><li><span class="piece-no">사전 21번</span><b>수출은 연식·차종·상태로 갈립니다</b><span>폐차보다 수출이 더 받는 차가 있습니다. 시동이 안 걸린다고 바로 폐차로 정해지지 않아서, 폐차 전에 수출 시세와 비교해서 더 높은 쪽으로 안내합니다.</span></li><li><span class="piece-no">사전 22번</span><b>사진 세 장</b><span>앞, 옆, 뒤로 번호판이 나오게 세 장만 보내 주세요. 사진을 보고 전화드립니다.</span></li><li><span class="piece-no">사전 23번</span><b>차가 있는 곳 알려주기</b><span>지하주차장 층수와 천장 높이, 골목 폭, 차 앞뒤가 비어 있는지 알려주시면 맞는 견인 방식으로 준비합니다.</span></li><li><span class="piece-no">사전 24번</span><b>말소 전까지 챙길 것</b><span>책임보험(의무보험)은 말소 전까지 유지하셔야 과태료가 안 붙어요. 말소 끝나면 말소증을 문자로 보내드리니 그걸로 보험을 정리하시면 됩니다.</span></li></ol>
       <div class="route">
         <h3>내 차는 어디로?</h3>
         <p>고장 원인·연식·차종·주행거리를 합쳐 봐야 폐차와 수출 중 어디가 나은지 나옵니다. 차량번호와 사진을 주시면 상담 후 확인해 드립니다.</p>
@@ -426,7 +429,7 @@
       <h2 class="sec-title display">상담 안내</h2>
       <p class="sec-sub">폐차 전에 수출과 비교해서 유리한 쪽으로</p>
       <div class="local">
-        <p>차 상태와 차가 있는 곳을 알려주시면 폐차와 수출 중 유리한 쪽을 상담 후 확인해 드립니다. 전국 어디든 협력업체가 출장 방문합니다. 전화 1600-6011 / 문자 010-9926-7779.</p>
+        <p>차 상태와 차가 있는 곳을 알려주시면 폐차와 수출 중 유리한 쪽을 상담 후 확인해 드립니다. 전국 어디든 협력업체가 출장 방문합니다. 전화 <a href="tel:16006011">1600-6011</a> / 문자 010-9926-7779.</p>
       </div>
       <div class="channel" style="margin-top:18px">
         <a class="btn btn-call" href="tel:16006011"><svg><use href="#i-phone"/></svg>전화 1600-6011</a>
@@ -461,14 +464,14 @@
   </section>
   <section id="popular" style="background:#fff">
     <div class="wrap">
-      <h2 class="sec-title display">문의 많은 지역</h2>
-      <p class="sec-sub">문의가 온 곳과 상담이 많은 시·군입니다. 차가 있는 곳의 페이지에서 동별 안내를 보실 수 있습니다</p>
+      <h2 class="sec-title display">최근 문의 지역</h2>
+      <p class="sec-sub">최근 문의가 온 곳과 상담이 많은 시·군입니다. 차가 있는 곳의 페이지에서 동별 안내를 보실 수 있습니다</p>
       <div class="neighbors"><a href="../gu/구미시-폐차장.html">구미시 폐차 안내</a><a href="../gu/목포시-폐차장.html">목포시 폐차 안내</a><a href="../gu/화성시-동탄구-폐차장.html">화성시 동탄구 폐차 안내</a><a href="../gu/김해시-폐차장.html">김해시 폐차 안내</a><a href="../gu/천안시-동남구-폐차장.html">천안시 동남구 폐차 안내</a><a href="../gu/수영구-폐차장.html">수영구 폐차 안내</a><a href="../gu/강릉시-폐차장.html">강릉시 폐차 안내</a><a href="../gu/경산시-폐차장.html">경산시 폐차 안내</a><a href="../gu/서울-강서구-폐차장.html">강서구 폐차 안내</a><a href="../gu/원주시-폐차장.html">원주시 폐차 안내</a></div>
     </div>
   </section>
 </main>
 
-<nav class="area-links" id="area-links" aria-label="지역·안내 바로가기"><div class="wrap"><h2>폐차 안내</h2><div class="neighbors"><a href="../guide/폐차-절차.html">폐차 절차</a><a href="../guide/폐차-필요-서류.html">필요 서류</a><a href="../guide/조기폐차-지원-안내.html">조기폐차 지원</a><a href="../guide/폐차-수출-비교.html">폐차 vs 수출</a><a href="../guide/폐차-금액-정하는-방법.html">폐차 금액</a><a href="../guide/압류-있는-차-폐차.html">압류 있는 차</a><a href="../guide/차령초과-폐차.html">차령초과 말소</a><a href="../guide/저당만-있는-차.html">저당만 있는 차</a><a href="../guide/시동-안-걸리는-차.html">시동 안 걸리는 차</a><a href="../guide/상속차-법인차-서류.html">상속·법인·대리인</a><a href="../guide/방치차-오래-세워둔-차.html">오래 세워둔 차</a></div><h2>시·도별 폐차 상담</h2><div class="neighbors"><a href="../si/서울-폐차장.html">서울</a><a href="../si/부산-폐차장.html">부산</a><a href="../si/대구-폐차장.html">대구</a><a href="../si/인천-폐차장.html">인천</a><a href="../si/전남광주-폐차장.html">전남광주</a><a href="../si/대전-폐차장.html">대전</a><a href="../si/울산-폐차장.html">울산</a><a href="../index.html#sido-세종">세종</a><a href="../si/경기-폐차장.html">경기</a><a href="../si/강원-폐차장.html">강원</a><a href="../si/충북-폐차장.html">충북</a><a href="../si/충남-폐차장.html">충남</a><a href="../si/전북-폐차장.html">전북</a><a href="../si/경북-폐차장.html">경북</a><a href="../si/경남-폐차장.html">경남</a><a href="../si/제주-폐차장.html">제주</a></div></div></nav>
+<nav class="area-links" id="area-links" aria-label="지역·안내 바로가기"><div class="wrap"><h2>폐차 안내</h2><div class="neighbors"><a href="../guide/폐차-절차.html">폐차 절차</a><a href="../guide/폐차-필요-서류.html">필요 서류</a><a href="../guide/조기폐차-지원-안내.html">조기폐차 지원</a><a href="../guide/폐차-수출-비교.html">폐차 vs 수출</a><a href="../guide/폐차-금액-정하는-방법.html">폐차 금액</a><a href="../guide/압류-있는-차-폐차.html">압류 있는 차</a><a href="../guide/차령초과-폐차.html">차령초과 말소</a><a href="../guide/저당만-있는-차.html">저당만 있는 차</a><a href="../guide/시동-안-걸리는-차.html">시동 안 걸리는 차</a><a href="../guide/상속차-법인차-서류.html">상속·법인·대리인</a><a href="../guide/방치차-오래-세워둔-차.html">오래 세워둔 차</a></div><h2>시·도별 폐차 상담</h2><div class="neighbors"><a href="../si/서울-폐차장.html">서울</a><a href="../si/부산-폐차장.html">부산</a><a href="../si/대구-폐차장.html">대구</a><a href="../si/인천-폐차장.html">인천</a><a href="../si/전남광주-폐차장.html">전남광주</a><a href="../si/대전-폐차장.html">대전</a><a href="../si/울산-폐차장.html">울산</a><a href="../gu/세종-폐차장.html">세종</a><a href="../si/경기-폐차장.html">경기</a><a href="../si/강원-폐차장.html">강원</a><a href="../si/충북-폐차장.html">충북</a><a href="../si/충남-폐차장.html">충남</a><a href="../si/전북-폐차장.html">전북</a><a href="../si/경북-폐차장.html">경북</a><a href="../si/경남-폐차장.html">경남</a><a href="../si/제주-폐차장.html">제주</a></div></div></nav>
 
 <p class="fine-print">본 서비스는 전국 폐차 협력업체 네트워크와 함께합니다. 차량 상태와 조건에 따라 폐차와 수출 비교매입 중 더 적합한 방법을 안내해 드립니다.</p>
 

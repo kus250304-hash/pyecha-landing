@@ -444,14 +444,18 @@ def sources(t: dict) -> list[tuple[str, str]]:
 
 
 def topic_sections_html(t: dict, n0: int, cases: list[dict], esc) -> str:
-    """주제 페이지 본문: 한 줄 답 → 조각("폐차 사전 n/30") + 내 차는 어디로(상담) → 걱정 3개 → 같은 상황 사례(있을 때만)."""
+    """주제 페이지 본문: 시리즈 한 줄("폐차 사전 N편") → 한 줄 답 → 조각("사전 n번") + 내 차는 어디로(상담) → 걱정 3개 → 같은 상황 사례(있을 때만)."""
     from build_site import case_cards_html
-    total = len(TOPICS) * 6
+    # 시리즈 표시(2026-10-22 눈가리개 감사 6번): "n/36" 꼬리표 대신 글 맨 위 "폐차 사전 N편 — 압류 있는 차" 한 줄.
+    # 조각 번호(주제마다 6개씩 이어지는 번호)는 그대로 두고 "사전 n번"으로 읽히게 쓴다
+    part = n0 // 6 + 1
+    series = (f'      <p class="series">폐차 사전 {part}편 — {esc(t["nav"])}'
+              f' <span>(조각 {n0}~{n0 + len(t["pieces"]) - 1}번)</span></p>\n')
     pieces = "".join(
-        f'<li><span class="piece-no">폐차 사전 {n0 + k}/{total}</span><b>{esc(h)}</b><span>{esc(x)}</span></li>'
+        f'<li><span class="piece-no">사전 {n0 + k}번</span><b>{esc(h)}</b><span>{esc(x)}</span></li>'
         for k, (h, x) in enumerate(t["pieces"]))
     out = [
-        '  <section id="answer" style="background:#fff">\n    <div class="wrap">\n'
+        '  <section id="answer" style="background:#fff">\n    <div class="wrap">\n' + series +
         '      <h2 class="sec-title display">한 줄로 답하면</h2>\n'
         f'      <div class="local answer"><p><b>{esc(t["answer"])}</b></p><p>{esc(t["hook"])}</p></div>\n'
         + ('      <p class="note source">출처: ' + " · ".join(
@@ -616,7 +620,7 @@ BOTTOM_FORM = """      <div class="quote-card" style="margin-top:16px;text-align
 def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], keep_dates: bool = False) -> list[str]:
     """안내 페이지 5장과 주제 페이지 5장(2026-10-14)을 렌더링하고, 내용이 바뀐 페이지 경로("guide/…", %인코딩) 목록을 돌려준다."""
     from build_site import (CASES_INDEX, UPDATED_MARK, area_links_html, esc, form_parts, load_json, page_jsonld,
-                            with_updated_date)
+                            tel_text, with_updated_date)
     from first_screen import hero_top_html, sms_link
     import og_image
 
@@ -647,13 +651,13 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], keep_dates: 
         bar_second = '<a class="btn btn-quote" href="#consult" style="background:#fff"><svg><use href="#i-chat"/></svg>상담 안내</a>'
     area = area_links_html(regions, gu_data)
     cases = load_json(CASES_INDEX, default=[])
-    # 주제 페이지 맨 아래 "문의 많은 지역"(2026-10-20): 첫 화면과 같은 구·시군 10곳(pick_index_requests.popular_gu)
+    # 주제 페이지 맨 아래 "최근 문의 지역"(2026-10-20, 2026-10-22 이름 바꿈·본문 해시에서 뺌): 첫 화면과 같은 구·시군 10곳(pick_index_requests.popular_gu)
     from build_site import SIDO_SHORT, gu_file
     from pick_index_requests import popular_gu
     popular = popular_gu(10)
     popular_html = ('  <section id="popular" style="background:#fff">\n    <div class="wrap">\n'
-                    '      <h2 class="sec-title display">문의 많은 지역</h2>\n'
-                    '      <p class="sec-sub">문의가 온 곳과 상담이 많은 시·군입니다. 차가 있는 곳의 페이지에서 동별 안내를 보실 수 있습니다</p>\n'
+                    '      <h2 class="sec-title display">최근 문의 지역</h2>\n'
+                    '      <p class="sec-sub">최근 문의가 온 곳과 상담이 많은 시·군입니다. 차가 있는 곳의 페이지에서 동별 안내를 보실 수 있습니다</p>\n'
                     '      <div class="neighbors">'
                     + "".join(f'<a href="../gu/{esc(gu_file(sd, sg))}">{esc(sg or SIDO_SHORT[sd])} 폐차 안내</a>' for sd, sg in popular)
                     + "</div>\n    </div>\n  </section>") if popular else ""
@@ -692,13 +696,13 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], keep_dates: 
             "META_TITLE": esc(meta_title), "SITE_NAME": esc(cfg["site_name"]), "META_DESC": esc(meta_desc), "CANONICAL": canonical,
             "JSONLD": json.dumps(jsonld, ensure_ascii=False), "PAGE_JSONLD": page_jsonld(meta_title, canonical),
             "STYLE": style, "SPRITE": sprite, "GUIDE_NAV": nav, "UPDATED_ON": UPDATED_MARK, "BREADCRUMB": crumbs,
-            "FAQ_HTML": "\n      ".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in g["faqs"]),
+            "FAQ_HTML": "\n      ".join(f"<details><summary>{esc(q)}</summary><p>{tel_text(esc(a))}</p></details>" for q, a in g["faqs"]),
             # 압류 페이지(no_export, 2026-10-18)는 수출 비교 대신 원부 확인으로 쓴다
             "CONSULT_SUB": esc("차 번호로 원부부터 같이 봅니다" if g.get("no_export") else "폐차 전에 수출과 비교해서 유리한 쪽으로"),
-            "CONSULT_TEXT": esc(("차 번호와 차가 있는 곳을 알려주시면 원부를 보고 압류를 풀고 폐차할지, 차령초과말소로 갈지 상담 후 확인해 드립니다. "
+            "CONSULT_TEXT": tel_text(esc(("차 번호와 차가 있는 곳을 알려주시면 원부를 보고 압류를 풀고 폐차할지, 차령초과말소로 갈지 상담 후 확인해 드립니다. "
                                  if g.get("no_export") else
                                  "차 상태와 차가 있는 곳을 알려주시면 폐차와 수출 중 유리한 쪽을 상담 후 확인해 드립니다. ")
-                                + f"전국 어디든 협력업체가 출장 방문합니다. {contact_line}."),
+                                + f"전국 어디든 협력업체가 출장 방문합니다. {contact_line}.")),
             "SMS_BUTTON": sms_btn, "BAR_SECOND": bar_second,
             "PHONE_TEL": phone_tel, "PHONE_DISPLAY": phone_disp,
             "YOUTUBE_URL": esc(cfg["youtube_url"]), "BLOG_URL": esc(cfg["blog_url"]), "AREA_LINKS": area,
@@ -729,7 +733,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], keep_dates: 
                 extra = [("links", parts_by_idx[i])] if i in parts_by_idx else []
                 sections.append(section_html(i, h2, sub_, list(parts) + extra, esc))
             values.update({
-                "H1": esc(g["h1"]).replace("&lt;br&gt;", "<br>"), "LEAD": esc(g["lead"]), "CONTACT_LINE": esc(contact_line),
+                "H1": esc(g["h1"]).replace("&lt;br&gt;", "<br>"), "LEAD": esc(g["lead"]), "CONTACT_LINE": tel_text(esc(contact_line)),
                 "SECTIONS_HTML": "".join(sections),
                 "AFTER_FAQ": "", "BOTTOM_FORM": "", "SCRIPT": "", "OG_META": "", "POPULAR_HTML": "",
                 # 표가 있는 안내 페이지만 표 모양(.guide-table)을 넣는다(2026-10-22, 나머지 안내 페이지는 그대로)

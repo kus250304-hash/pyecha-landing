@@ -106,6 +106,7 @@ def audit(network: bool = True) -> list[dict]:
         (f"전화 {phone} 표기 없음", "상"), (f"문자 {sms} 표기 없음", "중"),
         ("금지어(check_pages.py 기준)", "상"), ("같은 시·군구 안 랜드마크 문장이 같은 동 페이지 쌍(도어웨이 위험)", "상"),
         ("www.pyecha119.com 이 pyecha119.com 으로 안 넘어감", "상"),
+        ("시·도 링크가 시·도 페이지(si/)가 아님(#sido 앵커 등)", "중"),
     ]
     for k, s in keys:
         declare(k, s)
@@ -206,7 +207,7 @@ def audit(network: bool = True) -> list[dict]:
                     if any(not isinstance(it.get("item"), str) or not it.get("item") for it in obj.get("itemListElement", [])):
                         add("BreadcrumbList 칸에 item 없음", "상", rel)
         og = re.findall(r'<meta property="og:image" content="([^"]+)"', t)
-        if not og or not all(u.startswith(base + "/") and (ROOT / unquote(u[len(base) + 1:])).is_file() for u in og):
+        if not og or not all(u.startswith(base + "/") and (ROOT / unquote(u.split("?", 1)[0][len(base) + 1:])).is_file() for u in og):
             add("og:image 없음 또는 파일 없음", "중", rel)
         if len(re.findall(r"<h1[\s>]", t)) != 1:
             add("h1 없음 또는 2개 이상", "상", rel)
@@ -238,6 +239,14 @@ def audit(network: bool = True) -> list[dict]:
         if len(rels) > 1:
             for rel in rels:
                 add("같은 시·군구 안 랜드마크 문장이 같은 동 페이지 쌍(도어웨이 위험)", "상", rel)
+
+    # 시·도 링크 통일(2026-10-22 눈가리개 감사 3번): #sido 앵커 링크가 없고 "시·도별 폐차 상담" 링크는 si/(세종만 gu/세종-폐차장.html)
+    for rel, text in pages.items():
+        bad = bool(re.search(r'href="[^"]*#sido', text))
+        for block in re.findall(r'<h2>시·도별 폐차 상담</h2><div class="neighbors">(.*?)</div>', text, flags=re.S):
+            bad = bad or any(not re.search(r"(^|/)si/[^/]+\.html$|(^|/)gu/세종-폐차장\.html$", h) for h in re.findall(r'href="([^"]+)"', block))
+        if bad:
+            add("시·도 링크가 시·도 페이지(si/)가 아님(#sido 앵커 등)", "중", rel)
 
     # www 호스트가 같은 주소의 pyecha119.com 으로 넘어가는지(첫 화면·구 페이지 하나, 넘어가기만 확인)
     key = "www.pyecha119.com 이 pyecha119.com 으로 안 넘어감"

@@ -58,6 +58,7 @@
   @media (min-width: 900px) { .cases-wrap { grid-template-columns: 1fr 320px; align-items: start; } .og-img img { max-width: 320px; } }
   .cases-wrap:has(> div:empty) { grid-template-columns: 1fr; }  /* 사례 카드가 없으면 그림 카드만 가운데 */
   /* 사례 칸 옆 실제 사진 1~2장(같은 동 → 시군구 → 시·도 사례, 2026-10-10)과 대표 이미지 카드 */
+  .cases-side:empty { display: none; }  /* 실제 사례 사진이 없으면 칸을 비움(2026-10-22) */
   .cases-side { display: grid; gap: 12px; justify-items: center; align-content: start; }
   .case-photo { margin: 0; width: 100%; max-width: 320px; }
   .case-photo img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 10px; }  /* 세로 사진도 320×240 */
@@ -520,7 +521,7 @@
       <h2 class="sec-title display">영신동에서 폐차하실 때</h2>
       <p class="sec-sub">경상북도 문경시 영신동은 실제 출장 방문이 가능한 지역입니다</p>
       <div class="local">
-        <p>영신동은 <span class="landmark">영강</span> 인근 지역으로, 영신동은 점촌 시내 앞을 흐르는 영강을 끼고 있는 동네로, 봄이면 강둑을 따라 벚꽃이 피고 그 안쪽으로 너른 들과 강변 빌라·주택이 자리합니다. 집 앞 마당이나 둑 아래 공터에 차를 세워 두는 경우가 많습니다.</p>
+        <p>영신동은 점촌 시내 앞을 흐르는 <span class="landmark">영강</span>을 끼고 있는 동네로, 봄이면 강둑을 따라 벚꽃이 피고 그 안쪽으로 너른 들과 강변 빌라·주택이 자리합니다. 집 앞 마당이나 둑 아래 공터에 차를 세워 두는 경우가 많습니다.</p>
         <p>경상북도 문경시 영신동 일대는 전국 폐차 협력업체 네트워크와 연계되어 상담과 방문 처리가 가능한 지역입니다. 들 사이 농로나 강둑 아래처럼 길이 좁은 자리에 있는 차도 위치를 먼저 여쭤보고, 견인차가 닿을 수 있는 방향으로 맞춰 방문합니다.</p>
         <p>차량이 있는 곳으로 협력업체가 직접 방문해 상담과 처리를 도와드립니다. 아파트 지하주차장, 상가 뒤편, 좁은 골목 어디든 위치만 알려주시면 됩니다.</p>
       </div>
@@ -534,7 +535,7 @@
     <div class="wrap">
       <h2 class="sec-title display">실제 사례 보기</h2>
       <p class="sec-sub">유튜브와 블로그에서 실제 진행 사례를 보실 수 있습니다</p>
-      <div class="cases-wrap"><div></div><div class="cases-side" data-nosnippet><figure class="case-photo"><a href="../cases/case-20260721-gyeongbuk-gumi-jinpyeong.html"><img src="../cases/images/case-20260721-gyeongbuk-gumi-jinpyeong-1.jpg" alt="구미시 진평동 2012년식 쏘나타 폐차 사례 사진" width="1200" height="900" loading="lazy"></a><figcaption>구미시 진평동 작업 사례</figcaption></figure><figure class="case-photo"><a href="../cases/case-20241119-gyeongbuk-uljin-hupo.html"><img src="../cases/images/case-20241119-gyeongbuk-uljin-hupo-1.jpg" alt="울진군 후포면 2007년식 스포티지 폐차 사례 사진" width="1200" height="900" loading="lazy"></a><figcaption>울진군 후포면 작업 사례</figcaption></figure><figure class="og-img"><img src="../og/gyeongbuk-mungyeong-yeongsin.png" alt="영신동 폐차 상담 1600-6011" width="1200" height="630" loading="lazy"></figure></div></div>
+      <div class="cases-wrap"><div></div><div class="cases-side" data-nosnippet><figure class="case-photo"><a href="../cases/case-20260721-gyeongbuk-gumi-jinpyeong.html"><img src="../cases/images/case-20260721-gyeongbuk-gumi-jinpyeong-1.jpg" alt="구미시 진평동 2012년식 쏘나타 폐차 사례 사진" width="1200" height="900" loading="lazy"></a><figcaption>구미시 진평동 작업 사례</figcaption></figure><figure class="case-photo"><a href="../cases/case-20241119-gyeongbuk-uljin-hupo.html"><img src="../cases/images/case-20241119-gyeongbuk-uljin-hupo-1.jpg" alt="울진군 후포면 2007년식 스포티지 폐차 사례 사진" width="1200" height="900" loading="lazy"></a><figcaption>울진군 후포면 작업 사례</figcaption></figure></div></div>
       <div class="ext">
         <div class="yt">
           <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>

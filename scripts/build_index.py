@@ -3,7 +3,7 @@ index.html 의 첫 화면 아래 링크 칸과 헤더의 지역 수를 다시 �
 
 2026-10-20 병한님 결정: 예전처럼 시·도 14·구 232·동 833을 전부 잇는 목록을 두지 않고 네 칸만 둔다
 (render_home_links): 지역별 폐차 상담(시·도 버튼) / 이런 차도 됩니다(주제 6장 버튼 + 안내 5장 작은 글자) /
-문의 많은 지역(pick_index_requests.popular_gu 10곳, 매 빌드 갱신) / 최근 폐차 사례(cases/index.json 최신 6건).
+최근 문의 지역(pick_index_requests.popular_gu 10곳, 매 빌드 갱신) / 최근 폐차 사례(cases/index.json 최신 6건).
 구·동은 시·도 페이지의 "구 → 동 목록"으로 간다(첫 화면 → 시·도 → 동 2클릭).
 검색엔진 소유확인 메타 태그(site_config.json 의 naver_site_verification)는 실행할 때마다
 <head> 안에 다시 넣으므로 index.html 을 손으로 고쳐도 지워지지 않는다.
@@ -251,7 +251,7 @@ SIDO_ORDER = [
     "경상남도", "제주특별자치도",
 ]
 
-COUNT_RE = re.compile(r"(지역별 상담 페이지 \(현재 )\d+(개 지역\))")
+COUNT_RE = re.compile(r"(지역별 상담 페이지) \(현재 \d+개 지역\)")
 
 
 def collect_regions() -> dict[str, list[tuple[str, str]]]:
@@ -308,13 +308,13 @@ HOME_LINKS_STYLE = """<style>
 
 def render_home_links(by_sido: dict[str, list[tuple[str, str]]]) -> str:
     """첫 화면 아래 네 칸(2026-10-20 병한님 결정): 지역별 폐차 상담(시·도 버튼) / 이런 차도 됩니다(주제 6장 버튼 + 안내 5장 작은 글자) /
-    문의 많은 지역(pick_index_requests.popular_gu, 10곳) / 최근 폐차 사례(cases/index.json 최신 6건).
+    최근 문의 지역(pick_index_requests.popular_gu, 10곳) / 최근 폐차 사례(cases/index.json 최신 6건).
     예전처럼 구·동 전체 목록은 넣지 않는다(시·도 페이지에 있음). 시·도 페이지가 아직 없는 시·도는 버튼 대신
-    그 시·도의 구(없으면 동) 페이지 링크를 작게 두고, 다른 페이지의 index.html#sido-○○ 링크가 닿게 버튼마다 id 를 단다."""
+    그 시·도의 구(없으면 동) 페이지 링크를 작게 두고, 시·도 링크는 build_site.sido_href 하나로 만든다(2026-10-22, #sido 앵커 링크 없음)."""
     import sys
     sys.path.insert(0, str(Path(__file__).resolve().parent))
-    from build_site import SIDO_SHORT, gu_file
-    from build_si import si_file, si_sidos
+    from build_site import SIDO_SHORT, gu_file, sido_href
+    from build_si import si_sidos
     from build_guide import GUIDES, TOPICS, TYPE_BUTTONS
     from pick_index_requests import popular_gu
     esc = lambda v: html.escape(v, quote=True)
@@ -323,14 +323,12 @@ def render_home_links(by_sido: dict[str, list[tuple[str, str]]]) -> str:
     chips = []
     for sido in SIDO_ORDER:
         short = SIDO_SHORT[sido]
-        if sido in sis:
-            chips.append(f'<a id="sido-{esc(short)}" href="si/{esc(si_file(sido))}">{esc(short)}</a>')
+        if sido in sis or len(gu_by_sido.get(sido, [])) == 1:  # 시·도 페이지, 세종은 구 페이지(공통 조각 sido_href, 2026-10-22)
+            chips.append(f'<a id="sido-{esc(short)}" href="{esc(sido_href(sido, ""))}">{esc(short)}</a>')
             continue
         links = ([(n, "gu/" + f) for n, f in sorted(gu_by_sido.get(sido, []))]
                  or [(full.split()[-1], "pages/" + f) for full, f in sorted(by_sido.get(sido, []))])
-        if len(links) == 1:  # 구 페이지 하나가 곧 시 전체인 곳(세종, 2026-10-20)은 그 페이지로 가는 버튼
-            chips.append(f'<a id="sido-{esc(short)}" href="{esc(links[0][1])}">{esc(short)}</a>')
-        elif links:
+        if links:
             chips.append(f'<span class="chip-group" id="sido-{esc(short)}">{esc(short)}: '
                          + " · ".join(f'<a href="{esc(h)}">{esc(n)}</a>' for n, h in links) + "</span>")
     label = dict((f, l) for l, f in TYPE_BUTTONS)
@@ -353,8 +351,8 @@ def render_home_links(by_sido: dict[str, list[tuple[str, str]]]) -> str:
         '<section class="home-sec" id="types"><h2>이런 차도 됩니다</h2>'
         '<p class="sub">압류·말소·상속·시동·방치·저당, 상황별로 정리했습니다</p>'
         f'<div class="chips big">{topics}</div><p class="more">폐차 안내: {guides}</p></section>',
-        '<section class="home-sec" id="popular"><h2>문의 많은 지역</h2>'
-        '<p class="sub">문의가 온 곳과 상담이 많은 시·군입니다</p>'
+        '<section class="home-sec" id="popular"><h2>최근 문의 지역</h2>'
+        '<p class="sub">최근 문의가 온 곳과 상담이 많은 시·군입니다</p>'
         f'<div class="chips">{popular}</div></section>',
     ]
     if case_items:
@@ -374,9 +372,8 @@ def main() -> None:
     text, n_groups = HOME_LINKS_RE.subn(lambda _: render_home_links(by_sido), text, count=1)
     if n_groups != 1:
         raise ValueError("index.html에서 <main class=\"container\"> 블록을 찾지 못했습니다")
-    text, n_count = COUNT_RE.subn(rf"\g<1>{total}\g<2>", text, count=1)
-    if n_count != 1:
-        raise ValueError("index.html에서 지역 수 문구를 찾지 못했습니다")
+    # 페이지·지역 수를 자랑하는 문구는 넣지 않는다(2026-10-22 눈가리개 감사 1번). 예전 "(현재 N개 지역)"이 남아 있으면 지운다
+    text = COUNT_RE.sub(r"\g<1>", text)
     text = apply_head_meta(text)
     text = apply_home_title(text, json.loads(CONFIG_PATH.read_text(encoding="utf-8")))
     text = apply_home_hero(text, json.loads(CONFIG_PATH.read_text(encoding="utf-8")))
