@@ -129,3 +129,16 @@
 - https://pyecha119.com/si/%EC%A0%9C%EC%A3%BC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — si/제주-폐차장.html (병한님 직접)
 - https://pyecha119.com/gu/%EC%B6%98%EC%B2%9C%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/춘천시-폐차장.html (병한님 직접)
 - https://pyecha119.com/gu/%EC%84%B8%EC%A2%85-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/세종-폐차장.html (병한님 직접)
+
+## 2026-10-23
+
+- https://pyecha119.com/gu/%EC%9D%B5%EC%82%B0%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/익산시-폐차장.html (점수표 18위 지방 시·군)
+- https://pyecha119.com/gu/%EC%84%9C%EC%82%B0%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/서산시-폐차장.html (점수표 19위 지방 시·군)
+- https://pyecha119.com/gu/%EA%B1%B0%EC%A0%9C%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/거제시-폐차장.html (점수표 21위 지방 시·군)
+- https://pyecha119.com/gu/%EB%8B%B9%EC%A7%84%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/당진시-폐차장.html (점수표 22위 지방 시·군)
+- https://pyecha119.com/gu/%EC%B0%BD%EC%9B%90%EC%8B%9C-%EC%A7%84%ED%95%B4%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/창원시-진해구-폐차장.html (점수표 24위 지방 시·군)
+- https://pyecha119.com/gu/%EC%B6%A9%EC%A3%BC%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/충주시-폐차장.html (점수표 25위 지방 시·군)
+- https://pyecha119.com/gu/%EA%B9%80%EC%B2%9C%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/김천시-폐차장.html (점수표 27위 지방 시·군)
+- https://pyecha119.com/gu/%ED%8F%AC%ED%95%AD%EC%8B%9C-%EB%B6%81%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/포항시-북구-폐차장.html (점수표 28위 지방 시·군)
+- https://pyecha119.com/gu/%EA%B3%A0%EB%A0%B9%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/고령군-폐차장.html (점수표 29위 지방 시·군)
+- https://pyecha119.com/gu/%ED%8F%AC%ED%95%AD%EC%8B%9C-%EB%82%A8%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/포항시-남구-폐차장.html (점수표 30위 지방 시·군)

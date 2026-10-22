@@ -1,0 +1,38 @@
+[
+ {
+  "code": "4719012800",
+  "slug": "gyeongbuk-gumi-okgye",
+  "items": [
+   {
+    "name": "옥계동부초등학교",
+    "evidence": "위키백과 '옥계동 (구미시)' 문서 교육 기관 항목에 옥계동부초등학교가 옥계동 학교로 나옴(경북 구미시 옥계북로 89)",
+    "url": "https://ko.wikipedia.org/wiki/옥계동_(구미시)",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1211016400",
+  "slug": "jeonnam-mokpo-okam",
+  "items": [
+   {
+    "name": "부영초등학교",
+    "evidence": "목포시 통일대로75번길 24 (옥암동), 건물 정보에 동 이름 옥암동으로 표기",
+    "url": "https://safehomes.kr/risk-map/전라남도/목포시/옥암동/기타/building/부영초등학교/1203134446",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4159711500",
+  "slug": "gyeonggi-hwaseong-dongtan-yeoul",
+  "items": [
+   {
+    "name": "동탄역",
+    "evidence": "위키백과 동탄역 문서 정보 상자: 경기도 화성시 동탄구 동탄역로 지하 151 (여울동)",
+    "url": "https://ko.wikipedia.org/wiki/동탄역",
+    "grade": "opened"
+   }
+  ]
+ }
+]
