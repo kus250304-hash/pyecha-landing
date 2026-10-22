@@ -1,7 +1,7 @@
 {
  "date": "2026-10-22",
  "source": "네이버 검색 API webkr·blog, display=30",
- "calls": 494,
+ "calls": 444,
  "failed": 0,
  "regions": [
   {
@@ -504,22 +504,22 @@
    "sigungu": "전주시 완산구",
    "priority_rank": 13,
    "web": {
-    "완산폐차": {
+    "전주폐차": {
      "rank": null,
      "url": null,
      "top3": [
+      "kadra.or.kr",
       "jeonjupecha.hbon.kr",
-      "jeonju.go.kr",
-      "milaelo.com"
+      "jeonjupecha.zerosauto.com"
      ]
     },
-    "완산폐차장": {
+    "전주폐차장": {
      "rank": null,
      "url": null,
      "top3": [
+      "kadra.or.kr",
       "jeonjupecha.hbon.kr",
-      "jeonju.go.kr",
-      "daangn.com"
+      "jeonju.go.kr"
      ]
     }
    },
@@ -559,22 +559,22 @@
    "sigungu": "천안시 서북구",
    "priority_rank": 8,
    "web": {
-    "서북폐차": {
+    "천안폐차": {
      "rank": null,
      "url": null,
      "top3": [
-      "cheonan.go.kr",
-      "milaelo.com",
-      "kadra.or.kr"
+      "capecha.prodron.kr",
+      "kadra.or.kr",
+      "cheonan.go.kr"
      ]
     },
-    "서북폐차장": {
+    "천안폐차장": {
      "rank": null,
      "url": null,
      "top3": [
+      "capecha.prodron.kr",
       "kadra.or.kr",
-      "cheonan.go.kr",
-      "capecha.prodron.kr"
+      "jangbe.com"
      ]
     }
    },
@@ -617,22 +617,22 @@
    "sigungu": "화성시 동탄구",
    "priority_rank": 63,
    "web": {
-    "동탄폐차": {
+    "화성폐차": {
      "rank": null,
      "url": null,
      "top3": [
-      "xn--oj4b21j83d8zj79c.masterad.kr",
-      "scrap.evcharge24.co.kr",
-      "dongtan.barocar114.com"
+      "kadra.or.kr",
+      "031-362-4509.mcom114.kr",
+      "xn--oj4b21j83d8zj79c.masterad.kr"
      ]
     },
-    "동탄폐차장": {
+    "화성폐차장": {
      "rank": null,
      "url": null,
      "top3": [
-      "xn--oj4b21j83d8zj79c.masterad.kr",
-      "scrap.evcharge24.co.kr",
-      "dongtan.barocar114.com"
+      "01022369602.uweb.kr",
+      "031-362-4509.mcom114.kr",
+      "kadra.or.kr"
      ]
     }
    },
@@ -785,22 +785,22 @@
    "sigungu": "용인시 기흥구",
    "priority_rank": 111,
    "web": {
-    "기흥폐차": {
+    "용인폐차": {
      "rank": null,
      "url": null,
      "top3": [
       "yongin.go.kr",
-      "onscrap.co.kr",
-      "daangn.com"
+      "sudocar.co.kr",
+      "xn--oo5bwohet8p8pl.km114.kr"
      ]
     },
-    "기흥폐차장": {
+    "용인폐차장": {
      "rank": null,
      "url": null,
      "top3": [
-      "swpecha.kwk114.com",
-      "safekorea.go.kr",
-      "114.co.kr"
+      "xn--oo5bwohet8p8pl.km114.kr",
+      "sudocar.co.kr",
+      "yonginpecha.zerosauto.com"
      ]
     }
    },
@@ -918,22 +918,22 @@
    "sigungu": "고양시 덕양구",
    "priority_rank": 99,
    "web": {
-    "덕양폐차": {
+    "고양폐차": {
      "rank": null,
      "url": null,
      "top3": [
       "kadra.or.kr",
-      "aea.or.kr",
-      "saramin.co.kr"
+      "goscrap.co.kr",
+      "goyang.go.kr"
      ]
     },
-    "덕양폐차장": {
+    "고양폐차장": {
      "rank": null,
      "url": null,
      "top3": [
+      "goscrap.co.kr",
       "kadra.or.kr",
-      "aea.or.kr",
-      "obosaga.com"
+      "goyangpecha.sence.kr"
      ]
     }
    },
@@ -970,22 +970,22 @@
    "sigungu": "고양시 일산동구",
    "priority_rank": 118,
    "web": {
-    "일산동폐차": {
-     "rank": null,
-     "url": null,
-     "top3": [
-      "aea.or.kr",
-      "soonwidot.co.kr",
-      "onscrap.co.kr"
-     ]
-    },
-    "일산동폐차장": {
+    "고양폐차": {
      "rank": null,
      "url": null,
      "top3": [
       "kadra.or.kr",
-      "sportsseoul.com",
-      "onscrap.co.kr"
+      "goscrap.co.kr",
+      "goyang.go.kr"
+     ]
+    },
+    "고양폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "goscrap.co.kr",
+      "kadra.or.kr",
+      "goyangpecha.sence.kr"
      ]
     }
    },
@@ -1025,22 +1025,22 @@
    "sigungu": "성남시 분당구",
    "priority_rank": 103,
    "web": {
-    "분당폐차": {
+    "성남폐차": {
      "rank": null,
      "url": null,
      "top3": [
-      "114.co.kr",
-      "mbiz114.com",
-      "seongnam.go.kr"
+      "seongnam.go.kr",
+      "aea.or.kr",
+      "xn--q20bo72awze85e8pl.km114.kr"
      ]
     },
-    "분당폐차장": {
+    "성남폐차장": {
      "rank": null,
      "url": null,
      "top3": [
-      "114.co.kr",
-      "seongnam.go.kr",
-      "homesuri.kr"
+      "xn--q20bo72awze85e8pl.km114.kr",
+      "snjunkyard.kwk114.com",
+      "kadra.or.kr"
      ]
     }
    },
@@ -1103,22 +1103,22 @@
    "sigungu": "천안시 동남구",
    "priority_rank": 7,
    "web": {
-    "동남폐차": {
+    "천안폐차": {
      "rank": null,
      "url": null,
      "top3": [
+      "capecha.prodron.kr",
       "kadra.or.kr",
-      "cheonan.go.kr",
-      "jangwoncar.co.kr"
+      "cheonan.go.kr"
      ]
     },
-    "동남폐차장": {
+    "천안폐차장": {
      "rank": null,
      "url": null,
      "top3": [
-      "cheonan.go.kr",
+      "capecha.prodron.kr",
       "kadra.or.kr",
-      "bestpyechajang.com"
+      "jangbe.com"
      ]
     }
    },
@@ -1132,22 +1132,22 @@
    "sigungu": "창원시 마산회원구",
    "priority_rank": 56,
    "web": {
-    "마산회원폐차": {
+    "창원폐차": {
      "rank": null,
      "url": null,
      "top3": [
-      "gimhae.go.kr",
-      "kadra.or.kr",
-      "changwon.go.kr"
+      "cwscrap.kr",
+      "changwon.go.kr",
+      "baro.gyeongnam.go.kr"
      ]
     },
-    "마산회원폐차장": {
+    "창원폐차장": {
      "rank": null,
      "url": null,
      "top3": [
+      "cwscrap.kr",
       "changwon.go.kr",
-      "kadra.or.kr",
-      "car1.onscrap.co.kr"
+      "changwonpecha.coka.kr"
      ]
     }
    },
@@ -1300,22 +1300,22 @@
    "sigungu": "청주시 청원구",
    "priority_rank": 36,
    "web": {
-    "청원폐차": {
+    "청주폐차": {
      "rank": null,
      "url": null,
      "top3": [
-      "cheongwon.go.kr",
       "kadra.or.kr",
-      "cheongju.go.kr"
+      "cheongju.go.kr",
+      "xn--vv5bnyv3efpq9z.kr"
      ]
     },
-    "청원폐차장": {
+    "청주폐차장": {
      "rank": null,
      "url": null,
      "top3": [
+      "xn--vv5bnyv3efpq9z.kr",
       "kadra.or.kr",
-      "incruit.com",
-      "placeview.co.kr"
+      "cheongjupecha.biszone.kr"
      ]
     }
    },
@@ -1352,22 +1352,22 @@
    "sigungu": "고양시 일산서구",
    "priority_rank": 119,
    "web": {
-    "일산서폐차": {
-     "rank": null,
-     "url": null,
-     "top3": [
-      "aea.or.kr",
-      "wonchangcar.co.kr",
-      "kadra.or.kr"
-     ]
-    },
-    "일산서폐차장": {
+    "고양폐차": {
      "rank": null,
      "url": null,
      "top3": [
       "kadra.or.kr",
-      "aea.or.kr",
-      "soonwidot.co.kr"
+      "goscrap.co.kr",
+      "goyang.go.kr"
+     ]
+    },
+    "고양폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "goscrap.co.kr",
+      "kadra.or.kr",
+      "goyangpecha.sence.kr"
      ]
     }
    },
@@ -1459,22 +1459,22 @@
    "sigungu": "수원시 영통구",
    "priority_rank": 76,
    "web": {
-    "영통폐차": {
+    "수원폐차": {
      "rank": null,
      "url": null,
      "top3": [
-      "milaelo.com",
-      "suwonpecha.zerosauto.com",
-      "suwon.go.kr"
+      "jhpecha.co.kr",
+      "xn--9p4bi0gjsa63l8pl.km114.kr",
+      "smartstore.naver.com"
      ]
     },
-    "영통폐차장": {
+    "수원폐차장": {
      "rank": null,
      "url": null,
      "top3": [
       "swpecha.kwk114.com",
-      "daegu.go.kr",
-      "seongnam.go.kr"
+      "xn--9p4bi0gjsa63l8pl.km114.kr",
+      "comeonpecha.com"
      ]
     }
    },
@@ -1511,22 +1511,22 @@
    "sigungu": "창원시 마산합포구",
    "priority_rank": 55,
    "web": {
-    "마산합포폐차": {
+    "창원폐차": {
      "rank": null,
      "url": null,
      "top3": [
-      "b.nts.go.kr",
-      "milaelo.com",
-      "gtbikemall.com"
+      "cwscrap.kr",
+      "changwon.go.kr",
+      "baro.gyeongnam.go.kr"
      ]
     },
-    "마산합포폐차장": {
+    "창원폐차장": {
      "rank": null,
      "url": null,
      "top3": [
-      "milaelo.com",
-      "car1.onscrap.co.kr",
-      "daangn.com"
+      "cwscrap.kr",
+      "changwon.go.kr",
+      "changwonpecha.coka.kr"
      ]
     }
    },
@@ -1566,22 +1566,22 @@
    "sigungu": "포항시 남구",
    "priority_rank": 30,
    "web": {
-    "포항남구폐차": {
+    "포항폐차": {
      "rank": null,
      "url": null,
      "top3": [
+      "mecar.or.kr",
       "kadra.or.kr",
-      "life114.co.kr",
-      "gtbikemall.com"
+      "pohangpecha.zerosauto.com"
      ]
     },
-    "포항남구폐차장": {
+    "포항폐차장": {
      "rank": null,
      "url": null,
      "top3": [
+      "pohangpecha.zerosauto.com",
       "kadra.or.kr",
-      "factory.wjsevin.com",
-      "life114.co.kr"
+      "soonwidot.co.kr"
      ]
     }
    },
@@ -1673,22 +1673,22 @@
    "sigungu": "포항시 북구",
    "priority_rank": 28,
    "web": {
-    "포항북구폐차": {
+    "포항폐차": {
      "rank": null,
      "url": null,
      "top3": [
+      "mecar.or.kr",
       "kadra.or.kr",
-      "daangn.com",
-      "gtbikemall.com"
+      "pohangpecha.zerosauto.com"
      ]
     },
-    "포항북구폐차장": {
+    "포항폐차장": {
      "rank": null,
      "url": null,
      "top3": [
+      "pohangpecha.zerosauto.com",
       "kadra.or.kr",
-      "daangn.com",
-      "smallcompany.co.kr"
+      "soonwidot.co.kr"
      ]
     }
    },
@@ -1835,22 +1835,22 @@
    "sigungu": "화성시 만세구",
    "priority_rank": 107,
    "web": {
-    "만세폐차": {
+    "화성폐차": {
      "rank": null,
      "url": null,
      "top3": [
-      "hscity.go.kr",
-      "namu.wiki",
-      "daangn.com"
+      "kadra.or.kr",
+      "031-362-4509.mcom114.kr",
+      "xn--oj4b21j83d8zj79c.masterad.kr"
      ]
     },
-    "만세폐차장": {
+    "화성폐차장": {
      "rank": null,
      "url": null,
      "top3": [
-      "114.co.kr",
-      "localbiz.kr",
-      "daangn.com"
+      "01022369602.uweb.kr",
+      "031-362-4509.mcom114.kr",
+      "kadra.or.kr"
      ]
     }
    },
@@ -1916,22 +1916,22 @@
    "sigungu": "용인시 수지구",
    "priority_rank": 112,
    "web": {
-    "수지폐차": {
+    "용인폐차": {
      "rank": null,
      "url": null,
      "top3": [
-      "obosaga.com",
-      "bestpyechajang.com",
-      "scrapcall24.com"
+      "yongin.go.kr",
+      "sudocar.co.kr",
+      "xn--oo5bwohet8p8pl.km114.kr"
      ]
     },
-    "수지폐차장": {
+    "용인폐차장": {
      "rank": null,
      "url": null,
      "top3": [
-      "kti114.com",
-      "obosaga.com",
-      "homesuri.kr"
+      "xn--oo5bwohet8p8pl.km114.kr",
+      "sudocar.co.kr",
+      "yonginpecha.zerosauto.com"
      ]
     }
    },
@@ -1942,22 +1942,22 @@
    "sigungu": "용인시 처인구",
    "priority_rank": 98,
    "web": {
-    "처인폐차": {
+    "용인폐차": {
      "rank": null,
      "url": null,
      "top3": [
       "yongin.go.kr",
-      "argos.nanet.go.kr",
-      "safekorea.go.kr"
+      "sudocar.co.kr",
+      "xn--oo5bwohet8p8pl.km114.kr"
      ]
     },
-    "처인폐차장": {
+    "용인폐차장": {
      "rank": null,
      "url": null,
      "top3": [
-      "argos.nanet.go.kr",
-      "safekorea.go.kr",
-      "soonwidot.co.kr"
+      "xn--oo5bwohet8p8pl.km114.kr",
+      "sudocar.co.kr",
+      "yonginpecha.zerosauto.com"
      ]
     }
    },
@@ -1994,22 +1994,22 @@
    "sigungu": "화성시 병점구",
    "priority_rank": 90,
    "web": {
-    "병점폐차": {
+    "화성폐차": {
      "rank": null,
      "url": null,
      "top3": [
-      "byeongjeom.barocar114.com",
-      "barocar119.com",
-      "obosaga.com"
+      "kadra.or.kr",
+      "031-362-4509.mcom114.kr",
+      "xn--oj4b21j83d8zj79c.masterad.kr"
      ]
     },
-    "병점폐차장": {
+    "화성폐차장": {
      "rank": null,
      "url": null,
      "top3": [
-      "byeongjeom.barocar114.com",
-      "homesuri.kr",
-      "barocar119.com"
+      "01022369602.uweb.kr",
+      "031-362-4509.mcom114.kr",
+      "kadra.or.kr"
      ]
     }
    },
@@ -2049,22 +2049,22 @@
    "sigungu": "전주시 덕진구",
    "priority_rank": 12,
    "web": {
-    "덕진폐차": {
+    "전주폐차": {
      "rank": null,
      "url": null,
      "top3": [
       "kadra.or.kr",
       "jeonjupecha.hbon.kr",
-      "daangn.com"
+      "jeonjupecha.zerosauto.com"
      ]
     },
-    "덕진폐차장": {
+    "전주폐차장": {
      "rank": null,
      "url": null,
      "top3": [
       "kadra.or.kr",
-      "jeonju.go.kr",
-      "jeonjupecha.hbon.kr"
+      "jeonjupecha.hbon.kr",
+      "jeonju.go.kr"
      ]
     }
    },
@@ -2104,22 +2104,22 @@
    "sigungu": "안산시 단원구",
    "priority_rank": 49,
    "web": {
-    "단원폐차": {
+    "안산폐차": {
      "rank": null,
      "url": null,
      "top3": [
-      "ansan.go.kr",
-      "daangn.com",
-      "aspecha.coka.kr"
+      "jhpecha.co.kr",
+      "aspecha.coka.kr",
+      "ansanpecha.kwk114.com"
      ]
     },
-    "단원폐차장": {
+    "안산폐차장": {
      "rank": null,
      "url": null,
      "top3": [
-      "daangn.com",
-      "ansan.go.kr",
-      "kadra.or.kr"
+      "ansanpecha.kwk114.com",
+      "aspecha.coka.kr",
+      "jhpecha.co.kr"
      ]
     }
    },
@@ -2156,22 +2156,22 @@
    "sigungu": "창원시 성산구",
    "priority_rank": 57,
    "web": {
-    "성산폐차": {
+    "창원폐차": {
      "rank": null,
      "url": null,
      "top3": [
+      "cwscrap.kr",
       "changwon.go.kr",
-      "kadra.or.kr",
-      "lnp.nanet.go.kr"
+      "baro.gyeongnam.go.kr"
      ]
     },
-    "성산폐차장": {
+    "창원폐차장": {
      "rank": null,
      "url": null,
      "top3": [
+      "cwscrap.kr",
       "changwon.go.kr",
-      "kadra.or.kr",
-      "steelpallet.co.kr"
+      "changwonpecha.coka.kr"
      ]
     }
    },
@@ -2185,22 +2185,22 @@
    "sigungu": "창원시 의창구",
    "priority_rank": 58,
    "web": {
-    "의창폐차": {
+    "창원폐차": {
      "rank": null,
      "url": null,
      "top3": [
-      "kadra.or.kr",
-      "baro.gyeongnam.go.kr",
-      "gtbikemall.com"
+      "cwscrap.kr",
+      "changwon.go.kr",
+      "baro.gyeongnam.go.kr"
      ]
     },
-    "의창폐차장": {
+    "창원폐차장": {
      "rank": null,
      "url": null,
      "top3": [
-      "kadra.or.kr",
-      "114.co.kr",
-      "car1.onscrap.co.kr"
+      "cwscrap.kr",
+      "changwon.go.kr",
+      "changwonpecha.coka.kr"
      ]
     }
    },
@@ -2214,22 +2214,22 @@
    "sigungu": "성남시 수정구",
    "priority_rank": 122,
    "web": {
-    "수정폐차": {
+    "성남폐차": {
      "rank": null,
      "url": null,
      "top3": [
-      "easylaw.go.kr",
-      "seoul.go.kr",
-      "airkorea.or.kr"
+      "seongnam.go.kr",
+      "aea.or.kr",
+      "xn--q20bo72awze85e8pl.km114.kr"
      ]
     },
-    "수정폐차장": {
+    "성남폐차장": {
      "rank": null,
      "url": null,
      "top3": [
-      "daegu.go.kr",
-      "namu.wiki",
-      "cheonan.go.kr"
+      "xn--q20bo72awze85e8pl.km114.kr",
+      "snjunkyard.kwk114.com",
+      "kadra.or.kr"
      ]
     }
    },
@@ -2266,22 +2266,22 @@
    "sigungu": "성남시 중원구",
    "priority_rank": 127,
    "web": {
-    "중원폐차": {
+    "성남폐차": {
      "rank": null,
      "url": null,
      "top3": [
-      "milaelo.com",
-      "hicarz.co.kr",
-      "114.co.kr"
+      "seongnam.go.kr",
+      "aea.or.kr",
+      "xn--q20bo72awze85e8pl.km114.kr"
      ]
     },
-    "중원폐차장": {
+    "성남폐차장": {
      "rank": null,
      "url": null,
      "top3": [
-      "114.co.kr",
-      "bestpyechajang.com",
-      "milaelo.com"
+      "xn--q20bo72awze85e8pl.km114.kr",
+      "snjunkyard.kwk114.com",
+      "kadra.or.kr"
      ]
     }
    },
@@ -2422,21 +2422,21 @@
    "sigungu": "부천시 원미구",
    "priority_rank": 102,
    "web": {
-    "원미폐차": {
+    "부천폐차": {
      "rank": null,
      "url": null,
      "top3": [
-      "onscrap.co.kr",
-      "news.bucheon.go.kr",
-      "life114.co.kr"
+      "bucheon.go.kr",
+      "kadra.or.kr",
+      "010-5348-9970.intweb.kr"
      ]
     },
-    "원미폐차장": {
+    "부천폐차장": {
      "rank": null,
      "url": null,
      "top3": [
-      "onscrap.co.kr",
-      "life114.co.kr",
+      "kadra.or.kr",
+      "scrapcall24.com",
       "010-5348-9970.intweb.kr"
      ]
     }
@@ -2581,22 +2581,22 @@
    "sigungu": "안양시 동안구",
    "priority_rank": 73,
    "web": {
-    "동안폐차": {
+    "안양폐차": {
      "rank": null,
      "url": null,
      "top3": [
-      "yongin.go.kr",
-      "aea.or.kr",
+      "youtube.com",
+      "anyangkpj.com",
       "busan.go.kr"
      ]
     },
-    "동안폐차장": {
+    "안양폐차장": {
      "rank": null,
      "url": null,
      "top3": [
-      "goscrap.co.kr",
-      "gjscrap.com",
-      "pcpecha.kwk114.com"
+      "anyangkpj.com",
+      "114.co.kr",
+      "obosaga.com"
      ]
     }
    },
@@ -2737,22 +2737,22 @@
    "sigungu": "창원시 진해구",
    "priority_rank": 24,
    "web": {
-    "진해폐차": {
+    "창원폐차": {
      "rank": null,
      "url": null,
      "top3": [
+      "cwscrap.kr",
       "changwon.go.kr",
-      "obosaga.com",
-      "daangn.com"
+      "baro.gyeongnam.go.kr"
      ]
     },
-    "진해폐차장": {
+    "창원폐차장": {
      "rank": null,
      "url": null,
      "top3": [
+      "cwscrap.kr",
       "changwon.go.kr",
-      "kadra.or.kr",
-      "icaryoucar.com"
+      "changwonpecha.coka.kr"
      ]
     }
    },
@@ -2899,22 +2899,22 @@
    "sigungu": "안산시 상록구",
    "priority_rank": 47,
    "web": {
-    "상록폐차": {
+    "안산폐차": {
      "rank": null,
      "url": null,
      "top3": [
-      "ansan.go.kr",
-      "life114.co.kr",
-      "daangn.com"
+      "jhpecha.co.kr",
+      "aspecha.coka.kr",
+      "ansanpecha.kwk114.com"
      ]
     },
-    "상록폐차장": {
+    "안산폐차장": {
      "rank": null,
      "url": null,
      "top3": [
-      "life114.co.kr",
-      "bestpyechajang.com",
-      "onscrap.co.kr"
+      "ansanpecha.kwk114.com",
+      "aspecha.coka.kr",
+      "jhpecha.co.kr"
      ]
     }
    },
@@ -3266,22 +3266,22 @@
    "sigungu": "청주시 상당구",
    "priority_rank": 35,
    "web": {
-    "상당폐차": {
+    "청주폐차": {
      "rank": null,
      "url": null,
      "top3": [
-      "cheongjupecha.biszone.kr",
-      "kyeongin.com",
-      "hanainsure.co.kr"
+      "kadra.or.kr",
+      "cheongju.go.kr",
+      "xn--vv5bnyv3efpq9z.kr"
      ]
     },
-    "상당폐차장": {
+    "청주폐차장": {
      "rank": null,
      "url": null,
      "top3": [
-      "safekorea.go.kr",
-      "cheongjupecha.biszone.kr",
-      "life114.co.kr"
+      "xn--vv5bnyv3efpq9z.kr",
+      "kadra.or.kr",
+      "cheongjupecha.biszone.kr"
      ]
     }
    },
@@ -3318,22 +3318,22 @@
    "sigungu": "청주시 서원구",
    "priority_rank": 33,
    "web": {
-    "서원폐차": {
+    "청주폐차": {
      "rank": null,
      "url": null,
      "top3": [
-      "seowoncar.co.kr",
+      "kadra.or.kr",
       "cheongju.go.kr",
-      "cheongjupecha.biszone.kr"
+      "xn--vv5bnyv3efpq9z.kr"
      ]
     },
-    "서원폐차장": {
+    "청주폐차장": {
      "rank": null,
      "url": null,
      "top3": [
-      "seowoncar.co.kr",
+      "xn--vv5bnyv3efpq9z.kr",
       "kadra.or.kr",
-      "store114.net"
+      "cheongjupecha.biszone.kr"
      ]
     }
    },
@@ -3370,22 +3370,22 @@
    "sigungu": "청주시 흥덕구",
    "priority_rank": 37,
    "web": {
-    "흥덕폐차": {
+    "청주폐차": {
      "rank": null,
      "url": null,
      "top3": [
       "kadra.or.kr",
-      "milaelo.com",
-      "gtbikemall.com"
+      "cheongju.go.kr",
+      "xn--vv5bnyv3efpq9z.kr"
      ]
     },
-    "흥덕폐차장": {
+    "청주폐차장": {
      "rank": null,
      "url": null,
      "top3": [
+      "xn--vv5bnyv3efpq9z.kr",
       "kadra.or.kr",
-      "bestpyechajang.com",
-      "114.co.kr"
+      "cheongjupecha.biszone.kr"
      ]
     }
    },
@@ -3448,22 +3448,22 @@
    "sigungu": "수원시 권선구",
    "priority_rank": 78,
    "web": {
-    "권선폐차": {
+    "수원폐차": {
      "rank": null,
      "url": null,
      "top3": [
+      "jhpecha.co.kr",
       "xn--9p4bi0gjsa63l8pl.km114.kr",
-      "onscrap.co.kr",
-      "gtbikemall.com"
+      "smartstore.naver.com"
      ]
     },
-    "권선폐차장": {
+    "수원폐차장": {
      "rank": null,
      "url": null,
      "top3": [
+      "swpecha.kwk114.com",
       "xn--9p4bi0gjsa63l8pl.km114.kr",
-      "onscrap.co.kr",
-      "swpecha.kwk114.com"
+      "comeonpecha.com"
      ]
     }
    },
@@ -3474,22 +3474,22 @@
    "sigungu": "수원시 장안구",
    "priority_rank": 77,
    "web": {
-    "장안폐차": {
+    "수원폐차": {
      "rank": null,
      "url": null,
      "top3": [
-      "saramin.co.kr",
-      "obosaga.com",
-      "store114.kr"
+      "jhpecha.co.kr",
+      "xn--9p4bi0gjsa63l8pl.km114.kr",
+      "smartstore.naver.com"
      ]
     },
-    "장안폐차장": {
+    "수원폐차장": {
      "rank": null,
      "url": null,
      "top3": [
-      "store114.kr",
-      "kadra.or.kr",
-      "car1.onscrap.co.kr"
+      "swpecha.kwk114.com",
+      "xn--9p4bi0gjsa63l8pl.km114.kr",
+      "comeonpecha.com"
      ]
     }
    },
@@ -3500,22 +3500,22 @@
    "sigungu": "수원시 팔달구",
    "priority_rank": 79,
    "web": {
-    "팔달폐차": {
+    "수원폐차": {
      "rank": null,
      "url": null,
      "top3": [
+      "jhpecha.co.kr",
       "xn--9p4bi0gjsa63l8pl.km114.kr",
-      "placeview.co.kr",
-      "k114.co.kr"
+      "smartstore.naver.com"
      ]
     },
-    "팔달폐차장": {
+    "수원폐차장": {
      "rank": null,
      "url": null,
      "top3": [
-      "placeview.co.kr",
-      "k114.co.kr",
-      "114.co.kr"
+      "swpecha.kwk114.com",
+      "xn--9p4bi0gjsa63l8pl.km114.kr",
+      "comeonpecha.com"
      ]
     }
    },
@@ -3734,22 +3734,22 @@
    "sigungu": "안양시 만안구",
    "priority_rank": 74,
    "web": {
-    "만안폐차": {
+    "안양폐차": {
      "rank": null,
      "url": null,
      "top3": [
-      "anyang.go.kr",
-      "onscrap.co.kr",
-      "obosaga.com"
+      "youtube.com",
+      "anyangkpj.com",
+      "busan.go.kr"
      ]
     },
-    "만안폐차장": {
+    "안양폐차장": {
      "rank": null,
      "url": null,
      "top3": [
-      "onscrap.co.kr",
-      "life114.co.kr",
-      "milaelo.com"
+      "anyangkpj.com",
+      "114.co.kr",
+      "obosaga.com"
      ]
     }
    },
@@ -4101,22 +4101,22 @@
    "sigungu": "부천시 소사구",
    "priority_rank": 100,
    "web": {
-    "소사폐차": {
+    "부천폐차": {
      "rank": null,
      "url": null,
      "top3": [
-      "bestpyechajang.com",
-      "obosaga.com",
-      "tucson.allscrap.co.kr"
+      "bucheon.go.kr",
+      "kadra.or.kr",
+      "010-5348-9970.intweb.kr"
      ]
     },
-    "소사폐차장": {
+    "부천폐차장": {
      "rank": null,
      "url": null,
      "top3": [
-      "bestpyechajang.com",
-      "tucson.allscrap.co.kr",
-      "onscrap.co.kr"
+      "kadra.or.kr",
+      "scrapcall24.com",
+      "010-5348-9970.intweb.kr"
      ]
     }
    },
@@ -4127,22 +4127,22 @@
    "sigungu": "부천시 오정구",
    "priority_rank": 101,
    "web": {
-    "오정폐차": {
+    "부천폐차": {
      "rank": null,
      "url": null,
      "top3": [
-      "daangn.com",
-      "life114.co.kr",
-      "soonwidot.co.kr"
+      "bucheon.go.kr",
+      "kadra.or.kr",
+      "010-5348-9970.intweb.kr"
      ]
     },
-    "오정폐차장": {
+    "부천폐차장": {
      "rank": null,
      "url": null,
      "top3": [
       "kadra.or.kr",
-      "life114.co.kr",
-      "114.co.kr"
+      "scrapcall24.com",
+      "010-5348-9970.intweb.kr"
      ]
     }
    },

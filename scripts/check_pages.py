@@ -26,6 +26,8 @@ from collections import defaultdict
 from pathlib import Path
 from urllib.parse import quote, unquote
 
+import og_image  # og:image 주소 끝 ?v=VERSION 확인(2026-10-22)
+
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 ROOT = Path(__file__).resolve().parent.parent
 PAGES_DIR = ROOT / "pages"
@@ -664,7 +666,7 @@ def topic_problems(t: dict, html: str, cfg: dict) -> list[str]:
             out.append(f"견적 폼 {i}번에 {', '.join(missing)} 없음")
     if "function formatPhone" not in html:
         out.append("견적 폼 전송 스크립트 없음")
-    if f'<meta property="og:image" content="{base}/og/{quote(t["file"][:-5])}.png">' not in html:
+    if f'<meta property="og:image" content="{base}/og/{quote(t["file"][:-5])}.png?v={og_image.VERSION}">' not in html:
         out.append("대표 이미지(og:image) 태그 없음")
     if not (ROOT / "og" / f"{t['file'][:-5]}.png").exists():
         out.append(f"og/{t['file'][:-5]}.png 파일 없음")
@@ -739,17 +741,21 @@ def check_og_images(base: str) -> list[str]:
                 continue
             rel = f"{d}/{f.name}"
             urls = OG_META_RE.findall(text)
-            if len(urls) != 1 or not urls[0].startswith(f"{base}/og/") or not urls[0].endswith(".png"):
+            # 주소 끝 ?v=VERSION(2026-10-22, 캐시 깨기): 파일 검사는 ? 앞까지
+            path = urls[0].split("?", 1)[0] if len(urls) == 1 else ""
+            if len(urls) != 1 or not path.startswith(f"{base}/og/") or not path.endswith(".png"):
                 problems.append(f"{rel}: og:image(og/ 폴더 PNG 절대 주소)가 정확히 1개 있어야 함")
                 continue
-            img = unquote(urls[0][len(base) + 1:])
+            if not urls[0].endswith(f".png?v={og_image.VERSION}"):
+                problems.append(f"{rel}: og:image 주소 끝에 ?v={og_image.VERSION}(og_image.VERSION)가 없음")
+            img = unquote(path[len(base) + 1:])
             if not (ROOT / img).exists():
                 problems.append(f"{rel}: 대표 이미지 {img} 파일 없음")
             for tag in ('<meta property="og:image:width" content="1200">', '<meta property="og:image:height" content="630">',
                         '<meta name="twitter:card" content="summary_large_image">'):
                 if tag not in text:
                     problems.append(f"{rel}: {tag} 없음")
-            if f'<img src="../{urls[0][len(base) + 1:]}"' not in text:
+            if f'<img src="../{path[len(base) + 1:]}"' not in text:
                 problems.append(f"{rel}: 폐차 사례 칸에 대표 이미지 카드 <img> 없음")
     return problems
 

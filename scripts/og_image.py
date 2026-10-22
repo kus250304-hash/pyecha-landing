@@ -134,8 +134,9 @@ def ensure(stem: str, name: str, word: str, phone: str) -> bool:
 
 
 def url(stem: str, base: str) -> str:
-    """대표 이미지의 절대 주소(og:image·구조화 데이터 image 에 같이 쓴다)."""
-    return f"{base}/og/{quote(stem)}.png"
+    """대표 이미지의 절대 주소(og:image·구조화 데이터 image 에 같이 쓴다). 끝의 ?v=VERSION 은 네이버 등이 옛 그림을
+    캐시해 두는 것을 깨려고 붙인다(2026-10-22). 파일 이름은 그대로라 VERSION 을 올리면 주소만 저절로 새로 바뀐다."""
+    return f"{base}/og/{quote(stem)}.png?v={VERSION}"
 
 
 def parts(stem: str, name: str, base: str, phone_disp: str, suffix: str = "폐차") -> dict:
@@ -144,7 +145,7 @@ def parts(stem: str, name: str, base: str, phone_disp: str, suffix: str = "폐�
         print(f"대표 이미지: og/{stem}.png")
     from html import escape
     rel = f"og/{quote(stem)}.png"
-    meta = (f'<meta property="og:image" content="{base}/{rel}">\n'
+    meta = (f'<meta property="og:image" content="{url(stem, base)}">\n'
             f'<meta property="og:image:width" content="{W}">\n'
             f'<meta property="og:image:height" content="{H}">\n'
             f'<meta name="twitter:card" content="summary_large_image">')

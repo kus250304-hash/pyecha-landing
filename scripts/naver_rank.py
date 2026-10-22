@@ -7,7 +7,8 @@
 - 키: 저장소 밖 C:\\Users\\AOMG\\naver_search.env 의 NAVER_CLIENT_ID·NAVER_CLIENT_SECRET(naver_searchad.env 와 같은 방식).
   값은 출력·기록하지 않는다. 키 파일이 없으면 아무것도 하지 않고 한 줄만 출력한다(종료 코드 0, PC 예약 작업이 이어서 감).
 - 웹문서: data/gu.json 구·시군 페이지 전부 × 검색어 2개("{이름}폐차", "{이름}폐차장"). 이름은 naver_region_kw.variants 의
-  변형 규칙 그대로(강릉시 → 강릉, 겹치는 구는 시·도 이름을 앞에, 일반구는 구 이름 변형). display=30, start=1.
+  변형 규칙 그대로(강릉시 → 강릉, 겹치는 구는 시·도 이름을 앞에). 일반구는 시 이름(천안시 동남구 → 천안폐차·천안폐차장,
+  같은 시의 구끼리 결과 공유, 호출은 시마다 1번씩, 2026-10-22). display=30, start=1.
   link 호스트가 pyecha119.com 인 첫 항목의 순위(1~30, 없으면 null)·주소, 참고로 상위 3개 도메인(겹치면 한 번).
 - 블로그: docs/index-requests.md "문의가 온 페이지"의 시·군 + data/priority_regions.json 상위 30곳(일반구는 시 이름으로 묶음)만
   "{이름}폐차" 1회씩, blog.naver.com/abh77790 글의 첫 순위.
@@ -93,7 +94,10 @@ def host(link: str) -> str:
 
 
 def web_names(sido: str, sigungu: str) -> list[str]:
-    """웹문서 검색어 2개: 변형 규칙의 짧은 이름(강릉시 → 강릉) + 폐차·폐차장."""
+    """웹문서 검색어 2개: 변형 규칙의 짧은 이름(강릉시 → 강릉) + 폐차·폐차장.
+    일반구는 아무도 안 치는 "동남폐차" 대신 시 이름(천안시 동남구 → 천안폐차·천안폐차장, 2026-10-22). 같은 시의 일반구는 결과를 함께 쓴다."""
+    if " " in sigungu:
+        return four(sigungu.split()[0])[0][-2:]
     return variants(sido, sigungu)[0][-2:]
 
 
@@ -142,14 +146,17 @@ def blog_rank(items: list[dict]) -> dict:
 def collect(client: Client) -> dict:
     ranks = {(e["sido"], e["sigungu"]): e["rank"] for e in priority()}
     regions = []
+    done: dict[str, dict] = {}  # 검색어 → 결과(같은 시의 일반구는 한 번만 부름)
     for g in load_json(GU_DATA, default=[]):
         key = (g["sido"], g["sigungu"])
         qs = {}
         for q in web_names(*key):
-            items = client.search("webkr", q)
-            qs[q] = web_rank(items) if items is not None else {"rank": None, "url": None, "top3": [], "error": True}
-            if client.auth_error:
-                return {}
+            if q not in done:
+                items = client.search("webkr", q)
+                done[q] = web_rank(items) if items is not None else {"rank": None, "url": None, "top3": [], "error": True}
+                if client.auth_error:
+                    return {}
+            qs[q] = done[q]
         regions.append({"sido": g["sido"], "sigungu": g["sigungu"], "priority_rank": ranks.get(key),
                         "web": qs, "blog_query": blog_name(*key)})
     blogs = {}
@@ -213,6 +220,7 @@ def render(data: dict, prev: dict) -> str:
         f"기준일 {data['date']} · 호출 {data['calls']}회(실패 {data['failed']}회) · `python scripts/naver_rank.py --write` 가 매일 다시 씀(손으로 고치지 않음)", "",
         f"**요약: {line}**", "",
         f"새로 10위 안: {', '.join(new10) if new10 else '없음'}" + ("" if prev else " (어제 기록 없음)"), "",
+        "일반구는 시 이름으로 조회(천안시 동남구·서북구 → 천안폐차·천안폐차장, 그 시의 구·시 페이지 중 어느 것이든 pyecha119.com 이 나온 자리를 같이 씀).", "",
         "네이버 웹문서 검색 API 기준이라 휴대폰 통합검색 화면과 다를 수 있음, 추세용. 순위는 상위 30개 안에서 pyecha119.com 이 처음 나온 자리, "
         "블로그는 blog.naver.com/abh77790 글(문의 온 시·군 + 점수표 상위 30곳만 조회, 일반구는 시 이름으로). 어제 대비는 두 검색어 중 좋은 쪽 순위로 셈.", "",
         "| 점수표 순위 | 지역 | 폐차 순위 | 폐차장 순위 | 어제 대비 | 블로그 순위 |",
