@@ -10,6 +10,7 @@
   ② 문의가 온 페이지 종류: docs/index-requests.md "문의가 온 페이지" 칸에 그 주 날짜로 적힌 줄을 주소 종류(동/구/시도/주제/첫 화면)로 셈
   ④ 사이트맵별 주소 수(색인 비율의 분모): 그 주 마지막 날의 사이트맵 파일별 주소 수
   ⑦ 사례 붙은 구 페이지 수/전체: data/gu.json 의 구 중 그 구 사례(cases/index.json)가 1건 이상인 곳
+  ⑩ 네이버 웹문서 순위: data/naver_rank/ 의 그 주 마지막 날 파일(scripts/naver_rank.py, PC 예약 작업이 매일 씀)
 GA4·구글 서치 콘솔·네이버 서치어드바이저·Ahrefs·Bing 숫자와 직접 검색 순위는 병한님이 캡처로 주는 칸이라 "캡처 필요"로 둔다.
 목표·출처 칸은 docs/weekly-check.md 표에 적힌 것을 그대로 가져온다. 숫자를 지어내지 않는다.
 """
@@ -38,6 +39,7 @@ ROWS = [  # (번호, 이름) — docs/weekly-check.md 표와 같은 순서
     ("⑦", "사례 붙은 구 페이지 수/전체"),
     ("⑧", "Ahrefs 건강 점수"),
     ("⑨", "Bing 색인 수"),
+    ("⑩", "네이버 웹문서 순위 — 10위 안 N곳 / 30위 안 M곳(API)"),
 ]
 
 
@@ -137,6 +139,19 @@ def daily_avg_line(span: tuple[date, date]) -> str:
             f"전화 클릭·폼·문자 전체는 GA4 {NEED})")
 
 
+def naver_rank(span: tuple[date, date]) -> str:
+    """⑩ 그 주(월~일) 안의 마지막 data/naver_rank/YYYY-MM-DD.json → "10위 안 N곳 / 30위 안 M곳(MM/DD 기준)"."""
+    files = sorted(p for p in (ROOT / "data" / "naver_rank").glob("*.json")
+                   if span[0].isoformat() <= p.stem <= span[1].isoformat()) if (ROOT / "data" / "naver_rank").exists() else []
+    if not files:
+        return "기록 없음"
+    from naver_rank import best, failed_all
+    regs = [r for r in json.loads(files[-1].read_text(encoding="utf-8"))["regions"] if not failed_all(r)]
+    top10 = sum(1 for r in regs if (best(r) or 99) <= 10)
+    top30 = sum(1 for r in regs if best(r))
+    return f"10위 안 {top10}곳 / 30위 안 {top30}곳({files[-1].stem[5:].replace('-', '/')} 기준)"
+
+
 def doc_rows() -> dict[str, list[str]]:
     """docs/weekly-check.md 표의 줄 {번호: [번호, 이름, 지난주, 이번 주, 목표, 출처]}."""
     text = DOC.read_text(encoding="utf-8") if DOC.exists() else ""
@@ -157,6 +172,7 @@ def table(report_day: date) -> tuple[str, list[str]]:
         "②": (inquiries(last), inquiries(this)),
         "④": (f"{NEED} / 주소 {sitemap_counts(rev_last)}" if rev_last else NEED,
               f"{NEED} / 주소 {sitemap_counts(rev_this)}" if rev_this else NEED),
+        "⑩": (naver_rank(last), naver_rank(this)),
         "⑦": (gu_with_cases(rev_last) if rev_last else "기록 없음", gu_with_cases(rev_this) if rev_this else "기록 없음"),
     }
     old = doc_rows()

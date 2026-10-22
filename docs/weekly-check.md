@@ -29,6 +29,7 @@
 | ⑦ | 사례 붙은 구 페이지 수/전체 | 20 / 111 (18%) | 44 / 220 (20%) | 매주 +5 | weekly_numbers.py(data/gu.json·cases/index.json) |
 | ⑧ | Ahrefs 건강 점수 | 캡처 필요 | 캡처 필요 | 첫 주 측정(첫 측정값 보고 정함) | Ahrefs Site Audit → Health Score |
 | ⑨ | Bing 색인 수 | 캡처 필요 | 캡처 필요 | 첫 주 측정(첫 측정값 보고 정함) | Bing 웹마스터 도구 → 사이트 탐색기(색인됨) |
+| ⑩ | 네이버 웹문서 순위 — 10위 안 N곳 / 30위 안 M곳(API) | 기록 없음 | 기록 없음 | 11/3까지 10위 안 5곳 | weekly_numbers.py(data/naver_rank/ 그 주 마지막 날 파일, scripts/naver_rank.py) |
 <!-- weekly-table:end -->
 
 ## 직접 검색 표본 10개 (고정, ③)

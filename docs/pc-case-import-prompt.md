@@ -19,7 +19,7 @@ PC에서 하는 "사례 가져오기" 작업이다. 원본 사진·메모는 이
 - 원본 폴더에는 pc_cases.py mark 가 만드는 반영됨.txt 와 inbox_cases.py apply 가 만드는 우선/ 새 폴더 말고는 아무것도 만들거나 고치거나 옮기거나 지우지 않는다.
 - 구글 드라이브 인박스(G:\내 드라이브\폐차_인박스)는 scripts/inbox_cases.py 로만 다룬다. 사진·영상은 .cases_staging/inbox/ 의 미리보기만 본다. 등록증 사진은 지역만 읽고(이름·주민번호·주소 번지 등 다른 칸은 읽지도 적지도 않는다) answer.json 의 "등록증" 에 적어 스크립트가 지우게 한다. GPS 좌표·차번호·말 내용은 저장소에 쓰지 않는다.
 - 금액·시세, "수출 된다/안 된다" 같은 단정, 고객 이름·전화번호·차량번호·주소는 어디에도 쓰지 않는다(스크립트가 메모에서 걸러 낸다. 메모를 손으로 고쳐 통과시키지 않는다).
-- 하루 건수는 scan 이 정한다(밀린 대상이 3건보다 많은 동안 5건, 아니면 3건). scripts/, templates/, CLAUDE.md, docs/ 는 고치지 않는다. 예외: 2-1 단계의 scripts/inquiry_log.py 가 고치는 docs/index-requests.md 와 data/population_dong.json(손으로 고치지 않는다).
+- 하루 건수는 scan 이 정한다(밀린 대상이 3건보다 많은 동안 5건, 아니면 3건). scripts/, templates/, CLAUDE.md, docs/ 는 고치지 않는다. 예외: 15 단계의 scripts/naver_rank.py 가 쓰는 data/naver_rank/ 와 docs/naver-rank.md, 2-1 단계의 scripts/inquiry_log.py 가 고치는 docs/index-requests.md 와 data/population_dong.json(손으로 고치지 않는다).
 - 거래 기록부(C:\Users\AOMG\Documents\병한-업무위키\폐차\거래기록)는 scripts/inquiry_log.py 로만 읽는다. 직접 열지 않고, 전화·차번호·이름·금액은 어디에도 쓰지 않는다.
 
 [준비]
@@ -63,6 +63,7 @@ PC에서 하는 "사례 가져오기" 작업이다. 원본 사진·메모는 이
 12. `git commit -m "Add N case inputs (YYYY-MM-DD)"` 후 `git push origin main`. 거절되면 `git pull --rebase origin main` 후 한 번 더 push 한다. 그래도 안 되면 mark 하지 말고 이유를 보고한다. 강제 push 는 하지 않는다.
 13. push 가 성공한 뒤에만 `python scripts/pc_cases.py mark` 를 실행한다(가져간 원본 폴더마다 반영됨.txt).
 14. `python scripts/pc_cases.py report` 를 실행해 그 줄을 보고에 옮긴 뒤, `python scripts/pc_cases.py clean` 으로 미리보기(원본 사진 사본)를 지운다.
+15. 네이버 순위(2026-10-22, 사례가 0건이거나 앞 단계가 실패했어도 매번 맨 끝에 한다): `python scripts/naver_rank.py --write` 를 돌리고 data/naver_rank/ 와 docs/naver-rank.md 를 그날 커밋에 함께 올린다. 사례 커밋이 이미 push 됐으면 그 둘만 `git add` → `git commit -m "Naver rank (YYYY-MM-DD)"` → `git push origin main`(거절되면 pull --rebase 후 한 번 더). 키 파일이 없거나 호출 실패면 보고에 한 줄 적고 나머지는 계속한다(키 값은 어디에도 적지 않는다).
 
 [보고]
 - 첫 줄은 반드시 둘 중 하나: 올린 건이 1건 이상이면 "성공: N건 올라감(커밋 <번호>)", 0건이면 "실패: 0건, 이유: <쉬운 말 이유>"(예: 가져올 사례 없음, 3건 모두 가리기 실패로 뺌, push 거절). 도중에 명령이 이유 없이 실패하면 한 번 더 해 보고, 그래도 안 되면 지금까지 한 것을 그대로 두고(다음 실행이 이어 감) 실패 줄로 보고한다.
@@ -70,5 +71,6 @@ PC에서 하는 "사례 가져오기" 작업이다. 원본 사진·메모는 이
 - 인박스: 폴더 만든 차 N대, 보류 N대(보류는 "확인 필요: …" 그대로)
 - 뺀 건과 이유, scan 의 "조건 미달" 건수
 - 문의 기록: 더함 N줄·상태 고침 N줄(시·군과 상태), 뺀 거래와 이유
+- 네이버 순위: naver_rank.py 출력의 "네이버 순위(…)" 줄 그대로(키 파일 없음·실패면 그 줄)
 - "사례 페이지는 오후 2시 루틴이 만들어 3시 보고에 올립니다"
 ```
