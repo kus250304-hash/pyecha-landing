@@ -583,6 +583,7 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
         "ANALYTICS_BODY": analytics.body_end_html(cfg),
         "ANALYTICS": analytics.head_html(cfg, "dong", analytics.region_name(SIDO_SHORT[r["sido"]], r["sigungu"], r["dong"])),
         "META_TITLE": esc(meta_title),
+        "SITE_NAME": esc(cfg["site_name"]),
         "TOW_NOTE": esc(V.TOW_NOTE[combo[1]]),
         "META_DESC": esc(meta_desc),
         "CANONICAL": canonical,

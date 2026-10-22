@@ -7,6 +7,9 @@
   sitemap-dong-N.xml   동 페이지(/pages/)를 법정동코드(시·도 코드) 순으로 나눔. 파일 수 = max(2, ⌈개수/500⌉),
                        고르게 나눠 파일당 500개 안팎(1,000개를 넘으면 -3 이 저절로 생김, 남는 옛 파일은 지움)
 
+  rss.xml              네이버 RSS 제출용(2026-10-22). 사이트맵 주소 중 lastmod 가 최근인 50개(같은 날이면 core → cases → dong),
+                       pubDate = lastmod 00:00 KST. write_sitemaps 가 매번 함께 만든다(write_rss)
+
 넣지 않는 것: 자동 이동 페이지(옛 영문 주소, http-equiv="refresh"), noindex 페이지(thanks·privacy 등).
 
 lastmod: 페이지 본문(제목·H1·본문 글·FAQ·사례 카드·공공정보 표)의 해시(content_hash)를 data/page_hashes.json 에
@@ -26,6 +29,7 @@ import math
 import re
 import sys
 from datetime import datetime, timedelta, timezone
+from email.utils import format_datetime
 from pathlib import Path
 from urllib.parse import quote, unquote
 
@@ -38,6 +42,9 @@ INDEX_NAME = "sitemap.xml"
 CORE_DIRS = ("gu", "si", "guide")
 DONG_PER_FILE = 500
 KST = timezone(timedelta(hours=9))
+RSS_NAME = "rss.xml"
+RSS_MAX = 50
+RSS_KIND_ORDER = {"core": 0, "cases": 1, "dong": 2}
 
 REDIRECT_RE = re.compile(r'http-equiv="refresh"', re.I)
 NOINDEX_RE = re.compile(r'<meta\s+name="robots"\s+content="[^"]*noindex', re.I)
@@ -141,6 +148,7 @@ def write_sitemaps(root: Path = ROOT, keep_dates: bool = False) -> dict[str, int
     day = today()
     groups: dict[str, list[tuple[str, str, str]]] = {"core": [], "cases": [], "dong": []}  # (정렬 키, 주소, lastmod)
     codes = dong_order(root)
+    rss_rows: list[tuple[str, str, str, str]] = []
     for kind, rel, loc in listed_pages(root):
         text = (root / rel).read_text(encoding="utf-8")
         h = content_hash(text)
@@ -155,6 +163,7 @@ def write_sitemaps(root: Path = ROOT, keep_dates: bool = False) -> dict[str, int
         new_store[rel] = {"hash": h, "lastmod": lastmod}
         key = codes.get(Path(rel).stem, "9" * 10) + rel if kind == "dong" else ("" if rel == "index.html" else rel)
         groups[kind].append((key, loc, lastmod))
+        rss_rows.append((kind, rel, loc, lastmod))
 
     dongs = sorted(groups["dong"])
     n_files = max(2, math.ceil(len(dongs) / DONG_PER_FILE))
@@ -174,9 +183,74 @@ def write_sitemaps(root: Path = ROOT, keep_dates: bool = False) -> dict[str, int
     body = "".join(f"  <sitemap>\n    <loc>{u}</loc>\n    <lastmod>{lm}</lastmod>\n  </sitemap>\n" for u, lm in index_rows)
     (root / INDEX_NAME).write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="{NS}">\n{body}</sitemapindex>\n',
                                    encoding="utf-8")
+    write_rss(root, rss_rows)
     if new_store != store:
         HASHES.write_text(json.dumps(dict(sorted(new_store.items())), ensure_ascii=False, indent=0) + "\n", encoding="utf-8")
     return {name: len(rows) for name, rows in files.items()}
+
+
+TITLE_PAT = r"<title>(.*?)</title>"
+DESC_PAT = r'<meta name="description" content="([^"]*)"'
+
+
+def _meta(text: str, pat: str) -> str:
+    m = re.search(pat, text, re.S)
+    return htmllib.unescape(m.group(1)).strip() if m else ""
+
+
+def write_rss(root: Path, rows: list[tuple[str, str, str, str]]) -> int:
+    """rss.xml(RSS 2.0, 네이버 서치어드바이저 RSS 제출용) 을 다시 만든다. rows = [(종류, 경로, 주소, lastmod)].
+    lastmod 최근 순 50개, 같은 날이면 core → cases → dong. 날짜는 data/page_hashes.json 기준 그대로 쓴다."""
+    from xml.sax.saxutils import escape
+    cfg = json.loads((root / "data" / "site_config.json").read_text(encoding="utf-8"))
+    pick = sorted(rows, key=lambda r: (r[3], -RSS_KIND_ORDER[r[0]]), reverse=True)[:RSS_MAX]
+    home = (root / "index.html").read_text(encoding="utf-8") if (root / "index.html").exists() else ""
+
+    def pub(day: str) -> str:
+        return format_datetime(datetime.fromisoformat(day).replace(tzinfo=KST))
+
+    items = []
+    for _, rel, loc, lm in pick:
+        text = (root / rel).read_text(encoding="utf-8")
+        items.append("    <item>\n"
+                     f"      <title>{escape(_meta(text, TITLE_PAT))}</title>\n"
+                     f"      <link>{escape(loc)}</link>\n"
+                     f'      <guid isPermaLink="true">{escape(loc)}</guid>\n'
+                     f"      <description>{escape(_meta(text, DESC_PAT))}</description>\n"
+                     f"      <pubDate>{pub(lm)}</pubDate>\n"
+                     "    </item>\n")
+    channel = (f"    <title>{escape(cfg['site_name'])} — 전국 폐차·수출 비교 상담</title>\n"
+               f"    <link>{escape(SITE_BASE_URL)}/</link>\n"
+               f"    <description>{escape(_meta(home, DESC_PAT))}</description>\n"
+               "    <language>ko</language>\n"
+               + (f"    <lastBuildDate>{pub(pick[0][3])}</lastBuildDate>\n" if pick else ""))
+    (root / RSS_NAME).write_text('<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0">\n  <channel>\n'
+                                 + channel + "".join(items) + "  </channel>\n</rss>\n", encoding="utf-8")
+    return len(items)
+
+
+def check_rss(root: Path = ROOT) -> list[str]:
+    """rss.xml 검사(check_pages.py 가 부름): 있고, XML 로 읽히고, 항목 50개 이하, 모든 link 가 사이트맵 주소."""
+    import xml.etree.ElementTree as ET
+    f = root / RSS_NAME
+    if not f.exists():
+        return [f"{RSS_NAME}: 파일 없음 (python3 scripts/sitemap_lib.py)"]
+    try:
+        tree = ET.parse(f)
+    except ET.ParseError as e:
+        return [f"{RSS_NAME}: XML 을 읽지 못함 ({e})"]
+    items = tree.findall("./channel/item")
+    problems = []
+    if not items or len(items) > RSS_MAX:
+        problems.append(f"{RSS_NAME}: 항목이 {len(items)}개(1~{RSS_MAX}개여야 함)")
+    locs = set(all_locs(root))
+    for it in items:
+        link = (it.findtext("link") or "").strip()
+        if link not in locs:
+            problems.append(f"{RSS_NAME}: 사이트맵에 없는 주소 {unquote(link)}")
+        if not (it.findtext("title") or "").strip() or not (it.findtext("pubDate") or "").strip():
+            problems.append(f"{RSS_NAME}: {unquote(link)} 항목에 title·pubDate 가 없음")
+    return problems
 
 
 def update_sitemap(root_dir: Path, slugs: list[str] | None = None, changefreq: str = "", priority: str = "",

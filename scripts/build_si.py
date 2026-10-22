@@ -222,7 +222,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
         values = {
             "ANALYTICS_BODY": analytics.body_end_html(cfg),
             "ANALYTICS": analytics.head_html(cfg, "si", si),
-            "META_TITLE": esc(meta_title), "META_DESC": esc(meta_desc), "CANONICAL": canonical,
+            "META_TITLE": esc(meta_title), "SITE_NAME": esc(cfg["site_name"]), "META_DESC": esc(meta_desc), "CANONICAL": canonical,
             "JSONLD": json.dumps(jsonld, ensure_ascii=False), "PAGE_JSONLD": page_jsonld(meta_title, canonical),
             "AREA_LINKS": area_links_html(regions, gu_data, here_si=sido),
             "STYLE": style, "SPRITE": sprite,

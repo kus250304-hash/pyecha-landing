@@ -1,6 +1,6 @@
 """
 오늘 구글 서치 콘솔에 손으로 색인 요청할 주소 10개를 고른다(2026-10-18 병한님 요청, 2026-10-20 10개 → 5개, 2026-10-22 5개 → 10개). 매일 루틴이 커밋 전에
-돌리고, 아침 보고 맨 끝에 "오늘 구글 색인 요청 10개"로 붙인다. 네이버·공용 IndexNow 자동 전송(scripts/indexnow.py)과는 따로다.
+돌리고, 아침 보고 맨 끝에 "오늘 색인 요청 10개 — 구글 URL 검사와 네이버 웹 페이지 수집에 같은 주소를 넣습니다"로 붙인다(2026-10-22부터 네이버 웹 페이지 수집에도 같은 주소). 네이버·공용 IndexNow 자동 전송(scripts/indexnow.py)과는 따로다.
 
 사용법
   python3 scripts/pick_index_requests.py           # 고르기만(파일 그대로)
@@ -147,7 +147,7 @@ def main() -> None:
             add(gu_url(*k), f"점수표 {e['rank']}위 지방 시·군")
 
     picked = ordered[:COUNT]
-    print(f"오늘 구글 색인 요청 {len(picked)}개 ({day}, docs/index-requests.md 에 있던 {len(done)}개는 뺌)")
+    print(f"오늘 색인 요청 {len(picked)}개 — 구글 URL 검사와 네이버 웹 페이지 수집에 같은 주소를 넣습니다 ({day}, docs/index-requests.md 에 있던 {len(done)}개는 뺌)")
     for i, (u, why) in enumerate(picked, 1):
         print(f"{i}. {unquote(u)} — {why}\n{u}")
     if args.write and picked:

@@ -798,6 +798,30 @@ def check_video_embeds() -> list[str]:
     return problems
 
 
+def check_site_name(cfg: dict) -> list[str]:
+    """사이트 이름(2026-10-22): 모든 페이지 <head> 에 og:site_name 이 site_config 의 site_name 으로 정확히 1개,
+    og:title 이 있으면 그 바로 위. 첫 화면 <title> 은 사이트 이름으로 시작."""
+    tag = f'<meta property="og:site_name" content="{html_lib.escape(cfg["site_name"], quote=True)}">'
+    files = [ROOT / n for n in ("index.html", "thanks.html", "privacy.html")]
+    for d in ("pages", "gu", "si", "guide", "cases"):
+        files += sorted((ROOT / d).glob("*.html")) if (ROOT / d).exists() else []
+    problems = []
+    for f in files:
+        text = f.read_text(encoding="utf-8")
+        if 'http-equiv="refresh"' in text:
+            continue
+        rel = f.relative_to(ROOT).as_posix()
+        head = text.split("</head>", 1)[0]
+        if head.count('property="og:site_name"') != 1 or tag not in head:
+            problems.append(f"{rel}: og:site_name({cfg['site_name']})이 <head> 에 정확히 1개 있어야 함")
+        elif 'property="og:title"' in head and tag + '\n<meta property="og:title"' not in head:
+            problems.append(f"{rel}: og:site_name 이 og:title 바로 위에 있지 않음")
+    title = re.search(r"<title>(.*?)</title>", (ROOT / "index.html").read_text(encoding="utf-8"), re.S)
+    if not title or not title.group(1).startswith(cfg["site_name"]):
+        problems.append(f"index.html: <title> 이 사이트 이름 {cfg['site_name']} 으로 시작하지 않음 (build_index.py)")
+    return problems
+
+
 def check_tow_wording() -> list[str]:
     """동·구·시·안내·사례 페이지(제목·설명·본문·구조화 데이터 전부)에서 견인비 단정 표현을 찾는다."""
     problems = []
@@ -1020,6 +1044,9 @@ def main() -> None:
         # (실제 사이트의 200 응답은 python3 scripts/sitemap_lib.py check --live)
         import sitemap_lib
         errors.extend(sitemap_lib.check(ROOT))
+        # rss.xml(2026-10-22, 네이버 RSS 제출용): 있고, XML 로 읽히고, 항목 50개 이하, link 가 모두 사이트맵 주소
+        errors.extend(sitemap_lib.check_rss(ROOT))
+        errors.extend(check_site_name(site_cfg))
 
     # 첫 화면 홈(2026-10-13): 지역 목록 위에 동 페이지와 같은 첫 화면(지역명 "전국", 숨은 칸 region "첫 화면 홈")
     index_text = (ROOT / "index.html").read_text(encoding="utf-8")

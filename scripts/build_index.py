@@ -207,6 +207,43 @@ def apply_home_og(text: str, cfg: dict) -> str:
     return text
 
 
+# 첫 화면 제목·설명(2026-10-22, 네이버 노출 작전 1): 사이트 이름 "폐차119"를 앞에. 설명에는 010 번호를 쓰지 않는다
+HOME_TITLE = "{name} | 전국 폐차·수출 비교 상담 · 전화 {phone}"
+HOME_DESC = ("차 번호만 남기시면 폐차·수출 둘 다 비교해서 연락드립니다. "
+             "전국 출장 견인 · 말소증 문자 · 전화 {phone} · 문자 상담 가능.")
+SITE_NAME_RE = re.compile(r'[ \t]*<meta property="og:site_name"[^>]*>\n?')
+
+
+def home_title(cfg: dict) -> str:
+    return HOME_TITLE.format(name=cfg["site_name"], phone=cfg["phone_display"])
+
+
+def home_desc(cfg: dict) -> str:
+    return HOME_DESC.format(phone=cfg["phone_display"])
+
+
+def apply_home_title(text: str, cfg: dict) -> str:
+    """첫 화면 <title> 과 meta description 을 site_config 값으로 다시 넣는다(index.html 을 손으로 고치지 않음)."""
+    text, n1 = re.subn(r"<title>.*?</title>", lambda _: f"<title>{html.escape(home_title(cfg))}</title>", text, count=1, flags=re.S)
+    text, n2 = re.subn(r'<meta name="description" content="[^"]*">',
+                       lambda _: f'<meta name="description" content="{html.escape(home_desc(cfg), quote=True)}">', text, count=1)
+    if n1 != 1 or n2 != 1:
+        raise ValueError("index.html 에서 <title> 또는 description 메타 태그를 찾지 못했습니다")
+    return text
+
+
+def apply_site_name(text: str, cfg: dict, name: str) -> str:
+    """og:site_name(2026-10-22): og:title 바로 위, og:title 이 없으면 description(없으면 <title>) 바로 아래에 하나."""
+    tag = f'<meta property="og:site_name" content="{html.escape(cfg["site_name"], quote=True)}">\n'
+    text = SITE_NAME_RE.sub("", text)
+    for pat, before in ((r'(?=<meta property="og:title")', True), (r'(<meta name="description"[^>]*>\n)', False),
+                        (r"(</title>\n)", False)):
+        text, n = re.subn(pat, (lambda m: tag) if before else (lambda m: m.group(1) + tag), text, count=1)
+        if n == 1:
+            return text
+    raise ValueError(f"{name} 에서 og:site_name 을 넣을 자리를 찾지 못했습니다")
+
+
 SIDO_ORDER = [
     "서울특별시", "부산광역시", "대구광역시", "인천광역시", "전남광주통합특별시",
     "대전광역시", "울산광역시", "세종특별자치시", "경기도", "강원특별자치도",
@@ -341,6 +378,7 @@ def main() -> None:
     if n_count != 1:
         raise ValueError("index.html에서 지역 수 문구를 찾지 못했습니다")
     text = apply_head_meta(text)
+    text = apply_home_title(text, json.loads(CONFIG_PATH.read_text(encoding="utf-8")))
     text = apply_home_hero(text, json.loads(CONFIG_PATH.read_text(encoding="utf-8")))
     text = apply_home_og(text, json.loads(CONFIG_PATH.read_text(encoding="utf-8")))
     text = apply_home_canonical(text, json.loads(CONFIG_PATH.read_text(encoding="utf-8")))
@@ -349,6 +387,7 @@ def main() -> None:
     cfg = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
     for page in STATIC_PAGES:
         text = apply_icon(apply_footer(page.read_text(encoding="utf-8"), cfg, page.name), page.name)
+        text = apply_site_name(text, cfg, page.name)
         page.write_text(apply_analytics(text, cfg, page.name), encoding="utf-8")
     print(f"index.html 갱신 완료: 총 {total}개 지역, 시도 {len(by_sido)}개 (맨 아래 링크: {', '.join(p.name for p in STATIC_PAGES)})")
 
