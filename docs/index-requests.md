@@ -2,8 +2,8 @@
 
 병한님이 구글 서치 콘솔(왼쪽 "URL 검사" → 주소 붙여 넣기 → "색인 생성 요청")로 손으로 요청한 주소 기록입니다(2026-10-18부터).
 
-- 매일 루틴이 `python3 scripts/pick_index_requests.py --write` 로 그날 요청할 5개(2026-10-20부터, 예전 10개)를 골라 아래에 날짜와 함께 덧붙이고, 아침 보고(오전 6시 55분) 맨 끝 "오늘 구글 색인 요청 5개"에 주소 하나당 코드 상자 하나씩 적습니다.
-- 고르는 순서(2026-10-20): ① 아래 "최우선" 칸 주소 중 아직 요청 안 된 것 ② 아래 "문의가 온 페이지"와 같은 시·군의 구·시군 페이지(문의 온 곳이 여럿이면 번갈아) ③ 시·도 페이지 14장 중 아직 요청 안 된 것 ④ 점수표(`docs/region-priority-2026-10-15.md`) 순위 높은 지방 시·군 구 페이지. 동 페이지(/pages/)는 어떤 경우에도 고르지 않습니다. 날짜 칸에 이미 있는 주소는 다시 고르지 않습니다. 단, 바로 앞 날짜 칸 제목에 "요청 못 함"이 있으면(할당량 초과 등) 그 칸의 같은 5개를 다음 날 다시 맨 앞에 올립니다.
+- 매일 루틴이 `python3 scripts/pick_index_requests.py --write` 로 그날 요청할 10개(2026-10-22부터, 2026-10-20~21 은 5개)를 골라 아래에 날짜와 함께 덧붙이고, 아침 보고(오전 6시 55분) 맨 끝 "오늘 구글 색인 요청 10개"에 주소 하나당 코드 상자 하나씩 적습니다.
+- 고르는 순서(2026-10-20): ① 아래 "최우선" 칸 주소 중 아직 요청 안 된 것 ② 아래 "문의가 온 페이지"와 같은 시·군의 구·시군 페이지(문의 온 곳이 여럿이면 번갈아) ③ 시·도 페이지 14장 중 아직 요청 안 된 것 ④ 점수표(`docs/region-priority-2026-10-15.md`) 순위 높은 지방 시·군 구 페이지. 동 페이지(/pages/)는 어떤 경우에도 고르지 않습니다. 날짜 칸에 이미 있는 주소는 다시 고르지 않습니다. 단, 바로 앞 날짜 칸 제목에 "요청 못 함"이 있으면(할당량 초과 등) 그 칸의 같은 주소들을 다음 날 다시 맨 앞에 올립니다.
 - 문의가 온 페이지를 한 줄 더할 때 `python3 scripts/population_stats.py dong <시·군>` 도 돌려 둡니다(그 시·군의 동을 인구 많은 순으로 고르는 데 씀, 매일 루틴의 동 3장 규칙 ①).
 - 네이버·공용 IndexNow 자동 전송(`scripts/indexnow.py`)은 이와 따로 그대로 돕니다.
 
@@ -106,3 +106,24 @@
 - https://pyecha119.com/gu/%EA%B2%BD%EC%82%B0%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/경산시-폐차장.html (문의 온 곳(경산시)과 같은 시·군의 구 페이지)
 - https://pyecha119.com/gu/%EC%84%9C%EC%9A%B8-%EA%B0%95%EC%84%9C%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/서울-강서구-폐차장.html (문의 온 곳(강서구)과 같은 시·군의 구 페이지)
 - https://pyecha119.com/si/%EC%84%9C%EC%9A%B8-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — si/서울-폐차장.html (시·도 페이지)
+
+## 2026-10-22 추가 (병한님 직접, 익산시에서 할당량 초과)
+
+10월 22일 병한님이 루틴 5개 뒤에 직접 이어서 요청한 16개입니다(이미 색인돼 있던 주소 포함, 다시 고르지 않게 적음). 다음 순서인 익산시 구 페이지에서 할당량이 넘어 그 뒤(익산시·서산시·거제시·당진시·창원시 진해구·충주시·김천시·포항시 북구·고령군)는 요청하지 못해 적지 않았습니다.
+
+- https://pyecha119.com/si/%EC%A0%84%EB%B6%81-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — si/전북-폐차장.html (병한님 직접)
+- https://pyecha119.com/si/%EA%B2%BD%EA%B8%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — si/경기-폐차장.html (병한님 직접)
+- https://pyecha119.com/si/%EC%A0%84%EB%82%A8%EA%B4%91%EC%A3%BC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — si/전남광주-폐차장.html (병한님 직접)
+- https://pyecha119.com/si/%EA%B0%95%EC%9B%90-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — si/강원-폐차장.html (병한님 직접)
+- https://pyecha119.com/si/%EC%B6%A9%EB%82%A8-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — si/충남-폐차장.html (병한님 직접)
+- https://pyecha119.com/si/%EA%B2%BD%EB%B6%81-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — si/경북-폐차장.html (병한님 직접)
+- https://pyecha119.com/si/%EA%B2%BD%EB%82%A8-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — si/경남-폐차장.html (병한님 직접)
+- https://pyecha119.com/si/%EC%B6%A9%EB%B6%81-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — si/충북-폐차장.html (병한님 직접)
+- https://pyecha119.com/si/%EB%8C%80%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — si/대구-폐차장.html (병한님 직접)
+- https://pyecha119.com/si/%EB%B6%80%EC%82%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — si/부산-폐차장.html (병한님 직접)
+- https://pyecha119.com/si/%EC%9D%B8%EC%B2%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — si/인천-폐차장.html (병한님 직접)
+- https://pyecha119.com/si/%EB%8C%80%EC%A0%84-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — si/대전-폐차장.html (병한님 직접)
+- https://pyecha119.com/si/%EC%9A%B8%EC%82%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — si/울산-폐차장.html (병한님 직접)
+- https://pyecha119.com/si/%EC%A0%9C%EC%A3%BC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — si/제주-폐차장.html (병한님 직접)
+- https://pyecha119.com/gu/%EC%B6%98%EC%B2%9C%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/춘천시-폐차장.html (병한님 직접)
+- https://pyecha119.com/gu/%EC%84%B8%EC%A2%85-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/세종-폐차장.html (병한님 직접)

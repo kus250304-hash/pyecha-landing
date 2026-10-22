@@ -1,13 +1,13 @@
 """
-오늘 구글 서치 콘솔에 손으로 색인 요청할 주소 5개를 고른다(2026-10-18 병한님 요청, 2026-10-20 10개 → 5개). 매일 루틴이 커밋 전에
-돌리고, 아침 보고 맨 끝에 "오늘 구글 색인 요청 5개"로 붙인다. 네이버·공용 IndexNow 자동 전송(scripts/indexnow.py)과는 따로다.
+오늘 구글 서치 콘솔에 손으로 색인 요청할 주소 10개를 고른다(2026-10-18 병한님 요청, 2026-10-20 10개 → 5개, 2026-10-22 5개 → 10개). 매일 루틴이 커밋 전에
+돌리고, 아침 보고 맨 끝에 "오늘 구글 색인 요청 10개"로 붙인다. 네이버·공용 IndexNow 자동 전송(scripts/indexnow.py)과는 따로다.
 
 사용법
   python3 scripts/pick_index_requests.py           # 고르기만(파일 그대로)
   python3 scripts/pick_index_requests.py --write   # 고른 주소를 docs/index-requests.md 에 오늘 날짜로 덧붙임
 
 고르는 순서(2026-10-20 병한님 결정, docs/roadmap.md 13절)
-  ⓪ 바로 앞 날짜 칸 제목에 "요청 못 함"이 있으면(할당량 초과 등) 그 칸 주소를 같은 순서로 다시 맨 앞에(같은 5개를 다시 올림)
+  ⓪ 바로 앞 날짜 칸 제목에 "요청 못 함"이 있으면(할당량 초과 등) 그 칸 주소를 같은 순서로 다시 맨 앞에(같은 주소들을 다시 올림)
   ① docs/index-requests.md 의 "## 최우선" 칸 주소 중 아직 요청 안 된 것(적힌 순서대로, 지금은 주제 페이지 6장)
   ② 문의가 온 페이지(그 파일의 "문의가 온 페이지" 칸)와 같은 시·군의 구·시군 페이지
      (일반구면 같은 시의 다른 구 페이지까지, 문의 온 곳이 여럿이면 번갈아)
@@ -32,7 +32,7 @@ from build_site import CONFIG, GU_DATA, REGIONS, gu_file, load_json  # noqa: E40
 from build_si import load_si, si_file  # noqa: E402
 
 LOG = ROOT / "docs" / "index-requests.md"
-COUNT = 5  # 2026-10-20 10 → 5
+COUNT = 10  # 2026-10-20 10 → 5, 2026-10-22 5 → 10(병한님: 새 요청 14개 안팎에서 할당량 초과)
 PUBLISHED_RE = re.compile(r'"datePublished": "(\d{4}-\d{2}-\d{2})"')
 URL_RE = re.compile(r"https://pyecha119\.com/\S+?\.html")
 
