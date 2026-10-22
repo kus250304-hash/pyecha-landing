@@ -622,9 +622,35 @@ def check_guide_pages(cfg: dict, sitemap: str) -> list[str]:
             problems.append(f"{tag}: 금액 표현 '{m.group(0)}' → …{body[max(0, m.start()-15):m.end()+15]}…")
         if f"/guide/{quote(g['file'])}<" not in sitemap:
             problems.append(f"{tag}: sitemap.xml 에 없음")
+        problems += [f"{tag}: {x}" for x in howto_problems(g, html)]
         if "answer" in g:
             problems += [f"{tag}: {x}" for x in topic_problems(g, html, cfg)]
     return problems
+
+
+HOWTO_PAGES = ("폐차-절차.html", "폐차-수출-비교.html")  # HowTo 구조화 데이터가 있어야 하는 안내 페이지(2026-10-22)
+
+
+def howto_problems(g: dict, html: str) -> list[str]:
+    """HowTo(2026-10-22): 단계 표(data-howto)가 있으면 HowTo 가 하나, 단계마다 name·text, 단계 수 = 표 줄 수."""
+    tables = re.findall(r'<table class="guide-table" data-howto>.*?<tbody>(.*?)</tbody>', html, flags=re.DOTALL)
+    howtos = []
+    for block in re.findall(r'<script type="application/ld\+json">(.*?)</script>', html, flags=re.DOTALL):
+        data = json.loads(block)
+        howtos += [x for x in (data if isinstance(data, list) else [data]) if x.get("@type") == "HowTo"]
+    if g["file"] in HOWTO_PAGES and not tables:
+        return ["단계 표(data-howto)와 HowTo 구조화 데이터가 없음"]
+    if not tables and not howtos:
+        return []
+    if len(tables) != 1 or len(howtos) != 1:
+        return [f"단계 표 {len(tables)}개·HowTo {len(howtos)}개(각 1개여야 함)"]
+    steps, rows = howtos[0].get("step", []), tables[0].count("<tr>")
+    out = []
+    if not howtos[0].get("name") or any(not (s.get("name") and s.get("text")) for s in steps):
+        out.append("HowTo 의 name 또는 단계 name·text 가 비어 있음")
+    if len(steps) != rows:
+        out.append(f"HowTo 단계 {len(steps)}개 ≠ 단계 표 {rows}줄")
+    return out
 
 
 def topic_problems(t: dict, html: str, cfg: dict) -> list[str]:
