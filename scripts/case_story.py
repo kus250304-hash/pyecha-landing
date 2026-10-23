@@ -92,10 +92,13 @@ def build_story(memo: dict, banned) -> tuple[dict | None, str, list[str]]:
     if "제목꼬리" in s and len(s["제목꼬리"].replace(" ", "")) > TAIL_MAX:
         notes.append(f"제목꼬리 '{s['제목꼬리']}' 가 {TAIL_MAX}자를 넘어 뺌")
         del s["제목꼬리"]
-    flat = " ".join(" ".join(v) if isinstance(v, list) else v for k, v in s.items() if k not in DATE_KEYS)
-    why = banned(flat)
-    if why:
-        return None, why, notes
+    # 칸마다(확인은 항목마다) 따로 검사한다. 이어 붙이면 "압류 24건" + "2010년식" 이 차번호 꼴로 읽힌다(2026-10-23)
+    for k, v in s.items():
+        if k in DATE_KEYS:
+            continue
+        for piece in (v if isinstance(v, list) else [v]):
+            if why := banned(piece):
+                return None, f"{k} 칸: {why}", notes
     for k in OVERCLAIM_KEYS:
         v = s.get(k)
         text = " ".join(v) if isinstance(v, list) else (v or "")
