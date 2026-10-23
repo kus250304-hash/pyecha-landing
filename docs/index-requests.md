@@ -142,3 +142,12 @@
 - https://pyecha119.com/gu/%ED%8F%AC%ED%95%AD%EC%8B%9C-%EB%B6%81%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/포항시-북구-폐차장.html (점수표 28위 지방 시·군)
 - https://pyecha119.com/gu/%EA%B3%A0%EB%A0%B9%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/고령군-폐차장.html (점수표 29위 지방 시·군)
 - https://pyecha119.com/gu/%ED%8F%AC%ED%95%AD%EC%8B%9C-%EB%82%A8%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/포항시-남구-폐차장.html (점수표 30위 지방 시·군)
+
+## 2026-10-23 추가 (병한님 직접, 청주시 상당구에서 할당량 초과)
+
+10월 23일 밤 병한님이 루틴 10개 뒤에 직접 이어서 구글에 요청한 4개입니다(이미 색인돼 있던 주소 포함, 다시 고르지 않게 적음). 다음 순서인 청주시 상당구 구 페이지에서 할당량이 넘어 그 뒤(청주시 상당구·청원구·흥덕구, 논산시, 제천시, 영천시)는 구글에 요청하지 못해 적지 않았습니다(다음 날 다시 고름). 네이버 웹 페이지 수집에는 루틴 10개 + 이 4개 + 못 한 6개까지 20개를 모두 넣었으므로, 그 6개가 다시 뽑히면 구글만 하면 됩니다.
+
+- https://pyecha119.com/gu/%EA%B2%BD%EC%A3%BC%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/경주시-폐차장.html (병한님 직접)
+- https://pyecha119.com/gu/%EC%88%9C%EC%B2%9C%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/순천시-폐차장.html (병한님 직접)
+- https://pyecha119.com/gu/%EC%B2%AD%EC%A3%BC%EC%8B%9C-%EC%84%9C%EC%9B%90%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/청주시-서원구-폐차장.html (병한님 직접)
+- https://pyecha119.com/gu/%EA%B4%91%EC%96%91%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/광양시-폐차장.html (병한님 직접)
