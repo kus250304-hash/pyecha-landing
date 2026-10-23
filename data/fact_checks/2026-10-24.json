@@ -1,0 +1,38 @@
+[
+ {
+  "code": "4719025600",
+  "slug": "gyeongbuk-gumi-sandong",
+  "items": [
+   {
+    "name": "산동초등학교",
+    "evidence": "경북 구미시 산동면(현 산동읍) 강동로 936-18, 학교 정보 페이지에 산동초등학교 주소로 표기",
+    "url": "https://academy.prompie.com/schools/elementary-school/detail/3y336fq/산동초등학교/",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1211015800",
+  "slug": "jeonnam-mokpo-sang",
+  "items": [
+   {
+    "name": "목포상동초등학교",
+    "evidence": "목포시 상동로21번길 73, 건물 정보에 법정동 상동으로 표기",
+    "url": "https://safehomes.kr/risk-map/전라남도/목포시/상동/기타/building/목포상동초등학교/1203123644",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4159711000",
+  "slug": "gyeonggi-hwaseong-dongtan-sancheok",
+  "items": [
+   {
+    "name": "동탄7동 행정복지센터",
+    "evidence": "위키백과 산척동 문서: 동탄7동 행정복지센터 동탄대로8길 (산척동 242-7)",
+    "url": "https://ko.wikipedia.org/wiki/산척동",
+    "grade": "opened"
+   }
+  ]
+ }
+]
