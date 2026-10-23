@@ -31,6 +31,7 @@ import variants as V
 import og_image
 import analytics
 import shorts
+import case_story
 
 ROOT = Path(__file__).resolve().parent.parent
 TEMPLATE = ROOT / "templates" / "region-landing-v2.html"
@@ -106,6 +107,7 @@ def case_alt(c: dict) -> str:
 
 def case_cards_html(picked: list[dict], video: bool = True) -> str:
     """사례 카드 묶음. 동 페이지와 구 페이지가 같이 쓴다. 사례가 없으면 빈 문자열.
+    둘째 줄은 걱정 첫 문장 → 제목꼬리 → summary(case_story.card_line, 2026-10-23 글 틀 v2).
     video=False 는 주제 페이지(2026-10-19): 쇼츠를 "영상으로 보기" 칸에 따로 그린다(build_guide.topic_shorts)."""
     if not picked:
         return ""
@@ -113,7 +115,7 @@ def case_cards_html(picked: list[dict], video: bool = True) -> str:
         f'<a class="case" href="../cases/{esc(c["slug"])}.html">'
         + (f'<img src="../cases/images/{esc(c["thumb"])}" alt="{esc(case_alt(c))}" loading="lazy" width="800" height="600">' if c.get("thumb") else "")
         + f'<div class="body"><span class="region">{esc(((c["sigungu"] or c["sido"]) + " " + c["dong"]).strip())} 작업 사례</span>'
-        + f'<h3>{esc(c["title"])}</h3><p>{esc(c.get("summary", ""))}</p></div></a>'
+        + f'<h3>{esc(c["title"])}</h3><p>{esc(case_story.card_line(c))}</p></div></a>'
         for c in picked
     ) + "</div>" + (shorts.cards_video_html(picked) if video else "")  # 짝 맞춘 쇼츠 하나(페이지당 1개, 누를 때만 불러옴, [4])
 

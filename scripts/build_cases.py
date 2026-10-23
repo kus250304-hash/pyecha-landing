@@ -35,6 +35,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from build_site import contact_parts, esc, load_json
+import case_story
 from pick_next_regions import make_slug
 from sitemap_lib import update_sitemap
 
@@ -47,6 +48,9 @@ TEMPLATE_PATH = ROOT / "templates" / "case.html"
 CSV_PATH = ROOT / "data" / "legal_dong_list.csv"
 REGIONS_PATH = ROOT / "data" / "regions.json"
 CONFIG_PATH = ROOT / "data" / "site_config.json"
+# 사례 글 고침 통로(2026-10-23): [{"slug": "case-…" 또는 "folder": "<cases/input 폴더 이름>", "memo": {"걱정": "…"}, "confirmed": "…"}]
+# memo 에는 case_story.STORY_KEYS 칸만 받는다. build_cases.py 가 돌 때마다 적용한다(slug 는 이미 만든 사례, folder 는 올라온 폴더)
+TEXT_FIXES = ROOT / "data" / "case_text_fixes.json"
 SCRIPTS = ROOT / "scripts"
 
 MEMO_NAMES = ("메모.txt", "memo.txt")
@@ -60,6 +64,9 @@ KEY_ALIASES = {
     "진행": "진행", "실제진행": "진행", "진행방식": "진행",
     "결과": "결과", "한마디": "한마디",
     "youtube": "youtube", "유튜브": "youtube",  # 여러 줄 가능: "youtube: <주소> <짧은 설명>"
+    # 사례 글 틀 v2(2026-10-23, 모두 선택): 뜻과 규칙은 scripts/case_story.py 맨 위
+    "걱정": "걱정", "확인": "확인", "고른쪽": "고른쪽", "이유": "이유",
+    "문의일": "문의일", "인수일": "인수일", "말소일": "말소일", "끝한줄": "끝한줄", "제목꼬리": "제목꼬리",
 }
 # 둘 중 한 형식이 다 있어야 한다: PC 원본 메모 형식 / 예전 직접 작성 형식
 REQUIRED_SETS = (("지역", "차종", "연식", "시동"), ("지역", "차종", "상황", "처리"))
@@ -304,18 +311,19 @@ def compose(memo: dict) -> tuple[dict | None, str]:
     if kind and not short_kind:
         situation = kind if not memo.get("연식") else situation + " " + kind
 
-    if memo.get("처리"):
-        method = memo["처리"]
-    else:
-        method = ("차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 "
-                  "협력업체와 연결해 진행했습니다.")
+    # 처리 칸이 없으면 비워 둔다(예전의 공통 진행 문장은 더 쓰지 않음, 2026-10-23)
+    method = memo.get("처리", "")
 
     videos, why = parse_videos(memo.get("youtube", ""))
     if why:
         return None, why
+    story, why, notes = case_story.build_story(memo, banned_text)
+    if story is None:
+        return None, why
     out = {
         "car": car_full, "facts": facts, "situation": situation, "method": method,
         "result": memo.get("결과", ""), "quote": memo.get("한마디", ""), "videos": videos,
+        "story": story, "story_notes": notes,
     }
     text = " ".join([out["situation"], out["method"], out["result"], out["quote"]] + [v for _, v in facts]
                     + [v["label"] for v in videos])
@@ -413,9 +421,16 @@ def save_photo(src: Path, dst_base: Path) -> str:
     return dst.name
 
 
-def first_sentence(text: str, limit: int = 70) -> str:
-    s = re.split(r"(?<=[.!?])\s+", text.strip())[0]
-    return s if len(s) <= limit else s[: limit - 1] + "…"
+first_sentence = case_story.first_sentence
+
+
+def load_text_fixes() -> list[dict]:
+    return [f for f in load_json(TEXT_FIXES, default=[]) or [] if isinstance(f, dict)]
+
+
+def fix_memo(fix: dict) -> dict:
+    """고침 한 줄의 memo 중 표에 있는 칸(case_story.STORY_KEYS)만."""
+    return {k: v for k, v in (fix.get("memo") or {}).items() if k in case_story.STORY_KEYS and str(v).strip()}
 
 
 def check_folder(folder: Path, rows: list[dict]) -> tuple[dict | None, str]:
@@ -424,6 +439,9 @@ def check_folder(folder: Path, rows: list[dict]) -> tuple[dict | None, str]:
     if not memo_path:
         return None, "메모.txt 가 없습니다"
     memo = parse_memo(read_text_any(memo_path))
+    for fix in load_text_fixes():  # cases/input 폴더 이름으로 적은 고침(data/case_text_fixes.json)
+        if fix.get("folder") == folder.name:
+            memo.update(fix_memo(fix))
     if not memo.get("지역"):
         return None, "메모에 지역이 없습니다"
     region, why = resolve_region(memo["지역"], rows)
@@ -466,7 +484,9 @@ def process_folder(folder: Path, rows: list[dict], page_slugs: dict, used_slugs:
     IMAGES_DIR.mkdir(parents=True, exist_ok=True)
     names = [save_photo(p, IMAGES_DIR / f"{slug}-{i}") for i, p in enumerate(info["photos"], 1)]
 
-    return {
+    for note in body["story_notes"]:
+        print(f"주의 {folder.name}: {note}")
+    return case_story.finalize({
         "slug": slug,
         "date": case_date,
         "sido": region["sido"], "sigungu": region["sigungu"], "dong": region["dong"],
@@ -480,22 +500,85 @@ def process_folder(folder: Path, rows: list[dict], page_slugs: dict, used_slugs:
         "thumb": names[0] if names else None, "photos": names,
         "videos": body["videos"],
         "spoken": info["spoken"],
-    }
+        "story": body["story"],
+    })
 
 
 def case_meta_title(c: dict, area: str) -> str:
     """사례 페이지 제목 틀(2026-10-01): "{시군구} {차종} 폐차 사례 | {날짜}". 차종은 메모의 차종 칸(연식 빼고),
-    없으면 "{시군구} 폐차 사례". 날짜가 없는 사례는 날짜를 지어내지 않고 뒷부분을 뺀다."""
+    없으면 "{시군구} 폐차 사례". 날짜가 없는 사례는 날짜를 지어내지 않고 뒷부분을 뺀다.
+    제목꼬리가 있으면(2026-10-23) "{시군구} {차종} 폐차 사례 — {꼬리} | {날짜}"."""
     car = next((v for k, v in c.get("facts") or [] if k == "차종"), "").strip()
     head = f"{area} {car} 폐차 사례" if car else f"{area} 폐차 사례"
+    if tail := (c.get("story") or {}).get("제목꼬리"):
+        head += f" — {tail}"
     if c.get("date"):
         y, m, d = (int(x) for x in c["date"].split("-"))
         return f"{head} | {y}년 {m}월 {d}일"
     return head
 
 
+def case_h1(c: dict) -> str:
+    """H1: 제목꼬리가 있으면 "{동} {연식} {차종} — {꼬리}", 없으면 지금 제목 그대로."""
+    tail = (c.get("story") or {}).get("제목꼬리")
+    return f"{region_label(c)} {c['car']} — {tail}" if tail else c["title"]
+
+
+def story_parts(c: dict) -> tuple[str, str]:
+    """사례 글 틀 v2(2026-10-23): ① 한눈에 표 ② 걱정 ③ 확인 ④ 고른 쪽 ⑤ 진행과 걸린 날 ⑥ 끝나고 한 줄 (+ 영상에서 한 말),
+    그리고 ⑦ 비슷한 차라면(영상 칸 뒤). 얇은 사례는 ①과 ⑦만. 틀 문장은 case_story 의 두 문장만 쓴다."""
+    s = c.get("story") or {}
+    rows = [(k, v) for k, v in c.get("facts") or [] if k not in ("진행 내용", "문의 내용")]
+    # 사연: 진행 내용·문의 내용, 그리고 상황 칸에 길게 쓴 글(차량 문장 뒤에 붙은 것)
+    story_bits = [v for k, v in c.get("facts") or [] if k in ("진행 내용", "문의 내용")]
+    extra = re.split(r"(?<=[.!?])\s+", c.get("situation") or "")
+    extra = [x for x in extra[1:] if x and not x.startswith("운행")]
+    story_bits += extra
+    if story_bits:
+        rows.append(("사연", " ".join(story_bits)))
+    if s.get("고른쪽") in ("폐차", "수출"):
+        rows.append(("고른 쪽", s["고른쪽"]))
+    if took := case_story.took_parts(s):
+        rows.append(("걸린 날", " · ".join(took)))
+    out = ""
+    if rows:
+        out += ('<h2>한눈에 보기</h2><table class="glance">'
+                + "".join(f"<tr><th>{esc(k)}</th><td>{esc(v)}</td></tr>" for k, v in rows) + "</table>")
+    if not c["thin"]:
+        if s.get("걱정"):
+            out += f"<h2>처음 전화 주셨을 때 걱정하신 것</h2><blockquote>{esc(s['걱정'])}</blockquote>"
+        if s.get("확인"):
+            out += "<h2>원부·사진으로 확인한 것</h2><ul>" + "".join(f"<li>{esc(x)}</li>" for x in s["확인"]) + "</ul>"
+        choice = []
+        if s.get("고른쪽") in ("폐차", "수출"):
+            choice.append(case_story.CHOICE_SENTENCE.format(s["고른쪽"]))
+            if s.get("이유"):
+                choice.append(s["이유"])
+        if m := case_story.method_text(c):
+            choice.append(m)
+        if choice:
+            out += "<h2>폐차·수출 둘 다 알아본 뒤 고른 쪽</h2>" + "".join(f"<p>{esc(x)}</p>" for x in choice)
+        flow = []
+        if line := case_story.timeline(s):
+            flow.append(line)
+        if not s.get("말소일") and (s.get("문의일") or s.get("인수일")) and case_story.over_age(c):
+            flow.append(case_story.OVER_AGE_NOTE)
+        if flow:
+            out += "<h2>진행과 걸린 날</h2>" + "".join(f"<p>{esc(x)}</p>" for x in flow)
+        last = s.get("끝한줄") or (f"“{c['quote']}”" if c.get("quote") else "") or c.get("result") or ""
+        if last:
+            out += f"<h2>끝나고 한 줄</h2><p>{esc(last)}</p>"
+        if c.get("spoken"):  # 문장 그대로(고치거나 꾸미지 않음)
+            out += ("<h2>영상에서 한 말</h2><blockquote class=\"spoken\">"
+                    + "<br>".join(esc(line) for line in c["spoken"].split("\n")) + "</blockquote>")
+    gfile, gname = case_story.similar_topic(c)
+    similar = f'<h2>비슷한 차라면</h2><p><a href="../guide/{esc(gfile)}">{esc(gname)}</a></p>'
+    return out, similar
+
+
 def render_case(c: dict, cfg: dict, template: str, region_slug: str | None,
                 area: str | None = None, gu_page: str | None = None) -> str:
+    c = case_story.finalize(dict(c))
     base = cfg["site_base_url"].rstrip("/")
     full = " ".join(x for x in (c["sido"], c["sigungu"], c["dong"]) if x)
     area = area or c["sigungu"] or c["sido"]
@@ -524,18 +607,7 @@ def render_case(c: dict, cfg: dict, template: str, region_slug: str | None,
                       + shorts.lite_assets())
         if short:
             video_html += shorts.video_ld(short, label, c.get("summary", ""), f"{base}/cases/{c['slug']}.html")
-    story_html = ""
-    if c.get("facts"):
-        story_html += "<h2>차량 정보</h2><p>" + " · ".join(f"{esc(k)} {esc(v)}" for k, v in c["facts"]) + "</p>"
-    story = [("차량 상황", c["situation"]), ("진행 방식", c["method"])]
-    if c["result"]:
-        story.append(("결과", c["result"]))
-    story_html += "".join(f"<h2>{esc(h)}</h2><p>{esc(t)}</p>" for h, t in story)
-    if c.get("spoken"):  # 문장 그대로(고치거나 꾸미지 않음)
-        story_html += ("<h2>영상에서 한 말</h2><blockquote class=\"spoken\">"
-                       + "<br>".join(esc(line) for line in c["spoken"].split("\n")) + "</blockquote>")
-    if c["quote"]:
-        story_html += f"<h2>고객 한마디</h2><blockquote>“{esc(c['quote'])}”</blockquote>"
+    story_html, similar_html = story_parts(c)
     if region_slug:
         region_btn = f'<a class="btn btn-quote" href="../pages/{esc(region_slug)}.html" style="background:#fff">{esc(c["dong"])} 폐차 상담 페이지</a>'
     elif not c["dong"] and gu_page:
@@ -553,16 +625,18 @@ def render_case(c: dict, cfg: dict, template: str, region_slug: str | None,
         "META_TITLE": esc(case_meta_title(c, area)),
         "SITE_NAME": esc(cfg["site_name"]),
         "GU_BUTTON": gu_btn,
-        "META_DESC": esc(f"{full}에서 진행한 {c['car']} 사례. {c['summary']} 폐차와 수출 중 유리한 쪽으로 안내. 전화 {cfg['phone_display']}"),
+        "ROBOTS": '<meta name="robots" content="noindex,follow">' if c["thin"] else "",
+        "META_DESC": esc(f"{c['card_line']} {full}에서 진행한 {c['car']} 사례. 폐차와 수출 중 유리한 쪽으로 안내. 전화 {cfg['phone_display']}"),
         "CANONICAL": f"{base}/cases/{c['slug']}.html",
         "OG_IMAGE": (f"{base}/cases/images/{c['thumb']}" if c.get("thumb")
                      else f"https://i.ytimg.com/vi/{videos[0]['id']}/hqdefault.jpg" if videos else f"{base}/favicon.ico"),
         "REGION_FULL_NAME": esc(full),
-        "TITLE": esc(c["title"]),
+        "TITLE": esc(case_h1(c)),
         "DATE_TEXT": "{}년 {}월 {}일 진행".format(*(int(x) for x in c["date"].split("-"))) if c["date"] else "",
         "PHOTOS_SECTION": photos_section,
         "VIDEO_HTML": video_html,
         "STORY_HTML": story_html,
+        "SIMILAR_HTML": similar_html,
         "REGION_BUTTON": region_btn,
         "PHONE_TEL": cfg["phone_tel"],
         "PHONE_DISPLAY": cfg["phone_display"],
@@ -581,6 +655,36 @@ def render_case(c: dict, cfg: dict, template: str, region_slug: str | None,
     return re.sub(r"\{\{(\w+)\}\}", sub, cleaned)
 
 
+def write_index(index: list[dict]) -> None:
+    INDEX_PATH.write_text(json.dumps(index, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+
+
+def apply_slug_fixes(index: list[dict]) -> int:
+    """data/case_text_fixes.json 의 slug 고침을 이미 만든 사례의 story 에 덮어쓴다. 바뀐 사례 수."""
+    by_slug = {c["slug"]: c for c in index}
+    n = 0
+    for fix in load_text_fixes():
+        slug = fix.get("slug")
+        if not slug:
+            continue
+        c = by_slug.get(slug)
+        if not c:
+            print(f"고침 건너뜀 {slug}: cases/index.json 에 없는 사례")
+            continue
+        merged = {**(c.get("story") or {}), **fix_memo(fix)}
+        story, why, notes = case_story.build_story(merged, banned_text)
+        for note in notes:
+            print(f"주의 고침 {slug}: {note}")
+        if story is None:
+            print(f"고침 건너뜀 {slug}: {why}")
+            continue
+        if story != (c.get("story") or {}):
+            c["story"] = story
+            n += 1
+            print(f"사례 고침: {slug} ({', '.join(fix_memo(fix))})")
+    return n
+
+
 def render_all_cases(regions: list[dict], cfg: dict) -> list[str]:
     """cases/index.json 의 사례 페이지를 지금 동 페이지 목록 기준으로 다시 만든다. 바뀐 파일 경로 목록."""
     index = load_json(INDEX_PATH, default=[])
@@ -592,6 +696,12 @@ def render_all_cases(regions: list[dict], cfg: dict) -> list[str]:
     title_names = gu_title_names(gu_groups(regions))
     gu_pages = {g["slug"] for g in load_json(GU_DATA, default=[])}
     changed = []
+    before = json.dumps(index, ensure_ascii=False)
+    for c in index:  # 계산 칸(depth·thin·card_line)은 늘 지금 글 기준으로(case_story.finalize)
+        case_story.finalize(c)
+    if json.dumps(index, ensure_ascii=False) != before:
+        write_index(index)
+        changed.append("cases/index.json")
     for c in index:
         out = ROOT / "cases" / f"{c['slug']}.html"
         g = gu_slug(c["sido"], c["sigungu"])
@@ -604,8 +714,27 @@ def render_all_cases(regions: list[dict], cfg: dict) -> list[str]:
 
 
 def main() -> None:
+    import argparse
+    ap = argparse.ArgumentParser()
     # 폴더 이름을 주면 cases/input 안의 그 폴더만 처리한다(운영자가 특정 건만 먼저 올릴 때). 없으면 전부
-    names = sys.argv[1:]
+    ap.add_argument("names", nargs="*")
+    ap.add_argument("--keep-dates", action="store_true",
+                    help="사이트맵 lastmod 를 그대로 둠(틀만 바뀐 사례 다시 렌더링용, 2026-10-23 글 틀 v2 때 한 번)")
+    args = ap.parse_args()
+    names = args.names
+    build_cmd = [sys.executable, str(SCRIPTS / "build_site.py")] + (["--keep-dates"] if args.keep_dates else [])
+
+    # 이미 만든 사례: 고침 통로(data/case_text_fixes.json)와 계산 칸을 먼저 맞춘다
+    index: list[dict] = load_json(INDEX_PATH, default=[])
+    before = json.dumps(index, ensure_ascii=False)
+    fixed = apply_slug_fixes(index)
+    for c in index:
+        case_story.finalize(c)
+    index_changed = json.dumps(index, ensure_ascii=False) != before
+    if index_changed:
+        write_index(index)
+        print(f"cases/index.json 정리: 고친 사례 {fixed}건")
+
     folders = sorted(p for p in INPUT_DIR.glob("*") if p.is_dir()) if INPUT_DIR.exists() else []
     if names:
         missing = [n for n in names if not (INPUT_DIR / n).is_dir()]
@@ -614,10 +743,12 @@ def main() -> None:
         folders = [p for p in folders if p.name in names]
     if not folders:
         print("처리할 사례 없음 (cases/input/ 에 폴더가 없습니다)")
+        if index_changed or args.keep_dates:
+            subprocess.run(build_cmd, cwd=ROOT, check=True, stdout=subprocess.DEVNULL)
+            print("사례 페이지 다시 렌더링 완료")
         return
 
     ensure_pillow()
-    index: list[dict] = load_json(INDEX_PATH, default=[])
     rows = load_csv_rows()
     page_slugs = page_slugs_by_region()
     used_slugs = {c["slug"] for c in index}
@@ -638,14 +769,17 @@ def main() -> None:
         DONE_DIR.mkdir(parents=True, exist_ok=True)
         shutil.move(str(folder), str(DONE_DIR / folder.name))
         done.append(c)
-        print(f"사례 생성: cases/{c['slug']}.html ({((c['sigungu'] or c['sido']) + ' ' + c['dong']).strip()} · {c['car']}, 사진 {len(c['photos'])}장)")
+        print(f"사례 생성: cases/{c['slug']}.html ({((c['sigungu'] or c['sido']) + ' ' + c['dong']).strip()} · {c['car']}, 사진 {len(c['photos'])}장, "
+              f"{'깊은 사례' if not c['thin'] else '얇은 사례(noindex)'})")
+        for line in case_story.report_lines(c):
+            print(f"  {line}")
 
-    if done:
-        INDEX_PATH.write_text(json.dumps(index, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-        # build_site.py 가 동 페이지와 함께 사례 페이지(render_all_cases)도 만든다
-        subprocess.run([sys.executable, str(SCRIPTS / "build_site.py")], cwd=ROOT, check=True, stdout=subprocess.DEVNULL)
-        update_sitemap(ROOT, [], paths=[f"cases/{c['slug']}.html" for c in done])
-        print(f"지역 페이지 재렌더링 완료, sitemap 에 사례 {len(done)}건 추가")
+    if done or index_changed or args.keep_dates:
+        write_index(index)
+        # build_site.py 가 동 페이지와 함께 사례 페이지(render_all_cases)·사이트맵도 만든다
+        subprocess.run(build_cmd, cwd=ROOT, check=True, stdout=subprocess.DEVNULL)
+        update_sitemap(ROOT, [], paths=[f"cases/{c['slug']}.html" for c in done], keep_dates=args.keep_dates)
+        print(f"지역 페이지 재렌더링 완료, 사례 {len(done)}건 추가(사이트맵에는 깊은 사례만)")
         for c in done:
             if not c["dong"]:
                 from build_site import gu_file

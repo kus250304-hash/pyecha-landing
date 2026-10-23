@@ -179,9 +179,12 @@ def write_sitemaps(root: Path = ROOT, keep_dates: bool = False) -> dict[str, int
             stale.unlink()
 
     index_rows = []
+    # 빈 파일(예: 깊은 사례가 아직 없는 sitemap-cases.xml, 2026-10-23)은 인덱스 날짜를 지난번 그대로 둔다(매일 바뀌지 않게)
+    old_index = dict(LOC_RE.findall((root / INDEX_NAME).read_text(encoding="utf-8"))) if (root / INDEX_NAME).exists() else {}
     for name, rows in files.items():
         (root / name).write_text(_urlset([(u, lm) for _, u, lm in rows]), encoding="utf-8")
-        index_rows.append((f"{SITE_BASE_URL}/{name}", max((lm for *_, lm in rows), default=day)))
+        loc = f"{SITE_BASE_URL}/{name}"
+        index_rows.append((loc, max((lm for *_, lm in rows), default=old_index.get(loc) or day)))
     body = "".join(f"  <sitemap>\n    <loc>{u}</loc>\n    <lastmod>{lm}</lastmod>\n  </sitemap>\n" for u, lm in index_rows)
     (root / INDEX_NAME).write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="{NS}">\n{body}</sitemapindex>\n',
                                    encoding="utf-8")

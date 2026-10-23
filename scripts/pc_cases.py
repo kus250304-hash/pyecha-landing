@@ -27,7 +27,8 @@ PC(운영자 컴퓨터)에서 돌리는 "사례 가져오기" 도구. 원본 사
 기다렸다가 구 페이지가 생긴 뒤 build_cases.py 가 처리한다. 시·도까지만('서울') 있거나 여러 구와 맞으면('수원시') 건너뛴다.
   (git commit·push 가 끝난 뒤)
   python scripts/pc_cases.py mark                 stage 한 건마다 원본 폴더에 반영됨.txt 를 만든다
-  python scripts/pc_cases.py report               오늘 가져온 건 한 줄 요약
+  python scripts/pc_cases.py report               오늘 가져온 건 한 줄 요약 + 사례마다 걱정/고른쪽/걸린 날/끝한줄 4줄
+  python scripts/pc_cases.py ledger               거래 기록부 칸 이름과 날짜 칸 매핑(값은 안 보임, 2026-10-23)
   python scripts/pc_cases.py clean                .cases_staging 지우기 (원본 미리보기 삭제)
 
 select.json 형식 (좌표는 미리보기 사진의 비율 0~1: 왼쪽, 위, 오른쪽, 아래)
@@ -42,6 +43,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import shutil
 import sys
 from datetime import date
@@ -53,6 +55,8 @@ from build_cases import (  # noqa: E402
     gu_page_exists, load_csv_rows, parse_memo, read_text_any, region_label, resolve_region,
 )
 from build_site import load_json  # noqa: E402
+import case_story  # noqa: E402
+from case_story import STORY_KEYS  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC_DEFAULT = r"C:\Users\AOMG\Documents\카카오톡 받은 파일\폐차사진원본"
@@ -67,7 +71,20 @@ STAGING = ROOT / ".cases_staging"
 INPUT_DIR = ROOT / "cases" / "input"
 PC_REQUIRED = ("지역", "차종", "연식", "시동")  # 이 넷이 다 채워진 건만 대상
 DAILY, BACKLOG_DAILY = 3, 5  # 하루 건수. 밀린 대상이 있는 동안은 5건(2026-10-16 병한님 결정)
-PC_MEMO_KEYS = ("날짜", "지역", "차종", "연식", "시동", "운행", "상황", "처리", "결과", "한마디")
+PC_MEMO_KEYS = ("날짜", "지역", "차종", "연식", "시동", "운행", "상황", "처리", "결과", "한마디") + STORY_KEYS
+# 거래 기록부(2026-10-23 글 틀 v2): 날짜 세 칸(문의일·인수일·말소일)이 비면 차종+시·군이 같고 날짜가 ±14일인 거래가
+# 하나뿐일 때만 채운다. 칸 이름은 기록부마다 다를 수 있어 이름 꼴로 고르고(ledger 명령이 보여 줌), 전화·차번호·이름·금액 칸은 읽지 않는다.
+from inquiry_log import WIKI_DIR, part_match  # noqa: E402
+LEDGER_DAYS = 14
+LEDGER_SKIP_RE = re.compile(r"전화|연락|번호|이름|성함|고객|금액|가격|원가|입금|계좌|견적|매입|주소|메모|비고")
+LEDGER_FIELD_RES = {  # 칸 이름 꼴 → 우리 칸. 위에서부터 처음 맞는 칸 하나
+    "문의일": [re.compile(r"^(문의일|문의\s*날짜|날짜)$")],
+    "인수일": [re.compile(r"^(인수|입고|견인|수거)(일|\s*날짜|일자)?$"), re.compile(r"(인수|입고|견인|수거).*(일|날짜|일자)$")],
+    "말소일": [re.compile(r"^말소(일|\s*날짜|일자|완료일?)?$"), re.compile(r"말소.*(일|날짜|일자)$")],
+    "차종": [re.compile(r"^(차종|차량|차명|모델)$")],
+    "지역": [re.compile(r"^지역$")],
+}
+LEDGER_NAME_RE = re.compile(r"^([^:\n|#>*-][^:\n]{0,14}?)[ \t]*:", re.M)
 
 
 def load_fixes() -> dict:
@@ -175,6 +192,81 @@ def video_frames(videos: list[Path], limit: int = FRAME_CANDIDATES):
             picked.append(Image.fromarray(cv2.cvtColor(best[1], cv2.COLOR_BGR2RGB)))
         cap.release()
     return picked
+
+
+def ledger_names(text: str) -> list[str]:
+    """기록부 한 장의 칸 이름(값은 읽지 않음)."""
+    return [m.group(1).strip() for m in LEDGER_NAME_RE.finditer(text)]
+
+
+def ledger_map(names: list[str]) -> dict[str, str]:
+    """우리 칸 → 기록부 칸 이름. 전화·차번호·이름·금액 꼴 칸은 고르지 않는다."""
+    out = {}
+    for ours, pats in LEDGER_FIELD_RES.items():
+        for pat in pats:
+            hit = next((n for n in names if pat.search(n) and not LEDGER_SKIP_RE.search(n)), None)
+            if hit:
+                out[ours] = hit
+                break
+    return out
+
+
+def ledger_value(text: str, name: str) -> str:
+    m = re.search(rf"^{re.escape(name)}[ \t]*:[ \t]*(.*)$", text, re.M)
+    return m.group(1).strip() if m else ""
+
+
+def ledger_records(folder: Path = WIKI_DIR) -> list[dict]:
+    """[{문의일, 인수일, 말소일, 차종, 지역}] — 고른 칸만 읽는다."""
+    out = []
+    for f in sorted(folder.glob("*.md")) if folder.exists() else []:
+        text = f.read_text(encoding="utf-8", errors="replace")
+        fields = ledger_map(ledger_names(text))
+        out.append({k: ledger_value(text, n) for k, n in fields.items()})
+    return out
+
+
+def car_key(v: str) -> str:
+    return re.sub(r"[\s()\[\]\d년식]", "", v or "").lower()
+
+
+def ledger_dates(memo: dict, region: dict, records: list[dict]) -> tuple[dict, str]:
+    """날짜 세 칸이 다 비었을 때 기록부에서 채울 값과 설명. 맞는 거래가 하나뿐일 때만."""
+    if any(memo.get(k) for k in case_story.DATE_KEYS):
+        return {}, "메모에 날짜 칸이 있어 기록부를 보지 않음"
+    day = case_story.parse_day(memo.get("날짜", ""))
+    if not day:
+        return {}, "사례 날짜가 없어 기록부와 맞춰 보지 않음"
+    car = car_key(memo.get("차종", ""))
+    city = (region.get("sigungu") or "").split()[0] if region.get("sigungu") else ""
+    hits = []
+    for r in records:
+        rcar = car_key(r.get("차종", ""))
+        d = case_story.parse_day(r.get("문의일", ""))
+        if not (car and rcar and (car in rcar or rcar in car)) or not d or abs((d - day).days) > LEDGER_DAYS:
+            continue
+        if city and not any(part_match(city, tok) for tok in (r.get("지역") or "").split()):
+            continue
+        hits.append(r)
+    if len(hits) != 1:
+        return {}, f"기록부에서 맞는 거래 {len(hits)}건(하나일 때만 채움)"
+    got = {k: hits[0][k] for k in case_story.DATE_KEYS if case_story.parse_day(hits[0].get(k, ""))}
+    return got, "기록부에서 채움: " + (", ".join(f"{k} {v}" for k, v in got.items()) or "날짜 칸 없음")
+
+
+def cmd_ledger(args) -> None:
+    """거래 기록부 칸 이름과 우리 칸 매핑을 보여 준다(값은 보이지 않음). 기록부 칸 이름이 바뀌면 LEDGER_FIELD_RES 를 고친다."""
+    folder = Path(args.dir) if args.dir else WIKI_DIR
+    files = sorted(folder.glob("*.md")) if folder.exists() else []
+    if not files:
+        raise SystemExit(f"거래 기록부가 없습니다: {folder}")
+    from collections import Counter
+    names = Counter(n for f in files for n in set(ledger_names(f.read_text(encoding="utf-8", errors="replace"))))
+    print(f"거래 기록부 {len(files)}장, 칸 이름(나온 장수): " + ", ".join(f"{n}({k})" for n, k in names.most_common()))
+    mapping = ledger_map(list(names))
+    for ours in LEDGER_FIELD_RES:
+        print(f"  {ours} ← {mapping.get(ours, '(맞는 칸 없음)')}")
+    print("  읽지 않는 칸: " + ", ".join(n for n in names if LEDGER_SKIP_RE.search(n)))
 
 
 def staging_state() -> dict:
@@ -329,6 +421,10 @@ def cmd_prepare(args) -> None:
                 draw.rectangle([x + 4, y + 2, x + 90, y + 28], fill="black")
                 draw.text((x + 10, y + 6), name, fill="white")
             sheet.save(d / f"sheet{s // 12 + 1}.jpg", "JPEG", quality=80)
+        # 걱정 후보용(2026-10-23): 원본 자료\말.txt 가 있으면 미리보기 폴더로 옮겨 둔다(Claude 는 원본을 직접 열지 않음)
+        speech = folder / "자료" / "말.txt"
+        if speech.exists():
+            (d / "말.txt").write_text(read_text_any(speech), encoding="utf-8")
         c["previews"] = previews
         c["status"] = "prepared"
         print(f"{cid}: 미리보기 {len(previews)}장 → {d.relative_to(ROOT)} (모아보기 sheet*.jpg)")
@@ -403,6 +499,14 @@ def cmd_stage(args) -> None:
     tag = hashlib.sha1(c["src"].encode("utf-8")).hexdigest()[:6]  # 원본 폴더 이름(고객 이름이 있을 수 있음)은 쓰지 않는다
     if not memo.get("날짜"):
         memo["날짜"] = "미상"  # 날짜를 지어내지 않는다(사례 페이지에 날짜를 표시하지 않음)
+    # 글 틀 v2(2026-10-23): ① 날짜 세 칸이 비면 거래 기록부에서(맞는 거래가 하나뿐일 때만)
+    got, why = ledger_dates(memo, r, ledger_records())
+    memo.update(got)
+    c["ledger"] = why
+    # ② 걱정 후보: Claude 가 말.txt·통화 글자본을 보고 .cases_staging/cN/extra.json 에 {"걱정": "… (통화 요약)"} 을 썼으면 넣는다
+    extra = load_json(STAGING / args.cid / "extra.json", default={}) or {}
+    if extra.get("걱정") and not memo.get("걱정"):
+        memo["걱정"] = str(extra["걱정"]).strip()
     name = f"{memo['날짜'] if memo['날짜'] != '미상' else 'nodate'}-{region_label(r).replace(' ', '-')}-{tag}"
     dest = INPUT_DIR / name
     if dest.exists():
@@ -420,8 +524,12 @@ def cmd_stage(args) -> None:
         shutil.rmtree(dest)
         raise SystemExit(f"{args.cid}: 검사 실패 — {why or f'숨은 정보 남음 {bad}'}")
     c["status"], c["input"] = "staged", f"cases/input/{name}"
+    c["story"] = info["body"]["story"]
     save_state(state)
     print(f"{args.cid}: {c['input']} 준비됨 ({r['sigungu'] or r['sido']} {r['dong']} · {c['car']}, 사진 {len(info['photos'])}장)".replace("  ·", " ·"))
+    print(f"  {c['ledger']}")
+    for line in case_story.report_lines({"story": c["story"]}):
+        print(f"  {line}")
 
 
 def cmd_drop(args) -> None:
@@ -451,6 +559,10 @@ def cmd_report(args) -> None:
     done = [c for c in state.get("picks", {}).values() if c.get("status") in ("staged", "marked")]
     items = ", ".join(f"{(c['region']['sigungu'] or c['region']['sido'])} {c['region']['dong']}".strip() + f"·{c['car']}" for c in done)
     print(f"오늘 가져온 사례 {len(done)}건: {items or '없음'}")
+    for c in done:  # 글 틀 v2(2026-10-23): 사례마다 4줄
+        print(f"  {region_label(c['region'])} · {c['car']}")
+        for line in case_story.report_lines({"story": c.get("story") or {}}):
+            print(f"    {line}")
     for cid, c in state.get("picks", {}).items():
         if c.get("status") == "dropped":
             print(f"  뺀 건 {cid}: {region_label(c['region'])} · {c['car']} — {c.get('drop_reason')}")
@@ -483,9 +595,10 @@ def main() -> None:
     d.add_argument("reason")
     for name in ("mark", "report", "clean"):
         sub.add_parser(name)
+    sub.add_parser("ledger").add_argument("--dir", default="", help="거래 기록부 폴더(기본: 저장소 옆 병한-업무위키\\폐차\\거래기록)")
     args = ap.parse_args()
     {"scan": cmd_scan, "prepare": cmd_prepare, "mask": cmd_mask, "stage": cmd_stage, "drop": cmd_drop,
-     "mark": cmd_mark, "report": cmd_report, "clean": cmd_clean}[args.cmd](args)
+     "mark": cmd_mark, "report": cmd_report, "clean": cmd_clean, "ledger": cmd_ledger}[args.cmd](args)
 
 
 if __name__ == "__main__":

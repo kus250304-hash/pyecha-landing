@@ -948,6 +948,72 @@ def check_dong_wording(regions: list[dict]) -> list[str]:
     return out
 
 
+CASE_REPEAT_MIN = 5  # 사례 페이지 본문에서 같은 문장이 이 장수 이상 나오면 경고(공통 틀 문장은 뺌)
+
+
+def check_case_story() -> tuple[list[str], list[str]]:
+    """사례 글 틀 v2(2026-10-23, scripts/case_story.py) 검사. (오류, 경고)
+    - index.json 의 depth·thin·card_line 이 지금 글로 다시 계산한 값과 같은지(아니면 build_cases.py 를 다시 돌릴 것)
+    - 얇은 사례 = <meta name="robots" content="noindex,follow"> + 사이트맵·rss.xml 밖, 깊은 사례 = noindex 없음 + 사이트맵 안
+    - 새 칸(걱정·확인·고른쪽·이유·날짜·끝한줄·제목꼬리)이 금지 표현 검사(build_cases.banned_text·과장 낱말)를 통과하는지
+    - 사례 본문(.story, 맺음 문장 빼고)에서 같은 문장이 5장 이상 반복되면 경고"""
+    import sitemap_lib
+    import case_story
+    from build_cases import banned_text
+    errors, warns = [], []
+    index_path = ROOT / "cases" / "index.json"
+    if not index_path.exists():
+        return errors, warns
+    locs = set(sitemap_lib.all_locs(ROOT))
+    rss = (ROOT / sitemap_lib.RSS_NAME).read_text(encoding="utf-8") if (ROOT / sitemap_lib.RSS_NAME).exists() else ""
+    base = sitemap_lib.SITE_BASE_URL
+    seen: dict[str, set[str]] = defaultdict(set)
+    fixed = {case_story.CHOICE_SENTENCE.format(x) for x in ("폐차", "수출")} | {case_story.OVER_AGE_NOTE}
+    for c in json.loads(index_path.read_text(encoding="utf-8")):
+        slug = c["slug"]
+        page = ROOT / "cases" / f"{slug}.html"
+        if not page.exists():
+            continue
+        want = case_story.finalize(json.loads(json.dumps(c)))
+        for k in ("depth", "thin", "card_line"):
+            if c.get(k) != want[k]:
+                errors.append(f"사례 {slug}: index.json 의 {k} 가 글과 맞지 않음 (python3 scripts/build_cases.py)")
+        story = c.get("story") or {}
+        if story:
+            got, why, _ = case_story.build_story(story, banned_text)
+            if got is None:
+                errors.append(f"사례 {slug}: 새 칸 {why}")
+            elif got != story:
+                errors.append(f"사례 {slug}: 새 칸이 규칙대로 정리되지 않음(제목꼬리 길이·날짜 순서·확인 개수) (python3 scripts/build_cases.py)")
+        text = page.read_text(encoding="utf-8")
+        noindex = '<meta name="robots" content="noindex,follow">' in text
+        loc = f"{base}/cases/{slug}.html"
+        thin = want["thin"]
+        if thin and not noindex:
+            errors.append(f"사례 {slug}: 얇은 사례인데 noindex 가 없음")
+        if not thin and noindex:
+            errors.append(f"사례 {slug}: 깊은 사례인데 noindex 가 있음")
+        if thin and loc in locs:
+            errors.append(f"사례 {slug}: 얇은 사례(noindex)가 사이트맵에 있음")
+        if thin and f"<link>{loc}</link>" in rss:
+            errors.append(f"사례 {slug}: 얇은 사례(noindex)가 rss.xml 에 있음")
+        if not thin and loc not in locs:
+            errors.append(f"사례 {slug}: 깊은 사례인데 사이트맵에 없음")
+        m = re.search(r'<div class="story">(.*?)<p class="closing">', text, re.S)
+        if m:
+            body = re.sub(r"<(script|style)[^>]*>.*?</\1>", " ", m.group(1), flags=re.S)
+            body = re.sub(r"<(p|h[1-6]|li|div|td|th|tr|blockquote|figcaption|br)\b[^>]*>", "\n", body)
+            body = html_lib.unescape(re.sub(r"<[^>]+>", "", body))
+            for sent in re.split(r"(?<=[.!?])\s+|\n", body):
+                sent = sent.strip()
+                if len(sent) >= 20 and sent not in fixed:
+                    seen[sent].add(slug)
+    for sent, slugs in sorted(seen.items(), key=lambda x: -len(x[1])):
+        if len(slugs) >= CASE_REPEAT_MIN:
+            warns.append(f"사례 페이지 {len(slugs)}장에 같은 문장 → {sent[:70]}")
+    return errors, warns
+
+
 def check_tow_wording() -> list[str]:
     """동·구·시·안내·사례 페이지(제목·설명·본문·구조화 데이터 전부)에서 견인비 단정 표현을 찾는다."""
     problems = []
@@ -1132,8 +1198,7 @@ def main() -> None:
             for name in c.get("photos", []):
                 if not (ROOT / "cases" / "images" / name).exists():
                     errors.append(f"사례 {c['slug']}: 사진 cases/images/{name} 없음")
-            if f"/cases/{c['slug']}.html" not in sitemap:
-                errors.append(f"사례 {c['slug']}: sitemap.xml 에 없음")
+            # 사이트맵 포함 여부는 깊은/얇은 사례에 따라 다르다(check_case_story, 2026-10-23)
 
     # 사례 사진: 숨은 정보(EXIF·GPS·XMP)가 남아 있으면 오류
     images = sorted(p for p in (ROOT / "cases" / "images").glob("*") if p.is_file()) if (ROOT / "cases" / "images").exists() else []
@@ -1169,6 +1234,10 @@ def main() -> None:
         errors.extend(check_sido_links())
         errors.extend(check_phone_links(site_cfg))
         warnings.extend(check_dong_wording(regions))
+        # 사례 글 틀 v2(2026-10-23): 깊은/얇은 사례와 noindex·사이트맵·rss, 새 칸 금지 표현, 같은 문장 5장 이상 반복(경고)
+        case_errors, case_warnings = check_case_story()
+        errors.extend(case_errors)
+        warnings.extend(case_warnings)
         # 사이트맵(2026-10-20, sitemap_lib.check): 인덱스·나눈 파일, 주소 수 = 실제 페이지 수, 주소 = canonical,
         # 자동 이동·noindex 없음, lastmod = 본문 해시 기록 = dateModified, robots.txt Sitemap 한 줄
         # (실제 사이트의 200 응답은 python3 scripts/sitemap_lib.py check --live)

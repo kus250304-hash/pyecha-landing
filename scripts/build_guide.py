@@ -511,9 +511,9 @@ CARD_LEAK_RE = re.compile(r"\d{2,4}-\d{3,4}-\d{4}|01[016789]\d{7,8}|\d{2,3}\s?[�
 
 
 def case_text(c: dict) -> str:
-    """주제 낱말을 찾는 글: situation·method·summary·facts("시동 불가"처럼 이름과 값을 붙여)."""
-    return " ".join([c.get("situation") or "", c.get("method") or "", c.get("summary") or ""]
-                    + [f"{k} {v}" for k, v in c.get("facts") or []])
+    """주제 낱말을 찾는 글(case_story.case_text): situation·method·summary·facts·걱정·확인·이유."""
+    import case_story
+    return case_story.case_text(c)
 
 
 def case_date(c: dict) -> str:
@@ -524,7 +524,8 @@ def case_date(c: dict) -> str:
 def card_leak(c: dict) -> str:
     """카드에 보이는 글자에 전화번호·차번호·금액이 있으면 그 낱말, 없으면 빈 문자열."""
     region = ((c.get("sigungu") or c.get("sido") or "") + " " + (c.get("dong") or "")).strip()
-    m = CARD_LEAK_RE.search(" ".join([c.get("title") or "", c.get("summary") or "", region]))
+    import case_story
+    m = CARD_LEAK_RE.search(" ".join([c.get("title") or "", c.get("summary") or "", case_story.card_line(c), region]))
     return m.group(0) if m else ""
 
 
