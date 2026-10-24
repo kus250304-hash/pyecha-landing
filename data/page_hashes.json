@@ -1,4 +1,8 @@
 {
+"cases/case-20230620-gyeongbuk-gumi.html": {
+"hash": "dade67f0a6c3eb8c5bd6",
+"lastmod": "2026-10-24"
+},
 "cases/case-20261008-chungnam-cheonan-seobuk.html": {
 "hash": "4880d4126ff8e69f4f1b",
 "lastmod": "2026-10-24"
@@ -140,7 +144,7 @@
 "lastmod": "2026-10-21"
 },
 "gu/구미시-폐차장.html": {
-"hash": "29ba51465f478acd6fe0",
+"hash": "3cc8dcdfa2658e5103ae",
 "lastmod": "2026-10-24"
 },
 "gu/군산시-폐차장.html": {
@@ -644,7 +648,7 @@
 "lastmod": "2026-10-23"
 },
 "gu/울진군-폐차장.html": {
-"hash": "8fa36c37f5b3521babd3",
+"hash": "6839b6932b953b1a42a8",
 "lastmod": "2026-10-22"
 },
 "gu/원주시-폐차장.html": {
@@ -952,20 +956,20 @@
 "lastmod": "2026-10-22"
 },
 "guide/압류-있는-차-폐차.html": {
-"hash": "42e9049069b48ad9eb20",
-"lastmod": "2026-10-22"
+"hash": "da698b9daedb46c14a62",
+"lastmod": "2026-10-24"
 },
 "guide/저당만-있는-차.html": {
-"hash": "369f11174136a2d50391",
-"lastmod": "2026-10-22"
+"hash": "0c56aae644dffdcc45e9",
+"lastmod": "2026-10-24"
 },
 "guide/조기폐차-지원-안내.html": {
 "hash": "7ceb71a4ee8c3acc2584",
 "lastmod": "2026-10-18"
 },
 "guide/차령초과-폐차.html": {
-"hash": "92bd511f684a3f72815f",
-"lastmod": "2026-10-22"
+"hash": "7bc9e6c92ea8e2ed5ade",
+"lastmod": "2026-10-24"
 },
 "guide/폐차-금액-정하는-방법.html": {
 "hash": "008c32c519e2c4cbd54a",
@@ -2056,27 +2060,27 @@
 "lastmod": "2026-10-22"
 },
 "pages/gyeongbuk-gumi-doryang.html": {
-"hash": "8cc7fe00a2b4e74a0e34",
-"lastmod": "2026-10-22"
+"hash": "3769e8c6abdc93c47f96",
+"lastmod": "2026-10-24"
 },
 "pages/gyeongbuk-gumi-goa.html": {
-"hash": "901b6b0acfbe985211fb",
-"lastmod": "2026-10-22"
+"hash": "3d1604d51aea7f950054",
+"lastmod": "2026-10-24"
 },
 "pages/gyeongbuk-gumi-jisan.html": {
-"hash": "2199ffbf4aa4ed00e9e9",
-"lastmod": "2026-10-22"
+"hash": "a9f1afe16fd2a07ccf0b",
+"lastmod": "2026-10-24"
 },
 "pages/gyeongbuk-gumi-okgye.html": {
-"hash": "256c1d8317608a07bdff",
-"lastmod": "2026-10-23"
+"hash": "d8fef0cac1d83fd2dcd5",
+"lastmod": "2026-10-24"
 },
 "pages/gyeongbuk-gumi-sandong.html": {
-"hash": "a92ab172813e4153bb4d",
+"hash": "82004ad7634373913b34",
 "lastmod": "2026-10-24"
 },
 "pages/gyeongbuk-gumi-wonpyeong.html": {
-"hash": "c7e81b5fcb047618b25c",
+"hash": "4fbb2f0868c32d463419",
 "lastmod": "2026-10-24"
 },
 "pages/gyeongbuk-gyeongju-dongbu.html": {
@@ -4380,7 +4384,7 @@
 "lastmod": "2026-10-20"
 },
 "si/경북-폐차장.html": {
-"hash": "d7731c820b634c056692",
+"hash": "0364122a93b1d8683713",
 "lastmod": "2026-10-24"
 },
 "si/대구-폐차장.html": {
