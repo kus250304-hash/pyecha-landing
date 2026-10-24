@@ -607,7 +607,7 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
                   if parts else "")
     meta_desc = (
         f"{full}{mark} 폐차 전에 폐차 보상금과 수출 시세를 함께 비교해 드립니다. 압류·서류 없음도 상담 가능, "
-        f"당일 접수, 견인비는 상담 때 미리 안내. {r['landmark_name'] or r['dong']} 인근 출장 방문. 전화 {phone_disp}"
+        f"당일 접수, 견인비 따로 없음. {r['landmark_name'] or r['dong']} 인근 출장 방문. 전화 {phone_disp}"  # 2026-10-25 설명글만
     )
 
     values = {

@@ -258,8 +258,9 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
         meta_title = f"{title_name} 폐차장 · 폐차 | 출장 견인 · 말소증 문자 · 수출 비교 | 전화 {phone_disp}"
         # 설명 글에는 010 번호를 넣지 않는다(네이버가 "010-****-****"로 가림, 2026-10-16). 본문·버튼의 번호는 그대로
         text_part = " · 문자 상담 가능" if text_disp else ""
-        meta_desc = (f"{title_name} 전 지역 폐차 상담. 폐차 전에 수출과 비교해 유리한 쪽으로 안내합니다. "
-                     f"전화 {phone_disp}{text_part}. 금액은 상담 후 확인.")
+        # 설명글(2026-10-25 병한님 결정): 폐차값·수출값 둘 다 · 견인비 따로 없음 · 말소증 문자. 010 번호는 쓰지 않는다
+        meta_desc = (f"{title_name} 전 지역 폐차 상담. 폐차값·수출값 둘 다 알려드리고 더 높은 쪽으로. "
+                     f"견인비 따로 없음 · 말소증 문자로. 전화 {phone_disp}{text_part}.")
         canonical = f"{base}/{gu_rel(sido, sigungu)}"
 
         my_cases = gu_cases(g["slug"], cases)
