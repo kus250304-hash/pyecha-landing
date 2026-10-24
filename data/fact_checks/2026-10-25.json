@@ -1,0 +1,38 @@
+[
+ {
+  "code": "4719010900",
+  "slug": "gyeongbuk-gumi-hyeonggok",
+  "items": [
+   {
+    "name": "형곡중학교",
+    "evidence": "경북 구미시 형곡동 형곡중학교, 도로명 형곡서로1길 29 (zippoom 학교 정보, 오늘학교 아카데미 같은 주소)",
+    "url": "https://zippoom.com/학교/경북-구미시-형곡동-형곡중학교/egvmh8",
+    "grade": "summary_with_address"
+   }
+  ]
+ },
+ {
+  "code": "1211016000",
+  "slug": "jeonnam-mokpo-seokhyeon",
+  "items": [
+   {
+    "name": "목포석현초등학교",
+    "evidence": "목포시 석현동 교육연구시설 목포석현초등학교, 도로명 옥암로186번길 20 (세이프홈즈 건물 정보, 실제로 열어 확인)",
+    "url": "https://safehomes.kr/risk-map/전라남도/목포시/석현동/기타/building/목포석현초등학교/1203110349",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4159711100",
+  "slug": "gyeonggi-hwaseong-dongtan-jangji",
+  "items": [
+   {
+    "name": "호연초등학교",
+    "evidence": "경기 화성시 동탄대로3길 17-7 (장지동 925) 호연초등학교 (zippoom 장지동 생활정보)",
+    "url": "https://zippoom.com/지역별-부동산/경기-화성시-장지동/오피스텔/순위",
+    "grade": "summary_with_address"
+   }
+  ]
+ }
+]

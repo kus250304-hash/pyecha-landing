@@ -1149,10 +1149,10 @@
   "public_info": [
    {
     "label": "동탄구청",
-    "value": "동탄구청은 2026년 2월 1일 문을 열었고, 옛 동탄출장소 건물(동탄역로 122)을 임시 청사로 씁니다.",
-    "source": "경기일보(2026년 2월 동탄구청 개청 보도)",
-    "url": "https://kyeonggi.com/article/20260204580217",
-    "grade": "summary"
+    "value": "동탄구청은 화성시 동탄구 동탄역로 122에 있습니다.",
+    "source": "화성시 동탄구청 누리집(찾아오시는 길)",
+    "url": "https://www.hscity.go.kr/dongtan/intro/dtItOfficeOtlnmap.jsp",
+    "grade": "opened"
    }
   ],
   "dropped_info": [
@@ -1414,14 +1414,7 @@
     "value": "오산시 자동차 말소등록은 오산시 차량등록사업소(오산시 청학로 98, 궐동)에서 처리합니다.",
     "source": "오산시청 누리집(찾아오시는 길)",
     "url": "https://www.osan.go.kr/depart/contents.do?mId=0305010400",
-    "grade": "summary"
-   },
-   {
-    "label": "노후차 조기폐차 지원사업",
-    "value": "오산시 2026년 조기폐차 지원 대상은 배출가스 5등급 차량, 4등급 경유차, 기준에 맞는 도로용 3종 건설기계와 지게차·굴착기입니다. 1차 신청은 3월에 받았으며, 추가 모집 여부는 오산시 공고를 확인해 주세요.",
-    "source": "경기일보(오산시 조기폐차 지원 보도, 2026-02-26)",
-    "url": "https://kyeonggi.com/article/20260226580134",
-    "grade": "summary"
+    "grade": "opened"
    }
   ],
   "dropped_info": [
@@ -1733,7 +1726,7 @@
     "value": "고양시 자동차 등록과 말소 같은 자동차 민원은 고양특례시 차량등록과가 맡습니다.",
     "source": "고양특례시청 누리집(교통 자동차등록·검사 등록)",
     "url": "https://www.goyang.go.kr/www/www03/www03_5/www03_5_5/www03_5_5_tab1.jsp",
-    "grade": "summary"
+    "grade": "opened"
    }
   ],
   "dropped_info": [
@@ -1831,7 +1824,7 @@
     "value": "고양시 자동차 등록과 말소 같은 자동차 민원은 고양특례시 차량등록과가 맡습니다.",
     "source": "고양특례시청 누리집(교통 자동차등록·검사 등록)",
     "url": "https://www.goyang.go.kr/www/www03/www03_5/www03_5_5/www03_5_5_tab1.jsp",
-    "grade": "summary"
+    "grade": "opened"
    }
   ],
   "dropped_info": [
@@ -1880,14 +1873,7 @@
     "value": "목포시 자동차 말소등록은 목포시 자동차등록사무소가 맡습니다. 위치는 목포시 연산로 197(연산동)입니다.",
     "source": "목포시 자동차등록사무소 누리집(말소등록)",
     "url": "https://www.mokpo.go.kr/car/registration/erasure",
-    "grade": "summary"
-   },
-   {
-    "label": "노후차 조기폐차 지원",
-    "value": "목포시는 2026년 노후차 조기폐차 지원사업을 시행했습니다. 목포시에 6개월 이상 등록된 배출가스 5등급 차량과 4등급 경유차 등이 대상이며, 5등급 차량 지원은 2026년 사업으로 끝날 예정입니다. 문의는 목포시 기후환경과입니다.",
-    "source": "오늘경제 보도(목포시, 2026년 노후 차 조기 폐차 지원사업 시행)",
-    "url": "https://www.startuptoday.co.kr/news/articleView.html?idxno=590980",
-    "grade": "summary"
+    "grade": "opened"
    }
   ],
   "dropped_info": [],
@@ -1976,10 +1962,10 @@
   "public_info": [
    {
     "label": "말소등록 관할 관청",
-    "value": "남양주시 자동차 말소등록은 차량관리과 차량등록팀이 맡습니다. 위치는 남양주시청 제2청사(남양주시 경춘로 522, 다산동)입니다.",
-    "source": "남양주시청 누리집(자동차민원 말소등록·제2청사 찾아오시는 길)",
+    "value": "남양주시 자동차 말소등록은 남양주시청 자동차관리과 차량등록팀이 맡습니다.",
+    "source": "남양주시청 누리집(자동차민원 말소등록)",
     "url": "https://www.nyj.go.kr/www/contents.do?key=4393",
-    "grade": "summary"
+    "grade": "opened"
    },
    {
     "label": "노후차 조기폐차 지원",
@@ -2028,17 +2014,10 @@
   "public_info": [
    {
     "label": "말소등록 관할 관청",
-    "value": "시흥시 자동차 등록과 말소 업무는 시흥시 차량등록사업소가 맡습니다. 위치는 시흥시 시흥대로268번길 8(능곡동)이며, 1층 민원실에 차량등록팀이 있습니다.",
-    "source": "현대일보(시흥시 차량등록사업소 능곡동 새청사 업무 시작)",
-    "url": "http://www.hyundaiilbo.com/news/articleView.html?idxno=462438&replyAll=&reply_sc_order_by=I",
-    "grade": "summary"
-   },
-   {
-    "label": "노후차 조기폐차 지원(2026년)",
-    "value": "시흥시는 2026년 운행차 배출가스 저감사업으로 배출가스 4등급 경유차와 5등급 노후차의 조기폐차를 지원하며, 2월 25일부터 신청을 받았습니다. 5등급 차량 조기폐차 지원은 2026년이 마지막입니다.",
-    "source": "뉴스핌(시흥시 2026년 배출가스 저감사업 보조금 지원)",
-    "url": "https://www.newspim.com/news/view/20260223000781",
-    "grade": "summary"
+    "value": "시흥시 자동차 등록 업무는 시흥시 차량등록사업소가 맡습니다. 위치는 시흥시 시흥대로268번길 8입니다.",
+    "source": "시흥시청 누리집(차량등록사업소 안내)",
+    "url": "http://www.siheung.go.kr/main/contents.do?mId=0503040800",
+    "grade": "opened"
    }
   ],
   "dropped_info": [

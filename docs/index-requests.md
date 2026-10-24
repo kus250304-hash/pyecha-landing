@@ -167,3 +167,16 @@
 - https://pyecha119.com/gu/%EC%8B%A0%EC%95%88%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/신안군-폐차장.html (점수표 44위 지방 시·군)
 - https://pyecha119.com/gu/%EB%82%A8%EC%9B%90%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/남원시-폐차장.html (점수표 45위 지방 시·군)
 - https://pyecha119.com/gu/%EC%95%88%EB%8F%99%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/안동시-폐차장.html (점수표 46위 지방 시·군)
+
+## 2026-10-25
+
+- https://pyecha119.com/gu/%EC%98%81%EC%B2%9C%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/영천시-폐차장.html (2026-10-24 요청 못 함 → 다시)
+- https://pyecha119.com/gu/%EA%B5%AC%EB%A1%80%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/구례군-폐차장.html (2026-10-24 요청 못 함 → 다시)
+- https://pyecha119.com/gu/%EC%8B%A0%EC%95%88%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/신안군-폐차장.html (2026-10-24 요청 못 함 → 다시)
+- https://pyecha119.com/gu/%EB%82%A8%EC%9B%90%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/남원시-폐차장.html (2026-10-24 요청 못 함 → 다시)
+- https://pyecha119.com/gu/%EC%95%88%EB%8F%99%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/안동시-폐차장.html (2026-10-24 요청 못 함 → 다시)
+- https://pyecha119.com/gu/%EA%B3%B5%EC%A3%BC%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/공주시-폐차장.html (점수표 50위 지방 시·군)
+- https://pyecha119.com/gu/%EC%82%AC%EC%B2%9C%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/사천시-폐차장.html (점수표 52위 지방 시·군)
+- https://pyecha119.com/gu/%EC%B0%BD%EC%9B%90%EC%8B%9C-%EB%A7%88%EC%82%B0%ED%95%A9%ED%8F%AC%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/창원시-마산합포구-폐차장.html (점수표 55위 지방 시·군)
+- https://pyecha119.com/gu/%EC%B0%BD%EC%9B%90%EC%8B%9C-%EB%A7%88%EC%82%B0%ED%9A%8C%EC%9B%90%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/창원시-마산회원구-폐차장.html (점수표 56위 지방 시·군)
+- https://pyecha119.com/gu/%EC%B0%BD%EC%9B%90%EC%8B%9C-%EC%84%B1%EC%82%B0%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/창원시-성산구-폐차장.html (점수표 57위 지방 시·군)
