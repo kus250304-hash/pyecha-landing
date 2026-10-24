@@ -193,14 +193,21 @@ def case_text(c: dict) -> str:
                     + [s.get("걱정", ""), " ".join(s.get("확인") or []), s.get("이유", "")])
 
 
+# "압류·저당 없음"처럼 없음·없는·아님 바로 앞에 붙은 낱말(가운뎃점·쉼표로 이어진 것까지)은 주제 고르기에서 뺀다(2026-10-24)
+NEGATED_RE = re.compile(r"[가-힣A-Za-z0-9]+(?:\s*[·,/]\s*[가-힣A-Za-z0-9]+)*\s*(?:없음|없는|아님)")
+
+
 def similar_topic(c: dict) -> tuple[str, str]:
-    """⑦ 비슷한 차라면: topics.CASE_WORDS 로 맞는 주제 페이지 하나(주제 순서대로 첫 번째), 없으면 폐차 절차. (파일, 이름)"""
+    """⑦ 비슷한 차라면: topics.CASE_WORDS 낱말이 글에서 가장 먼저 나온 주제 페이지 하나(같은 자리면 주제 순서),
+    없으면 폐차 절차. 없음·없는·아님 바로 앞 낱말은 세지 않는다. (파일, 이름)"""
     import topics
-    text = case_text(c)
-    for t in topics.TOPICS:
-        if any(w in text for w in topics.CASE_WORDS.get(t["file"], [])):
-            return t["file"], t["nav"]
-    return FALLBACK_GUIDE
+    text = NEGATED_RE.sub(lambda m: " " * len(m.group(0)), case_text(c))
+    best = None
+    for n, t in enumerate(topics.TOPICS):
+        pos = [text.find(w) for w in topics.CASE_WORDS.get(t["file"], []) if w in text]
+        if pos and (best is None or (min(pos), n) < best[0]):
+            best = ((min(pos), n), t)
+    return (best[1]["file"], best[1]["nav"]) if best else FALLBACK_GUIDE
 
 
 def report_lines(c: dict) -> list[str]:
