@@ -511,9 +511,10 @@ CARD_LEAK_RE = re.compile(r"\d{2,4}-\d{3,4}-\d{4}|01[016789]\d{7,8}|\d{2,3}\s?[�
 
 
 def case_text(c: dict) -> str:
-    """주제 낱말을 찾는 글(case_story.case_text): situation·method·summary·facts·걱정·확인·이유."""
+    """주제 낱말을 찾는 글(case_story.topic_text): situation·method·summary·facts·걱정·확인·이유,
+    "압류·저당 없음"처럼 없음·없는·아님 앞 낱말은 뺌(2026-10-25)."""
     import case_story
-    return case_story.case_text(c)
+    return case_story.topic_text(c)
 
 
 def case_date(c: dict) -> str:

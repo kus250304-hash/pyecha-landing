@@ -197,11 +197,17 @@ def case_text(c: dict) -> str:
 NEGATED_RE = re.compile(r"[가-힣A-Za-z0-9]+(?:\s*[·,/]\s*[가-힣A-Za-z0-9]+)*\s*(?:없음|없는|아님)")
 
 
+def topic_text(c: dict) -> str:
+    """주제 낱말을 찾는 글: case_text 에서 없음·없는·아님 앞 낱말을 같은 길이의 빈칸으로 지운 것(자리는 그대로).
+    "비슷한 차라면"(similar_topic)과 주제 페이지 "같은 상황의 실제 사례"(build_guide.topic_cases)가 함께 쓴다(2026-10-25)."""
+    return NEGATED_RE.sub(lambda m: " " * len(m.group(0)), case_text(c))
+
+
 def similar_topic(c: dict) -> tuple[str, str]:
     """⑦ 비슷한 차라면: topics.CASE_WORDS 낱말이 글에서 가장 먼저 나온 주제 페이지 하나(같은 자리면 주제 순서),
     없으면 폐차 절차. 없음·없는·아님 바로 앞 낱말은 세지 않는다. (파일, 이름)"""
     import topics
-    text = NEGATED_RE.sub(lambda m: " " * len(m.group(0)), case_text(c))
+    text = topic_text(c)
     best = None
     for n, t in enumerate(topics.TOPICS):
         pos = [text.find(w) for w in topics.CASE_WORDS.get(t["file"], []) if w in text]
