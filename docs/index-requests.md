@@ -159,6 +159,9 @@
 - https://pyecha119.com/gu/%EC%B2%AD%EC%A3%BC%EC%8B%9C-%ED%9D%A5%EB%8D%95%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/청주시-흥덕구-폐차장.html (점수표 37위 지방 시·군)
 - https://pyecha119.com/gu/%EB%85%BC%EC%82%B0%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/논산시-폐차장.html (점수표 40위 지방 시·군)
 - https://pyecha119.com/gu/%EC%A0%9C%EC%B2%9C%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/제천시-폐차장.html (점수표 41위 지방 시·군)
+
+## 2026-10-24 — 요청 못 함(구글 할당량 초과, 제천시까지 요청함)
+
 - https://pyecha119.com/gu/%EC%98%81%EC%B2%9C%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/영천시-폐차장.html (점수표 42위 지방 시·군)
 - https://pyecha119.com/gu/%EA%B5%AC%EB%A1%80%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/구례군-폐차장.html (점수표 43위 지방 시·군)
 - https://pyecha119.com/gu/%EC%8B%A0%EC%95%88%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/신안군-폐차장.html (점수표 44위 지방 시·군)
