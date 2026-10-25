@@ -206,3 +206,16 @@
 - https://pyecha119.com/gu/%EC%98%88%EC%82%B0%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/예산군-폐차장.html (구글 할당량 초과)
 - https://pyecha119.com/gu/%EC%A7%84%EC%B2%9C%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/진천군-폐차장.html (구글 할당량 초과)
 - https://pyecha119.com/gu/%EC%98%88%EC%B2%9C%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/예천군-폐차장.html (구글 할당량 초과)
+
+## 2026-10-26
+
+- https://pyecha119.com/gu/%EC%A0%95%EC%9D%8D%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/정읍시-폐차장.html (2026-10-25 요청 못 함 → 다시)
+- https://pyecha119.com/gu/%ED%83%9C%EB%B0%B1%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/태백시-폐차장.html (2026-10-25 요청 못 함 → 다시)
+- https://pyecha119.com/gu/%EB%B3%B4%EC%84%B1%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/보성군-폐차장.html (2026-10-25 요청 못 함 → 다시)
+- https://pyecha119.com/gu/%EC%98%88%EC%82%B0%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/예산군-폐차장.html (2026-10-25 요청 못 함 → 다시)
+- https://pyecha119.com/gu/%EC%A7%84%EC%B2%9C%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/진천군-폐차장.html (2026-10-25 요청 못 함 → 다시)
+- https://pyecha119.com/gu/%EC%98%88%EC%B2%9C%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/예천군-폐차장.html (2026-10-25 요청 못 함 → 다시)
+- https://pyecha119.com/gu/%EA%B5%AC%EB%AF%B8%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/구미시-폐차장.html (빈 땅(구미시 · 구미폐차) · 2026-10-15 요청 뒤 내용 바뀜(2026-10-26))
+- https://pyecha119.com/gu/%EB%AA%A9%ED%8F%AC%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/목포시-폐차장.html (빈 땅(목포시 · 목포폐차 · 목포폐차장) · 2026-10-18 요청 뒤 내용 바뀜(2026-10-26))
+- https://pyecha119.com/gu/%EC%A7%84%EC%A3%BC%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/진주시-폐차장.html (빈 땅(진주시 · 진주폐차 · 진주폐차장) · 2026-10-18 요청 뒤 내용 바뀜(2026-10-20))
+- https://pyecha119.com/gu/%EC%84%B8%EC%A2%85-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/세종-폐차장.html (빈 땅(세종특별자치시 · 세종폐차 · 세종폐차장) · 2026-10-22 요청 뒤 내용 바뀜(2026-10-23))

@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://pyecha119.com/pages/gyeonggi-ansan-danwon-choji.html</loc>
-    <lastmod>2026-10-21</lastmod>
-  </url>
-  <url>
     <loc>https://pyecha119.com/pages/gyeonggi-ansan-danwon-seonbu.html</loc>
     <lastmod>2026-10-21</lastmod>
   </url>
@@ -250,7 +246,7 @@
   </url>
   <url>
     <loc>https://pyecha119.com/pages/gyeonggi-hwaseong-byeongjeom-jinan.html</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-26</lastmod>
   </url>
   <url>
     <loc>https://pyecha119.com/pages/gyeonggi-hwaseong-byeongjeom.html</loc>
@@ -258,7 +254,11 @@
   </url>
   <url>
     <loc>https://pyecha119.com/pages/gyeonggi-hwaseong-byeongjeom-gisan.html</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-10-26</lastmod>
+  </url>
+  <url>
+    <loc>https://pyecha119.com/pages/gyeonggi-hwaseong-byeongjeom-banwol.html</loc>
+    <lastmod>2026-10-26</lastmod>
   </url>
   <url>
     <loc>https://pyecha119.com/pages/gyeonggi-hwaseong-dongtan-neung.html</loc>
@@ -626,7 +626,7 @@
   </url>
   <url>
     <loc>https://pyecha119.com/pages/chungnam-nonsan-banwol.html</loc>
-    <lastmod>2026-10-22</lastmod>
+    <lastmod>2026-10-26</lastmod>
   </url>
   <url>
     <loc>https://pyecha119.com/pages/chungnam-nonsan-chwiam.html</loc>
@@ -774,31 +774,35 @@
   </url>
   <url>
     <loc>https://pyecha119.com/pages/gyeongbuk-gumi-wonpyeong.html</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
   </url>
   <url>
     <loc>https://pyecha119.com/pages/gyeongbuk-gumi-jisan.html</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
   </url>
   <url>
     <loc>https://pyecha119.com/pages/gyeongbuk-gumi-doryang.html</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-10-26</lastmod>
+  </url>
+  <url>
+    <loc>https://pyecha119.com/pages/gyeongbuk-gumi-bonggok.html</loc>
+    <lastmod>2026-10-26</lastmod>
   </url>
   <url>
     <loc>https://pyecha119.com/pages/gyeongbuk-gumi-hyeonggok.html</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
   </url>
   <url>
     <loc>https://pyecha119.com/pages/gyeongbuk-gumi-okgye.html</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
   </url>
   <url>
     <loc>https://pyecha119.com/pages/gyeongbuk-gumi-goa.html</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-10-26</lastmod>
   </url>
   <url>
     <loc>https://pyecha119.com/pages/gyeongbuk-gumi-sandong.html</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-26</lastmod>
   </url>
   <url>
     <loc>https://pyecha119.com/pages/gyeongbuk-yeongju-yeongju.html</loc>

@@ -1,0 +1,38 @@
+[
+ {
+  "code": "4719010400",
+  "slug": "gyeongbuk-gumi-bonggok",
+  "items": [
+   {
+    "name": "구미시립봉곡도서관",
+    "evidence": "감정평가요항표: 본건은 경상북도 구미시 봉곡동 소재 구미시립봉곡도서관 북동측 인근에 위치(소재지 봉곡동 528)",
+    "url": "https://m.richgo.ai/auctionMobile/C47KVLUW",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "1211015700",
+  "slug": "jeonnam-mokpo-jukgyo",
+  "items": [
+   {
+    "name": "홍일중·고등학교",
+    "evidence": "홍일중.고등학교, 목포시 북항로 88 (죽교동)",
+    "url": "https://safehomes.kr/risk-map/전라남도/목포시/죽교동/기타/building/홍일중.고등학교/120311347",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4159510500",
+  "slug": "gyeonggi-hwaseong-byeongjeom-banwol",
+  "items": [
+   {
+    "name": "SK뷰파크",
+    "evidence": "SK뷰파크, 경기도 화성시 병점구 반월동 944, 1,967세대",
+    "url": "https://www.apartsearcher.ai/articles/5317603-SK뷰파크",
+    "grade": "opened"
+   }
+  ]
+ }
+]

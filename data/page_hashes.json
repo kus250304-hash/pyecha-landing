@@ -164,8 +164,8 @@
 "lastmod": "2026-10-21"
 },
 "gu/구미시-폐차장.html": {
-"hash": "8677ac6d7c7511550129",
-"lastmod": "2026-10-25"
+"hash": "7dfd5e8a651c1ba1724d",
+"lastmod": "2026-10-26"
 },
 "gu/군산시-폐차장.html": {
 "hash": "8d82d91d890d9dd4eeeb",
@@ -244,16 +244,16 @@
 "lastmod": "2026-10-20"
 },
 "gu/달성군-폐차장.html": {
-"hash": "eb343664167e77f43b86",
-"lastmod": "2026-10-23"
+"hash": "30a92f8d010c89bdbe37",
+"lastmod": "2026-10-26"
 },
 "gu/담양군-폐차장.html": {
 "hash": "ae52ae9ec59d4ef4648b",
 "lastmod": "2026-10-20"
 },
 "gu/당진시-폐차장.html": {
-"hash": "bb4ecf2d9470da2811a4",
-"lastmod": "2026-10-22"
+"hash": "2e70c695a685d12a09a8",
+"lastmod": "2026-10-26"
 },
 "gu/대구-동구-폐차장.html": {
 "hash": "b1315c99fcdcf862eebd",
@@ -308,8 +308,8 @@
 "lastmod": "2026-10-20"
 },
 "gu/목포시-폐차장.html": {
-"hash": "b89cf7956ddb03364028",
-"lastmod": "2026-10-25"
+"hash": "4b35614414229a0df2c6",
+"lastmod": "2026-10-26"
 },
 "gu/무안군-폐차장.html": {
 "hash": "c063a6f8b937ba70422f",
@@ -796,8 +796,8 @@
 "lastmod": "2026-10-20"
 },
 "gu/창원시-마산회원구-폐차장.html": {
-"hash": "1aa9fd38583647dd699b",
-"lastmod": "2026-10-20"
+"hash": "fb84da59a397460dbe43",
+"lastmod": "2026-10-26"
 },
 "gu/창원시-성산구-폐차장.html": {
 "hash": "123a3a7b0cf5409bea32",
@@ -948,8 +948,8 @@
 "lastmod": "2026-10-21"
 },
 "gu/화성시-병점구-폐차장.html": {
-"hash": "0c95969fa4adfca374bc",
-"lastmod": "2026-10-21"
+"hash": "16f7fb7958b54cb47bc0",
+"lastmod": "2026-10-26"
 },
 "gu/화순군-폐차장.html": {
 "hash": "badc332223d9fbfef617",
@@ -1488,8 +1488,8 @@
 "lastmod": "2026-10-22"
 },
 "pages/chungnam-nonsan-banwol.html": {
-"hash": "1cc488f1caebfd8d12e2",
-"lastmod": "2026-10-22"
+"hash": "f944781d866f47554ffa",
+"lastmod": "2026-10-26"
 },
 "pages/chungnam-nonsan-chwiam.html": {
 "hash": "c3f6a5cad3ea5eb381a4",
@@ -2079,33 +2079,37 @@
 "hash": "486c9d189421c323e65d",
 "lastmod": "2026-10-22"
 },
+"pages/gyeongbuk-gumi-bonggok.html": {
+"hash": "90f4978aa6634624a0a6",
+"lastmod": "2026-10-26"
+},
 "pages/gyeongbuk-gumi-doryang.html": {
-"hash": "cc3b6777d9170ebc3e29",
-"lastmod": "2026-10-24"
+"hash": "ffaff8992905f6a5af30",
+"lastmod": "2026-10-26"
 },
 "pages/gyeongbuk-gumi-goa.html": {
-"hash": "31b10fc436a3960f0d1d",
-"lastmod": "2026-10-24"
+"hash": "f12651e6045df9a5871a",
+"lastmod": "2026-10-26"
 },
 "pages/gyeongbuk-gumi-hyeonggok.html": {
-"hash": "c9eca31906d11a66db37",
-"lastmod": "2026-10-25"
+"hash": "e44dccd0a5350a0a090e",
+"lastmod": "2026-10-26"
 },
 "pages/gyeongbuk-gumi-jisan.html": {
-"hash": "70af16a831ea71808ddb",
-"lastmod": "2026-10-25"
+"hash": "6a4bbd0d85f8938de77e",
+"lastmod": "2026-10-26"
 },
 "pages/gyeongbuk-gumi-okgye.html": {
-"hash": "d18501248e4173441656",
-"lastmod": "2026-10-25"
+"hash": "71484055201a9a6f0ffc",
+"lastmod": "2026-10-26"
 },
 "pages/gyeongbuk-gumi-sandong.html": {
-"hash": "a2f00a0a0786ad70a9f1",
-"lastmod": "2026-10-25"
+"hash": "a37817a9f0f629526fe4",
+"lastmod": "2026-10-26"
 },
 "pages/gyeongbuk-gumi-wonpyeong.html": {
-"hash": "92aec46acf4d848010aa",
-"lastmod": "2026-10-25"
+"hash": "6634ffa03fdc75137b30",
+"lastmod": "2026-10-26"
 },
 "pages/gyeongbuk-gyeongju-dongbu.html": {
 "hash": "46754a4b29947b7ef99e",
@@ -2487,13 +2491,17 @@
 "hash": "a42be4cc0da60e78054c",
 "lastmod": "2026-10-22"
 },
+"pages/gyeonggi-hwaseong-byeongjeom-banwol.html": {
+"hash": "9003980b4b2d3bd77c84",
+"lastmod": "2026-10-26"
+},
 "pages/gyeonggi-hwaseong-byeongjeom-gisan.html": {
-"hash": "b32c7300def6008b1f24",
-"lastmod": "2026-10-21"
+"hash": "0f25add3af60ed4f5bfd",
+"lastmod": "2026-10-26"
 },
 "pages/gyeonggi-hwaseong-byeongjeom-jinan.html": {
-"hash": "f0218ea5a90dcbc64051",
-"lastmod": "2026-10-21"
+"hash": "40596ca4fadf1ee51744",
+"lastmod": "2026-10-26"
 },
 "pages/gyeonggi-hwaseong-byeongjeom.html": {
 "hash": "fc9bd325554d9193f45d",
@@ -3747,37 +3755,41 @@
 "hash": "05f88f8d23fe95d3ce41",
 "lastmod": "2026-10-18"
 },
+"pages/jeonnam-mokpo-jukgyo.html": {
+"hash": "4599439bc2f53908fb83",
+"lastmod": "2026-10-26"
+},
 "pages/jeonnam-mokpo-okam.html": {
-"hash": "be289528840c571597c4",
-"lastmod": "2026-10-23"
+"hash": "47b10e9e3e689336552f",
+"lastmod": "2026-10-26"
 },
 "pages/jeonnam-mokpo-sang.html": {
-"hash": "ce2778868c38c950ef27",
-"lastmod": "2026-10-24"
+"hash": "777d08ef7fd6f9cc5662",
+"lastmod": "2026-10-26"
 },
 "pages/jeonnam-mokpo-sanjeong.html": {
-"hash": "ef8ec0dc81229f3c5aff",
-"lastmod": "2026-10-24"
+"hash": "0f1be82ebbf41e83425e",
+"lastmod": "2026-10-26"
 },
 "pages/jeonnam-mokpo-seokhyeon.html": {
-"hash": "a6a0ce1e881120229de1",
-"lastmod": "2026-10-25"
+"hash": "9aa3f4fad80abacc5e67",
+"lastmod": "2026-10-26"
 },
 "pages/jeonnam-mokpo-yang.html": {
-"hash": "53ee5a3a58d14a32fc89",
-"lastmod": "2026-10-25"
+"hash": "b101d8e65ca33491448e",
+"lastmod": "2026-10-26"
 },
 "pages/jeonnam-mokpo-yeonsan.html": {
-"hash": "043502f3510aeb288fb0",
-"lastmod": "2026-10-25"
+"hash": "8fcba6dcd45209bd21a2",
+"lastmod": "2026-10-26"
 },
 "pages/jeonnam-mokpo-yongdang.html": {
-"hash": "19a57f50f068811f4095",
-"lastmod": "2026-10-25"
+"hash": "457b1061779d2842744b",
+"lastmod": "2026-10-26"
 },
 "pages/jeonnam-mokpo-yonghae.html": {
-"hash": "9535426a3b069026570b",
-"lastmod": "2026-10-25"
+"hash": "57bb22ae974fb16cad19",
+"lastmod": "2026-10-26"
 },
 "pages/jeonnam-muan-illo.html": {
 "hash": "d6e5b1fea2941ac09f4a",
@@ -4408,16 +4420,16 @@
 "lastmod": "2026-10-21"
 },
 "si/경기-폐차장.html": {
-"hash": "bd82aedc90a392248ec3",
-"lastmod": "2026-10-25"
+"hash": "d5f269a4c32d26f4bd72",
+"lastmod": "2026-10-26"
 },
 "si/경남-폐차장.html": {
 "hash": "6d29d20940bb2affbcc1",
 "lastmod": "2026-10-20"
 },
 "si/경북-폐차장.html": {
-"hash": "c41ed119d18f9f97187c",
-"lastmod": "2026-10-25"
+"hash": "d8ab95604996147f1817",
+"lastmod": "2026-10-26"
 },
 "si/대구-폐차장.html": {
 "hash": "7ea0e24759cc01599d7f",
@@ -4444,8 +4456,8 @@
 "lastmod": "2026-10-20"
 },
 "si/전남광주-폐차장.html": {
-"hash": "3844e93d5632e317e49c",
-"lastmod": "2026-10-25"
+"hash": "6589764c606b0b89a707",
+"lastmod": "2026-10-26"
 },
 "si/전북-폐차장.html": {
 "hash": "cca19d04b122a462eda8",
