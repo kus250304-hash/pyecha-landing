@@ -67,7 +67,7 @@ PC에서 하는 "사례 가져오기" 작업이다. 원본 사진·메모는 이
 12. `git commit -m "Add N case inputs (YYYY-MM-DD)"` 후 `git push origin main`. 거절되면 `git pull --rebase origin main` 후 한 번 더 push 한다. 그래도 안 되면 mark 하지 말고 이유를 보고한다. 강제 push 는 하지 않는다.
 13. push 가 성공한 뒤에만 `python scripts/pc_cases.py mark` 를 실행한다(가져간 원본 폴더마다 반영됨.txt).
 14. `python scripts/pc_cases.py report` 를 실행해 그 줄을 보고에 옮긴 뒤, `python scripts/pc_cases.py clean` 으로 미리보기(원본 사진 사본)를 지운다.
-15. 네이버 순위(2026-10-22, 사례가 0건이거나 앞 단계가 실패했어도 매번 맨 끝에 한다): `python scripts/naver_rank.py --write` 를 돌리고 data/naver_rank/ 와 docs/naver-rank.md 를 그날 커밋에 함께 올린다. 사례 커밋이 이미 push 됐으면 그 둘만 `git add` → `git commit -m "Naver rank (YYYY-MM-DD)"` → `git push origin main`(거절되면 pull --rebase 후 한 번 더). 키 파일이 없거나 호출 실패면 보고에 한 줄 적고 나머지는 계속한다(키 값은 어디에도 적지 않는다).
+15. 네이버 순위(2026-10-22, 사례가 0건이거나 앞 단계가 실패했어도 매번 맨 끝에 한다): `python scripts/naver_rank.py --write` 를 돌리고 data/naver_rank/ 와 docs/naver-rank.md, data/rival_targets.json(지인 공략 20곳, 2026-10-25)을 그날 커밋에 함께 올린다. 사례 커밋이 이미 push 됐으면 그 셋만 `git add` → `git commit -m "Naver rank (YYYY-MM-DD)"` → `git push origin main`(거절되면 pull --rebase 후 한 번 더). 키 파일이 없거나 호출 실패면 보고에 한 줄 적고 나머지는 계속한다(키 값은 어디에도 적지 않는다).
 
 [보고]
 - 첫 줄은 반드시 둘 중 하나: 올린 건이 1건 이상이면 "성공: N건 올라감(커밋 <번호>)", 0건이면 "실패: 0건, 이유: <쉬운 말 이유>"(예: 가져올 사례 없음, 3건 모두 가리기 실패로 뺌, push 거절). 도중에 명령이 이유 없이 실패하면 한 번 더 해 보고, 그래도 안 되면 지금까지 한 것을 그대로 두고(다음 실행이 이어 감) 실패 줄로 보고한다.

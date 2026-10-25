@@ -2,6 +2,8 @@
   "_comment": "사이트 공통 설정. null 인 값은 아직 받지 못한 정보이며, 빌더가 해당 요소를 자동으로 숨기거나 대체 문구를 씁니다.",
   "site_base_url": "https://pyecha119.com",
   "site_name": "폐차119",
+  "rival_domains": ["zerosauto.com", "obosaga.com"],
+  "_rival_comment": "지인 사이트(2026-10-25). scripts/naver_rank.py 지인 공략 20곳·색인 요청 ②-1 에만 쓰는 내부 기록, 사이트 글에는 절대 쓰지 않는다.",
   "_site_name_comment": "사이트 이름(2026-10-22). 모든 페이지 og:site_name·첫 화면 제목·rss.xml 채널 제목에 쓴다.",
   "indexnow_key": "314f4fbb360af6ff2dfbab2b16956bc0",
   "_indexnow_comment": "IndexNow 키(2026-10-08). 맨 위 폴더 {키}.txt 가 같은 값을 담아야 한다. scripts/indexnow.py 가 네이버·공용 IndexNow 로 새·바뀐 주소를 보낸다.",

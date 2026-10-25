@@ -11,6 +11,8 @@
   ① docs/index-requests.md 의 "## 최우선" 칸 주소 중 아직 요청 안 된 것(적힌 순서대로, 지금은 주제 페이지 6장)
   ② 문의가 온 페이지(그 파일의 "문의가 온 페이지" 칸)와 같은 시·군의 구·시군 페이지
      (일반구면 같은 시의 다른 구 페이지까지, 문의 온 곳이 여럿이면 번갈아)
+  ②-1 지인 공략 20곳(data/rival_targets.json, scripts/naver_rank.py, 2026-10-25)의 구 페이지 중 아직 요청 안 된 것,
+     또는 마지막 요청 날짜 뒤에 본문 해시 날짜(data/page_hashes.json lastmod)가 바뀐 것(내용이 그대로면 다시 고르지 않음)
   ③ 시·도 페이지(/si/, data/si.json 순서) 중 아직 요청 안 된 것
   ④ 점수표(data/priority_regions.json) 순위 높은 지방 시·군(build_gu.min_dong_pages 가 0)의 구 페이지
   동 페이지(/pages/)는 어떤 경우에도 고르지 않는다. 날짜 칸("## 2026-10-18" 등)에 있는 주소는 요청한 것으로 보고 뺀다
@@ -112,8 +114,8 @@ def main() -> None:
     gu_keys = {(g["sido"], g["sigungu"]) for g in gu_data}
     ordered: list[tuple[str, str]] = []
 
-    def add(url: str, why: str) -> None:
-        if url not in done and "/pages/" not in url and url not in {u for u, _ in ordered}:
+    def add(url: str, why: str, again: bool = False) -> None:
+        if (again or url not in done) and "/pages/" not in url and url not in {u for u, _ in ordered}:
             ordered.append((url, why))
 
     # ⓪ 바로 앞 날짜가 "요청 못 함"이면 그 목록을 그대로 다시
@@ -135,6 +137,24 @@ def main() -> None:
         for x in per_inquiry:
             if i < len(x):
                 add(*x[i])
+
+    # ②-1 지인 공략 20곳(2026-10-25, scripts/naver_rank.py 가 쓰는 data/rival_targets.json)의 구 페이지:
+    # (가) 아직 요청 안 된 것, (나) 마지막 요청 날짜 뒤에 본문 해시 날짜(lastmod)가 바뀐 것. 내용이 그대로면 다시 고르지 않는다
+    last_req: dict[str, str] = {}
+    for head, body in secs:
+        if DATE_HEAD_RE.match(head) and NOT_DONE not in head:
+            for u in URL_RE.findall(body):
+                last_req[u] = max(last_req.get(u, ""), head[:10])
+    lastmod = {rel: v["lastmod"] for rel, v in load_json(ROOT / "data" / "page_hashes.json", default={}).items()}
+    for t in load_json(ROOT / "data" / "rival_targets.json", default=[]):
+        if (t["sido"], t["sigungu"]) not in gu_keys:
+            continue
+        url, rel = gu_url(t["sido"], t["sigungu"]), "gu/" + gu_file(t["sido"], t["sigungu"])
+        name = t["sigungu"] or t["sido"]
+        if url not in done:
+            add(url, f"지인 공략({name} · {t['query']})")
+        elif lastmod.get(rel, "") > last_req.get(url, ""):
+            add(url, f"지인 공략({name} · {t['query']}) · {last_req[url]} 요청 뒤 내용 바뀜({lastmod[rel]})", again=True)
 
     # ③ 시·도 페이지
     for si in load_si():

@@ -15,6 +15,9 @@
 - 초당 5회 이하, 429·5xx·네트워크 실패는 3번까지 다시(1·2·4초 쉬고). 끝까지 실패한 호출은 순위 대신 "실패"로 적는다.
 - 한계: 네이버 웹문서 검색 API 기준이라 휴대폰 통합검색 화면(웹사이트 칸·지도·광고)과 다를 수 있다. 추세용.
   상위 도메인은 경쟁 비교용 기록이며 사이트 글에는 쓰지 않는다.
+- 지인 공략(2026-10-25): site_config.json 의 rival_domains 가 검색어 top3 안에 있으면 그 자리(rival)를 적고, 그런 구·시군 중
+  점수표 순위 높은 20곳을 docs/naver-rank.md 요약 줄 아래 표와 data/rival_targets.json 에 쓴다(내부 기록용).
+  python scripts/naver_rank.py --from-json data/naver_rank/YYYY-MM-DD.json   # API 없이 저장된 기록으로 표·목록만 다시 씀
 """
 import argparse
 import json
@@ -133,7 +136,71 @@ def web_rank(items: list[dict]) -> dict:
             top.append(h)
         if rank is None and (h == OUR_HOST or h.endswith("." + OUR_HOST)):
             rank, url = i, it["link"]
-    return {"rank": rank, "url": url, "top3": top}
+    out = {"rank": rank, "url": url, "top3": top}
+    spot = rival_spot(out)
+    if spot:
+        out["rival"] = spot
+    return out
+
+
+# 지인 사이트(2026-10-25 병한님 결정, site_config.json 의 rival_domains). 내부 기록용이라 사이트 글에는 절대 쓰지 않는다
+RIVALS = load_json(CONFIG).get("rival_domains") or []
+RIVAL_TARGETS = ROOT / "data" / "rival_targets.json"
+RIVAL_COUNT = 20
+
+
+def rival_spot(x: dict) -> dict | None:
+    """검색어 결과의 상위 3개 도메인(top3) 안에 지인 도메인(서브도메인 포함)이 있으면 {자리 1~3, 호스트}."""
+    for i, h in enumerate(x.get("top3") or [], 1):
+        if any(h == d or h.endswith("." + d) for d in RIVALS):
+            return {"pos": i, "host": h}
+    return None
+
+
+def rival_targets(data: dict) -> list[dict]:
+    """지인이 top3 안에 있는 구·시군 중 점수표 순위 높은 순 20곳(한 구에 검색어가 둘이면 지인 자리가 높은 쪽 하나)."""
+    slugs = {(g["sido"], g["sigungu"]): g["slug"] for g in load_json(GU_DATA, default=[])}
+    rows = []
+    for r in data["regions"]:
+        hits = [(rival_spot(x)["pos"], q, x) for q, x in r["web"].items() if not x.get("error") and rival_spot(x)]
+        if hits:
+            pos, q, x = min(hits, key=lambda h: h[0])
+            rows.append({"slug": slugs.get((r["sido"], r["sigungu"]), ""), "sido": r["sido"], "sigungu": r["sigungu"],
+                         "query": q, "rival_pos": pos, "our_rank": x.get("rank"), "priority_rank": r["priority_rank"]})
+    rows.sort(key=lambda t: (t["priority_rank"] or 9999, t["sido"], t["sigungu"]))
+    return rows[:RIVAL_COUNT]
+
+
+def week_ago(day: str) -> dict:
+    """지난주 같은 요일 기록(없으면 빈 dict)."""
+    f = OUT_DIR / f"{(datetime.fromisoformat(day) - timedelta(days=7)).date().isoformat()}.json"
+    return json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
+
+
+def rival_table(data: dict, targets: list[dict]) -> list[str]:
+    old = week_ago(data["date"])
+    old_rank = {(r["sido"], r["sigungu"], q): x for r in old.get("regions", []) for q, x in r["web"].items()}
+    out = [f"## 지인 공략 {len(targets)}곳", "",
+           "지인 사이트가 상위 3개 도메인 안에 있는 구·시군 중 점수표 순위 높은 순(내부 기록용, 사이트 글에 쓰지 않음). "
+           "고른 곳은 `data/rival_targets.json`, 색인 요청 ②-1 이 이 구 페이지를 고른다.", "",
+           "| 구·시군 | 검색어 | 지인 자리 | 우리 순위 | 지난주 같은 요일과 비교 |", "|---|---|---|---|---|"]
+    for t in targets:
+        now = t["our_rank"]
+        prev = old_rank.get((t["sido"], t["sigungu"], t["query"]))
+        if not prev or prev.get("error"):
+            diff = "기록 없음"
+        else:
+            a, b = now or 99, prev.get("rank") or 99
+            diff = "올라감" if a < b else "내려감" if a > b else "그대로"
+        out.append(f"| {t['sigungu'] or t['sido']} | {t['query']} | {t['rival_pos']}위 | "
+                   f"{f'{now}위' if now else '30위 밖'} | {diff} |")
+    return out + [""]
+
+
+def write_targets(data: dict, targets: list[dict]) -> None:
+    RIVAL_TARGETS.write_text(json.dumps([{"slug": t["slug"], "sido": t["sido"], "sigungu": t["sigungu"], "query": t["query"],
+                                          "date": data["date"]} for t in targets], ensure_ascii=False, indent=1) + "\n",
+                             encoding="utf-8")
 
 
 def blog_rank(items: list[dict]) -> dict:
@@ -219,6 +286,7 @@ def render(data: dict, prev: dict) -> str:
         "# 네이버 웹문서 순위 (최신)", "",
         f"기준일 {data['date']} · 호출 {data['calls']}회(실패 {data['failed']}회) · `python scripts/naver_rank.py --write` 가 매일 다시 씀(손으로 고치지 않음)", "",
         f"**요약: {line}**", "",
+        *rival_table(data, rival_targets(data)),
         f"새로 10위 안: {', '.join(new10) if new10 else '없음'}" + ("" if prev else " (어제 기록 없음)"), "",
         "일반구는 시 이름으로 조회(천안시 동남구·서북구 → 천안폐차·천안폐차장, 그 시의 구·시 페이지 중 어느 것이든 pyecha119.com 이 나온 자리를 같이 씀).", "",
         "네이버 웹문서 검색 API 기준이라 휴대폰 통합검색 화면과 다를 수 있음, 추세용. 순위는 상위 30개 안에서 pyecha119.com 이 처음 나온 자리, "
@@ -248,7 +316,17 @@ def main() -> None:
     g = ap.add_mutually_exclusive_group(required=True)
     g.add_argument("--write", action="store_true", help="조회하고 data/naver_rank/·docs/naver-rank.md 에 저장")
     g.add_argument("--dry", action="store_true", help="조회만 하고 화면에")
+    g.add_argument("--from-json", metavar="파일", help="API 를 부르지 않고 이미 저장된 기록(data/naver_rank/날짜.json)으로 "
+                   "docs/naver-rank.md·data/rival_targets.json 만 다시 씀")
     args = ap.parse_args()
+    if args.from_json:
+        data = json.loads(Path(args.from_json).read_text(encoding="utf-8"))
+        targets = rival_targets(data)
+        DOC.write_text(render(data, previous(data["date"])), encoding="utf-8")
+        write_targets(data, targets)
+        print("\n".join(rival_table(data, targets)))
+        print(f"저장: docs/naver-rank.md, data/rival_targets.json ({data['date']} 기록 기준, API 호출 없음)")
+        return
     if not ENV.exists():
         print(f"네이버 순위: 키 파일({ENV.name})이 없어 조회하지 않음")
         return
@@ -267,7 +345,8 @@ def main() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     (OUT_DIR / f"{data['date']}.json").write_text(json.dumps(data, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     DOC.write_text(render(data, prev), encoding="utf-8")
-    print(f"저장: data/naver_rank/{data['date']}.json, docs/naver-rank.md")
+    write_targets(data, rival_targets(data))
+    print(f"저장: data/naver_rank/{data['date']}.json, docs/naver-rank.md, data/rival_targets.json")
 
 
 if __name__ == "__main__":
