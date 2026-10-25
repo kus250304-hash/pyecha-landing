@@ -197,10 +197,47 @@ def rival_table(data: dict, targets: list[dict]) -> list[str]:
     return out + [""]
 
 
+# 빈 땅(2026-10-25 병한님): 검색어 상위 3개 도메인이 모두 폐차 업체가 아닌 곳(관청·협회·위키·네이버 블로그·카페·당근)뿐인 구·시군
+PUBLIC_SUFFIXES = (".go.kr", ".or.kr", "wikipedia.org", "namu.wiki", "blog.naver.com", "cafe.naver.com", "daangn.com")
+
+
+def public_host(h: str) -> bool:
+    return any(h == s.lstrip(".") or h.endswith(s if s.startswith(".") else "." + s) or h == s for s in PUBLIC_SUFFIXES)
+
+
+def empty_targets(data: dict) -> list[dict]:
+    """빈 땅: 검색어 top3 에 폐차 업체가 하나도 없는 검색어가 있는 구·시군, 점수표 순."""
+    slugs = {(g["sido"], g["sigungu"]): g["slug"] for g in load_json(GU_DATA, default=[])}
+    rows = []
+    for r in data["regions"]:
+        qs = [(q, x) for q, x in r["web"].items() if not x.get("error") and x.get("top3") and all(map(public_host, x["top3"]))]
+        if qs:
+            ranks = [x.get("rank") for _, x in qs if x.get("rank")]
+            rows.append({"slug": slugs.get((r["sido"], r["sigungu"]), ""), "sido": r["sido"], "sigungu": r["sigungu"],
+                         "queries": [q for q, _ in qs], "our_rank": min(ranks) if ranks else None,
+                         "priority_rank": r["priority_rank"]})
+    rows.sort(key=lambda t: (t["priority_rank"] or 9999, t["sido"], t["sigungu"]))
+    return rows
+
+
+def empty_table(targets: list[dict]) -> list[str]:
+    out = [f"## 빈 땅 {len(targets)}곳 (검색어 {sum(len(t['queries']) for t in targets)}개)", "",
+           "검색어 상위 3개 도메인이 관청(.go.kr)·협회(.or.kr)·위키·네이버 블로그·카페·당근뿐이고 폐차 업체가 없는 구·시군, 점수표 순"
+           "(내부 기록용). 색인 요청 ②-0 이 이 구 페이지를 먼저 고르고, 이 구 페이지 \"가까운 지역 사례\"는 깊은 사례가 먼저 나온다.", "",
+           "| 점수표 순위 | 구·시군 | 빈 검색어 | 우리 순위 |", "|---|---|---|---|"]
+    out += [f"| {t['priority_rank'] or '-'} | {t['sigungu'] or t['sido']} | {' · '.join(t['queries'])} | "
+            f"{str(t['our_rank']) + '위' if t['our_rank'] else '30위 밖'} |" for t in targets]
+    return out + [""]
+
+
 def write_targets(data: dict, targets: list[dict]) -> None:
-    RIVAL_TARGETS.write_text(json.dumps([{"slug": t["slug"], "sido": t["sido"], "sigungu": t["sigungu"], "query": t["query"],
-                                          "date": data["date"]} for t in targets], ensure_ascii=False, indent=1) + "\n",
-                             encoding="utf-8")
+    """data/rival_targets.json: {"date", "rival": 지인 공략 20곳, "empty": 빈 땅}(색인 요청 ②-0·②-1, build_gu.nearby_cases)."""
+    keep = ("slug", "sido", "sigungu")
+    RIVAL_TARGETS.write_text(json.dumps({
+        "date": data["date"],
+        "rival": [{**{k: t[k] for k in keep}, "query": t["query"]} for t in targets],
+        "empty": [{**{k: t[k] for k in keep}, "queries": t["queries"]} for t in empty_targets(data)],
+    }, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
 
 
 def blog_rank(items: list[dict]) -> dict:
@@ -286,6 +323,7 @@ def render(data: dict, prev: dict) -> str:
         "# 네이버 웹문서 순위 (최신)", "",
         f"기준일 {data['date']} · 호출 {data['calls']}회(실패 {data['failed']}회) · `python scripts/naver_rank.py --write` 가 매일 다시 씀(손으로 고치지 않음)", "",
         f"**요약: {line}**", "",
+        *empty_table(empty_targets(data)),
         *rival_table(data, rival_targets(data)),
         f"새로 10위 안: {', '.join(new10) if new10 else '없음'}" + ("" if prev else " (어제 기록 없음)"), "",
         "일반구는 시 이름으로 조회(천안시 동남구·서북구 → 천안폐차·천안폐차장, 그 시의 구·시 페이지 중 어느 것이든 pyecha119.com 이 나온 자리를 같이 씀).", "",
@@ -324,7 +362,7 @@ def main() -> None:
         targets = rival_targets(data)
         DOC.write_text(render(data, previous(data["date"])), encoding="utf-8")
         write_targets(data, targets)
-        print("\n".join(rival_table(data, targets)))
+        print("\n".join(empty_table(empty_targets(data)) + rival_table(data, targets)))
         print(f"저장: docs/naver-rank.md, data/rival_targets.json ({data['date']} 기록 기준, API 호출 없음)")
         return
     if not ENV.exists():

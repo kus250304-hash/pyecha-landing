@@ -11,7 +11,8 @@
   ① docs/index-requests.md 의 "## 최우선" 칸 주소 중 아직 요청 안 된 것(적힌 순서대로, 지금은 주제 페이지 6장)
   ② 문의가 온 페이지(그 파일의 "문의가 온 페이지" 칸)와 같은 시·군의 구·시군 페이지
      (일반구면 같은 시의 다른 구 페이지까지, 문의 온 곳이 여럿이면 번갈아)
-  ②-1 지인 공략 20곳(data/rival_targets.json, scripts/naver_rank.py, 2026-10-25)의 구 페이지 중 아직 요청 안 된 것,
+  ②-0 빈 땅(검색어 top3 에 폐차 업체가 없는 구·시군, data/rival_targets.json 의 empty) → ②-1 지인 공략 20곳(같은 파일의 rival,
+     scripts/naver_rank.py, 2026-10-25). 둘 다 구 페이지 중 아직 요청 안 된 것,
      또는 마지막 요청 날짜 뒤에 본문 해시 날짜(data/page_hashes.json lastmod)가 바뀐 것(내용이 그대로면 다시 고르지 않음)
   ③ 시·도 페이지(/si/, data/si.json 순서) 중 아직 요청 안 된 것
   ④ 점수표(data/priority_regions.json) 순위 높은 지방 시·군(build_gu.min_dong_pages 가 0)의 구 페이지
@@ -138,7 +139,7 @@ def main() -> None:
             if i < len(x):
                 add(*x[i])
 
-    # ②-1 지인 공략 20곳(2026-10-25, scripts/naver_rank.py 가 쓰는 data/rival_targets.json)의 구 페이지:
+    # ②-0 빈 땅·②-1 지인 공략 20곳(2026-10-25, scripts/naver_rank.py 가 쓰는 data/rival_targets.json)의 구 페이지:
     # (가) 아직 요청 안 된 것, (나) 마지막 요청 날짜 뒤에 본문 해시 날짜(lastmod)가 바뀐 것. 내용이 그대로면 다시 고르지 않는다
     last_req: dict[str, str] = {}
     for head, body in secs:
@@ -146,15 +147,25 @@ def main() -> None:
             for u in URL_RE.findall(body):
                 last_req[u] = max(last_req.get(u, ""), head[:10])
     lastmod = {rel: v["lastmod"] for rel, v in load_json(ROOT / "data" / "page_hashes.json", default={}).items()}
-    for t in load_json(ROOT / "data" / "rival_targets.json", default=[]):
+    targets = load_json(ROOT / "data" / "rival_targets.json", default={})
+    if isinstance(targets, list):  # 2026-10-25 첫 모양(지인 목록만)
+        targets = {"rival": targets}
+
+    def add_target(t: dict, label: str) -> None:
         if (t["sido"], t["sigungu"]) not in gu_keys:
-            continue
+            return
         url, rel = gu_url(t["sido"], t["sigungu"]), "gu/" + gu_file(t["sido"], t["sigungu"])
-        name = t["sigungu"] or t["sido"]
+        why = f"{label}({t['sigungu'] or t['sido']} · {t.get('query') or ' · '.join(t.get('queries') or [])})"
         if url not in done:
-            add(url, f"지인 공략({name} · {t['query']})")
+            add(url, why)
         elif lastmod.get(rel, "") > last_req.get(url, ""):
-            add(url, f"지인 공략({name} · {t['query']}) · {last_req[url]} 요청 뒤 내용 바뀜({lastmod[rel]})", again=True)
+            add(url, f"{why} · {last_req[url]} 요청 뒤 내용 바뀜({lastmod[rel]})", again=True)
+
+    # ②-0 빈 땅(검색어 top3 에 폐차 업체가 없는 구·시군, 점수표 순) → ②-1 지인 공략 20곳. 고르는 조건은 같다
+    for t in targets.get("empty", []):
+        add_target(t, "빈 땅")
+    for t in targets.get("rival", []):
+        add_target(t, "지인 공략")
 
     # ③ 시·도 페이지
     for si in load_si():

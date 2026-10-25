@@ -196,11 +196,18 @@ def other_dongs(sido: str, sigungu: str, dongs: list[dict]) -> list[str]:
 
 
 def nearby_cases(slug: str, sido: str, cases: list[dict], n: int = 3) -> list[dict]:
-    """같은 시·도의 다른 시군구 사례 최신 n건(그 구 사례가 모자랄 때 "가까운 지역 사례", 2026-10-20)."""
-    from build_site import gu_slug
+    """같은 시·도의 다른 시군구 사례 최신 n건(그 구 사례가 모자랄 때 "가까운 지역 사례", 2026-10-20).
+    빈 땅 구 페이지(data/rival_targets.json 의 empty, 2026-10-25)는 깊은 사례(thin 아님)를 먼저 보이고 그다음 최신순.
+    다른 시·도 사례는 지금처럼 붙이지 않는다."""
+    from build_site import gu_slug, load_json
     others = [c for c in cases if c["sido"] == sido and gu_slug(c["sido"], c["sigungu"]) != slug
               and (ROOT / "cases" / f"{c['slug']}.html").exists()]
-    return sorted(others, key=lambda c: (c.get("date") or "", c["slug"]), reverse=True)[:n]
+    others = sorted(others, key=lambda c: (c.get("date") or "", c["slug"]), reverse=True)
+    targets = load_json(ROOT / "data" / "rival_targets.json", default={})
+    empty = {t["slug"] for t in targets.get("empty", [])} if isinstance(targets, dict) else set()
+    if slug in empty:
+        others = sorted(others, key=lambda c: bool(c.get("thin")))  # 정렬이 안정적이라 같은 깊이 안에서는 최신순 그대로
+    return others[:n]
 
 
 def gu_cases(slug: str, cases: list[dict]) -> list[dict]:
