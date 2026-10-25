@@ -34,6 +34,13 @@ DEPTH_MIN = 2
 CHOICE_SENTENCE = "폐차 쪽과 수출 쪽을 같이 알아본 뒤, 이 차는 {} 쪽으로 진행했습니다."
 OVER_AGE_NOTE = "말소증은 보통 45~60일 뒤에 나옵니다"
 FALLBACK_GUIDE = ("폐차-절차.html", "폐차 절차")
+# 통화 글자본으로 채운 칸의 출처 표시(2026-10-25 길 ③). 고침 파일·index.json 에는 남기고 화면에 그릴 때만 뺀다
+SOURCE_MARK_RE = re.compile(r"\s*\(통화 요약\)\s*$")
+
+
+def shown(text: str) -> str:
+    """화면(사례 본문·카드·META_DESC)에 그릴 글: 끝의 출처 표시 " (통화 요약)" 을 뺀 것."""
+    return SOURCE_MARK_RE.sub("", text or "")
 
 
 def first_sentence(text: str, limit: int = 70) -> str:
@@ -171,7 +178,7 @@ def card_line(c: dict) -> str:
     """카드 둘째 줄·META_DESC 앞부분: 걱정 첫 문장(70자) → 제목꼬리 → summary."""
     s = c.get("story") or {}
     if s.get("걱정"):
-        return first_sentence(s["걱정"])
+        return first_sentence(shown(s["걱정"]))
     return s.get("제목꼬리") or c.get("summary") or ""
 
 

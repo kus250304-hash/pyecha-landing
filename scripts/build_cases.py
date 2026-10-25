@@ -546,14 +546,14 @@ def story_parts(c: dict) -> tuple[str, str]:
                 + "".join(f"<tr><th>{esc(k)}</th><td>{esc(v)}</td></tr>" for k, v in rows) + "</table>")
     if not c["thin"]:
         if s.get("걱정"):
-            out += f"<h2>처음 전화 주셨을 때 걱정하신 것</h2><blockquote>{esc(s['걱정'])}</blockquote>"
+            out += f"<h2>처음 전화 주셨을 때 걱정하신 것</h2><blockquote>{esc(case_story.shown(s['걱정']))}</blockquote>"
         if s.get("확인"):
-            out += "<h2>원부·사진으로 확인한 것</h2><ul>" + "".join(f"<li>{esc(x)}</li>" for x in s["확인"]) + "</ul>"
+            out += "<h2>원부·사진으로 확인한 것</h2><ul>" + "".join(f"<li>{esc(case_story.shown(x))}</li>" for x in s["확인"]) + "</ul>"
         choice = []
         if s.get("고른쪽") in ("폐차", "수출"):
             choice.append(case_story.CHOICE_SENTENCE.format(s["고른쪽"]))
             if s.get("이유"):
-                choice.append(s["이유"])
+                choice.append(case_story.shown(s["이유"]))
         if m := case_story.method_text(c):
             choice.append(m)
         if choice:
@@ -565,7 +565,7 @@ def story_parts(c: dict) -> tuple[str, str]:
             flow.append(case_story.OVER_AGE_NOTE)
         if flow:
             out += "<h2>진행과 걸린 날</h2>" + "".join(f"<p>{esc(x)}</p>" for x in flow)
-        last = s.get("끝한줄") or (f"“{c['quote']}”" if c.get("quote") else "") or c.get("result") or ""
+        last = case_story.shown(s.get("끝한줄")) or (f"“{c['quote']}”" if c.get("quote") else "") or c.get("result") or ""
         if last:
             out += f"<h2>끝나고 한 줄</h2><p>{esc(last)}</p>"
         if c.get("spoken"):  # 문장 그대로(고치거나 꾸미지 않음)

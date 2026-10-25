@@ -958,7 +958,8 @@ def check_case_story() -> tuple[list[str], list[str]]:
     - index.json 의 depth·thin·card_line 이 지금 글로 다시 계산한 값과 같은지(아니면 build_cases.py 를 다시 돌릴 것)
     - 얇은 사례 = <meta name="robots" content="noindex,follow"> + 사이트맵·rss.xml 밖, 깊은 사례 = noindex 없음 + 사이트맵 안
     - 새 칸(걱정·확인·고른쪽·이유·날짜·끝한줄·제목꼬리)이 금지 표현 검사(build_cases.banned_text·과장 낱말)를 통과하는지
-    - 사례 본문(.story, 맺음 문장 빼고)에서 같은 문장이 5장 이상 반복되면 경고"""
+    - 사례 본문(.story, 맺음 문장 빼고)에서 같은 문장이 5장 이상 반복되면 경고
+    - 사례 페이지에 출처 표시 '(통화 요약)' 이 보이면 오류"""
     import sitemap_lib
     import case_story
     from build_cases import banned_text
@@ -988,6 +989,8 @@ def check_case_story() -> tuple[list[str], list[str]]:
             elif got != story:
                 errors.append(f"사례 {slug}: 새 칸이 규칙대로 정리되지 않음(제목꼬리 길이·날짜 순서·확인 개수) (python3 scripts/build_cases.py)")
         text = page.read_text(encoding="utf-8")
+        if "(통화 요약)" in text:  # 출처 표시는 고침 파일·index.json 에만(case_story.shown, 2026-10-25)
+            errors.append(f"사례 {slug}: 페이지에 '(통화 요약)' 문구가 있음 (case_story.shown 으로 빼고 그릴 것)")
         noindex = '<meta name="robots" content="noindex,follow">' in text
         loc = f"{base}/cases/{slug}.html"
         thin = want["thin"]
