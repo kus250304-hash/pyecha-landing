@@ -1,5 +1,5 @@
 {
- "date": "2026-10-24",
+ "date": "2026-10-25",
  "rival": [
   {
    "slug": "chungnam-asan",
@@ -29,7 +29,7 @@
    "slug": "jeonbuk-gunsan",
    "sido": "전북특별자치도",
    "sigungu": "군산시",
-   "query": "군산폐차"
+   "query": "군산폐차장"
   },
   {
    "slug": "gyeongbuk-gyeongsan",
@@ -98,6 +98,12 @@
    "query": "시흥폐차"
   },
   {
+   "slug": "gyeonggi-osan",
+   "sido": "경기도",
+   "sigungu": "오산시",
+   "query": "오산폐차"
+  },
+  {
    "slug": "gangwon-sokcho",
    "sido": "강원특별자치도",
    "sigungu": "속초시",
@@ -114,12 +120,6 @@
    "sido": "경상북도",
    "sigungu": "상주시",
    "query": "상주폐차장"
-  },
-  {
-   "slug": "gyeonggi-uijeongbu",
-   "sido": "경기도",
-   "sigungu": "의정부시",
-   "query": "의정부폐차장"
   }
  ],
  "empty": [
@@ -183,11 +183,11 @@
    ]
   },
   {
-   "slug": "jeonnam-gurye",
-   "sido": "전남광주통합특별시",
-   "sigungu": "구례군",
+   "slug": "gyeonggi-namyangju",
+   "sido": "경기도",
+   "sigungu": "남양주시",
    "queries": [
-    "구례폐차"
+    "남양주폐차"
    ]
   },
   {
@@ -322,6 +322,14 @@
    ]
   },
   {
+   "slug": "gyeongnam-sancheong",
+   "sido": "경상남도",
+   "sigungu": "산청군",
+   "queries": [
+    "산청폐차"
+   ]
+  },
+  {
    "slug": "gyeongnam-hapcheon",
    "sido": "경상남도",
    "sigungu": "합천군",
@@ -362,27 +370,11 @@
    ]
   },
   {
-   "slug": "gangwon-jeongseon",
-   "sido": "강원특별자치도",
-   "sigungu": "정선군",
-   "queries": [
-    "정선폐차"
-   ]
-  },
-  {
    "slug": "gyeongbuk-yeongdeok",
    "sido": "경상북도",
    "sigungu": "영덕군",
    "queries": [
     "영덕폐차"
-   ]
-  },
-  {
-   "slug": "jeonbuk-jinan",
-   "sido": "전북특별자치도",
-   "sigungu": "진안군",
-   "queries": [
-    "진안폐차"
    ]
   },
   {
@@ -442,11 +434,11 @@
    ]
   },
   {
-   "slug": "gyeongnam-goseong",
-   "sido": "경상남도",
-   "sigungu": "고성군",
+   "slug": "seoul-gangseo",
+   "sido": "서울특별시",
+   "sigungu": "강서구",
    "queries": [
-    "경남고성군폐차"
+    "서울강서구폐차"
    ]
   },
   {
@@ -454,8 +446,7 @@
    "sido": "강원특별자치도",
    "sigungu": "고성군",
    "queries": [
-    "강원고성군폐차",
-    "강원고성군폐차장"
+    "강원고성군폐차"
    ]
   },
   {
@@ -464,6 +455,14 @@
    "sigungu": "장수군",
    "queries": [
     "장수폐차"
+   ]
+  },
+  {
+   "slug": "gyeongbuk-ulleung",
+   "sido": "경상북도",
+   "sigungu": "울릉군",
+   "queries": [
+    "울릉폐차장"
    ]
   }
  ]
