@@ -219,3 +219,16 @@
 - https://pyecha119.com/gu/%EB%AA%A9%ED%8F%AC%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/목포시-폐차장.html (빈 땅(목포시 · 목포폐차 · 목포폐차장) · 2026-10-18 요청 뒤 내용 바뀜(2026-10-26))
 - https://pyecha119.com/gu/%EC%A7%84%EC%A3%BC%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/진주시-폐차장.html (빈 땅(진주시 · 진주폐차 · 진주폐차장) · 2026-10-18 요청 뒤 내용 바뀜(2026-10-20))
 - https://pyecha119.com/gu/%EC%84%B8%EC%A2%85-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/세종-폐차장.html (빈 땅(세종특별자치시 · 세종폐차 · 세종폐차장) · 2026-10-22 요청 뒤 내용 바뀜(2026-10-23))
+
+## 2026-10-27
+
+- https://pyecha119.com/gu/%EA%B5%AC%EB%AF%B8%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/구미시-폐차장.html (빈 땅(구미시 · 구미폐차) · 2026-10-26 요청 뒤 내용 바뀜(2026-10-27))
+- https://pyecha119.com/gu/%EB%AA%A9%ED%8F%AC%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/목포시-폐차장.html (빈 땅(목포시 · 목포폐차 · 목포폐차장) · 2026-10-26 요청 뒤 내용 바뀜(2026-10-27))
+- https://pyecha119.com/gu/%EA%B3%A0%EB%A0%B9%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/고령군-폐차장.html (빈 땅(고령군 · 고령폐차) · 2026-10-23 요청 뒤 내용 바뀜(2026-10-25))
+- https://pyecha119.com/gu/%EB%85%BC%EC%82%B0%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/논산시-폐차장.html (빈 땅(논산시 · 논산폐차) · 2026-10-24 요청 뒤 내용 바뀜(2026-10-25))
+- https://pyecha119.com/gu/%EC%A0%95%EC%9D%8D%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/정읍시-폐차장.html (빈 땅(정읍시 · 정읍폐차) · 2026-10-26 요청 뒤 내용 바뀜(2026-10-27))
+- https://pyecha119.com/gu/%EC%84%9C%ED%95%B4%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/서해구-폐차장.html (빈 땅(서해구 · 서해폐차))
+- https://pyecha119.com/gu/%EC%B0%BD%EB%85%95%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/창녕군-폐차장.html (빈 땅(창녕군 · 창녕폐차))
+- https://pyecha119.com/gu/%EC%B9%A0%EA%B3%A1%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/칠곡군-폐차장.html (빈 땅(칠곡군 · 칠곡폐차))
+- https://pyecha119.com/gu/%EC%9E%A5%EC%84%B1%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/장성군-폐차장.html (빈 땅(장성군 · 장성폐차))
+- https://pyecha119.com/gu/%ED%95%A8%EC%95%88%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/함안군-폐차장.html (빈 땅(함안군 · 함안폐차))

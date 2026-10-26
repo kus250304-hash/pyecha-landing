@@ -1,0 +1,44 @@
+[
+ {
+  "code": "4719011000",
+  "slug": "gyeongbuk-gumi-songjeong",
+  "items": [
+   {
+    "name": "구미시청",
+    "evidence": "구미시청 경상북도 구미시 송정대로 55(송정동), 위키백과 '현재 구미시청은 경상북도 구미시 송정동에 있다'",
+    "url": "https://ko.wikipedia.org/wiki/%EA%B5%AC%EB%AF%B8",
+    "grade": "opened"
+   },
+   {
+    "name": "구미시청 별관",
+    "evidence": "구미시청 별관 구미시 백산로 94(송정동)",
+    "url": "https://www.gumi.go.kr/portal/staff/list.do?mid=0505030000&deptCode=5080058",
+    "grade": "summary_with_address"
+   }
+  ]
+ },
+ {
+  "code": "1211016300",
+  "slug": "jeonnam-mokpo-daeyang",
+  "items": [
+   {
+    "name": "목포대양일반산업단지",
+    "evidence": "'대양일반산업단지는 대양동 797번지 일원 156만㎡ 부지에…' (2013-04-03 기사), 지번 대양동 797 일원",
+    "url": "https://kidd.co.kr/news/164917",
+    "grade": "opened"
+   }
+  ]
+ },
+ {
+  "code": "4159710900",
+  "slug": "gyeonggi-hwaseong-dongtan-mok",
+  "items": [
+   {
+    "name": "e편한세상동탄",
+    "evidence": "리치고 단지 페이지 'e편한세상동탄 (목동, 2018년 1월 입주, 1,526세대)', 화성시 동탄구 목동",
+    "url": "https://m.richgo.ai/realty/danji/a7gnvnW",
+    "grade": "opened"
+   }
+  ]
+ }
+]
