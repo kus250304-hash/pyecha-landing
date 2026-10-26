@@ -45,3 +45,4 @@
 | 2026-10-22 | 색인 요청 10개를 구글 URL 검사 + 네이버 웹 페이지 수집 겸용으로(아침 보고 제목), roadmap 10절 서브도메인 전환 안 함 결정·13절 네이버 노출 판단 기준(리포트 90일) |
 | 2026-10-25 | 얇은 사례 살리기 길 ③(통화 글자본): 얇은 사례 70건 × 사례 날짜 ±14일 "폐차/유" 녹음, 새로 299개 변환(PC 안, `_분석\transcripts`). 짝이 확실한 5건(구미 쏘나타·오산 마티즈·인천 경서동 아반떼 XD·충주 카이런·광주 쌍촌동 포터2 더블캡)에 걱정·확인(1건은 고른쪽+이유)을 통화 요약으로 `data/case_text_fixes.json` 에 적어 깊은 사례 4 → 9장. `build_cases.py --keep-dates` → `build_site.py --keep-dates`, 지역·구·안내 페이지 날짜 그대로, 새 깊은 사례 5장만 사이트맵·rss 에 오늘 날짜, IndexNow 는 이 5장만. 사례별 근거 `docs/case-call-match.md` |
 | 2026-10-25 | 사례 화면에서 출처 표시 " (통화 요약)" 을 뺌(`case_story.shown`: 사례 본문 걱정·확인·이유·끝한줄, 카드·META_DESC 의 card_line). `data/case_text_fixes.json`·`cases/index.json` 에는 그대로 남김. check_pages: 사례 페이지에 '(통화 요약)' 이 보이면 오류. `--keep-dates` 로 날짜 변화 0장, IndexNow 안 보냄(5장은 오늘 이미 보냄) |
+| 2026-10-26 | 주간 휴대폰 순위 기록 `docs/weekly-rank-log.md` 새로 만듦(고정 검색어 20개, 사례 붙임 A 10곳 / 그대로 B 10곳 실험, 실험 변경 기록) |
