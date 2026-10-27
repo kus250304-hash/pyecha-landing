@@ -382,8 +382,11 @@ def gu_page_exists(c: dict) -> bool:
 
 
 def experiment_b_hold(c: dict) -> bool:
-    """오늘(한국 시간)이 실험 기간 안이고 이 사례가 B 지역(시·도 + 시군구)이면 True. 이미 붙은 사례는 건드리지 않는다."""
+    """오늘(한국 시간)이 실험 기간 안이고 이 사례가 B 지역(시·도 + 시군구)이면 True. 이미 붙은 사례는 건드리지 않는다.
+    2026-10-28 실험 취소("cancelled" 날짜가 있으면 늘 False, B 사례도 바로 붙는다)."""
     exp = load_json(EXPERIMENT_AB, default={}) or {}
+    if exp.get("cancelled"):
+        return False
     today = datetime.now(KST).strftime("%Y-%m-%d")
     if not (exp.get("start", "") <= today <= exp.get("end", "")):
         return False
@@ -786,6 +789,7 @@ def main() -> None:
         if not c:
             skipped += 1
             continue
+        c["added"] = datetime.now(KST).strftime("%Y-%m-%d")  # 페이지에 붙은 날(색인 요청 맨 앞 칸, 2026-10-28)
         index.insert(0, c)
         DONE_DIR.mkdir(parents=True, exist_ok=True)
         shutil.move(str(folder), str(DONE_DIR / folder.name))

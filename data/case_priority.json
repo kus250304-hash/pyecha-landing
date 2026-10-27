@@ -1,0 +1,11 @@
+{
+  "_comment": "2026-10-28 병한님: PC 사례 가져오기(scripts/pc_cases.py scan)가 고르는 순서. order 의 위 칸부터 그 시·군 사례를 먼저 고르고, 같은 칸 안에서는 적힌 순서(문의 온 곳은 문의 기록 순, 빈 땅·지인 공략은 점수표 data/priority_regions.json 순위 순), 그다음 메모 있는 폴더 → 우선/ → 일반/ 순. 시·군은 일반구면 같은 시의 모든 구를 한 곳으로 본다. 목록은 scan 할 때마다 아래 source 에서 새로 읽으므로 이 파일에 지역을 적지 않는다. 얇은 사례도 그대로 올린다.",
+  "order": [
+    {"key": "inquiry", "label": "문의 온 시·군", "source": "docs/index-requests.md 의 '문의가 온 페이지' 칸"},
+    {"key": "empty", "label": "빈 땅", "source": "data/rival_targets.json 의 empty (점수표 순)"},
+    {"key": "rival", "label": "지인 공략", "source": "data/rival_targets.json 의 rival (점수표 순)"},
+    {"key": "rest", "label": "나머지", "source": "그 밖의 모든 지역"}
+  ],
+  "daily": 3,
+  "backlog_daily": 10
+}

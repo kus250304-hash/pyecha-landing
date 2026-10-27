@@ -1,7 +1,7 @@
 # PC 사례 가져오기 지시문 (매일 13:40 무렵, 운영자 PC)
 
 사례 원본(사진·메모)은 운영자 PC의 `C:\Users\AOMG\Documents\카카오톡 받은 파일\폐차사진원본` 에만 있습니다.
-오후 2시 클라우드 루틴은 이 폴더를 볼 수 없으므로, **PC의 Claude 앱 예약 작업**이 먼저 구글 드라이브 인박스를 정리하고 3~5건을 골라 가리고 줄여서
+오후 2시 클라우드 루틴은 이 폴더를 볼 수 없으므로, **PC의 Claude 앱 예약 작업**이 먼저 구글 드라이브 인박스를 정리하고 3~10건을 골라 가리고 줄여서
 저장소 `cases/input/` 에 올립니다. 그러면 2시 루틴(`docs/daily-routine-prompt.md` 3-1)이 사례 페이지를 만들고 3시 보고에 적습니다.
 
 - 예약 작업의 폴더: PC에 받아 둔 pyecha-landing 저장소 폴더
@@ -19,7 +19,7 @@ PC에서 하는 "사례 가져오기" 작업이다. 원본 사진·메모는 이
 - 원본 폴더에는 pc_cases.py mark 가 만드는 반영됨.txt 와 inbox_cases.py apply 가 만드는 우선/ 새 폴더 말고는 아무것도 만들거나 고치거나 옮기거나 지우지 않는다.
 - 구글 드라이브 인박스(G:\내 드라이브\폐차_인박스)는 scripts/inbox_cases.py 로만 다룬다. 사진·영상은 .cases_staging/inbox/ 의 미리보기만 본다. 등록증 사진은 지역만 읽고(이름·주민번호·주소 번지 등 다른 칸은 읽지도 적지도 않는다) answer.json 의 "등록증" 에 적어 스크립트가 지우게 한다. GPS 좌표·차번호·말 내용은 저장소에 쓰지 않는다.
 - 금액·시세, "수출 된다/안 된다" 같은 단정, 고객 이름·전화번호·차량번호·주소는 어디에도 쓰지 않는다(스크립트가 메모에서 걸러 낸다. 메모를 손으로 고쳐 통과시키지 않는다).
-- 하루 건수는 scan 이 정한다(밀린 대상이 3건보다 많은 동안 5건, 아니면 3건). scripts/, templates/, CLAUDE.md, docs/ 는 고치지 않는다. 예외: 15 단계의 scripts/naver_rank.py 가 쓰는 data/naver_rank/ 와 docs/naver-rank.md, 2-1 단계의 scripts/inquiry_log.py 가 고치는 docs/index-requests.md 와 data/population_dong.json(손으로 고치지 않는다).
+- 하루 건수와 고르는 순서는 scan 이 정한다(data/case_priority.json, 2026-10-28: 밀린 대상이 3건보다 많은 동안 10건, 아니면 3건. 순서는 ① 문의 온 시·군 ② 빈 땅 ③ 지인 공략 ④ 나머지). 얇은 사례(걱정·확인 칸이 비는 건)도 그대로 올린다. 원본 폴더는 읽기만 한다. scripts/, templates/, CLAUDE.md, docs/ 는 고치지 않는다. 예외: 15 단계의 scripts/naver_rank.py 가 쓰는 data/naver_rank/ 와 docs/naver-rank.md, 2-1 단계의 scripts/inquiry_log.py 가 고치는 docs/index-requests.md 와 data/population_dong.json(손으로 고치지 않는다).
 - 거래 기록부(C:\Users\AOMG\Documents\병한-업무위키\폐차\거래기록)는 scripts/inquiry_log.py 와 scripts/pc_cases.py(ledger·stage, 날짜 칸만)로만 읽는다. 직접 열지 않고, 전화·차번호·이름·금액은 어디에도 쓰지 않는다.
 - 통화 글자본(C:\Users\AOMG\Documents\통화녹음백업\_분석)은 8-1 단계의 걱정 후보를 찾을 때만 읽는다. 이름·전화번호·차번호·금액·주소는 옮기지 않는다.
 - 법인 차, 서류를 못 받는 경우, "차만 폐차", 명의자와 연락 안 됨, 서류 없이 진행 같은 사정은 개인 상담으로만 다루는 일이라 사례 칸·extra.json 어디에도 쓰지 않고, 통화 글자본에 이런 내용이 나오면 그 통화는 걱정 후보에서 뺀다(2026-10-27, build_cases.py 가 case_story.PRIVATE_RE 로 막음).
@@ -46,7 +46,7 @@ PC에서 하는 "사례 가져오기" 작업이다. 원본 사진·메모는 이
 3-5. `python scripts/inbox_cases.py apply gN` 을 묶음마다 실행한다(원본 우선/ 에 날짜_지역_차종 폴더를 만들고 옮김, 등록증은 지움, 보류 건은 인박스에 그대로). 이어서 `python scripts/inbox_cases.py report` 를 실행해 그 줄을 보고에 옮긴다(cases/input/인박스-확인-필요.md 도 다시 써짐).
 
 [고르기]
-4. (3-2 로 이어 하지 않을 때만) `python scripts/pc_cases.py scan` 을 실행한다. 우선/ → 일반/ 순서로, 지역·차종·연식·시동이 다 채워지고 반영됨.txt 가 없는 건 중 3건 또는 5건(c1~)을 고른다. 메모 없으면 점수표 사용(2026-10-27): 메모.txt 가 없는 폴더는 scan 이 원본 맨 위 _점수표.csv 의 같은 폴더 줄(지역·차종·연식·시동·한줄이유)을 메모 대신 읽고, 메모 있는 폴더를 먼저 고른다(점수표를 직접 열지 않는다). 0건이면 3-5 의 cases/input/인박스-확인-필요.md 가 바뀌었을 때만 그 파일 하나를 `git add` → `git commit -m "Update inbox hold list (YYYY-MM-DD)"` → `git push origin main`(거절되면 pull --rebase 후 한 번 더) 하고, "실패: 0건, 이유: 가져올 사례 없음(조건 미달 N건)"이라고 보고하고 끝낸다(3시 보고가 확인 필요 차를 볼 수 있게).
+4. (3-2 로 이어 하지 않을 때만) `python scripts/pc_cases.py scan` 을 실행한다. 지역·차종·연식·시동이 다 채워지고 반영됨.txt 가 없는 건 중 3건 또는 10건(c1~)을 고른다. 순서는 data/case_priority.json(2026-10-28): ① docs/index-requests.md "문의가 온 페이지"의 시·군 ② data/rival_targets.json 의 empty(빈 땅, 점수표 순) ③ rival(지인 공략) ④ 나머지, 같은 시·군 안에서는 메모 있는 폴더 → 우선/ → 일반/. 출력 줄 끝에 어느 칸으로 골랐는지 나온다. 메모 없으면 점수표 사용(2026-10-27): 메모.txt 가 없는 폴더는 scan 이 원본 맨 위 _점수표.csv 의 같은 폴더 줄(지역·차종·연식·시동·한줄이유)을 메모 대신 읽고, 메모 있는 폴더를 먼저 고른다(점수표를 직접 열지 않는다). 0건이면 3-5 의 cases/input/인박스-확인-필요.md 가 바뀌었을 때만 그 파일 하나를 `git add` → `git commit -m "Update inbox hold list (YYYY-MM-DD)"` → `git push origin main`(거절되면 pull --rebase 후 한 번 더) 하고, "실패: 0건, 이유: 가져올 사례 없음(조건 미달 N건)"이라고 보고하고 끝낸다(3시 보고가 확인 필요 차를 볼 수 있게).
 5. `python scripts/pc_cases.py prepare` 를 실행한다(.cases_staging/cN/ 에 p01.jpg… 미리보기와 sheet*.jpg 모아보기).
 
 [가리기 — 건마다]

@@ -13,7 +13,9 @@ PC(운영자 컴퓨터)에서 돌리는 "사례 가져오기" 도구. 원본 사
   지역·차종·연식·시동·한줄이유(→ 상황)만 쓰고, 점수표에도 지역이 없거나 "지역 미상"이면 고르지 않는다. 메모 있는 폴더가 먼저.
 
 순서
-  python scripts/pc_cases.py scan [--n N]        대상 고르기(기본: 밀린 동안 5건, 아니면 3건) → .cases_staging/scan.json
+  python scripts/pc_cases.py scan [--n N]        대상 고르기(기본: 밀린 동안 10건, 아니면 3건) → .cases_staging/scan.json
+      고르는 순서(2026-10-28, data/case_priority.json): ① 문의 온 시·군 ② 빈 땅 ③ 지인 공략 ④ 나머지
+  python scripts/pc_cases.py priority             ①~③ 시·군 목록 보기(읽기만)
   python scripts/pc_cases.py prepare              고른 건마다 .cases_staging/cN/ 에 미리보기(p01.jpg…)와 모아보기(sheet1.jpg…)
       → 사람(또는 Claude)이 미리보기를 보고 .cases_staging/cN/select.json 을 쓴다 (형식은 아래)
   python scripts/pc_cases.py mask cN              가리기 적용 → .cases_staging/cN/out/1.jpg… (+ out/check.jpg)
@@ -81,7 +83,9 @@ REGION_FIXES = ROOT / "data" / "case_region_fixes.json"
 STAGING = ROOT / ".cases_staging"
 INPUT_DIR = ROOT / "cases" / "input"
 PC_REQUIRED = ("지역", "차종", "연식", "시동")  # 이 넷이 다 채워진 건만 대상
-DAILY, BACKLOG_DAILY = 3, 5  # 하루 건수. 밀린 대상이 있는 동안은 5건(2026-10-16 병한님 결정)
+CASE_PRIORITY = ROOT / "data" / "case_priority.json"  # 고르는 순서·하루 건수(2026-10-28 병한님)
+_cp = load_json(CASE_PRIORITY, default={}) or {}
+DAILY, BACKLOG_DAILY = _cp.get("daily", 3), _cp.get("backlog_daily", 10)  # 밀린 대상이 3건보다 많은 동안 10건(2026-10-16 5건 → 2026-10-28 10건)
 PC_MEMO_KEYS = ("날짜", "지역", "차종", "연식", "시동", "운행", "상황", "처리", "결과", "한마디") + STORY_KEYS
 # 거래 기록부(2026-10-23 글 틀 v2): 날짜 세 칸(문의일·인수일·말소일)이 비면 차종+시·군이 같고 날짜가 ±14일인 거래가
 # 하나뿐일 때만 채운다. 칸 이름은 기록부마다 다를 수 있어 이름 꼴로 고르고(ledger 명령이 보여 줌), 전화·차번호·이름·금액 칸은 읽지 않는다.
@@ -361,6 +365,52 @@ def cmd_ledger_near(args) -> None:
             print("  " + " | ".join(f"{k} {r.get(k) or '-'}" for k in ("문의일", "인수일", "말소일", "차종")) + f" | 지역 {area}")
 
 
+def city_key(sido: str, sigungu: str) -> tuple[str, str]:
+    """시·군 단위 열쇠. 일반구("천안시 동남구")는 시("천안시")로 묶는다."""
+    return sido, (sigungu or "").split()[0] if sigungu else ""
+
+
+def priority_places() -> tuple[dict[tuple[str, str], tuple[int, int]], list[dict]]:
+    """data/case_priority.json 순서대로 시·군 → (칸 번호, 칸 안 순서). 목록에 없는 곳은 "rest" 칸.
+    문의 온 곳 = docs/index-requests.md "문의가 온 페이지"(적힌 순서), 빈 땅·지인 공략 = data/rival_targets.json(점수표 순위 순)."""
+    from pick_index_requests import inquiry_places, inquiry_text
+    from build_site import CONFIG, GU_DATA, REGIONS
+    order = [o["key"] for o in (load_json(CASE_PRIORITY, default={}) or {}).get("order", [])] or ["inquiry", "empty", "rival", "rest"]
+    rank = {(e["sido"], e["sigungu"]): e["rank"] for e in load_json(ROOT / "data" / "priority_regions.json", default={}).get("gu", [])}
+    targets = load_json(ROOT / "data" / "rival_targets.json", default={})
+    if isinstance(targets, list):
+        targets = {"rival": targets}
+    base = load_json(CONFIG)["site_base_url"].rstrip("/")
+    lists = {
+        "inquiry": inquiry_places(inquiry_text(), base, load_json(REGIONS, []), load_json(GU_DATA, default=[])),
+        "empty": sorted(((t["sido"], t["sigungu"]) for t in targets.get("empty", [])), key=lambda k: rank.get(k, 9999)),
+        "rival": sorted(((t["sido"], t["sigungu"]) for t in targets.get("rival", [])), key=lambda k: rank.get(k, 9999)),
+    }
+    places: dict[tuple[str, str], tuple[int, int]] = {}
+    shown = []
+    for gi, key in enumerate(order):
+        for k in lists.get(key, []):
+            ck = city_key(*k)
+            if ck not in places:
+                places[ck] = (gi, len([1 for v in places.values() if v[0] == gi]))
+                shown.append({"group": key, "sido": k[0], "city": ck[1] or k[0]})
+    places["_rest"] = (order.index("rest") if "rest" in order else len(order), 0)
+    return places, shown
+
+
+def place_of(region: dict, places: dict) -> tuple[int, int]:
+    return places.get(city_key(region["sido"], region["sigungu"]), places["_rest"])
+
+
+def cmd_priority(args) -> None:
+    _, shown = priority_places()
+    label = {o["key"]: o["label"] for o in (load_json(CASE_PRIORITY, default={}) or {}).get("order", [])}
+    for g in ("inquiry", "empty", "rival"):
+        names = [f"{x['city']}" for x in shown if x["group"] == g]
+        print(f"{label.get(g, g)} {len(names)}곳: {', '.join(names)}")
+    print(f"하루 {DAILY}건(밀린 대상이 {DAILY}건보다 많은 동안 {BACKLOG_DAILY}건)")
+
+
 def staging_state() -> dict:
     return load_json(STAGING / "scan.json", default={}) or {}
 
@@ -381,6 +431,7 @@ def cmd_scan(args) -> None:
 
     fixes = load_fixes()
     score = load_score(src)
+    places, _ = priority_places()
     cands, skipped, marked = [], [], 0
     for ti, tier in enumerate(TIERS):
         tier_dir = src / tier
@@ -424,13 +475,13 @@ def cmd_scan(args) -> None:
             else:  # 동 없는 사례(시군구까지만 확인): 구 페이지에만 붙는다. 구 페이지가 없으면 cases/input 에서 기다린다
                 rank = 1 if gu_page_exists(region) else 2
             cands.append({
-                "tier": tier, "tier_i": ti, "rank": rank, "src": str(folder), "rel": rel, "memo_from": origin,
+                "tier": tier, "tier_i": ti, "rank": rank, "place": place_of(region, places), "src": str(folder), "rel": rel, "memo_from": origin,
                 "region": region, "car": body["car"], "photos": len(photos),
             })
 
-    # 우선 → 일반. 같은 폴더 안에서는 동 페이지가 있는 건 → 같은 시군구 페이지가 있는 건 → 나머지
-    # 메모.txt 가 있는 폴더가 점수표로 읽은 폴더보다 먼저(2026-10-27)
-    cands.sort(key=lambda c: (c["memo_from"] == "점수표", c["tier_i"], c["rank"], c["rel"]))
+    # 2026-10-28: data/case_priority.json 칸(문의 온 시·군 → 빈 땅 → 지인 공략 → 나머지)과 칸 안 순서가 먼저.
+    # 같은 시·군 안에서는 메모.txt 있는 폴더(2026-10-27) → 우선 → 일반 → 동 페이지 있는 건 → 같은 시군구 페이지 있는 건 → 나머지
+    cands.sort(key=lambda c: (*c["place"], c["memo_from"] == "점수표", c["tier_i"], c["rank"], c["rel"]))
     state = {"date": date.today().isoformat(), "src": str(src), "picks": {}}
     if args.more:  # 뺀(drop) 건을 채우기: 오늘 이미 고른 건은 두고 모자란 만큼만 더 고른다
         old = staging_state()
@@ -445,6 +496,7 @@ def cmd_scan(args) -> None:
     save_state(state)
 
     label = {0: "동 페이지 있음", 1: "같은 시군구 페이지 있음", 2: "붙을 페이지 아직 없음"}
+    order = [o["label"] for o in (load_json(CASE_PRIORITY, default={}) or {}).get("order", [])] or ["문의 온 시·군", "빈 땅", "지인 공략", "나머지"]
     gu_label = {1: "동 없음 · 구 페이지 있음", 2: "동 없음 · 구 페이지 대기"}
     print(f"대상 {len(cands)}건 (이미 반영됨 {marked}건, 조건 미달 {len(skipped)}건). 새로 고른 {len(picks)}건:")
     for cid, c in state["picks"].items():
@@ -453,7 +505,8 @@ def cmd_scan(args) -> None:
         r = c["region"]
         lab = label[c["rank"]] if r["dong"] else gu_label[c["rank"]]
         from_score = " · 점수표" if c.get("memo_from") == "점수표" else ""
-        print(f"  {cid}: [{c['tier']}] {r['sigungu'] or r['sido']} {r['dong']} · {c['car']} · 사진 {c['photos']}장 · {lab}{from_score}".replace("  ·", " ·"))
+        why = order[c["place"][0]] if c.get("place") and c["place"][0] < len(order) else "나머지"
+        print(f"  {cid}: [{c['tier']}] {r['sigungu'] or r['sido']} {r['dong']} · {c['car']} · 사진 {c['photos']}장 · {lab}{from_score} · {why}".replace("  ·", " ·"))
     for rel, why in skipped[:15]:
         print(f"  조건 미달: {rel} — {why}")
     if len(skipped) > 15:
@@ -736,7 +789,7 @@ def main() -> None:
     sub = ap.add_subparsers(dest="cmd", required=True)
     s = sub.add_parser("scan")
     s.add_argument("--src", default=SRC_DEFAULT)
-    s.add_argument("--n", type=int, default=0, help="몇 건 고를지. 0(기본)이면 대상이 3건보다 많은 동안(밀림) 5건, 아니면 3건")
+    s.add_argument("--n", type=int, default=0, help="몇 건 고를지. 0(기본)이면 대상이 3건보다 많은 동안(밀림) 10건, 아니면 3건(data/case_priority.json)")
     s.add_argument("--more", action="store_true", help="오늘 고른 건은 두고, 뺀 만큼만 더 고른다")
     s.add_argument("--only", default="", help="원본 폴더 이름에 이 글자가 든 건만 고른다(쉼표로 여러 개). 운영자가 특정 건을 지정할 때만")
     s.add_argument("--no-dong", action="store_true", help="동 없이 시군구까지만 적힌 사례만 고른다(밀린 건 한꺼번에 처리할 때)")
@@ -746,7 +799,7 @@ def main() -> None:
     d = sub.add_parser("drop")
     d.add_argument("cid")
     d.add_argument("reason")
-    for name in ("mark", "report", "clean"):
+    for name in ("mark", "report", "clean", "priority"):
         sub.add_parser(name)
     ln = sub.add_parser("ledger-near")
     ln.add_argument("names", nargs="+")
@@ -762,7 +815,7 @@ def main() -> None:
     sub.add_parser("ledger").add_argument("--dir", default="", help="거래 기록부 폴더(기본: 저장소 옆 병한-업무위키\\폐차\\거래기록)")
     args = ap.parse_args()
     {"scan": cmd_scan, "prepare": cmd_prepare, "mask": cmd_mask, "stage": cmd_stage, "drop": cmd_drop,
-     "mark": cmd_mark, "report": cmd_report, "clean": cmd_clean, "ledger": cmd_ledger, "score": cmd_score, "restage": cmd_restage, "ledger-near": cmd_ledger_near}[args.cmd](args)
+     "mark": cmd_mark, "report": cmd_report, "clean": cmd_clean, "ledger": cmd_ledger, "score": cmd_score, "restage": cmd_restage, "ledger-near": cmd_ledger_near, "priority": cmd_priority}[args.cmd](args)
 
 
 if __name__ == "__main__":

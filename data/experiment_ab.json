@@ -1,5 +1,7 @@
 {
   "_comment": "2026-10-27 3주 실험(docs/weekly-rank-log.md 2)절). A = 사례를 붙이는 곳, B = 그대로 두는 곳. 기간 중 B 지역 새 사례는 scripts/build_cases.py 가 페이지에 붙이지 않고 cases/input 에 '대기(실험 B)'로 남긴다(기간이 끝나면 다음 실행 때 자동으로 붙음). 이미 붙은 사례(영주시 1건)는 그대로 둔다.",
+  "cancelled": "2026-10-28",
+  "_cancelled_comment": "2026-10-28 병한님: A/B 실험 취소. B 지역 사례도 build_cases.py 가 바로 붙이고, pick_index_requests.py 도 A·B 를 빼지 않는다. 이 파일과 docs/weekly-rank-log.md 는 기록용으로만 남긴다.",
   "start": "2026-10-27",
   "end": "2026-11-17",
   "A": [

@@ -7,6 +7,8 @@
   python3 scripts/pick_index_requests.py --write   # 고른 주소를 docs/index-requests.md 에 오늘 날짜로 덧붙임
 
 고르는 순서(2026-10-20 병한님 결정, docs/roadmap.md 13절)
+  ⓐ 어제·오늘 사례가 새로 붙은 구·시군 페이지(2026-10-28 병한님, cases/index.json 의 added = 페이지에 붙은 날, 없으면 git 에
+     cases/<slug>.html 이 처음 들어간 날). 이미 요청했어도 사례가 붙은 날 뒤로 요청한 적이 없으면 다시 고른다
   ⓪ 바로 앞 날짜 칸 제목에 "요청 못 함"이 있으면(할당량 초과 등) 그 칸 주소를 같은 순서로 다시 맨 앞에(같은 주소들을 다시 올림)
   ① docs/index-requests.md 의 "## 최우선" 칸 주소 중 아직 요청 안 된 것(적힌 순서대로, 지금은 주제 페이지 6장)
   ② 문의가 온 페이지(그 파일의 "문의가 온 페이지" 칸)와 같은 시·군의 구·시군 페이지
@@ -16,14 +18,14 @@
      또는 마지막 요청 날짜 뒤에 본문 해시 날짜(data/page_hashes.json lastmod)가 바뀐 것(내용이 그대로면 다시 고르지 않음)
   ③ 시·도 페이지(/si/, data/si.json 순서) 중 아직 요청 안 된 것
   ④ 점수표(data/priority_regions.json) 순위 높은 지방 시·군(build_gu.min_dong_pages 가 0)의 구 페이지
-  동 페이지(/pages/)는 어떤 경우에도 고르지 않는다. 3주 실험 기간(data/experiment_ab.json 의 start~end) 동안
-  A·B 20곳의 구 페이지도 ⓪~④ 어디서도 고르지 않는다(색인 요청은 A·B 같은 날 손으로만, 2026-10-27 병한님). 날짜 칸("## 2026-10-18" 등)에 있는 주소는 요청한 것으로 보고 뺀다
+  동 페이지(/pages/)는 어떤 경우에도 고르지 않는다. (2026-10-27~28 의 A·B 실험 20곳 빼기는 2026-10-28 실험 취소로 없앰.) 날짜 칸("## 2026-10-18" 등)에 있는 주소는 요청한 것으로 보고 뺀다
   (제목에 "요청 못 함"이 있는 칸은 요청 안 한 것). 주소는 %인코딩한 전체 주소.
   오늘 날짜 칸이 이미 "요청 못 함"으로 적혀 있으면 --write 도 같은 표시를 단 칸으로 덧붙인다.
 """
 import argparse
 import json
 import re
+import subprocess
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -95,6 +97,32 @@ def inquiry_text() -> str:
     return next((body for head, body in sections(text) if head.startswith("문의가 온 페이지")), "")
 
 
+def new_cases(since: str, until: str) -> list[tuple[dict, str]]:
+    """since~until(YYYY-MM-DD) 에 페이지에 붙은 사례 [(사례, 붙은 날)], 최근 것 먼저. 붙은 날은 cases/index.json 의 added,
+    없으면(2026-10-28 전에 만든 사례) git 에 cases/<slug>.html 이 처음 들어간 날(한국 시간). git 이 안 되면 added 있는 것만."""
+    index = load_json(ROOT / "cases" / "index.json", default=[])
+    first: dict[str, str] = {}
+    if any(not c.get("added") for c in index):
+        try:
+            out = subprocess.run(["git", "-c", "core.quotepath=off", "log", "--diff-filter=A", "--name-only", "--format=@%aI",
+                                  f"--since={since}T00:00:00+09:00", "--", "cases/*.html"],
+                                 cwd=ROOT, capture_output=True, text=True, encoding="utf-8").stdout
+        except OSError:
+            out = ""
+        d = ""
+        for line in out.splitlines():  # 최근 커밋부터 나오므로 마지막 값 = 처음 들어간 날
+            if line.startswith("@"):
+                d = datetime.fromisoformat(line[1:]).astimezone(timezone(timedelta(hours=9))).date().isoformat()
+            elif line.startswith("cases/") and line.endswith(".html"):
+                first[line[6:-5]] = d
+    out_cases = []
+    for c in index:
+        added = c.get("added") or first.get(c["slug"], "")
+        if since <= added <= until:
+            out_cases.append((c, added))
+    return sorted(out_cases, key=lambda x: x[1], reverse=True)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--write", action="store_true")
@@ -115,16 +143,25 @@ def main() -> None:
 
     gu_keys = {(g["sido"], g["sigungu"]) for g in gu_data}
     ordered: list[tuple[str, str]] = []
-    # 3주 실험 A·B 20곳(2026-10-27): 기간 안에는 고르지 않는다. 병한님이 A·B 같은 날 손으로 요청한다
-    exp = load_json(ROOT / "data" / "experiment_ab.json", default={}) or {}
-    experiment = ({gu_url(e["sido"], e["sigungu"]) for g in ("A", "B") for e in exp.get(g, [])}
-                  if exp.get("start", "") <= day <= exp.get("end", "") else set())
 
     def add(url: str, why: str, again: bool = False) -> None:
-        if url in experiment:
-            return
         if (again or url not in done) and "/pages/" not in url and url not in {u for u, _ in ordered}:
             ordered.append((url, why))
+
+    last_req: dict[str, str] = {}  # 주소 → 마지막으로 요청한 날
+    for head, body in secs:
+        if DATE_HEAD_RE.match(head) and NOT_DONE not in head:
+            for u in URL_RE.findall(body):
+                last_req[u] = max(last_req.get(u, ""), head[:10])
+
+    # ⓐ 어제·오늘 사례가 새로 붙은 구·시군 페이지(2026-10-28). 사례가 붙은 날 뒤로 요청한 적이 없으면 다시
+    since = (datetime.fromisoformat(day) - timedelta(days=1)).date().isoformat()
+    for c, added in new_cases(since, day):
+        k = (c["sido"], c["sigungu"])
+        if k in gu_keys:
+            url = gu_url(*k)
+            if last_req.get(url, "") < added:
+                add(url, f"{added} 사례가 새로 붙음({c['sigungu']} {c.get('car', '')})".replace(" )", ")"), again=True)
 
     # ⓪ 바로 앞 날짜가 "요청 못 함"이면 그 목록을 그대로 다시
     before = sorted({head[:10] for head, _ in secs if DATE_HEAD_RE.match(head) and head[:10] < day})
@@ -148,11 +185,6 @@ def main() -> None:
 
     # ②-0 빈 땅·②-1 지인 공략 20곳(2026-10-25, scripts/naver_rank.py 가 쓰는 data/rival_targets.json)의 구 페이지:
     # (가) 아직 요청 안 된 것, (나) 마지막 요청 날짜 뒤에 본문 해시 날짜(lastmod)가 바뀐 것. 내용이 그대로면 다시 고르지 않는다
-    last_req: dict[str, str] = {}
-    for head, body in secs:
-        if DATE_HEAD_RE.match(head) and NOT_DONE not in head:
-            for u in URL_RE.findall(body):
-                last_req[u] = max(last_req.get(u, ""), head[:10])
     lastmod = {rel: v["lastmod"] for rel, v in load_json(ROOT / "data" / "page_hashes.json", default={}).items()}
     targets = load_json(ROOT / "data" / "rival_targets.json", default={})
     if isinstance(targets, list):  # 2026-10-25 첫 모양(지인 목록만)
