@@ -9,6 +9,8 @@ PC(운영자 컴퓨터)에서 돌리는 "사례 가져오기" 도구. 원본 사
     일반\\<사례 폴더>\\메모.txt + 사진   ← 우선이 다 떨어지면
   "문자백업"이 들어간 폴더와 "제외" 폴더는 목록에서 빼고 절대 들어가지 않는다.
   "반영됨.txt" 가 있는 폴더는 이미 가져간 것이라 건너뛴다.
+  메모.txt 가 없는 폴더는 원본 맨 위 _점수표.csv 의 같은 폴더(최종폴더 칸) 줄을 메모 대신 읽는다(2026-10-27, 읽기만).
+  지역·차종·연식·시동·한줄이유(→ 상황)만 쓰고, 점수표에도 지역이 없거나 "지역 미상"이면 고르지 않는다. 메모 있는 폴더가 먼저.
 
 순서
   python scripts/pc_cases.py scan [--n N]        대상 고르기(기본: 밀린 동안 5건, 아니면 3건) → .cases_staging/scan.json
@@ -40,6 +42,7 @@ select.json 형식 (좌표는 미리보기 사진의 비율 0~1: 왼쪽, 위, �
   - 네모는 자동으로 조금 넓혀서 모자이크 + 흐림 처리한다.
 """
 import argparse
+import csv
 import hashlib
 import json
 import os
@@ -62,6 +65,9 @@ ROOT = Path(__file__).resolve().parent.parent
 SRC_DEFAULT = r"C:\Users\AOMG\Documents\카카오톡 받은 파일\폐차사진원본"
 TIERS = ("우선", "일반")
 DONE_MARK = "반영됨.txt"
+SCORE_NAME = "_점수표.csv"  # 원본 맨 위. 메모.txt 없는 폴더의 메모 대신(2026-10-27 병한님)
+SCORE_KEYS = {"지역": "지역", "차종": "차종", "연식": "연식", "시동": "시동", "한줄이유": "상황"}  # 이 칸만 읽는다
+SCORE_TAG_RE = re.compile(r"[(（\[][^)）\]]*[)）\]]|확인\s*필요")
 # 메모가 틀렸거나 모자란 건을 운영자가 확인해 준 값으로 바꿔 읽는다(원본 메모는 고치지 않음).
 # [{"folder": "일반\<원본 폴더>", "region": "경기도 수원시 권선구", "confirmed": "날짜 누가 확인"}]
 #   "region" 대신·함께 "memo": {"날짜": "2023-01-27", ...} 를 쓰면 그 칸을 덮어쓴다(표에 있는 칸만).
@@ -108,6 +114,47 @@ def assert_allowed(path: Path, src: Path) -> None:
         raise SystemExit(f"들어가면 안 되는 폴더입니다: {path}")
 
 
+def load_score(src: Path) -> dict[str, dict]:
+    """_점수표.csv 의 최종폴더(예: 일반\\20230826_9188) → 그 줄. 없으면 빈 dict."""
+    path = src / SCORE_NAME
+    if not path.exists():
+        return {}
+    with path.open(encoding="utf-8-sig", newline="") as f:
+        return {r["최종폴더"].strip().replace("/", "\\"): r for r in csv.DictReader(f) if (r.get("최종폴더") or "").strip()}
+
+
+def score_memo(row: dict) -> dict:
+    """점수표 한 줄 → 메모 칸. 꼬리표("(등록증)"·"(사진)"·"확인필요")는 떼고, 금액·차번호 칸은 점수표에 없고 읽지도 않는다."""
+    memo = {}
+    for col, key in SCORE_KEYS.items():
+        v = re.sub(r"\s+", " ", SCORE_TAG_RE.sub("", row.get(col) or "")).strip(" ,·/")
+        if v:
+            memo[key] = v
+    if "미상" in memo.get("지역", ""):
+        memo.pop("지역")
+    return memo
+
+
+def folder_memo(folder: Path, src: Path, score: dict[str, dict]) -> tuple[dict | None, str]:
+    """메모.txt 가 있으면 그것, 없으면 점수표 줄. (메모, 출처 "메모"/"점수표") — 둘 다 없으면 (None, "")."""
+    memo_path = next((folder / n for n in MEMO_NAMES if (folder / n).exists()), None)
+    if memo_path:
+        return parse_memo(read_text_any(memo_path)), "메모"
+    row = score.get(str(folder.relative_to(src)))
+    return (score_memo(row), "점수표") if row else (None, "")
+
+
+def score_folders(src: Path, tier: str, score: dict[str, dict]):
+    """점수표에 있는 이 tier 의 폴더 중 메모.txt 가 없는 것. 문자백업·제외 폴더는 들어가지 않는다."""
+    for rel in sorted(score):
+        parts = Path(rel).parts
+        if not parts or parts[0] != tier or any(blocked(x) for x in parts):
+            continue
+        folder = src / rel
+        if folder.is_dir() and not any((folder / n).exists() for n in MEMO_NAMES):
+            yield folder
+
+
 def case_folders(tier_dir: Path):
     """tier_dir 아래에서 메모.txt 가 있는 폴더. 문자백업·제외 폴더는 들어가지 않는다."""
     for dirpath, dirnames, filenames in os.walk(tier_dir):
@@ -123,6 +170,7 @@ def photo_files(folder: Path) -> list[Path]:
 VIDEO_EXT = {".mp4", ".mov", ".3gp", ".m4v"}
 FRAME_SKIP_TAIL = 5      # 영상 마지막 5초(지역·차종을 말하는 부분)는 사진으로 쓰지 않는다
 FRAME_CANDIDATES = 12    # 영상에서 뽑는 서로 다른 장면 후보 수(Claude 가 이 중 4장을 고름)
+MEMO_LINE_RE = re.compile(r"^\s*(날짜|지역|차종|연식|시동)\s*(여부)?\s*:")
 
 
 def not_spoken(p: Path) -> bool:
@@ -131,7 +179,8 @@ def not_spoken(p: Path) -> bool:
         first = p.read_text(encoding="utf-8-sig", errors="replace").lstrip().splitlines()[:1]
     except OSError:
         return False
-    return bool(first) and any(w in first[0] for w in ("등록증", "쓰지 말"))
+    # 메모 꼴 .txt("날짜: …", "지역: …", 2026-10-27 점수표 폴더에서 발견)도 대본이 아니다
+    return bool(first) and (any(w in first[0] for w in ("등록증", "쓰지 말")) or bool(MEMO_LINE_RE.match(first[0])))
 
 
 def spoken_file(folder: Path) -> Path | None:
@@ -288,25 +337,26 @@ def cmd_scan(args) -> None:
     gu_pages = {(r["sido"], r["sigungu"]) for r in regions}
 
     fixes = load_fixes()
+    score = load_score(src)
     cands, skipped, marked = [], [], 0
     for ti, tier in enumerate(TIERS):
         tier_dir = src / tier
         if not tier_dir.exists():
             continue
-        for folder in case_folders(tier_dir):
+        for folder in [*case_folders(tier_dir), *score_folders(src, tier, score)]:
             rel = str(folder.relative_to(src))
             if (folder / DONE_MARK).exists():
                 marked += 1
                 continue
-            memo_path = next(folder / n for n in MEMO_NAMES if (folder / n).exists())
             fix = fixes.get(rel.replace("/", "\\"))
             if fix and fix.get("hold"):
                 skipped.append((rel, f"보류: {fix['hold']}"))
                 continue
-            memo = apply_fix(parse_memo(read_text_any(memo_path)), fix)
+            memo, origin = folder_memo(folder, src, score)
+            memo = apply_fix(memo, fix)
             missing = [k for k in PC_REQUIRED if not memo.get(k)]
             if missing:
-                skipped.append((rel, f"메모에 {'·'.join(missing)} 없음"))
+                skipped.append((rel, f"{origin}에 {'·'.join(missing)} 없음"))
                 continue
             # 확인된 지역이 있으면 메모의 지역 대신 쓴다. stage 가 메모.txt 의 지역 칸을 이 결과로 다시 쓴다
             region, why = resolve_region((fix or {}).get("region") or memo["지역"], rows)
@@ -331,12 +381,13 @@ def cmd_scan(args) -> None:
             else:  # 동 없는 사례(시군구까지만 확인): 구 페이지에만 붙는다. 구 페이지가 없으면 cases/input 에서 기다린다
                 rank = 1 if gu_page_exists(region) else 2
             cands.append({
-                "tier": tier, "tier_i": ti, "rank": rank, "src": str(folder), "rel": rel,
+                "tier": tier, "tier_i": ti, "rank": rank, "src": str(folder), "rel": rel, "memo_from": origin,
                 "region": region, "car": body["car"], "photos": len(photos),
             })
 
     # 우선 → 일반. 같은 폴더 안에서는 동 페이지가 있는 건 → 같은 시군구 페이지가 있는 건 → 나머지
-    cands.sort(key=lambda c: (c["tier_i"], c["rank"], c["rel"]))
+    # 메모.txt 가 있는 폴더가 점수표로 읽은 폴더보다 먼저(2026-10-27)
+    cands.sort(key=lambda c: (c["memo_from"] == "점수표", c["tier_i"], c["rank"], c["rel"]))
     state = {"date": date.today().isoformat(), "src": str(src), "picks": {}}
     if args.more:  # 뺀(drop) 건을 채우기: 오늘 이미 고른 건은 두고 모자란 만큼만 더 고른다
         old = staging_state()
@@ -358,7 +409,8 @@ def cmd_scan(args) -> None:
             continue
         r = c["region"]
         lab = label[c["rank"]] if r["dong"] else gu_label[c["rank"]]
-        print(f"  {cid}: [{c['tier']}] {r['sigungu'] or r['sido']} {r['dong']} · {c['car']} · 사진 {c['photos']}장 · {lab}".replace("  ·", " ·"))
+        from_score = " · 점수표" if c.get("memo_from") == "점수표" else ""
+        print(f"  {cid}: [{c['tier']}] {r['sigungu'] or r['sido']} {r['dong']} · {c['car']} · 사진 {c['photos']}장 · {lab}{from_score}".replace("  ·", " ·"))
     for rel, why in skipped[:15]:
         print(f"  조건 미달: {rel} — {why}")
     if len(skipped) > 15:
@@ -489,10 +541,13 @@ def cmd_stage(args) -> None:
         raise SystemExit(f"{args.cid}: mask 를 먼저 하세요 (지금 상태 {c.get('status')})")
     src_folder = Path(c["src"])
     assert_allowed(src_folder, Path(state["src"]))
-    memo_path = next(src_folder / n for n in MEMO_NAMES if (src_folder / n).exists())
-    # 표에 있는 칸만 읽힘(고객명·연락처 등은 버려짐). 운영자가 확인해 준 칸은 덮어쓴다
-    rel = str(src_folder.relative_to(Path(state["src"])))
-    memo = apply_fix(parse_memo(read_text_any(memo_path)), load_fixes().get(rel.replace("/", "\\")))
+    # 표에 있는 칸만 읽힘(고객명·연락처 등은 버려짐). 메모.txt 가 없으면 점수표 줄. 운영자가 확인해 준 칸은 덮어쓴다
+    src = Path(state["src"])
+    rel = str(src_folder.relative_to(src))
+    memo, _ = folder_memo(src_folder, src, load_score(src))
+    if memo is None:
+        raise SystemExit(f"{args.cid}: 메모.txt 도 점수표 줄도 없습니다")
+    memo = apply_fix(memo, load_fixes().get(rel.replace("/", "\\")))
     r = c["region"]
     memo["지역"] = " ".join(x for x in (r["sido"], r["sigungu"], r["dong"]) if x)
     memo["차종"] = c["car"].split("년식 ", 1)[-1]

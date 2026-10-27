@@ -44,7 +44,7 @@ PC에서 하는 "사례 가져오기" 작업이다. 원본 사진·메모는 이
 3-5. `python scripts/inbox_cases.py apply gN` 을 묶음마다 실행한다(원본 우선/ 에 날짜_지역_차종 폴더를 만들고 옮김, 등록증은 지움, 보류 건은 인박스에 그대로). 이어서 `python scripts/inbox_cases.py report` 를 실행해 그 줄을 보고에 옮긴다(cases/input/인박스-확인-필요.md 도 다시 써짐).
 
 [고르기]
-4. (3-2 로 이어 하지 않을 때만) `python scripts/pc_cases.py scan` 을 실행한다. 우선/ → 일반/ 순서로, 지역·차종·연식·시동이 다 채워지고 반영됨.txt 가 없는 건 중 3건 또는 5건(c1~)을 고른다. 0건이면 3-5 의 cases/input/인박스-확인-필요.md 가 바뀌었을 때만 그 파일 하나를 `git add` → `git commit -m "Update inbox hold list (YYYY-MM-DD)"` → `git push origin main`(거절되면 pull --rebase 후 한 번 더) 하고, "실패: 0건, 이유: 가져올 사례 없음(조건 미달 N건)"이라고 보고하고 끝낸다(3시 보고가 확인 필요 차를 볼 수 있게).
+4. (3-2 로 이어 하지 않을 때만) `python scripts/pc_cases.py scan` 을 실행한다. 우선/ → 일반/ 순서로, 지역·차종·연식·시동이 다 채워지고 반영됨.txt 가 없는 건 중 3건 또는 5건(c1~)을 고른다. 메모 없으면 점수표 사용(2026-10-27): 메모.txt 가 없는 폴더는 scan 이 원본 맨 위 _점수표.csv 의 같은 폴더 줄(지역·차종·연식·시동·한줄이유)을 메모 대신 읽고, 메모 있는 폴더를 먼저 고른다(점수표를 직접 열지 않는다). 0건이면 3-5 의 cases/input/인박스-확인-필요.md 가 바뀌었을 때만 그 파일 하나를 `git add` → `git commit -m "Update inbox hold list (YYYY-MM-DD)"` → `git push origin main`(거절되면 pull --rebase 후 한 번 더) 하고, "실패: 0건, 이유: 가져올 사례 없음(조건 미달 N건)"이라고 보고하고 끝낸다(3시 보고가 확인 필요 차를 볼 수 있게).
 5. `python scripts/pc_cases.py prepare` 를 실행한다(.cases_staging/cN/ 에 p01.jpg… 미리보기와 sheet*.jpg 모아보기).
 
 [가리기 — 건마다]
