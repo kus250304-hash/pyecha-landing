@@ -141,6 +141,9 @@ GUIDES = [
     {
         "file": "조기폐차-지원-안내.html",
         "nav": "조기폐차 지원",
+        # 걱정 칸에 이 낱말이 있는 사례를 "같은 상황의 실제 사례"로 붙인다(2026-10-27 병한님, guide_cases)
+        "case_worry_words": ["조기폐차"],
+        "case_sub": "조기폐차부터 물어보신 손님 사례입니다. 지역은 카드마다 표시됩니다",
         "title": "노후 경유차 조기폐차 지원 안내",
         "h1": "노후 경유차 조기폐차 지원,<br>이렇게 확인하세요",
         "desc": "배출가스 4·5등급 경유차는 지자체 조기폐차 지원 대상일 수 있습니다. 대상 확인, 사전 신청과 승인, 폐차까지 순서와 주의할 점을 정리했습니다. 지원 금액은 공고와 상담 후 확인.",
@@ -530,12 +533,34 @@ def card_leak(c: dict) -> str:
     return m.group(0) if m else ""
 
 
+def guide_cases(g: dict, cases: list[dict]) -> list[dict]:
+    """안내 페이지 사례(2026-10-27): 걱정 칸에 case_worry_words 낱말이 있는 사례, 최신순 TOPIC_CASES_MAX 건.
+    주제 페이지와 같이 카드 글자에 전화번호·차번호·금액이 섞인 사례(card_leak)는 뺀다."""
+    words = g.get("case_worry_words") or []
+    hits = [c for c in cases if any(w in ((c.get("story") or {}).get("걱정") or "") for w in words) and not card_leak(c)]
+    return sorted(hits, key=lambda c: (case_date(c), c["slug"]), reverse=True)[:TOPIC_CASES_MAX]
+
+
+def guide_cases_html(g: dict, cases: list[dict], esc) -> str:
+    """안내 페이지 맨 아래 "같은 상황의 실제 사례" 칸. 붙은 사례가 없으면 칸을 그리지 않는다."""
+    from build_site import case_cards_html
+    picked = guide_cases(g, cases)
+    if not picked:
+        return ""
+    return ('  <section id="cases">\n    <div class="wrap">\n'
+            '      <h2 class="sec-title display">같은 상황의 실제 사례</h2>\n'
+            f'      <p class="sec-sub">{esc(g.get("case_sub") or "지역은 카드마다 표시됩니다")}</p>\n'
+            f'      {case_cards_html(picked, video=False)}\n'
+            '    </div>\n  </section>\n')
+
+
 def topic_cases(t: dict, cases: list[dict]) -> tuple[list[dict], list[tuple[str, str]]]:
     """주제에 붙는 사례 전부(손으로 고른 것 → 낱말이 맞는 사례 최신순)와 카드 글자 때문에 뺀 사례 [(slug, 이유)]."""
     by_slug = {c["slug"]: c for c in cases}
     manual = [by_slug[x] for x in t["cases"] if x in by_slug]
     words = t.get("case_words") or []
-    auto = sorted((c for c in cases if c not in manual and any(w in case_text(c) for w in words)),
+    skip = set(t.get("cases_skip") or [])  # 낱말은 맞지만 그 주제 예시로 어색해 뺀 사례(2026-10-27)
+    auto = sorted((c for c in cases if c not in manual and c["slug"] not in skip and any(w in case_text(c) for w in words)),
                   key=lambda c: (case_date(c), c["slug"]), reverse=True)
     picked, skipped = [], []
     for c in manual + auto:
@@ -737,7 +762,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], keep_dates: 
                 sections.append(section_html(i, h2, sub_, list(parts) + extra, esc))
             values.update({
                 "H1": esc(g["h1"]).replace("&lt;br&gt;", "<br>"), "LEAD": esc(g["lead"]), "CONTACT_LINE": tel_text(esc(contact_line)),
-                "SECTIONS_HTML": "".join(sections),
+                "SECTIONS_HTML": "".join(sections) + guide_cases_html(g, cases, esc),
                 "AFTER_FAQ": "", "BOTTOM_FORM": "", "SCRIPT": "", "OG_META": "", "POPULAR_HTML": "",
                 # 표가 있는 안내 페이지만 표 모양(.guide-table)을 넣는다(2026-10-22, 나머지 안내 페이지는 그대로)
                 "TOPIC_STYLE": TOPIC_STYLE + HOWTO_STYLE if any(k == "table" for *_, ps in g["sections"] for k, _ in ps) else "",

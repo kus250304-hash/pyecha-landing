@@ -25,6 +25,11 @@ TAIL_MAX = 16  # 띄어쓰기 빼고
 # 이유·확인·제목꼬리에 있으면 그 사례를 처리하지 않는다(한 건의 사례를 모든 차의 결과처럼 읽히게 하는 말)
 OVERCLAIM_RE = re.compile(r"이런 차는|같은 차는|항상|다 됩니다|전부")
 OVERCLAIM_KEYS = ("이유", "확인", "제목꼬리")
+# 개인 상담으로만 다루는 사정(2026-10-27 병한님): 법인 차·서류를 못 받음·차만 폐차·명의자와 연락 안 됨·서류 없이 진행.
+# 사례의 어느 칸(메모·고침·대본)에 있어도 그 사례를 처리하지 않는다(build_cases.banned_text). 블로그·쇼츠도 같은 규칙(글로만)
+# 폐차업 등록만 있어 매매·중고차 판매 대행처럼 읽히는 말은 쓰지 않는다(2026-10-27 병한님, build_cases.banned_text)
+SALE_RE = re.compile(r"매매|중고차로\s*(팔|판매)|중고\s*판매|팔아\s*(드|주)")
+PRIVATE_RE = re.compile(r"법인|서류\s*없이|서류\s*(를|가|는)?\s*(못|안\s*(주|받|나))|차만\s*(폐차|없|가져|처리)|명의자.{0,10}연락")
 # 예전 사례 70장에 똑같이 들어간 진행 방식 문장. 더 쓰지 않는다(처리 칸 글로 치지 않음)
 OLD_METHOD = ("차량 상태와 서류를 상담으로 확인하고, 폐차 처리와 수출 비교매입 중 이 차량 조건에 맞는 방법으로 "
               "협력업체와 연결해 진행했습니다.")
@@ -217,6 +222,8 @@ def similar_topic(c: dict) -> tuple[str, str]:
     text = topic_text(c)
     best = None
     for n, t in enumerate(topics.TOPICS):
+        if c.get("slug") in (t.get("cases_skip") or []):  # 그 주제 예시로 어색해 뺀 사례(2026-10-27)
+            continue
         pos = [text.find(w) for w in topics.CASE_WORDS.get(t["file"], []) if w in text]
         if pos and (best is None or (min(pos), n) < best[0]):
             best = ((min(pos), n), t)

@@ -344,6 +344,10 @@ def banned_text(text: str) -> str:
         return f"수출이 된다/안 된다는 단정 '{m.group(0)}' 이 있습니다"
     if m := CUSTOMER_RE.search(text):
         return f"고객 정보로 보이는 글 '{m.group(0)}' 이 있습니다(전화번호·차량번호·상세 주소 금지)"
+    if m := case_story.SALE_RE.search(text):
+        return f"매매·중고차 판매로 읽히는 말 '{m.group(0)}' 이 있습니다(폐차업 등록만 있어 쓰지 않음, 고른쪽은 폐차·수출·비교중)"
+    if m := case_story.PRIVATE_RE.search(text):
+        return f"개인 상담으로만 다루는 사정 '{m.group(0)}' 이 있습니다(법인 차·서류 없음·차만 폐차·명의자 연락 안 됨은 사례에 쓰지 않음)"
     return ""
 
 

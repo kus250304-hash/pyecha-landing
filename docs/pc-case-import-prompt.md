@@ -22,6 +22,8 @@ PC에서 하는 "사례 가져오기" 작업이다. 원본 사진·메모는 이
 - 하루 건수는 scan 이 정한다(밀린 대상이 3건보다 많은 동안 5건, 아니면 3건). scripts/, templates/, CLAUDE.md, docs/ 는 고치지 않는다. 예외: 15 단계의 scripts/naver_rank.py 가 쓰는 data/naver_rank/ 와 docs/naver-rank.md, 2-1 단계의 scripts/inquiry_log.py 가 고치는 docs/index-requests.md 와 data/population_dong.json(손으로 고치지 않는다).
 - 거래 기록부(C:\Users\AOMG\Documents\병한-업무위키\폐차\거래기록)는 scripts/inquiry_log.py 와 scripts/pc_cases.py(ledger·stage, 날짜 칸만)로만 읽는다. 직접 열지 않고, 전화·차번호·이름·금액은 어디에도 쓰지 않는다.
 - 통화 글자본(C:\Users\AOMG\Documents\통화녹음백업\_분석)은 8-1 단계의 걱정 후보를 찾을 때만 읽는다. 이름·전화번호·차번호·금액·주소는 옮기지 않는다.
+- 법인 차, 서류를 못 받는 경우, "차만 폐차", 명의자와 연락 안 됨, 서류 없이 진행 같은 사정은 개인 상담으로만 다루는 일이라 사례 칸·extra.json 어디에도 쓰지 않고, 통화 글자본에 이런 내용이 나오면 그 통화는 걱정 후보에서 뺀다(2026-10-27, build_cases.py 가 case_story.PRIVATE_RE 로 막음).
+- "매매", "중고차로 팔아 드림" 같은 말(폐차업 등록만 있음), 금액·돌려받은 돈·손해·세금 종류와 액수, 손님 나이·성별·형편은 사례 칸·extra.json·블로그·쇼츠 어디에도 쓰지 않는다. 고른쪽은 폐차·수출·비교중만(2026-10-27, case_story.SALE_RE 가 매매를 막음).
 
 [준비]
 1. `git rev-parse --show-toplevel` 로 지금 폴더가 pyecha-landing 저장소인지 확인한다. 아니면 멈추고 "실패: 0건, 이유: 저장소 폴더가 아님"이라고 보고한다.
