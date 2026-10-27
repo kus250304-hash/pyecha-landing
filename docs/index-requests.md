@@ -265,3 +265,16 @@
 - https://pyecha119.com/gu/%ED%95%A8%EC%96%91%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/함양군-폐차장.html (구글 할당량 초과)
 - https://pyecha119.com/gu/%EC%A6%9D%ED%8F%89%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/증평군-폐차장.html (구글 할당량 초과)
 - https://pyecha119.com/gu/%EC%9A%A9%EC%9D%B8%EC%8B%9C-%EC%B2%98%EC%9D%B8%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/용인시-처인구-폐차장.html (구글 할당량 초과)
+
+## 2026-10-28
+
+- https://pyecha119.com/gu/%EC%98%81%EC%B2%9C%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/영천시-폐차장.html (2026-10-28 사례가 새로 붙음(영천시 2001년식 테라칸))
+- https://pyecha119.com/gu/%EA%B2%BD%EC%82%B0%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/경산시-폐차장.html (2026-10-28 사례가 새로 붙음(경산시 2006년식 그랜드 카니발))
+- https://pyecha119.com/gu/%EC%95%88%EB%8F%99%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/안동시-폐차장.html (2026-10-28 사례가 새로 붙음(안동시 2012년식 제네시스 BH))
+- https://pyecha119.com/gu/%EA%B5%B0%EC%82%B0%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/군산시-폐차장.html (2026-10-28 사례가 새로 붙음(군산시 2009년식 뉴 모닝))
+- https://pyecha119.com/gu/%EB%B3%B4%EB%A0%B9%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/보령시-폐차장.html (2026-10-28 사례가 새로 붙음(보령시 2006년식 NF 쏘나타))
+- https://pyecha119.com/gu/%EC%83%81%EC%A3%BC%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/상주시-폐차장.html (2026-10-28 사례가 새로 붙음(상주시 2010년식 싼타페 CM))
+- https://pyecha119.com/gu/%EC%88%9C%EC%B2%9C%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/순천시-폐차장.html (2026-10-28 사례가 새로 붙음(순천시 2004년식 쏘렌토))
+- https://pyecha119.com/gu/%EA%B0%95%EB%A6%89%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/강릉시-폐차장.html (2026-10-28 사례가 새로 붙음(강릉시 2012년식 그랜드 스타렉스))
+- https://pyecha119.com/gu/%EC%99%84%EC%A3%BC%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/완주군-폐차장.html (2026-10-27 사례가 새로 붙음(완주군 2010년식 라세티 프리미어))
+- https://pyecha119.com/gu/%EC%88%98%EC%9B%90%EC%8B%9C-%ED%8C%94%EB%8B%AC%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/수원시-팔달구-폐차장.html (2026-10-27 요청 못 함 → 다시)

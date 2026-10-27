@@ -1,5 +1,482 @@
 [
  {
+  "slug": "case-20260911-gyeongbuk-yeongcheon-geumho",
+  "date": "2026-09-11",
+  "sido": "경상북도",
+  "sigungu": "영천시",
+  "dong": "금호읍",
+  "region_slug": null,
+  "car": "2001년식 테라칸",
+  "title": "금호읍 2001년식 테라칸 폐차·수출 비교 상담 사례",
+  "summary": "2001년식 테라칸 차량으로, 시동이 걸리지 않는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "테라칸"
+   ],
+   [
+    "연식",
+    "2001년식"
+   ],
+   [
+    "시동",
+    "안 걸림"
+   ]
+  ],
+  "situation": "2001년식 테라칸 차량으로, 시동이 걸리지 않는 상태였습니다. 뒤 범퍼 찌그러진 구형 대형 SUV",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20260911-gyeongbuk-yeongcheon-geumho-1.jpg",
+  "photos": [
+   "case-20260911-gyeongbuk-yeongcheon-geumho-1.jpg",
+   "case-20260911-gyeongbuk-yeongcheon-geumho-2.jpg",
+   "case-20260911-gyeongbuk-yeongcheon-geumho-3.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "걱정": "카센터에 세워 둔 차인데 시동이 안 걸려요. 조기폐차 지원 받을 수 있나요? 견인해서 가져가 주시나요?",
+   "확인": [
+    "시동 안 됨",
+    "카센터 마당에 세워 둔 상태",
+    "뒤 범퍼 찌그러짐"
+   ],
+   "고른쪽": "폐차",
+   "이유": "조기폐차 지원은 운행이 가능한지 확인을 받아야 하는데, 이 차는 시동이 안 걸려 대상이 될 수 없었습니다. 그래서 카센터로 견인차를 보내 일반 폐차로 진행했습니다",
+   "인수일": "2026-09-11",
+   "끝한줄": "카센터 마당까지 견인차가 가서 그대로 실어 갔습니다"
+  },
+  "depth": [
+   "걱정",
+   "확인",
+   "고른쪽",
+   "끝한줄"
+  ],
+  "thin": false,
+  "card_line": "카센터에 세워 둔 차인데 시동이 안 걸려요.",
+  "added": "2026-10-28"
+ },
+ {
+  "slug": "case-20260610-gyeongbuk-gyeongsan-sa",
+  "date": "2026-06-10",
+  "sido": "경상북도",
+  "sigungu": "경산시",
+  "dong": "사동",
+  "region_slug": null,
+  "car": "2006년식 그랜드 카니발",
+  "title": "사동 2006년식 그랜드 카니발 폐차·수출 비교 상담 사례",
+  "summary": "2006년식 그랜드 카니발 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "그랜드 카니발"
+   ],
+   [
+    "연식",
+    "2006년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2006년식 그랜드 카니발 차량으로, 시동은 걸리는 상태였습니다. 외관 깨끗한 흰색 11인승 카니발",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20260610-gyeongbuk-gyeongsan-sa-1.jpg",
+  "photos": [
+   "case-20260610-gyeongbuk-gyeongsan-sa-1.jpg",
+   "case-20260610-gyeongbuk-gyeongsan-sa-2.jpg",
+   "case-20260610-gyeongbuk-gyeongsan-sa-3.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "걱정": "저감장치(DPF)를 단 차인데, 조기폐차 지원 받을 수 있나요?",
+   "확인": [
+    "매연 저감장치(DPF) 부착",
+    "주행거리 많음",
+    "여기저기 고장이 잦은 상태"
+   ],
+   "고른쪽": "폐차",
+   "이유": "조기폐차 지원 조건을 확인해 보니, 이 차는 저감장치(DPF)를 지원받아 단 이력 때문에 대상이 아니었습니다. 주행거리가 많고 고장이 잦아 수출보다 일반 폐차가 맞았습니다",
+   "인수일": "2026-06-10",
+   "끝한줄": "조기폐차가 되는지부터 확인하고, 안 되는 이유를 설명드린 뒤 일반 폐차로 정리했습니다"
+  },
+  "depth": [
+   "걱정",
+   "확인",
+   "고른쪽",
+   "끝한줄"
+  ],
+  "thin": false,
+  "card_line": "저감장치(DPF)를 단 차인데, 조기폐차 지원 받을 수 있나요?",
+  "added": "2026-10-28"
+ },
+ {
+  "slug": "case-20260306-gyeongbuk-andong-unan",
+  "date": "2026-03-06",
+  "sido": "경상북도",
+  "sigungu": "안동시",
+  "dong": "운안동",
+  "region_slug": null,
+  "car": "2012년식 제네시스 BH",
+  "title": "운안동 2012년식 제네시스 BH 폐차·수출 비교 상담 사례",
+  "summary": "2012년식 제네시스 BH 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "제네시스 BH"
+   ],
+   [
+    "연식",
+    "2012년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2012년식 제네시스 BH 차량으로, 시동은 걸리는 상태였습니다. 앞휀더 찌그러진 은색 제네시스 BH",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20260306-gyeongbuk-andong-unan-1.jpg",
+  "photos": [
+   "case-20260306-gyeongbuk-andong-unan-1.jpg",
+   "case-20260306-gyeongbuk-andong-unan-2.jpg",
+   "case-20260306-gyeongbuk-andong-unan-3.jpg",
+   "case-20260306-gyeongbuk-andong-unan-4.jpg",
+   "case-20260306-gyeongbuk-andong-unan-5.jpg",
+   "case-20260306-gyeongbuk-andong-unan-6.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "걱정": "제네시스라 수출로 보내면 더 받을 수 있지 않나요? 그런데 과태료가 많이 밀려 있어요.",
+   "확인": [
+    "앞 휀더 찌그러짐",
+    "과태료·압류가 많이 쌓인 상태",
+    "시동됨"
+   ],
+   "고른쪽": "폐차",
+   "이유": "차종으로는 수출을 알아볼 만한 차였지만, 과태료가 많이 쌓여 있어 수출로 진행하기 어려웠습니다. 밀린 과태료를 먼저 정리하지 않아도 되는 폐차로 진행했습니다",
+   "인수일": "2026-03-06",
+   "끝한줄": "수출과 폐차를 같이 따져 보고, 손님이 바로 정리할 수 있는 쪽으로 마무리했습니다"
+  },
+  "depth": [
+   "걱정",
+   "확인",
+   "고른쪽",
+   "끝한줄"
+  ],
+  "thin": false,
+  "card_line": "제네시스라 수출로 보내면 더 받을 수 있지 않나요?",
+  "added": "2026-10-28"
+ },
+ {
+  "slug": "case-20250828-jeonbuk-gunsan-gaejeong",
+  "date": "2025-08-28",
+  "sido": "전북특별자치도",
+  "sigungu": "군산시",
+  "dong": "개정면",
+  "region_slug": null,
+  "car": "2009년식 뉴 모닝",
+  "title": "개정면 2009년식 뉴 모닝 폐차·수출 비교 상담 사례",
+  "summary": "2009년식 뉴 모닝 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "뉴 모닝"
+   ],
+   [
+    "연식",
+    "2009년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "문의 내용",
+    "외관 깨끗한 은색 뉴 모닝"
+   ]
+  ],
+  "situation": "2009년식 뉴 모닝 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20250828-jeonbuk-gunsan-gaejeong-1.jpg",
+  "photos": [
+   "case-20250828-jeonbuk-gunsan-gaejeong-1.jpg",
+   "case-20250828-jeonbuk-gunsan-gaejeong-2.jpg",
+   "case-20250828-jeonbuk-gunsan-gaejeong-3.jpg",
+   "case-20250828-jeonbuk-gunsan-gaejeong-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "걱정": "가게를 정리하면서 차도 정리하려는데, 과태료가 많이 밀려 있어요. 이래도 폐차가 되나요?",
+   "확인": [
+    "과태료·압류가 많이 쌓인 상태",
+    "시동됨",
+    "외관 양호"
+   ],
+   "고른쪽": "폐차",
+   "이유": "과태료와 압류가 많아 일반 말소가 어려워, 차령초과말소로 진행했습니다",
+   "인수일": "2025-08-28",
+   "끝한줄": "밀린 과태료 때문에 막혀 있던 차를 차령초과말소로 정리해 드렸습니다"
+  },
+  "depth": [
+   "걱정",
+   "확인",
+   "고른쪽",
+   "끝한줄"
+  ],
+  "thin": false,
+  "card_line": "가게를 정리하면서 차도 정리하려는데, 과태료가 많이 밀려 있어요.",
+  "added": "2026-10-28"
+ },
+ {
+  "slug": "case-20241210-chungnam-boryeong-myeongcheon",
+  "date": "2024-12-10",
+  "sido": "충청남도",
+  "sigungu": "보령시",
+  "dong": "명천동",
+  "region_slug": null,
+  "car": "2006년식 NF 쏘나타",
+  "title": "명천동 2006년식 NF 쏘나타 폐차·수출 비교 상담 사례",
+  "summary": "2006년식 NF 쏘나타 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "NF 쏘나타"
+   ],
+   [
+    "연식",
+    "2006년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2006년식 NF 쏘나타 차량으로, 시동은 걸리는 상태였습니다. 트렁크·뒷범퍼 찌그러진 영업용 NF 쏘나타",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20241210-chungnam-boryeong-myeongcheon-1.jpg",
+  "photos": [
+   "case-20241210-chungnam-boryeong-myeongcheon-1.jpg",
+   "case-20241210-chungnam-boryeong-myeongcheon-2.jpg",
+   "case-20241210-chungnam-boryeong-myeongcheon-3.jpg",
+   "case-20241210-chungnam-boryeong-myeongcheon-4.jpg",
+   "case-20241210-chungnam-boryeong-myeongcheon-5.jpg",
+   "case-20241210-chungnam-boryeong-myeongcheon-6.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "걱정": "다른 중고차를 새로 샀어요. 오래 탄 이 차는 폐차하려는데 어떻게 하면 되나요?",
+   "확인": [
+    "오래 타 온 영업용 차",
+    "뒷범퍼 찌그러짐",
+    "시동됨"
+   ],
+   "고른쪽": "폐차",
+   "이유": "오래 타서 연식과 주행이 많고, 새 차를 이미 마련하셔서 정리하는 쪽으로 일반 폐차를 진행했습니다",
+   "인수일": "2024-12-10",
+   "끝한줄": "새 차로 바꾸시면서 오래 탄 차를 깔끔하게 정리해 드렸습니다"
+  },
+  "depth": [
+   "걱정",
+   "확인",
+   "고른쪽",
+   "끝한줄"
+  ],
+  "thin": false,
+  "card_line": "다른 중고차를 새로 샀어요.",
+  "added": "2026-10-28"
+ },
+ {
+  "slug": "case-20230904-gyeongbuk-sangju",
+  "date": "2023-09-04",
+  "sido": "경상북도",
+  "sigungu": "상주시",
+  "dong": "",
+  "region_slug": null,
+  "car": "2010년식 싼타페 CM",
+  "title": "상주시 2010년식 싼타페 CM 폐차·수출 비교 상담 사례",
+  "summary": "2010년식 싼타페 CM 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "싼타페 CM"
+   ],
+   [
+    "연식",
+    "2010년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2010년식 싼타페 CM 차량으로, 시동은 걸리는 상태였습니다. 폐차장 입고된 흰색 싼타페 CM",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230904-gyeongbuk-sangju-1.jpg",
+  "photos": [
+   "case-20230904-gyeongbuk-sangju-1.jpg",
+   "case-20230904-gyeongbuk-sangju-2.jpg",
+   "case-20230904-gyeongbuk-sangju-3.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "걱정": "차를 바꾸면서 이 차는 조기폐차하려는데, 절차가 복잡해서 어떻게 해야 할지 모르겠어요.",
+   "확인": [
+    "2010년식 싼타페 CM",
+    "시동됨",
+    "조기폐차 대상 확인"
+   ],
+   "고른쪽": "폐차",
+   "이유": "조기폐차 지원 대상인 차라, 신청부터 폐차·말소까지 처음부터 끝까지 대신 진행해 드렸습니다",
+   "인수일": "2023-09-04",
+   "끝한줄": "복잡한 조기폐차 절차를 손님이 따로 신경 쓰지 않도록 마무리까지 맡아 처리했습니다"
+  },
+  "depth": [
+   "걱정",
+   "확인",
+   "고른쪽",
+   "끝한줄"
+  ],
+  "thin": false,
+  "card_line": "차를 바꾸면서 이 차는 조기폐차하려는데, 절차가 복잡해서 어떻게 해야 할지 모르겠어요.",
+  "added": "2026-10-28"
+ },
+ {
+  "slug": "case-20230826-jeonnam-suncheon-yeonhyang",
+  "date": "2023-08-26",
+  "sido": "전남광주통합특별시",
+  "sigungu": "순천시",
+  "dong": "연향동",
+  "region_slug": null,
+  "car": "2004년식 쏘렌토",
+  "title": "연향동 2004년식 쏘렌토 폐차·수출 비교 상담 사례",
+  "summary": "2004년식 쏘렌토 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "쏘렌토"
+   ],
+   [
+    "연식",
+    "2004년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2004년식 쏘렌토 차량으로, 시동은 걸리는 상태였습니다. 주행 23만km대 구형 SUV",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230826-jeonnam-suncheon-yeonhyang-1.jpg",
+  "photos": [
+   "case-20230826-jeonnam-suncheon-yeonhyang-1.jpg",
+   "case-20230826-jeonnam-suncheon-yeonhyang-2.jpg",
+   "case-20230826-jeonnam-suncheon-yeonhyang-3.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "걱정": "연식도 오래되고 23만km 넘게 타서 잔고장이 계속 나요. 고쳐 타는 것보다 정리하는 게 낫겠죠?",
+   "확인": [
+    "주행 23만km대",
+    "잔고장이 잦은 상태",
+    "시동됨"
+   ],
+   "고른쪽": "폐차",
+   "이유": "수리비가 계속 들어가는 차라, 다른 중고차로 바꾸시면서 이 차는 일반 폐차로 정리했습니다",
+   "인수일": "2023-08-26",
+   "끝한줄": "잔고장에 지치셨던 차를 차 바꾸시는 날에 맞춰 정리해 드렸습니다"
+  },
+  "depth": [
+   "걱정",
+   "확인",
+   "고른쪽",
+   "끝한줄"
+  ],
+  "thin": false,
+  "card_line": "연식도 오래되고 23만km 넘게 타서 잔고장이 계속 나요.",
+  "added": "2026-10-28"
+ },
+ {
+  "slug": "case-20230516-gangwon-gangneung-gyeonso",
+  "date": "2023-05-16",
+  "sido": "강원특별자치도",
+  "sigungu": "강릉시",
+  "dong": "견소동",
+  "region_slug": null,
+  "car": "2012년식 그랜드 스타렉스",
+  "title": "견소동 2012년식 그랜드 스타렉스 폐차·수출 비교 상담 사례",
+  "summary": "2012년식 그랜드 스타렉스 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "그랜드 스타렉스"
+   ],
+   [
+    "연식",
+    "2012년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2012년식 그랜드 스타렉스 차량으로, 시동은 걸리는 상태였습니다. 외관 양호한 그랜드 스타렉스 승합",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230516-gangwon-gangneung-gyeonso-1.jpg",
+  "photos": [
+   "case-20230516-gangwon-gangneung-gyeonso-1.jpg",
+   "case-20230516-gangwon-gangneung-gyeonso-2.jpg",
+   "case-20230516-gangwon-gangneung-gyeonso-3.jpg",
+   "case-20230516-gangwon-gangneung-gyeonso-4.jpg",
+   "case-20230516-gangwon-gangneung-gyeonso-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "걱정": "차가 깨끗하고 주행도 많지 않은데, 폐차 말고 더 나은 방법은 없을까요?",
+   "확인": [
+    "외관 깨끗함",
+    "주행거리 많지 않음",
+    "진행 중 압류가 새로 확인됨"
+   ],
+   "고른쪽": "폐차",
+   "이유": "상태가 좋아 폐차보다 나은 쪽을 먼저 알아봤는데, 진행 중에 압류가 새로 확인됐습니다. 압류를 먼저 풀어야 하는 부담을 손님이 지지 않도록, 상의해서 폐차로 바로 정리했습니다",
+   "인수일": "2023-05-16",
+   "끝한줄": "갑자기 생긴 압류에도 손님이 따로 처리할 일 없이 차를 정리할 수 있게 마무리했습니다"
+  },
+  "depth": [
+   "걱정",
+   "확인",
+   "고른쪽",
+   "끝한줄"
+  ],
+  "thin": false,
+  "card_line": "차가 깨끗하고 주행도 많지 않은데, 폐차 말고 더 나은 방법은 없을까요?",
+  "added": "2026-10-28"
+ },
+ {
   "slug": "case-20261024-jeonbuk-wanju-bongdong",
   "date": "2026-10-24",
   "sido": "전북특별자치도",
