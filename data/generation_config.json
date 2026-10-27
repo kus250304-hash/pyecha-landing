@@ -1,8 +1,8 @@
 {
   "_comment": "자동 생성 루틴 설정. daily_count(동 페이지)·gu_daily_count(구 페이지) 숫자만 바꾸면 하루 생성 개수가 바뀝니다(루틴 프롬프트는 건드릴 필요 없음). include_myeon 을 true 로 하면 면(面) 단위도 생성 대상에 넣습니다.",
-  "daily_count": 3,
+  "daily_count": 0,
   "dong_rule": "inquiry_rural",
-  "_dong_comment": "2026-10-20 병한님 결정(docs/roadmap.md 13절): 동 페이지 하루 3장이 상한이자 기본(시간이 모자라도 더 줄이지 않음). dong_rule inquiry_rural = ① docs/index-requests.md '문의가 온 페이지' 시·군의 동(동 페이지 없는 법정동, 인구 많은 순) ② priority_regions.json 상위 지방 시·군 중 동 페이지 0~2장인 곳. 둘 다 없으면 그날 동 0장(scripts/pick_next_regions.py).",
+  "_dong_comment": "2026-10-27 3주 실험: 동 페이지 생산 중단, 시간은 사례 투입으로(docs/weekly-rank-log.md, 2026-10-27~11-17). 2026-10-20 병한님 결정(docs/roadmap.md 13절): 동 페이지 하루 3장이 상한이자 기본(시간이 모자라도 더 줄이지 않음). dong_rule inquiry_rural = ① docs/index-requests.md '문의가 온 페이지' 시·군의 동(동 페이지 없는 법정동, 인구 많은 순) ② priority_regions.json 상위 지방 시·군 중 동 페이지 0~2장인 곳. 둘 다 없으면 그날 동 0장(scripts/pick_next_regions.py).",
   "small_si_gun_daily_count": 0,
   "_small_comment": "2026-10-15부터 0(동 10개는 모두 priority_regions.json 순으로 뽑아 구 페이지 조건(동 3개)을 채운다). 예전에는 인구 30만 이하 시·군 몫 10개(scripts/pick_next_regions.py).",
   "gu_daily_count": 20,

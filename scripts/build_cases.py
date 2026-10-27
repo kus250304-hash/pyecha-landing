@@ -30,7 +30,7 @@ import re
 import shutil
 import subprocess
 import sys
-from datetime import date
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -51,6 +51,9 @@ CONFIG_PATH = ROOT / "data" / "site_config.json"
 # 사례 글 고침 통로(2026-10-23): [{"slug": "case-…" 또는 "folder": "<cases/input 폴더 이름>", "memo": {"걱정": "…"}, "confirmed": "…"}]
 # memo 에는 case_story.STORY_KEYS 칸만 받는다. build_cases.py 가 돌 때마다 적용한다(slug 는 이미 만든 사례, folder 는 올라온 폴더)
 TEXT_FIXES = ROOT / "data" / "case_text_fixes.json"
+# 3주 실험(2026-10-27~11-17, docs/weekly-rank-log.md): 기간 중 B 지역 새 사례는 붙이지 않고 cases/input 에서 기다린다
+EXPERIMENT_AB = ROOT / "data" / "experiment_ab.json"
+KST = timezone(timedelta(hours=9))
 SCRIPTS = ROOT / "scripts"
 
 MEMO_NAMES = ("메모.txt", "memo.txt")
@@ -372,6 +375,15 @@ def gu_page_exists(c: dict) -> bool:
     """이 사례의 구 페이지(/gu/)가 지금 있는지. 동 없는 사례는 구 페이지가 생길 때까지 cases/input 에서 기다린다."""
     from build_site import GU_DATA, gu_slug
     return gu_slug(c["sido"], c["sigungu"]) in {g["slug"] for g in load_json(GU_DATA, default=[])}
+
+
+def experiment_b_hold(c: dict) -> bool:
+    """오늘(한국 시간)이 실험 기간 안이고 이 사례가 B 지역(시·도 + 시군구)이면 True. 이미 붙은 사례는 건드리지 않는다."""
+    exp = load_json(EXPERIMENT_AB, default={}) or {}
+    today = datetime.now(KST).strftime("%Y-%m-%d")
+    if not (exp.get("start", "") <= today <= exp.get("end", "")):
+        return False
+    return any(c["sido"] == b["sido"] and c["sigungu"] == b["sigungu"] for b in exp.get("B", []))
 
 
 def page_slugs_by_region() -> dict[tuple[str, str, str], str]:
@@ -761,6 +773,11 @@ def main() -> None:
             waiting.append(folder.name)
             print(f"대기 {folder.name}: {r['sigungu'] or r['sido']} 사례(동 없음). 구 페이지가 아직 없어 cases/input 에 둡니다. 구 페이지가 생기면 다음 실행 때 자동으로 붙습니다")
             continue
+        if info and experiment_b_hold(info["region"]):
+            r = info["region"]
+            waiting.append(folder.name)
+            print(f"대기(실험 B) {folder.name}: {r['sigungu']} 사례. 3주 실험 B 지역이라 기간 끝(data/experiment_ab.json)까지 cases/input 에 둡니다")
+            continue
         c = process_folder(folder, rows, page_slugs, used_slugs)
         if not c:
             skipped += 1
@@ -796,7 +813,7 @@ def main() -> None:
                 print(line)
         if result.returncode != 0:
             sys.exit(result.returncode)
-    print(f"완료: 사례 {len(done)}건 처리, {skipped}건 건너뜀, {len(waiting)}건 구 페이지 대기")
+    print(f"완료: 사례 {len(done)}건 처리, {skipped}건 건너뜀, {len(waiting)}건 대기(구 페이지·실험 B)")
     if skipped:
         sys.exit(1)
 

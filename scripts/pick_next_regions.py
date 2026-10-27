@@ -333,6 +333,10 @@ def main() -> None:
     if out_path.exists():
         print(f"이미 있음: {out_path.relative_to(ROOT)} — 이 파일을 채워서 import_batch.py 로 넘기세요")
         return
+    if count <= 0:  # 2026-10-27 3주 실험처럼 동 페이지 생산을 멈춘 날
+        print("오늘 만들 동 없음: daily_count 0 (generation_config.json, 동 페이지 생산 중단)")
+        print("배치 파일을 만들지 않음 → 동 단계(5~7번)를 건너뛰고 구 페이지 단계로")
+        return
     regions = json.loads(REGIONS_PATH.read_text(encoding="utf-8"))
     rule = cfg.get("dong_rule", "")
     picked = pick(regions, count, bool(cfg.get("include_myeon", False)),
