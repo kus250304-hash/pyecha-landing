@@ -1,5 +1,5 @@
 {
- "date": "2026-10-26",
+ "date": "2026-10-27",
  "rival": [
   {
    "slug": "chungnam-asan",
@@ -29,7 +29,13 @@
    "slug": "jeonbuk-gunsan",
    "sido": "전북특별자치도",
    "sigungu": "군산시",
-   "query": "군산폐차"
+   "query": "군산폐차장"
+  },
+  {
+   "slug": "gyeonggi-pyeongtaek",
+   "sido": "경기도",
+   "sigungu": "평택시",
+   "query": "평택폐차"
   },
   {
    "slug": "gyeongbuk-gyeongsan",
@@ -104,22 +110,16 @@
    "query": "속초폐차"
   },
   {
-   "slug": "jeonnam-yeosu",
-   "sido": "전남광주통합특별시",
-   "sigungu": "여수시",
-   "query": "여수폐차장"
-  },
-  {
    "slug": "gyeongbuk-sangju",
    "sido": "경상북도",
    "sigungu": "상주시",
    "query": "상주폐차장"
   },
   {
-   "slug": "gyeonggi-uijeongbu",
-   "sido": "경기도",
-   "sigungu": "의정부시",
-   "query": "의정부폐차장"
+   "slug": "gyeongbuk-yeongju",
+   "sido": "경상북도",
+   "sigungu": "영주시",
+   "query": "영주폐차"
   }
  ],
  "empty": [
@@ -200,11 +200,11 @@
    ]
   },
   {
-   "slug": "gyeongnam-milyang",
-   "sido": "경상남도",
-   "sigungu": "밀양시",
+   "slug": "jeonnam-naju",
+   "sido": "전남광주통합특별시",
+   "sigungu": "나주시",
    "queries": [
-    "밀양폐차"
+    "나주폐차"
    ]
   },
   {
@@ -241,11 +241,11 @@
    ]
   },
   {
-   "slug": "gyeongnam-changnyeong",
-   "sido": "경상남도",
-   "sigungu": "창녕군",
+   "slug": "gyeonggi-gwangmyeong",
+   "sido": "경기도",
+   "sigungu": "광명시",
    "queries": [
-    "창녕폐차"
+    "광명폐차"
    ]
   },
   {
@@ -330,6 +330,14 @@
    ]
   },
   {
+   "slug": "jeonnam-damyang",
+   "sido": "전남광주통합특별시",
+   "sigungu": "담양군",
+   "queries": [
+    "담양폐차"
+   ]
+  },
+  {
    "slug": "gyeongnam-sancheong",
    "sido": "경상남도",
    "sigungu": "산청군",
@@ -375,6 +383,14 @@
    "sigungu": "양구군",
    "queries": [
     "양구폐차"
+   ]
+  },
+  {
+   "slug": "jeonnam-goheung",
+   "sido": "전남광주통합특별시",
+   "sigungu": "고흥군",
+   "queries": [
+    "고흥폐차"
    ]
   },
   {
