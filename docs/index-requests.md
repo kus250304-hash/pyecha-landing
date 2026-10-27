@@ -4,7 +4,7 @@
 
 - 매일 루틴이 `python3 scripts/pick_index_requests.py --write` 로 그날 요청할 10개(2026-10-22부터, 2026-10-20~21 은 5개)를 골라 아래에 날짜와 함께 덧붙이고, 아침 보고(오전 6시 55분) 맨 끝 "오늘 색인 요청 10개 — 구글 URL 검사와 네이버 웹 페이지 수집에 같은 주소를 넣습니다"에 주소 하나당 코드 상자 하나씩 적습니다.
 - 2026-10-22부터 같은 10개를 네이버 서치어드바이저 요청 > 웹 페이지 수집에도 넣는다(따로 고르지 않음).
-- 고르는 순서(2026-10-20): ① 아래 "최우선" 칸 주소 중 아직 요청 안 된 것 ② 아래 "문의가 온 페이지"와 같은 시·군의 구·시군 페이지(문의 온 곳이 여럿이면 번갈아) ③ 시·도 페이지 14장 중 아직 요청 안 된 것 ④ 점수표(`docs/region-priority-2026-10-15.md`) 순위 높은 지방 시·군 구 페이지. 동 페이지(/pages/)는 어떤 경우에도 고르지 않습니다. 날짜 칸에 이미 있는 주소는 다시 고르지 않습니다. 단, 바로 앞 날짜 칸 제목에 "요청 못 함"이 있으면(할당량 초과 등) 그 칸의 같은 주소들을 다음 날 다시 맨 앞에 올립니다.
+- 고르는 순서(2026-10-20): ① 아래 "최우선" 칸 주소 중 아직 요청 안 된 것 ② 아래 "문의가 온 페이지"와 같은 시·군의 구·시군 페이지(문의 온 곳이 여럿이면 번갈아) ③ 시·도 페이지 14장 중 아직 요청 안 된 것 ④ 점수표(`docs/region-priority-2026-10-15.md`) 순위 높은 지방 시·군 구 페이지. 동 페이지(/pages/)는 어떤 경우에도 고르지 않습니다. 날짜 칸에 이미 있는 주소는 다시 고르지 않습니다. 단, 바로 앞 날짜 칸 제목에 "요청 못 함"이 있으면(할당량 초과 등) 그 칸의 같은 주소들을 다음 날 다시 맨 앞에 올립니다. 3주 실험 기간(`data/experiment_ab.json` start~end) 동안 A·B 20곳 구 페이지는 루틴이 고르지 않습니다(A·B 같은 날 손으로만, 2026-10-27).
 - 문의가 온 페이지를 한 줄 더할 때 `python3 scripts/population_stats.py dong <시·군>` 도 돌려 둡니다(그 시·군의 동을 인구 많은 순으로 고르는 데 씀, 매일 루틴의 동 3장 규칙 ①).
 - 네이버·공용 IndexNow 자동 전송(`scripts/indexnow.py`)은 이와 따로 그대로 돕니다.
 
@@ -232,3 +232,34 @@
 - https://pyecha119.com/gu/%EC%B9%A0%EA%B3%A1%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/칠곡군-폐차장.html (빈 땅(칠곡군 · 칠곡폐차))
 - https://pyecha119.com/gu/%EC%9E%A5%EC%84%B1%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/장성군-폐차장.html (빈 땅(장성군 · 장성폐차))
 - https://pyecha119.com/gu/%ED%95%A8%EC%95%88%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/함안군-폐차장.html (빈 땅(함안군 · 함안폐차))
+
+## 2026-10-27 추가 요청(손으로)
+
+- https://pyecha119.com/gu/%ED%8F%89%ED%83%9D%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/평택시-폐차장.html (병한님 직접)
+- https://pyecha119.com/gu/%EC%96%91%EC%A3%BC%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/양주시-폐차장.html (병한님 직접)
+- https://pyecha119.com/gu/%ED%8C%8C%EC%A3%BC%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/파주시-폐차장.html (병한님 직접)
+- https://pyecha119.com/gu/%EC%95%88%EC%84%B1%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/안성시-폐차장.html (병한님 직접)
+- https://pyecha119.com/gu/%EC%95%88%EC%82%B0%EC%8B%9C-%EC%83%81%EB%A1%9D%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/안산시-상록구-폐차장.html (병한님 직접)
+- https://pyecha119.com/gu/%EA%B9%80%ED%8F%AC%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/김포시-폐차장.html (병한님 직접)
+- https://pyecha119.com/gu/%EC%95%88%EC%82%B0%EC%8B%9C-%EB%8B%A8%EC%9B%90%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/안산시-단원구-폐차장.html (병한님 직접)
+- https://pyecha119.com/gu/%EB%82%A8%EC%96%91%EC%A3%BC%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/남양주시-폐차장.html (병한님 직접)
+- https://pyecha119.com/gu/%EC%8B%9C%ED%9D%A5%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/시흥시-폐차장.html (병한님 직접)
+- https://pyecha119.com/gu/%EC%98%A4%EC%82%B0%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/오산시-폐차장.html (병한님 직접)
+- https://pyecha119.com/gu/%EC%9D%B4%EC%B2%9C%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/이천시-폐차장.html (병한님 직접)
+- https://pyecha119.com/gu/%EC%9D%98%EC%A0%95%EB%B6%80%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/의정부시-폐차장.html (병한님 직접)
+- https://pyecha119.com/gu/%EA%B5%B0%ED%8F%AC%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/군포시-폐차장.html (병한님 직접)
+- https://pyecha119.com/gu/%EC%95%88%EC%96%91%EC%8B%9C-%EB%8F%99%EC%95%88%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/안양시-동안구-폐차장.html (병한님 직접)
+- https://pyecha119.com/gu/%EC%95%88%EC%96%91%EC%8B%9C-%EB%A7%8C%EC%95%88%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/안양시-만안구-폐차장.html (병한님 직접)
+- https://pyecha119.com/gu/%EC%88%98%EC%9B%90%EC%8B%9C-%EC%98%81%ED%86%B5%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/수원시-영통구-폐차장.html (병한님 직접)
+- https://pyecha119.com/gu/%EC%88%98%EC%9B%90%EC%8B%9C-%EC%9E%A5%EC%95%88%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/수원시-장안구-폐차장.html (병한님 직접)
+- https://pyecha119.com/gu/%EC%88%98%EC%9B%90%EC%8B%9C-%EA%B6%8C%EC%84%A0%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/수원시-권선구-폐차장.html (병한님 직접)
+
+## 2026-10-27 — 요청 못 함(할당량 초과)
+
+- https://pyecha119.com/gu/%EC%88%98%EC%9B%90%EC%8B%9C-%ED%8C%94%EB%8B%AC%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/수원시-팔달구-폐차장.html (구글 할당량 초과)
+- https://pyecha119.com/gu/%ED%8F%AC%EC%B2%9C%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/포천시-폐차장.html (구글 할당량 초과)
+- https://pyecha119.com/gu/%ED%95%98%EB%82%A8%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/하남시-폐차장.html (구글 할당량 초과)
+- https://pyecha119.com/gu/%EA%B4%91%EB%AA%85%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/광명시-폐차장.html (구글 할당량 초과)
+- https://pyecha119.com/gu/%ED%95%A8%EC%96%91%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/함양군-폐차장.html (구글 할당량 초과)
+- https://pyecha119.com/gu/%EC%A6%9D%ED%8F%89%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/증평군-폐차장.html (구글 할당량 초과)
+- https://pyecha119.com/gu/%EC%9A%A9%EC%9D%B8%EC%8B%9C-%EC%B2%98%EC%9D%B8%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/용인시-처인구-폐차장.html (구글 할당량 초과)

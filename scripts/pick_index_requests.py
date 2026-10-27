@@ -16,7 +16,8 @@
      또는 마지막 요청 날짜 뒤에 본문 해시 날짜(data/page_hashes.json lastmod)가 바뀐 것(내용이 그대로면 다시 고르지 않음)
   ③ 시·도 페이지(/si/, data/si.json 순서) 중 아직 요청 안 된 것
   ④ 점수표(data/priority_regions.json) 순위 높은 지방 시·군(build_gu.min_dong_pages 가 0)의 구 페이지
-  동 페이지(/pages/)는 어떤 경우에도 고르지 않는다. 날짜 칸("## 2026-10-18" 등)에 있는 주소는 요청한 것으로 보고 뺀다
+  동 페이지(/pages/)는 어떤 경우에도 고르지 않는다. 3주 실험 기간(data/experiment_ab.json 의 start~end) 동안
+  A·B 20곳의 구 페이지도 ⓪~④ 어디서도 고르지 않는다(색인 요청은 A·B 같은 날 손으로만, 2026-10-27 병한님). 날짜 칸("## 2026-10-18" 등)에 있는 주소는 요청한 것으로 보고 뺀다
   (제목에 "요청 못 함"이 있는 칸은 요청 안 한 것). 주소는 %인코딩한 전체 주소.
   오늘 날짜 칸이 이미 "요청 못 함"으로 적혀 있으면 --write 도 같은 표시를 단 칸으로 덧붙인다.
 """
@@ -114,8 +115,14 @@ def main() -> None:
 
     gu_keys = {(g["sido"], g["sigungu"]) for g in gu_data}
     ordered: list[tuple[str, str]] = []
+    # 3주 실험 A·B 20곳(2026-10-27): 기간 안에는 고르지 않는다. 병한님이 A·B 같은 날 손으로 요청한다
+    exp = load_json(ROOT / "data" / "experiment_ab.json", default={}) or {}
+    experiment = ({gu_url(e["sido"], e["sigungu"]) for g in ("A", "B") for e in exp.get(g, [])}
+                  if exp.get("start", "") <= day <= exp.get("end", "") else set())
 
     def add(url: str, why: str, again: bool = False) -> None:
+        if url in experiment:
+            return
         if (again or url not in done) and "/pages/" not in url and url not in {u for u, _ in ordered}:
             ordered.append((url, why))
 
