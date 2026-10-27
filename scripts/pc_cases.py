@@ -33,6 +33,7 @@ PC(운영자 컴퓨터)에서 돌리는 "사례 가져오기" 도구. 원본 사
   python scripts/pc_cases.py ledger               거래 기록부 칸 이름과 날짜 칸 매핑(값은 안 보임, 2026-10-23)
   python scripts/pc_cases.py clean                .cases_staging 지우기 (원본 미리보기 삭제)
   python scripts/pc_cases.py restage <cases/input 폴더> … [--extra 확인.json]  올린 점수표 건 다시 정리(날짜·확인·걱정, nodate → 날짜)
+  python scripts/pc_cases.py ledger-near <cases/input 폴더> … [--days 7]  같은 시·군 ±N일 거래 후보(날짜·차종·지역만)
   python scripts/pc_cases.py score 20230826_9188 …  점수표 줄 보기(읽기만, 날짜·지역·차종·연식·시동·태그·선명·등록증·한줄이유)
 
 select.json 형식 (좌표는 미리보기 사진의 비율 0~1: 왼쪽, 위, 오른쪽, 아래)
@@ -329,6 +330,35 @@ def cmd_ledger(args) -> None:
     for ours in LEDGER_FIELD_RES:
         print(f"  {ours} ← {mapping.get(ours, '(맞는 칸 없음)')}")
     print("  읽지 않는 칸: " + ", ".join(n for n in names if LEDGER_SKIP_RE.search(n)))
+
+
+def cmd_ledger_near(args) -> None:
+    """cases/input 사례마다 같은 시·군 + 사례 날짜(인수일) ±N일 거래를 보여 준다(읽기만, 날짜·차종·지역 칸만, 2026-10-27).
+    차종 이름이 달라도 같은 차인지 사람이 보고 정하게 후보만 보여 준다. 채우는 건 data/case_text_fixes.json 으로."""
+    records = ledger_records(Path(args.dir) if args.dir else WIKI_DIR)
+    days = [d for r in records for k in ("문의일", "인수일") if (d := case_story.parse_day(r.get(k, "")))]
+    print(f"거래 기록부 {len(records)}장, 날짜 범위 {min(days) if days else '-'} ~ {max(days) if days else '-'}")
+    rows = load_csv_rows()
+    for name in args.names:
+        memo = parse_memo(read_text_any(INPUT_DIR / name / "메모.txt"))
+        region, _ = resolve_region(memo.get("지역", ""), rows)
+        day = case_story.parse_day(memo.get("인수일") or memo.get("날짜", ""))
+        if not region or not day:
+            print(f"{name}: 지역이나 날짜가 없어 건너뜀")
+            continue
+        city = region["sigungu"].split()[0]
+        hits = []
+        for r in records:
+            ds = [d for k in ("문의일", "인수일") if (d := case_story.parse_day(r.get(k, "")))]
+            if not ds or min(abs((d - day).days) for d in ds) > args.days:
+                continue
+            if not any(part_match(city, tok) for tok in (r.get("지역") or "").split()):
+                continue
+            hits.append(r)
+        print(f"{name} ({city} {memo.get('차종')} {memo.get('연식')}, {day}): 후보 {len(hits)}건")
+        for r in hits:
+            area = " ".join((r.get("지역") or "").split()[:3])
+            print("  " + " | ".join(f"{k} {r.get(k) or '-'}" for k in ("문의일", "인수일", "말소일", "차종")) + f" | 지역 {area}")
 
 
 def staging_state() -> dict:
@@ -718,6 +748,10 @@ def main() -> None:
     d.add_argument("reason")
     for name in ("mark", "report", "clean"):
         sub.add_parser(name)
+    ln = sub.add_parser("ledger-near")
+    ln.add_argument("names", nargs="+")
+    ln.add_argument("--days", type=int, default=7)
+    ln.add_argument("--dir", default="")
     rs = sub.add_parser("restage")
     rs.add_argument("names", nargs="+")
     rs.add_argument("--extra", default="")
@@ -728,7 +762,7 @@ def main() -> None:
     sub.add_parser("ledger").add_argument("--dir", default="", help="거래 기록부 폴더(기본: 저장소 옆 병한-업무위키\\폐차\\거래기록)")
     args = ap.parse_args()
     {"scan": cmd_scan, "prepare": cmd_prepare, "mask": cmd_mask, "stage": cmd_stage, "drop": cmd_drop,
-     "mark": cmd_mark, "report": cmd_report, "clean": cmd_clean, "ledger": cmd_ledger, "score": cmd_score, "restage": cmd_restage}[args.cmd](args)
+     "mark": cmd_mark, "report": cmd_report, "clean": cmd_clean, "ledger": cmd_ledger, "score": cmd_score, "restage": cmd_restage, "ledger-near": cmd_ledger_near}[args.cmd](args)
 
 
 if __name__ == "__main__":
