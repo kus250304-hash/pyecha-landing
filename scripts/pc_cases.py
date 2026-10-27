@@ -32,6 +32,8 @@ PC(운영자 컴퓨터)에서 돌리는 "사례 가져오기" 도구. 원본 사
   python scripts/pc_cases.py report               오늘 가져온 건 한 줄 요약 + 사례마다 걱정/고른쪽/걸린 날/끝한줄 4줄
   python scripts/pc_cases.py ledger               거래 기록부 칸 이름과 날짜 칸 매핑(값은 안 보임, 2026-10-23)
   python scripts/pc_cases.py clean                .cases_staging 지우기 (원본 미리보기 삭제)
+  python scripts/pc_cases.py restage <cases/input 폴더> … [--extra 확인.json]  올린 점수표 건 다시 정리(날짜·확인·걱정, nodate → 날짜)
+  python scripts/pc_cases.py score 20230826_9188 …  점수표 줄 보기(읽기만, 날짜·지역·차종·연식·시동·태그·선명·등록증·한줄이유)
 
 select.json 형식 (좌표는 미리보기 사진의 비율 0~1: 왼쪽, 위, 오른쪽, 아래)
   {"photos": [
@@ -67,6 +69,8 @@ TIERS = ("우선", "일반")
 DONE_MARK = "반영됨.txt"
 SCORE_NAME = "_점수표.csv"  # 원본 맨 위. 메모.txt 없는 폴더의 메모 대신(2026-10-27 병한님)
 SCORE_KEYS = {"지역": "지역", "차종": "차종", "연식": "연식", "시동": "시동", "한줄이유": "상황"}  # 이 칸만 읽는다
+# 점수표 날짜(사진 찍은 날)는 사례 날짜이자 인수일로 쓴다(2026-10-27 병한님). 확인 칸 후보를 볼 때만 태그·선명·등록증_폴더내도 보여 준다
+SCORE_SHOW = ("날짜", "지역", "차종", "연식", "시동", "태그", "선명", "등록증_폴더내", "한줄이유")
 SCORE_TAG_RE = re.compile(r"[(（\[][^)）\]]*[)）\]]|확인\s*필요")
 # 메모가 틀렸거나 모자란 건을 운영자가 확인해 준 값으로 바꿔 읽는다(원본 메모는 고치지 않음).
 # [{"folder": "일반\<원본 폴더>", "region": "경기도 수원시 권선구", "confirmed": "날짜 누가 확인"}]
@@ -132,7 +136,16 @@ def score_memo(row: dict) -> dict:
             memo[key] = v
     if "미상" in memo.get("지역", ""):
         memo.pop("지역")
+    day = case_story.parse_day(row.get("날짜") or "")
+    if day:  # 인수일은 stage 가 기록부를 맞춰 본 뒤에 채운다(score_dates)
+        memo["날짜"] = day.isoformat()
     return memo
+
+
+def score_dates(memo: dict, origin: str) -> None:
+    """점수표로 읽은 건: 기록부에서 인수일을 못 채웠으면 점수표 날짜(사진 찍은 날)를 인수일로(2026-10-27 병한님)."""
+    if origin == "점수표" and not memo.get("인수일") and case_story.parse_day(memo.get("날짜", "")):
+        memo["인수일"] = memo["날짜"]
 
 
 def folder_memo(folder: Path, src: Path, score: dict[str, dict]) -> tuple[dict | None, str]:
@@ -544,7 +557,7 @@ def cmd_stage(args) -> None:
     # 표에 있는 칸만 읽힘(고객명·연락처 등은 버려짐). 메모.txt 가 없으면 점수표 줄. 운영자가 확인해 준 칸은 덮어쓴다
     src = Path(state["src"])
     rel = str(src_folder.relative_to(src))
-    memo, _ = folder_memo(src_folder, src, load_score(src))
+    memo, origin = folder_memo(src_folder, src, load_score(src))
     if memo is None:
         raise SystemExit(f"{args.cid}: 메모.txt 도 점수표 줄도 없습니다")
     memo = apply_fix(memo, load_fixes().get(rel.replace("/", "\\")))
@@ -557,6 +570,7 @@ def cmd_stage(args) -> None:
     # 글 틀 v2(2026-10-23): ① 날짜 세 칸이 비면 거래 기록부에서(맞는 거래가 하나뿐일 때만)
     got, why = ledger_dates(memo, r, ledger_records())
     memo.update(got)
+    score_dates(memo, origin)
     c["ledger"] = why
     # ② 걱정 후보: Claude 가 말.txt·통화 글자본을 보고 .cases_staging/cN/extra.json 에 {"걱정": "… (통화 요약)"} 을 썼으면 넣는다
     extra = load_json(STAGING / args.cid / "extra.json", default={}) or {}
@@ -623,6 +637,60 @@ def cmd_report(args) -> None:
             print(f"  뺀 건 {cid}: {region_label(c['region'])} · {c['car']} — {c.get('drop_reason')}")
 
 
+def cmd_score(args) -> None:
+    """점수표에서 폴더 이름에 이 글자가 든 줄을 보여 준다(읽기만, SCORE_SHOW 칸만). 사례 글 보강할 때 쓴다."""
+    src = Path(args.src)
+    for rel, row in load_score(src).items():
+        if any(w in rel for w in args.names):
+            print(rel, "|", " | ".join(f"{k}: {row.get(k, '').strip()}" for k in SCORE_SHOW),
+                  "| 반영됨" if (src / rel / DONE_MARK).exists() else "")
+
+
+def cmd_restage(args) -> None:
+    """이미 cases/input 에 올린 점수표 건을 다시 정리한다(2026-10-27): 점수표 날짜·기록부 날짜를 채우고,
+    --extra JSON({"<cases/input 폴더>": {"확인": "…", "걱정": "…"}}, 표에 있는 칸만)을 넣고, 폴더 이름의 nodate 를 날짜로 바꾼다.
+    원본 폴더는 폴더 이름 끝 6자(stage 의 tag)로 점수표에서 찾고 읽기만 한다."""
+    src = Path(args.src)
+    score = load_score(src)
+    by_tag = {hashlib.sha1(str(src / rel).encode("utf-8")).hexdigest()[:6]: rel for rel in score}
+    extra = load_json(Path(args.extra), default={}) if args.extra else {}
+    rows, records = load_csv_rows(), ledger_records()
+    for name in args.names:
+        dest = INPUT_DIR / name
+        rel = by_tag.get(name.rsplit("-", 1)[-1])
+        if not dest.is_dir() or not rel:
+            print(f"{name}: cases/input 폴더나 점수표 줄을 찾지 못함 — 건너뜀")
+            continue
+        assert_allowed(src / rel, src)
+        memo, origin = folder_memo(src / rel, src, score)
+        memo = apply_fix(memo or {}, load_fixes().get(rel))
+        now = parse_memo(read_text_any(dest / "메모.txt"))
+        memo.update({k: v for k, v in now.items() if v and v != "미상"})  # 지역(정식 이름)·차종 등 올린 메모가 먼저
+        memo.update({k: str(v).strip() for k, v in (extra.get(name) or {}).items() if k in STORY_KEYS and str(v).strip()})
+        region, why = resolve_region(memo["지역"], rows)
+        if not region:
+            print(f"{name}: {why} — 건너뜀")
+            continue
+        got, why = ledger_dates(memo, region, records)
+        memo.update(got)
+        score_dates(memo, origin)
+        new = dest.with_name(f"{memo.get('날짜') or 'nodate'}-{region_label(region).replace(' ', '-')}-{name.rsplit('-', 1)[-1]}")
+        old_text = (dest / "메모.txt").read_text(encoding="utf-8")
+        (dest / "메모.txt").write_text("".join(f"{k}: {memo[k]}\n" for k in PC_MEMO_KEYS if memo.get(k)), encoding="utf-8")
+        info, bad = check_folder(dest, rows)
+        if not info:
+            (dest / "메모.txt").write_text(old_text, encoding="utf-8")
+            print(f"{name}: 검사 실패 — {bad} (되돌림)")
+            continue
+        if new != dest:
+            dest.rename(new)
+        c = {"story": info["body"]["story"], "method": info["body"]["method"], "spoken": info["spoken"]}
+        d = case_story.depth(c)
+        print(f"{new.name}: {'깊은' if len(d) >= case_story.DEPTH_MIN else '얇은'} 사례 (채운 칸: {'·'.join(d) or '없음'}) — {why}")
+        for line in case_story.report_lines(c):
+            print(f"  {line}")
+
+
 def cmd_clean(args) -> None:
     if STAGING.exists():
         shutil.rmtree(STAGING)
@@ -650,10 +718,17 @@ def main() -> None:
     d.add_argument("reason")
     for name in ("mark", "report", "clean"):
         sub.add_parser(name)
+    rs = sub.add_parser("restage")
+    rs.add_argument("names", nargs="+")
+    rs.add_argument("--extra", default="")
+    rs.add_argument("--src", default=SRC_DEFAULT)
+    sc = sub.add_parser("score")
+    sc.add_argument("names", nargs="+")
+    sc.add_argument("--src", default=SRC_DEFAULT)
     sub.add_parser("ledger").add_argument("--dir", default="", help="거래 기록부 폴더(기본: 저장소 옆 병한-업무위키\\폐차\\거래기록)")
     args = ap.parse_args()
     {"scan": cmd_scan, "prepare": cmd_prepare, "mask": cmd_mask, "stage": cmd_stage, "drop": cmd_drop,
-     "mark": cmd_mark, "report": cmd_report, "clean": cmd_clean, "ledger": cmd_ledger}[args.cmd](args)
+     "mark": cmd_mark, "report": cmd_report, "clean": cmd_clean, "ledger": cmd_ledger, "score": cmd_score, "restage": cmd_restage}[args.cmd](args)
 
 
 if __name__ == "__main__":
