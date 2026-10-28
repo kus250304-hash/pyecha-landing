@@ -1,5 +1,5 @@
 {
- "date": "2026-10-27",
+ "date": "2026-10-28",
  "rival": [
   {
    "slug": "chungnam-asan",
@@ -29,13 +29,7 @@
    "slug": "jeonbuk-gunsan",
    "sido": "전북특별자치도",
    "sigungu": "군산시",
-   "query": "군산폐차장"
-  },
-  {
-   "slug": "gyeonggi-pyeongtaek",
-   "sido": "경기도",
-   "sigungu": "평택시",
-   "query": "평택폐차"
+   "query": "군산폐차"
   },
   {
    "slug": "gyeongbuk-gyeongsan",
@@ -86,22 +80,16 @@
    "query": "신안폐차"
   },
   {
-   "slug": "jeonbuk-namwon",
-   "sido": "전북특별자치도",
-   "sigungu": "남원시",
-   "query": "남원폐차"
-  },
-  {
    "slug": "gyeongbuk-andong",
    "sido": "경상북도",
    "sigungu": "안동시",
-   "query": "안동폐차장"
+   "query": "안동폐차"
   },
   {
    "slug": "gyeonggi-siheung",
    "sido": "경기도",
    "sigungu": "시흥시",
-   "query": "시흥폐차"
+   "query": "시흥폐차장"
   },
   {
    "slug": "gangwon-sokcho",
@@ -116,10 +104,22 @@
    "query": "상주폐차장"
   },
   {
+   "slug": "gyeonggi-uijeongbu",
+   "sido": "경기도",
+   "sigungu": "의정부시",
+   "query": "의정부폐차장"
+  },
+  {
    "slug": "gyeongbuk-yeongju",
    "sido": "경상북도",
    "sigungu": "영주시",
    "query": "영주폐차"
+  },
+  {
+   "slug": "gangwon-donghae",
+   "sido": "강원특별자치도",
+   "sigungu": "동해시",
+   "query": "동해폐차"
   }
  ],
  "empty": [
@@ -183,6 +183,14 @@
    ]
   },
   {
+   "slug": "jeonnam-gurye",
+   "sido": "전남광주통합특별시",
+   "sigungu": "구례군",
+   "queries": [
+    "구례폐차"
+   ]
+  },
+  {
    "slug": "gyeongnam-sacheon",
    "sido": "경상남도",
    "sigungu": "사천시",
@@ -220,7 +228,6 @@
    "sido": "강원특별자치도",
    "sigungu": "태백시",
    "queries": [
-    "태백폐차",
     "태백폐차장"
    ]
   },
@@ -238,14 +245,6 @@
    "sigungu": "서해구",
    "queries": [
     "서해폐차"
-   ]
-  },
-  {
-   "slug": "gyeonggi-gwangmyeong",
-   "sido": "경기도",
-   "sigungu": "광명시",
-   "queries": [
-    "광명폐차"
    ]
   },
   {
@@ -322,6 +321,14 @@
    ]
   },
   {
+   "slug": "gyeonggi-gwacheon",
+   "sido": "경기도",
+   "sigungu": "과천시",
+   "queries": [
+    "과천폐차"
+   ]
+  },
+  {
    "slug": "gyeongbuk-mungyeong",
    "sido": "경상북도",
    "sigungu": "문경시",
@@ -383,14 +390,6 @@
    "sigungu": "양구군",
    "queries": [
     "양구폐차"
-   ]
-  },
-  {
-   "slug": "jeonnam-goheung",
-   "sido": "전남광주통합특별시",
-   "sigungu": "고흥군",
-   "queries": [
-    "고흥폐차"
    ]
   },
   {
@@ -471,14 +470,6 @@
    "sigungu": "장수군",
    "queries": [
     "장수폐차"
-   ]
-  },
-  {
-   "slug": "gyeongbuk-ulleung",
-   "sido": "경상북도",
-   "sigungu": "울릉군",
-   "queries": [
-    "울릉폐차장"
    ]
   }
  ]
