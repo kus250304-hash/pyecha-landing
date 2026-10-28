@@ -9,20 +9,29 @@ PC "사례 가져오기" 앞 단계: 구글 드라이브 인박스(G:\\내 드�
   python scripts/inbox_cases.py apply gN  지역 검사 → 원본 우선/ 에 폴더 만들고 파일 옮기기, 등록증은 지우기
   python scripts/inbox_cases.py report    오늘 만든 폴더·보류(확인 필요) 요약, cases/input/인박스-확인-필요.md 다시 쓰기
 
+병한님 알림(2026-10-28): 인박스에 _지역알림.json 이 있으면(클로드 채팅이 병한님 "○○ 올림"을 받고 적음)
+  ① 시간 묶음보다 먼저 그 "차" 목록으로 나눈다. "파일" 이 이름 목록이면 그 파일만, 글자(예: "그 시각 묶음 전부")면
+    "올린 시각"(분까지)에 올라온 시간 묶음을 통째로 그 차로. 남은 파일만 시간으로 묶는다.
+  ② 그 차는 scan 이 answer.json 초안(지역·지역근거 "병한님"·차종·연식)을 써 둔다. "병한님"은 말·등록증·GPS 와 같은 급.
+  ③ apply 로 원본 폴더를 만든 차는 _지역알림.json 에서 뺀다.
+  "이름(1).jpg" 처럼 같은 묶음의 원본과 내용이 똑같은 사본은 옮기지 않고 지운다(드라이브 휴지통).
+
 지역 알아내는 순서: ① 영상 마지막 5초의 말 ② 위치 정보(GPS) ③ 등록증 사진(지역만 읽고 파일은 지움).
   - GPS 가 거래처 폐차장·수출 사무실(data/partner_locations.json) 근처면 무시한다.
   - 거래처 주소가 아직 비어 있으면(2026-10-16) GPS 로만 정한 지역은 쓰지 않고 보류한다.
   - GPS 좌표는 PC 안(미리보기 폴더·보고)에만 두고 저장소에 올리지 않는다.
 
 answer.json 형식 (Claude 가 씀)
-  {"지역": "전남광주통합특별시 목포시 용해동", "지역근거": "말",          ← 말 / 등록증 / GPS
+  {"지역": "전남광주통합특별시 목포시 용해동", "지역근거": "말",          ← 말 / 등록증 / GPS / 병한님
    "차종": "에쿠스", "연식": "2010", "시동": "시동됨", "운행": "운행 가능",
    "상황": "차령초과말소", "처리": "",
    "차번호": "", "압류": "",                                             ← 간편조회 캡처에서(원본 메모에만 남음)
    "등록증": ["IMG_0003.jpg"], "조회": ["Screenshot_1.png"],              ← 원본 파일 이름
+   "걱정": "", "확인": "", "고른쪽": "", "이유": "", "문의일": "", ...      ← (있을 때만) 사례 글 새 칸, 원본 메모로
    "보류": ""}                                                            ← 지역을 모르면 "확인 필요: <쉬운 말>"
 """
 import argparse
+import filecmp
 import json
 import math
 import os
@@ -43,6 +52,8 @@ SRC_DEFAULT = r"C:\Users\AOMG\Documents\카카오톡 받은 파일\폐차사진�
 STAGING = ROOT / ".cases_staging" / "inbox"
 PARTNERS = ROOT / "data" / "partner_locations.json"
 HOLD_MD = ROOT / "cases" / "input" / "인박스-확인-필요.md"
+NOTICE = "_지역알림.json"  # 병한님 "○○ 올림" 알림(클로드 채팅이 씀)
+REGION_SOURCES = ("말", "등록증", "GPS", "병한님")
 VIDEO_EXT = {".mp4", ".mov", ".3gp", ".m4v"}
 IMAGE_EXT = {".jpg", ".jpeg", ".png", ".webp", ".heic"}
 AUDIO_EXT = {".mp3", ".m4a", ".wav", ".aac", ".amr"}
@@ -50,7 +61,9 @@ TEXT_EXT = {".txt"}     # 대본·녹음용 문장(사례 페이지 "영상에�
 GROUP_GAP_MIN = 30      # 올린 시간이 이보다 떨어지면 다른 차
 TAIL_SEC = 5            # 영상 마지막 몇 초의 말을 읽나
 AUDIO_MAX_SEC = 60      # 녹음은 앞 60초만 글로 바꾼다
-MEMO_KEYS = ("날짜", "지역", "차종", "연식", "시동", "운행", "상황", "처리", "차번호", "압류")
+MEMO_KEYS = ("날짜", "지역", "차종", "연식", "시동", "운행", "상황", "처리", "차번호", "압류",
+             # 사례 글 새 칸(case_story.STORY_KEYS): 병한님이 알려 준 사연이 있을 때만 answer.json 에 적는다
+             "걱정", "확인", "고른쪽", "이유", "문의일", "인수일", "말소일", "끝한줄", "제목꼬리")
 
 
 def kind_of(p: Path) -> str:
@@ -73,6 +86,42 @@ def group_files(files: list[Path]) -> list[list[Path]]:
         groups[-1].append(p)
         last = t
     return groups
+
+
+def upload_time(p: Path) -> str:
+    return datetime.fromtimestamp(p.stat().st_mtime).strftime("%Y-%m-%d %H:%M")
+
+
+def load_notice(inbox: Path) -> dict:
+    return load_json(inbox / NOTICE, default=None) or {}
+
+
+def notice_groups(files: list[Path], cars: list[dict]) -> tuple[list[tuple[dict, list[Path]]], list[Path]]:
+    """병한님 알림의 차마다 파일을 먼저 떼어 낸다. ([(차, 파일들)], 남은 파일)"""
+    by_name = {p.name: p for p in files}
+    time_groups = group_files(files)
+    used: set[str] = set()
+    out = []
+    for car in cars:
+        names = car.get("파일")
+        if isinstance(names, list):
+            picked = [by_name[n] for n in names if n in by_name]
+        else:  # "그 시각 묶음 전부(…)": 올린 시각(분까지)에 올라온 파일이 든 시간 묶음 통째로
+            at = (car.get("올린 시각") or "").strip()
+            picked = next((g for g in time_groups if any(upload_time(p) == at for p in g)), [])
+        picked = [p for p in picked if p.name not in used]
+        if picked:
+            used.update(p.name for p in picked)
+            out.append((car, picked))
+    return out, [p for p in files if p.name not in used]
+
+
+def duplicate_of(p: Path, names: set[str]) -> str:
+    """'사진(1).jpg' 가 같은 묶음의 '사진.jpg' 와 내용이 똑같으면 그 원본 이름"""
+    m = re.match(r"(.+?)\s*\(\d+\)(\.[^.]+)$", p.name)
+    if not m or (base := m.group(1) + m.group(2)) not in names:
+        return ""
+    return base if filecmp.cmp(p, p.with_name(base), shallow=False) else ""
 
 
 # ---- 위치 정보 ----
@@ -192,16 +241,22 @@ def cmd_scan(args) -> None:
     if STAGING.exists():
         shutil.rmtree(STAGING)
     STAGING.mkdir(parents=True)
-    groups = group_files(inbox_files(inbox))
+    noticed, rest = notice_groups(inbox_files(inbox), load_notice(inbox).get("차", []))
+    groups = noticed + [(None, files) for files in group_files(rest)]
     plan = {"date": date.today().isoformat(), "inbox": str(inbox), "groups": {}}
-    for gi, files in enumerate(groups, 1):
+    for gi, (car, files) in enumerate(groups, 1):
         gid = f"g{gi}"
         d = STAGING / gid
         d.mkdir()
         items, speech, gps = [], [], []
+        names = {p.name for p in files}
         for fi, p in enumerate(files, 1):
             k = kind_of(p)
-            item = {"file": p.name, "kind": k, "time": datetime.fromtimestamp(p.stat().st_mtime).strftime("%Y-%m-%d %H:%M")}
+            item = {"file": p.name, "kind": k, "time": upload_time(p)}
+            if dup := duplicate_of(p, names):
+                item["dup"] = dup
+                items.append(item)
+                continue
             if k in ("image", "video"):
                 prev = f"{k[0]}{fi:02d}.jpg"
                 if (preview_image if k == "image" else preview_video)(p, d / prev):
@@ -221,12 +276,21 @@ def cmd_scan(args) -> None:
         (d / "말.txt").write_text("\n".join(speech) + "\n", encoding="utf-8")
         plan["groups"][gid] = {"files": items, "speech": speech, "gps": gps,
                                "gps_usable": partners_ready(), "status": "scanned"}
+        if car:
+            plan["groups"][gid]["notice"] = {k: v for k, v in car.items() if k != "파일"}
+            # answer.json 초안: 병한님이 알려 준 지역·차종·연식. 시동·상황 등은 Claude 가 미리보기·말을 보고 채운다
+            draft = {"지역": car.get("지역", ""), "지역근거": "병한님", "차종": car.get("차종", ""),
+                     "연식": car.get("연식", ""), "시동": "", "운행": "", "상황": "", "처리": "",
+                     "차번호": "", "압류": "", "등록증": [], "조회": [], "보류": ""}
+            (d / "answer.json").write_text(json.dumps(draft, ensure_ascii=False, indent=1), encoding="utf-8")
     (STAGING / "plan.json").write_text(json.dumps(plan, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"인박스 파일 {sum(len(g) for g in groups)}개 → {len(groups)}대로 묶음 ({STAGING.relative_to(ROOT)})")
     for gid, g in plan["groups"].items():
         kinds = {k: sum(1 for i in g["files"] if i["kind"] == k) for k in ("video", "image", "audio")}
         print(f"  {gid}: 영상 {kinds['video']} · 사진 {kinds['image']} · 녹음 {kinds['audio']}, "
-              f"{g['files'][0]['time']}~{g['files'][-1]['time']}")
+              f"{g['files'][0]['time']}~{g['files'][-1]['time']}"
+              + (f" · 똑같은 사본 {dups}개(옮기지 않고 지움)" if (dups := sum(1 for i in g["files"] if i.get("dup"))) else "")
+              + (f" — 병한님 알림 '{g['notice'].get('이름', '')}'(answer.json 초안 씀)" if g.get("notice") else ""))
         for s in g["speech"]:
             print(f"     말: {s}")
         if g["gps"]:
@@ -244,6 +308,20 @@ def load_plan() -> dict:
 
 def save_plan(plan: dict) -> None:
     (STAGING / "plan.json").write_text(json.dumps(plan, ensure_ascii=False, indent=1), encoding="utf-8")
+
+
+def whole_city(text: str, rows: list[dict]) -> dict | None:
+    """'경기도 안산시'처럼 일반구가 있는 시까지만 적힌 지역 → {"sido", "sigungu": "안산시", "dong": ""}(구가 한 시 안일 때만)"""
+    toks = text.split()
+    if not toks:
+        return None
+    cities = {(r["sido"], r["sigungu"].split()[0]) for r in rows
+              if r["sigungu"].split() and r["sigungu"].split()[0] == toks[-1]
+              and all(t in r["sido"] or r["sido"].startswith(t) for t in toks[:-1])}
+    if len(cities) != 1:
+        return None
+    sido, city = cities.pop()
+    return {"sido": sido, "sigungu": city, "dong": ""}
 
 
 def safe_name(s: str) -> str:
@@ -274,12 +352,15 @@ def cmd_apply(args) -> None:
     src_kind = ans.get("지역근거", "")
     region, why = (None, "")
     if not hold:
-        if src_kind not in ("말", "등록증", "GPS"):
-            hold = "확인 필요: 지역근거가 말·등록증·GPS 중 하나가 아님"
+        if src_kind not in REGION_SOURCES:
+            hold = "확인 필요: 지역근거가 말·등록증·GPS·병한님 중 하나가 아님"
         elif src_kind == "GPS" and not partners_ready():
             hold = "확인 필요: 위치 정보로만 지역을 추정함(거래처 주소 미등록)"
         else:
-            region, why = resolve_region(ans.get("지역", ""), load_csv_rows())
+            rows = load_csv_rows()
+            region, why = resolve_region(ans.get("지역", ""), rows)
+            if not region and src_kind == "병한님":
+                region = whole_city(ans.get("지역", ""), rows)  # "안산시"처럼 구를 모르는 시: 폴더는 만들고 사례는 구가 정해질 때까지 대기
             if not region:
                 hold = f"확인 필요: 지역 '{ans.get('지역', '')}' — {why}"
             elif not ans.get("차종"):
@@ -290,6 +371,11 @@ def cmd_apply(args) -> None:
         print(f"{args.gid}: 보류 — {hold} (파일은 인박스에 그대로 둠)")
         return
 
+    # 같은 묶음 원본과 똑같은 '(1)' 사본은 옮기지 않고 지운다(드라이브 휴지통)
+    for i in g["files"]:
+        if i.get("dup"):
+            (inbox / i["file"]).unlink(missing_ok=True)
+    g["files"] = [i for i in g["files"] if not i.get("dup")]
     first = min(datetime.strptime(i["time"], "%Y-%m-%d %H:%M") for i in g["files"])
     car = safe_name(ans["차종"])
     year = re.sub(r"\D", "", ans.get("연식", ""))[:4]
@@ -323,6 +409,11 @@ def cmd_apply(args) -> None:
         shutil.move(str(p), str(to / i["file"]))
     g.update(status="applied", folder=f"우선\\{dest.name}", car=ans["차종"], region=memo["지역"])
     save_plan(plan)
+    if g.get("notice"):  # 처리한 차는 병한님 알림에서 뺀다
+        data = load_notice(inbox)
+        if data:
+            data["차"] = [c for c in data.get("차", []) if c.get("이름") != g["notice"].get("이름")]
+            (inbox / NOTICE).write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"{args.gid}: 원본 폴더 만듦 → 우선\\{dest.name} (지역 근거: {src_kind})")
 
 
@@ -341,7 +432,7 @@ def cmd_report(args) -> None:
         print(f"  보류: {t} 올린 차({g.get('car') or '차종 모름'}) — {reason}")
         # 저장소에 올라가는 목록: 올린 시각·파일 수·차종·이유만(위치·차번호·말은 넣지 않음)
         rows.append(f"| {t} | 영상 {kinds['video']} · 사진 {kinds['image']} · 녹음 {kinds['audio']} | "
-                    f"{g.get('car') or '모름'} | {reason} |")
+                    f"{g.get('car') or g.get('notice', {}).get('차종') or '모름'} | {reason} |")
     HOLD_MD.parent.mkdir(parents=True, exist_ok=True)
     HOLD_MD.write_text(
         "# 인박스 확인 필요 (PC 사례 가져오기가 매일 다시 씀)\n\n"
