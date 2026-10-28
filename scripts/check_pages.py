@@ -922,6 +922,16 @@ def check_phone_links(cfg: dict) -> list[str]:
             problems.append(f"{f.relative_to(ROOT).as_posix()}: 링크가 아닌 대표번호 글자 → {hit}")
     return problems
 
+def check_lead_hook(cfg: dict) -> list[str]:
+    """폼 → 캘린더 알림(2026-10-28): 폼 스크립트가 있는 페이지는 모두 site_config 의 lead_hook_url 을 그대로 품는다."""
+    want = f"var LEAD_HOOK = '{(cfg.get('lead_hook_url') or '').strip()}';"
+    problems = []
+    for f in html_files():
+        text = f.read_text(encoding="utf-8")
+        if "function formatPhone" in text and want not in text:
+            problems.append(f"{f.relative_to(ROOT).as_posix()}: 폼 → 캘린더 알림 주소(lead_hook_url)가 설정값과 다름")
+    return problems
+
 
 # 손님이 묻지 않는 지역 FAQ(2026-10-22 눈가리개 감사 11번). 새 페이지는 이런 질문을 쓰지 않는다(docs/daily-routine-prompt.md)
 FAQ_BAD_RE = re.compile(r"(방문|서비스|출장)\s*가능한\s*지역인가요|가능 지역인가요|실제\s*(방문|서비스)\s*가능한")
@@ -1238,6 +1248,7 @@ def main() -> None:
         # 눈가리개 감사(2026-10-22): 시·도 링크 통일(3번), 본문 대표번호 tel: 링크(10번), 동 페이지 문장·FAQ 경고(2·11번)
         errors.extend(check_sido_links())
         errors.extend(check_phone_links(site_cfg))
+        errors.extend(check_lead_hook(site_cfg))
         warnings.extend(check_dong_wording(regions))
         # 사례 글 틀 v2(2026-10-23): 깊은/얇은 사례와 noindex·사이트맵·rss, 새 칸 금지 표현, 같은 문장 5장 이상 반복(경고)
         case_errors, case_warnings = check_case_story()

@@ -113,14 +113,14 @@ def apply_home_hero(text: str, cfg: dict) -> str:
     예전 제목 줄(h1)은 글을 그대로 두고 p 로 바꿔 H1 이 하나만 있게 한다. 실행할 때마다 다시 넣으므로 손으로 고치지 않는다."""
     import sys
     sys.path.insert(0, str(Path(__file__).resolve().parent))
-    from build_site import form_parts
+    from build_site import form_parts, page_script
     from first_screen import hero_top_html
     dong_tpl = (ROOT / "templates" / "region-landing-v2.html").read_text(encoding="utf-8")
     font = re.search(r"@font-face\s*\{.*?\}", dong_tpl, flags=re.DOTALL).group(0)
     root_vars = re.search(r":root\s*\{.*?\}", dong_tpl, flags=re.DOTALL).group(0)
     hero_css = re.search(r"/\* hero-v3:start.*?/\* hero-v3:end \*/", dong_tpl, flags=re.DOTALL).group(0)
     script = re.search(r"<script>\s*\(function \(\).*?</script>", dong_tpl, flags=re.DOTALL).group(0)
-    script = script.replace("{{PHONE_DISPLAY}}", cfg["phone_display"])
+    script = page_script(script, cfg)
     base = cfg["site_base_url"].rstrip("/")
     title = re.search(r"<title>(.*?)</title>", text).group(1)
     form = form_parts(cfg, "첫 화면 홈", "첫 화면 홈", base + "/", title)

@@ -647,7 +647,7 @@ BOTTOM_FORM = """      <div class="quote-card" style="margin-top:16px;text-align
 
 def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], keep_dates: bool = False) -> list[str]:
     """안내 페이지 5장과 주제 페이지 5장(2026-10-14)을 렌더링하고, 내용이 바뀐 페이지 경로("guide/…", %인코딩) 목록을 돌려준다."""
-    from build_site import (CASES_INDEX, UPDATED_MARK, area_links_html, esc, form_parts, load_json, page_jsonld,
+    from build_site import (CASES_INDEX, UPDATED_MARK, area_links_html, esc, form_parts, page_script, load_json, page_jsonld,
                             tel_text, with_updated_date)
     from first_screen import hero_top_html, sms_link
     import og_image
@@ -749,7 +749,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], keep_dates: 
                 "AFTER_FAQ": shorts_html(g, esc, topic_cases(g, cases)[0], base),
                 "BOTTOM_FORM": BOTTOM_FORM.format(**form).replace(
                     "폐차·수출 비교 견적 받기", "차 번호로 원부 확인 상담 받기" if g.get("no_export") else "폐차·수출 비교 견적 받기"),
-                "SCRIPT": script.replace("{{PHONE_DISPLAY}}", phone_disp),
+                "SCRIPT": page_script(script, cfg),
                 "TOPIC_STYLE": TOPIC_STYLE,
                 "POPULAR_HTML": popular_html,
                 "OG_META": og_image.parts(g["file"][:-5], name, base, phone_disp, suffix=suffix)["OG_META"],

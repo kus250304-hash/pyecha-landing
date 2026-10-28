@@ -158,7 +158,7 @@ def validate(s: dict, gus: list[dict]) -> list[str]:
 def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[dict] | None = None,
                keep_dates: bool = False) -> list[str]:
     """si.json 의 시·도 페이지를 모두 렌더링한다. 잘못된 항목이 있으면 멈춘다. 내용이 바뀐 경로("si/…")를 돌려준다."""
-    from build_site import (SIDO_SHORT, UPDATED_MARK, area_links_html, case_cards_html, contact_parts, esc, form_parts,
+    from build_site import (SIDO_SHORT, UPDATED_MARK, area_links_html, case_cards_html, contact_parts, esc, form_parts, page_script,
                             gu_file, josa, page_jsonld, tel_text, with_updated_date, business_jsonld)
     import variants as V
     from vehicle_stats import registration_row_sido, with_registration
@@ -250,7 +250,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
             "YOUTUBE_URL": esc(cfg["youtube_url"]), "BLOG_URL": esc(cfg["blog_url"]),
             **contact_parts(cfg, si),
             **form_parts(cfg, si, sido, canonical, meta_title),
-            "SCRIPT": script.replace("{{PHONE_DISPLAY}}", phone_disp),
+            "SCRIPT": page_script(script, cfg),
             # 대표 이미지(og:image, 2026-10-10): og/{시·도 파일 이름}.png, "{시도} 폐차" + 대표번호
             **og_image.parts(si_og_stem(sido), si, base, phone_disp),
         }

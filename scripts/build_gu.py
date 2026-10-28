@@ -222,7 +222,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
     """gu.json 의 구 페이지를 모두 렌더링한다. 잘못된 항목이 있으면 멈춘다.
     돌려주는 값: (내용이 바뀐 구 페이지 경로, sitemap 에서 뺄 예전 영문 주소 경로) — 둘 다 "gu/…" 형식."""
     # build_site 가 이 모듈을 부르므로 여기서 가져온다
-    from build_site import (SIDO_SHORT, UPDATED_MARK, area_links_html, case_cards_html, contact_parts, esc, form_parts, gu_file,
+    from build_site import (SIDO_SHORT, UPDATED_MARK, area_links_html, case_cards_html, contact_parts, esc, form_parts, gu_file, page_script,
                             business_jsonld, gu_rel, gu_title_names, page_jsonld, region_photos, region_photos_html, sido_link,
                             tel_text, with_updated_date)
 
@@ -355,7 +355,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
             "YOUTUBE_URL": esc(cfg["youtube_url"]), "BLOG_URL": esc(cfg["blog_url"]),
             **contact_parts(cfg, gu),
             **form_parts(cfg, " ".join(x for x in (SIDO_SHORT[sido], sigungu) if x), gu_full, canonical, meta_title),
-            "SCRIPT": script.replace("{{PHONE_DISPLAY}}", phone_disp),
+            "SCRIPT": page_script(script, cfg),
             # 대표 이미지(og:image, 2026-10-10): og/{구 파일 이름}.png, "{시군구} 폐차장" + 대표번호
             **og_image.parts(gu_file(sido, sigungu)[:-5], title_name, base, phone_disp, suffix="폐차장"),
             "OG_IMG_HTML": "",  # 사례 칸 옆에는 실제 사례 사진만, 없으면 비움(2026-10-22 눈가리개 감사 5번)

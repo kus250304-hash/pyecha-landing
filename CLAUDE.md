@@ -68,6 +68,7 @@
 ## 견적 폼 알림 메일 (2026-10-16)
 
 - 폼 스크립트(`templates/region-landing-v2.html`, 구·시·안내·첫 화면이 그대로 가져다 씀)가 보낼 때 메일 제목을 "[견적문의] {지역} · {차번호} · {전화번호}"로 바꾸고(차번호가 비면 "차번호없음"), 전화번호는 010-0000-0000 꼴로 보냅니다. 본문 항목은 Page·PageTitle·Source·Referrer·Region·Form·Plate·Phone 그대로이며, 저장용 이름·바로 저장 링크 같은 항목은 넣지 않습니다(2026-10-16 시험 후 되돌림: 네이버 메일 앱에서 링크가 안 눌리고 긴 링크 때문에 메일 글씨가 작아짐). 메일 항목을 새로 넣을 때는 이름을 영어로 씁니다(한글 항목 이름은 메일에서 깨짐).
+- 폼 → 캘린더 알림(Apps Script, `lead_hook_url`, 2026-10-28 병한님, 10분 회신 지키기): 같은 폼 스크립트가 Web3Forms 로 보내기 직전에 `site_config.json` 의 `lead_hook_url`(병한님 구글 계정 Apps Script 웹 앱)로 `navigator.sendBeacon`(없으면 fetch no-cors keepalive) 한 번 key=pyecha119·region·car·plate·phone·form·page·botcheck 를 보내 캘린더에 [견적 전화] 일정 + 알림 2개를 만듭니다. 기다리지 않고 실패해도 Web3Forms 전송·thanks 이동은 그대로입니다. 주소는 빌더가 `build_site.page_script` 로 넣으며 페이지에 직접 쓰지 않고, `check_pages.check_lead_hook` 이 폼 있는 모든 페이지의 주소가 설정값과 같은지 봅니다(비우면 보내지 않음).
 
 ## 페이지 생성 방법 (v2)
 

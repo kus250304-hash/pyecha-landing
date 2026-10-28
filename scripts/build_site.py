@@ -213,6 +213,18 @@ def form_parts(cfg: dict, subject_region: str, region_full: str, page_url: str =
 
 WEB3FORMS_URL = "https://api.web3forms.com/submit"
 
+def lead_hook_url(cfg: dict) -> str:
+    """폼 → 캘린더 알림 주소(2026-10-28, Apps Script 웹 앱, site_config 의 lead_hook_url). 없으면 빈 값(스크립트가 건너뜀)."""
+    url = (cfg.get("lead_hook_url") or "").strip()
+    if url and not re.fullmatch(r"https://[\w.\-/~%?=&]+", url):
+        raise ValueError(f"lead_hook_url 이 https 주소가 아닙니다: {url}")
+    return url
+
+
+def page_script(script: str, cfg: dict) -> str:
+    """템플릿 폼 스크립트를 구·시·안내·첫 화면에 옮겨 쓸 때 자리 채우기(전화번호·캘린더 알림 주소)."""
+    return script.replace("{{PHONE_DISPLAY}}", cfg["phone_display"]).replace("{{LEAD_HOOK_URL}}", lead_hook_url(cfg))
+
 
 from first_screen import sms_link, hero_top_html, why_block_html  # 첫 화면(2026-10-13)
 from build_guide import guide_links_html  # "폐차 유형별 안내" 칸 링크(2026-10-14)
@@ -641,6 +653,7 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
         "SERVICE_INTRO": esc(r["service_intro"]),
         "PHONE_TEL": phone_tel,
         "PHONE_DISPLAY": phone_disp,
+        "LEAD_HOOK_URL": lead_hook_url(cfg),
         "HOURS_HTML": hours,
         **form_parts(cfg, " ".join(x for x in (SIDO_SHORT[r["sido"]], r["sigungu"], r["dong"]) if x), full, canonical, meta_title),
         **contact_parts(cfg, r["dong"]),
