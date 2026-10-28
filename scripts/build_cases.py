@@ -346,6 +346,8 @@ def banned_text(text: str) -> str:
         return f"고객 정보로 보이는 글 '{m.group(0)}' 이 있습니다(전화번호·차량번호·상세 주소 금지)"
     if m := case_story.SALE_RE.search(text):
         return f"매매·중고차 판매로 읽히는 말 '{m.group(0)}' 이 있습니다(폐차업 등록만 있어 쓰지 않음, 고른쪽은 폐차·수출·비교중)"
+    if m := case_story.INSURANCE_TOW_RE.search(text):
+        return f"손님 보험 견인으로 읽히는 말 '{m.group(0)}' 이 있습니다(보험 견인·긴급출동·보험사 이름은 사례·쇼츠·블로그에 쓰지 않음)"
     if m := case_story.PRIVATE_RE.search(text):
         return f"개인 상담으로만 다루는 사정 '{m.group(0)}' 이 있습니다(법인 차·서류 없음·차만 폐차·명의자 연락 안 됨은 사례에 쓰지 않음)"
     return ""
@@ -697,10 +699,16 @@ def apply_slug_fixes(index: list[dict]) -> int:
         if story is None:
             print(f"고침 건너뜀 {slug}: {why}")
             continue
-        if story != (c.get("story") or {}):
+        method = str((fix.get("memo") or {}).get("처리") or "").strip()  # 처리 칸(진행 문장)도 고칠 수 있다(2026-10-28)
+        if method and (why := banned_text(method)):
+            print(f"고침 건너뜀 {slug}: 처리 칸 — {why}")
+            continue
+        if story != (c.get("story") or {}) or (method and method != c.get("method")):
             c["story"] = story
+            if method:
+                c["method"] = method
             n += 1
-            print(f"사례 고침: {slug} ({', '.join(fix_memo(fix))})")
+            print(f"사례 고침: {slug} ({', '.join([*fix_memo(fix), *(['처리'] if method else [])])})")
     return n
 
 
