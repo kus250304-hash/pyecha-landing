@@ -7,7 +7,7 @@ pages/<slug>.html 을 렌더링하고 sitemap.xml 을 갱신한다.
   python3 scripts/build_site.py --only a,b,c    # 지정한 슬러그만 (시범 적용)
 
 site_config.json 에서 null 인 값은 해당 요소를 숨기거나 대체 문구로 바꾼다:
-  hours_text         → 운영시간 줄 생략
+  reply_hours        → 문의 시간 줄(10분 회신) 생략
   sms_number         → 문자 버튼 생략, 하단 바 두 번째 버튼은 견적 폼 이동
   kakao_channel_url  → 카카오톡 버튼 생략
   web3forms_access_key → 폼이 thanks.html 로만 이동 (전송 안 됨). 값이 있으면 Web3Forms 로 전송 후 thanks.html
@@ -212,6 +212,19 @@ def form_parts(cfg: dict, subject_region: str, region_full: str, page_url: str =
 
 
 WEB3FORMS_URL = "https://api.web3forms.com/submit"
+
+def lead_hook_url(cfg: dict) -> str:
+    """폼 → 캘린더 알림 주소(2026-10-28, Apps Script 웹 앱, site_config 의 lead_hook_url). 없으면 빈 값(스크립트가 건너뜀)."""
+    url = (cfg.get("lead_hook_url") or "").strip()
+    if url and not re.fullmatch(r"https://[\w.\-/~%?=&]+", url):
+        raise ValueError(f"lead_hook_url 이 https 주소가 아닙니다: {url}")
+    return url
+
+
+def page_script(script: str, cfg: dict) -> str:
+    """템플릿 폼 스크립트를 구·시·안내·첫 화면에 옮겨 쓸 때 자리 채우기(전화번호·캘린더 알림 주소)."""
+    return script.replace("{{PHONE_DISPLAY}}", cfg["phone_display"]).replace("{{LEAD_HOOK_URL}}", lead_hook_url(cfg))
+
 
 def lead_hook_url(cfg: dict) -> str:
     """폼 → 캘린더 알림 주소(2026-10-28, Apps Script 웹 앱, site_config 의 lead_hook_url). 없으면 빈 값(스크립트가 건너뜀)."""
@@ -560,7 +573,8 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
     base = cfg["site_base_url"].rstrip("/")
     phone_tel, phone_disp = cfg["phone_tel"], cfg["phone_display"]
 
-    hours = f"<p>전화 응대 {esc(cfg['hours_text'])} · 야간·주말 접수는 문자로 남겨주시면 순서대로 연락드립니다.</p>" if cfg.get("hours_text") else "<p>지금 전화 주시면 순서대로 연결됩니다. 통화가 어려우면 견적 폼으로 남겨주세요.</p>"
+    hours = (f"<p>전화·문자·폼 모두 {esc(cfg['reply_hours'])}엔 10분 안에 연락드립니다. "  # 2026-10-28 10분 회신
+             "그 밖 시간에 남기신 것은 다음 날 아침 7시 넘어 바로 연락드립니다.</p>") if cfg.get("reply_hours") else "<p>지금 전화 주시면 순서대로 연결됩니다. 통화가 어려우면 견적 폼으로 남겨주세요.</p>"
 
 
     # 지역 FAQ

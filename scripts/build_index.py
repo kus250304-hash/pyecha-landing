@@ -39,7 +39,7 @@ def site_footer(cfg: dict) -> str:
     ext = 'target="_blank" rel="noopener noreferrer"'
     return (
         "<footer>\n"
-        "  <p>전국 폐차 비교매입 상담 · 전국 폐차 협력업체 네트워크 연계 서비스</p>\n"
+        "  <p>전국 폐차 비교매입 상담 · 전국 등록 폐차장과 함께 진행</p>\n"
         f'  <p>대표번호 <a href="tel:{esc(cfg["phone_tel"])}">{esc(cfg["phone_display"])}</a>'
         ' · <a href="privacy.html">개인정보처리방침</a> · <a href="index.html">전체 지역 보기</a></p>\n'
         f'  <p><a href="{esc(cfg["blog_url"])}" {ext}>폐차119 블로그</a>'
@@ -359,8 +359,8 @@ def render_home_links(by_sido: dict[str, list[tuple[str, str]]]) -> str:
         parts.append('<section class="home-sec" id="recent-cases"><h2>최근 폐차 사례</h2>'
                      '<p class="sub">실제로 진행한 사례입니다. 지역은 사례마다 표시됩니다</p>'
                      f'<ul class="case-list">{case_items}</ul></section>')
-    parts += ['<p class="fine-print">본 사이트는 전국 폐차 협력업체 네트워크와 함께 상담과 연결을 도와드리는 서비스입니다. '
-              '차량 상태와 조건에 따라 폐차와 수출 비교매입 중 더 적합한 방법을 안내해 드립니다.</p>', "</main>"]
+    parts += ['<p class="fine-print">전국 등록 폐차장과 함께 진행합니다. '
+              '차량 상태와 조건에 따라 폐차와 수출 비교매입 중 더 적합한 쪽으로 안내합니다.</p>', "</main>"]
     return "\n".join(parts)
 
 

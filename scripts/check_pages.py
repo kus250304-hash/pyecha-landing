@@ -48,8 +48,8 @@ REQUIRED = [
     ("Jalnan", "Jalnan 글꼴"),
     ("function formatPhone", "전화번호 하이픈 스크립트"),
     ('class="bar"', "하단 고정 바"),
-    ("협력업체 네트워크와 함께합니다", "협력업체 고지"),
-    ("실제 출장 방문이 가능한 지역", "서비스 가능 지역 문구"),
+    ("전국 등록 폐차장과 함께 진행합니다", "등록 폐차장 고지"),  # 2026-10-28 "협력업체 네트워크" 고지에서 바꿈
+    ("차 있는 자리로 갑니다", "서비스 지역·출장 문구"),  # 2026-10-28 "실제 출장 방문이 가능한 지역"에서 바꿈
     ('rel="canonical"', "canonical"),
     ('"FAQPage"', "FAQ 구조화 데이터"),
     # 2026-10-01: 상단 고정 메뉴 4개(같은 페이지 안 이동)와 그 목적지
@@ -67,10 +67,10 @@ REQUIRED = [
 CORE_SENTENCES = [
     "폐차 전에 수출 시세와 비교해서 더 높은 쪽으로 안내합니다",
     "차량 확인하면 먼저 입금하고, 그 다음에 차를 가져갑니다",
-    "다른 곳 견적 받으셨으면 금액 알려주세요. 비교해 드립니다",
+    "다른 곳 견적 들고 오세요 — 폐차값·수출값 둘 다 보고 더 높은 쪽으로",  # 2026-10-28 "왜 비교해 드리나" 칸
     "차량번호와 연락처만 남기시면 바로 연락드립니다",
-    "견인비 대부분 별도 청구 없음",  # 2026-10-03: "견인비 없음" 단정 대신
-    "말소 끝나면 말소증을 문자로 보내드립니다",
+    "견인비 따로 없음",  # 2026-10-28(예전 "견인비 대부분 별도 청구 없음")
+    "말소가 끝나면 말소증을 문자로 보내드립니다",  # 2026-10-28 진행 순서 ④
     "압류·저당·상속·대리인 서류도 상담 가능",
 ]
 # 동·구 페이지에 쓰지 않는 단정 표현(2026-10-01부터 동 페이지도 "최고가" 금지)
@@ -394,8 +394,8 @@ def check_links(base: str) -> list[str]:
 GU_REQUIRED = [
     ('href="tel:', "전화 링크"),
     ('class="bar"', "하단 고정 바"),
-    ("협력업체 네트워크와 함께합니다", "협력업체 고지"),
-    ("실제 출장 방문이 가능한 지역", "서비스 가능 지역 문구"),
+    ("전국 등록 폐차장과 함께 진행합니다", "등록 폐차장 고지"),
+    ("차 있는 자리로 갑니다", "서비스 지역·출장 문구"),
     ('rel="canonical"', "canonical"),
     ('"FAQPage"', "FAQ 구조화 데이터"),
     ('class="crumbs"', "길 안내 줄"),
@@ -603,7 +603,7 @@ def check_guide_pages(cfg: dict, sitemap: str) -> list[str]:
         html = f.read_text(encoding="utf-8")
         if PLACEHOLDER_RE.search(html):
             problems.append(f"{tag}: 템플릿 자리 잔여 {PLACEHOLDER_RE.findall(html)[:3]}")
-        for needle, label in (('href="tel:', "전화 링크"), ('class="bar"', "하단 고정 바"), ("협력업체 네트워크와 함께합니다", "협력업체 고지"),
+        for needle, label in (('href="tel:', "전화 링크"), ('class="bar"', "하단 고정 바"), ("전국 등록 폐차장과 함께 진행합니다", "등록 폐차장 고지"),
                               ('rel="canonical"', "canonical"), ('"FAQPage"', "FAQ 구조화 데이터"), ('class="topnav"', "상단 고정 메뉴"),
                               ('id="area-links"', "맨 아래 지역 링크 목록"), ('"dateModified": "', "수정 날짜(dateModified)"),
                               (contact, f"연락처 줄 '{contact}'"), ("상담 후 확인", "'상담 후 확인' 문구")):
@@ -704,17 +704,19 @@ def topic_problems(t: dict, html: str, cfg: dict) -> list[str]:
     return out
 
 
-# 견인비 단정 표현(2026-10-03): 먼 거리·시동 불가 등은 견인비를 빼고 안내한 경우가 실제로 있어
-# "견인비 없음", "견인비는 받지 않습니다", "무료 견인"처럼 단정하지 않는다. "대부분 … 특수한 경우는 미리 안내" 취지로 쓴다
-# 2026-10-25 병한님 확인: 손님이 견인비를 따로 내는 일이 없어 "견인비 따로 없음" 정확한 문구만 허용(다른 꼴의 "따로 없…"·"무료 견인"은 그대로 막음)
-TOW_BAN_RE = re.compile(r"견인비\s*(?:는|가)?\s*(?:없[음습이다]|받지\s*않습니다|안\s*받습니다)|견인비\s*없이|(?:무료\s*(?:견인|탁송)|(?:견인|탁송)\s*무료)"
-                        r"|견인비(?!\s따로\s없음(?![가-힣]))\s*(?:는|가)?\s*따로\s*(?:없|안)")
+# 견인비 표현(2026-10-25 병한님 확인, 2026-10-28 넓힘): 손님이 견인비를 따로 내는 일이 없어 "견인비 따로 없음"과
+# "견인비는 따로 없어요" 두 정확한 문구만 허용한다. "무료 견인", "견인비 없음", "견인비 없이", 다른 꼴의 "따로 없…",
+# "견적에 포함·반영", "최고가", "1등"(1등급은 뺌)은 막는다
+TOW_BAN_RE = re.compile(r"(?:무료\s*(?:견인|탁송)|(?:견인|탁송)\s*무료)|견인비\s*없[음이습다]|견인비\s*(?:는|가)\s*없"
+                        r"|견인비\s*(?:는|가|를)?\s*(?:받지\s*않|안\s*받)"
+                        r"|견인비(?!\s따로\s없음(?![가-힣]))(?!는\s따로\s없어요)\s*(?:는|가)?\s*따로\s*(?:없|안)"
+                        r"|견적에\s*(?:포함|반영)|최고가|1등(?!급)")
 
 
-# 첫 화면 1+1 줄(2026-10-04): 동·구·시·안내·사례 페이지 제목 바로 아래 한 줄 + 뜻 풀이, 견적 폼 제목
-ONEPLUS_LINE = "폐차 견적 1+1 — 폐차값과 수출값, 둘 다 알려드려요"
-ONEPLUS_NOTE = "1+1은 폐차 견적과 수출 견적, 두 가지를 함께 드린다는 뜻입니다."
-ONEPLUS_FORM = "<h3>폐차·수출 견적 1+1 신청</h3>"
+# 두 금액 줄(2026-10-04 "1+1" 줄 → 2026-10-28 "1+1" 뺌): 동·구·시·안내·사례 페이지 한 줄, 아래쪽 견적 폼 제목.
+# "1+1" 은 본문 어디에도 쓰지 않는다(check_body_wording)
+ONEPLUS_LINE = "폐차값과 수출값, 둘 다 알려드려요"
+ONEPLUS_FORM = "<h3>폐차값·수출값 둘 다 받기</h3>"
 
 
 def check_oneplus() -> list[str]:
@@ -724,14 +726,56 @@ def check_oneplus() -> list[str]:
             text = f.read_text(encoding="utf-8")
             if 'http-equiv="refresh"' in text:
                 continue  # 예전 주소의 자동 이동 페이지
-            # 1+1 줄: 안내·사례 페이지는 제목 바로 아래, 동·구·시 페이지는 폼 바로 아래 "왜 비교해 드리나" 칸(2026-10-13)
-            h1 = re.search(r"<p class=\"oneplus\"[^>]*>([^<]*)<small[^>]*>([^<]*)</small>", text)
-            if not h1 or h1.group(1) != ONEPLUS_LINE or h1.group(2) != ONEPLUS_NOTE:
-                problems.append(f"{d}/{f.name}: '{ONEPLUS_LINE}' 줄과 1+1 뜻 풀이가 없음")
+            # 두 금액 줄: 안내·사례 페이지는 제목 바로 아래, 동·구·시 페이지는 폼 바로 아래 "왜 비교해 드리나" 칸(2026-10-13)
+            h1 = re.search(r"<p class=\"oneplus\"[^>]*>([^<]*)</p>", text)
+            if not h1 or h1.group(1) != ONEPLUS_LINE:
+                problems.append(f"{d}/{f.name}: '{ONEPLUS_LINE}' 줄이 없음")
             hero = re.search(r'<header class="hero hero-v3">.*?</header>', text, flags=re.DOTALL)
             forms = len(re.findall(r'<form class="quote-form"', text)) - (hero.group(0).count('<form class="quote-form"') if hero else 0)
             if forms and text.count(ONEPLUS_FORM) != forms:
-                problems.append(f"{d}/{f.name}: 아래쪽 견적 폼 제목이 '폐차·수출 견적 1+1 신청' 이 아님")
+                problems.append(f"{d}/{f.name}: 아래쪽 견적 폼 제목이 '폐차값·수출값 둘 다 받기' 가 아님")
+    return problems
+
+
+# 본문 금지 낱말(2026-10-28 전환 변경 #2): 협력업체·출장 방문 문구를 빼고, 1+1 도 쓰지 않는다. 검색 결과 제목(title)·설명 등 <head> 는 보지 않는다
+BODY_BAN_RE = re.compile(r"협력업체|협력 폐차장|출장 방문|방문 상담|24시간 상담|1\+1")
+CONSULT_MAX = 2  # "상담 후 확인" 은 페이지 본문에 2번까지(금액 FAQ·안내 페이지 "금액은 상담 후 확인")
+
+
+def page_files() -> list[Path]:
+    out = [ROOT / n for n in ("index.html", "thanks.html", "privacy.html") if (ROOT / n).exists()]
+    for d in ("pages", "gu", "si", "guide", "cases"):
+        out += sorted((ROOT / d).glob("*.html")) if (ROOT / d).exists() else []
+    return out
+
+
+def body_text(html: str) -> str:
+    b = html[html.find("<body"):] if "<body" in html else html
+    return re.sub(r"<script.*?</script>|<style.*?</style>", "", b, flags=re.DOTALL)
+
+
+def check_body_wording() -> list[str]:
+    """본문 금지 낱말, "상담 후 확인" 페이지당 횟수, 폼마다 로봇 막기 칸(botcheck) 1개(2026-10-28)."""
+    problems = []
+    for f in page_files():
+        html = f.read_text(encoding="utf-8")
+        if 'http-equiv="refresh"' in html:
+            continue
+        rel = f.relative_to(ROOT).as_posix()
+        body = body_text(html)
+        for m in BODY_BAN_RE.finditer(body):
+            problems.append(f"{rel}: 본문에 '{m.group(0)}' → …{re.sub(r'<[^>]+>', ' ', body[max(0, m.start()-30):m.end()+30])}…")
+        if f.name not in ("privacy.html",):
+            n = re.sub(r"<[^>]+>", "", body).count("상담 후 확인")
+            if n > CONSULT_MAX:
+                problems.append(f"{rel}: '상담 후 확인' {n}번(페이지당 {CONSULT_MAX}번까지)")
+        for form in re.findall(r"<form\b.*?</form>", html, flags=re.DOTALL):
+            if "web3forms" not in form and 'class="quote-form"' not in form:
+                continue
+            k = len(re.findall(r'<input type="checkbox" name="botcheck" class="hidden" style="display:none"[^>]*>', form))
+            total = form.count('name="botcheck"')
+            if k != 1 or total != 1:
+                problems.append(f"{rel}: 견적 폼에 로봇 막기 칸(botcheck)이 1개가 아님({total}개)")
     return problems
 
 
@@ -921,6 +965,17 @@ def check_phone_links(cfg: dict) -> list[str]:
         for hit in p.hits[:2]:
             problems.append(f"{f.relative_to(ROOT).as_posix()}: 링크가 아닌 대표번호 글자 → {hit}")
     return problems
+
+def check_lead_hook(cfg: dict) -> list[str]:
+    """폼 → 캘린더 알림(2026-10-28): 폼 스크립트가 있는 페이지는 모두 site_config 의 lead_hook_url 을 그대로 품는다."""
+    want = f"var LEAD_HOOK = '{(cfg.get('lead_hook_url') or '').strip()}';"
+    problems = []
+    for f in html_files():
+        text = f.read_text(encoding="utf-8")
+        if "function formatPhone" in text and want not in text:
+            problems.append(f"{f.relative_to(ROOT).as_posix()}: 폼 → 캘린더 알림 주소(lead_hook_url)가 설정값과 다름")
+    return problems
+
 
 def check_lead_hook(cfg: dict) -> list[str]:
     """폼 → 캘린더 알림(2026-10-28): 폼 스크립트가 있는 페이지는 모두 site_config 의 lead_hook_url 을 그대로 품는다."""
@@ -1238,6 +1293,7 @@ def main() -> None:
         errors.extend(check_tow_wording())
         errors.extend(check_video_embeds())
         errors.extend(check_oneplus())
+        errors.extend(check_body_wording())
         errors.extend(check_icon_and_alt())
         errors.extend(check_published())
         errors.extend(check_og_images(site_cfg["site_base_url"].rstrip("/")))

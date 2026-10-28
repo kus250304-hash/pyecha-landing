@@ -23,7 +23,7 @@ si.json 항목 (확인된 것만 넣는다. 못 채우면 data/si_held.json 에 
 
 페이지 내용: 첫 화면 전화·문자 버튼과 폼(동·구 페이지와 같은 핵심 문장), 그 시·도 구 페이지 목록(있는 구만, "준비 중" 없음),
 구 → 동 목록(그 시·도의 동 페이지 전부를 시·군·구별로 묶음, 2026-10-20 — 첫 화면 → 시·도 → 동이 2클릭),
-진행 순서, FAQ 3개(+ 실제 통화 FAQ 4개, variants.call_faqs), 그 시·도 사례 카드(최신 6건), 공공 정보, 협력업체 고지.
+진행 순서, FAQ 3개(+ 실제 통화 FAQ 4개, variants.call_faqs), 그 시·도 사례 카드(최신 6건), 공공 정보, 등록 폐차장 고지.
 제목은 고정 틀 하나: "{시도 줄임} 폐차장 · 폐차 | 시·군·구별 출장 폐차 · 수출 비교 · 조기폐차 안내 | 전화 1600-6011".
 빌더가 막는 것: 구 페이지 3개 미만, FAQ 3개가 아님, 공공 정보 없음·출처 주소 없음, 금액·결과 약속·단정 표현.
 """
@@ -239,7 +239,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
             # 첫 화면(2026-10-13, scripts/first_screen.py)과 폼 바로 아래 "왜 비교해 드리나"
             "TYPE_LINKS": guide_links_html(),
             "HERO_TOP": hero_top_html(cfg, si_label, form_parts(cfg, si, sido, canonical, meta_title), crumb=si_crumb, updated=UPDATED_MARK),
-            "WHY_BLOCK": why_block_html(f"{sido} 폐차 상담 · 당일 접수", f"{sido} 어디서든 전화 한 통이면 가까운 협력업체가 출장 방문합니다."),
+            "WHY_BLOCK": why_block_html(f"{sido} 폐차 상담 · 당일 접수", f"{sido} 어디든 전화 한 통이면 기사가 차 있는 곳으로 갑니다."),
             "SI": esc(si), "SI_FULL": esc(f"{sido} — {old}" if old else sido), "SI_JOSA": josa(sido, "은", "는"),
             "GU_LIST_HTML": gu_list, "DONG_LIST_HTML": dong_list, "FAQ_HTML": faq_html, "INFO_ROWS": info_rows,
             "CHECKED_ON": esc(s.get("checked_on", "")), "UPDATED_ON": UPDATED_MARK,

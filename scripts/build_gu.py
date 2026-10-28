@@ -338,7 +338,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
             "HERO_SUB": esc(V.fill(v_intro["hero"], gu=gu)),
             "INTRO_HTML": intro_html,
             "LIST_SUB": esc(V.fill(v_intro["list"], gu=gu) if dongs else
-                            f"{gu} 동별 안내 페이지는 차례로 늘어납니다. 동과 상관없이 {gu} 어디든 전화로 출장 방문을 상담할 수 있습니다."),
+                            f"{gu} 동별 안내 페이지는 차례로 늘어납니다. 동과 상관없이 {gu} 어디든 전화 한 통이면 기사가 차 있는 자리로 갑니다."),
             "DONG_LIST_HTML": dong_list,
             "OTHER_DONGS_HTML": other_html,
             "NEARBY_CASES_HTML": nearby_html,
