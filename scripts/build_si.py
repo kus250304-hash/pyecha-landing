@@ -197,7 +197,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
         # 설명 글에는 010 번호를 넣지 않는다(네이버가 "010-****-****"로 가림, 2026-10-16). 본문·버튼의 번호는 그대로
         text_part = " · 문자 상담 가능" if text_disp else ""
         # 설명글(2026-10-25 병한님 결정): 폐차값·수출값 둘 다 · 견인비 따로 없음. 010 번호는 쓰지 않는다
-        meta_desc = (f"{sido} 폐차 상담. 시·군·구별 출장 방문, 폐차값·수출값 둘 다 알려드리고 더 높은 쪽으로. "
+        meta_desc = (f"{sido} 폐차 상담. 시·군·구 어디든 차 있는 자리로 갑니다. 폐차값·수출값 둘 다 알려드리고 더 높은 쪽으로. "
                      f"견인비 따로 없음. 전화 {phone_disp}{text_part}.")
         canonical = f"{base}/{si_rel(sido)}"
 
