@@ -1,5 +1,718 @@
 [
  {
+  "slug": "case-20261028-chungnam-taean-wonbuk",
+  "date": "2026-10-28",
+  "sido": "충청남도",
+  "sigungu": "태안군",
+  "dong": "원북면",
+  "region_slug": null,
+  "car": "2010년식 베라크루즈",
+  "title": "원북면 2010년식 베라크루즈 폐차·수출 비교 상담 사례",
+  "summary": "2010년식 베라크루즈 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "베라크루즈"
+   ],
+   [
+    "연식",
+    "2010년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2010년식 베라크루즈 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "외진 곳이라 탁송 기사가 잡히지 않아, 다음 날 오전 견인차로 폐차장까지 옮겼습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20261028-chungnam-taean-wonbuk-1.jpg",
+  "photos": [
+   "case-20261028-chungnam-taean-wonbuk-1.jpg",
+   "case-20261028-chungnam-taean-wonbuk-2.jpg",
+   "case-20261028-chungnam-taean-wonbuk-3.jpg",
+   "case-20261028-chungnam-taean-wonbuk-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "확인": [
+    "2010년식 베라크루즈",
+    "시동 걸림(계기판 확인)"
+   ],
+   "고른쪽": "폐차",
+   "문의일": "2026-10-27",
+   "인수일": "2026-10-27",
+   "끝한줄": "멀고 외진 곳이어도 직접 챙겨서 입고부터 말소까지 끝냈습니다.",
+   "제목꼬리": "외진곳도직접챙겨입고"
+  },
+  "depth": [
+   "확인",
+   "고른쪽",
+   "걸린 날",
+   "끝한줄"
+  ],
+  "thin": false,
+  "card_line": "외진곳도직접챙겨입고",
+  "added": "2026-10-29"
+ },
+ {
+  "slug": "case-20261028-gyeongbuk-goryeong",
+  "date": "2026-10-28",
+  "sido": "경상북도",
+  "sigungu": "고령군",
+  "dong": "",
+  "region_slug": null,
+  "car": "2004년식 봉고 프런티어",
+  "title": "고령군 2004년식 봉고 프런티어 폐차·수출 비교 상담 사례",
+  "summary": "2004년식 봉고 프런티어 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "봉고 프런티어"
+   ],
+   [
+    "연식",
+    "2004년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2004년식 봉고 프런티어 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "시동과 운행이 되는 차라 탁송 기사님이 직접 몰고 폐차장까지 갔습니다.",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20261028-gyeongbuk-goryeong-1.jpg",
+  "photos": [
+   "case-20261028-gyeongbuk-goryeong-1.jpg",
+   "case-20261028-gyeongbuk-goryeong-2.jpg",
+   "case-20261028-gyeongbuk-goryeong-3.jpg",
+   "case-20261028-gyeongbuk-goryeong-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "확인": [
+    "2004년식 봉고 프런티어 1톤",
+    "압류·저당 없음",
+    "수동·2WD"
+   ],
+   "고른쪽": "폐차",
+   "문의일": "2026-10-27",
+   "인수일": "2026-10-28",
+   "끝한줄": "차 확인 후 먼저 입금해 드리고, 같은 날 탁송 기사님이 몰고 출발했습니다"
+  },
+  "depth": [
+   "확인",
+   "고른쪽",
+   "걸린 날",
+   "끝한줄"
+  ],
+  "thin": false,
+  "card_line": "2004년식 봉고 프런티어 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-10-29"
+ },
+ {
+  "slug": "case-20261026-gyeonggi-seongnam-bundang",
+  "date": "2026-10-26",
+  "sido": "경기도",
+  "sigungu": "성남시 분당구",
+  "dong": "",
+  "region_slug": null,
+  "car": "2008년식 SM7 뉴아트",
+  "title": "성남시 분당구 2008년식 SM7 뉴아트 폐차·수출 비교 상담 사례",
+  "summary": "2008년식 SM7 뉴아트 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "SM7 뉴아트"
+   ],
+   [
+    "연식",
+    "2008년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ],
+   [
+    "문의 내용",
+    "냉각수 고장"
+   ]
+  ],
+  "situation": "2008년식 SM7 뉴아트 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20261026-gyeonggi-seongnam-bundang-1.jpg",
+  "photos": [
+   "case-20261026-gyeonggi-seongnam-bundang-1.jpg",
+   "case-20261026-gyeonggi-seongnam-bundang-2.jpg",
+   "case-20261026-gyeonggi-seongnam-bundang-3.jpg",
+   "case-20261026-gyeonggi-seongnam-bundang-4.jpg",
+   "case-20261026-gyeonggi-seongnam-bundang-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "걱정": "냉각수 쪽이 고장 나 고쳐야 할지 고민이었고, 낮에는 시간이 안 돼 저녁 7시 넘어서 와 줄 수 있는지 물으셨어요",
+   "확인": [
+    "냉각수 계통 고장",
+    "외관 여기저기 찌그러짐",
+    "시동·운행 확인"
+   ],
+   "고른쪽": "폐차",
+   "이유": "수리비 부담에 연식도 오래돼, 고치는 대신 폐차로 정했습니다",
+   "문의일": "2026-10-26",
+   "인수일": "2026-10-26",
+   "말소일": "2026-10-27",
+   "끝한줄": "견인차가 끝나는 저녁 7시 반에 직접 가서 냉각수를 채우고, 탁송 기사님 편으로 폐차장까지 보냈습니다",
+   "제목꼬리": "저녁7시반직접인수"
+  },
+  "depth": [
+   "걱정",
+   "확인",
+   "고른쪽",
+   "걸린 날",
+   "끝한줄"
+  ],
+  "thin": false,
+  "card_line": "냉각수 쪽이 고장 나 고쳐야 할지 고민이었고, 낮에는 시간이 안 돼 저녁 7시 넘어서 와 줄 수 있는지 물으셨어요",
+  "added": "2026-10-29"
+ },
+ {
+  "slug": "case-20261025-gyeonggi-ansan-sangnok",
+  "date": "2026-10-25",
+  "sido": "경기도",
+  "sigungu": "안산시 상록구",
+  "dong": "",
+  "region_slug": null,
+  "car": "2014년식 LF쏘나타",
+  "title": "안산시 상록구 2014년식 LF쏘나타 폐차·수출 비교 상담 사례",
+  "summary": "2014년식 LF쏘나타 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "LF쏘나타"
+   ],
+   [
+    "연식",
+    "2014년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2014년식 LF쏘나타 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20261025-gyeonggi-ansan-sangnok-1.jpg",
+  "photos": [
+   "case-20261025-gyeonggi-ansan-sangnok-1.jpg",
+   "case-20261025-gyeonggi-ansan-sangnok-2.jpg",
+   "case-20261025-gyeonggi-ansan-sangnok-3.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "걱정": "유튜브를 보고 연락했는데, 수출이랑 폐차를 같이 알아봐 줄 수 있나요?",
+   "확인": [
+    "LPG 차량",
+    "외관 손상",
+    "시동 걸면 점검 경고"
+   ],
+   "고른쪽": "폐차",
+   "이유": "LPG에 외관 손상과 점검 경고가 있어, 둘 다 알아본 뒤 이 차는 폐차 쪽으로 정했습니다",
+   "문의일": "2026-10-23",
+   "인수일": "2026-10-24",
+   "말소일": "2026-10-26"
+  },
+  "depth": [
+   "걱정",
+   "확인",
+   "고른쪽",
+   "걸린 날"
+  ],
+  "thin": false,
+  "card_line": "유튜브를 보고 연락했는데, 수출이랑 폐차를 같이 알아봐 줄 수 있나요?",
+  "added": "2026-10-29"
+ },
+ {
+  "slug": "case-20250630-gyeonggi-hwaseong-manse-jangan",
+  "date": "2025-06-30",
+  "sido": "경기도",
+  "sigungu": "화성시 만세구",
+  "dong": "장안면",
+  "region_slug": null,
+  "car": "2001년식 아반떼",
+  "title": "장안면 2001년식 아반떼 폐차·수출 비교 상담 사례",
+  "summary": "2001년식 아반떼 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "아반떼"
+   ],
+   [
+    "연식",
+    "2001년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2001년식 아반떼 차량으로, 시동은 걸리는 상태였습니다. 영업용 번호판 은색 아반떼 XD",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20250630-gyeonggi-hwaseong-manse-jangan-1.jpg",
+  "photos": [
+   "case-20250630-gyeonggi-hwaseong-manse-jangan-1.jpg",
+   "case-20250630-gyeonggi-hwaseong-manse-jangan-2.jpg",
+   "case-20250630-gyeonggi-hwaseong-manse-jangan-3.jpg",
+   "case-20250630-gyeonggi-hwaseong-manse-jangan-4.jpg",
+   "case-20250630-gyeonggi-hwaseong-manse-jangan-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2025-06-30"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2001년식 아반떼 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-10-29"
+ },
+ {
+  "slug": "case-20240508-chungnam-nonsan-yangchon",
+  "date": "2024-05-08",
+  "sido": "충청남도",
+  "sigungu": "논산시",
+  "dong": "양촌면",
+  "region_slug": null,
+  "car": "2015년식 투싼ix",
+  "title": "양촌면 2015년식 투싼ix 폐차·수출 비교 상담 사례",
+  "summary": "2015년식 투싼ix 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "투싼ix"
+   ],
+   [
+    "연식",
+    "2015년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2015년식 투싼ix 차량으로, 시동은 걸리는 상태였습니다. 보닛 찍히고 휀다 긁힌 투싼ix",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20240508-chungnam-nonsan-yangchon-1.jpg",
+  "photos": [
+   "case-20240508-chungnam-nonsan-yangchon-1.jpg",
+   "case-20240508-chungnam-nonsan-yangchon-2.jpg",
+   "case-20240508-chungnam-nonsan-yangchon-3.jpg",
+   "case-20240508-chungnam-nonsan-yangchon-4.jpg",
+   "case-20240508-chungnam-nonsan-yangchon-5.jpg",
+   "case-20240508-chungnam-nonsan-yangchon-6.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2024-05-08"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2015년식 투싼ix 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-10-29"
+ },
+ {
+  "slug": "case-20230821-chungnam-cheonan-seobuk-ssangyong",
+  "date": "2023-08-21",
+  "sido": "충청남도",
+  "sigungu": "천안시 서북구",
+  "dong": "쌍용동",
+  "region_slug": null,
+  "car": "2014년식 코란도 투리스모",
+  "title": "쌍용동 2014년식 코란도 투리스모 폐차·수출 비교 상담 사례",
+  "summary": "2014년식 코란도 투리스모 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "코란도 투리스모"
+   ],
+   [
+    "연식",
+    "2014년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2014년식 코란도 투리스모 차량으로, 시동은 걸리는 상태였습니다. 풀숲에 세워둔 투리스모, 캡티바도 섞임",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230821-chungnam-cheonan-seobuk-ssangyong-1.jpg",
+  "photos": [
+   "case-20230821-chungnam-cheonan-seobuk-ssangyong-1.jpg",
+   "case-20230821-chungnam-cheonan-seobuk-ssangyong-2.jpg",
+   "case-20230821-chungnam-cheonan-seobuk-ssangyong-3.jpg",
+   "case-20230821-chungnam-cheonan-seobuk-ssangyong-4.jpg",
+   "case-20230821-chungnam-cheonan-seobuk-ssangyong-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-08-21"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2014년식 코란도 투리스모 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-10-29"
+ },
+ {
+  "slug": "case-20230811-jeonnam-wando",
+  "date": "2023-08-11",
+  "sido": "전남광주통합특별시",
+  "sigungu": "완도군",
+  "dong": "",
+  "region_slug": null,
+  "car": "2006년식 SM5",
+  "title": "완도군 2006년식 SM5 폐차·수출 비교 상담 사례",
+  "summary": "2006년식 SM5 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "SM5"
+   ],
+   [
+    "연식",
+    "2006년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2006년식 SM5 차량으로, 시동은 걸리는 상태였습니다. 뒤 펜더·범퍼 찌그러진 중형 세단",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230811-jeonnam-wando-1.jpg",
+  "photos": [
+   "case-20230811-jeonnam-wando-1.jpg",
+   "case-20230811-jeonnam-wando-2.jpg",
+   "case-20230811-jeonnam-wando-3.jpg",
+   "case-20230811-jeonnam-wando-4.jpg",
+   "case-20230811-jeonnam-wando-5.jpg",
+   "case-20230811-jeonnam-wando-6.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-08-11"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2006년식 SM5 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-10-29"
+ },
+ {
+  "slug": "case-20230716-chungnam-cheonan-dongnam-wonseong",
+  "date": "2023-07-16",
+  "sido": "충청남도",
+  "sigungu": "천안시 동남구",
+  "dong": "원성동",
+  "region_slug": "chungnam-cheonan-dongnam-wonseong",
+  "car": "2011년식 푸조 3008",
+  "title": "원성동 2011년식 푸조 3008 폐차·수출 비교 상담 사례",
+  "summary": "2011년식 푸조 3008 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "푸조 3008"
+   ],
+   [
+    "연식",
+    "2011년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2011년식 푸조 3008 차량으로, 시동은 걸리는 상태였습니다. 옆문 찍힘 있는 수입 SUV 푸조 3008",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230716-chungnam-cheonan-dongnam-wonseong-1.jpg",
+  "photos": [
+   "case-20230716-chungnam-cheonan-dongnam-wonseong-1.jpg",
+   "case-20230716-chungnam-cheonan-dongnam-wonseong-2.jpg",
+   "case-20230716-chungnam-cheonan-dongnam-wonseong-3.jpg",
+   "case-20230716-chungnam-cheonan-dongnam-wonseong-4.jpg",
+   "case-20230716-chungnam-cheonan-dongnam-wonseong-5.jpg",
+   "case-20230716-chungnam-cheonan-dongnam-wonseong-6.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-07-16"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2011년식 푸조 3008 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-10-29"
+ },
+ {
+  "slug": "case-20230706-gyeonggi-hwaseong-byeongjeom-gisan",
+  "date": "2023-07-06",
+  "sido": "경기도",
+  "sigungu": "화성시 병점구",
+  "dong": "기산동",
+  "region_slug": "gyeonggi-hwaseong-byeongjeom-gisan",
+  "car": "2009년식 포르테",
+  "title": "기산동 2009년식 포르테 폐차·수출 비교 상담 사례",
+  "summary": "2009년식 포르테 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "포르테"
+   ],
+   [
+    "연식",
+    "2009년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2009년식 포르테 차량으로, 시동은 걸리는 상태였습니다. 뒷문에 작은 찍힘 있는 포르테 세단",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230706-gyeonggi-hwaseong-byeongjeom-gisan-1.jpg",
+  "photos": [
+   "case-20230706-gyeonggi-hwaseong-byeongjeom-gisan-1.jpg",
+   "case-20230706-gyeonggi-hwaseong-byeongjeom-gisan-2.jpg",
+   "case-20230706-gyeonggi-hwaseong-byeongjeom-gisan-3.jpg",
+   "case-20230706-gyeonggi-hwaseong-byeongjeom-gisan-4.jpg",
+   "case-20230706-gyeonggi-hwaseong-byeongjeom-gisan-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-07-06"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2009년식 포르테 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-10-29"
+ },
+ {
+  "slug": "case-20230423-gyeongbuk-gumi-inui",
+  "date": "2023-04-23",
+  "sido": "경상북도",
+  "sigungu": "구미시",
+  "dong": "인의동",
+  "region_slug": null,
+  "car": "2007년식 아반떼 HD",
+  "title": "인의동 2007년식 아반떼 HD 폐차·수출 비교 상담 사례",
+  "summary": "2007년식 아반떼 HD 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "아반떼 HD"
+   ],
+   [
+    "연식",
+    "2007년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2007년식 아반떼 HD 차량으로, 시동은 걸리는 상태였습니다. 먼지 쌓이고 범퍼 찍힌 아반떼 HD",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230423-gyeongbuk-gumi-inui-1.jpg",
+  "photos": [
+   "case-20230423-gyeongbuk-gumi-inui-1.jpg",
+   "case-20230423-gyeongbuk-gumi-inui-2.jpg",
+   "case-20230423-gyeongbuk-gumi-inui-3.jpg",
+   "case-20230423-gyeongbuk-gumi-inui-4.jpg",
+   "case-20230423-gyeongbuk-gumi-inui-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-04-23"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2007년식 아반떼 HD 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-10-29"
+ },
+ {
+  "slug": "case-20230331-gyeongnam-gimhae-jinyeong",
+  "date": "2023-03-31",
+  "sido": "경상남도",
+  "sigungu": "김해시",
+  "dong": "진영읍",
+  "region_slug": "gyeongnam-gimhae-jinyeong",
+  "car": "2009년식 봉고3 1톤 더블캡",
+  "title": "진영읍 2009년식 봉고3 1톤 더블캡 폐차·수출 비교 상담 사례",
+  "summary": "2009년식 봉고3 1톤 더블캡 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "봉고3 1톤 더블캡"
+   ],
+   [
+    "연식",
+    "2009년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2009년식 봉고3 1톤 더블캡 차량으로, 시동은 걸리는 상태였습니다. 외관 양호한 봉고3 더블캡 트럭",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230331-gyeongnam-gimhae-jinyeong-1.jpg",
+  "photos": [
+   "case-20230331-gyeongnam-gimhae-jinyeong-1.jpg",
+   "case-20230331-gyeongnam-gimhae-jinyeong-2.jpg",
+   "case-20230331-gyeongnam-gimhae-jinyeong-3.jpg",
+   "case-20230331-gyeongnam-gimhae-jinyeong-4.jpg",
+   "case-20230331-gyeongnam-gimhae-jinyeong-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-03-31"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2009년식 봉고3 1톤 더블캡 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-10-29"
+ },
+ {
+  "slug": "case-20230116-seoul-gangseo-hwagok",
+  "date": "2023-01-16",
+  "sido": "서울특별시",
+  "sigungu": "강서구",
+  "dong": "화곡동",
+  "region_slug": "seoul-gangseo-hwagok",
+  "car": "2001년식 코란도",
+  "title": "화곡동 2001년식 코란도 폐차·수출 비교 상담 사례",
+  "summary": "2001년식 코란도 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "코란도"
+   ],
+   [
+    "연식",
+    "2001년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2001년식 코란도 차량으로, 시동은 걸리는 상태였습니다. 녹색 구번호판 2인승 코란도 밴",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230116-seoul-gangseo-hwagok-1.jpg",
+  "photos": [
+   "case-20230116-seoul-gangseo-hwagok-1.jpg",
+   "case-20230116-seoul-gangseo-hwagok-2.jpg",
+   "case-20230116-seoul-gangseo-hwagok-3.jpg",
+   "case-20230116-seoul-gangseo-hwagok-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-01-16"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2001년식 코란도 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-10-29"
+ },
+ {
+  "slug": "case-20221026-gyeongbuk-gumi-goa",
+  "date": "2022-10-26",
+  "sido": "경상북도",
+  "sigungu": "구미시",
+  "dong": "고아읍",
+  "region_slug": "gyeongbuk-gumi-goa",
+  "car": "2000년식 라노스",
+  "title": "고아읍 2000년식 라노스 폐차·수출 비교 상담 사례",
+  "summary": "2000년식 라노스 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "라노스"
+   ],
+   [
+    "연식",
+    "2000년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2000년식 라노스 차량으로, 시동은 걸리는 상태였습니다. 도장 벗겨지고 먼지 낀 오래된 라노스",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20221026-gyeongbuk-gumi-goa-1.jpg",
+  "photos": [
+   "case-20221026-gyeongbuk-gumi-goa-1.jpg",
+   "case-20221026-gyeongbuk-gumi-goa-2.jpg",
+   "case-20221026-gyeongbuk-gumi-goa-3.jpg",
+   "case-20221026-gyeongbuk-gumi-goa-4.jpg",
+   "case-20221026-gyeongbuk-gumi-goa-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2022-10-26"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2000년식 라노스 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-10-29"
+ },
+ {
   "slug": "case-20260911-gyeongbuk-yeongcheon-geumho",
   "date": "2026-09-11",
   "sido": "경상북도",

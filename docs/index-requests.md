@@ -282,3 +282,16 @@
 - https://pyecha119.com/gu/%EA%B0%95%EB%A6%89%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/강릉시-폐차장.html (2026-10-28 사례가 새로 붙음(강릉시 2012년식 그랜드 스타렉스))
 - https://pyecha119.com/gu/%EC%99%84%EC%A3%BC%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/완주군-폐차장.html (2026-10-27 사례가 새로 붙음(완주군 2010년식 라세티 프리미어))
 - https://pyecha119.com/gu/%EC%88%98%EC%9B%90%EC%8B%9C-%ED%8C%94%EB%8B%AC%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/수원시-팔달구-폐차장.html (2026-10-27 요청 못 함 → 다시)
+
+## 2026-10-29
+
+- https://pyecha119.com/gu/%ED%83%9C%EC%95%88%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/태안군-폐차장.html (2026-10-29 사례가 새로 붙음(태안군 2010년식 베라크루즈))
+- https://pyecha119.com/gu/%EA%B3%A0%EB%A0%B9%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/고령군-폐차장.html (2026-10-29 사례가 새로 붙음(고령군 2004년식 봉고 프런티어))
+- https://pyecha119.com/gu/%EC%84%B1%EB%82%A8%EC%8B%9C-%EB%B6%84%EB%8B%B9%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/성남시-분당구-폐차장.html (2026-10-29 사례가 새로 붙음(성남시 분당구 2008년식 SM7 뉴아트))
+- https://pyecha119.com/gu/%EC%95%88%EC%82%B0%EC%8B%9C-%EC%83%81%EB%A1%9D%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/안산시-상록구-폐차장.html (2026-10-29 사례가 새로 붙음(안산시 상록구 2014년식 LF쏘나타))
+- https://pyecha119.com/gu/%ED%99%94%EC%84%B1%EC%8B%9C-%EB%A7%8C%EC%84%B8%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/화성시-만세구-폐차장.html (2026-10-29 사례가 새로 붙음(화성시 만세구 2001년식 아반떼))
+- https://pyecha119.com/gu/%EB%85%BC%EC%82%B0%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/논산시-폐차장.html (2026-10-29 사례가 새로 붙음(논산시 2015년식 투싼ix))
+- https://pyecha119.com/gu/%EC%B2%9C%EC%95%88%EC%8B%9C-%EC%84%9C%EB%B6%81%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/천안시-서북구-폐차장.html (2026-10-29 사례가 새로 붙음(천안시 서북구 2014년식 코란도 투리스모))
+- https://pyecha119.com/gu/%EC%99%84%EB%8F%84%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/완도군-폐차장.html (2026-10-29 사례가 새로 붙음(완도군 2006년식 SM5))
+- https://pyecha119.com/gu/%EC%B2%9C%EC%95%88%EC%8B%9C-%EB%8F%99%EB%82%A8%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/천안시-동남구-폐차장.html (2026-10-29 사례가 새로 붙음(천안시 동남구 2011년식 푸조 3008))
+- https://pyecha119.com/gu/%ED%99%94%EC%84%B1%EC%8B%9C-%EB%B3%91%EC%A0%90%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/화성시-병점구-폐차장.html (2026-10-29 사례가 새로 붙음(화성시 병점구 2009년식 포르테))
