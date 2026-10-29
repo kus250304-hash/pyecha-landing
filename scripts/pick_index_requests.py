@@ -9,7 +9,9 @@
 고르는 순서(2026-10-20 병한님 결정, docs/roadmap.md 13절)
   ⓐ 어제·오늘 사례가 새로 붙은 구·시군 페이지(2026-10-28 병한님, cases/index.json 의 added = 페이지에 붙은 날, 없으면 git 에
      cases/<slug>.html 이 처음 들어간 날). 이미 요청했어도 사례가 붙은 날 뒤로 요청한 적이 없으면 다시 고른다
-  ⓪ 바로 앞 날짜 칸 제목에 "요청 못 함"이 있으면(할당량 초과 등) 그 칸 주소를 같은 순서로 다시 맨 앞에(같은 주소들을 다시 올림)
+  ⓪ 날짜 칸 제목에 "요청 못 함"이 있으면(할당량 초과 등) 그 칸 주소를 같은 순서로 다시 맨 앞에(같은 주소들을 다시 올림.
+     2026-10-29부터 바로 앞 날짜만이 아니라 모든 "요청 못 함" 칸을 최근 칸부터 보고, 예전에 요청한 적 있는 주소도
+     그 칸 날짜 뒤로(같은 날 포함) 요청하지 않았으면 다시. 하루 10개를 넘어 남은 주소는 다음 날 이어서 나옴)
   ① docs/index-requests.md 의 "## 최우선" 칸 주소 중 아직 요청 안 된 것(적힌 순서대로, 지금은 주제 페이지 6장)
   ② 문의가 온 페이지(그 파일의 "문의가 온 페이지" 칸)와 같은 시·군의 구·시군 페이지
      (일반구면 같은 시의 다른 구 페이지까지, 문의 온 곳이 여럿이면 번갈아)
@@ -163,13 +165,13 @@ def main() -> None:
             if last_req.get(url, "") < added:
                 add(url, f"{added} 사례가 새로 붙음({c['sigungu']} {c.get('car', '')})".replace(" )", ")"), again=True)
 
-    # ⓪ 바로 앞 날짜가 "요청 못 함"이면 그 목록을 그대로 다시
-    before = sorted({head[:10] for head, _ in secs if DATE_HEAD_RE.match(head) and head[:10] < day})
-    if before:
-        for head, body in secs:
-            if head.startswith(before[-1]) and NOT_DONE in head:
-                for u in URL_RE.findall(body):
-                    add(u, f"{before[-1]} 요청 못 함 → 다시")
+    # ⓪ "요청 못 함" 칸 주소를 다시(2026-10-29: 바로 앞 날짜만이 아니라 모든 칸, 최근 칸부터. 예전에 요청한 적 있어도
+    # 그 칸 날짜 뒤로(같은 날 포함) 요청하지 않았으면 다시 → 하루 10개를 넘어 남은 주소도 다음 날 이어서 나옴)
+    for head, body in sorted(((h, b) for h, b in secs if DATE_HEAD_RE.match(h) and NOT_DONE in h and h[:10] < day),
+                             key=lambda x: x[0][:10], reverse=True):
+        for u in URL_RE.findall(body):
+            if last_req.get(u, "") < head[:10]:
+                add(u, f"{head[:10]} 요청 못 함 → 다시", again=True)
 
     # ① 최우선 칸
     for u in priority:
