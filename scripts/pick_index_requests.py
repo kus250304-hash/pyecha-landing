@@ -195,12 +195,17 @@ def inspect_link(base: str, url: str) -> str:
 def dong_order(base: str, regions: list[dict], inquiry: str, gu_data: list[dict], indexable: set[str]) -> list[tuple[str, str]]:
     """네이버 ② 동 페이지 순서(2026-10-29 병한님): 문의 온 시·군(일반구면 같은 시의 모든 구)의 동을 인구 많은 순
     (문의 온 곳이 여럿이면 번갈아) → 점수표(data/priority_regions.json) 순 시·군마다 인구 많은 동 → 나머지.
-    인구는 data/population_dong.json(population_stats.py dong 이 저장)에 있는 것만 쓰고, 없는 동은 그 시·군 맨 뒤(법정동코드 순)."""
+    인구는 data/population_dong.json(population_stats.py dong 이 저장)에 있는 것만 쓰고, 없는 동은 그 시·군 맨 뒤(법정동코드 순).
+    ○가를 묶은 페이지(창인동 = 창인동1가·2가)는 ○가 인구를 합친다."""
     from population_stats import dong_load
     rows = dong_load().get("rows", {})
 
     def people(r: dict) -> int | None:
-        return rows.get(f"{r['sido']} {r['sigungu']}", {}).get(r["dong"])
+        pop = rows.get(f"{r['sido']} {r['sigungu']}".strip(), {})
+        if r["dong"] in pop:
+            return pop[r["dong"]]
+        parts = [n for name, n in pop.items() if re.fullmatch(re.escape(r["dong"]) + r"\d+가", name)]
+        return sum(parts) if parts else None
 
     def ranked(rs: list[dict]) -> list[dict]:
         return sorted(rs, key=lambda r: (people(r) is None, -(people(r) or 0), r.get("code", "")))
