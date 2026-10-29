@@ -1,5 +1,457 @@
 [
  {
+  "slug": "case-20260817-jeonbuk-jeonju-deokjin",
+  "date": "2026-08-17",
+  "sido": "전북특별자치도",
+  "sigungu": "전주시 덕진구",
+  "dong": "",
+  "region_slug": null,
+  "car": "2007년식 마티즈",
+  "title": "전주시 덕진구 2007년식 마티즈 폐차·수출 비교 상담 사례",
+  "summary": "2007년식 마티즈 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "마티즈"
+   ],
+   [
+    "연식",
+    "2007년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "문의 내용",
+    "휠 녹 슨 흰색 마티즈"
+   ]
+  ],
+  "situation": "2007년식 마티즈 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20260817-jeonbuk-jeonju-deokjin-1.jpg",
+  "photos": [
+   "case-20260817-jeonbuk-jeonju-deokjin-1.jpg",
+   "case-20260817-jeonbuk-jeonju-deokjin-2.jpg",
+   "case-20260817-jeonbuk-jeonju-deokjin-3.jpg",
+   "case-20260817-jeonbuk-jeonju-deokjin-4.jpg",
+   "case-20260817-jeonbuk-jeonju-deokjin-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2026-08-17"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2007년식 마티즈 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-10-30"
+ },
+ {
+  "slug": "case-20250616-chungnam-asan-yonghwa",
+  "date": "2025-06-16",
+  "sido": "충청남도",
+  "sigungu": "아산시",
+  "dong": "용화동",
+  "region_slug": null,
+  "car": "2006년식 그랜저 TG",
+  "title": "용화동 2006년식 그랜저 TG 폐차·수출 비교 상담 사례",
+  "summary": "2006년식 그랜저 TG 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "그랜저 TG"
+   ],
+   [
+    "연식",
+    "2006년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2006년식 그랜저 TG 차량으로, 시동은 걸리는 상태였습니다. 보닛 도장 바랜 검정 그랜저 TG",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20250616-chungnam-asan-yonghwa-1.jpg",
+  "photos": [
+   "case-20250616-chungnam-asan-yonghwa-1.jpg",
+   "case-20250616-chungnam-asan-yonghwa-2.jpg",
+   "case-20250616-chungnam-asan-yonghwa-3.jpg",
+   "case-20250616-chungnam-asan-yonghwa-4.jpg",
+   "case-20250616-chungnam-asan-yonghwa-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2025-06-16"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2006년식 그랜저 TG 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-10-30"
+ },
+ {
+  "slug": "case-20250310-chungbuk-okcheon-okcheon",
+  "date": "2025-03-10",
+  "sido": "충청북도",
+  "sigungu": "옥천군",
+  "dong": "옥천읍",
+  "region_slug": "chungbuk-okcheon-okcheon",
+  "car": "2016년식 SM5 노바",
+  "title": "옥천읍 2016년식 SM5 노바 폐차·수출 비교 상담 사례",
+  "summary": "2016년식 SM5 노바 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "SM5 노바"
+   ],
+   [
+    "연식",
+    "2016년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2016년식 SM5 노바 차량으로, 시동은 걸리는 상태였습니다. 외관 깨끗한 검정 SM5 노바",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20250310-chungbuk-okcheon-okcheon-1.jpg",
+  "photos": [
+   "case-20250310-chungbuk-okcheon-okcheon-1.jpg",
+   "case-20250310-chungbuk-okcheon-okcheon-2.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2025-03-10"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2016년식 SM5 노바 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-10-30"
+ },
+ {
+  "slug": "case-20241127-incheon-seohae-simgok",
+  "date": "2024-11-27",
+  "sido": "인천광역시",
+  "sigungu": "서해구",
+  "dong": "심곡동",
+  "region_slug": null,
+  "car": "2005년식 싼타페",
+  "title": "심곡동 2005년식 싼타페 폐차·수출 비교 상담 사례",
+  "summary": "2005년식 싼타페 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "싼타페"
+   ],
+   [
+    "연식",
+    "2005년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2005년식 싼타페 차량으로, 시동은 걸리는 상태였습니다. 검정 1세대 싼타페, 다른 차 사진 1장 섞임",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20241127-incheon-seohae-simgok-1.jpg",
+  "photos": [
+   "case-20241127-incheon-seohae-simgok-1.jpg",
+   "case-20241127-incheon-seohae-simgok-2.jpg",
+   "case-20241127-incheon-seohae-simgok-3.jpg",
+   "case-20241127-incheon-seohae-simgok-4.jpg",
+   "case-20241127-incheon-seohae-simgok-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2024-11-27"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2005년식 싼타페 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-10-30"
+ },
+ {
+  "slug": "case-20240318-sejong-jongchon",
+  "date": "2024-03-18",
+  "sido": "세종특별자치시",
+  "sigungu": "",
+  "dong": "종촌동",
+  "region_slug": "sejong-jongchon",
+  "car": "2008년식 모하비",
+  "title": "종촌동 2008년식 모하비 폐차·수출 비교 상담 사례",
+  "summary": "2008년식 모하비 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "모하비"
+   ],
+   [
+    "연식",
+    "2008년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2008년식 모하비 차량으로, 시동은 걸리는 상태였습니다. 외관 무난한 은색 대형 SUV 모하비",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20240318-sejong-jongchon-1.jpg",
+  "photos": [
+   "case-20240318-sejong-jongchon-1.jpg",
+   "case-20240318-sejong-jongchon-2.jpg",
+   "case-20240318-sejong-jongchon-3.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2024-03-18"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2008년식 모하비 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-10-30"
+ },
+ {
+  "slug": "case-20240226-gyeongbuk-yeongdeok-ganggu",
+  "date": "2024-02-26",
+  "sido": "경상북도",
+  "sigungu": "영덕군",
+  "dong": "강구면",
+  "region_slug": null,
+  "car": "2011년식 쏘나타",
+  "title": "강구면 2011년식 쏘나타 폐차·수출 비교 상담 사례",
+  "summary": "2011년식 쏘나타 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "쏘나타"
+   ],
+   [
+    "연식",
+    "2011년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2011년식 쏘나타 차량으로, 시동은 걸리는 상태였습니다. 앞범퍼 긁힘·찍힘 있는 검정 쏘나타 YF",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20240226-gyeongbuk-yeongdeok-ganggu-1.jpg",
+  "photos": [
+   "case-20240226-gyeongbuk-yeongdeok-ganggu-1.jpg",
+   "case-20240226-gyeongbuk-yeongdeok-ganggu-2.jpg",
+   "case-20240226-gyeongbuk-yeongdeok-ganggu-3.jpg",
+   "case-20240226-gyeongbuk-yeongdeok-ganggu-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2024-02-26"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2011년식 쏘나타 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-10-30"
+ },
+ {
+  "slug": "case-20230622-daegu-donggu-deokgok",
+  "date": "2023-06-22",
+  "sido": "대구광역시",
+  "sigungu": "동구",
+  "dong": "덕곡동",
+  "region_slug": null,
+  "car": "2009년식 그랜드 스타렉스",
+  "title": "덕곡동 2009년식 그랜드 스타렉스 폐차·수출 비교 상담 사례",
+  "summary": "2009년식 그랜드 스타렉스 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "그랜드 스타렉스"
+   ],
+   [
+    "연식",
+    "2009년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2009년식 그랜드 스타렉스 차량으로, 시동은 걸리는 상태였습니다. 풀밭에 세워둔 11인승 승합차",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230622-daegu-donggu-deokgok-1.jpg",
+  "photos": [
+   "case-20230622-daegu-donggu-deokgok-1.jpg",
+   "case-20230622-daegu-donggu-deokgok-2.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-06-22"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2009년식 그랜드 스타렉스 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-10-30"
+ },
+ {
+  "slug": "case-20230422-gyeongbuk-gumi-inui",
+  "date": "2023-04-22",
+  "sido": "경상북도",
+  "sigungu": "구미시",
+  "dong": "인의동",
+  "region_slug": null,
+  "car": "2007년식 아반떼 HD",
+  "title": "인의동 2007년식 아반떼 HD 폐차·수출 비교 상담 사례",
+  "summary": "2007년식 아반떼 HD 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "아반떼 HD"
+   ],
+   [
+    "연식",
+    "2007년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2007년식 아반떼 HD 차량으로, 시동은 걸리는 상태였습니다. 앞범퍼·펜더 찍힘 있는 아반떼 HD",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230422-gyeongbuk-gumi-inui-1.jpg",
+  "photos": [
+   "case-20230422-gyeongbuk-gumi-inui-1.jpg",
+   "case-20230422-gyeongbuk-gumi-inui-2.jpg",
+   "case-20230422-gyeongbuk-gumi-inui-3.jpg",
+   "case-20230422-gyeongbuk-gumi-inui-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-04-22"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2007년식 아반떼 HD 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-10-30"
+ },
+ {
+  "slug": "case-20230417-gyeongbuk-pohang-bukgu-yongheung",
+  "date": "2023-04-17",
+  "sido": "경상북도",
+  "sigungu": "포항시 북구",
+  "dong": "용흥동",
+  "region_slug": null,
+  "car": "2010년식 그랜저 TG",
+  "title": "용흥동 2010년식 그랜저 TG 폐차·수출 비교 상담 사례",
+  "summary": "2010년식 그랜저 TG 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "그랜저 TG"
+   ],
+   [
+    "연식",
+    "2010년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2010년식 그랜저 TG 차량으로, 시동은 걸리는 상태였습니다. 외관 깨끗한 검정 그랜저 TG Q270",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230417-gyeongbuk-pohang-bukgu-yongheung-1.jpg",
+  "photos": [
+   "case-20230417-gyeongbuk-pohang-bukgu-yongheung-1.jpg",
+   "case-20230417-gyeongbuk-pohang-bukgu-yongheung-2.jpg",
+   "case-20230417-gyeongbuk-pohang-bukgu-yongheung-3.jpg",
+   "case-20230417-gyeongbuk-pohang-bukgu-yongheung-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-04-17"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2010년식 그랜저 TG 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-10-30"
+ },
+ {
+  "slug": "case-20230111-gyeonggi-siheung-daeya",
+  "date": "2023-01-11",
+  "sido": "경기도",
+  "sigungu": "시흥시",
+  "dong": "대야동",
+  "region_slug": "gyeonggi-siheung-daeya",
+  "car": "2008년식 오피러스",
+  "title": "대야동 2008년식 오피러스 폐차·수출 비교 상담 사례",
+  "summary": "2008년식 오피러스 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "오피러스"
+   ],
+   [
+    "연식",
+    "2008년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2008년식 오피러스 차량으로, 시동은 걸리는 상태였습니다. 외관 깨끗한 검정 오피러스 GH330",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230111-gyeonggi-siheung-daeya-1.jpg",
+  "photos": [
+   "case-20230111-gyeonggi-siheung-daeya-1.jpg",
+   "case-20230111-gyeonggi-siheung-daeya-2.jpg",
+   "case-20230111-gyeonggi-siheung-daeya-3.jpg",
+   "case-20230111-gyeonggi-siheung-daeya-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-01-11"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2008년식 오피러스 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-10-30"
+ },
+ {
   "slug": "case-20261028-chungnam-taean-wonbuk",
   "date": "2026-10-28",
   "sido": "충청남도",
