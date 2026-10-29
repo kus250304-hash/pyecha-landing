@@ -1,5 +1,5 @@
 {
- "date": "2026-10-28",
+ "date": "2026-10-29",
  "rival": [
   {
    "slug": "chungnam-asan",
@@ -11,7 +11,7 @@
    "slug": "gangwon-gangneung",
    "sido": "강원특별자치도",
    "sigungu": "강릉시",
-   "query": "강릉폐차장"
+   "query": "강릉폐차"
   },
   {
    "slug": "jeonbuk-jeonju-deokjin",
@@ -30,6 +30,12 @@
    "sido": "전북특별자치도",
    "sigungu": "군산시",
    "query": "군산폐차"
+  },
+  {
+   "slug": "gyeonggi-pyeongtaek",
+   "sido": "경기도",
+   "sigungu": "평택시",
+   "query": "평택폐차"
   },
   {
    "slug": "gyeongbuk-gyeongsan",
@@ -86,6 +92,12 @@
    "query": "안동폐차"
   },
   {
+   "slug": "chungnam-gongju",
+   "sido": "충청남도",
+   "sigungu": "공주시",
+   "query": "공주폐차장"
+  },
+  {
    "slug": "gyeonggi-siheung",
    "sido": "경기도",
    "sigungu": "시흥시",
@@ -104,22 +116,10 @@
    "query": "상주폐차장"
   },
   {
-   "slug": "gyeonggi-uijeongbu",
-   "sido": "경기도",
-   "sigungu": "의정부시",
-   "query": "의정부폐차장"
-  },
-  {
    "slug": "gyeongbuk-yeongju",
    "sido": "경상북도",
    "sigungu": "영주시",
    "query": "영주폐차"
-  },
-  {
-   "slug": "gangwon-donghae",
-   "sido": "강원특별자치도",
-   "sigungu": "동해시",
-   "query": "동해폐차"
   }
  ],
  "empty": [
@@ -191,6 +191,14 @@
    ]
   },
   {
+   "slug": "gyeonggi-namyangju",
+   "sido": "경기도",
+   "sigungu": "남양주시",
+   "queries": [
+    "남양주폐차"
+   ]
+  },
+  {
    "slug": "gyeongnam-sacheon",
    "sido": "경상남도",
    "sigungu": "사천시",
@@ -205,6 +213,14 @@
    "queries": [
     "통영폐차",
     "통영폐차장"
+   ]
+  },
+  {
+   "slug": "gyeongnam-milyang",
+   "sido": "경상남도",
+   "sigungu": "밀양시",
+   "queries": [
+    "밀양폐차"
    ]
   },
   {
@@ -245,6 +261,14 @@
    "sigungu": "서해구",
    "queries": [
     "서해폐차"
+   ]
+  },
+  {
+   "slug": "gyeongnam-changnyeong",
+   "sido": "경상남도",
+   "sigungu": "창녕군",
+   "queries": [
+    "창녕폐차"
    ]
   },
   {
@@ -433,14 +457,6 @@
    ]
   },
   {
-   "slug": "daegu-gunwi",
-   "sido": "대구광역시",
-   "sigungu": "군위군",
-   "queries": [
-    "군위폐차"
-   ]
-  },
-  {
    "slug": "daegu-dalseong",
    "sido": "대구광역시",
    "sigungu": "달성군",
@@ -454,6 +470,14 @@
    "sigungu": "하동군",
    "queries": [
     "하동폐차"
+   ]
+  },
+  {
+   "slug": "seoul-gangseo",
+   "sido": "서울특별시",
+   "sigungu": "강서구",
+   "queries": [
+    "서울강서구폐차"
    ]
   },
   {
