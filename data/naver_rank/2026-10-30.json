@@ -1,0 +1,6719 @@
+{
+ "date": "2026-10-30",
+ "source": "네이버 검색 API webkr·blog, display=30",
+ "calls": 448,
+ "failed": 0,
+ "regions": [
+  {
+   "sido": "서울특별시",
+   "sigungu": "종로구",
+   "priority_rank": 184,
+   "web": {
+    "종로폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "opengov.seoul.go.kr",
+      "mediahub.seoul.go.kr",
+      "obosaga.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "obosaga.com"
+     }
+    },
+    "종로폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "gun.pibugu.xyz",
+      "obosaga.com",
+      "onscrap.co.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "obosaga.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "김해시",
+   "priority_rank": 6,
+   "web": {
+    "김해폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "055-335-1981.okqr.co.kr",
+      "kadra.or.kr",
+      "baro.gyeongnam.go.kr"
+     ]
+    },
+    "김해폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "055-335-1981.okqr.co.kr",
+      "kadra.or.kr",
+      "changwon.go.kr"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "경주시",
+   "priority_rank": 31,
+   "web": {
+    "경주폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "gyeongju.go.kr",
+      "kadra.or.kr",
+      "icaryoucar.com"
+     ]
+    },
+    "경주폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "smartstore.naver.com",
+      "placeview.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "평택시",
+   "priority_rank": 20,
+   "web": {
+    "평택폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "ptpecha.suid.kr",
+      "hicarz.co.kr",
+      "pyeongtaekpecha.zerosauto.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "pyeongtaekpecha.zerosauto.com"
+     }
+    },
+    "평택폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "ptpecha.suid.kr",
+      "xn--vv5bn6fjxeqqdbb.masterad.kr",
+      "stscrap.kr"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "제주특별자치도",
+   "sigungu": "제주시",
+   "priority_rank": 3,
+   "web": {
+    "제주폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "talk.naver.com",
+      "gwangjucar.navermobile.kr"
+     ]
+    },
+    "제주폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "blog.naver.com",
+      "smartstore.naver.com",
+      "kadra.or.kr"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "익산시",
+   "priority_rank": 18,
+   "web": {
+    "익산폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "iksanpecha.coka.kr",
+      "kadra.or.kr",
+      "rda.go.kr"
+     ]
+    },
+    "익산폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "iksanpecha.coka.kr",
+      "kadra.or.kr",
+      "daangn.com"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "강남구",
+   "priority_rank": 137,
+   "web": {
+    "강남폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "gangnam.go.kr",
+      "cleanair.seoul.go.kr",
+      "kadra.or.kr"
+     ]
+    },
+    "강남폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "obosaga.com",
+      "soonwidot.co.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "obosaga.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "춘천시",
+   "priority_rank": 16,
+   "web": {
+    "춘천폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "ccpecha.webmaker.kr",
+      "kadra.or.kr",
+      "chuncheon.go.kr"
+     ]
+    },
+    "춘천폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "ccpecha.webmaker.kr",
+      "chuncheon.go.kr"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "송파구",
+   "priority_rank": 140,
+   "web": {
+    "송파폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "sppecha.kwk114.com",
+      "songpa.go.kr",
+      "boramcar.co.kr"
+     ]
+    },
+    "송파폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "sppecha.kwk114.com",
+      "spgcar.occom.kr",
+      "songpagupecha.zerosauto.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "songpagupecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "강릉시",
+   "priority_rank": 10,
+   "web": {
+    "강릉폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "gangneungpecha.zerosauto.com",
+      "gn.go.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "gangneungpecha.zerosauto.com"
+     }
+    },
+    "강릉폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "gangneungpecha.zerosauto.com",
+      "xn--bj1b4tz3lmwqbnfu6g.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "gangneungpecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "남동구",
+   "priority_rank": 144,
+   "web": {
+    "남동폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "bizok.incheon.go.kr",
+      "kadra.or.kr",
+      "inscrap.co.kr"
+     ]
+    },
+    "남동폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "inscrap.co.kr",
+      "114.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "순천시",
+   "priority_rank": 32,
+   "web": {
+    "순천폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "suncheon.go.kr",
+      "kadra.or.kr",
+      "sbsc.suncheon.go.kr"
+     ]
+    },
+    "순천폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "suncheonpecha.zerosauto.com",
+      "daangn.com"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "suncheonpecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "강서구",
+   "priority_rank": 236,
+   "web": {
+    "서울강서구폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "cleanair.seoul.go.kr",
+      "daangn.com"
+     ]
+    },
+    "서울강서구폐차장": {
+     "rank": 19,
+     "url": "https://pyecha119.com/gu/%EC%84%9C%EC%9A%B8-%EA%B0%95%EC%84%9C%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html",
+     "top3": [
+      "kadra.or.kr",
+      "gangseo.seoul.kr",
+      "car1.onscrap.co.kr"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "군산시",
+   "priority_rank": 14,
+   "web": {
+    "군산폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "gunsanpecha.mgon.kr",
+      "kadra.or.kr",
+      "eminwon.gunsan.go.kr"
+     ]
+    },
+    "군산폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "gunsanpecha.mgon.kr",
+      "kadra.or.kr",
+      "gunsanpecha.zerosauto.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "gunsanpecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "세종특별자치시",
+   "sigungu": "",
+   "priority_rank": 17,
+   "web": {
+    "세종폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "mecar.or.kr",
+      "airkorea.or.kr"
+     ]
+    },
+    "세종폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "sejong.go.kr",
+      "cafe.naver.com"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "달성군",
+   "priority_rank": 201,
+   "web": {
+    "달성폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "daegu.go.kr",
+      "chevrolet.co.kr"
+     ]
+    },
+    "달성폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "daegu.go.kr",
+      "kadra.or.kr",
+      "dudeuriso.daegu.go.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "서초구",
+   "priority_rank": 212,
+   "web": {
+    "서초폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "loan.hicarz.co.kr",
+      "cleanair.seoul.go.kr",
+      "constituency.imissu.com"
+     ]
+    },
+    "서초폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "scpecha.kwk114.com",
+      "seochogupecha.zerosauto.com",
+      "bestpyechajang.com"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "seochogupecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "여수시",
+   "priority_rank": 62,
+   "web": {
+    "여수폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "yeosu.go.kr",
+      "yeosu2.storycom.co.kr",
+      "eminwon.yeosu.go.kr"
+     ]
+    },
+    "여수폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "yeosu2.storycom.co.kr",
+      "m.onestore.co.kr",
+      "soonwidot.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "전주시 완산구",
+   "priority_rank": 13,
+   "web": {
+    "전주폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "jeonjupecha.hbon.kr",
+      "jeonju.go.kr"
+     ]
+    },
+    "전주폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "jeonjupecha.hbon.kr",
+      "jeonju.go.kr"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "울산광역시",
+   "sigungu": "울주군",
+   "priority_rank": 163,
+   "web": {
+    "울주폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "xn--3o5b0q5uno54k8no1vc.com",
+      "ulsanpecha.myon.kr"
+     ]
+    },
+    "울주폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "xn--3o5b0q5uno54k8no1vc.com",
+      "ulsanpecha.myon.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "천안시 서북구",
+   "priority_rank": 8,
+   "web": {
+    "천안폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "capecha.prodron.kr",
+      "jangbe.com"
+     ]
+    },
+    "천안폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "capecha.prodron.kr",
+      "jangbe.com"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "양주시",
+   "priority_rank": 26,
+   "web": {
+    "양주폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "jobkorea.co.kr",
+      "yangju.go.kr",
+      "incruit.com"
+     ]
+    },
+    "양주폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "upcyclecar.co.kr",
+      "yangjupecha.prodron.kr",
+      "yangju.go.kr"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "화성시 동탄구",
+   "priority_rank": 63,
+   "web": {
+    "화성폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "xn--oj4b21j83d8zj79c.masterad.kr",
+      "031-362-4509.mcom114.kr"
+     ]
+    },
+    "화성폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "01022369602.uweb.kr",
+      "kadra.or.kr",
+      "031-362-4509.mcom114.kr"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "이천시",
+   "priority_rank": 64,
+   "web": {
+    "이천폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "icheon.go.kr",
+      "icheonpecha.vavav.kr",
+      "goodbyecar.co.kr"
+     ]
+    },
+    "이천폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "icheonpecha.vavav.kr",
+      "archives.go.kr",
+      "stpecha.kwk114.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "구미시",
+   "priority_rank": 2,
+   "web": {
+    "구미폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "gumi.go.kr",
+      "kadra.or.kr",
+      "ko.wikipedia.org"
+     ]
+    },
+    "구미폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "kumo7878.com",
+      "wwv.soonwidot.co.kr"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "서산시",
+   "priority_rank": 19,
+   "web": {
+    "서산폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "ssscrap.kr",
+      "kadra.or.kr",
+      "seosanpecha.sence.kr"
+     ]
+    },
+    "서산폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "ssscrap.kr",
+      "kadra.or.kr",
+      "seosan.go.kr"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "양산시",
+   "priority_rank": 4,
+   "web": {
+    "양산폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "changwon.go.kr",
+      "yangsan.go.kr",
+      "eminwon.yangsan.go.kr"
+     ]
+    },
+    "양산폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "changwon.go.kr",
+      "tiktok.com",
+      "yangsanpecha.hbon.kr"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "오산시",
+   "priority_rank": 60,
+   "web": {
+    "오산폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "osanpecha.suid.kr",
+      "osan.go.kr",
+      "obosaga.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "obosaga.com"
+     }
+    },
+    "오산폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "osanpecha.suid.kr",
+      "osan.go.kr",
+      "stscrap.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "용인시 기흥구",
+   "priority_rank": 111,
+   "web": {
+    "용인폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "yongin.go.kr",
+      "sudocar.co.kr",
+      "xn--oo5bwohet8p8pl.km114.kr"
+     ]
+    },
+    "용인폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "xn--oo5bwohet8p8pl.km114.kr",
+      "sudocar.co.kr",
+      "yonginpecha.zerosauto.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "yonginpecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "군포시",
+   "priority_rank": 71,
+   "web": {
+    "군포폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "jhpecha.co.kr",
+      "gunpo.go.kr",
+      "store114.net"
+     ]
+    },
+    "군포폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "jhpecha.co.kr",
+      "saramin.co.kr",
+      "store114.net"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "경산시",
+   "priority_rank": 23,
+   "web": {
+    "경산폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "gbgs.go.kr",
+      "gyeongsanpecha.zerosauto.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "gyeongsanpecha.zerosauto.com"
+     }
+    },
+    "경산폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "gyeongsanpecha.zerosauto.com",
+      "jucha.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "gyeongsanpecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "파주시",
+   "priority_rank": 38,
+   "web": {
+    "파주폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "xn--87-hy9jl64a.kr",
+      "pjscats.posad.kr",
+      "search.paju.go.kr"
+     ]
+    },
+    "파주폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "xn--87-hy9jl64a.kr",
+      "paju.go.kr",
+      "031-953-8770.kwk114.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "포천시",
+   "priority_rank": 80,
+   "web": {
+    "포천폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "pocheon.go.kr",
+      "1sin.infos.kr",
+      "obosaga.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "obosaga.com"
+     }
+    },
+    "포천폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "pocheon.go.kr",
+      "1sin.infos.kr",
+      "seowoncar.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "고양시 덕양구",
+   "priority_rank": 99,
+   "web": {
+    "고양폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "goscrap.co.kr",
+      "goyang.go.kr"
+     ]
+    },
+    "고양폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "goscrap.co.kr",
+      "kadra.or.kr",
+      "goyangpecha.sence.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "속초시",
+   "priority_rank": 61,
+   "web": {
+    "속초폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "sokchopecha.zerosauto.com",
+      "sokcho.go.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "sokchopecha.zerosauto.com"
+     }
+    },
+    "속초폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "sokchopecha.zerosauto.com",
+      "sokcho.go.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "sokchopecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "고양시 일산동구",
+   "priority_rank": 118,
+   "web": {
+    "고양폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "goscrap.co.kr",
+      "goyang.go.kr"
+     ]
+    },
+    "고양폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "goscrap.co.kr",
+      "kadra.or.kr",
+      "goyangpecha.sence.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "목포시",
+   "priority_rank": 11,
+   "web": {
+    "목포폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "art.mokpo.go.kr",
+      "mokpo.go.kr",
+      "cn.mokpo.go.kr"
+     ]
+    },
+    "목포폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "mokpo.go.kr",
+      "youth.mokpo.go.kr",
+      "soonwidot.co.kr"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "성남시 분당구",
+   "priority_rank": 103,
+   "web": {
+    "성남폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "seongnam.go.kr",
+      "xn--q20bo72awze85e8pl.km114.kr",
+      "aea.or.kr"
+     ]
+    },
+    "성남폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "xn--q20bo72awze85e8pl.km114.kr",
+      "seongnam.go.kr",
+      "snjunkyard.kwk114.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "남양주시",
+   "priority_rank": 51,
+   "web": {
+    "남양주폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "mecar.or.kr",
+      "nyj.go.kr",
+      "kadra.or.kr"
+     ]
+    },
+    "남양주폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "scrapcall24.com",
+      "nyjpecha.howm.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "시흥시",
+   "priority_rank": 53,
+   "web": {
+    "시흥폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "scrapcar.kwk114.com",
+      "hicarz.co.kr",
+      "siheung.go.kr"
+     ]
+    },
+    "시흥폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "scrapcar.kwk114.com",
+      "obosaga.com",
+      "soonwidot.co.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "obosaga.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "천안시 동남구",
+   "priority_rank": 7,
+   "web": {
+    "천안폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "capecha.prodron.kr",
+      "jangbe.com"
+     ]
+    },
+    "천안폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "capecha.prodron.kr",
+      "jangbe.com"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "창원시 마산회원구",
+   "priority_rank": 56,
+   "web": {
+    "창원폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "cwscrap.kr",
+      "changwon.go.kr",
+      "baro.gyeongnam.go.kr"
+     ]
+    },
+    "창원폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "cwscrap.kr",
+      "changwon.go.kr",
+      "changwonpecha.coka.kr"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "안성시",
+   "priority_rank": 39,
+   "web": {
+    "안성폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "ansungpecha.siteon.kr",
+      "jhpecha.co.kr"
+     ]
+    },
+    "안성폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "ansungpecha.siteon.kr",
+      "jobkorea.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "광주시",
+   "priority_rank": 5,
+   "web": {
+    "광주폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "gwangju.go.kr",
+      "gjscrap.com",
+      "mecar.or.kr"
+     ]
+    },
+    "광주폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "gwangjupecha.kson.kr",
+      "gjscrap.com",
+      "xn--399ap12c8fdt1fbme.kr"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "당진시",
+   "priority_rank": 22,
+   "web": {
+    "당진폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "djgreenyard.com",
+      "dangjinpecha.firstzone.kr"
+     ]
+    },
+    "당진폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "dangjinpecha.firstzone.kr",
+      "djgreenyard.com"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "의정부시",
+   "priority_rank": 69,
+   "web": {
+    "의정부폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "ui4u.go.kr",
+      "gits.gg.go.kr",
+      "ujbpecha.suid.kr"
+     ]
+    },
+    "의정부폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "ujbpecha.suid.kr",
+      "scrapcall24.com",
+      "soonwidot.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "김천시",
+   "priority_rank": 27,
+   "web": {
+    "김천폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "gc.go.kr",
+      "gcpecha.kwk114.com"
+     ]
+    },
+    "김천폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "gcpecha.kwk114.com",
+      "saramin.co.kr",
+      "gimpech.uwu.kr"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "청주시 청원구",
+   "priority_rank": 36,
+   "web": {
+    "청주폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "xn--vv5bnyv3efpq9z.kr",
+      "cheongju.go.kr"
+     ]
+    },
+    "청주폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "xn--vv5bnyv3efpq9z.kr",
+      "kadra.or.kr",
+      "cheongju.go.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "광양시",
+   "priority_rank": 34,
+   "web": {
+    "광양폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "gwangyang.go.kr",
+      "kadra.or.kr",
+      "car1.onscrap.co.kr"
+     ]
+    },
+    "광양폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "re.or.kr",
+      "gwangyang.go.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "고양시 일산서구",
+   "priority_rank": 119,
+   "web": {
+    "고양폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "goscrap.co.kr",
+      "goyang.go.kr"
+     ]
+    },
+    "고양폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "goscrap.co.kr",
+      "kadra.or.kr",
+      "goyangpecha.sence.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "제천시",
+   "priority_rank": 41,
+   "web": {
+    "제천폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "placeview.co.kr",
+      "jecheonpecha.zerosauto.com",
+      "colamy.imain.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "jecheonpecha.zerosauto.com"
+     }
+    },
+    "제천폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "filmkorea.or.kr",
+      "placeview.co.kr",
+      "kadra.or.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "하남시",
+   "priority_rank": 84,
+   "web": {
+    "하남폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "changwon.go.kr",
+      "hanam.go.kr",
+      "xn--q20bz94b8fd8zj71b.km114.kr"
+     ]
+    },
+    "하남폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "changwon.go.kr",
+      "xn--q20bz94b8fd8zj71b.km114.kr",
+      "kadra.or.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "충주시",
+   "priority_rank": 25,
+   "web": {
+    "충주폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "chungju.go.kr",
+      "ddmpkr.adwinkorea.kr"
+     ]
+    },
+    "충주폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "ddmpkr.adwinkorea.kr",
+      "chungju.go.kr"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "수원시 영통구",
+   "priority_rank": 76,
+   "web": {
+    "수원폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "suwon.go.kr",
+      "smartstore.naver.com",
+      "xn--9p4bi0gjsa63l8pl.km114.kr"
+     ]
+    },
+    "수원폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "swpecha.kwk114.com",
+      "xn--9p4bi0gjsa63l8pl.km114.kr",
+      "comeonpecha.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "영천시",
+   "priority_rank": 42,
+   "web": {
+    "영천폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "yc.go.kr",
+      "yeongcheonpecha.zerosauto.com",
+      "ycjob.or.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "yeongcheonpecha.zerosauto.com"
+     }
+    },
+    "영천폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "ycjob.or.kr",
+      "yeongcheonpecha.zerosauto.com",
+      "bizdang.com"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "yeongcheonpecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "창원시 마산합포구",
+   "priority_rank": 55,
+   "web": {
+    "창원폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "cwscrap.kr",
+      "changwon.go.kr",
+      "baro.gyeongnam.go.kr"
+     ]
+    },
+    "창원폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "cwscrap.kr",
+      "changwon.go.kr",
+      "changwonpecha.coka.kr"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "여주시",
+   "priority_rank": 113,
+   "web": {
+    "여주폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "loan.hicarz.co.kr",
+      "yeojupecha.verna.kr",
+      "obosaga.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "obosaga.com"
+     }
+    },
+    "여주폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "yeojupecha.verna.kr",
+      "daangn.com",
+      "soonwidot.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "포항시 남구",
+   "priority_rank": 30,
+   "web": {
+    "포항폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "mecar.or.kr",
+      "kadra.or.kr",
+      "pohangpecha.zerosauto.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "pohangpecha.zerosauto.com"
+     }
+    },
+    "포항폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "pohangpecha.zerosauto.com",
+      "kadra.or.kr",
+      "114.co.kr"
+     ],
+     "rival": {
+      "pos": 1,
+      "host": "pohangpecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "칠곡군",
+   "priority_rank": 96,
+   "web": {
+    "칠곡폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "chilgok.go.kr",
+      "kadra.or.kr",
+      "eminwon.chilgok.go.kr"
+     ]
+    },
+    "칠곡폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "theteams.kr",
+      "soonwidot.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "광명시",
+   "priority_rank": 93,
+   "web": {
+    "광명폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "gm.go.kr",
+      "hicarz.co.kr",
+      "data.gm.go.kr"
+     ]
+    },
+    "광명폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "gm.go.kr",
+      "kadra.or.kr",
+      "hicarz.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "논산시",
+   "priority_rank": 40,
+   "web": {
+    "논산폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "nonsan.go.kr",
+      "mecar.or.kr"
+     ]
+    },
+    "논산폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "placeview.co.kr",
+      "xn--bj1b4tz3lmwqbnfu6g.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "포항시 북구",
+   "priority_rank": 28,
+   "web": {
+    "포항폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "mecar.or.kr",
+      "kadra.or.kr",
+      "pohangpecha.zerosauto.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "pohangpecha.zerosauto.com"
+     }
+    },
+    "포항폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "pohangpecha.zerosauto.com",
+      "kadra.or.kr",
+      "114.co.kr"
+     ],
+     "rival": {
+      "pos": 1,
+      "host": "pohangpecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "구리시",
+   "priority_rank": 129,
+   "web": {
+    "구리폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "guri.go.kr",
+      "mecar.or.kr",
+      "grpec.occom.kr"
+     ]
+    },
+    "구리폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "grpec.occom.kr",
+      "guripecha.myon.kr",
+      "mecar.or.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "동대문구",
+   "priority_rank": 211,
+   "web": {
+    "동대문폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "ddm.go.kr",
+      "ddmgpecha.sence.kr"
+     ]
+    },
+    "동대문폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "onscrap.co.kr",
+      "placeview.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "안동시",
+   "priority_rank": 46,
+   "web": {
+    "안동폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "andong.go.kr",
+      "andongpecha.zerosauto.com",
+      "kadra.or.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "andongpecha.zerosauto.com"
+     }
+    },
+    "안동폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "andongpecha.zerosauto.com",
+      "andong.go.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "andongpecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "아산시",
+   "priority_rank": 9,
+   "web": {
+    "아산폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "asan.go.kr",
+      "kadra.or.kr",
+      "asanpecha.zerosauto.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "asanpecha.zerosauto.com"
+     }
+    },
+    "아산폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "asan.go.kr",
+      "kadra.or.kr",
+      "asanpecha.webmaker.kr"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "사천시",
+   "priority_rank": 52,
+   "web": {
+    "사천폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "changwon.go.kr",
+      "baro.gyeongnam.go.kr",
+      "kadra.or.kr"
+     ]
+    },
+    "사천폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "changwon.go.kr",
+      "kadra.or.kr",
+      "placeview.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "화성시 만세구",
+   "priority_rank": 107,
+   "web": {
+    "화성폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "xn--oj4b21j83d8zj79c.masterad.kr",
+      "031-362-4509.mcom114.kr"
+     ]
+    },
+    "화성폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "01022369602.uweb.kr",
+      "kadra.or.kr",
+      "031-362-4509.mcom114.kr"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "기장군",
+   "priority_rank": 176,
+   "web": {
+    "기장폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "moleg.go.kr",
+      "gijang.go.kr"
+     ]
+    },
+    "기장폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "daangn.com",
+      "icaryoucar.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "통영시",
+   "priority_rank": 66,
+   "web": {
+    "통영폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "baro.gyeongnam.go.kr",
+      "changwon.go.kr",
+      "tongyeong.go.kr"
+     ]
+    },
+    "통영폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "changwon.go.kr",
+      "kadra.or.kr",
+      "tongyeong.go.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "용인시 수지구",
+   "priority_rank": 112,
+   "web": {
+    "용인폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "yongin.go.kr",
+      "sudocar.co.kr",
+      "xn--oo5bwohet8p8pl.km114.kr"
+     ]
+    },
+    "용인폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "xn--oo5bwohet8p8pl.km114.kr",
+      "sudocar.co.kr",
+      "yonginpecha.zerosauto.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "yonginpecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "용인시 처인구",
+   "priority_rank": 98,
+   "web": {
+    "용인폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "yongin.go.kr",
+      "sudocar.co.kr",
+      "xn--oo5bwohet8p8pl.km114.kr"
+     ]
+    },
+    "용인폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "xn--oo5bwohet8p8pl.km114.kr",
+      "sudocar.co.kr",
+      "yonginpecha.zerosauto.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "yonginpecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "공주시",
+   "priority_rank": 50,
+   "web": {
+    "공주폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "bobaenetworks.com",
+      "tour.gongju.go.kr"
+     ]
+    },
+    "공주폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "tour.gongju.go.kr",
+      "soonwidot.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "화성시 병점구",
+   "priority_rank": 90,
+   "web": {
+    "화성폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "xn--oj4b21j83d8zj79c.masterad.kr",
+      "031-362-4509.mcom114.kr"
+     ]
+    },
+    "화성폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "01022369602.uweb.kr",
+      "kadra.or.kr",
+      "031-362-4509.mcom114.kr"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "상주시",
+   "priority_rank": 68,
+   "web": {
+    "상주폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "sangju.go.kr",
+      "kadra.or.kr",
+      "sangjupecha.zerosauto.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "sangjupecha.zerosauto.com"
+     }
+    },
+    "상주폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "sangjupecha.zerosauto.com",
+      "placeview.co.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "sangjupecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "전주시 덕진구",
+   "priority_rank": 12,
+   "web": {
+    "전주폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "jeonjupecha.hbon.kr",
+      "jeonju.go.kr"
+     ]
+    },
+    "전주폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "jeonjupecha.hbon.kr",
+      "jeonju.go.kr"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "밀양시",
+   "priority_rank": 81,
+   "web": {
+    "밀양폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "changwon.go.kr",
+      "kadra.or.kr",
+      "baro.gyeongnam.go.kr"
+     ]
+    },
+    "밀양폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "changwon.go.kr",
+      "kadra.or.kr",
+      "yeongnamjunkcar.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "안산시 단원구",
+   "priority_rank": 49,
+   "web": {
+    "안산폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "jhpecha.co.kr",
+      "aspecha.coka.kr",
+      "hicarz.co.kr"
+     ]
+    },
+    "안산폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "ansanpecha.kwk114.com",
+      "aspecha.coka.kr",
+      "jhpecha.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "정읍시",
+   "priority_rank": 85,
+   "web": {
+    "정읍폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "sotong.jeongeup.go.kr",
+      "jeongeup.go.kr",
+      "eminwon.jeongeup.go.kr"
+     ]
+    },
+    "정읍폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "jeongeup.go.kr",
+      "114.co.kr",
+      "ddorang.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "창원시 성산구",
+   "priority_rank": 57,
+   "web": {
+    "창원폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "cwscrap.kr",
+      "changwon.go.kr",
+      "baro.gyeongnam.go.kr"
+     ]
+    },
+    "창원폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "cwscrap.kr",
+      "changwon.go.kr",
+      "changwonpecha.coka.kr"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "창원시 의창구",
+   "priority_rank": 58,
+   "web": {
+    "창원폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "cwscrap.kr",
+      "changwon.go.kr",
+      "baro.gyeongnam.go.kr"
+     ]
+    },
+    "창원폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "cwscrap.kr",
+      "changwon.go.kr",
+      "changwonpecha.coka.kr"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "성남시 수정구",
+   "priority_rank": 122,
+   "web": {
+    "성남폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "seongnam.go.kr",
+      "xn--q20bo72awze85e8pl.km114.kr",
+      "aea.or.kr"
+     ]
+    },
+    "성남폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "xn--q20bo72awze85e8pl.km114.kr",
+      "seongnam.go.kr",
+      "snjunkyard.kwk114.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "김제시",
+   "priority_rank": 82,
+   "web": {
+    "김제폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "gimje.go.kr",
+      "kadra.or.kr",
+      "gimjepecha.zerosauto.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "gimjepecha.zerosauto.com"
+     }
+    },
+    "김제폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "wwv.soonwidot.co.kr",
+      "gimjepecha.zerosauto.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "gimjepecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "성남시 중원구",
+   "priority_rank": 127,
+   "web": {
+    "성남폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "seongnam.go.kr",
+      "xn--q20bo72awze85e8pl.km114.kr",
+      "aea.or.kr"
+     ]
+    },
+    "성남폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "xn--q20bo72awze85e8pl.km114.kr",
+      "seongnam.go.kr",
+      "snjunkyard.kwk114.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "나주시",
+   "priority_rank": 83,
+   "web": {
+    "나주폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "jeonnam.go.kr",
+      "eminwon.naju.go.kr"
+     ]
+    },
+    "나주폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "061-334-0077.ezbuilder.co.kr",
+      "placeview.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "김포시",
+   "priority_rank": 48,
+   "web": {
+    "김포폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "jeilbest.kr",
+      "aea.or.kr",
+      "gimpo.go.kr"
+     ]
+    },
+    "김포폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "jeilbest.kr",
+      "xn--4k0bp59b8fd8zj8d.kioc.kr",
+      "kadra.or.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "동두천시",
+   "priority_rank": 150,
+   "web": {
+    "동두천폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "eminwon.ddc.go.kr",
+      "ok114.co.kr"
+     ]
+    },
+    "동두천폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "dope.occom.kr",
+      "ok114.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "강서구",
+   "priority_rank": 191,
+   "web": {
+    "부산강서구폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "milaelo.com",
+      "icaryoucar.com",
+      "kadra.or.kr"
+     ]
+    },
+    "부산강서구폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "busan.go.kr",
+      "icaryoucar.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "영주시",
+   "priority_rank": 70,
+   "web": {
+    "영주폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "yeongjupecha.zerosauto.com",
+      "yeongju.go.kr",
+      "placeview.co.kr"
+     ],
+     "rival": {
+      "pos": 1,
+      "host": "yeongjupecha.zerosauto.com"
+     }
+    },
+    "영주폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "yeongjupecha.zerosauto.com",
+      "placeview.co.kr",
+      "saramin.co.kr"
+     ],
+     "rival": {
+      "pos": 1,
+      "host": "yeongjupecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "부천시 원미구",
+   "priority_rank": 102,
+   "web": {
+    "부천폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "bucheon.go.kr",
+      "kadra.or.kr",
+      "010-5348-9970.intweb.kr"
+     ]
+    },
+    "부천폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "010-5348-9970.intweb.kr",
+      "scrapcall24.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "달서구",
+   "priority_rank": 128,
+   "web": {
+    "달서폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "daegu.go.kr",
+      "store114.net"
+     ]
+    },
+    "달서폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "daegu.go.kr",
+      "kadra.or.kr",
+      "store114.net"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "동구",
+   "priority_rank": 134,
+   "web": {
+    "대구동구폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "daangn.com",
+      "daegu.go.kr"
+     ]
+    },
+    "대구동구폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "youtube.com",
+      "kadra.or.kr",
+      "daegu.go.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "보령시",
+   "priority_rank": 105,
+   "web": {
+    "보령폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "boryeongpecha.zerosauto.com",
+      "chungnam.go.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "boryeongpecha.zerosauto.com"
+     }
+    },
+    "보령폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "boryeongpecha.zerosauto.com",
+      "placeview.co.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "boryeongpecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "원주시",
+   "priority_rank": 1,
+   "web": {
+    "원주폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "autoscrap.co.kr",
+      "kadra.or.kr",
+      "wonjupecha.nhub.kr"
+     ]
+    },
+    "원주폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "autoscrap.co.kr",
+      "kadra.or.kr",
+      "wonjupecha.zoon.kr"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "의왕시",
+   "priority_rank": 146,
+   "web": {
+    "의왕폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "uiwang.go.kr",
+      "eminwon.uiwang.go.kr",
+      "obosaga.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "obosaga.com"
+     }
+    },
+    "의왕폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "wwv.soonwidot.co.kr",
+      "obosaga.com",
+      "job.gg.go.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "obosaga.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "안양시 동안구",
+   "priority_rank": 73,
+   "web": {
+    "안양폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "youtube.com",
+      "anyangkpj.com",
+      "busan.go.kr"
+     ]
+    },
+    "안양폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "114.co.kr",
+      "anyangkpj.com",
+      "life114.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "과천시",
+   "priority_rank": 145,
+   "web": {
+    "과천폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "gccity.go.kr",
+      "aea.or.kr",
+      "job.gg.go.kr"
+     ]
+    },
+    "과천폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "obosaga.com",
+      "gclib.go.kr",
+      "pluspecha.com"
+     ],
+     "rival": {
+      "pos": 1,
+      "host": "obosaga.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "구로구",
+   "priority_rank": 147,
+   "web": {
+    "구로폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "guro.go.kr",
+      "hicarz.co.kr",
+      "kadra.or.kr"
+     ]
+    },
+    "구로폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "archives.kdemo.or.kr",
+      "onscrap.co.kr",
+      "car1.onscrap.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "무안군",
+   "priority_rank": 116,
+   "web": {
+    "무안폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "muan.go.kr",
+      "kadra.or.kr",
+      "health.muan.go.kr"
+     ]
+    },
+    "무안폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "muanpecha.zerosauto.com",
+      "soonwidot.co.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "muanpecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "노원구",
+   "priority_rank": 121,
+   "web": {
+    "노원폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "nowongupecha.obosaga.com",
+      "cleanair.seoul.go.kr",
+      "nowon.kr"
+     ],
+     "rival": {
+      "pos": 1,
+      "host": "nowongupecha.obosaga.com"
+     }
+    },
+    "노원폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "daegu.go.kr",
+      "nowon.kr",
+      "nowongupecha.obosaga.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "nowongupecha.obosaga.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "삼척시",
+   "priority_rank": 123,
+   "web": {
+    "삼척폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "samcheokscrap.co.kr",
+      "samcheok.go.kr",
+      "kadra.or.kr"
+     ]
+    },
+    "삼척폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "samcheokscrap.co.kr",
+      "kadra.or.kr",
+      "samcheokpecha.zerosauto.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "samcheokpecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "창원시 진해구",
+   "priority_rank": 24,
+   "web": {
+    "창원폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "cwscrap.kr",
+      "changwon.go.kr",
+      "baro.gyeongnam.go.kr"
+     ]
+    },
+    "창원폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "cwscrap.kr",
+      "changwon.go.kr",
+      "changwonpecha.coka.kr"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "장흥군",
+   "priority_rank": 162,
+   "web": {
+    "장흥폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "eminwon.jangheung.go.kr",
+      "jangheungpecha.zerosauto.com",
+      "obosaga.com"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "jangheungpecha.zerosauto.com"
+     }
+    },
+    "장흥폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "jangheungpecha.zerosauto.com",
+      "parking.koreasites.net",
+      "114.co.kr"
+     ],
+     "rival": {
+      "pos": 1,
+      "host": "jangheungpecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "은평구",
+   "priority_rank": 138,
+   "web": {
+    "은평폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "epgpecha.verna.kr",
+      "cleanair.seoul.go.kr"
+     ]
+    },
+    "은평폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "epgpecha.verna.kr",
+      "xn--bj1b4tz3lmwqbnfu6g.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "동해시",
+   "priority_rank": 72,
+   "web": {
+    "동해폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "donghaepecha.zerosauto.com",
+      "samcheokscrap.co.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "donghaepecha.zerosauto.com"
+     }
+    },
+    "동해폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "donghaepecha.zerosauto.com",
+      "xn--bj1b4tz3lmwqbnfu6g.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "donghaepecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "도봉구",
+   "priority_rank": 143,
+   "web": {
+    "도봉폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "loan.hicarz.co.kr",
+      "cleanair.seoul.go.kr"
+     ]
+    },
+    "도봉폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "placeview.co.kr",
+      "k114.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "거제시",
+   "priority_rank": 21,
+   "web": {
+    "거제폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "xn--v69az92cgkav7k80l.com",
+      "kadra.or.kr",
+      "baro.gyeongnam.go.kr"
+     ]
+    },
+    "거제폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "xn--v69az92cgkav7k80l.com",
+      "kadra.or.kr",
+      "geoje.go.kr"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "안산시 상록구",
+   "priority_rank": 47,
+   "web": {
+    "안산폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "jhpecha.co.kr",
+      "aspecha.coka.kr",
+      "hicarz.co.kr"
+     ]
+    },
+    "안산폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "ansanpecha.kwk114.com",
+      "aspecha.coka.kr",
+      "jhpecha.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "정선군",
+   "priority_rank": 178,
+   "web": {
+    "정선폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "ko.wikipedia.org",
+      "obosaga.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "obosaga.com"
+     }
+    },
+    "정선폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "marketbz.com",
+      "obosaga.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "obosaga.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "진주시",
+   "priority_rank": 15,
+   "web": {
+    "진주폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "changwon.go.kr",
+      "kadra.or.kr",
+      "baro.gyeongnam.go.kr"
+     ]
+    },
+    "진주폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "changwon.go.kr",
+      "safekorea.go.kr"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "영종구",
+   "priority_rank": 242,
+   "web": {
+    "영종폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "yeongjong.go.kr",
+      "intoll.incheon.go.kr",
+      "car6.onscrap.co.kr"
+     ]
+    },
+    "영종폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "car1.onscrap.co.kr",
+      "car6.onscrap.co.kr",
+      "kadra.or.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "사상구",
+   "priority_rank": 193,
+   "web": {
+    "사상폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "sasang.go.kr",
+      "kadra.or.kr",
+      "cng.go.kr"
+     ]
+    },
+    "사상폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "pechajang.co.kr",
+      "gongsinara.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "음성군",
+   "priority_rank": 117,
+   "web": {
+    "음성폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "junkycar.net",
+      "eumseong.go.kr",
+      "junkycar.cafe24.com"
+     ]
+    },
+    "음성폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "junkycar.net",
+      "kdramamap.com",
+      "placeview.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "강동구",
+   "priority_rank": 120,
+   "web": {
+    "강동폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "gdpecha.kwk114.com",
+      "gangdong.go.kr",
+      "xn--939a80mo0r8he8pl.km114.kr"
+     ]
+    },
+    "강동폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "gdpecha.kwk114.com",
+      "xn--939a80mo0r8he8pl.km114.kr",
+      "xn--q20bo72awze85e8pl.km114.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "완주군",
+   "priority_rank": 165,
+   "web": {
+    "완주폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "soonwidot.co.kr",
+      "wanju.go.kr",
+      "bestpyechajang.com"
+     ]
+    },
+    "완주폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "soonwidot.co.kr",
+      "114.co.kr",
+      "wanju.go.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "남구",
+   "priority_rank": 192,
+   "web": {
+    "부산남구폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "icaryoucar.com",
+      "soonwidot.co.kr",
+      "infoscrap.co.kr"
+     ]
+    },
+    "부산남구폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "icaryoucar.com",
+      "milaelo.com",
+      "kadra.or.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "철원군",
+   "priority_rank": 250,
+   "web": {
+    "철원폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "cwg.go.kr",
+      "cheorwonpecha.zerosauto.com",
+      "soonwidot.com"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "cheorwonpecha.zerosauto.com"
+     }
+    },
+    "철원폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "cheorwonpecha.zerosauto.com",
+      "obosaga.com",
+      "soonwidot.co.kr"
+     ],
+     "rival": {
+      "pos": 1,
+      "host": "cheorwonpecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "해운대구",
+   "priority_rank": 185,
+   "web": {
+    "해운대폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "milaelo.com",
+      "obosaga.com",
+      "icaryoucar.com"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "obosaga.com"
+     }
+    },
+    "해운대폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "icaryoucar.com",
+      "eminwon.haeundae.go.kr",
+      "busanpecha.mgon.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "제주특별자치도",
+   "sigungu": "서귀포시",
+   "priority_rank": 67,
+   "web": {
+    "서귀포폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "tbn.or.kr",
+      "muhankd.com"
+     ]
+    },
+    "서귀포폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "marketbz.com",
+      "saramin.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "성동구",
+   "priority_rank": 142,
+   "web": {
+    "성동폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "m.jobkorea.co.kr",
+      "114.co.kr"
+     ]
+    },
+    "성동폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "seongdonggupecha.zerosauto.com",
+      "car1.onscrap.co.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "seongdonggupecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "양천구",
+   "priority_rank": 207,
+   "web": {
+    "양천폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "hicarz.co.kr",
+      "ycgpecha.webmaker.kr",
+      "kadra.or.kr"
+     ]
+    },
+    "양천폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "ycgpecha.webmaker.kr",
+      "kadra.or.kr",
+      "moneypin.biz"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "청주시 상당구",
+   "priority_rank": 35,
+   "web": {
+    "청주폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "xn--vv5bnyv3efpq9z.kr",
+      "cheongju.go.kr"
+     ]
+    },
+    "청주폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "xn--vv5bnyv3efpq9z.kr",
+      "kadra.or.kr",
+      "cheongju.go.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "홍성군",
+   "priority_rank": 75,
+   "web": {
+    "홍성폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "hongseongpecha.zerosauto.com",
+      "xn--oj4b199a.xn--ok0br63c.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "hongseongpecha.zerosauto.com"
+     }
+    },
+    "홍성폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "xn--ob0br6vgoc46e5sa13tjj5a.gajagaja.co.kr",
+      "kadra.or.kr",
+      "filmkorea.or.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "청주시 서원구",
+   "priority_rank": 33,
+   "web": {
+    "청주폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "xn--vv5bnyv3efpq9z.kr",
+      "cheongju.go.kr"
+     ]
+    },
+    "청주폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "xn--vv5bnyv3efpq9z.kr",
+      "kadra.or.kr",
+      "cheongju.go.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "남원시",
+   "priority_rank": 45,
+   "web": {
+    "남원폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "namwon.go.kr",
+      "sentv.co.kr",
+      "kadra.or.kr"
+     ]
+    },
+    "남원폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "jobplanet.co.kr",
+      "namwon.go.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "청주시 흥덕구",
+   "priority_rank": 37,
+   "web": {
+    "청주폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "xn--vv5bnyv3efpq9z.kr",
+      "cheongju.go.kr"
+     ]
+    },
+    "청주폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "xn--vv5bnyv3efpq9z.kr",
+      "kadra.or.kr",
+      "cheongju.go.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "문경시",
+   "priority_rank": 151,
+   "web": {
+    "문경폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "gbmg.go.kr",
+      "ev.or.kr"
+     ]
+    },
+    "문경폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "daangn.com",
+      "life114.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "금천구",
+   "priority_rank": 217,
+   "web": {
+    "금천폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "gfmc.kr",
+      "inscrap.co.kr"
+     ]
+    },
+    "금천폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "gcgpecha.siteon.kr",
+      "114.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "수원시 권선구",
+   "priority_rank": 78,
+   "web": {
+    "수원폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "suwon.go.kr",
+      "smartstore.naver.com",
+      "xn--9p4bi0gjsa63l8pl.km114.kr"
+     ]
+    },
+    "수원폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "swpecha.kwk114.com",
+      "xn--9p4bi0gjsa63l8pl.km114.kr",
+      "comeonpecha.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "수원시 장안구",
+   "priority_rank": 77,
+   "web": {
+    "수원폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "suwon.go.kr",
+      "smartstore.naver.com",
+      "xn--9p4bi0gjsa63l8pl.km114.kr"
+     ]
+    },
+    "수원폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "swpecha.kwk114.com",
+      "xn--9p4bi0gjsa63l8pl.km114.kr",
+      "comeonpecha.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "수원시 팔달구",
+   "priority_rank": 79,
+   "web": {
+    "수원폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "suwon.go.kr",
+      "smartstore.naver.com",
+      "xn--9p4bi0gjsa63l8pl.km114.kr"
+     ]
+    },
+    "수원폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "swpecha.kwk114.com",
+      "xn--9p4bi0gjsa63l8pl.km114.kr",
+      "comeonpecha.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "서해구",
+   "priority_rank": 92,
+   "web": {
+    "서해폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "seohae.go.kr",
+      "kadra.or.kr",
+      "mecar.or.kr"
+     ]
+    },
+    "서해폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "seohae.go.kr",
+      "ppomppu.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "영광군",
+   "priority_rank": 161,
+   "web": {
+    "영광폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "yeonggwangpecha.zerosauto.com",
+      "yeonggwang.go.kr",
+      "milaelo.com"
+     ],
+     "rival": {
+      "pos": 1,
+      "host": "yeonggwangpecha.zerosauto.com"
+     }
+    },
+    "영광폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "yeonggwangpecha.zerosauto.com",
+      "114.co.kr",
+      "yeonggwang.go.kr"
+     ],
+     "rival": {
+      "pos": 1,
+      "host": "yeonggwangpecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "금정구",
+   "priority_rank": 220,
+   "web": {
+    "금정폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "icaryoucar.com",
+      "gtbikemall.com"
+     ]
+    },
+    "금정폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "xn--2q1b26pvoi8te8pl.com",
+      "icaryoucar.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "완도군",
+   "priority_rank": 172,
+   "web": {
+    "완도폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "airkorea.or.kr",
+      "wando.go.kr",
+      "milaelo.com"
+     ]
+    },
+    "완도폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "wando.go.kr",
+      "kadra.or.kr",
+      "xn--bj1b4tz3lmwqbnfu6g.kr"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "사하구",
+   "priority_rank": 173,
+   "web": {
+    "사하폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "icaryoucar.com",
+      "eminwon.saha.go.kr"
+     ]
+    },
+    "사하폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "icaryoucar.com",
+      "daangn.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "태백시",
+   "priority_rank": 86,
+   "web": {
+    "태백폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "fire.gwd.go.kr",
+      "do.pro1.kr"
+     ]
+    },
+    "태백폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "fire.gwd.go.kr",
+      "taebaek.go.kr",
+      "namu.wiki"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "성북구",
+   "priority_rank": 206,
+   "web": {
+    "성북폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "xn--2e0bz81a5wc42i83f89m.km114.kr",
+      "sb.go.kr",
+      "car1.onscrap.co.kr"
+     ]
+    },
+    "성북폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "xn--2e0bz81a5wc42i83f89m.km114.kr",
+      "smallcompany.co.kr",
+      "xn--oo5bwohet8p8pl.km114.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "부평구",
+   "priority_rank": 208,
+   "web": {
+    "부평폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "icbp.go.kr",
+      "114.co.kr",
+      "daangn.com"
+     ]
+    },
+    "부평폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "wwv.soonwidot.co.kr",
+      "xn--lu5b8c60ninn11a.km114.kr",
+      "car1.onscrap.co.kr"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "안양시 만안구",
+   "priority_rank": 74,
+   "web": {
+    "안양폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "youtube.com",
+      "anyangkpj.com",
+      "busan.go.kr"
+     ]
+    },
+    "안양폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "114.co.kr",
+      "anyangkpj.com",
+      "life114.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "중랑구",
+   "priority_rank": 141,
+   "web": {
+    "중랑폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "jungnang.go.kr",
+      "loan.hicarz.co.kr",
+      "xn--2e0bj6q3onslbc3g81o.km114.kr"
+     ]
+    },
+    "중랑폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "xn--2e0bj6q3onslbc3g81o.km114.kr",
+      "car1.onscrap.co.kr",
+      "m.onestore.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "고령군",
+   "priority_rank": 29,
+   "web": {
+    "고령폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "goryeong.go.kr",
+      "kadra.or.kr",
+      "eminwon.goryeong.go.kr"
+     ]
+    },
+    "고령폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "goryeong.go.kr",
+      "youtube.com"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "구례군",
+   "priority_rank": 43,
+   "web": {
+    "구례폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "eminwon.gurye.go.kr",
+      "kadra.or.kr",
+      "m.mdilbo.com"
+     ]
+    },
+    "구례폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "114.co.kr",
+      "news.kbs.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "신안군",
+   "priority_rank": 44,
+   "web": {
+    "신안폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "shinanpecha.zerosauto.com",
+      "car1.onscrap.co.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "shinanpecha.zerosauto.com"
+     }
+    },
+    "신안폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "changwon.go.kr",
+      "shinanpecha.zerosauto.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "shinanpecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "부여군",
+   "priority_rank": 59,
+   "web": {
+    "부여폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "bobaenetworks.com",
+      "opengov.seoul.go.kr"
+     ]
+    },
+    "부여폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "carmap.co.kr",
+      "saramin.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "부안군",
+   "priority_rank": 65,
+   "web": {
+    "부안폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "buan.go.kr",
+      "bestpyechajang.com"
+     ]
+    },
+    "부안폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "buan.go.kr",
+      "moneypin.biz"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "보성군",
+   "priority_rank": 87,
+   "web": {
+    "보성폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "pf.kakao.com",
+      "airkorea.or.kr",
+      "boseong.go.kr"
+     ]
+    },
+    "보성폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "pf.kakao.com",
+      "paju.go.kr",
+      "chuncheon.go.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "예산군",
+   "priority_rank": 88,
+   "web": {
+    "예산폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "aea.or.kr",
+      "mecar.or.kr",
+      "kadra.or.kr"
+     ]
+    },
+    "예산폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "saramin.co.kr",
+      "bizdang.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "진천군",
+   "priority_rank": 89,
+   "web": {
+    "진천폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "jincheon.go.kr",
+      "jobplanet.co.kr",
+      "soonwidot.co.kr"
+     ]
+    },
+    "진천폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "kmsmobile.co.kr",
+      "soonwidot.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "예천군",
+   "priority_rank": 91,
+   "web": {
+    "예천폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "ycg.kr",
+      "obosaga.com",
+      "ycinews.co.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "obosaga.com"
+     }
+    },
+    "예천폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "carmap.co.kr",
+      "nicebizinfo.com",
+      "daegu.scourt.go.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "창녕군",
+   "priority_rank": 94,
+   "web": {
+    "창녕폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "baro.gyeongnam.go.kr",
+      "life114.co.kr"
+     ]
+    },
+    "창녕폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "incruit.com",
+      "life114.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "함양군",
+   "priority_rank": 95,
+   "web": {
+    "함양폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "0559639848.okqr.co.kr",
+      "kadra.or.kr",
+      "xn--og5b21b87f8zji4b.com"
+     ]
+    },
+    "함양폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "xn--og5b21b87f8zji4b.com",
+      "kadra.or.kr",
+      "0559639848.okqr.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "증평군",
+   "priority_rank": 97,
+   "web": {
+    "증평폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "jp.go.kr",
+      "soonwidot.co.kr"
+     ]
+    },
+    "증평폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "carmap.co.kr",
+      "114.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "부천시 소사구",
+   "priority_rank": 100,
+   "web": {
+    "부천폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "bucheon.go.kr",
+      "kadra.or.kr",
+      "010-5348-9970.intweb.kr"
+     ]
+    },
+    "부천폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "010-5348-9970.intweb.kr",
+      "scrapcall24.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경기도",
+   "sigungu": "부천시 오정구",
+   "priority_rank": 101,
+   "web": {
+    "부천폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "bucheon.go.kr",
+      "kadra.or.kr",
+      "010-5348-9970.intweb.kr"
+     ]
+    },
+    "부천폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "010-5348-9970.intweb.kr",
+      "scrapcall24.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "장성군",
+   "priority_rank": 104,
+   "web": {
+    "장성폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "eminwon.jangseong.go.kr",
+      "jangseong.go.kr",
+      "kadra.or.kr"
+     ]
+    },
+    "장성폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "marketbz.com",
+      "114.co.kr",
+      "kadra.or.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "서천군",
+   "priority_rank": 109,
+   "web": {
+    "서천폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "goodbyecar.co.kr",
+      "app.rndcircle.io"
+     ]
+    },
+    "서천폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "nicebizinfo.com",
+      "app.rndcircle.io"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "함안군",
+   "priority_rank": 110,
+   "web": {
+    "함안폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "haman.go.kr",
+      "baro.gyeongnam.go.kr"
+     ]
+    },
+    "함안폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "changwon.go.kr",
+      "114.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "해남군",
+   "priority_rank": 114,
+   "web": {
+    "해남폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "haenam.go.kr",
+      "kadra.or.kr",
+      "haenampecha.zerosauto.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "haenampecha.zerosauto.com"
+     }
+    },
+    "해남폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "haenampecha.zerosauto.com",
+      "saramin.co.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "haenampecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "강진군",
+   "priority_rank": 115,
+   "web": {
+    "강진폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "114.co.kr",
+      "milaelo.com"
+     ]
+    },
+    "강진폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "114.co.kr",
+      "busan.go.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "홍천군",
+   "priority_rank": 124,
+   "web": {
+    "홍천폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "eminwon.hongcheon.go.kr",
+      "hongcheon.go.kr"
+     ]
+    },
+    "홍천폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "114.co.kr",
+      "nicebizinfo.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "횡성군",
+   "priority_rank": 125,
+   "web": {
+    "횡성폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "hsg.go.kr",
+      "gtbikemall.com",
+      "kadra.or.kr"
+     ]
+    },
+    "횡성폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "hsg.go.kr",
+      "gbyeas.iposbiz.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "거창군",
+   "priority_rank": 130,
+   "web": {
+    "거창폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "changwon.go.kr",
+      "kadra.or.kr",
+      "baro.gyeongnam.go.kr"
+     ]
+    },
+    "거창폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "changwon.go.kr",
+      "kadra.or.kr",
+      "daangn.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "성주군",
+   "priority_rank": 131,
+   "web": {
+    "성주폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "sj.go.kr",
+      "chilgok.go.kr"
+     ]
+    },
+    "성주폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "sj.go.kr",
+      "soonwidot.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "화순군",
+   "priority_rank": 132,
+   "web": {
+    "화순폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "hwasun.go.kr",
+      "jipmani.com"
+     ]
+    },
+    "화순폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "jipmani.com",
+      "jn-se.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "옥천군",
+   "priority_rank": 133,
+   "web": {
+    "옥천폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "oc.go.kr",
+      "namu.wiki"
+     ]
+    },
+    "옥천폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "milaelo.com",
+      "114.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "태안군",
+   "priority_rank": 135,
+   "web": {
+    "태안폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "taeanpecha.zerosauto.com",
+      "kadra.or.kr",
+      "taean.go.kr"
+     ],
+     "rival": {
+      "pos": 1,
+      "host": "taeanpecha.zerosauto.com"
+     }
+    },
+    "태안폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "jobkorea.co.kr",
+      "kadra.or.kr",
+      "taeanpecha.zerosauto.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "taeanpecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "곡성군",
+   "priority_rank": 148,
+   "web": {
+    "곡성폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "gokseong.go.kr",
+      "obosaga.com",
+      "kadra.or.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "obosaga.com"
+     }
+    },
+    "곡성폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "bolta.io",
+      "xn--bj1b4tz3lmwqbnfu6g.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "대전광역시",
+   "sigungu": "대덕구",
+   "priority_rank": 149,
+   "web": {
+    "대덕폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "xn--vk1bo21b44c8zj.kr",
+      "kumkangscrap.com"
+     ]
+    },
+    "대덕폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "xn--vk1bo21b44c8zj.kr",
+      "kadra.or.kr",
+      "kumkangscrap.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "울진군",
+   "priority_rank": 152,
+   "web": {
+    "울진폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "uljin.go.kr",
+      "bestpyechajang.com",
+      "jiwontree.com"
+     ]
+    },
+    "울진폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "ear.digitalpostma.com",
+      "soonwidot.co.kr",
+      "xn--bj1b4tz3lmwqbnfu6g.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "영암군",
+   "priority_rank": 153,
+   "web": {
+    "영암폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "yeongampecha.zerosauto.com",
+      "milaelo.com"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "yeongampecha.zerosauto.com"
+     }
+    },
+    "영암폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "jeonnam.go.kr",
+      "yeongampecha.zerosauto.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "yeongampecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "계룡시",
+   "priority_rank": 154,
+   "web": {
+    "계룡폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "gyeryong.go.kr",
+      "bobaenetworks.com"
+     ]
+    },
+    "계룡폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "114.co.kr",
+      "gyeryongpecha.zerosauto.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "gyeryongpecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "인제군",
+   "priority_rank": 155,
+   "web": {
+    "인제폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "inje.go.kr",
+      "injepecha.zerosauto.com",
+      "sportsseoul.com"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "injepecha.zerosauto.com"
+     }
+    },
+    "인제폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "xn--bj1b4tz3lmwqbnfu6g.kr",
+      "injepecha.zerosauto.com",
+      "inje.go.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "injepecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "담양군",
+   "priority_rank": 156,
+   "web": {
+    "담양폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "damyang.go.kr",
+      "ev.or.kr"
+     ]
+    },
+    "담양폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "114.co.kr",
+      "jucha.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "산청군",
+   "priority_rank": 157,
+   "web": {
+    "산청폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "baro.gyeongnam.go.kr",
+      "sancheong.go.kr"
+     ]
+    },
+    "산청폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "changwon.go.kr",
+      "life114.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "합천군",
+   "priority_rank": 158,
+   "web": {
+    "합천폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "baro.gyeongnam.go.kr",
+      "data.go.kr",
+      "hc.go.kr"
+     ]
+    },
+    "합천폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "fcmt.purpleo.co.kr",
+      "kadra.or.kr",
+      "xn--bj1b4tz3lmwqbnfu6g.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "의성군",
+   "priority_rank": 159,
+   "web": {
+    "의성폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "ok114.co.kr",
+      "eminwon.uiseong.go.kr"
+     ]
+    },
+    "의성폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "ok114.co.kr",
+      "placeview.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "청도군",
+   "priority_rank": 160,
+   "web": {
+    "청도폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "cheongdo.go.kr",
+      "obosaga.com",
+      "eminwon.cheongdo.go.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "obosaga.com"
+     }
+    },
+    "청도폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "icaryoucar.com",
+      "obosaga.com",
+      "life114.co.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "obosaga.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "고창군",
+   "priority_rank": 164,
+   "web": {
+    "고창폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "gochang.go.kr",
+      "decanto.imain.kr"
+     ]
+    },
+    "고창폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "gochang.go.kr",
+      "kadra.or.kr",
+      "114.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "임실군",
+   "priority_rank": 166,
+   "web": {
+    "임실폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "obosaga.com",
+      "ev.or.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "obosaga.com"
+     }
+    },
+    "임실폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "114.co.kr",
+      "bolta.io"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "괴산군",
+   "priority_rank": 167,
+   "web": {
+    "괴산폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "data.go.kr",
+      "goesan.go.kr",
+      "kadra.or.kr"
+     ]
+    },
+    "괴산폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "milaelo.com",
+      "obosaga.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "obosaga.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "울산광역시",
+   "sigungu": "남구",
+   "priority_rank": 168,
+   "web": {
+    "울산남구폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "ulsannamgu.go.kr",
+      "114.ai.kr"
+     ]
+    },
+    "울산남구폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "114.co.kr",
+      "soonwidot.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "양양군",
+   "priority_rank": 169,
+   "web": {
+    "양양폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "health.yangyang.go.kr",
+      "kwrd.or.kr"
+     ]
+    },
+    "양양폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "yangyang.go.kr",
+      "kadra.or.kr",
+      "114.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "영월군",
+   "priority_rank": 174,
+   "web": {
+    "영월폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "yw.go.kr",
+      "yeongwolpecha.zerosauto.com",
+      "114.co.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "yeongwolpecha.zerosauto.com"
+     }
+    },
+    "영월폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "yeongwolpecha.zerosauto.com",
+      "nicebizinfo.com",
+      "gbyeas.iposbiz.com"
+     ],
+     "rival": {
+      "pos": 1,
+      "host": "yeongwolpecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "양구군",
+   "priority_rank": 177,
+   "web": {
+    "양구폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "yanggu.go.kr",
+      "re.or.kr",
+      "kadra.or.kr"
+     ]
+    },
+    "양구폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "re.or.kr",
+      "marketbz.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "봉화군",
+   "priority_rank": 179,
+   "web": {
+    "봉화폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "gtbikemall.com",
+      "bestpyechajang.com"
+     ]
+    },
+    "봉화폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "114.co.kr",
+      "xn--bj1b4tz3lmwqbnfu6g.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "고흥군",
+   "priority_rank": 180,
+   "web": {
+    "고흥폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "return.goheung.go.kr",
+      "goheung.go.kr",
+      "kadra.or.kr"
+     ]
+    },
+    "고흥폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "goheung.go.kr",
+      "kadra.or.kr",
+      "obosaga.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "obosaga.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "충청남도",
+   "sigungu": "청양군",
+   "priority_rank": 181,
+   "web": {
+    "청양폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "cheongyangpecha.zerosauto.com",
+      "placeview.co.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "cheongyangpecha.zerosauto.com"
+     }
+    },
+    "청양폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "placeview.co.kr",
+      "cheongyangpecha.zerosauto.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "cheongyangpecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "보은군",
+   "priority_rank": 182,
+   "web": {
+    "보은폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "bobaenetworks.com",
+      "obosaga.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "obosaga.com"
+     }
+    },
+    "보은폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "114.co.kr",
+      "bestpyechajang.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "영덕군",
+   "priority_rank": 186,
+   "web": {
+    "영덕폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "yd.go.kr",
+      "namu.wiki"
+     ]
+    },
+    "영덕폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "114.co.kr",
+      "soonwidot.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "진안군",
+   "priority_rank": 187,
+   "web": {
+    "진안폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "jinan.go.kr",
+      "gtbikemall.com"
+     ]
+    },
+    "진안폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "jinanpecha.zerosauto.com",
+      "moneypin.biz"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "jinanpecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "단양군",
+   "priority_rank": 188,
+   "web": {
+    "단양폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "danyang.go.kr",
+      "gtbikemall.com"
+     ]
+    },
+    "단양폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "danyang.go.kr",
+      "kadra.or.kr",
+      "namu.wiki"
+     ]
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "충청북도",
+   "sigungu": "영동군",
+   "priority_rank": 189,
+   "web": {
+    "영동폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "yd21.go.kr",
+      "bobaenetworks.com",
+      "ko.wikipedia.org"
+     ]
+    },
+    "영동폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "yeongdongpecha.zerosauto.com",
+      "siteinfor.co.kr",
+      "carmap.co.kr"
+     ],
+     "rival": {
+      "pos": 1,
+      "host": "yeongdongpecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "평창군",
+   "priority_rank": 194,
+   "web": {
+    "평창폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "pc.go.kr",
+      "kadra.or.kr",
+      "obosaga.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "obosaga.com"
+     }
+    },
+    "평창폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "gwfilm.kr",
+      "moneypin.biz"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "남해군",
+   "priority_rank": 195,
+   "web": {
+    "남해폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "baro.gyeongnam.go.kr",
+      "namhae.go.kr",
+      "gtbikemall.com"
+     ]
+    },
+    "남해폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "life114.co.kr",
+      "m.onestore.co.kr",
+      "cafe.naver.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "의령군",
+   "priority_rank": 196,
+   "web": {
+    "의령폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "baro.gyeongnam.go.kr",
+      "uiryeong.go.kr",
+      "kadra.or.kr"
+     ]
+    },
+    "의령폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "uiryeong.go.kr",
+      "soonwidot.net"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "청송군",
+   "priority_rank": 197,
+   "web": {
+    "청송폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "cs.go.kr",
+      "cheongsongpecha.zerosauto.com",
+      "aea.or.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "cheongsongpecha.zerosauto.com"
+     }
+    },
+    "청송폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "cheongsongpecha.zerosauto.com",
+      "bestpyechajang.com",
+      "cs.go.kr"
+     ],
+     "rival": {
+      "pos": 1,
+      "host": "cheongsongpecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "함평군",
+   "priority_rank": 198,
+   "web": {
+    "함평폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "hampyeong.go.kr",
+      "airkorea.or.kr",
+      "kwrd.or.kr"
+     ]
+    },
+    "함평폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "hampyeongpecha.zerosauto.com",
+      "life114.co.kr",
+      "xn--bj1b4tz3lmwqbnfu6g.kr"
+     ],
+     "rival": {
+      "pos": 1,
+      "host": "hampyeongpecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "군위군",
+   "priority_rank": 200,
+   "web": {
+    "군위폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "gunwi.go.kr",
+      "kadra.or.kr",
+      "gunwipecha.zerosauto.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "gunwipecha.zerosauto.com"
+     }
+    },
+    "군위폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "gunwi.go.kr",
+      "kadra.or.kr",
+      "gunwipecha.zerosauto.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "gunwipecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "하동군",
+   "priority_rank": 202,
+   "web": {
+    "하동폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "hadong.go.kr",
+      "baro.gyeongnam.go.kr",
+      "kadra.or.kr"
+     ]
+    },
+    "하동폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "changwon.go.kr",
+      "kadra.or.kr",
+      "exportcar24.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "계양구",
+   "priority_rank": 204,
+   "web": {
+    "계양폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "loan.hicarz.co.kr",
+      "xn--lu5b8c60ninn11a.km114.kr",
+      "car1.onscrap.co.kr"
+     ]
+    },
+    "계양폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "xn--lu5b8c60ninn11a.km114.kr",
+      "onscrap.co.kr",
+      "car1.onscrap.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "광진구",
+   "priority_rank": 205,
+   "web": {
+    "광진폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "gwangjin.go.kr",
+      "loan.hicarz.co.kr",
+      "gwangjingupecha.zerosauto.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "gwangjingupecha.zerosauto.com"
+     }
+    },
+    "광진폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "gwangjingupecha.zerosauto.com",
+      "place.udanax.org",
+      "kadra.or.kr"
+     ],
+     "rival": {
+      "pos": 1,
+      "host": "gwangjingupecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "서구",
+   "priority_rank": 209,
+   "web": {
+    "대구서구폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "daegu.go.kr",
+      "carmap.co.kr",
+      "kadra.or.kr"
+     ]
+    },
+    "대구서구폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "daegu.go.kr",
+      "hdpecha.adwinkorea.kr",
+      "kadra.or.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "북구",
+   "priority_rank": 213,
+   "web": {
+    "부산북구폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "busan.go.kr",
+      "bsbukgu.go.kr",
+      "icaryoucar.com"
+     ]
+    },
+    "부산북구폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "icaryoucar.com",
+      "car-busan.com",
+      "kadra.or.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "관악구",
+   "priority_rank": 214,
+   "web": {
+    "관악폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "gwanak.go.kr",
+      "loan.hicarz.co.kr",
+      "gagpecha.vavav.kr"
+     ]
+    },
+    "관악폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "gagpecha.vavav.kr",
+      "onscrap.co.kr",
+      "car1.onscrap.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "영등포구",
+   "priority_rank": 215,
+   "web": {
+    "영등포폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "card.kbcard.com",
+      "ydppecha.hbon.kr",
+      "yeongdeungpogupecha.zerosauto.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "yeongdeungpogupecha.zerosauto.com"
+     }
+    },
+    "영등포폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "ydppecha.hbon.kr",
+      "yeongdeungpogupecha.zerosauto.com",
+      "boramcar.co.kr"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "yeongdeungpogupecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "검단구",
+   "priority_rank": 216,
+   "web": {
+    "검단폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "kdramamap.com",
+      "namu.wiki"
+     ]
+    },
+    "검단폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "homesuri.kr",
+      "xn--lu5b8c60ninn11a.km114.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "무주군",
+   "priority_rank": 218,
+   "web": {
+    "무주폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "eminwon.muju.go.kr",
+      "kadra.or.kr",
+      "muju.go.kr"
+     ]
+    },
+    "무주폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "k114.co.kr",
+      "bolta.io"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "순창군",
+   "priority_rank": 219,
+   "web": {
+    "순창폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "sunchangpecha.zerosauto.com",
+      "jeonmin.co.kr",
+      "wikitree.co.kr"
+     ],
+     "rival": {
+      "pos": 1,
+      "host": "sunchangpecha.zerosauto.com"
+     }
+    },
+    "순창폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "sunchangpecha.zerosauto.com",
+      "milaelo.com",
+      "bestpyechajang.com"
+     ],
+     "rival": {
+      "pos": 1,
+      "host": "sunchangpecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "울산광역시",
+   "sigungu": "북구",
+   "priority_rank": 221,
+   "web": {
+    "울산북구폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "ulsanpecha.myon.kr",
+      "soonwidot.co.kr"
+     ]
+    },
+    "울산북구폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "ulsanpecha.myon.kr",
+      "soonwidot.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "중구",
+   "priority_rank": 223,
+   "web": {
+    "부산중구폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "bsjunggu.go.kr",
+      "icaryoucar.com",
+      "busanpecha.mgon.kr"
+     ]
+    },
+    "부산중구폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "icaryoucar.com",
+      "kadra.or.kr",
+      "busanpecha.mgon.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "북구",
+   "priority_rank": 224,
+   "web": {
+    "대구북구폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "daegu.go.kr",
+      "kadra.or.kr",
+      "milaelo.com"
+     ]
+    },
+    "대구북구폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "daegu.go.kr",
+      "kadra.or.kr",
+      "114.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "강북구",
+   "priority_rank": 226,
+   "web": {
+    "강북폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "ok114.co.kr",
+      "gbgpecha.firstzone.kr",
+      "car1.onscrap.co.kr"
+     ]
+    },
+    "강북폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "ok114.co.kr",
+      "gbgpecha.firstzone.kr",
+      "car1.onscrap.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "대전광역시",
+   "sigungu": "동구",
+   "priority_rank": 227,
+   "web": {
+    "대전동구폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "wwv.soonwidot.co.kr",
+      "donggu.go.kr",
+      "milaelo.com"
+     ]
+    },
+    "대전동구폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "wwv.soonwidot.co.kr",
+      "kadra.or.kr",
+      "council.daejeon.go.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "서대문구",
+   "priority_rank": 229,
+   "web": {
+    "서대문폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "sdm.go.kr",
+      "cleanair.seoul.go.kr",
+      "sdmcar.webmaker.kr"
+     ]
+    },
+    "서대문폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "sdmcar.webmaker.kr",
+      "xn--vk1bx9mh3ejxh83f89m.masterad.kr",
+      "seodaemungupecha.zerosauto.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "seodaemungupecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "연수구",
+   "priority_rank": 230,
+   "web": {
+    "연수폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "inscrap.co.kr",
+      "busan.go.kr",
+      "gwangju.go.kr"
+     ]
+    },
+    "연수폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "namu.wiki",
+      "inscrap.co.kr",
+      "jeilbest.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "서울특별시",
+   "sigungu": "마포구",
+   "priority_rank": 231,
+   "web": {
+    "마포폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "cleanair.seoul.go.kr",
+      "mapogupecha.zoon.kr",
+      "placeview.co.kr"
+     ]
+    },
+    "마포폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "mapogupecha.zoon.kr",
+      "car1.onscrap.co.kr",
+      "life114.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "울산광역시",
+   "sigungu": "중구",
+   "priority_rank": 232,
+   "web": {
+    "울산중구폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "ulsanpecha.myon.kr",
+      "gtbikemall.com",
+      "junggu.ulsan.kr"
+     ]
+    },
+    "울산중구폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "ulsanpecha.myon.kr",
+      "kadra.or.kr",
+      "tbn.or.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "수성구",
+   "priority_rank": 234,
+   "web": {
+    "수성폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "suseong.kr",
+      "daegu.go.kr",
+      "hyunp.com"
+     ]
+    },
+    "수성폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "daegu.go.kr",
+      "hyunp.com",
+      "daegupecha.mgon.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "대전광역시",
+   "sigungu": "서구",
+   "priority_rank": 235,
+   "web": {
+    "대전서구폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "daejeon.go.kr",
+      "seogu.go.kr",
+      "milaelo.com"
+     ]
+    },
+    "대전서구폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "daejeon.go.kr",
+      "milaelo.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "동래구",
+   "priority_rank": 239,
+   "web": {
+    "동래폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "dongnae.go.kr",
+      "icaryoucar.com",
+      "car-busan.com"
+     ]
+    },
+    "동래폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "icaryoucar.com",
+      "car-busan.com",
+      "milaelo.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "부산광역시",
+   "sigungu": "수영구",
+   "priority_rank": 240,
+   "web": {
+    "수영폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "suyeong.go.kr",
+      "eminwon.suyeong.go.kr",
+      "infoscrap.co.kr"
+     ]
+    },
+    "수영폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "busanpecha.mgon.kr",
+      "kadra.or.kr",
+      "obosaga.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "obosaga.com"
+     }
+    }
+   },
+   "blog": {
+    "rank": null,
+    "url": null
+   }
+  },
+  {
+   "sido": "대구광역시",
+   "sigungu": "중구",
+   "priority_rank": 243,
+   "web": {
+    "대구중구폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "daegu.go.kr",
+      "daegupecha.mgon.kr",
+      "minwon.daegu.go.kr"
+     ]
+    },
+    "대구중구폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "daegu.go.kr",
+      "daegupecha.mgon.kr",
+      "hyunp.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "동구",
+   "priority_rank": 244,
+   "web": {
+    "광주동구폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "gjscrap.com",
+      "aea.or.kr",
+      "gwangju.go.kr"
+     ]
+    },
+    "광주동구폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "gjscrap.com",
+      "114.co.kr",
+      "kadra.or.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "인천광역시",
+   "sigungu": "제물포구",
+   "priority_rank": 246,
+   "web": {
+    "제물포폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "jemulpo.go.kr",
+      "v2.scrapcall.co.kr",
+      "kfood.kr"
+     ]
+    },
+    "제물포폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "v2.scrapcall.co.kr",
+      "v3.xn--950b94cpx8a85g.com"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상남도",
+   "sigungu": "고성군",
+   "priority_rank": 248,
+   "web": {
+    "경남고성군폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "baro.gyeongnam.go.kr",
+      "welfarehello.com"
+     ]
+    },
+    "경남고성군폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "changwon.go.kr",
+      "k114.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전남광주통합특별시",
+   "sigungu": "진도군",
+   "priority_rank": 251,
+   "web": {
+    "진도폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "jindo.go.kr",
+      "eminwon.jindo.go.kr",
+      "obosaga.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "obosaga.com"
+     }
+    },
+    "진도폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "114.co.kr",
+      "01063526667.vipcall.co.kr",
+      "jindopecha.zerosauto.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "jindopecha.zerosauto.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "고성군",
+   "priority_rank": 252,
+   "web": {
+    "강원고성군폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "re.or.kr",
+      "gwgs.go.kr",
+      "kadra.or.kr"
+     ]
+    },
+    "강원고성군폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "re.or.kr",
+      "kadra.or.kr",
+      "114.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "전북특별자치도",
+   "sigungu": "장수군",
+   "priority_rank": 253,
+   "web": {
+    "장수폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "jangsu.go.kr",
+      "namu.wiki",
+      "kadra.or.kr"
+     ]
+    },
+    "장수폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "carrisk.co.kr",
+      "car1.onscrap.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "강원특별자치도",
+   "sigungu": "화천군",
+   "priority_rank": 254,
+   "web": {
+    "화천폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "ihc.go.kr",
+      "obosaga.com",
+      "gtbikemall.com"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "obosaga.com"
+     }
+    },
+    "화천폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "chuncheon.go.kr",
+      "obosaga.com",
+      "bestpyechajang.com"
+     ],
+     "rival": {
+      "pos": 2,
+      "host": "obosaga.com"
+     }
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "영양군",
+   "priority_rank": 255,
+   "web": {
+    "영양폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "tbn.or.kr",
+      "aea.or.kr",
+      "bestpyechajang.com"
+     ]
+    },
+    "영양폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "bestpyechajang.com",
+      "kadra.or.kr",
+      "placeview.co.kr"
+     ]
+    }
+   },
+   "blog": null
+  },
+  {
+   "sido": "경상북도",
+   "sigungu": "울릉군",
+   "priority_rank": 256,
+   "web": {
+    "울릉폐차": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "ulleung.go.kr",
+      "hidomin.com",
+      "onbid.co.kr"
+     ]
+    },
+    "울릉폐차장": {
+     "rank": null,
+     "url": null,
+     "top3": [
+      "kadra.or.kr",
+      "ulleung.go.kr",
+      "obosaga.com"
+     ],
+     "rival": {
+      "pos": 3,
+      "host": "obosaga.com"
+     }
+    }
+   },
+   "blog": null
+  }
+ ],
+ "blog": {
+  "부평폐차": {
+   "rank": null,
+   "url": null
+  },
+  "고령폐차": {
+   "rank": null,
+   "url": null
+  },
+  "단양폐차": {
+   "rank": null,
+   "url": null
+  },
+  "창원폐차": {
+   "rank": null,
+   "url": null
+  },
+  "태안폐차": {
+   "rank": null,
+   "url": null
+  },
+  "서울강서구폐차": {
+   "rank": null,
+   "url": null
+  },
+  "익산폐차": {
+   "rank": null,
+   "url": null
+  },
+  "완도폐차": {
+   "rank": null,
+   "url": null
+  },
+  "구미폐차": {
+   "rank": null,
+   "url": null
+  },
+  "목포폐차": {
+   "rank": null,
+   "url": null
+  },
+  "화성폐차": {
+   "rank": null,
+   "url": null
+  },
+  "김해폐차": {
+   "rank": null,
+   "url": null
+  },
+  "천안폐차": {
+   "rank": null,
+   "url": null
+  },
+  "수영폐차": {
+   "rank": null,
+   "url": null
+  },
+  "강릉폐차": {
+   "rank": null,
+   "url": null
+  },
+  "경산폐차": {
+   "rank": null,
+   "url": null
+  },
+  "원주폐차": {
+   "rank": null,
+   "url": null
+  },
+  "제주폐차": {
+   "rank": null,
+   "url": null
+  },
+  "양산폐차": {
+   "rank": null,
+   "url": null
+  },
+  "광주폐차": {
+   "rank": null,
+   "url": null
+  },
+  "아산폐차": {
+   "rank": null,
+   "url": null
+  },
+  "전주폐차": {
+   "rank": null,
+   "url": null
+  },
+  "군산폐차": {
+   "rank": null,
+   "url": null
+  },
+  "진주폐차": {
+   "rank": null,
+   "url": null
+  },
+  "춘천폐차": {
+   "rank": null,
+   "url": null
+  },
+  "세종폐차": {
+   "rank": null,
+   "url": null
+  },
+  "서산폐차": {
+   "rank": null,
+   "url": null
+  },
+  "평택폐차": {
+   "rank": null,
+   "url": null
+  },
+  "거제폐차": {
+   "rank": null,
+   "url": null
+  },
+  "당진폐차": {
+   "rank": null,
+   "url": null
+  },
+  "충주폐차": {
+   "rank": null,
+   "url": null
+  },
+  "양주폐차": {
+   "rank": null,
+   "url": null
+  },
+  "김천폐차": {
+   "rank": null,
+   "url": null
+  },
+  "포항폐차": {
+   "rank": null,
+   "url": null
+  }
+ }
+}
