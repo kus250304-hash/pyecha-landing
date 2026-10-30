@@ -25,6 +25,8 @@
      scripts/naver_rank.py, 2026-10-25). 둘 다 구 페이지 중 아직 요청 안 된 것,
      또는 마지막 요청 날짜 뒤에 본문 해시 날짜(data/page_hashes.json lastmod)가 바뀐 것(내용이 그대로면 다시 고르지 않음)
   ④ 점수표(data/priority_regions.json) 순위 높은 지방 시·군(build_gu.min_dong_pages 가 0)의 구 페이지
+  구글 목록 전체에서 이미 색인된 주소는 뺀다(2026-10-30, data/gsc_index_status.json — PC 예약 작업 scripts/gsc_index_check.py 가
+  매일 씀. 파일이 없거나 마지막 확인이 3일보다 오래면 거르지 않음). 빠진 자리는 다음 순서 주소로 채운다.
   (③ 시·도 페이지는 2026-10-29 구글에서 뺌, 14장 모두 요청됨. A·B 실험 20곳 빼기는 2026-10-28 실험 취소로 없앰.)
 
 네이버(하루 50개, 사이트맵에 있는 페이지만 = noindex·자동 이동 페이지 빼기, 동 페이지도 고름)
@@ -52,6 +54,8 @@ from build_si import load_si, si_file  # noqa: E402
 LOG = ROOT / "docs" / "index-requests.md"
 COUNT_GOOGLE = 15  # 2026-10-20 10 → 5, 2026-10-22 5 → 10, 2026-10-29 10 → 15(병한님, 구글·네이버 나눔)
 COUNT_NAVER = 50  # 2026-10-29 병한님: 서치어드바이저 웹 페이지 수집은 하루 50개까지 됨
+GSC_STATUS = ROOT / "data" / "gsc_index_status.json"  # 구글 색인 상태(2026-10-30, scripts/gsc_index_check.py)
+GSC_MAX_AGE = 3  # 마지막 확인이 이 날수보다 오래면 거르지 않음
 NAVER_SINCE = "2026-10-22"  # 이날부터 날짜 칸 주소를 네이버 웹 페이지 수집에도 넣음(그 전 칸은 구글만)
 PUBLISHED_RE = re.compile(r'"datePublished": "(\d{4}-\d{2}-\d{2})"')
 URL_RE = re.compile(r"https://pyecha119\.com/\S+?\.html")
@@ -246,6 +250,20 @@ def dong_order(base: str, regions: list[dict], inquiry: str, gu_data: list[dict]
     return out
 
 
+def gsc_indexed(day: str) -> tuple[set[str], str]:
+    """구글 목록에서 뺄 "이미 색인됨" 주소(2026-10-30, scripts/gsc_index_check.py 가 PC 에서 매일 쓰는 data/gsc_index_status.json).
+    파일이 없거나 마지막 확인이 3일보다 오래면 거르지 않는다(지금처럼 그대로)."""
+    data = load_json(GSC_STATUS, default={}) or {}
+    updated = data.get("updated", "")
+    if not updated:
+        return set(), "확인 자료 없음 → 거르지 않음"
+    age = (datetime.fromisoformat(day) - datetime.fromisoformat(updated)).days
+    if age > GSC_MAX_AGE:
+        return set(), f"확인 자료가 {age}일 지남({updated}) → 거르지 않음"
+    indexed = {u for u, v in data.get("pages", {}).items() if v.get("indexed")}
+    return indexed, f"{updated} 확인 기준 이미 색인된 {len(indexed)}개는 뺌(data/gsc_index_status.json)"
+
+
 def kind(url: str) -> str:
     return next((name for part, name in (("/gu/", "구·시군"), ("/si/", "시·도"), ("/guide/", "안내"), ("/cases/", "사례"),
                                          ("/pages/", "동")) if part in url), "그 밖")
@@ -293,7 +311,8 @@ def main() -> None:
             p.add(url, f"{why} · {p.last_req[url]} 요청 뒤 내용 바뀜({lastmod[rel]})", again=True)
 
     # ── 구글: 하루 15개, 구·시군·주제(안내) 페이지만(동·시·도·사례 페이지는 고르지 않음, 2026-10-29) ──
-    g = Picker(secs, "구글", lambda u: "/gu/" in u or "/guide/" in u)
+    indexed, gsc_note = gsc_indexed(day)
+    g = Picker(secs, "구글", lambda u: ("/gu/" in u or "/guide/" in u) and u not in indexed)
     g.requeue(secs, day)  # ⓪ 맨 앞(2026-10-30: 사례 붙은 페이지가 하루 10개쯤이라 ⓐ 뒤면 못 한 주소가 계속 밀림)
     # ⓐ 어제·오늘 사례가 새로 붙은 구·시군 페이지(2026-10-28). 사례가 붙은 날 뒤로 요청한 적이 없으면 다시
     since = (datetime.fromisoformat(day) - timedelta(days=1)).date().isoformat()
@@ -346,6 +365,7 @@ def main() -> None:
     picked = {"구글": g.ordered[:COUNT_GOOGLE], "네이버": n.ordered[:COUNT_NAVER]}
     print(f"오늘 구글 색인 요청 {len(picked['구글'])}개 — 서치 콘솔 URL 검사 → 색인 생성 요청 "
           f"({day}, 구글에 요청한 {len(g.done)}개는 뺌)")
+    print(f"구글 색인 확인: {gsc_note}")
     for i, (u, why) in enumerate(picked["구글"], 1):
         print(f"{i}. {unquote(u)} — {why}\n{u}\nURL 검사 바로가기: {inspect_link(base, u)}")
     kinds: dict[str, int] = {}
