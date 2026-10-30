@@ -13,10 +13,11 @@
   곳마다 그곳 날짜 칸에 있는 주소는 요청한 것으로 보고 뺀다. 오늘 날짜 칸이 이미 "요청 못 함"으로 적혀 있으면 --write 도 같은 표시를 단다.
 
 구글(하루 15개, 구·시군·주제(안내) 페이지만. 동·시·도·사례 페이지는 고르지 않음)
+  ⓪ 구글 "요청 못 함" 칸 주소를 같은 순서로 다시 맨 앞에(2026-10-29부터 모든 칸을 최근 칸부터 보고, 예전에 요청한 적 있는
+     주소도 그 칸 뒤로 요청하지 않았으면 다시. "그 칸 뒤" = 더 늦은 날짜 칸, 같은 날이면 파일에서 더 아래 칸(2026-10-30).
+     하루 개수를 넘어 남은 주소는 다음 날 이어서 나옴. 2026-10-30부터 ⓐ 보다 앞)
   ⓐ 어제·오늘 사례가 새로 붙은 구·시군 페이지(2026-10-28 병한님, cases/index.json 의 added = 페이지에 붙은 날, 없으면 git 에
      cases/<slug>.html 이 처음 들어간 날). 이미 요청했어도 사례가 붙은 날 뒤로 요청한 적이 없으면 다시 고른다
-  ⓪ 구글 "요청 못 함" 칸 주소를 같은 순서로 다시 맨 앞에(2026-10-29부터 모든 칸을 최근 칸부터 보고, 예전에 요청한 적 있는
-     주소도 그 칸 날짜 뒤로(같은 날 포함) 요청하지 않았으면 다시. 하루 개수를 넘어 남은 주소는 다음 날 이어서 나옴)
   ① docs/index-requests.md 의 "## 최우선" 칸 주소 중 아직 요청 안 된 것(적힌 순서대로, 지금은 주제 페이지 6장)
   ② 문의가 온 페이지(그 파일의 "문의가 온 페이지" 칸)와 같은 시·군의 구·시군 페이지
      (일반구면 같은 시의 다른 구 페이지까지, 문의 온 곳이 여럿이면 번갈아)
@@ -144,11 +145,13 @@ class Picker:
         self.engine, self.allow = engine, allow
         self.done: set[str] = set()
         self.last_req: dict[str, str] = {}  # 주소 → 마지막으로 요청한 날
-        for head, body in secs:
+        self.last_pos: dict[str, tuple[str, int]] = {}  # 주소 → (마지막으로 요청한 날, 그 칸의 파일 속 순서)
+        for i, (head, body) in enumerate(secs):
             if DATE_HEAD_RE.match(head) and NOT_DONE not in head and engine in engines(head):
                 for u in URL_RE.findall(body):
                     self.done.add(u)
                     self.last_req[u] = max(self.last_req.get(u, ""), head[:10])
+                    self.last_pos[u] = max(self.last_pos.get(u, ("", -1)), (head[:10], i))
         self.ordered: list[tuple[str, str]] = []
         self._seen: set[str] = set()
 
@@ -159,11 +162,14 @@ class Picker:
 
     def requeue(self, secs: list[tuple[str, str]], day: str) -> None:
         """⓪ "요청 못 함" 칸 주소를 다시(2026-10-29: 바로 앞 날짜만이 아니라 모든 칸, 최근 칸부터. 예전에 요청한 적 있어도
-        그 칸 날짜 뒤로(같은 날 포함) 요청하지 않았으면 다시 → 하루 개수를 넘어 남은 주소도 다음 날 이어서 나옴)."""
-        failed = [(h, b) for h, b in secs if DATE_HEAD_RE.match(h) and NOT_DONE in h and h[:10] < day and self.engine in engines(h)]
-        for head, body in sorted(failed, key=lambda x: x[0][:10], reverse=True):
+        그 칸 뒤로 요청하지 않았으면 다시 → 하루 개수를 넘어 남은 주소도 다음 날 이어서 나옴).
+        "그 칸 뒤" = 더 늦은 날짜 칸, 또는 같은 날이면 파일에서 더 아래에 적힌 칸(2026-10-30: 루틴이 아침에 적은 "날짜 구글" 칸
+        주소라도 그 아래 "요청 못 함" 칸에 다시 적혔으면 다시 고름)."""
+        failed = [(i, h, b) for i, (h, b) in enumerate(secs)
+                  if DATE_HEAD_RE.match(h) and NOT_DONE in h and h[:10] < day and self.engine in engines(h)]
+        for i, head, body in sorted(failed, key=lambda x: (x[1][:10], x[0]), reverse=True):
             for u in URL_RE.findall(body):
-                if self.last_req.get(u, "") < head[:10]:
+                if self.last_pos.get(u, ("", -1)) < (head[:10], i):
                     self.add(u, f"{head[:10]} 요청 못 함 → 다시", again=True)
 
     def not_done_today(self, secs: list[tuple[str, str]], day: str) -> bool:
@@ -288,6 +294,7 @@ def main() -> None:
 
     # ── 구글: 하루 15개, 구·시군·주제(안내) 페이지만(동·시·도·사례 페이지는 고르지 않음, 2026-10-29) ──
     g = Picker(secs, "구글", lambda u: "/gu/" in u or "/guide/" in u)
+    g.requeue(secs, day)  # ⓪ 맨 앞(2026-10-30: 사례 붙은 페이지가 하루 10개쯤이라 ⓐ 뒤면 못 한 주소가 계속 밀림)
     # ⓐ 어제·오늘 사례가 새로 붙은 구·시군 페이지(2026-10-28). 사례가 붙은 날 뒤로 요청한 적이 없으면 다시
     since = (datetime.fromisoformat(day) - timedelta(days=1)).date().isoformat()
     for c, added in new_cases(since, day):
@@ -296,7 +303,6 @@ def main() -> None:
             url = gu_url(*k)
             if g.last_req.get(url, "") < added:
                 g.add(url, f"{added} 사례가 새로 붙음({c['sigungu']} {c.get('car', '')})".replace(" )", ")"), again=True)
-    g.requeue(secs, day)  # ⓪
     for u in priority:  # ① 최우선 칸
         g.add(u, "최우선 칸")
     inquiry_items(g)  # ② 문의가 온 페이지와 같은 시·군의 구·시군 페이지
