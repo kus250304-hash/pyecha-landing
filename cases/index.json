@@ -1,5 +1,471 @@
 [
  {
+  "slug": "case-20260522-gyeonggi-pyeongtaek-seojeong",
+  "date": "2026-05-22",
+  "sido": "경기도",
+  "sigungu": "평택시",
+  "dong": "서정동",
+  "region_slug": "gyeonggi-pyeongtaek-seojeong",
+  "car": "2007년식 스타렉스 밴",
+  "title": "서정동 2007년식 스타렉스 밴 폐차·수출 비교 상담 사례",
+  "summary": "2007년식 스타렉스 밴 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "스타렉스 밴"
+   ],
+   [
+    "연식",
+    "2007년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2007년식 스타렉스 밴 차량으로, 시동은 걸리는 상태였습니다. 칠 바래고 먼지 낀 검정 스타렉스 밴",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20260522-gyeonggi-pyeongtaek-seojeong-1.jpg",
+  "photos": [
+   "case-20260522-gyeonggi-pyeongtaek-seojeong-1.jpg",
+   "case-20260522-gyeonggi-pyeongtaek-seojeong-2.jpg",
+   "case-20260522-gyeonggi-pyeongtaek-seojeong-3.jpg",
+   "case-20260522-gyeonggi-pyeongtaek-seojeong-4.jpg",
+   "case-20260522-gyeonggi-pyeongtaek-seojeong-5.jpg",
+   "case-20260522-gyeonggi-pyeongtaek-seojeong-6.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2026-05-22"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2007년식 스타렉스 밴 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-10-31"
+ },
+ {
+  "slug": "case-20250516-gyeonggi-namyangju-jingeon",
+  "date": "2025-05-16",
+  "sido": "경기도",
+  "sigungu": "남양주시",
+  "dong": "진건읍",
+  "region_slug": null,
+  "car": "2017년식 봉고3 탑차",
+  "title": "진건읍 2017년식 봉고3 탑차 폐차·수출 비교 상담 사례",
+  "summary": "2017년식 봉고3 탑차 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "봉고3 탑차"
+   ],
+   [
+    "연식",
+    "2017년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2017년식 봉고3 탑차 차량으로, 시동은 걸리는 상태였습니다. 앞유리 금가고 찍힘 있는 봉고3 탑차",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20250516-gyeonggi-namyangju-jingeon-1.jpg",
+  "photos": [
+   "case-20250516-gyeonggi-namyangju-jingeon-1.jpg",
+   "case-20250516-gyeonggi-namyangju-jingeon-2.jpg",
+   "case-20250516-gyeonggi-namyangju-jingeon-3.jpg",
+   "case-20250516-gyeonggi-namyangju-jingeon-4.jpg",
+   "case-20250516-gyeonggi-namyangju-jingeon-5.jpg",
+   "case-20250516-gyeonggi-namyangju-jingeon-6.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2025-05-16"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2017년식 봉고3 탑차 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-10-31"
+ },
+ {
+  "slug": "case-20240308-gyeonggi-siheung-jeongwang",
+  "date": "2024-03-08",
+  "sido": "경기도",
+  "sigungu": "시흥시",
+  "dong": "정왕동",
+  "region_slug": "gyeonggi-siheung-jeongwang",
+  "car": "2001년식 마이티",
+  "title": "정왕동 2001년식 마이티 폐차·수출 비교 상담 사례",
+  "summary": "2001년식 마이티 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "마이티"
+   ],
+   [
+    "연식",
+    "2001년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2001년식 마이티 차량으로, 시동은 걸리는 상태였습니다. 녹슨 곳 있는 구형 마이티2 카고트럭",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20240308-gyeonggi-siheung-jeongwang-1.jpg",
+  "photos": [
+   "case-20240308-gyeonggi-siheung-jeongwang-1.jpg",
+   "case-20240308-gyeonggi-siheung-jeongwang-2.jpg",
+   "case-20240308-gyeonggi-siheung-jeongwang-3.jpg",
+   "case-20240308-gyeonggi-siheung-jeongwang-4.jpg",
+   "case-20240308-gyeonggi-siheung-jeongwang-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2024-03-08"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2001년식 마이티 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-10-31"
+ },
+ {
+  "slug": "case-20240228-gyeongbuk-yeongdeok-ganggu",
+  "date": "2024-02-28",
+  "sido": "경상북도",
+  "sigungu": "영덕군",
+  "dong": "강구면",
+  "region_slug": null,
+  "car": "2012년식 YF 쏘나타",
+  "title": "강구면 2012년식 YF 쏘나타 폐차·수출 비교 상담 사례",
+  "summary": "2012년식 YF 쏘나타 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "YF 쏘나타"
+   ],
+   [
+    "연식",
+    "2012년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2012년식 YF 쏘나타 차량으로, 시동은 걸리는 상태였습니다. 외관 무난한 검정 YF 쏘나타",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20240228-gyeongbuk-yeongdeok-ganggu-1.jpg",
+  "photos": [
+   "case-20240228-gyeongbuk-yeongdeok-ganggu-1.jpg",
+   "case-20240228-gyeongbuk-yeongdeok-ganggu-2.jpg",
+   "case-20240228-gyeongbuk-yeongdeok-ganggu-3.jpg",
+   "case-20240228-gyeongbuk-yeongdeok-ganggu-4.jpg",
+   "case-20240228-gyeongbuk-yeongdeok-ganggu-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2024-02-28"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2012년식 YF 쏘나타 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-10-31"
+ },
+ {
+  "slug": "case-20230921-gyeonggi-namyangju-hwado",
+  "date": "2023-09-21",
+  "sido": "경기도",
+  "sigungu": "남양주시",
+  "dong": "화도읍",
+  "region_slug": null,
+  "car": "2008년식 윈스톰",
+  "title": "화도읍 2008년식 윈스톰 폐차·수출 비교 상담 사례",
+  "summary": "2008년식 윈스톰 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "윈스톰"
+   ],
+   [
+    "연식",
+    "2008년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2008년식 윈스톰 차량으로, 시동은 걸리는 상태였습니다. 외관 무난한 은색 GM대우 윈스톰 SUV",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230921-gyeonggi-namyangju-hwado-1.jpg",
+  "photos": [
+   "case-20230921-gyeonggi-namyangju-hwado-1.jpg",
+   "case-20230921-gyeonggi-namyangju-hwado-2.jpg",
+   "case-20230921-gyeonggi-namyangju-hwado-3.jpg",
+   "case-20230921-gyeonggi-namyangju-hwado-4.jpg",
+   "case-20230921-gyeonggi-namyangju-hwado-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-09-21"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2008년식 윈스톰 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-10-31"
+ },
+ {
+  "slug": "case-20230815-gyeonggi-pyeongtaek",
+  "date": "2023-08-15",
+  "sido": "경기도",
+  "sigungu": "평택시",
+  "dong": "",
+  "region_slug": null,
+  "car": "2011년식 포터2",
+  "title": "평택시 2011년식 포터2 폐차·수출 비교 상담 사례",
+  "summary": "2011년식 포터2 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "포터2"
+   ],
+   [
+    "연식",
+    "2011년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2011년식 포터2 차량으로, 시동은 걸리는 상태였습니다. 냉동탑 달린 흰색 포터2 1톤 트럭",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230815-gyeonggi-pyeongtaek-1.jpg",
+  "photos": [
+   "case-20230815-gyeonggi-pyeongtaek-1.jpg",
+   "case-20230815-gyeonggi-pyeongtaek-2.jpg",
+   "case-20230815-gyeonggi-pyeongtaek-3.jpg",
+   "case-20230815-gyeonggi-pyeongtaek-4.jpg",
+   "case-20230815-gyeonggi-pyeongtaek-5.jpg",
+   "case-20230815-gyeonggi-pyeongtaek-6.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-08-15"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2011년식 포터2 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-10-31"
+ },
+ {
+  "slug": "case-20230119-gyeonggi-siheung-jonam",
+  "date": "2023-01-19",
+  "sido": "경기도",
+  "sigungu": "시흥시",
+  "dong": "조남동",
+  "region_slug": null,
+  "car": "2008년식 봉고3",
+  "title": "조남동 2008년식 봉고3 폐차·수출 비교 상담 사례",
+  "summary": "2008년식 봉고3 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "봉고3"
+   ],
+   [
+    "연식",
+    "2008년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "문의 내용",
+    "야간 촬영된 1톤 카고 트럭"
+   ]
+  ],
+  "situation": "2008년식 봉고3 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230119-gyeonggi-siheung-jonam-1.jpg",
+  "photos": [
+   "case-20230119-gyeonggi-siheung-jonam-1.jpg",
+   "case-20230119-gyeonggi-siheung-jonam-2.jpg",
+   "case-20230119-gyeonggi-siheung-jonam-3.jpg",
+   "case-20230119-gyeonggi-siheung-jonam-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-01-19"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2008년식 봉고3 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-10-31"
+ },
+ {
+  "slug": "case-20230118-incheon-bupyeong",
+  "date": "2023-01-18",
+  "sido": "인천광역시",
+  "sigungu": "부평구",
+  "dong": "",
+  "region_slug": null,
+  "car": "2002년식 렉스턴",
+  "title": "부평구 2002년식 렉스턴 폐차·수출 비교 상담 사례",
+  "summary": "2002년식 렉스턴 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "렉스턴"
+   ],
+   [
+    "연식",
+    "2002년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2002년식 렉스턴 차량으로, 시동은 걸리는 상태였습니다. 골목에 세워둔 영업용 초기 렉스턴",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230118-incheon-bupyeong-1.jpg",
+  "photos": [
+   "case-20230118-incheon-bupyeong-1.jpg",
+   "case-20230118-incheon-bupyeong-2.jpg",
+   "case-20230118-incheon-bupyeong-3.jpg",
+   "case-20230118-incheon-bupyeong-4.jpg",
+   "case-20230118-incheon-bupyeong-5.jpg",
+   "case-20230118-incheon-bupyeong-6.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-01-18"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2002년식 렉스턴 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-10-31"
+ },
+ {
+  "slug": "case-20221223-gyeonggi-pyeongtaek-godeok",
+  "date": "2022-12-23",
+  "sido": "경기도",
+  "sigungu": "평택시",
+  "dong": "고덕동",
+  "region_slug": "gyeonggi-pyeongtaek-godeok",
+  "car": "2002년식 카니발",
+  "title": "고덕동 2002년식 카니발 폐차·수출 비교 상담 사례",
+  "summary": "2002년식 카니발 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "카니발"
+   ],
+   [
+    "연식",
+    "2002년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2002년식 카니발 차량으로, 시동은 걸리는 상태였습니다. 녹색 구번호판 흰색 카니발 파크",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20221223-gyeonggi-pyeongtaek-godeok-1.jpg",
+  "photos": [
+   "case-20221223-gyeonggi-pyeongtaek-godeok-1.jpg",
+   "case-20221223-gyeonggi-pyeongtaek-godeok-2.jpg",
+   "case-20221223-gyeonggi-pyeongtaek-godeok-3.jpg",
+   "case-20221223-gyeonggi-pyeongtaek-godeok-4.jpg",
+   "case-20221223-gyeonggi-pyeongtaek-godeok-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2022-12-23"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2002년식 카니발 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-10-31"
+ },
+ {
+  "slug": "case-20221114-gyeonggi-pyeongtaek-hapjeong",
+  "date": "2022-11-14",
+  "sido": "경기도",
+  "sigungu": "평택시",
+  "dong": "합정동",
+  "region_slug": "gyeonggi-pyeongtaek-hapjeong",
+  "car": "2006년식 그랜저 TG",
+  "title": "합정동 2006년식 그랜저 TG 폐차·수출 비교 상담 사례",
+  "summary": "2006년식 그랜저 TG 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "그랜저 TG"
+   ],
+   [
+    "연식",
+    "2006년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2006년식 그랜저 TG 차량으로, 시동은 걸리는 상태였습니다. 외관 양호한 검정 그랜저 TG",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20221114-gyeonggi-pyeongtaek-hapjeong-1.jpg",
+  "photos": [
+   "case-20221114-gyeonggi-pyeongtaek-hapjeong-1.jpg",
+   "case-20221114-gyeonggi-pyeongtaek-hapjeong-2.jpg",
+   "case-20221114-gyeonggi-pyeongtaek-hapjeong-3.jpg",
+   "case-20221114-gyeonggi-pyeongtaek-hapjeong-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2022-11-14"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2006년식 그랜저 TG 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-10-31"
+ },
+ {
   "slug": "case-20260817-jeonbuk-jeonju-deokjin",
   "date": "2026-08-17",
   "sido": "전북특별자치도",
