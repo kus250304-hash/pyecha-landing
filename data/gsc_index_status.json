@@ -1,0 +1,31 @@
+{
+ "updated": "2026-10-31",
+ "site": "sc-domain:pyecha119.com",
+ "pages": {
+  "https://pyecha119.com/gu/%EA%B0%95%EB%82%A8%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html": {
+   "coverageState": "Submitted and indexed",
+   "indexed": true,
+   "checked": "2026-10-31"
+  },
+  "https://pyecha119.com/gu/%EA%B0%95%EB%8F%99%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html": {
+   "coverageState": "URL is unknown to Google",
+   "indexed": false,
+   "checked": "2026-10-31"
+  },
+  "https://pyecha119.com/gu/%EA%B0%95%EB%A6%89%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html": {
+   "coverageState": "Submitted and indexed",
+   "indexed": true,
+   "checked": "2026-10-31"
+  },
+  "https://pyecha119.com/gu/%EA%B0%95%EB%B6%81%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html": {
+   "coverageState": "URL is unknown to Google",
+   "indexed": false,
+   "checked": "2026-10-31"
+  },
+  "https://pyecha119.com/gu/%EA%B0%95%EC%9B%90-%EA%B3%A0%EC%84%B1%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html": {
+   "coverageState": "Discovered - currently not indexed",
+   "indexed": false,
+   "checked": "2026-10-31"
+  }
+ }
+}
