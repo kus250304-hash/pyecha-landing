@@ -1,5 +1,5 @@
 {
- "date": "2026-10-30",
+ "date": "2026-10-31",
  "rival": [
   {
    "slug": "chungnam-asan",
@@ -11,7 +11,7 @@
    "slug": "gangwon-gangneung",
    "sido": "강원특별자치도",
    "sigungu": "강릉시",
-   "query": "강릉폐차"
+   "query": "강릉폐차장"
   },
   {
    "slug": "jeonbuk-gunsan",
@@ -80,12 +80,6 @@
    "query": "시흥폐차장"
   },
   {
-   "slug": "gyeonggi-osan",
-   "sido": "경기도",
-   "sigungu": "오산시",
-   "query": "오산폐차"
-  },
-  {
    "slug": "gangwon-sokcho",
    "sido": "강원특별자치도",
    "sigungu": "속초시",
@@ -110,16 +104,22 @@
    "query": "동해폐차"
   },
   {
+   "slug": "gyeonggi-anyang-dongan",
+   "sido": "경기도",
+   "sigungu": "안양시 동안구",
+   "query": "안양폐차장"
+  },
+  {
+   "slug": "gyeonggi-anyang-manan",
+   "sido": "경기도",
+   "sigungu": "안양시 만안구",
+   "query": "안양폐차장"
+  },
+  {
    "slug": "chungnam-hongseong",
    "sido": "충청남도",
    "sigungu": "홍성군",
    "query": "홍성폐차"
-  },
-  {
-   "slug": "gyeonggi-pocheon",
-   "sido": "경기도",
-   "sigungu": "포천시",
-   "query": "포천폐차"
   }
  ],
  "empty": [
@@ -140,19 +140,10 @@
    ]
   },
   {
-   "slug": "jeonnam-mokpo",
-   "sido": "전남광주통합특별시",
-   "sigungu": "목포시",
-   "queries": [
-    "목포폐차"
-   ]
-  },
-  {
    "slug": "gyeongnam-jinju",
    "sido": "경상남도",
    "sigungu": "진주시",
    "queries": [
-    "진주폐차",
     "진주폐차장"
    ]
   },
@@ -445,14 +436,6 @@
    "sigungu": "단양군",
    "queries": [
     "단양폐차장"
-   ]
-  },
-  {
-   "slug": "busan-sasang",
-   "sido": "부산광역시",
-   "sigungu": "사상구",
-   "queries": [
-    "사상폐차"
    ]
   },
   {
