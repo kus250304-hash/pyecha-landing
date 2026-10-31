@@ -25,6 +25,7 @@
 문의가 들어오면 날짜·경로와 함께 한 줄씩 더합니다(②의 기준). "랜딩 문의(상태: …)" 줄은 PC 예약 작업 "폐차 사례 가져오기"가 매일 `python scripts/inquiry_log.py --write` 로 병한-업무위키 거래 기록부(`폐차/거래기록`)에서 유입경로가 랜딩·폼인 거래를 옮긴 것입니다(2026-10-21부터, 상태도 거래 기록부대로 고침). 어느 페이지로 들어왔는지 기록이 없어 그 시·군의 구 페이지 주소를 적습니다. 손으로 따로 적지 않아도 됩니다.
 
 - 2026-10-30, 랜딩 문의(상태: 진행) — https://pyecha119.com/gu/%EB%B6%80%ED%8F%89%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (부평구)
+- 2026-10-30, 랜딩 문의(상태: 진행) — https://pyecha119.com/gu/%EC%9E%A5%EC%88%98%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (장수군)
 - 2026-10-28, 랜딩 문의(상태: 거래 성사) — https://pyecha119.com/gu/%EA%B3%A0%EB%A0%B9%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (고령군)
 - 2026-10-28, 랜딩 문의(상태: 진행) — https://pyecha119.com/gu/%EB%8B%A8%EC%96%91%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (단양군)
 - 2026-10-28, 랜딩 문의(상태: 진행) — https://pyecha119.com/gu/%EC%B0%BD%EC%9B%90%EC%8B%9C-%EB%A7%88%EC%82%B0%ED%95%A9%ED%8F%AC%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (창원시 마산합포구)
