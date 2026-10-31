@@ -1,5 +1,470 @@
 [
  {
+  "slug": "case-20260915-gyeonggi-suwon-jangan-pajang",
+  "date": "2026-09-15",
+  "sido": "경기도",
+  "sigungu": "수원시 장안구",
+  "dong": "파장동",
+  "region_slug": "gyeonggi-suwon-jangan-pajang",
+  "car": "2012년식 모닝 밴",
+  "title": "파장동 2012년식 모닝 밴 폐차·수출 비교 상담 사례",
+  "summary": "2012년식 모닝 밴 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "모닝 밴"
+   ],
+   [
+    "연식",
+    "2012년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "문의 내용",
+    "뒷범퍼 긁히고 들뜬 모닝 밴"
+   ]
+  ],
+  "situation": "2012년식 모닝 밴 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20260915-gyeonggi-suwon-jangan-pajang-1.jpg",
+  "photos": [
+   "case-20260915-gyeonggi-suwon-jangan-pajang-1.jpg",
+   "case-20260915-gyeonggi-suwon-jangan-pajang-2.jpg",
+   "case-20260915-gyeonggi-suwon-jangan-pajang-3.jpg",
+   "case-20260915-gyeonggi-suwon-jangan-pajang-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2026-09-15"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2012년식 모닝 밴 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-01"
+ },
+ {
+  "slug": "case-20250409-gyeonggi-siheung-wolgot",
+  "date": "2025-04-09",
+  "sido": "경기도",
+  "sigungu": "시흥시",
+  "dong": "월곶동",
+  "region_slug": null,
+  "car": "2012년식 모닝",
+  "title": "월곶동 2012년식 모닝 폐차·수출 비교 상담 사례",
+  "summary": "2012년식 모닝 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "모닝"
+   ],
+   [
+    "연식",
+    "2012년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "문의 내용",
+    "외관 깨끗한 경차"
+   ]
+  ],
+  "situation": "2012년식 모닝 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20250409-gyeonggi-siheung-wolgot-1.jpg",
+  "photos": [
+   "case-20250409-gyeonggi-siheung-wolgot-1.jpg",
+   "case-20250409-gyeonggi-siheung-wolgot-2.jpg",
+   "case-20250409-gyeonggi-siheung-wolgot-3.jpg",
+   "case-20250409-gyeonggi-siheung-wolgot-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2025-04-09"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2012년식 모닝 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-01"
+ },
+ {
+  "slug": "case-20240528-gyeonggi-pocheon",
+  "date": "2024-05-28",
+  "sido": "경기도",
+  "sigungu": "포천시",
+  "dong": "",
+  "region_slug": null,
+  "car": "2008년식 모하비",
+  "title": "포천시 2008년식 모하비 폐차·수출 비교 상담 사례",
+  "summary": "2008년식 모하비 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "모하비"
+   ],
+   [
+    "연식",
+    "2008년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2008년식 모하비 차량으로, 시동은 걸리는 상태였습니다. 외관 양호한 흰색 초기형 모하비",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20240528-gyeonggi-pocheon-1.jpg",
+  "photos": [
+   "case-20240528-gyeonggi-pocheon-1.jpg",
+   "case-20240528-gyeonggi-pocheon-2.jpg",
+   "case-20240528-gyeonggi-pocheon-3.jpg",
+   "case-20240528-gyeonggi-pocheon-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2024-05-28"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2008년식 모하비 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-01"
+ },
+ {
+  "slug": "case-20240121-gyeonggi-siheung-wolgot",
+  "date": "2024-01-21",
+  "sido": "경기도",
+  "sigungu": "시흥시",
+  "dong": "월곶동",
+  "region_slug": null,
+  "car": "2012년식 봉고3",
+  "title": "월곶동 2012년식 봉고3 폐차·수출 비교 상담 사례",
+  "summary": "2012년식 봉고3 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "봉고3"
+   ],
+   [
+    "연식",
+    "2012년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2012년식 봉고3 차량으로, 시동은 걸리는 상태였습니다. 외관 양호한 흰색 봉고3 1톤",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20240121-gyeonggi-siheung-wolgot-1.jpg",
+  "photos": [
+   "case-20240121-gyeonggi-siheung-wolgot-1.jpg",
+   "case-20240121-gyeonggi-siheung-wolgot-2.jpg",
+   "case-20240121-gyeonggi-siheung-wolgot-3.jpg",
+   "case-20240121-gyeonggi-siheung-wolgot-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2024-01-21"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2012년식 봉고3 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-01"
+ },
+ {
+  "slug": "case-20231102-gyeonggi-pocheon-soheul",
+  "date": "2023-11-02",
+  "sido": "경기도",
+  "sigungu": "포천시",
+  "dong": "소흘읍",
+  "region_slug": null,
+  "car": "2010년식 스포티지 2세대",
+  "title": "소흘읍 2010년식 스포티지 2세대 폐차·수출 비교 상담 사례",
+  "summary": "2010년식 스포티지 2세대 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "스포티지 2세대"
+   ],
+   [
+    "연식",
+    "2010년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "문의 내용",
+    "외관 무난한 파란색 스포티지"
+   ]
+  ],
+  "situation": "2010년식 스포티지 2세대 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20231102-gyeonggi-pocheon-soheul-1.jpg",
+  "photos": [
+   "case-20231102-gyeonggi-pocheon-soheul-1.jpg",
+   "case-20231102-gyeonggi-pocheon-soheul-2.jpg",
+   "case-20231102-gyeonggi-pocheon-soheul-3.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-11-02"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2010년식 스포티지 2세대 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-01"
+ },
+ {
+  "slug": "case-20230721-incheon-yeonsu-cheonghak",
+  "date": "2023-07-21",
+  "sido": "인천광역시",
+  "sigungu": "연수구",
+  "dong": "청학동",
+  "region_slug": null,
+  "car": "2012년식 벤츠 CLS 63 AMG",
+  "title": "청학동 2012년식 벤츠 CLS 63 AMG 폐차·수출 비교 상담 사례",
+  "summary": "2012년식 벤츠 CLS 63 AMG 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "벤츠 CLS 63 AMG"
+   ],
+   [
+    "연식",
+    "2012년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2012년식 벤츠 CLS 63 AMG 차량으로, 시동은 걸리는 상태였습니다. 외관 좋은 검정 벤츠 CLS63 AMG",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230721-incheon-yeonsu-cheonghak-1.jpg",
+  "photos": [
+   "case-20230721-incheon-yeonsu-cheonghak-1.jpg",
+   "case-20230721-incheon-yeonsu-cheonghak-2.jpg",
+   "case-20230721-incheon-yeonsu-cheonghak-3.jpg",
+   "case-20230721-incheon-yeonsu-cheonghak-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-07-21"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2012년식 벤츠 CLS 63 AMG 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-01"
+ },
+ {
+  "slug": "case-20230630-seoul-guro-guro",
+  "date": "2023-06-30",
+  "sido": "서울특별시",
+  "sigungu": "구로구",
+  "dong": "구로동",
+  "region_slug": "seoul-guro-guro",
+  "car": "2010년식 에쿠스",
+  "title": "구로동 2010년식 에쿠스 폐차·수출 비교 상담 사례",
+  "summary": "2010년식 에쿠스 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "에쿠스"
+   ],
+   [
+    "연식",
+    "2010년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2010년식 에쿠스 차량으로, 시동은 걸리는 상태였습니다. 작은 찍힘 여러 곳 표시된 대형 고급 세단",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230630-seoul-guro-guro-1.jpg",
+  "photos": [
+   "case-20230630-seoul-guro-guro-1.jpg",
+   "case-20230630-seoul-guro-guro-2.jpg",
+   "case-20230630-seoul-guro-guro-3.jpg",
+   "case-20230630-seoul-guro-guro-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-06-30"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2010년식 에쿠스 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-01"
+ },
+ {
+  "slug": "case-20230314-seoul-gangnam-daechi",
+  "date": "2023-03-14",
+  "sido": "서울특별시",
+  "sigungu": "강남구",
+  "dong": "대치동",
+  "region_slug": "seoul-gangnam-daechi",
+  "car": "2008년식 폭스바겐 페이톤",
+  "title": "대치동 2008년식 폭스바겐 페이톤 폐차·수출 비교 상담 사례",
+  "summary": "2008년식 폭스바겐 페이톤 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "폭스바겐 페이톤"
+   ],
+   [
+    "연식",
+    "2008년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2008년식 폭스바겐 페이톤 차량으로, 시동은 걸리는 상태였습니다. 앞범퍼 테이프 붙인 폭스바겐 페이톤",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230314-seoul-gangnam-daechi-1.jpg",
+  "photos": [
+   "case-20230314-seoul-gangnam-daechi-1.jpg",
+   "case-20230314-seoul-gangnam-daechi-2.jpg",
+   "case-20230314-seoul-gangnam-daechi-3.jpg",
+   "case-20230314-seoul-gangnam-daechi-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-03-14"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2008년식 폭스바겐 페이톤 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-01"
+ },
+ {
+  "slug": "case-20230125-gyeonggi-siheung",
+  "date": "2023-01-25",
+  "sido": "경기도",
+  "sigungu": "시흥시",
+  "dong": "",
+  "region_slug": null,
+  "car": "2006년식 쏘나타 NF",
+  "title": "시흥시 2006년식 쏘나타 NF 폐차·수출 비교 상담 사례",
+  "summary": "2006년식 쏘나타 NF 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "쏘나타 NF"
+   ],
+   [
+    "연식",
+    "2006년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2006년식 쏘나타 NF 차량으로, 시동은 걸리는 상태였습니다. 먼지 뒤덮인 영업용 NF 쏘나타",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230125-gyeonggi-siheung-1.jpg",
+  "photos": [
+   "case-20230125-gyeonggi-siheung-1.jpg",
+   "case-20230125-gyeonggi-siheung-2.jpg",
+   "case-20230125-gyeonggi-siheung-3.jpg",
+   "case-20230125-gyeonggi-siheung-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-01-25"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2006년식 쏘나타 NF 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-01"
+ },
+ {
+  "slug": "case-20221009-jeonnam-goheung-dodeok",
+  "date": "2022-10-09",
+  "sido": "전남광주통합특별시",
+  "sigungu": "고흥군",
+  "dong": "도덕면",
+  "region_slug": null,
+  "car": "2010년식 오피러스",
+  "title": "도덕면 2010년식 오피러스 폐차·수출 비교 상담 사례",
+  "summary": "2010년식 오피러스 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "오피러스"
+   ],
+   [
+    "연식",
+    "2010년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "문의 내용",
+    "상태 깨끗한 후기형 오피러스"
+   ]
+  ],
+  "situation": "2010년식 오피러스 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20221009-jeonnam-goheung-dodeok-1.jpg",
+  "photos": [
+   "case-20221009-jeonnam-goheung-dodeok-1.jpg",
+   "case-20221009-jeonnam-goheung-dodeok-2.jpg",
+   "case-20221009-jeonnam-goheung-dodeok-3.jpg",
+   "case-20221009-jeonnam-goheung-dodeok-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2022-10-09"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2010년식 오피러스 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-01"
+ },
+ {
   "slug": "case-20260522-gyeonggi-pyeongtaek-seojeong",
   "date": "2026-05-22",
   "sido": "경기도",
