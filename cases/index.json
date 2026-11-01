@@ -1,5 +1,462 @@
 [
  {
+  "slug": "case-20260514-gyeonggi-gwangju-chowol",
+  "date": "2026-05-14",
+  "sido": "경기도",
+  "sigungu": "광주시",
+  "dong": "초월읍",
+  "region_slug": null,
+  "car": "2008년식 BMW 7시리즈 740Li",
+  "title": "초월읍 2008년식 BMW 7시리즈 740Li 폐차·수출 비교 상담 사례",
+  "summary": "2008년식 BMW 7시리즈 740Li 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "BMW 7시리즈 740Li"
+   ],
+   [
+    "연식",
+    "2008년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2008년식 BMW 7시리즈 740Li 차량으로, 시동은 걸리는 상태였습니다. 먼지 쌓인 검정 BMW 740Li 대형 세단",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20260514-gyeonggi-gwangju-chowol-1.jpg",
+  "photos": [
+   "case-20260514-gyeonggi-gwangju-chowol-1.jpg",
+   "case-20260514-gyeonggi-gwangju-chowol-2.jpg",
+   "case-20260514-gyeonggi-gwangju-chowol-3.jpg",
+   "case-20260514-gyeonggi-gwangju-chowol-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2026-05-14"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2008년식 BMW 7시리즈 740Li 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-02"
+ },
+ {
+  "slug": "case-20240812-gyeonggi-anyang-dongan-bisan",
+  "date": "2024-08-12",
+  "sido": "경기도",
+  "sigungu": "안양시 동안구",
+  "dong": "비산동",
+  "region_slug": "gyeonggi-anyang-dongan-bisan",
+  "car": "2013년식 K5",
+  "title": "비산동 2013년식 K5 폐차·수출 비교 상담 사례",
+  "summary": "2013년식 K5 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "K5"
+   ],
+   [
+    "연식",
+    "2013년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2013년식 K5 차량으로, 시동은 걸리는 상태였습니다. 먼지 뒤덮인 주행 34만km대 LPG 세단",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20240812-gyeonggi-anyang-dongan-bisan-1.jpg",
+  "photos": [
+   "case-20240812-gyeonggi-anyang-dongan-bisan-1.jpg",
+   "case-20240812-gyeonggi-anyang-dongan-bisan-2.jpg",
+   "case-20240812-gyeonggi-anyang-dongan-bisan-3.jpg",
+   "case-20240812-gyeonggi-anyang-dongan-bisan-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2024-08-12"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2013년식 K5 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-02"
+ },
+ {
+  "slug": "case-20240730-gyeonggi-anyang-dongan-gwanyang",
+  "date": "2024-07-30",
+  "sido": "경기도",
+  "sigungu": "안양시 동안구",
+  "dong": "관양동",
+  "region_slug": "gyeonggi-anyang-dongan-gwanyang",
+  "car": "2007년식 쏘나타 NF",
+  "title": "관양동 2007년식 쏘나타 NF 폐차·수출 비교 상담 사례",
+  "summary": "2007년식 쏘나타 NF 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "쏘나타 NF"
+   ],
+   [
+    "연식",
+    "2007년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2007년식 쏘나타 NF 차량으로, 시동은 걸리는 상태였습니다. 뒷범퍼 우측 찌그러진 은색 쏘나타 NF",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20240730-gyeonggi-anyang-dongan-gwanyang-1.jpg",
+  "photos": [
+   "case-20240730-gyeonggi-anyang-dongan-gwanyang-1.jpg",
+   "case-20240730-gyeonggi-anyang-dongan-gwanyang-2.jpg",
+   "case-20240730-gyeonggi-anyang-dongan-gwanyang-3.jpg",
+   "case-20240730-gyeonggi-anyang-dongan-gwanyang-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2024-07-30"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2007년식 쏘나타 NF 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-02"
+ },
+ {
+  "slug": "case-20231114-gyeonggi-anyang-dongan-pyeongchon",
+  "date": "2023-11-14",
+  "sido": "경기도",
+  "sigungu": "안양시 동안구",
+  "dong": "평촌동",
+  "region_slug": "gyeonggi-anyang-dongan-pyeongchon",
+  "car": "2007년식 스포티지",
+  "title": "평촌동 2007년식 스포티지 폐차·수출 비교 상담 사례",
+  "summary": "2007년식 스포티지 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "스포티지"
+   ],
+   [
+    "연식",
+    "2007년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2007년식 스포티지 차량으로, 시동은 걸리는 상태였습니다. 잔긁힘 조금 있는 은색 구형 스포티지",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20231114-gyeonggi-anyang-dongan-pyeongchon-1.jpg",
+  "photos": [
+   "case-20231114-gyeonggi-anyang-dongan-pyeongchon-1.jpg",
+   "case-20231114-gyeonggi-anyang-dongan-pyeongchon-2.jpg",
+   "case-20231114-gyeonggi-anyang-dongan-pyeongchon-3.jpg",
+   "case-20231114-gyeonggi-anyang-dongan-pyeongchon-4.jpg",
+   "case-20231114-gyeonggi-anyang-dongan-pyeongchon-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-11-14"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2007년식 스포티지 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-02"
+ },
+ {
+  "slug": "case-20230915-gyeonggi-goyang-deokyang-sinwon",
+  "date": "2023-09-15",
+  "sido": "경기도",
+  "sigungu": "고양시 덕양구",
+  "dong": "신원동",
+  "region_slug": null,
+  "car": "2012년식 포터",
+  "title": "신원동 2012년식 포터 폐차·수출 비교 상담 사례",
+  "summary": "2012년식 포터 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "포터"
+   ],
+   [
+    "연식",
+    "2012년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2012년식 포터 차량으로, 시동은 걸리는 상태였습니다. 풀밭에 세워둔 적재함 녹슨 포터2",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230915-gyeonggi-goyang-deokyang-sinwon-1.jpg",
+  "photos": [
+   "case-20230915-gyeonggi-goyang-deokyang-sinwon-1.jpg",
+   "case-20230915-gyeonggi-goyang-deokyang-sinwon-2.jpg",
+   "case-20230915-gyeonggi-goyang-deokyang-sinwon-3.jpg",
+   "case-20230915-gyeonggi-goyang-deokyang-sinwon-4.jpg",
+   "case-20230915-gyeonggi-goyang-deokyang-sinwon-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-09-15"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2012년식 포터 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-02"
+ },
+ {
+  "slug": "case-20230726-gyeonggi-anyang-dongan",
+  "date": "2023-07-26",
+  "sido": "경기도",
+  "sigungu": "안양시 동안구",
+  "dong": "",
+  "region_slug": null,
+  "car": "2009년식 오피러스",
+  "title": "안양시 동안구 2009년식 오피러스 폐차·수출 비교 상담 사례",
+  "summary": "2009년식 오피러스 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "오피러스"
+   ],
+   [
+    "연식",
+    "2009년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "문의 내용",
+    "외관 깨끗한 대형 고급 세단"
+   ]
+  ],
+  "situation": "2009년식 오피러스 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230726-gyeonggi-anyang-dongan-1.jpg",
+  "photos": [
+   "case-20230726-gyeonggi-anyang-dongan-1.jpg",
+   "case-20230726-gyeonggi-anyang-dongan-2.jpg",
+   "case-20230726-gyeonggi-anyang-dongan-3.jpg",
+   "case-20230726-gyeonggi-anyang-dongan-4.jpg",
+   "case-20230726-gyeonggi-anyang-dongan-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-07-26"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2009년식 오피러스 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-02"
+ },
+ {
+  "slug": "case-20230706-gyeonggi-anyang-manan-bakdal",
+  "date": "2023-07-06",
+  "sido": "경기도",
+  "sigungu": "안양시 만안구",
+  "dong": "박달동",
+  "region_slug": "gyeonggi-anyang-manan-bakdal",
+  "car": "2007년식 SM5",
+  "title": "박달동 2007년식 SM5 폐차·수출 비교 상담 사례",
+  "summary": "2007년식 SM5 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "SM5"
+   ],
+   [
+    "연식",
+    "2007년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2007년식 SM5 차량으로, 시동은 걸리는 상태였습니다. 외관 무난한 흰색 SM5 세단",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230706-gyeonggi-anyang-manan-bakdal-1.jpg",
+  "photos": [
+   "case-20230706-gyeonggi-anyang-manan-bakdal-1.jpg",
+   "case-20230706-gyeonggi-anyang-manan-bakdal-2.jpg",
+   "case-20230706-gyeonggi-anyang-manan-bakdal-3.jpg",
+   "case-20230706-gyeonggi-anyang-manan-bakdal-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-07-06"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2007년식 SM5 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-02"
+ },
+ {
+  "slug": "case-20230605-gyeonggi-anyang-manan-bakdal",
+  "date": "2023-06-05",
+  "sido": "경기도",
+  "sigungu": "안양시 만안구",
+  "dong": "박달동",
+  "region_slug": "gyeonggi-anyang-manan-bakdal",
+  "car": "2008년식 크라이슬러 세브링",
+  "title": "박달동 2008년식 크라이슬러 세브링 폐차·수출 비교 상담 사례",
+  "summary": "2008년식 크라이슬러 세브링 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "크라이슬러 세브링"
+   ],
+   [
+    "연식",
+    "2008년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2008년식 크라이슬러 세브링 차량으로, 시동은 걸리는 상태였습니다. 미국산 수입 세단 크라이슬러 세브링",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230605-gyeonggi-anyang-manan-bakdal-1.jpg",
+  "photos": [
+   "case-20230605-gyeonggi-anyang-manan-bakdal-1.jpg",
+   "case-20230605-gyeonggi-anyang-manan-bakdal-2.jpg",
+   "case-20230605-gyeonggi-anyang-manan-bakdal-3.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-06-05"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2008년식 크라이슬러 세브링 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-02"
+ },
+ {
+  "slug": "case-20230119-gyeonggi-anyang-dongan-pyeongchon",
+  "date": "2023-01-19",
+  "sido": "경기도",
+  "sigungu": "안양시 동안구",
+  "dong": "평촌동",
+  "region_slug": "gyeonggi-anyang-dongan-pyeongchon",
+  "car": "2007년식 그랜저 TG",
+  "title": "평촌동 2007년식 그랜저 TG 폐차·수출 비교 상담 사례",
+  "summary": "2007년식 그랜저 TG 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "그랜저 TG"
+   ],
+   [
+    "연식",
+    "2007년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2007년식 그랜저 TG 차량으로, 시동은 걸리는 상태였습니다. 외관 깨끗한 검정 그랜저 TG",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230119-gyeonggi-anyang-dongan-pyeongchon-1.jpg",
+  "photos": [
+   "case-20230119-gyeonggi-anyang-dongan-pyeongchon-1.jpg",
+   "case-20230119-gyeonggi-anyang-dongan-pyeongchon-2.jpg",
+   "case-20230119-gyeonggi-anyang-dongan-pyeongchon-3.jpg",
+   "case-20230119-gyeonggi-anyang-dongan-pyeongchon-4.jpg",
+   "case-20230119-gyeonggi-anyang-dongan-pyeongchon-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-01-19"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2007년식 그랜저 TG 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-02"
+ },
+ {
+  "slug": "case-20221123-seoul-nowon-junggye",
+  "date": "2022-11-23",
+  "sido": "서울특별시",
+  "sigungu": "노원구",
+  "dong": "중계동",
+  "region_slug": "seoul-nowon-junggye",
+  "car": "2005년식 그랜저 TG",
+  "title": "중계동 2005년식 그랜저 TG 폐차·수출 비교 상담 사례",
+  "summary": "2005년식 그랜저 TG 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "그랜저 TG"
+   ],
+   [
+    "연식",
+    "2005년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2005년식 그랜저 TG 차량으로, 시동은 걸리는 상태였습니다. 상태 양호한 검정 그랜저TG 대형세단",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20221123-seoul-nowon-junggye-1.jpg",
+  "photos": [
+   "case-20221123-seoul-nowon-junggye-1.jpg",
+   "case-20221123-seoul-nowon-junggye-2.jpg",
+   "case-20221123-seoul-nowon-junggye-3.jpg",
+   "case-20221123-seoul-nowon-junggye-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2022-11-23"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2005년식 그랜저 TG 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-02"
+ },
+ {
   "slug": "case-20260915-gyeonggi-suwon-jangan-pajang",
   "date": "2026-09-15",
   "sido": "경기도",
