@@ -1,5 +1,5 @@
 {
- "date": "2026-10-31",
+ "date": "2026-11-01",
  "rival": [
   {
    "slug": "chungnam-asan",
@@ -11,7 +11,7 @@
    "slug": "gangwon-gangneung",
    "sido": "강원특별자치도",
    "sigungu": "강릉시",
-   "query": "강릉폐차장"
+   "query": "강릉폐차"
   },
   {
    "slug": "jeonbuk-gunsan",
@@ -71,7 +71,7 @@
    "slug": "gyeongbuk-andong",
    "sido": "경상북도",
    "sigungu": "안동시",
-   "query": "안동폐차"
+   "query": "안동폐차장"
   },
   {
    "slug": "gyeonggi-siheung",
@@ -140,6 +140,14 @@
    ]
   },
   {
+   "slug": "jeonnam-mokpo",
+   "sido": "전남광주통합특별시",
+   "sigungu": "목포시",
+   "queries": [
+    "목포폐차"
+   ]
+  },
+  {
    "slug": "gyeongnam-jinju",
    "sido": "경상남도",
    "sigungu": "진주시",
@@ -165,6 +173,14 @@
    ]
   },
   {
+   "slug": "gyeongbuk-gyeongju",
+   "sido": "경상북도",
+   "sigungu": "경주시",
+   "queries": [
+    "경주폐차"
+   ]
+  },
+  {
    "slug": "jeonnam-suncheon",
    "sido": "전남광주통합특별시",
    "sigungu": "순천시",
@@ -178,14 +194,6 @@
    "sigungu": "광양시",
    "queries": [
     "광양폐차장"
-   ]
-  },
-  {
-   "slug": "chungnam-nonsan",
-   "sido": "충청남도",
-   "sigungu": "논산시",
-   "queries": [
-    "논산폐차"
    ]
   },
   {
@@ -262,6 +270,14 @@
    ]
   },
   {
+   "slug": "gyeongnam-changnyeong",
+   "sido": "경상남도",
+   "sigungu": "창녕군",
+   "queries": [
+    "창녕폐차"
+   ]
+  },
+  {
    "slug": "gyeongbuk-chilgok",
    "sido": "경상북도",
    "sigungu": "칠곡군",
@@ -299,6 +315,14 @@
    "sigungu": "홍천군",
    "queries": [
     "홍천폐차"
+   ]
+  },
+  {
+   "slug": "daegu-dalseo",
+   "sido": "대구광역시",
+   "sigungu": "달서구",
+   "queries": [
+    "달서폐차장"
    ]
   },
   {
