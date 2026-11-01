@@ -72,6 +72,12 @@
 - 폼 스크립트(`templates/region-landing-v2.html`, 구·시·안내·첫 화면이 그대로 가져다 씀)가 보낼 때 메일 제목을 "[견적문의] {지역} · {차번호} · {전화번호}"로 바꾸고(차번호가 비면 "차번호없음"), 전화번호는 010-0000-0000 꼴로 보냅니다. 본문 항목은 Page·PageTitle·Source·Referrer·Region·Form·Plate·Phone 그대로이며, 저장용 이름·바로 저장 링크 같은 항목은 넣지 않습니다(2026-10-16 시험 후 되돌림: 네이버 메일 앱에서 링크가 안 눌리고 긴 링크 때문에 메일 글씨가 작아짐). 메일 항목을 새로 넣을 때는 이름을 영어로 씁니다(한글 항목 이름은 메일에서 깨짐).
 - 폼 → 캘린더 알림(Apps Script, `lead_hook_url`, 2026-10-28 병한님, 10분 회신 지키기): 같은 폼 스크립트가 Web3Forms 로 보내기 직전에 `site_config.json` 의 `lead_hook_url`(병한님 구글 계정 Apps Script 웹 앱)로 `navigator.sendBeacon`(없으면 fetch no-cors keepalive) 한 번 key=pyecha119·region·car·plate·phone·form·page·botcheck 를 보내 캘린더에 [견적 전화] 일정 + 알림 2개를 만듭니다. 기다리지 않고 실패해도 Web3Forms 전송·thanks 이동은 그대로입니다. 주소는 빌더가 `build_site.page_script` 로 넣으며 페이지에 직접 쓰지 않고, `check_pages.check_lead_hook` 이 폼 있는 모든 페이지의 주소가 설정값과 같은지 봅니다(비우면 보내지 않음).
 
+## PC 백업·복구 (2026-11-01)
+
+- 작업 스케줄러 "폐차_백업"(매일 밤 11시 40분, 놓치면 켜질 때 바로)이 `scripts/pc_backup.ps1` 로 `G:\내 드라이브\폐차_백업\YYYY-MM-DD\` 에 업무위키·`통화녹음백업\_분석`(zip, 영상·녹음 파일 뺌), "폐차"로 시작하는 Windows 작업 XML, Claude 앱 예약 작업 지시문, 열쇠·env 4개의 **이름·수정일만**, pip 목록, `docs/recovery.md` 사본을 넣고 14일 지난 날짜 폴더를 지웁니다. 로그는 `_분석\폐차_백업_log.txt` 한 줄. 녹음 원본·사례 원본 사진은 넣지 않습니다. 열쇠 내용은 백업·출력·커밋하지 않습니다.
+- 새 PC 복구 순서·어디에 뭐가 있나·Claude 앱 예약 작업 시간표는 `docs/recovery.md` 하나에 둡니다. PC 예약 작업을 새로 만들거나 시간을 바꾸면 그 표도 고칩니다. 새 Windows 작업은 이름을 "폐차"로 시작해야 백업에 들어갑니다.
+- 아침 보고 경고: origin/main 최근 36시간에 PC 작업 커밋이 없으면 "⚠ PC 작업이 어제 안 돌았음"(`docs/roadmap.md` 7절).
+
 ## 페이지 생성 방법 (v2)
 
 페이지는 `templates/region-landing-v2.html` 하나로만 만듭니다. 지역별 생성 스크립트(generate_batchN_pages.py 류)나 다른 템플릿을 새로 만들지 않습니다.
