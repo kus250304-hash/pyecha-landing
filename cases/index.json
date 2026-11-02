@@ -1,5 +1,465 @@
 [
  {
+  "slug": "case-20240207-daegu-dalseo-wolseong",
+  "date": "2024-02-07",
+  "sido": "대구광역시",
+  "sigungu": "달서구",
+  "dong": "월성동",
+  "region_slug": null,
+  "car": "2005년식 SM5",
+  "title": "월성동 2005년식 SM5 폐차·수출 비교 상담 사례",
+  "summary": "2005년식 SM5 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "SM5"
+   ],
+   [
+    "연식",
+    "2005년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "문의 내용",
+    "외관 깔끔한 구형 SM5"
+   ]
+  ],
+  "situation": "2005년식 SM5 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20240207-daegu-dalseo-wolseong-1.jpg",
+  "photos": [
+   "case-20240207-daegu-dalseo-wolseong-1.jpg",
+   "case-20240207-daegu-dalseo-wolseong-2.jpg",
+   "case-20240207-daegu-dalseo-wolseong-3.jpg",
+   "case-20240207-daegu-dalseo-wolseong-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2024-02-07"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2005년식 SM5 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-03"
+ },
+ {
+  "slug": "case-20230506-daegu-dalseo-paho",
+  "date": "2023-05-06",
+  "sido": "대구광역시",
+  "sigungu": "달서구",
+  "dong": "파호동",
+  "region_slug": null,
+  "car": "2007년식 BMW 7시리즈",
+  "title": "파호동 2007년식 BMW 7시리즈 폐차·수출 비교 상담 사례",
+  "summary": "2007년식 BMW 7시리즈 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "BMW 7시리즈"
+   ],
+   [
+    "연식",
+    "2007년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2007년식 BMW 7시리즈 차량으로, 시동은 걸리는 상태였습니다. 외관 양호한 수입 대형 세단 730Li",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230506-daegu-dalseo-paho-1.jpg",
+  "photos": [
+   "case-20230506-daegu-dalseo-paho-1.jpg",
+   "case-20230506-daegu-dalseo-paho-2.jpg",
+   "case-20230506-daegu-dalseo-paho-3.jpg",
+   "case-20230506-daegu-dalseo-paho-4.jpg",
+   "case-20230506-daegu-dalseo-paho-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-05-06"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2007년식 BMW 7시리즈 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-03"
+ },
+ {
+  "slug": "case-20230424-jeju-jeju-nohyeong",
+  "date": "2023-04-24",
+  "sido": "제주특별자치도",
+  "sigungu": "제주시",
+  "dong": "노형동",
+  "region_slug": "jeju-jeju-nohyeong",
+  "car": "2010년식 푸조 3008",
+  "title": "노형동 2010년식 푸조 3008 폐차·수출 비교 상담 사례",
+  "summary": "2010년식 푸조 3008 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "푸조 3008"
+   ],
+   [
+    "연식",
+    "2010년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2010년식 푸조 3008 차량으로, 시동은 걸리는 상태였습니다. 제주 소재 은색 푸조 3008 디젤",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230424-jeju-jeju-nohyeong-1.jpg",
+  "photos": [
+   "case-20230424-jeju-jeju-nohyeong-1.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-04-24"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2010년식 푸조 3008 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-03"
+ },
+ {
+  "slug": "case-20230410-seoul-nowon-gongneung",
+  "date": "2023-04-10",
+  "sido": "서울특별시",
+  "sigungu": "노원구",
+  "dong": "공릉동",
+  "region_slug": "seoul-nowon-gongneung",
+  "car": "2005년식 SM5",
+  "title": "공릉동 2005년식 SM5 폐차·수출 비교 상담 사례",
+  "summary": "2005년식 SM5 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "SM5"
+   ],
+   [
+    "연식",
+    "2005년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "문의 내용",
+    "외관 양호한 구형 중형 세단"
+   ]
+  ],
+  "situation": "2005년식 SM5 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230410-seoul-nowon-gongneung-1.jpg",
+  "photos": [
+   "case-20230410-seoul-nowon-gongneung-1.jpg",
+   "case-20230410-seoul-nowon-gongneung-2.jpg",
+   "case-20230410-seoul-nowon-gongneung-3.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-04-10"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2005년식 SM5 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-03"
+ },
+ {
+  "slug": "case-20230318-gyeonggi-yongin-giheung-bora",
+  "date": "2023-03-18",
+  "sido": "경기도",
+  "sigungu": "용인시 기흥구",
+  "dong": "보라동",
+  "region_slug": "gyeonggi-yongin-giheung-bora",
+  "car": "2010년식 포르테 하이브리드",
+  "title": "보라동 2010년식 포르테 하이브리드 폐차·수출 비교 상담 사례",
+  "summary": "2010년식 포르테 하이브리드 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "포르테 하이브리드"
+   ],
+   [
+    "연식",
+    "2010년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2010년식 포르테 하이브리드 차량으로, 시동은 걸리는 상태였습니다. 연두색으로 도색된 포르테 하이브리드",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230318-gyeonggi-yongin-giheung-bora-1.jpg",
+  "photos": [
+   "case-20230318-gyeonggi-yongin-giheung-bora-1.jpg",
+   "case-20230318-gyeonggi-yongin-giheung-bora-2.jpg",
+   "case-20230318-gyeonggi-yongin-giheung-bora-3.jpg",
+   "case-20230318-gyeonggi-yongin-giheung-bora-4.jpg",
+   "case-20230318-gyeonggi-yongin-giheung-bora-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-03-18"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2010년식 포르테 하이브리드 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-03"
+ },
+ {
+  "slug": "case-20230220-seoul-dongjak-sadang",
+  "date": "2023-02-20",
+  "sido": "서울특별시",
+  "sigungu": "동작구",
+  "dong": "사당동",
+  "region_slug": "seoul-dongjak-sadang",
+  "car": "2006년식 스포티지",
+  "title": "사당동 2006년식 스포티지 폐차·수출 비교 상담 사례",
+  "summary": "2006년식 스포티지 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "스포티지"
+   ],
+   [
+    "연식",
+    "2006년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2006년식 스포티지 차량으로, 시동은 걸리는 상태였습니다. 뒷문 찌그러진 영업용 스포티지",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230220-seoul-dongjak-sadang-1.jpg",
+  "photos": [
+   "case-20230220-seoul-dongjak-sadang-1.jpg",
+   "case-20230220-seoul-dongjak-sadang-2.jpg",
+   "case-20230220-seoul-dongjak-sadang-3.jpg",
+   "case-20230220-seoul-dongjak-sadang-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-02-20"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2006년식 스포티지 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-03"
+ },
+ {
+  "slug": "case-20221213-gyeonggi-gapyeong-gapyeong",
+  "date": "2022-12-13",
+  "sido": "경기도",
+  "sigungu": "가평군",
+  "dong": "가평읍",
+  "region_slug": "gyeonggi-gapyeong-gapyeong",
+  "car": "2003년식 리오 SF",
+  "title": "가평읍 2003년식 리오 SF 폐차·수출 비교 상담 사례",
+  "summary": "2003년식 리오 SF 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "리오 SF"
+   ],
+   [
+    "연식",
+    "2003년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2003년식 리오 SF 차량으로, 시동은 걸리는 상태였습니다. 휠하우스 녹과 앞휀더 찌그러진 리오",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20221213-gyeonggi-gapyeong-gapyeong-1.jpg",
+  "photos": [
+   "case-20221213-gyeonggi-gapyeong-gapyeong-1.jpg",
+   "case-20221213-gyeonggi-gapyeong-gapyeong-2.jpg",
+   "case-20221213-gyeonggi-gapyeong-gapyeong-3.jpg",
+   "case-20221213-gyeonggi-gapyeong-gapyeong-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2022-12-13"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2003년식 리오 SF 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-03"
+ },
+ {
+  "slug": "case-20221212-seoul-nowon-sanggye",
+  "date": "2022-12-12",
+  "sido": "서울특별시",
+  "sigungu": "노원구",
+  "dong": "상계동",
+  "region_slug": "seoul-nowon-sanggye",
+  "car": "2005년식 로디우스",
+  "title": "상계동 2005년식 로디우스 폐차·수출 비교 상담 사례",
+  "summary": "2005년식 로디우스 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "로디우스"
+   ],
+   [
+    "연식",
+    "2005년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2005년식 로디우스 차량으로, 시동은 걸리는 상태였습니다. 먼지 쌓이고 범퍼 긁힌 로디우스 승합",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20221212-seoul-nowon-sanggye-1.jpg",
+  "photos": [
+   "case-20221212-seoul-nowon-sanggye-1.jpg",
+   "case-20221212-seoul-nowon-sanggye-2.jpg",
+   "case-20221212-seoul-nowon-sanggye-3.jpg",
+   "case-20221212-seoul-nowon-sanggye-4.jpg",
+   "case-20221212-seoul-nowon-sanggye-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2022-12-12"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2005년식 로디우스 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-03"
+ },
+ {
+  "slug": "case-20221208-daegu-dalseo-gamsam",
+  "date": "2022-12-08",
+  "sido": "대구광역시",
+  "sigungu": "달서구",
+  "dong": "감삼동",
+  "region_slug": null,
+  "car": "2008년식 체어맨W",
+  "title": "감삼동 2008년식 체어맨W 폐차·수출 비교 상담 사례",
+  "summary": "2008년식 체어맨W 차량으로, 시동이 걸리지 않는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "체어맨W"
+   ],
+   [
+    "연식",
+    "2008년식"
+   ],
+   [
+    "시동",
+    "안 걸림"
+   ]
+  ],
+  "situation": "2008년식 체어맨W 차량으로, 시동이 걸리지 않는 상태였습니다. 외관 양호한 대형 고급 세단 리무진",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20221208-daegu-dalseo-gamsam-1.jpg",
+  "photos": [
+   "case-20221208-daegu-dalseo-gamsam-1.jpg",
+   "case-20221208-daegu-dalseo-gamsam-2.jpg",
+   "case-20221208-daegu-dalseo-gamsam-3.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2022-12-08"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2008년식 체어맨W 차량으로, 시동이 걸리지 않는 상태였습니다.",
+  "added": "2026-11-03"
+ },
+ {
+  "slug": "case-20221206-seoul-nowon-gongneung",
+  "date": "2022-12-06",
+  "sido": "서울특별시",
+  "sigungu": "노원구",
+  "dong": "공릉동",
+  "region_slug": "seoul-nowon-gongneung",
+  "car": "2005년식 쏘렌토",
+  "title": "공릉동 2005년식 쏘렌토 폐차·수출 비교 상담 사례",
+  "summary": "2005년식 쏘렌토 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "쏘렌토"
+   ],
+   [
+    "연식",
+    "2005년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "문의 내용",
+    "외관 무난한 1세대 쏘렌토"
+   ]
+  ],
+  "situation": "2005년식 쏘렌토 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20221206-seoul-nowon-gongneung-1.jpg",
+  "photos": [
+   "case-20221206-seoul-nowon-gongneung-1.jpg",
+   "case-20221206-seoul-nowon-gongneung-2.jpg",
+   "case-20221206-seoul-nowon-gongneung-3.jpg",
+   "case-20221206-seoul-nowon-gongneung-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2022-12-06"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2005년식 쏘렌토 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-03"
+ },
+ {
   "slug": "case-20260514-gyeonggi-gwangju-chowol",
   "date": "2026-05-14",
   "sido": "경기도",
