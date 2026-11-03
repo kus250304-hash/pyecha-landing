@@ -19,7 +19,7 @@ PC에서 하는 "사례 가져오기" 작업이다. 원본 사진·메모는 이
 - 원본 폴더에는 pc_cases.py mark 가 만드는 반영됨.txt 와 inbox_cases.py apply 가 만드는 우선/ 새 폴더 말고는 아무것도 만들거나 고치거나 옮기거나 지우지 않는다.
 - 구글 드라이브 인박스(G:\내 드라이브\폐차_인박스)는 scripts/inbox_cases.py 로만 다룬다. 사진·영상은 .cases_staging/inbox/ 의 미리보기만 본다. 등록증 사진은 지역만 읽고(이름·주민번호·주소 번지 등 다른 칸은 읽지도 적지도 않는다) answer.json 의 "등록증" 에 적어 스크립트가 지우게 한다. GPS 좌표·차번호·말 내용은 저장소에 쓰지 않는다.
 - 금액·시세, "수출 된다/안 된다" 같은 단정, 고객 이름·전화번호·차량번호·주소는 어디에도 쓰지 않는다(스크립트가 메모에서 걸러 낸다. 메모를 손으로 고쳐 통과시키지 않는다).
-- 하루 건수와 고르는 순서는 scan 이 정한다(data/case_priority.json, 2026-10-28: 밀린 대상이 3건보다 많은 동안 10건, 아니면 3건. 순서는 ① 문의 온 시·군 ② 빈 땅 ③ 지인 공략 ④ 나머지). 얇은 사례(걱정·확인 칸이 비는 건)도 그대로 올린다. 원본 폴더는 읽기만 한다. scripts/, templates/, CLAUDE.md, docs/ 는 고치지 않는다. 예외: 15 단계의 scripts/naver_rank.py 가 쓰는 data/naver_rank/ 와 docs/naver-rank.md, 2-1 단계의 scripts/inquiry_log.py 가 고치는 docs/index-requests.md 와 data/population_dong.json(손으로 고치지 않는다).
+- 하루 건수와 고르는 순서는 scan 이 정한다(data/case_priority.json, 2026-10-28: 밀린 대상이 3건보다 많은 동안 10건, 아니면 3건. 순서는 ① 문의 온 시·군 ② 빈 땅 ③ 지인 공략 ④ 나머지). 얇은 사례(걱정·확인 칸이 비는 건)도 그대로 올린다. 원본 폴더는 읽기만 한다. scripts/, templates/, CLAUDE.md, docs/ 는 고치지 않는다. 예외: 15 단계의 scripts/naver_rank.py 가 쓰는 data/naver_rank/ 와 docs/naver-rank.md, 2-1 단계의 scripts/inquiry_log.py 가 고치는 docs/index-requests.md 와 data/population_dong.json, scripts/form_inquiries.py 가 쓰는 data/form_inquiries.json(손으로 고치지 않는다).
 - 거래 기록부(C:\Users\AOMG\Documents\병한-업무위키\폐차\거래기록)는 scripts/inquiry_log.py 와 scripts/pc_cases.py(ledger·stage, 날짜 칸만)로만 읽는다. 직접 열지 않고, 전화·차번호·이름·금액은 어디에도 쓰지 않는다.
 - 통화 글자본(C:\Users\AOMG\Documents\통화녹음백업\_분석)은 8-1 단계의 걱정 후보를 찾을 때만 읽는다. 이름·전화번호·차번호·금액·주소는 옮기지 않는다.
 - 법인 차, 서류를 못 받는 경우, "차만 폐차", 명의자와 연락 안 됨, 서류 없이 진행 같은 사정은 개인 상담으로만 다루는 일이라 사례 칸·extra.json 어디에도 쓰지 않고, 통화 글자본에 이런 내용이 나오면 그 통화는 걱정 후보에서 뺀다(2026-10-27, build_cases.py 가 case_story.PRIVATE_RE 로 막음).
@@ -31,8 +31,9 @@ PC에서 하는 "사례 가져오기" 작업이다. 원본 사진·메모는 이
    - 변경이 CLAUDE.md 나 docs/ 아래 문서뿐이면(병한님이 손으로 고친 규칙) 내용은 고치지 않고 그 파일만 `git add` → `git commit -m "Docs: 병한님이 고친 문서 반영 (YYYY-MM-DD)"` → `git push origin main`(거절되면 pull --rebase 후 한 번 더) 하고 계속 진행한다. 커밋한 파일 이름을 보고에 적는다.
    - 그 밖의 파일에 변경이 있으면 멈추고 "실패: 0건, 이유: 커밋하지 않은 변경 있음(<파일 이름>)"이라고 보고한다.
 2-1. 랜딩 문의 기록(2026-10-21, 사례가 0건이거나 오늘 이미 올렸어도 매번 한다): `python scripts/inquiry_log.py --write` 를 실행한다(거래 기록부에서 유입경로가 랜딩·폼인 거래 중 docs/index-requests.md "문의가 온 페이지" 칸에 없는 것을 한 줄씩 더하고, 이미 있는 줄은 상태만 고치고, 새 시·군은 population_stats.py dong 까지 돌림. 지역이 비었거나 시·군을 못 정한 거래는 넣지 않고 "뺀 거래"로 알려 줌).
-   - `git status --short` 에 docs/index-requests.md 나 data/population_dong.json 이 바뀌었으면 그 둘만 `git add` → `git commit -m "Log landing inquiries (YYYY-MM-DD)"` → `git push origin main`(거절되면 pull --rebase 후 한 번 더). 안 바뀌었으면 커밋하지 않는다.
-   - 출력의 "문의 기록: …" 줄과 "뺀 거래" 줄을 보고에 옮긴다. 이 단계가 실패해도 사례 가져오기는 계속하고 보고에 이유를 적는다.
+   - 이어서 `python scripts/form_inquiries.py --write` 를 실행한다(2026-11-04, 거래 기록부에서 폼으로 온 거래만 날짜·지역(구 페이지 이름)·유입으로 세어 data/form_inquiries.json 에 저장. 전화·차번호·이름·금액은 넣지 않음. 아침 보고 "폼 문의" 칸이 이 파일을 읽음).
+   - `git status --short` 에 docs/index-requests.md, data/population_dong.json, data/form_inquiries.json 중 바뀐 것이 있으면 그것만 `git add` → `git commit -m "Log landing inquiries (YYYY-MM-DD)"` → `git push origin main`(거절되면 pull --rebase 후 한 번 더). 안 바뀌었으면 커밋하지 않는다.
+   - 출력의 "문의 기록: …" 줄과 "뺀 거래" 줄, form_inquiries.py 의 첫 줄("폼 문의(…): N건")을 보고에 옮긴다. 이 단계가 실패해도 사례 가져오기는 계속하고 보고에 이유를 적는다.
 3. `python -m pip install -q pillow` (python 이 안 되면 py 로). 이후 명령도 같은 것으로 실행한다.
 3-1. 오늘(한국 시간) 이미 올렸는지 본다: `git log origin/main --since=00:00 --format=%s` 에 "Add N case inputs (오늘 날짜)" 가 있으면 아무것도 하지 않고 "성공: 오늘 이미 N건 올라감(커밋 <번호>)"이라고 보고하고 끝낸다(13:55 재시도 실행이 13:40 실행을 두 번 하지 않게).
 3-2. 이어 하기: .cases_staging/scan.json 이 있고 그 안의 "date" 가 오늘이며 status 가 marked 가 아닌 건이 있으면, 앞 실행이 중간에 끊긴 것이다. 이때는 4단계 scan 을 하지 않는다(scan 은 오늘 고른 목록을 지운다). 대신 `python scripts/pc_cases.py prepare` 로 아직 준비 안 된(picked) 건만 준비하고, 건마다 status 를 보고 이어 간다: prepared → 6~8단계, masked → 8단계 확인 뒤 10단계, staged → 11단계로. 이어서 한 사실을 보고에 적는다.
