@@ -1,5 +1,474 @@
 [
  {
+  "slug": "case-20231106-seoul-gwangjin-junggok",
+  "date": "2023-11-06",
+  "sido": "서울특별시",
+  "sigungu": "광진구",
+  "dong": "중곡동",
+  "region_slug": "seoul-gwangjin-junggok",
+  "car": "2007년식 마티즈",
+  "title": "중곡동 2007년식 마티즈 폐차·수출 비교 상담 사례",
+  "summary": "2007년식 마티즈 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "마티즈"
+   ],
+   [
+    "연식",
+    "2007년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2007년식 마티즈 차량으로, 시동은 걸리는 상태였습니다. 외관 무난한 빨간 마티즈 경차",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20231106-seoul-gwangjin-junggok-1.jpg",
+  "photos": [
+   "case-20231106-seoul-gwangjin-junggok-1.jpg",
+   "case-20231106-seoul-gwangjin-junggok-2.jpg",
+   "case-20231106-seoul-gwangjin-junggok-3.jpg",
+   "case-20231106-seoul-gwangjin-junggok-4.jpg",
+   "case-20231106-seoul-gwangjin-junggok-5.jpg",
+   "case-20231106-seoul-gwangjin-junggok-6.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-11-06"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2007년식 마티즈 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-04"
+ },
+ {
+  "slug": "case-20231023-seoul-gwanak-sillim",
+  "date": "2023-10-23",
+  "sido": "서울특별시",
+  "sigungu": "관악구",
+  "dong": "신림동",
+  "region_slug": "seoul-gwanak-sillim",
+  "car": "2007년식 카니발",
+  "title": "신림동 2007년식 카니발 폐차·수출 비교 상담 사례",
+  "summary": "2007년식 카니발 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "카니발"
+   ],
+   [
+    "연식",
+    "2007년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2007년식 카니발 차량으로, 시동은 걸리는 상태였습니다. 앞범퍼 긁힘 있는 11인승 승합 카니발",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20231023-seoul-gwanak-sillim-1.jpg",
+  "photos": [
+   "case-20231023-seoul-gwanak-sillim-1.jpg",
+   "case-20231023-seoul-gwanak-sillim-2.jpg",
+   "case-20231023-seoul-gwanak-sillim-3.jpg",
+   "case-20231023-seoul-gwanak-sillim-4.jpg",
+   "case-20231023-seoul-gwanak-sillim-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-10-23"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2007년식 카니발 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-04"
+ },
+ {
+  "slug": "case-20230915-gyeongbuk-yecheon-homyeong",
+  "date": "2023-09-15",
+  "sido": "경상북도",
+  "sigungu": "예천군",
+  "dong": "호명읍",
+  "region_slug": "gyeongbuk-yecheon-homyeong",
+  "car": "2010년식 모닝",
+  "title": "호명읍 2010년식 모닝 폐차·수출 비교 상담 사례",
+  "summary": "2010년식 모닝 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "모닝"
+   ],
+   [
+    "연식",
+    "2010년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "문의 내용",
+    "야간 촬영된 검정 뉴모닝"
+   ]
+  ],
+  "situation": "2010년식 모닝 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230915-gyeongbuk-yecheon-homyeong-1.jpg",
+  "photos": [
+   "case-20230915-gyeongbuk-yecheon-homyeong-1.jpg",
+   "case-20230915-gyeongbuk-yecheon-homyeong-2.jpg",
+   "case-20230915-gyeongbuk-yecheon-homyeong-3.jpg",
+   "case-20230915-gyeongbuk-yecheon-homyeong-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-09-15"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2010년식 모닝 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-04"
+ },
+ {
+  "slug": "case-20230907-incheon-yeonsu-yeonsu",
+  "date": "2023-09-07",
+  "sido": "인천광역시",
+  "sigungu": "연수구",
+  "dong": "연수동",
+  "region_slug": "incheon-yeonsu-yeonsu",
+  "car": "2006년식 마티즈",
+  "title": "연수동 2006년식 마티즈 폐차·수출 비교 상담 사례",
+  "summary": "2006년식 마티즈 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "마티즈"
+   ],
+   [
+    "연식",
+    "2006년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "문의 내용",
+    "연두색 올뉴마티즈 경차"
+   ]
+  ],
+  "situation": "2006년식 마티즈 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230907-incheon-yeonsu-yeonsu-1.jpg",
+  "photos": [
+   "case-20230907-incheon-yeonsu-yeonsu-1.jpg",
+   "case-20230907-incheon-yeonsu-yeonsu-2.jpg",
+   "case-20230907-incheon-yeonsu-yeonsu-3.jpg",
+   "case-20230907-incheon-yeonsu-yeonsu-4.jpg",
+   "case-20230907-incheon-yeonsu-yeonsu-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-09-07"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2006년식 마티즈 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-04"
+ },
+ {
+  "slug": "case-20230827-gyeongbuk-uljin-pyeonghae",
+  "date": "2023-08-27",
+  "sido": "경상북도",
+  "sigungu": "울진군",
+  "dong": "평해읍",
+  "region_slug": "gyeongbuk-uljin-pyeonghae",
+  "car": "2008년식 윈스톰",
+  "title": "평해읍 2008년식 윈스톰 폐차·수출 비교 상담 사례",
+  "summary": "2008년식 윈스톰 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "윈스톰"
+   ],
+   [
+    "연식",
+    "2008년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "문의 내용",
+    "도로변에 세운 흰색 윈스톰"
+   ]
+  ],
+  "situation": "2008년식 윈스톰 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230827-gyeongbuk-uljin-pyeonghae-1.jpg",
+  "photos": [
+   "case-20230827-gyeongbuk-uljin-pyeonghae-1.jpg",
+   "case-20230827-gyeongbuk-uljin-pyeonghae-2.jpg",
+   "case-20230827-gyeongbuk-uljin-pyeonghae-3.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-08-27"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2008년식 윈스톰 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-04"
+ },
+ {
+  "slug": "case-20230728-seoul-seocho-seocho",
+  "date": "2023-07-28",
+  "sido": "서울특별시",
+  "sigungu": "서초구",
+  "dong": "서초동",
+  "region_slug": "seoul-seocho-seocho",
+  "car": "2011년식 그랜드 카니발",
+  "title": "서초동 2011년식 그랜드 카니발 폐차·수출 비교 상담 사례",
+  "summary": "2011년식 그랜드 카니발 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "그랜드 카니발"
+   ],
+   [
+    "연식",
+    "2011년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2011년식 그랜드 카니발 차량으로, 시동은 걸리는 상태였습니다. 외관 깨끗한 흰색 그랜드 카니발",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230728-seoul-seocho-seocho-1.jpg",
+  "photos": [
+   "case-20230728-seoul-seocho-seocho-1.jpg",
+   "case-20230728-seoul-seocho-seocho-2.jpg",
+   "case-20230728-seoul-seocho-seocho-3.jpg",
+   "case-20230728-seoul-seocho-seocho-4.jpg",
+   "case-20230728-seoul-seocho-seocho-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-07-28"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2011년식 그랜드 카니발 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-04"
+ },
+ {
+  "slug": "case-20230704-gyeonggi-yongin-suji-jukjeon",
+  "date": "2023-07-04",
+  "sido": "경기도",
+  "sigungu": "용인시 수지구",
+  "dong": "죽전동",
+  "region_slug": "gyeonggi-yongin-suji-jukjeon",
+  "car": "2006년식 SM7",
+  "title": "죽전동 2006년식 SM7 폐차·수출 비교 상담 사례",
+  "summary": "2006년식 SM7 차량으로, 시동이 걸리지 않는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "SM7"
+   ],
+   [
+    "연식",
+    "2006년식"
+   ],
+   [
+    "시동",
+    "안 걸림"
+   ]
+  ],
+  "situation": "2006년식 SM7 차량으로, 시동이 걸리지 않는 상태였습니다. 외관 깨끗한 검정 1세대 SM7",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230704-gyeonggi-yongin-suji-jukjeon-1.jpg",
+  "photos": [
+   "case-20230704-gyeonggi-yongin-suji-jukjeon-1.jpg",
+   "case-20230704-gyeonggi-yongin-suji-jukjeon-2.jpg",
+   "case-20230704-gyeonggi-yongin-suji-jukjeon-3.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-07-04"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2006년식 SM7 차량으로, 시동이 걸리지 않는 상태였습니다.",
+  "added": "2026-11-04"
+ },
+ {
+  "slug": "case-20230703-daegu-bukgu-sangyeok",
+  "date": "2023-07-03",
+  "sido": "대구광역시",
+  "sigungu": "북구",
+  "dong": "산격동",
+  "region_slug": "daegu-bukgu-sangyeok",
+  "car": "2006년식 스포티지 2세대",
+  "title": "산격동 2006년식 스포티지 2세대 폐차·수출 비교 상담 사례",
+  "summary": "2006년식 스포티지 2세대 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "스포티지 2세대"
+   ],
+   [
+    "연식",
+    "2006년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "문의 내용",
+    "외관 무난한 구형 스포티지"
+   ]
+  ],
+  "situation": "2006년식 스포티지 2세대 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230703-daegu-bukgu-sangyeok-1.jpg",
+  "photos": [
+   "case-20230703-daegu-bukgu-sangyeok-1.jpg",
+   "case-20230703-daegu-bukgu-sangyeok-2.jpg",
+   "case-20230703-daegu-bukgu-sangyeok-3.jpg",
+   "case-20230703-daegu-bukgu-sangyeok-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-07-03"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2006년식 스포티지 2세대 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-04"
+ },
+ {
+  "slug": "case-20230628-seoul-nowon-gongneung",
+  "date": "2023-06-28",
+  "sido": "서울특별시",
+  "sigungu": "노원구",
+  "dong": "공릉동",
+  "region_slug": "seoul-nowon-gongneung",
+  "car": "2005년식 그랜저 TG",
+  "title": "공릉동 2005년식 그랜저 TG 폐차·수출 비교 상담 사례",
+  "summary": "2005년식 그랜저 TG 차량으로, 시동이 걸리지 않는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "그랜저 TG"
+   ],
+   [
+    "연식",
+    "2005년식"
+   ],
+   [
+    "시동",
+    "안 걸림"
+   ]
+  ],
+  "situation": "2005년식 그랜저 TG 차량으로, 시동이 걸리지 않는 상태였습니다. 녹색 구번호판 은색 그랜저TG",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230628-seoul-nowon-gongneung-1.jpg",
+  "photos": [
+   "case-20230628-seoul-nowon-gongneung-1.jpg",
+   "case-20230628-seoul-nowon-gongneung-2.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-06-28"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2005년식 그랜저 TG 차량으로, 시동이 걸리지 않는 상태였습니다.",
+  "added": "2026-11-04"
+ },
+ {
+  "slug": "case-20230619-seoul-guro-gaebong",
+  "date": "2023-06-19",
+  "sido": "서울특별시",
+  "sigungu": "구로구",
+  "dong": "개봉동",
+  "region_slug": "seoul-guro-gaebong",
+  "car": "2006년식 어코드",
+  "title": "개봉동 2006년식 어코드 폐차·수출 비교 상담 사례",
+  "summary": "2006년식 어코드 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "어코드"
+   ],
+   [
+    "연식",
+    "2006년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2006년식 어코드 차량으로, 시동은 걸리는 상태였습니다. 검정 수입 세단 혼다 어코드 V6",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230619-seoul-guro-gaebong-1.jpg",
+  "photos": [
+   "case-20230619-seoul-guro-gaebong-1.jpg",
+   "case-20230619-seoul-guro-gaebong-2.jpg",
+   "case-20230619-seoul-guro-gaebong-3.jpg",
+   "case-20230619-seoul-guro-gaebong-4.jpg",
+   "case-20230619-seoul-guro-gaebong-5.jpg",
+   "case-20230619-seoul-guro-gaebong-6.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-06-19"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2006년식 어코드 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-04"
+ },
+ {
   "slug": "case-20240207-daegu-dalseo-wolseong",
   "date": "2024-02-07",
   "sido": "대구광역시",
