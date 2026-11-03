@@ -454,7 +454,7 @@
     <div class="wrap">
       <h2 class="sec-title display">최근 문의 지역</h2>
       <p class="sec-sub">최근 문의가 온 곳과 상담이 많은 시·군입니다. 차가 있는 곳의 페이지에서 동별 안내를 보실 수 있습니다</p>
-      <div class="neighbors"><a href="../gu/여주시-폐차장.html">여주시 폐차 안내</a><a href="../gu/의정부시-폐차장.html">의정부시 폐차 안내</a><a href="../gu/부평구-폐차장.html">부평구 폐차 안내</a><a href="../gu/장수군-폐차장.html">장수군 폐차 안내</a><a href="../gu/고령군-폐차장.html">고령군 폐차 안내</a><a href="../gu/단양군-폐차장.html">단양군 폐차 안내</a><a href="../gu/창원시-마산합포구-폐차장.html">창원시 마산합포구 폐차 안내</a><a href="../gu/태안군-폐차장.html">태안군 폐차 안내</a><a href="../gu/서울-강서구-폐차장.html">강서구 폐차 안내</a><a href="../gu/익산시-폐차장.html">익산시 폐차 안내</a></div>
+      <div class="neighbors"><a href="../gu/강릉시-폐차장.html">강릉시 폐차 안내</a><a href="../gu/동해시-폐차장.html">동해시 폐차 안내</a><a href="../gu/평택시-폐차장.html">평택시 폐차 안내</a><a href="../gu/영천시-폐차장.html">영천시 폐차 안내</a><a href="../gu/공주시-폐차장.html">공주시 폐차 안내</a><a href="../gu/여주시-폐차장.html">여주시 폐차 안내</a><a href="../gu/의정부시-폐차장.html">의정부시 폐차 안내</a><a href="../gu/춘천시-폐차장.html">춘천시 폐차 안내</a><a href="../gu/금천구-폐차장.html">금천구 폐차 안내</a><a href="../gu/부평구-폐차장.html">부평구 폐차 안내</a></div>
     </div>
   </section>
 </main>
@@ -525,6 +525,7 @@
   // 견적 폼: Web3Forms 로 보내고 성공하면 thanks.html 로 이동.
   // 스크립트가 막혀 있어도 폼 자체의 redirect 값으로 같은 곳에 도착한다.
   var LEAD_HOOK = 'https://script.google.com/macros/s/AKfycbzcHwaCT_3FJBaE2CO1Ec9AKzUEUXpi7rFZImu1UAPDl3rKKzFBTZr7mhu8Qtko5D9I/exec';
+  var FORM_LOG = '';
   document.querySelectorAll('form.quote-form').forEach(function (form) {
     var redirect = form.querySelector('input[name="redirect"]');
     if (!redirect || form.method.toUpperCase() !== 'POST' || !window.fetch) return;
@@ -554,6 +555,20 @@
             form: pick('form'), page: location.pathname, botcheck: bot && bot.checked ? 'on' : '' });
           if (!(navigator.sendBeacon && navigator.sendBeacon(LEAD_HOOK, lead))) {
             fetch(LEAD_HOOK, { method: 'POST', mode: 'no-cors', body: lead, keepalive: true }).catch(function () {});
+          }
+        } catch (err) {}
+      }
+      // 폼 문의 기록(2026-11-04, Apps Script 시트, site_config 의 form_log_url): 페이지·src·지역만. 전화·차번호는 보내지 않는다.
+      if (/^https:/.test(FORM_LOG)) {
+        try {
+          var botEl = form.querySelector('input[name="botcheck"]');
+          if (!(botEl && botEl.checked)) {
+            var srcEl = form.querySelector('input[name="Source"]'), regionEl = form.querySelector('input[name="region"]');
+            var log = new URLSearchParams({ key: 'pyecha119', page: location.pathname,
+              src: srcEl && srcEl.value !== '없음' ? srcEl.value : '', region: (regionEl && regionEl.value) || region });
+            if (!(navigator.sendBeacon && navigator.sendBeacon(FORM_LOG, log))) {
+              fetch(FORM_LOG, { method: 'POST', mode: 'no-cors', body: log, keepalive: true }).catch(function () {});
+            }
           }
         } catch (err) {}
       }

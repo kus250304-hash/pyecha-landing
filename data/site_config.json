@@ -22,6 +22,8 @@
   "web3forms_access_key": "3882a359-01c7-4afb-b44e-cc2b87b0165b",
   "lead_hook_url": "https://script.google.com/macros/s/AKfycbzcHwaCT_3FJBaE2CO1Ec9AKzUEUXpi7rFZImu1UAPDl3rKKzFBTZr7mhu8Qtko5D9I/exec",
   "_lead_hook_comment": "폼 → 캘린더 알림(2026-10-28 병한님). 견적 폼이 Web3Forms 로 보내기 직전에 이 Apps Script 웹 앱으로 sendBeacon 한 번(key=pyecha119), 캘린더에 [견적 전화] 일정 + 알림 2개. 비우면 보내지 않음.",
+  "form_log_url": "",
+  "_form_log_comment": "폼 문의 기록 시트(2026-11-04 병한님). 견적 폼이 보낼 때 이 Apps Script 웹 앱(병한님 구글 시트 '폐차119 폼 문의')으로 sendBeacon 한 번: 페이지 주소·src·지역만(전화·이름·차번호 없음). scripts/form_inquiries.py 가 읽어 아침 보고·PC 작업 보고의 폼 문의 칸을 만든다. 설정 순서 docs/form-log-setup.md. 비우면 보내지 않음.",
   "reply_hours": "오전 7시~밤 10시, 주말 포함",
   "_reply_hours_comment": "전화·문자·폼 10분 회신 시간(2026-10-28 병한님). 첫 화면 문자 줄 아래·동 페이지 문의 시간 칸에 들어간다. 24시간 상담 문구는 쓰지 않는다.",
   "cases_extra_pages_per_case": 5,

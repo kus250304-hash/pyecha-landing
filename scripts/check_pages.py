@@ -967,24 +967,15 @@ def check_phone_links(cfg: dict) -> list[str]:
     return problems
 
 def check_lead_hook(cfg: dict) -> list[str]:
-    """폼 → 캘린더 알림(2026-10-28): 폼 스크립트가 있는 페이지는 모두 site_config 의 lead_hook_url 을 그대로 품는다."""
-    want = f"var LEAD_HOOK = '{(cfg.get('lead_hook_url') or '').strip()}';"
+    """폼 → 캘린더 알림(2026-10-28)·문의 기록 시트(2026-11-04): 폼 스크립트가 있는 페이지는 모두
+    site_config 의 lead_hook_url·form_log_url 을 그대로 품는다."""
+    wants = [(f"var LEAD_HOOK = '{(cfg.get('lead_hook_url') or '').strip()}';", "폼 → 캘린더 알림 주소(lead_hook_url)"),
+             (f"var FORM_LOG = '{(cfg.get('form_log_url') or '').strip()}';", "폼 문의 기록 주소(form_log_url)")]
     problems = []
     for f in html_files():
         text = f.read_text(encoding="utf-8")
-        if "function formatPhone" in text and want not in text:
-            problems.append(f"{f.relative_to(ROOT).as_posix()}: 폼 → 캘린더 알림 주소(lead_hook_url)가 설정값과 다름")
-    return problems
-
-
-def check_lead_hook(cfg: dict) -> list[str]:
-    """폼 → 캘린더 알림(2026-10-28): 폼 스크립트가 있는 페이지는 모두 site_config 의 lead_hook_url 을 그대로 품는다."""
-    want = f"var LEAD_HOOK = '{(cfg.get('lead_hook_url') or '').strip()}';"
-    problems = []
-    for f in html_files():
-        text = f.read_text(encoding="utf-8")
-        if "function formatPhone" in text and want not in text:
-            problems.append(f"{f.relative_to(ROOT).as_posix()}: 폼 → 캘린더 알림 주소(lead_hook_url)가 설정값과 다름")
+        if "function formatPhone" in text:
+            problems += [f"{f.relative_to(ROOT).as_posix()}: {what}가 설정값과 다름" for want, what in wants if want not in text]
     return problems
 
 
