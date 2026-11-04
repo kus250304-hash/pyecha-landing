@@ -28,6 +28,9 @@
 - 유입: 유입경로 유튜브 → 유튜브, 폼·유입·검색 줄에 "네이버" → 네이버 검색, 그 밖 → 기록 없음.
 - 시트 줄: 페이지 주소 → 이름(구 페이지 "강릉시 구 페이지", 동 페이지 "강릉시 교동 동 페이지", 첫 화면 홈, 시·도·안내 페이지),
   유입 = "src=yt" 처럼 src 그대로(없으면 "src 없음").
+  어디서(2026-11-04, 시트 F칸 ref) = 처음 들어온 곳의 앞 낱말(네이버·구글·유튜브·다음·카카오·인스타그램·직접·기타).
+  ref 가 "직접"인데 src=yt 면 유튜브 설명란 링크로 온 것이라 유튜브로 센다(유튜브 앱은 referrer 를 안 남기는 일이 많음).
+  보고의 "어디서:" 줄은 시트 줄만 센다(기록부 줄에는 이 칸이 없음).
 - 이 지역 강화 후보: 최근 7일 같은 페이지(첫 화면 홈 빼고)에서 2건 이상.
 - 전화·차번호·이름·금액은 읽어도 어디에도 쓰지 않는다. json·보고에는 날짜·페이지 이름·종류·유입만(시트에도 없음).
 """
@@ -51,6 +54,8 @@ MD_NEAR_FORM = [re.compile(r"폼[^\n]{0,15}?\b(\d{1,2})/(\d{1,2})\b"), re.compil
 VIA_LINE_RE = re.compile(r"폼|유입|검색|랜딩")
 CAPITAL = {"서울특별시", "경기도", "인천광역시"}
 LEDGER_TYPE = "기록부(페이지 모름)"
+REF_MAIN = ["네이버", "구글", "유튜브", "직접"]
+REF_WORDS = REF_MAIN + ["다음", "카카오", "인스타그램"]
 
 
 def kind_of(sido: str, gu: str) -> str:
@@ -177,8 +182,20 @@ def sheet_row(r: dict) -> dict:
     elif folder == "cases":
         label, typ = "사례 페이지", "사례 페이지"
     src = str(r.get("src") or "").strip()
+    ref = str(r.get("ref") or "").strip()
+    ref = ref if ref in REF_WORDS else ("기타" if ref else "")
+    if ref == "직접" and src == "yt":
+        ref = "유튜브"
     return {"date": r["date"], "time": str(r.get("time") or ""), "page": path, "label": label, "kind": kind,
-            "via": f"src={src}" if src else "src 없음", "type": typ, "from": "sheet"}
+            "via": f"src={src}" if src else "src 없음", "ref": ref, "type": typ, "from": "sheet"}
+
+
+def ref_line(rows: list[dict]) -> str:
+    """'네이버 n · 구글 n · 유튜브 n · 직접 n'(+ 그 밖은 있을 때만). 시트 줄 중 ref 가 있는 것만, 없으면 빈 글."""
+    c = Counter(r["ref"] for r in rows if r.get("ref"))
+    if not c:
+        return ""
+    return " · ".join(f"{k} {c.get(k, 0)}" for k in REF_MAIN) + "".join(f" · {k} {c[k]}" for k in REF_WORDS[4:] + ["기타"] if c.get(k))
 
 
 def merge(old_rows: list[dict], sheet: list[dict] | None) -> list[dict]:
@@ -219,6 +236,8 @@ def show(rows: list[dict], unknown: dict[str, int], since: str) -> None:
     print("종류별: " + ", ".join(f"{k} {n}" for k, n in Counter(r["kind"] for r in rows).most_common()))
     print("페이지 종류별: " + ", ".join(f"{k} {n}" for k, n in Counter(r.get("type", LEDGER_TYPE) for r in rows).most_common()))
     print("유입별: " + ", ".join(f"{k} {n}" for k, n in Counter(r["via"] for r in rows).most_common()))
+    if ref_line(rows):
+        print("어디서(시트 줄만): " + ref_line(rows))
     multi = [k for k, n in Counter(r["label"] for r in rows if r["page"]).items() if n >= 2]
     print("2건 이상 지역: " + (", ".join(multi) or "없음"))
     unk = sum(n for k, n in unknown.items() if k >= since)
@@ -258,6 +277,9 @@ def report(today: date) -> None:
     if day_rows:
         print("  - " + ", ".join(item(k, n) for k, n in Counter(r["label"] for r in day_rows).most_common()))
         print("  - 유입: " + ", ".join(f"{k} {n}" for k, n in Counter(r["via"] for r in day_rows).most_common()))
+        refs = ref_line(day_rows)
+        if refs:
+            print("  - 어디서: " + refs)
     diff = len(day_rows) - same_day
     print(f"  - 최근 7일({day_name((closed - timedelta(days=6)).isoformat())}~{day_name(closed.isoformat())}) {len(week_rows)}건"
           f" (그 전 7일 {prev_week}건) · 지난주 같은 요일 {same_day}건 → {'+' if diff > 0 else ''}{diff}")

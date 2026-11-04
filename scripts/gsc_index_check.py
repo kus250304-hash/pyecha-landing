@@ -94,11 +94,12 @@ def _b64(b: bytes) -> str:
     return base64.urlsafe_b64encode(b).rstrip(b"=").decode()
 
 
-def access_token(key: dict) -> str:
+def access_token(key: dict, scope: str = SCOPE) -> str:
+    """서비스 계정 열쇠로 접속 토큰. scope 는 기본 서치 콘솔 읽기(ga4_daily.py 는 analytics.readonly 로 부름)."""
     now = int(time.time())
     token_uri = key.get("token_uri") or "https://oauth2.googleapis.com/token"
     head = _b64(json.dumps({"alg": "RS256", "typ": "JWT"}).encode())
-    claims = _b64(json.dumps({"iss": key["client_email"], "scope": SCOPE, "aud": token_uri, "iat": now, "exp": now + 3600}).encode())
+    claims = _b64(json.dumps({"iss": key["client_email"], "scope": scope, "aud": token_uri, "iat": now, "exp": now + 3600}).encode())
     n, d = _rsa_key(key["private_key"])
     jwt = f"{head}.{claims}.{_b64(_sign(f'{head}.{claims}'.encode(), n, d))}"
     body = urllib.parse.urlencode({"grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer", "assertion": jwt}).encode()

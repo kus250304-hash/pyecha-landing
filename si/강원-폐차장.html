@@ -599,14 +599,18 @@
           }
         } catch (err) {}
       }
-      // 폼 문의 기록(2026-11-04, Apps Script 시트, site_config 의 form_log_url): 페이지·src·지역만. 전화·차번호는 보내지 않는다.
+      // 폼 문의 기록(2026-11-04, Apps Script 시트, site_config 의 form_log_url): 페이지·src·지역·어디서만. 전화·차번호는 보내지 않는다.
+      // 어디서(ref) = 처음 들어온 곳(pyecha_ref)의 앞 낱말만(네이버·구글·유튜브·다음·카카오·인스타그램·직접, 그 밖은 기타). 호스트 주소는 보내지 않는다.
       if (/^https:/.test(FORM_LOG)) {
         try {
           var botEl = form.querySelector('input[name="botcheck"]');
           if (!(botEl && botEl.checked)) {
             var srcEl = form.querySelector('input[name="Source"]'), regionEl = form.querySelector('input[name="region"]');
+            var refEl = form.querySelector('input[name="Referrer"]');
+            var refWord = ((refEl && refEl.value) || '직접').split(' ')[0];
+            if (['네이버', '구글', '유튜브', '다음', '카카오', '인스타그램', '직접'].indexOf(refWord) < 0) refWord = '기타';
             var log = new URLSearchParams({ key: 'pyecha119', page: location.pathname,
-              src: srcEl && srcEl.value !== '없음' ? srcEl.value : '', region: (regionEl && regionEl.value) || region });
+              src: srcEl && srcEl.value !== '없음' ? srcEl.value : '', region: (regionEl && regionEl.value) || region, ref: refWord });
             if (!(navigator.sendBeacon && navigator.sendBeacon(FORM_LOG, log))) {
               fetch(FORM_LOG, { method: 'POST', mode: 'no-cors', body: log, keepalive: true }).catch(function () {});
             }

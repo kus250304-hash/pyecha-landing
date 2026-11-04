@@ -1,6 +1,7 @@
 # 폼 문의 기록 시트 (2026-11-04 병한님)
 
-견적 폼을 보낼 때마다 구글 시트 "폐차119 폼 문의"에 한 줄(날짜·시간·페이지 주소·src·지역)이 남습니다.
+견적 폼을 보낼 때마다 구글 시트 "폐차119 폼 문의"에 한 줄(날짜·시간·페이지 주소·src·지역·어디서)이 남습니다.
+"어디서"는 처음 들어온 곳의 앞 낱말 하나(네이버·구글·유튜브·다음·카카오·인스타그램·직접, 그 밖은 기타)이고, 들어온 사이트 주소는 보내지 않습니다(2026-11-04 추가).
 전화번호·이름·차번호는 사이트가 보내지도 않고 시트에 적지도 않습니다.
 기존 캘린더 알림 스크립트(`lead_hook_url`)는 그대로 두고, 이 시트는 따로 붙은 기록 전용 웹 앱(`site_config.json` 의 `form_log_url`)입니다.
 
@@ -16,7 +17,7 @@
 4. 나온 **웹 앱 URL**(https://script.google.com/macros/s/…/exec)을 복사해 Claude 에 보냅니다. Claude 가 `form_log_url` 에 넣고 페이지를 다시 만듭니다.
 
 ```javascript
-// 폐차119 폼 문의 기록(2026-11-04). 받는 것: 날짜·시간, 페이지 주소, src, 지역. 전화번호·이름·차번호는 받지도 적지도 않는다.
+// 폐차119 폼 문의 기록(2026-11-04). 받는 것: 날짜·시간, 페이지 주소, src, 지역, 어디서(네이버·구글·유튜브·다음·카카오·인스타그램·직접·기타). 전화번호·이름·차번호는 받지도 적지도 않는다.
 var KEY = 'pyecha119';
 var SHEET = '폼문의';
 
@@ -24,8 +25,8 @@ function sheet_() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sh = ss.getSheetByName(SHEET) || ss.insertSheet(SHEET);
   if (sh.getLastRow() === 0) {
-    sh.getRange('A:E').setNumberFormat('@');
-    sh.appendRow(['날짜', '시간', '페이지', 'src', '지역']);
+    sh.getRange('A:F').setNumberFormat('@');
+    sh.appendRow(['날짜', '시간', '페이지', 'src', '지역', '어디서']);
     sh.setFrozenRows(1);
   }
   return sh;
@@ -48,7 +49,7 @@ function doPost(e) {
     sheet_().appendRow([
       Utilities.formatDate(now, 'Asia/Seoul', 'yyyy-MM-dd'),
       Utilities.formatDate(now, 'Asia/Seoul', 'HH:mm'),
-      clean_(page, 200), clean_(p.src, 40), clean_(p.region, 60)
+      clean_(page, 200), clean_(p.src, 40), clean_(p.region, 60), clean_(p.ref, 10)
     ]);
   } finally {
     lock.releaseLock();
@@ -62,7 +63,7 @@ function doGet(e) {
   var since = String(p.since || '');
   var rows = sheet_().getDataRange().getDisplayValues().slice(1)
     .filter(function (r) { return r[0] && (!since || r[0] >= since); })
-    .map(function (r) { return { date: r[0], time: r[1], page: r[2], src: r[3], region: r[4] }; });
+    .map(function (r) { return { date: r[0], time: r[1], page: r[2], src: r[3], region: r[4], ref: r[5] || '' }; });
   return ContentService.createTextOutput(JSON.stringify({ rows: rows }))
     .setMimeType(ContentService.MimeType.JSON);
 }
