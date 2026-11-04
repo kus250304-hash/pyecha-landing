@@ -9,7 +9,7 @@
   "_indexnow_comment": "IndexNow 키(2026-10-08). 맨 위 폴더 {키}.txt 가 같은 값을 담아야 한다. scripts/indexnow.py 가 네이버·공용 IndexNow 로 새·바뀐 주소를 보낸다.",
   "naver_site_verification": ["49dd7214fa33d7e511f8a9d860e3587fb8da2fa7", "c6088e5e29147aa84496bd36f652f81dae622855"],
   "ga4_id": "G-MLKQDS4TK8",
-  "ga4_property_id": "",
+  "ga4_property_id": "558303196",
   "_ga4_property_comment": "GA4 속성 ID 숫자(2026-11-04 병한님, G-… 측정 ID 와 다름). scripts/ga4_daily.py 가 GA4 Data API 로 어제 유입(네이버·구글·유튜브·직접)과 폼·전화·문자 이벤트를 받아 data/ga4_daily.json·docs/ga4-sources.md 에 쓴다. 비우면 '속성 ID 알려 주세요'만. 설정 docs/ga4-setup.md.",
   "ahrefs_site_verification": "e91a4182e4f7c9c483140d737049bb5be7f0c7fd497206574707c05cf39e419a",
   "naver_analytics_id": "1c6e3c42fef23b0",

@@ -1,0 +1,1016 @@
+{
+ "updated": "2026-11-04T21:55+09:00",
+ "days": {
+  "2026-10-20": {
+   "sessions": {
+    "네이버": 6,
+    "구글": 1,
+    "유튜브": 0,
+    "직접": 3,
+    "기타": 0
+   },
+   "events": {
+    "네이버": {
+     "quote_submit": 0,
+     "call_click": 2,
+     "sms_click": 0
+    },
+    "구글": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "유튜브": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "직접": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "기타": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    }
+   },
+   "totals": {
+    "sessions": 10,
+    "quote_submit": 0,
+    "call_click": 2,
+    "sms_click": 0
+   },
+   "sources": [
+    {
+     "source": "m.search.naver.com / referral",
+     "sessions": 4
+    },
+    {
+     "source": "(direct) / (none)",
+     "sessions": 3
+    },
+    {
+     "source": "naver / organic",
+     "sessions": 2
+    },
+    {
+     "source": "google / organic",
+     "sessions": 1
+    }
+   ],
+   "pages": [
+    {
+     "page": "/gu/달성군-폐차장.html",
+     "quote_submit": 0,
+     "call_click": 1
+    },
+    {
+     "page": "/pages/ulsan-ulju-eonyang.html",
+     "quote_submit": 0,
+     "call_click": 1
+    }
+   ]
+  },
+  "2026-10-21": {
+   "sessions": {
+    "네이버": 3,
+    "구글": 0,
+    "유튜브": 0,
+    "직접": 1,
+    "기타": 0
+   },
+   "events": {
+    "네이버": {
+     "quote_submit": 0,
+     "call_click": 2,
+     "sms_click": 0
+    },
+    "구글": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "유튜브": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "직접": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "기타": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    }
+   },
+   "totals": {
+    "sessions": 4,
+    "quote_submit": 0,
+    "call_click": 2,
+    "sms_click": 0
+   },
+   "sources": [
+    {
+     "source": "m.search.naver.com / referral",
+     "sessions": 3
+    },
+    {
+     "source": "(direct) / (none)",
+     "sessions": 1
+    }
+   ],
+   "pages": [
+    {
+     "page": "/gu/달성군-폐차장.html",
+     "quote_submit": 0,
+     "call_click": 1
+    },
+    {
+     "page": "/si/경북-폐차장.html",
+     "quote_submit": 0,
+     "call_click": 1
+    }
+   ]
+  },
+  "2026-10-22": {
+   "sessions": {
+    "네이버": 4,
+    "구글": 1,
+    "유튜브": 0,
+    "직접": 2,
+    "기타": 0
+   },
+   "events": {
+    "네이버": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "구글": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "유튜브": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "직접": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "기타": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    }
+   },
+   "totals": {
+    "sessions": 7,
+    "quote_submit": 0,
+    "call_click": 0,
+    "sms_click": 0
+   },
+   "sources": [
+    {
+     "source": "(direct) / (none)",
+     "sessions": 2
+    },
+    {
+     "source": "m.search.naver.com / referral",
+     "sessions": 2
+    },
+    {
+     "source": "naver / organic",
+     "sessions": 2
+    },
+    {
+     "source": "google / organic",
+     "sessions": 1
+    }
+   ],
+   "pages": []
+  },
+  "2026-10-23": {
+   "sessions": {
+    "네이버": 8,
+    "구글": 2,
+    "유튜브": 0,
+    "직접": 3,
+    "기타": 1
+   },
+   "events": {
+    "네이버": {
+     "quote_submit": 0,
+     "call_click": 2,
+     "sms_click": 0
+    },
+    "구글": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "유튜브": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "직접": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "기타": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    }
+   },
+   "totals": {
+    "sessions": 14,
+    "quote_submit": 0,
+    "call_click": 2,
+    "sms_click": 0
+   },
+   "sources": [
+    {
+     "source": "m.search.naver.com / referral",
+     "sessions": 6
+    },
+    {
+     "source": "(direct) / (none)",
+     "sessions": 3
+    },
+    {
+     "source": "google / organic",
+     "sessions": 2
+    },
+    {
+     "source": "naver / organic",
+     "sessions": 2
+    },
+    {
+     "source": "kus250304-hash.github.io / referral",
+     "sessions": 1
+    }
+   ],
+   "pages": [
+    {
+     "page": "/gu/오산시-폐차장.html",
+     "quote_submit": 0,
+     "call_click": 2
+    }
+   ]
+  },
+  "2026-10-24": {
+   "sessions": {
+    "네이버": 5,
+    "구글": 0,
+    "유튜브": 0,
+    "직접": 1,
+    "기타": 0
+   },
+   "events": {
+    "네이버": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "구글": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "유튜브": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "직접": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "기타": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    }
+   },
+   "totals": {
+    "sessions": 6,
+    "quote_submit": 0,
+    "call_click": 0,
+    "sms_click": 0
+   },
+   "sources": [
+    {
+     "source": "m.search.naver.com / referral",
+     "sessions": 4
+    },
+    {
+     "source": "(direct) / (none)",
+     "sessions": 1
+    },
+    {
+     "source": "naver / organic",
+     "sessions": 1
+    }
+   ],
+   "pages": []
+  },
+  "2026-10-25": {
+   "sessions": {
+    "네이버": 6,
+    "구글": 0,
+    "유튜브": 0,
+    "직접": 1,
+    "기타": 0
+   },
+   "events": {
+    "네이버": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "구글": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "유튜브": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "직접": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "기타": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    }
+   },
+   "totals": {
+    "sessions": 7,
+    "quote_submit": 0,
+    "call_click": 0,
+    "sms_click": 0
+   },
+   "sources": [
+    {
+     "source": "m.search.naver.com / referral",
+     "sessions": 3
+    },
+    {
+     "source": "naver / organic",
+     "sessions": 3
+    },
+    {
+     "source": "(direct) / (none)",
+     "sessions": 1
+    }
+   ],
+   "pages": []
+  },
+  "2026-10-26": {
+   "sessions": {
+    "네이버": 12,
+    "구글": 0,
+    "유튜브": 0,
+    "직접": 2,
+    "기타": 0
+   },
+   "events": {
+    "네이버": {
+     "quote_submit": 0,
+     "call_click": 1,
+     "sms_click": 0
+    },
+    "구글": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "유튜브": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "직접": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "기타": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    }
+   },
+   "totals": {
+    "sessions": 14,
+    "quote_submit": 0,
+    "call_click": 1,
+    "sms_click": 0
+   },
+   "sources": [
+    {
+     "source": "m.search.naver.com / referral",
+     "sessions": 8
+    },
+    {
+     "source": "naver / organic",
+     "sessions": 3
+    },
+    {
+     "source": "(direct) / (none)",
+     "sessions": 2
+    },
+    {
+     "source": "blog.naver.com / referral",
+     "sessions": 1
+    }
+   ],
+   "pages": [
+    {
+     "page": "/pages/jeonnam-wando-geumil.html",
+     "quote_submit": 0,
+     "call_click": 1
+    }
+   ]
+  },
+  "2026-10-27": {
+   "sessions": {
+    "네이버": 12,
+    "구글": 0,
+    "유튜브": 0,
+    "직접": 0,
+    "기타": 0
+   },
+   "events": {
+    "네이버": {
+     "quote_submit": 0,
+     "call_click": 1,
+     "sms_click": 3
+    },
+    "구글": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "유튜브": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "직접": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "기타": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    }
+   },
+   "totals": {
+    "sessions": 12,
+    "quote_submit": 0,
+    "call_click": 1,
+    "sms_click": 3
+   },
+   "sources": [
+    {
+     "source": "m.search.naver.com / referral",
+     "sessions": 10
+    },
+    {
+     "source": "naver / organic",
+     "sessions": 2
+    }
+   ],
+   "pages": [
+    {
+     "page": "/gu/서울-강서구-폐차장.html",
+     "quote_submit": 0,
+     "call_click": 1
+    }
+   ]
+  },
+  "2026-10-28": {
+   "sessions": {
+    "네이버": 7,
+    "구글": 0,
+    "유튜브": 2,
+    "직접": 5,
+    "기타": 0
+   },
+   "events": {
+    "네이버": {
+     "quote_submit": 0,
+     "call_click": 1,
+     "sms_click": 0
+    },
+    "구글": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "유튜브": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "직접": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "기타": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    }
+   },
+   "totals": {
+    "sessions": 14,
+    "quote_submit": 0,
+    "call_click": 1,
+    "sms_click": 0
+   },
+   "sources": [
+    {
+     "source": "(direct) / (none)",
+     "sessions": 5
+    },
+    {
+     "source": "m.search.naver.com / referral",
+     "sessions": 5
+    },
+    {
+     "source": "naver / organic",
+     "sessions": 2
+    },
+    {
+     "source": "youtube.com / referral",
+     "sessions": 2
+    }
+   ],
+   "pages": [
+    {
+     "page": "/gu/화성시-동탄구-폐차장.html",
+     "quote_submit": 0,
+     "call_click": 1
+    }
+   ]
+  },
+  "2026-10-29": {
+   "sessions": {
+    "네이버": 4,
+    "구글": 0,
+    "유튜브": 0,
+    "직접": 0,
+    "기타": 0
+   },
+   "events": {
+    "네이버": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "구글": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "유튜브": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "직접": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "기타": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    }
+   },
+   "totals": {
+    "sessions": 4,
+    "quote_submit": 0,
+    "call_click": 0,
+    "sms_click": 0
+   },
+   "sources": [
+    {
+     "source": "naver / organic",
+     "sessions": 2
+    },
+    {
+     "source": "m.blog.naver.com / referral",
+     "sessions": 1
+    },
+    {
+     "source": "m.search.naver.com / referral",
+     "sessions": 1
+    }
+   ],
+   "pages": []
+  },
+  "2026-10-30": {
+   "sessions": {
+    "네이버": 17,
+    "구글": 0,
+    "유튜브": 0,
+    "직접": 0,
+    "기타": 0
+   },
+   "events": {
+    "네이버": {
+     "quote_submit": 0,
+     "call_click": 3,
+     "sms_click": 0
+    },
+    "구글": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "유튜브": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "직접": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "기타": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    }
+   },
+   "totals": {
+    "sessions": 17,
+    "quote_submit": 0,
+    "call_click": 3,
+    "sms_click": 0
+   },
+   "sources": [
+    {
+     "source": "m.search.naver.com / referral",
+     "sessions": 15
+    },
+    {
+     "source": "naver / organic",
+     "sessions": 2
+    }
+   ],
+   "pages": [
+    {
+     "page": "/gu/구미시-폐차장.html",
+     "quote_submit": 0,
+     "call_click": 1
+    },
+    {
+     "page": "/gu/남동구-폐차장.html",
+     "quote_submit": 0,
+     "call_click": 1
+    },
+    {
+     "page": "/pages/busan-donggu-choryang.html",
+     "quote_submit": 0,
+     "call_click": 1
+    }
+   ]
+  },
+  "2026-10-31": {
+   "sessions": {
+    "네이버": 4,
+    "구글": 0,
+    "유튜브": 0,
+    "직접": 3,
+    "기타": 0
+   },
+   "events": {
+    "네이버": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "구글": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "유튜브": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "직접": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "기타": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    }
+   },
+   "totals": {
+    "sessions": 7,
+    "quote_submit": 0,
+    "call_click": 0,
+    "sms_click": 0
+   },
+   "sources": [
+    {
+     "source": "(direct) / (none)",
+     "sessions": 3
+    },
+    {
+     "source": "m.search.naver.com / referral",
+     "sessions": 3
+    },
+    {
+     "source": "naver / organic",
+     "sessions": 1
+    }
+   ],
+   "pages": []
+  },
+  "2026-11-01": {
+   "sessions": {
+    "네이버": 8,
+    "구글": 1,
+    "유튜브": 0,
+    "직접": 6,
+    "기타": 4
+   },
+   "events": {
+    "네이버": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "구글": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "유튜브": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "직접": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "기타": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    }
+   },
+   "totals": {
+    "sessions": 19,
+    "quote_submit": 0,
+    "call_click": 0,
+    "sms_click": 0
+   },
+   "sources": [
+    {
+     "source": "(direct) / (none)",
+     "sessions": 6
+    },
+    {
+     "source": "m.search.naver.com / referral",
+     "sessions": 6
+    },
+    {
+     "source": "daum / organic",
+     "sessions": 4
+    },
+    {
+     "source": "naver / organic",
+     "sessions": 2
+    },
+    {
+     "source": "google / organic",
+     "sessions": 1
+    }
+   ],
+   "pages": []
+  },
+  "2026-11-02": {
+   "sessions": {
+    "네이버": 19,
+    "구글": 0,
+    "유튜브": 0,
+    "직접": 0,
+    "기타": 1
+   },
+   "events": {
+    "네이버": {
+     "quote_submit": 5,
+     "call_click": 1,
+     "sms_click": 2
+    },
+    "구글": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "유튜브": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "직접": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "기타": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    }
+   },
+   "totals": {
+    "sessions": 20,
+    "quote_submit": 5,
+    "call_click": 1,
+    "sms_click": 2
+   },
+   "sources": [
+    {
+     "source": "m.search.naver.com / referral",
+     "sessions": 16
+    },
+    {
+     "source": "naver / organic",
+     "sessions": 3
+    },
+    {
+     "source": "daum / organic",
+     "sessions": 1
+    }
+   ],
+   "pages": [
+    {
+     "page": "/gu/순천시-폐차장.html",
+     "quote_submit": 2,
+     "call_click": 0
+    },
+    {
+     "page": "/pages/gyeonggi-uijeongbu-jangam.html",
+     "quote_submit": 2,
+     "call_click": 0
+    },
+    {
+     "page": "/gu/춘천시-폐차장.html",
+     "quote_submit": 1,
+     "call_click": 0
+    },
+    {
+     "page": "/pages/gyeonggi-goyang-ilsanseo-ilsan.html",
+     "quote_submit": 0,
+     "call_click": 1
+    }
+   ]
+  },
+  "2026-11-03": {
+   "sessions": {
+    "네이버": 24,
+    "구글": 0,
+    "유튜브": 4,
+    "직접": 0,
+    "기타": 2
+   },
+   "events": {
+    "네이버": {
+     "quote_submit": 6,
+     "call_click": 2,
+     "sms_click": 1
+    },
+    "구글": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "유튜브": {
+     "quote_submit": 1,
+     "call_click": 0,
+     "sms_click": 1
+    },
+    "직접": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "기타": {
+     "quote_submit": 0,
+     "call_click": 1,
+     "sms_click": 0
+    }
+   },
+   "totals": {
+    "sessions": 30,
+    "quote_submit": 7,
+    "call_click": 3,
+    "sms_click": 2
+   },
+   "sources": [
+    {
+     "source": "m.search.naver.com / referral",
+     "sessions": 18
+    },
+    {
+     "source": "naver / organic",
+     "sessions": 5
+    },
+    {
+     "source": "youtube.com / referral",
+     "sessions": 4
+    },
+    {
+     "source": "(not set) / (not set)",
+     "sessions": 1
+    },
+    {
+     "source": "chatgpt.com / ai-assistant",
+     "sessions": 1
+    },
+    {
+     "source": "m.blog.naver.com / referral",
+     "sessions": 1
+    }
+   ],
+   "pages": [
+    {
+     "page": "/gu/강릉시-폐차장.html",
+     "quote_submit": 2,
+     "call_click": 0
+    },
+    {
+     "page": "/gu/정선군-폐차장.html",
+     "quote_submit": 2,
+     "call_click": 0
+    },
+    {
+     "page": "/",
+     "quote_submit": 1,
+     "call_click": 0
+    },
+    {
+     "page": "/gu/영천시-폐차장.html",
+     "quote_submit": 1,
+     "call_click": 0
+    },
+    {
+     "page": "/pages/gangwon-chuncheon-hyoja.html",
+     "quote_submit": 1,
+     "call_click": 0
+    },
+    {
+     "page": "/gu/전주시-완산구-폐차장.html",
+     "quote_submit": 0,
+     "call_click": 1
+    },
+    {
+     "page": "/gu/하동군-폐차장.html",
+     "quote_submit": 0,
+     "call_click": 1
+    },
+    {
+     "page": "/pages/seoul-nowon-sanggye.html",
+     "quote_submit": 0,
+     "call_click": 1
+    }
+   ]
+  }
+ }
+}
