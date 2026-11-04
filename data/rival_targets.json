@@ -1,5 +1,5 @@
 {
- "date": "2026-11-03",
+ "date": "2026-11-04",
  "rival": [
   {
    "slug": "chungnam-asan",
@@ -62,10 +62,28 @@
    "query": "순천폐차장"
   },
   {
-   "slug": "jeonnam-gwangyang",
-   "sido": "전남광주통합특별시",
-   "sigungu": "광양시",
-   "query": "광양폐차장"
+   "slug": "chungbuk-cheongju-seowon",
+   "sido": "충청북도",
+   "sigungu": "청주시 서원구",
+   "query": "청주폐차"
+  },
+  {
+   "slug": "chungbuk-cheongju-sangdang",
+   "sido": "충청북도",
+   "sigungu": "청주시 상당구",
+   "query": "청주폐차"
+  },
+  {
+   "slug": "chungbuk-cheongju-cheongwon",
+   "sido": "충청북도",
+   "sigungu": "청주시 청원구",
+   "query": "청주폐차"
+  },
+  {
+   "slug": "chungbuk-cheongju-heungdeok",
+   "sido": "충청북도",
+   "sigungu": "청주시 흥덕구",
+   "query": "청주폐차"
   },
   {
    "slug": "chungbuk-jecheon",
@@ -102,24 +120,6 @@
    "sido": "경상북도",
    "sigungu": "상주시",
    "query": "상주폐차장"
-  },
-  {
-   "slug": "gyeongbuk-yeongju",
-   "sido": "경상북도",
-   "sigungu": "영주시",
-   "query": "영주폐차"
-  },
-  {
-   "slug": "gangwon-donghae",
-   "sido": "강원특별자치도",
-   "sigungu": "동해시",
-   "query": "동해폐차"
-  },
-  {
-   "slug": "chungnam-hongseong",
-   "sido": "충청남도",
-   "sigungu": "홍성군",
-   "query": "홍성폐차"
   }
  ],
  "empty": [
@@ -186,6 +186,22 @@
    "sigungu": "경주시",
    "queries": [
     "경주폐차"
+   ]
+  },
+  {
+   "slug": "jeonnam-suncheon",
+   "sido": "전남광주통합특별시",
+   "sigungu": "순천시",
+   "queries": [
+    "순천폐차"
+   ]
+  },
+  {
+   "slug": "jeonnam-gwangyang",
+   "sido": "전남광주통합특별시",
+   "sigungu": "광양시",
+   "queries": [
+    "광양폐차장"
    ]
   },
   {
@@ -439,6 +455,14 @@
    ]
   },
   {
+   "slug": "gangwon-jeongseon",
+   "sido": "강원특별자치도",
+   "sigungu": "정선군",
+   "queries": [
+    "정선폐차"
+   ]
+  },
+  {
    "slug": "jeonnam-goheung",
    "sido": "전남광주통합특별시",
    "sigungu": "고흥군",
@@ -468,14 +492,6 @@
    "sigungu": "의령군",
    "queries": [
     "의령폐차"
-   ]
-  },
-  {
-   "slug": "jeonnam-hampyeong",
-   "sido": "전남광주통합특별시",
-   "sigungu": "함평군",
-   "queries": [
-    "함평폐차"
    ]
   },
   {
