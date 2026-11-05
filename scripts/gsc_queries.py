@@ -127,7 +127,7 @@ def write_doc(data: dict) -> tuple[int, int]:
     clicked = sorted((x for x in qs if x["clicks"] > 0), key=lambda x: (-x["clicks"], -x["impressions"]))[:10]
     mark = lambda q: FACT_MARK if FACT_RE.search(q) else ""  # noqa: E731
     L = ["# 서치 콘솔 검색어 (클릭 없는 검색어)", "",
-         "`scripts/gsc_queries.py` 가 매주 월요일 낮 12시 25분 무렵(PC 예약 작업 \"폐차_검색어_주간\") 다시 만듭니다. 손으로 고치지 않습니다.",
+         "`scripts/gsc_queries.py` 가 매주 일요일 밤 8시 무렵(PC 예약 작업 \"폐차_검색어_주간\") 다시 만듭니다. 손으로 고치지 않습니다.",
          "아침 보고(월요일)·월간 FAQ 갱신·폐차119 블로그 B형 글이 읽습니다. 검색어는 손님 말 그대로의 질문 후보이며, 글에서는 금액·최고가를 단정하지 않습니다.", "",
          f"기준: {data['updated']} 받음 · 기간 {data['start']} ~ {data['end']}(28일) · 국가 한국 · 웹 검색 · 속성 {data['site']}",
          f"요약: 검색어 {len(qs)}개 · 클릭 없는 검색어(노출 {MIN_IMPRESSIONS}회 이상) {len(nc)}개 · 클릭 있는 검색어 {sum(x['clicks'] > 0 for x in qs)}개"
