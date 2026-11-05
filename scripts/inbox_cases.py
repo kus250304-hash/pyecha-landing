@@ -73,7 +73,8 @@ def kind_of(p: Path) -> str:
 
 
 def inbox_files(inbox: Path) -> list[Path]:
-    return sorted((p for p in inbox.iterdir() if p.is_file() and kind_of(p)), key=lambda p: p.stat().st_mtime)
+    # 이름에 "후기"가 든 캡처는 차 묶음이 아니라 scripts/reviews.py 가 다룬다(2026-11-05)
+    return sorted((p for p in inbox.iterdir() if p.is_file() and kind_of(p) and "후기" not in p.name), key=lambda p: p.stat().st_mtime)
 
 
 def group_files(files: list[Path]) -> list[list[Path]]:

@@ -47,6 +47,9 @@ PC에서 하는 "사례 가져오기" 작업이다. 원본 사진·메모는 이
    - 간편조회 캡처(휴대폰 화면)는 "조회" 에, 등록증 사진은 "등록증" 에 원본 파일 이름(plan.json 의 file)으로 적는다. 차번호·연식·압류는 간편조회 캡처에서 읽는다. 차종·시동·상황은 말에서 읽고, 말에 없으면 비운다(지어내지 않는다).
    - 지역이나 차종을 모르면 "보류": "확인 필요: <무엇을 모르는지 쉬운 말>" 로 쓴다.
 3-5. `python scripts/inbox_cases.py apply gN` 을 묶음마다 실행한다(원본 우선/ 에 날짜_지역_차종 폴더를 만들고 옮김, 등록증은 지움, 보류 건은 인박스에 그대로). 이어서 `python scripts/inbox_cases.py report` 를 실행해 그 줄을 보고에 옮긴다(cases/input/인박스-확인-필요.md 도 다시 써짐).
+3-6. 손님 후기(2026-11-05, 3-2 로 이어 할 때도 한다): G: 드라이브가 있으면 `python scripts/reviews.py scan` 을 실행한다(인박스에서 파일·폴더 이름에 "후기"가 든 캡처만, .cases_staging/reviews/rN.jpg 미리보기). 0개면 이 단계를 건너뛴다.
+   - 미리보기를 하나씩 열어 .cases_staging/reviews/answer.json 을 쓴다(형식은 scripts/reviews.py 맨 위). "후기"는 손님이 쓴 문장 한두 개를 그대로 옮기되 이름은 "○○님"으로 바꾸고, 전화·차번호·금액·폐차장 이름·주소·날짜 숫자가 든 문장은 뺀다. 지역(시·군까지)·차종은 캡처 속 대화나 _지역알림.json·같은 날 정리한 차에서 확실할 때만, 모르면 "보류": "확인 필요: <쉬운 말>".
+   - `python scripts/reviews.py apply` 를 실행한다(검사 통과한 것만 data/reviews.json 에 더하고 원본은 인박스 _후기_반영됨/ 으로, 나머지는 docs/reviews-pending.md "확인 필요"). data/reviews.json·docs/reviews-pending.md 가 바뀌었으면 그 둘만 `git add` → `git commit -m "Add customer reviews (YYYY-MM-DD)"` → `git push origin main`(거절되면 pull --rebase 후 한 번 더). 출력 "손님 후기: …" 줄을 보고에 옮긴다. 미리보기 폴더는 14단계 clean 전에 `.cases_staging/reviews` 를 지운다.
 
 [고르기]
 4. (3-2 로 이어 하지 않을 때만) `python scripts/pc_cases.py scan` 을 실행한다. 지역·차종·연식·시동이 다 채워지고 반영됨.txt 가 없는 건 중 3건 또는 10건(c1~)을 고른다. 순서는 data/case_priority.json(2026-10-28): ① docs/index-requests.md "문의가 온 페이지"의 시·군 ② data/rival_targets.json 의 empty(빈 땅, 점수표 순) ③ rival(지인 공략) ④ 나머지, 같은 시·군 안에서는 메모 있는 폴더 → 우선/ → 일반/. 출력 줄 끝에 어느 칸으로 골랐는지 나온다. 메모 없으면 점수표 사용(2026-10-27): 메모.txt 가 없는 폴더는 scan 이 원본 맨 위 _점수표.csv 의 같은 폴더 줄(지역·차종·연식·시동·한줄이유)을 메모 대신 읽고, 메모 있는 폴더를 먼저 고른다(점수표를 직접 열지 않는다). 0건이면 3-5 의 cases/input/인박스-확인-필요.md 가 바뀌었을 때만 그 파일 하나를 `git add` → `git commit -m "Update inbox hold list (YYYY-MM-DD)"` → `git push origin main`(거절되면 pull --rebase 후 한 번 더) 하고, "실패: 0건, 이유: 가져올 사례 없음(조건 미달 N건)"이라고 보고하고 끝낸다(3시 보고가 확인 필요 차를 볼 수 있게).
@@ -79,6 +82,7 @@ PC에서 하는 "사례 가져오기" 작업이다. 원본 사진·메모는 이
 - 오늘 가져온 사례 N건: 지역·차종, … — 사례마다 4줄: 걱정/고른쪽/걸린 날/끝한줄(report 출력 그대로, 비면 "없음")
 - 거래 기록부 칸 매핑: ledger 출력의 "문의일 ← …"·"인수일 ← …"·"말소일 ← …" 줄
 - 인박스: 폴더 만든 차 N대, 보류 N대(보류는 "확인 필요: …" 그대로)
+- 손님 후기: reviews.py apply 의 "손님 후기: …" 줄(캡처 없으면 "후기 캡처 없음")
 - 뺀 건과 이유, scan 의 "조건 미달" 건수
 - 문의 기록: 더함 N줄·상태 고침 N줄(시·군과 상태), 뺀 거래와 이유
 - 네이버 순위: naver_rank.py 출력의 "네이버 순위(…)" 줄 그대로(키 파일 없음·실패면 그 줄)
