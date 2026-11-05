@@ -1,0 +1,47 @@
+{
+ "rule": "data/ga4_daily.json 최근 30일 quote_submit 또는 call_click 1 이상인 동 페이지(scripts/proof_blocks.py boost)",
+ "pages": [
+  {
+   "slug": "gyeonggi-uijeongbu-jangam",
+   "quote_submit": 2,
+   "call_click": 0,
+   "last": "2026-11-02"
+  },
+  {
+   "slug": "busan-donggu-choryang",
+   "quote_submit": 0,
+   "call_click": 1,
+   "last": "2026-10-30"
+  },
+  {
+   "slug": "gangwon-chuncheon-hyoja",
+   "quote_submit": 1,
+   "call_click": 0,
+   "last": "2026-11-03"
+  },
+  {
+   "slug": "gyeonggi-goyang-ilsanseo-ilsan",
+   "quote_submit": 0,
+   "call_click": 1,
+   "last": "2026-11-02"
+  },
+  {
+   "slug": "jeonnam-wando-geumil",
+   "quote_submit": 0,
+   "call_click": 1,
+   "last": "2026-10-26"
+  },
+  {
+   "slug": "seoul-nowon-sanggye",
+   "quote_submit": 0,
+   "call_click": 1,
+   "last": "2026-11-03"
+  },
+  {
+   "slug": "ulsan-ulju-eonyang",
+   "quote_submit": 0,
+   "call_click": 1,
+   "last": "2026-10-20"
+  }
+ ]
+}

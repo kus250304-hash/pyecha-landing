@@ -212,7 +212,7 @@ def git(*args: str) -> subprocess.CompletedProcess:
 
 
 def push(summary: str) -> str:
-    rels = [OUT.relative_to(ROOT).as_posix(), DOC.relative_to(ROOT).as_posix()]
+    rels = [OUT.relative_to(ROOT).as_posix(), DOC.relative_to(ROOT).as_posix(), "data/dong_boost.json"]  # 반응 온 동 페이지(2026-11-05)
     if not git("status", "--porcelain", "--", *rels).stdout.strip():
         return "바뀐 것 없음(커밋 안 함)"
     git("add", "--", *rels)
@@ -284,6 +284,10 @@ def main() -> None:
     print(f"성공: {day_name(start)}~{day_name(end)} {len(days)}일 · 세션 {t['sessions']} · 폼 전송 {t['quote_submit']}"
           f" · 전화 클릭 {t['call_click']} · 문자 클릭 {t['sms_click']}")
     report(kst_today())
+    # 반응 온 동 페이지 목록(2026-11-05, scripts/proof_blocks.py): 그 동 페이지에 시·군의 최근 진행한 차·후기 칸을 보인다
+    import proof_blocks
+    proof_blocks.write_boost()
+    print(f"반응 온 동 페이지 {len(proof_blocks.compute_boost())}곳(data/dong_boost.json)")
     if args.push:
         print(push(summary))
 

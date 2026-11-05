@@ -31,6 +31,7 @@ import variants as V
 import og_image
 import analytics
 import shorts
+import proof_blocks
 import case_story
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -680,6 +681,8 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
         "CASES_TITLE": esc(c_title),
         "CASES_SUB": esc(c_sub),
         "CASES_HTML": cases_html,
+        # 반응 온 동 페이지(data/dong_boost.json)에만 그 시·군의 최근 진행한 차·손님 후기(2026-11-05)
+        "PROOF_HTML": proof_blocks.dong_html(r),
         "CASE_PHOTOS_HTML": region_photos_html(region_photos(cases, r["sido"], r["sigungu"], r["dong"], picked)),
         "YOUTUBE_URL": esc(cfg["youtube_url"]),
         "BLOG_URL": esc(cfg["blog_url"]),

@@ -41,6 +41,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import variants as V
 import og_image
 import analytics
+import proof_blocks
 from first_screen import hero_top_html, why_block_html
 from build_guide import guide_links_html
 from vehicle_stats import registration_row, with_registration
@@ -342,6 +343,8 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
             "DONG_LIST_HTML": dong_list,
             "OTHER_DONGS_HTML": other_html,
             "NEARBY_CASES_HTML": nearby_html,
+            # 최근 진행한 차·손님 후기(2026-11-05, scripts/proof_blocks.py, 기록 0건이면 빈칸)
+            "PROOF_HTML": proof_blocks.gu_html(sido, sigungu),
             "FAQ_HTML": faq_html,
             "INFO_ROWS": info_rows,
             "CHECKED_ON": esc(g.get("checked_on", "")),
