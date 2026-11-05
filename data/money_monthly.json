@@ -1,0 +1,56 @@
+{
+ "updated": "2026-11-05",
+ "source": "병한-업무위키 거래 기록부(scripts/money_monthly.py), 칸 설명 docs/money-monthly.md",
+ "months": {
+  "2026-07": {
+   "deals": 1,
+   "lost": 0,
+   "lost_reasons": [],
+   "avg_band": "기록 없음",
+   "vs_last_month": "비교 못 함",
+   "money_n": 0
+  },
+  "2026-09": {
+   "deals": 0,
+   "lost": 1,
+   "lost_reasons": [
+    [
+     "서류·명의",
+     1
+    ]
+   ],
+   "avg_band": "기록 없음",
+   "vs_last_month": "비교 못 함",
+   "money_n": 0
+  },
+  "2026-10": {
+   "deals": 15,
+   "lost": 9,
+   "lost_reasons": [
+    [
+     "기타",
+     4
+    ],
+    [
+     "다른 데서 먼저",
+     2
+    ],
+    [
+     "금액",
+     2
+    ]
+   ],
+   "avg_band": "40 이상",
+   "vs_last_month": "비교 못 함",
+   "money_n": 6
+  },
+  "2026-11": {
+   "deals": 2,
+   "lost": 0,
+   "lost_reasons": [],
+   "avg_band": "기록 없음",
+   "vs_last_month": "비교 못 함",
+   "money_n": 0
+  }
+ }
+}
