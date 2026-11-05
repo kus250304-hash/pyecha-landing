@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-04T21:55+09:00",
+ "updated": "2026-11-05T12:27+09:00",
  "days": {
   "2026-10-20": {
    "sessions": {
@@ -1009,6 +1009,73 @@
      "page": "/pages/seoul-nowon-sanggye.html",
      "quote_submit": 0,
      "call_click": 1
+    }
+   ]
+  },
+  "2026-11-04": {
+   "sessions": {
+    "네이버": 19,
+    "구글": 0,
+    "유튜브": 0,
+    "직접": 2,
+    "기타": 4
+   },
+   "events": {
+    "네이버": {
+     "quote_submit": 2,
+     "call_click": 0,
+     "sms_click": 1
+    },
+    "구글": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "유튜브": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "직접": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "기타": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    }
+   },
+   "totals": {
+    "sessions": 25,
+    "quote_submit": 2,
+    "call_click": 0,
+    "sms_click": 1
+   },
+   "sources": [
+    {
+     "source": "m.search.naver.com / referral",
+     "sessions": 16
+    },
+    {
+     "source": "(not set) / (not set)",
+     "sessions": 4
+    },
+    {
+     "source": "naver / organic",
+     "sessions": 3
+    },
+    {
+     "source": "(direct) / (none)",
+     "sessions": 2
+    }
+   ],
+   "pages": [
+    {
+     "page": "/gu/문경시-폐차장.html",
+     "quote_submit": 2,
+     "call_click": 0
     }
    ]
   }
