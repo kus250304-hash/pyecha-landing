@@ -472,13 +472,14 @@ def check_folder(folder: Path, rows: list[dict]) -> tuple[dict | None, str]:
     if not body:
         return None, why
     photos = sorted(p for p in folder.iterdir() if p.suffix.lower() in PHOTO_EXT)
-    if not photos and not body["videos"]:
-        return None, "사진(jpg/png/webp)이나 유튜브 영상(youtube: 줄)이 없습니다"
     if len(photos) > MAX_PHOTOS:
         return None, f"사진이 {len(photos)}장입니다. {MAX_PHOTOS}장까지만 올려 주세요"
     spoken, why = read_spoken(folder)
     if why:
         return None, why
+    # 사진·영상이 없어도 걱정·확인·이유 등 깊이 2 이상이면 깊은 사례로 만든다(사진 칸만 없음, 2026-11-05 병한님 상자 B-1 9번)
+    if not photos and not body["videos"] and len(case_story.depth({"story": body["story"], "spoken": spoken})) < case_story.DEPTH_MIN:
+        return None, "사진(jpg/png/webp)이나 유튜브 영상(youtube: 줄)이 없고, 사연 칸(걱정·확인·고른쪽+이유·걸린 날·끝한줄)도 2개보다 적습니다"
     case_date = memo.get("날짜") or (m.group(0) if (m := re.match(r"\d{4}-\d{2}-\d{2}", folder.name)) else date.today().isoformat())
     if case_date in ("미상", "모름"):  # PC 원본 메모에 날짜가 없던 건: 날짜를 지어내지 않고 표시하지 않는다
         case_date = ""
