@@ -26,7 +26,7 @@
 
 - 2026-11-04, 랜딩 문의(상태: 진행) — https://pyecha119.com/gu/%EB%AC%B8%EA%B2%BD%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (문경시)
 - 2026-11-03, 랜딩 문의(상태: 진행) — https://pyecha119.com/gu/%EA%B0%95%EB%A6%89%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (강릉시)
-- 2026-11-03, 랜딩 문의(상태: 진행) — https://pyecha119.com/gu/%EB%8F%99%ED%95%B4%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (동해시)
+- 2026-11-03, 랜딩 문의(상태: 거래 성사) — https://pyecha119.com/gu/%EB%8F%99%ED%95%B4%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (동해시)
 - 2026-11-03, 랜딩 문의(상태: 진행) — https://pyecha119.com/gu/%ED%8F%89%ED%83%9D%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (평택시)
 - 2026-11-03, 랜딩 문의(상태: 진행) — https://pyecha119.com/gu/%EC%98%81%EC%B2%9C%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (영천시)
 - 2026-11-03, 랜딩 문의(상태: 진행) — https://pyecha119.com/gu/%EA%B3%B5%EC%A3%BC%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (공주시)
