@@ -17,6 +17,8 @@ PC "사례 가져오기" 앞 단계: 구글 드라이브 인박스(G:\\내 드�
   "이름(1).jpg" 처럼 같은 묶음의 원본과 내용이 똑같은 사본은 옮기지 않고 지운다(드라이브 휴지통).
 
 지역 알아내는 순서: ① 영상 마지막 5초의 말 ② 위치 정보(GPS) ③ 등록증 사진(지역만 읽고 파일은 지움).
+  기록부(2026-11-05): 알림 없는 묶음의 촬영 날짜(EXIF, 없으면 올린 날) = 거래 기록부 입고일인 거래가 하나뿐이면 그 거래로 answer.json
+  초안(지역근거 "기록부"), 둘 이상이면 붙이지 않고 plan.json 의 calendar_ask("[기록부 확인] … 사진 어느 차? 1 ○○ / 2 ○○").
   - GPS 가 거래처 폐차장·수출 사무실(data/partner_locations.json) 근처면 무시한다.
   - 거래처 주소가 아직 비어 있으면(2026-10-16) GPS 로만 정한 지역은 쓰지 않고 보류한다.
   - GPS 좌표는 PC 안(미리보기 폴더·보고)에만 두고 저장소에 올리지 않는다.
@@ -53,7 +55,7 @@ STAGING = ROOT / ".cases_staging" / "inbox"
 PARTNERS = ROOT / "data" / "partner_locations.json"
 HOLD_MD = ROOT / "cases" / "input" / "인박스-확인-필요.md"
 NOTICE = "_지역알림.json"  # 병한님 "○○ 올림" 알림(클로드 채팅이 씀)
-REGION_SOURCES = ("말", "등록증", "GPS", "병한님")
+REGION_SOURCES = ("말", "등록증", "GPS", "병한님", "기록부")  # 기록부 = 촬영 날짜가 입고일인 거래가 하나뿐(2026-11-05)
 VIDEO_EXT = {".mp4", ".mov", ".3gp", ".m4v"}
 IMAGE_EXT = {".jpg", ".jpeg", ".png", ".webp", ".heic"}
 AUDIO_EXT = {".mp3", ".m4a", ".wav", ".aac", ".amr"}
@@ -157,6 +159,25 @@ def video_gps(p: Path):
             return float(m.group(1)), float(m.group(2))
     return None
 
+
+
+def shot_day(p: Path) -> str:
+    """촬영 날짜(YYYY-MM-DD): 사진 EXIF DateTimeOriginal → DateTime, 영상 creation_time, 없으면 올린 날(2026-11-05)."""
+    try:
+        if kind_of(p) == "image":
+            from PIL import Image
+            with Image.open(p) as im:
+                ex = im.getexif()
+                v = ex.get_ifd(0x8769).get(0x9003) or ex.get(0x0132)
+            if v and re.match(r"\d{4}:\d{2}:\d{2}", str(v)):
+                return str(v)[:10].replace(":", "-")
+        elif kind_of(p) == "video":
+            v = ffprobe_json(p).get("tags", {}).get("creation_time", "")
+            if re.match(r"\d{4}-\d{2}-\d{2}", v):
+                return v[:10]
+    except Exception:
+        pass
+    return upload_time(p)[:10]
 
 def near_partner(lat: float, lon: float) -> str:
     for pt in load_json(PARTNERS, default=[]) or []:
@@ -284,6 +305,24 @@ def cmd_scan(args) -> None:
                      "연식": car.get("연식", ""), "시동": "", "운행": "", "상황": "", "처리": "",
                      "차번호": "", "압류": "", "등록증": [], "조회": [], "보류": ""}
             (d / "answer.json").write_text(json.dumps(draft, ensure_ascii=False, indent=1), encoding="utf-8")
+        elif files:
+            # 사진 ↔ 입고 날짜(2026-11-05): 촬영 날짜(EXIF, 없으면 올린 날) = 기록부 입고일인 거래가 하나뿐이면 그 거래로 초안,
+            # 둘 이상이면 붙이지 않고 캘린더 [기록부 확인] 부탁(병한님 알림이 있는 차는 위에서 알림이 먼저)
+            days = [shot_day(p) for p in files if kind_of(p) in ("image", "video")] or [upload_time(files[0])[:10]]
+            day = max(set(days), key=days.count)
+            from pc_cases import ledger_by_arrival
+            hits = ledger_by_arrival(day)
+            plan["groups"][gid]["shot_day"] = day
+            if len(hits) == 1 and hits[0]["지역"]:
+                h = hits[0]
+                plan["groups"][gid]["ledger"] = "입고일 맞음(1건)"
+                draft = {"지역": h["지역"], "지역근거": "기록부", "차종": h["차종"], "연식": h["연식"], "시동": "", "운행": "",
+                         "상황": "", "처리": "", "차번호": "", "압류": "", "등록증": [], "조회": [], "보류": ""}
+                (d / "answer.json").write_text(json.dumps(draft, ensure_ascii=False, indent=1), encoding="utf-8")
+            elif len(hits) > 1:
+                ask = " / ".join(f"{i} {h['차종'] or '차종 모름'}({h['지역'] or '지역 모름'})" for i, h in enumerate(hits, 1))
+                plan["groups"][gid]["ledger"] = f"같은 날 입고 {len(hits)}대 — 붙이지 않음"
+                plan["groups"][gid]["calendar_ask"] = f"[기록부 확인] {day} 사진 어느 차? {ask}"
     (STAGING / "plan.json").write_text(json.dumps(plan, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"인박스 파일 {sum(len(g) for g in groups)}개 → {len(groups)}대로 묶음 ({STAGING.relative_to(ROOT)})")
     for gid, g in plan["groups"].items():
@@ -292,6 +331,10 @@ def cmd_scan(args) -> None:
               f"{g['files'][0]['time']}~{g['files'][-1]['time']}"
               + (f" · 똑같은 사본 {dups}개(옮기지 않고 지움)" if (dups := sum(1 for i in g["files"] if i.get("dup"))) else "")
               + (f" — 병한님 알림 '{g['notice'].get('이름', '')}'(answer.json 초안 씀)" if g.get("notice") else ""))
+        if g.get("ledger"):
+            print(f"     기록부(촬영 {g.get('shot_day')}): {g['ledger']}" + (" → answer.json 초안(지역근거 기록부)" if "1건" in g["ledger"] else ""))
+        if g.get("calendar_ask"):
+            print(f"     캘린더 부탁: {g['calendar_ask']}")
         for s in g["speech"]:
             print(f"     말: {s}")
         if g["gps"]:
@@ -354,7 +397,7 @@ def cmd_apply(args) -> None:
     region, why = (None, "")
     if not hold:
         if src_kind not in REGION_SOURCES:
-            hold = "확인 필요: 지역근거가 말·등록증·GPS·병한님 중 하나가 아님"
+            hold = "확인 필요: 지역근거가 말·등록증·GPS·병한님·기록부 중 하나가 아님"
         elif src_kind == "GPS" and not partners_ready():
             hold = "확인 필요: 위치 정보로만 지역을 추정함(거래처 주소 미등록)"
         else:

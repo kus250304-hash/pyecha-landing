@@ -321,6 +321,16 @@ def ledger_dates(memo: dict, region: dict, records: list[dict]) -> tuple[dict, s
     return got, "기록부에서 채움: " + (", ".join(f"{k} {v}" for k, v in got.items()) or "날짜 칸 없음")
 
 
+
+def ledger_by_arrival(day: str, folder: Path = WIKI_DIR) -> list[dict]:
+    """인박스 사진 ↔ 입고 날짜 맞추기(2026-11-05 병한님, 상자 B-1 8번): 거래 기록부에서 입고일이 day(YYYY-MM-DD)인 거래
+    [{지역, 차종, 연식}]. 전화·차번호·이름·금액 칸은 읽지 않는다(ledger_read.FIELDS).
+    inbox_cases.py scan 이 묶음의 촬영 날짜(EXIF, 없으면 올린 날)로 부르고, 하나뿐이면 그 거래로 answer.json 초안을 쓰고
+    둘 이상이면 붙이지 않고 캘린더 [기록부 확인] "사진 어느 차? 1 ○○ / 2 ○○" 를 부탁한다."""
+    import ledger_read as L
+    return [{"지역": r["지역"], "차종": L.car_name(r["차종"]), "연식": L.model_year(r["연식"])}
+            for r in L.records(folder) if r.get("입고일") == day and r.get("거래상태") not in ("종료", "견적중")]
+
 def cmd_ledger(args) -> None:
     """거래 기록부 칸 이름과 우리 칸 매핑을 보여 준다(값은 보이지 않음). 기록부 칸 이름이 바뀌면 LEDGER_FIELD_RES 를 고친다."""
     folder = Path(args.dir) if args.dir else WIKI_DIR
