@@ -1,5 +1,5 @@
 {
- "date": "2026-11-04",
+ "date": "2026-11-05",
  "rival": [
   {
    "slug": "chungnam-asan",
@@ -132,11 +132,20 @@
    ]
   },
   {
+   "slug": "gyeongnam-yangsan",
+   "sido": "경상남도",
+   "sigungu": "양산시",
+   "queries": [
+    "양산폐차"
+   ]
+  },
+  {
    "slug": "jeonnam-mokpo",
    "sido": "전남광주통합특별시",
    "sigungu": "목포시",
    "queries": [
-    "목포폐차"
+    "목포폐차",
+    "목포폐차장"
    ]
   },
   {
@@ -154,6 +163,14 @@
    "queries": [
     "세종폐차",
     "세종폐차장"
+   ]
+  },
+  {
+   "slug": "chungbuk-chungju",
+   "sido": "충청북도",
+   "sigungu": "충주시",
+   "queries": [
+    "충주폐차"
    ]
   },
   {
@@ -388,14 +405,6 @@
    "sigungu": "과천시",
    "queries": [
     "과천폐차"
-   ]
-  },
-  {
-   "slug": "gyeongbuk-mungyeong",
-   "sido": "경상북도",
-   "sigungu": "문경시",
-   "queries": [
-    "문경폐차"
    ]
   },
   {
