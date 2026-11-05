@@ -198,8 +198,11 @@ def sitemap_urls(pattern: str) -> list[str]:
 
 
 def inspect_link(base: str, url: str) -> str:
-    """구글 서치 콘솔 URL 검사 바로가기(2026-10-29 병한님)."""
-    return f"https://search.google.com/search-console/inspect?resource_id={quote(base + '/', safe='')}&id={quote(url, safe='')}"
+    """구글 서치 콘솔 URL 검사 바로가기(2026-10-29 병한님). 속성은 도메인 속성 sc-domain:pyecha119.com(2026-11-05):
+    URL 접두어 속성(https://pyecha119.com/)으로 열면 11/5 아침 병한님 화면에서 "액세스할 수 없음"이 떴고, 색인 확인 API
+    (scripts/gsc_index_check.py)가 실제로 쓰는 속성도 sc-domain 이다. data/gsc_index_status.json 의 site 가 있으면 그것을 따른다."""
+    site = (load_json(GSC_STATUS, default={}) or {}).get("site") or "sc-domain:" + base.split("//", 1)[-1].strip("/")
+    return f"https://search.google.com/search-console/inspect?resource_id={quote(site, safe='')}&id={quote(url, safe='')}"
 
 
 def dong_order(base: str, regions: list[dict], inquiry: str, gu_data: list[dict], indexable: set[str]) -> list[tuple[str, str]]:
