@@ -32,7 +32,7 @@
 - 2026-11-03, 랜딩 문의(상태: 진행) — https://pyecha119.com/gu/%EA%B3%B5%EC%A3%BC%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (공주시)
 - 2026-11-03, 랜딩 문의(상태: 진행) — https://pyecha119.com/gu/%EA%B0%95%EB%A6%89%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (강릉시)
 - 2026-11-03, 랜딩 문의(상태: 진행) — https://pyecha119.com/gu/%ED%95%98%EB%8F%99%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (하동군)
-- 2026-11-03, 랜딩 문의(상태: 진행) — https://pyecha119.com/gu/%EC%A0%84%EC%A3%BC%EC%8B%9C-%EB%8D%95%EC%A7%84%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (전주시 덕진구)
+- 2026-11-03, 랜딩 문의(상태: 거래 성사) — https://pyecha119.com/gu/%EC%A0%84%EC%A3%BC%EC%8B%9C-%EB%8D%95%EC%A7%84%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (전주시 덕진구)
 - 2026-11-02, 랜딩 문의(상태: 진행) — https://pyecha119.com/gu/%EC%97%AC%EC%A3%BC%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (여주시)
 - 2026-11-02, 랜딩 문의(상태: 진행) — https://pyecha119.com/gu/%EC%9D%98%EC%A0%95%EB%B6%80%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (의정부시)
 - 2026-11-02, 랜딩 문의(상태: 진행) — https://pyecha119.com/gu/%EC%B6%98%EC%B2%9C%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (춘천시)
