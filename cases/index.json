@@ -1,5 +1,417 @@
 [
  {
+  "slug": "case-20230523-seoul-junggu-sindang",
+  "date": "2023-05-23",
+  "sido": "서울특별시",
+  "sigungu": "중구",
+  "dong": "신당동",
+  "region_slug": null,
+  "car": "2010년식 뉴오피러스",
+  "title": "신당동 2010년식 뉴오피러스 폐차·수출 비교 상담 사례",
+  "summary": "2010년식 뉴오피러스 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "뉴오피러스"
+   ],
+   [
+    "연식",
+    "2010년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2010년식 뉴오피러스 차량으로, 시동은 걸리는 상태였습니다. 외관 좋은 대형 세단 뉴오피러스",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230523-seoul-junggu-sindang-1.jpg",
+  "photos": [
+   "case-20230523-seoul-junggu-sindang-1.jpg",
+   "case-20230523-seoul-junggu-sindang-2.jpg",
+   "case-20230523-seoul-junggu-sindang-3.jpg",
+   "case-20230523-seoul-junggu-sindang-4.jpg",
+   "case-20230523-seoul-junggu-sindang-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-05-23"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2010년식 뉴오피러스 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-07"
+ },
+ {
+  "slug": "case-20230522-gyeonggi-seongnam-bundang-geumgok",
+  "date": "2023-05-22",
+  "sido": "경기도",
+  "sigungu": "성남시 분당구",
+  "dong": "금곡동",
+  "region_slug": null,
+  "car": "2009년식 싼타페 CM",
+  "title": "금곡동 2009년식 싼타페 CM 폐차·수출 비교 상담 사례",
+  "summary": "2009년식 싼타페 CM 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "싼타페 CM"
+   ],
+   [
+    "연식",
+    "2009년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2009년식 싼타페 CM 차량으로, 시동은 걸리는 상태였습니다. 외관 무난한 은색 싼타페 CM",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230522-gyeonggi-seongnam-bundang-geumgok-1.jpg",
+  "photos": [
+   "case-20230522-gyeonggi-seongnam-bundang-geumgok-1.jpg",
+   "case-20230522-gyeonggi-seongnam-bundang-geumgok-2.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-05-22"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2009년식 싼타페 CM 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-07"
+ },
+ {
+  "slug": "case-20230507-gyeonggi-gwangju-toechon",
+  "date": "2023-05-07",
+  "sido": "경기도",
+  "sigungu": "광주시",
+  "dong": "퇴촌면",
+  "region_slug": null,
+  "car": "2009년식 그랜드 카니발",
+  "title": "퇴촌면 2009년식 그랜드 카니발 폐차·수출 비교 상담 사례",
+  "summary": "2009년식 그랜드 카니발 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "그랜드 카니발"
+   ],
+   [
+    "연식",
+    "2009년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2009년식 그랜드 카니발 차량으로, 시동은 걸리는 상태였습니다. 외관 깨끗한 그랜드 카니발 11인승",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230507-gyeonggi-gwangju-toechon-1.jpg",
+  "photos": [
+   "case-20230507-gyeonggi-gwangju-toechon-1.jpg",
+   "case-20230507-gyeonggi-gwangju-toechon-2.jpg",
+   "case-20230507-gyeonggi-gwangju-toechon-3.jpg",
+   "case-20230507-gyeonggi-gwangju-toechon-4.jpg",
+   "case-20230507-gyeonggi-gwangju-toechon-5.jpg",
+   "case-20230507-gyeonggi-gwangju-toechon-6.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-05-07"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2009년식 그랜드 카니발 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-07"
+ },
+ {
+  "slug": "case-20230504-busan-haeundae-jwa",
+  "date": "2023-05-04",
+  "sido": "부산광역시",
+  "sigungu": "해운대구",
+  "dong": "좌동",
+  "region_slug": null,
+  "car": "1997년식 아반떼",
+  "title": "좌동 1997년식 아반떼 폐차·수출 비교 상담 사례",
+  "summary": "1997년식 아반떼 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "아반떼"
+   ],
+   [
+    "연식",
+    "1997년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "1997년식 아반떼 차량으로, 시동은 걸리는 상태였습니다. 초록 번호판 달린 97년식 1세대 아반떼",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230504-busan-haeundae-jwa-1.jpg",
+  "photos": [
+   "case-20230504-busan-haeundae-jwa-1.jpg",
+   "case-20230504-busan-haeundae-jwa-2.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-05-04"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "1997년식 아반떼 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-07"
+ },
+ {
+  "slug": "case-20230425-jeju-jeju",
+  "date": "2023-04-25",
+  "sido": "제주특별자치도",
+  "sigungu": "제주시",
+  "dong": "",
+  "region_slug": null,
+  "car": "2010년식 푸조 3008",
+  "title": "제주시 2010년식 푸조 3008 폐차·수출 비교 상담 사례",
+  "summary": "2010년식 푸조 3008 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "푸조 3008"
+   ],
+   [
+    "연식",
+    "2010년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2010년식 푸조 3008 차량으로, 시동은 걸리는 상태였습니다. 제주 등록 은색 푸조 3008",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230425-jeju-jeju-1.jpg",
+  "photos": [
+   "case-20230425-jeju-jeju-1.jpg",
+   "case-20230425-jeju-jeju-2.jpg",
+   "case-20230425-jeju-jeju-3.jpg",
+   "case-20230425-jeju-jeju-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-04-25"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2010년식 푸조 3008 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-07"
+ },
+ {
+  "slug": "case-20230411-seoul-seongbuk-jeongneung",
+  "date": "2023-04-11",
+  "sido": "서울특별시",
+  "sigungu": "성북구",
+  "dong": "정릉동",
+  "region_slug": null,
+  "car": "2010년식 SM5",
+  "title": "정릉동 2010년식 SM5 폐차·수출 비교 상담 사례",
+  "summary": "2010년식 SM5 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "SM5"
+   ],
+   [
+    "연식",
+    "2010년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2010년식 SM5 차량으로, 시동은 걸리는 상태였습니다. 지하주차장에 세운 흰색 SM5",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230411-seoul-seongbuk-jeongneung-1.jpg",
+  "photos": [
+   "case-20230411-seoul-seongbuk-jeongneung-1.jpg",
+   "case-20230411-seoul-seongbuk-jeongneung-2.jpg",
+   "case-20230411-seoul-seongbuk-jeongneung-3.jpg",
+   "case-20230411-seoul-seongbuk-jeongneung-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-04-11"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2010년식 SM5 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-07"
+ },
+ {
+  "slug": "case-20230308-gyeonggi-gwangju-taejeon",
+  "date": "2023-03-08",
+  "sido": "경기도",
+  "sigungu": "광주시",
+  "dong": "태전동",
+  "region_slug": null,
+  "car": "2008년식 그랜드 카니발 리무진",
+  "title": "태전동 2008년식 그랜드 카니발 리무진 폐차·수출 비교 상담 사례",
+  "summary": "2008년식 그랜드 카니발 리무진 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "그랜드 카니발 리무진"
+   ],
+   [
+    "연식",
+    "2008년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2008년식 그랜드 카니발 리무진 차량으로, 시동은 걸리는 상태였습니다. 하이루프 얹은 먼지 쌓인 흰 카니발",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230308-gyeonggi-gwangju-taejeon-1.jpg",
+  "photos": [
+   "case-20230308-gyeonggi-gwangju-taejeon-1.jpg",
+   "case-20230308-gyeonggi-gwangju-taejeon-2.jpg",
+   "case-20230308-gyeonggi-gwangju-taejeon-3.jpg",
+   "case-20230308-gyeonggi-gwangju-taejeon-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-03-08"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2008년식 그랜드 카니발 리무진 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-07"
+ },
+ {
+  "slug": "case-20230221-seoul-eunpyeong-eungam",
+  "date": "2023-02-21",
+  "sido": "서울특별시",
+  "sigungu": "은평구",
+  "dong": "응암동",
+  "region_slug": null,
+  "car": "2006년식 테라칸",
+  "title": "응암동 2006년식 테라칸 폐차·수출 비교 상담 사례",
+  "summary": "2006년식 테라칸 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "테라칸"
+   ],
+   [
+    "연식",
+    "2006년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "문의 내용",
+    "외관 양호한 테라칸 SUV"
+   ]
+  ],
+  "situation": "2006년식 테라칸 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230221-seoul-eunpyeong-eungam-1.jpg",
+  "photos": [
+   "case-20230221-seoul-eunpyeong-eungam-1.jpg",
+   "case-20230221-seoul-eunpyeong-eungam-2.jpg",
+   "case-20230221-seoul-eunpyeong-eungam-3.jpg",
+   "case-20230221-seoul-eunpyeong-eungam-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-02-21"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2006년식 테라칸 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-07"
+ },
+ {
+  "slug": "case-20230203-gyeonggi-goyang-ilsandong-janghang",
+  "date": "2023-02-03",
+  "sido": "경기도",
+  "sigungu": "고양시 일산동구",
+  "dong": "장항동",
+  "region_slug": null,
+  "car": "2010년식 카니발",
+  "title": "장항동 2010년식 카니발 폐차·수출 비교 상담 사례",
+  "summary": "2010년식 카니발 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "카니발"
+   ],
+   [
+    "연식",
+    "2010년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "문의 내용",
+    "외관 깨끗한 그랜드 카니발"
+   ]
+  ],
+  "situation": "2010년식 카니발 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230203-gyeonggi-goyang-ilsandong-janghang-1.jpg",
+  "photos": [
+   "case-20230203-gyeonggi-goyang-ilsandong-janghang-1.jpg",
+   "case-20230203-gyeonggi-goyang-ilsandong-janghang-2.jpg",
+   "case-20230203-gyeonggi-goyang-ilsandong-janghang-3.jpg",
+   "case-20230203-gyeonggi-goyang-ilsandong-janghang-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-02-03"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2010년식 카니발 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-07"
+ },
+ {
   "slug": "case-20251105-gyeonggi-ansan-sangnok-il",
   "date": "2025-11-05",
   "sido": "경기도",
