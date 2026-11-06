@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-05T12:27+09:00",
+ "updated": "2026-11-06T12:25+09:00",
  "days": {
   "2026-10-20": {
    "sessions": {
@@ -1075,6 +1075,73 @@
     {
      "page": "/gu/문경시-폐차장.html",
      "quote_submit": 2,
+     "call_click": 0
+    }
+   ]
+  },
+  "2026-11-05": {
+   "sessions": {
+    "네이버": 12,
+    "구글": 0,
+    "유튜브": 0,
+    "직접": 2,
+    "기타": 2
+   },
+   "events": {
+    "네이버": {
+     "quote_submit": 1,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "구글": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "유튜브": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "직접": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "기타": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    }
+   },
+   "totals": {
+    "sessions": 16,
+    "quote_submit": 1,
+    "call_click": 0,
+    "sms_click": 0
+   },
+   "sources": [
+    {
+     "source": "m.search.naver.com / referral",
+     "sessions": 7
+    },
+    {
+     "source": "naver / organic",
+     "sessions": 5
+    },
+    {
+     "source": "(direct) / (none)",
+     "sessions": 2
+    },
+    {
+     "source": "(not set) / (not set)",
+     "sessions": 2
+    }
+   ],
+   "pages": [
+    {
+     "page": "/gu/강진군-폐차장.html",
+     "quote_submit": 1,
      "call_click": 0
     }
    ]
