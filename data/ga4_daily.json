@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-06T12:25+09:00",
+ "updated": "2026-11-07T12:26+09:00",
  "days": {
   "2026-10-20": {
    "sessions": {
@@ -1143,6 +1143,73 @@
      "page": "/gu/강진군-폐차장.html",
      "quote_submit": 1,
      "call_click": 0
+    }
+   ]
+  },
+  "2026-11-06": {
+   "sessions": {
+    "네이버": 7,
+    "구글": 1,
+    "유튜브": 0,
+    "직접": 0,
+    "기타": 1
+   },
+   "events": {
+    "네이버": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 1
+    },
+    "구글": {
+     "quote_submit": 0,
+     "call_click": 1,
+     "sms_click": 0
+    },
+    "유튜브": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "직접": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "기타": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    }
+   },
+   "totals": {
+    "sessions": 9,
+    "quote_submit": 0,
+    "call_click": 1,
+    "sms_click": 1
+   },
+   "sources": [
+    {
+     "source": "m.search.naver.com / referral",
+     "sessions": 4
+    },
+    {
+     "source": "naver / organic",
+     "sessions": 3
+    },
+    {
+     "source": "(not set) / (not set)",
+     "sessions": 1
+    },
+    {
+     "source": "google / organic",
+     "sessions": 1
+    }
+   ],
+   "pages": [
+    {
+     "page": "/pages/jeonnam-mokpo-daeyang.html",
+     "quote_submit": 0,
+     "call_click": 1
     }
    ]
   }
