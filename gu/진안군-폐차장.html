@@ -436,7 +436,7 @@
       <h2 class="sec-title display">진안군 폐차 사례</h2>
       <p class="sec-sub">진안군 사례는 아직 없어 같은 전북 안 가까운 지역 사례를 보여 드립니다</p>
       <div class="cases-wrap"><div></div><div class="cases-side" data-nosnippet><figure class="case-photo"><a href="../cases/case-20261024-jeonbuk-wanju-bongdong.html"><img src="../cases/images/case-20261024-jeonbuk-wanju-bongdong-1.jpg" alt="완주군 봉동읍 2010년식 라세티 프리미어 폐차 사례 사진" width="1152" height="864" loading="lazy"></a><figcaption>완주군 봉동읍 작업 사례</figcaption></figure><figure class="case-photo"><a href="../cases/case-20260817-jeonbuk-jeonju-deokjin.html"><img src="../cases/images/case-20260817-jeonbuk-jeonju-deokjin-1.jpg" alt="전주시 덕진구 2007년식 마티즈 폐차 사례 사진" width="1008" height="756" loading="lazy"></a><figcaption>전주시 덕진구 작업 사례</figcaption></figure></div></div>
-      <h3 class="nearby-title">가까운 지역 사례</h3><ul class="nearby-cases"><li><a href="../cases/case-20261024-jeonbuk-wanju-bongdong.html">봉동읍 2010년식 라세티 프리미어 폐차·수출 비교 상담 사례</a><span>완주군 봉동읍 작업 사례 · 2026-10-24</span></li><li><a href="../cases/case-20260817-jeonbuk-jeonju-deokjin.html">전주시 덕진구 2007년식 마티즈 폐차·수출 비교 상담 사례</a><span>전주시 덕진구 작업 사례 · 2026-08-17</span></li><li><a href="../cases/case-20250828-jeonbuk-gunsan-gaejeong.html">개정면 2009년식 뉴 모닝 폐차·수출 비교 상담 사례</a><span>군산시 개정면 작업 사례 · 2025-08-28</span></li></ul>
+      <h3 class="nearby-title">가까운 지역 사례</h3><ul class="nearby-cases"><li><a href="../cases/case-20261024-jeonbuk-wanju-bongdong.html">봉동읍 2010년식 라세티 프리미어 폐차·수출 비교 상담 사례</a><span>완주군 봉동읍 작업 사례 · 2026-10-24</span></li><li><a href="../cases/case-20250828-jeonbuk-gunsan-gaejeong.html">개정면 2009년식 뉴 모닝 폐차·수출 비교 상담 사례</a><span>군산시 개정면 작업 사례 · 2025-08-28</span></li><li><a href="../cases/case-20260817-jeonbuk-jeonju-deokjin.html">전주시 덕진구 2007년식 마티즈 폐차·수출 비교 상담 사례</a><span>전주시 덕진구 작업 사례 · 2026-08-17</span></li></ul>
       <div class="ext">
         <div class="yt">
           <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -577,6 +577,25 @@
   // 스크립트가 막혀 있어도 폼 자체의 redirect 값으로 같은 곳에 도착한다.
   var LEAD_HOOK = 'https://script.google.com/macros/s/AKfycbzcHwaCT_3FJBaE2CO1Ec9AKzUEUXpi7rFZImu1UAPDl3rKKzFBTZr7mhu8Qtko5D9I/exec';
   var FORM_LOG = '';
+  // 전화·문자 버튼 → 캘린더 알림(2026-11-07 병한님): 폼 없이 바로 전화·문자한 손님도 "언제, 어느 페이지"를 알게.
+  // 같은 lead_hook_url 로 car 칸에 "📞전화버튼"/"💬문자버튼" 표시만 보냄(전화·차번호 없음). 한 페이지에서 종류마다 한 번만. 전화 걸기는 막지 않음.
+  var tapSent = {};
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href^="tel:"], a[href^="sms:"]') : null;
+    if (!a || !/^https:/.test(LEAD_HOOK)) return;
+    var kind = a.getAttribute('href').indexOf('sms:') === 0 ? 'sms' : 'tel';
+    if (tapSent[kind]) return;
+    tapSent[kind] = true;
+    try {
+      var rEl = document.querySelector('input[name="region"]'), sEl = document.querySelector('input[name="subject"]');
+      var where = (rEl && rEl.value) || (sEl && (sEl.getAttribute('data-region') || sEl.value.replace(/^\[견적문의\]\s*/, ''))) || document.title.split('|')[0].trim();
+      var tap = new URLSearchParams({ key: 'pyecha119', region: where, car: kind === 'sms' ? '💬문자버튼 누름' : '📞전화버튼 누름',
+        plate: '', phone: '', form: kind === 'sms' ? '문자 버튼' : '전화 버튼', page: location.pathname, botcheck: '' });
+      if (!(navigator.sendBeacon && navigator.sendBeacon(LEAD_HOOK, tap))) {
+        fetch(LEAD_HOOK, { method: 'POST', mode: 'no-cors', body: tap, keepalive: true }).catch(function () {});
+      }
+    } catch (err) {}
+  }, true);
   document.querySelectorAll('form.quote-form').forEach(function (form) {
     var redirect = form.querySelector('input[name="redirect"]');
     if (!redirect || form.method.toUpperCase() !== 'POST' || !window.fetch) return;

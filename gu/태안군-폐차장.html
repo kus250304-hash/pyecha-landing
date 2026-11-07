@@ -436,7 +436,7 @@
       <h2 class="sec-title display">태안군 폐차 사례</h2>
       <p class="sec-sub">태안군에서 진행한 실제 사례입니다. 지역은 카드마다 표시됩니다</p>
       <div class="cases-wrap"><div><div class="cases" data-nosnippet><a class="case" href="../cases/case-20261028-chungnam-taean-wonbuk.html"><img src="../cases/images/case-20261028-chungnam-taean-wonbuk-1.jpg" alt="태안군 원북면 2010년식 베라크루즈 폐차 사례 사진" loading="lazy" width="800" height="600"><div class="body"><span class="region">태안군 원북면 작업 사례</span><h3>원북면 2010년식 베라크루즈 폐차·수출 비교 상담 사례</h3><p>외진곳도직접챙겨입고</p></div></a></div></div><div class="cases-side" data-nosnippet><figure class="case-photo"><a href="../cases/case-20261028-chungnam-taean-wonbuk.html"><img src="../cases/images/case-20261028-chungnam-taean-wonbuk-2.jpg" alt="태안군 원북면 2010년식 베라크루즈 폐차 사례 사진" width="1020" height="765" loading="lazy"></a><figcaption>태안군 원북면 작업 사례</figcaption></figure><figure class="case-photo"><a href="../cases/case-20261028-chungnam-taean-wonbuk.html"><img src="../cases/images/case-20261028-chungnam-taean-wonbuk-3.jpg" alt="태안군 원북면 2010년식 베라크루즈 폐차 사례 사진" width="1020" height="765" loading="lazy"></a><figcaption>태안군 원북면 작업 사례</figcaption></figure></div></div>
-      <h3 class="nearby-title">가까운 지역 사례</h3><ul class="nearby-cases"><li><a href="../cases/case-20260224-chungnam-dangjin.html">당진시 2012년식 포터2 폐차·수출 비교 상담 사례</a><span>당진시 작업 사례 · 2026-02-24</span></li><li><a href="../cases/case-20251017-chungnam-seosan-onseok.html">온석동 2008년식 포터2 폐차·수출 비교 상담 사례</a><span>서산시 온석동 작업 사례 · 2025-10-17</span></li><li><a href="../cases/case-20250616-chungnam-asan-yonghwa.html">용화동 2006년식 그랜저 TG 폐차·수출 비교 상담 사례</a><span>아산시 용화동 작업 사례 · 2025-06-16</span></li></ul><div id="recent-cars"><h3 style="margin:22px 0 6px;font-size:17px">최근 태안군에서 진행한 차</h3><ul style="list-style:none;margin:0;padding:0"><li style="padding:10px 0;border-bottom:1px solid var(--line)">10월 · 2010년식 베라크루즈</li></ul><p class="note" style="font-size:13px;color:#5E6E70">거래 기록에서 옮겼습니다. 금액·차 번호·손님 정보는 적지 않습니다.</p></div>
+      <h3 class="nearby-title">가까운 지역 사례</h3><ul class="nearby-cases"><li><a href="../cases/case-20241210-chungnam-boryeong-myeongcheon.html">명천동 2006년식 NF 쏘나타 폐차·수출 비교 상담 사례</a><span>보령시 명천동 작업 사례 · 2024-12-10</span></li><li><a href="../cases/case-20261008-chungnam-cheonan-seobuk.html">천안시 서북구 2008년식 기아 모닝 폐차·수출 비교 상담 사례</a><span>천안시 서북구 작업 사례</span></li><li><a href="../cases/case-20260224-chungnam-dangjin.html">당진시 2012년식 포터2 폐차·수출 비교 상담 사례</a><span>당진시 작업 사례 · 2026-02-24</span></li></ul><div id="recent-cars"><h3 style="margin:22px 0 6px;font-size:17px">최근 태안군에서 진행한 차</h3><ul style="list-style:none;margin:0;padding:0"><li style="padding:10px 0;border-bottom:1px solid var(--line)">10월 · 2010년식 베라크루즈</li></ul><p class="note" style="font-size:13px;color:#5E6E70">거래 기록에서 옮겼습니다. 금액·차 번호·손님 정보는 적지 않습니다.</p></div>
       <div class="ext">
         <div class="yt">
           <div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
@@ -576,6 +576,25 @@
   // 스크립트가 막혀 있어도 폼 자체의 redirect 값으로 같은 곳에 도착한다.
   var LEAD_HOOK = 'https://script.google.com/macros/s/AKfycbzcHwaCT_3FJBaE2CO1Ec9AKzUEUXpi7rFZImu1UAPDl3rKKzFBTZr7mhu8Qtko5D9I/exec';
   var FORM_LOG = '';
+  // 전화·문자 버튼 → 캘린더 알림(2026-11-07 병한님): 폼 없이 바로 전화·문자한 손님도 "언제, 어느 페이지"를 알게.
+  // 같은 lead_hook_url 로 car 칸에 "📞전화버튼"/"💬문자버튼" 표시만 보냄(전화·차번호 없음). 한 페이지에서 종류마다 한 번만. 전화 걸기는 막지 않음.
+  var tapSent = {};
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href^="tel:"], a[href^="sms:"]') : null;
+    if (!a || !/^https:/.test(LEAD_HOOK)) return;
+    var kind = a.getAttribute('href').indexOf('sms:') === 0 ? 'sms' : 'tel';
+    if (tapSent[kind]) return;
+    tapSent[kind] = true;
+    try {
+      var rEl = document.querySelector('input[name="region"]'), sEl = document.querySelector('input[name="subject"]');
+      var where = (rEl && rEl.value) || (sEl && (sEl.getAttribute('data-region') || sEl.value.replace(/^\[견적문의\]\s*/, ''))) || document.title.split('|')[0].trim();
+      var tap = new URLSearchParams({ key: 'pyecha119', region: where, car: kind === 'sms' ? '💬문자버튼 누름' : '📞전화버튼 누름',
+        plate: '', phone: '', form: kind === 'sms' ? '문자 버튼' : '전화 버튼', page: location.pathname, botcheck: '' });
+      if (!(navigator.sendBeacon && navigator.sendBeacon(LEAD_HOOK, tap))) {
+        fetch(LEAD_HOOK, { method: 'POST', mode: 'no-cors', body: tap, keepalive: true }).catch(function () {});
+      }
+    } catch (err) {}
+  }, true);
   document.querySelectorAll('form.quote-form').forEach(function (form) {
     var redirect = form.querySelector('input[name="redirect"]');
     if (!redirect || form.method.toUpperCase() !== 'POST' || !window.fetch) return;

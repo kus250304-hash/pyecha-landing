@@ -565,6 +565,25 @@
   // 스크립트가 막혀 있어도 폼 자체의 redirect 값으로 같은 곳에 도착한다.
   var LEAD_HOOK = 'https://script.google.com/macros/s/AKfycbzcHwaCT_3FJBaE2CO1Ec9AKzUEUXpi7rFZImu1UAPDl3rKKzFBTZr7mhu8Qtko5D9I/exec';
   var FORM_LOG = '';
+  // 전화·문자 버튼 → 캘린더 알림(2026-11-07 병한님): 폼 없이 바로 전화·문자한 손님도 "언제, 어느 페이지"를 알게.
+  // 같은 lead_hook_url 로 car 칸에 "📞전화버튼"/"💬문자버튼" 표시만 보냄(전화·차번호 없음). 한 페이지에서 종류마다 한 번만. 전화 걸기는 막지 않음.
+  var tapSent = {};
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href^="tel:"], a[href^="sms:"]') : null;
+    if (!a || !/^https:/.test(LEAD_HOOK)) return;
+    var kind = a.getAttribute('href').indexOf('sms:') === 0 ? 'sms' : 'tel';
+    if (tapSent[kind]) return;
+    tapSent[kind] = true;
+    try {
+      var rEl = document.querySelector('input[name="region"]'), sEl = document.querySelector('input[name="subject"]');
+      var where = (rEl && rEl.value) || (sEl && (sEl.getAttribute('data-region') || sEl.value.replace(/^\[견적문의\]\s*/, ''))) || document.title.split('|')[0].trim();
+      var tap = new URLSearchParams({ key: 'pyecha119', region: where, car: kind === 'sms' ? '💬문자버튼 누름' : '📞전화버튼 누름',
+        plate: '', phone: '', form: kind === 'sms' ? '문자 버튼' : '전화 버튼', page: location.pathname, botcheck: '' });
+      if (!(navigator.sendBeacon && navigator.sendBeacon(LEAD_HOOK, tap))) {
+        fetch(LEAD_HOOK, { method: 'POST', mode: 'no-cors', body: tap, keepalive: true }).catch(function () {});
+      }
+    } catch (err) {}
+  }, true);
   document.querySelectorAll('form.quote-form').forEach(function (form) {
     var redirect = form.querySelector('input[name="redirect"]');
     if (!redirect || form.method.toUpperCase() !== 'POST' || !window.fetch) return;
