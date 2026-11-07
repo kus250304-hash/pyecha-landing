@@ -1,5 +1,421 @@
 [
  {
+  "slug": "case-20230912-gyeonggi-uiwang-naeson-2",
+  "date": "2023-09-12",
+  "sido": "경기도",
+  "sigungu": "의왕시",
+  "dong": "내손동",
+  "region_slug": null,
+  "car": "2011년식 쏘렌토R",
+  "title": "내손동 2011년식 쏘렌토R 폐차·수출 비교 상담 사례",
+  "summary": "2011년식 쏘렌토R 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "쏘렌토R"
+   ],
+   [
+    "연식",
+    "2011년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2011년식 쏘렌토R 차량으로, 시동은 걸리는 상태였습니다. 외관 무난한 은색 쏘렌토R SUV",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230912-gyeonggi-uiwang-naeson-2-1.jpg",
+  "photos": [
+   "case-20230912-gyeonggi-uiwang-naeson-2-1.jpg",
+   "case-20230912-gyeonggi-uiwang-naeson-2-2.jpg",
+   "case-20230912-gyeonggi-uiwang-naeson-2-3.jpg",
+   "case-20230912-gyeonggi-uiwang-naeson-2-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-09-12"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2011년식 쏘렌토R 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-08"
+ },
+ {
+  "slug": "case-20230907-incheon-michuhol-dohwa",
+  "date": "2023-09-07",
+  "sido": "인천광역시",
+  "sigungu": "미추홀구",
+  "dong": "도화동",
+  "region_slug": null,
+  "car": "2007년식 봉고3 1.4톤 탑차",
+  "title": "도화동 2007년식 봉고3 1.4톤 탑차 폐차·수출 비교 상담 사례",
+  "summary": "2007년식 봉고3 1.4톤 탑차 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "봉고3 1.4톤 탑차"
+   ],
+   [
+    "연식",
+    "2007년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2007년식 봉고3 1.4톤 탑차 차량으로, 시동은 걸리는 상태였습니다. 보닛 살짝 찌그러진 봉고3 탑차",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230907-incheon-michuhol-dohwa-1.jpg",
+  "photos": [
+   "case-20230907-incheon-michuhol-dohwa-1.jpg",
+   "case-20230907-incheon-michuhol-dohwa-2.jpg",
+   "case-20230907-incheon-michuhol-dohwa-3.jpg",
+   "case-20230907-incheon-michuhol-dohwa-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-09-07"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2007년식 봉고3 1.4톤 탑차 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-08"
+ },
+ {
+  "slug": "case-20230813-seoul-yeongdeungpo",
+  "date": "2023-08-13",
+  "sido": "서울특별시",
+  "sigungu": "영등포구",
+  "dong": "",
+  "region_slug": null,
+  "car": "2007년식 카니발",
+  "title": "영등포구 2007년식 카니발 폐차·수출 비교 상담 사례",
+  "summary": "2007년식 카니발 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "카니발"
+   ],
+   [
+    "연식",
+    "2007년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2007년식 카니발 차량으로, 시동은 걸리는 상태였습니다. 휠하우스 녹슨 은색 그랜드 카니발",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230813-seoul-yeongdeungpo-1.jpg",
+  "photos": [
+   "case-20230813-seoul-yeongdeungpo-1.jpg",
+   "case-20230813-seoul-yeongdeungpo-2.jpg",
+   "case-20230813-seoul-yeongdeungpo-3.jpg",
+   "case-20230813-seoul-yeongdeungpo-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-08-13"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2007년식 카니발 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-08"
+ },
+ {
+  "slug": "case-20230717-daegu-bukgu-guam",
+  "date": "2023-07-17",
+  "sido": "대구광역시",
+  "sigungu": "북구",
+  "dong": "구암동",
+  "region_slug": null,
+  "car": "2005년식 스타렉스",
+  "title": "구암동 2005년식 스타렉스 폐차·수출 비교 상담 사례",
+  "summary": "2005년식 스타렉스 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "스타렉스"
+   ],
+   [
+    "연식",
+    "2005년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "문의 내용",
+    "외관 무난한 스타렉스 밴"
+   ]
+  ],
+  "situation": "2005년식 스타렉스 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230717-daegu-bukgu-guam-1.jpg",
+  "photos": [
+   "case-20230717-daegu-bukgu-guam-1.jpg",
+   "case-20230717-daegu-bukgu-guam-2.jpg",
+   "case-20230717-daegu-bukgu-guam-3.jpg",
+   "case-20230717-daegu-bukgu-guam-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-07-17"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2005년식 스타렉스 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-08"
+ },
+ {
+  "slug": "case-20230630-incheon-jemulpo-songnim",
+  "date": "2023-06-30",
+  "sido": "인천광역시",
+  "sigungu": "제물포구",
+  "dong": "송림동",
+  "region_slug": null,
+  "car": "2006년식 프라이드",
+  "title": "송림동 2006년식 프라이드 폐차·수출 비교 상담 사례",
+  "summary": "2006년식 프라이드 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "프라이드"
+   ],
+   [
+    "연식",
+    "2006년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2006년식 프라이드 차량으로, 시동은 걸리는 상태였습니다. 외관 깨끗한 영업용 프라이드 세단",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230630-incheon-jemulpo-songnim-1.jpg",
+  "photos": [
+   "case-20230630-incheon-jemulpo-songnim-1.jpg",
+   "case-20230630-incheon-jemulpo-songnim-2.jpg",
+   "case-20230630-incheon-jemulpo-songnim-3.jpg",
+   "case-20230630-incheon-jemulpo-songnim-4.jpg",
+   "case-20230630-incheon-jemulpo-songnim-5.jpg",
+   "case-20230630-incheon-jemulpo-songnim-6.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-06-30"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2006년식 프라이드 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-08"
+ },
+ {
+  "slug": "case-20230628-daejeon-seogu-galma",
+  "date": "2023-06-28",
+  "sido": "대전광역시",
+  "sigungu": "서구",
+  "dong": "갈마동",
+  "region_slug": null,
+  "car": "2009년식 QM5",
+  "title": "갈마동 2009년식 QM5 폐차·수출 비교 상담 사례",
+  "summary": "2009년식 QM5 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "QM5"
+   ],
+   [
+    "연식",
+    "2009년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2009년식 QM5 차량으로, 시동은 걸리는 상태였습니다. 앞범퍼 긁힌 흰색 QM5 SUV",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230628-daejeon-seogu-galma-1.jpg",
+  "photos": [
+   "case-20230628-daejeon-seogu-galma-1.jpg",
+   "case-20230628-daejeon-seogu-galma-2.jpg",
+   "case-20230628-daejeon-seogu-galma-3.jpg",
+   "case-20230628-daejeon-seogu-galma-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-06-28"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2009년식 QM5 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-08"
+ },
+ {
+  "slug": "case-20230624-gyeonggi-gimpo-gamjeong",
+  "date": "2023-06-24",
+  "sido": "경기도",
+  "sigungu": "김포시",
+  "dong": "감정동",
+  "region_slug": null,
+  "car": "2002년식 아반떼",
+  "title": "감정동 2002년식 아반떼 폐차·수출 비교 상담 사례",
+  "summary": "2002년식 아반떼 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "아반떼"
+   ],
+   [
+    "연식",
+    "2002년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2002년식 아반떼 차량으로, 시동은 걸리는 상태였습니다. 초록 번호판 은색 아반떼 XD 해치백",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230624-gyeonggi-gimpo-gamjeong-1.jpg",
+  "photos": [
+   "case-20230624-gyeonggi-gimpo-gamjeong-1.jpg",
+   "case-20230624-gyeonggi-gimpo-gamjeong-2.jpg",
+   "case-20230624-gyeonggi-gimpo-gamjeong-3.jpg",
+   "case-20230624-gyeonggi-gimpo-gamjeong-4.jpg",
+   "case-20230624-gyeonggi-gimpo-gamjeong-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-06-24"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2002년식 아반떼 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-08"
+ },
+ {
+  "slug": "case-20230619-seoul-gwangjin-gwangjang",
+  "date": "2023-06-19",
+  "sido": "서울특별시",
+  "sigungu": "광진구",
+  "dong": "광장동",
+  "region_slug": null,
+  "car": "2014년식 마티즈",
+  "title": "광장동 2014년식 마티즈 폐차·수출 비교 상담 사례",
+  "summary": "2014년식 마티즈 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "마티즈"
+   ],
+   [
+    "연식",
+    "2014년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2014년식 마티즈 차량으로, 시동은 걸리는 상태였습니다. 외관 깨끗한 하늘색 쉐보레 스파크",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230619-seoul-gwangjin-gwangjang-1.jpg",
+  "photos": [
+   "case-20230619-seoul-gwangjin-gwangjang-1.jpg",
+   "case-20230619-seoul-gwangjin-gwangjang-2.jpg",
+   "case-20230619-seoul-gwangjin-gwangjang-3.jpg",
+   "case-20230619-seoul-gwangjin-gwangjang-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-06-19"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2014년식 마티즈 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-08"
+ },
+ {
+  "slug": "case-20230524-gwangju-bukgu-munheung",
+  "date": "2023-05-24",
+  "sido": "전남광주통합특별시",
+  "sigungu": "북구",
+  "dong": "문흥동",
+  "region_slug": null,
+  "car": "2007년식 베라크루즈",
+  "title": "문흥동 2007년식 베라크루즈 폐차·수출 비교 상담 사례",
+  "summary": "2007년식 베라크루즈 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "베라크루즈"
+   ],
+   [
+    "연식",
+    "2007년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "문의 내용",
+    "외관 양호한 대형 SUV"
+   ]
+  ],
+  "situation": "2007년식 베라크루즈 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230524-gwangju-bukgu-munheung-1.jpg",
+  "photos": [
+   "case-20230524-gwangju-bukgu-munheung-1.jpg",
+   "case-20230524-gwangju-bukgu-munheung-2.jpg",
+   "case-20230524-gwangju-bukgu-munheung-3.jpg",
+   "case-20230524-gwangju-bukgu-munheung-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-05-24"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2007년식 베라크루즈 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-08"
+ },
+ {
   "slug": "case-20230523-seoul-junggu-sindang",
   "date": "2023-05-23",
   "sido": "서울특별시",
