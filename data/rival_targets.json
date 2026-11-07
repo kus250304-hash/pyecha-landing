@@ -1,5 +1,5 @@
 {
- "date": "2026-11-06",
+ "date": "2026-11-07",
  "rival": [
   {
    "slug": "chungnam-asan",
@@ -11,37 +11,7 @@
    "slug": "gangwon-gangneung",
    "sido": "강원특별자치도",
    "sigungu": "강릉시",
-   "query": "강릉폐차장"
-  },
-  {
-   "slug": "jeonbuk-jeonju-deokjin",
-   "sido": "전북특별자치도",
-   "sigungu": "전주시 덕진구",
-   "query": "전주폐차"
-  },
-  {
-   "slug": "jeonbuk-jeonju-wansan",
-   "sido": "전북특별자치도",
-   "sigungu": "전주시 완산구",
-   "query": "전주폐차"
-  },
-  {
-   "slug": "jeonbuk-gunsan",
-   "sido": "전북특별자치도",
-   "sigungu": "군산시",
-   "query": "군산폐차"
-  },
-  {
-   "slug": "gyeonggi-pyeongtaek",
-   "sido": "경기도",
-   "sigungu": "평택시",
-   "query": "평택폐차"
-  },
-  {
-   "slug": "gyeongbuk-gyeongsan",
-   "sido": "경상북도",
-   "sigungu": "경산시",
-   "query": "경산폐차장"
+   "query": "강릉폐차"
   },
   {
    "slug": "gyeongbuk-pohang-bukgu",
@@ -56,22 +26,10 @@
    "query": "포항폐차장"
   },
   {
-   "slug": "jeonnam-suncheon",
-   "sido": "전남광주통합특별시",
-   "sigungu": "순천시",
-   "query": "순천폐차장"
-  },
-  {
    "slug": "chungbuk-jecheon",
    "sido": "충청북도",
    "sigungu": "제천시",
    "query": "제천폐차"
-  },
-  {
-   "slug": "gyeongbuk-yeongcheon",
-   "sido": "경상북도",
-   "sigungu": "영천시",
-   "query": "영천폐차"
   },
   {
    "slug": "jeonnam-sinan",
@@ -86,22 +44,10 @@
    "query": "안동폐차장"
   },
   {
-   "slug": "gangwon-sokcho",
-   "sido": "강원특별자치도",
-   "sigungu": "속초시",
-   "query": "속초폐차"
-  },
-  {
    "slug": "gyeongbuk-sangju",
    "sido": "경상북도",
    "sigungu": "상주시",
    "query": "상주폐차장"
-  },
-  {
-   "slug": "gyeongbuk-yeongju",
-   "sido": "경상북도",
-   "sigungu": "영주시",
-   "query": "영주폐차"
   },
   {
    "slug": "gangwon-donghae",
@@ -110,16 +56,70 @@
    "query": "동해폐차"
   },
   {
-   "slug": "chungnam-hongseong",
-   "sido": "충청남도",
-   "sigungu": "홍성군",
-   "query": "홍성폐차"
+   "slug": "gyeonggi-yongin-cheoin",
+   "sido": "경기도",
+   "sigungu": "용인시 처인구",
+   "query": "용인폐차"
   },
   {
-   "slug": "jeonbuk-gimje",
-   "sido": "전북특별자치도",
-   "sigungu": "김제시",
-   "query": "김제폐차"
+   "slug": "chungnam-boryeong",
+   "sido": "충청남도",
+   "sigungu": "보령시",
+   "query": "보령폐차장"
+  },
+  {
+   "slug": "gyeonggi-yongin-giheung",
+   "sido": "경기도",
+   "sigungu": "용인시 기흥구",
+   "query": "용인폐차"
+  },
+  {
+   "slug": "gyeonggi-yongin-suji",
+   "sido": "경기도",
+   "sigungu": "용인시 수지구",
+   "query": "용인폐차"
+  },
+  {
+   "slug": "jeonnam-haenam",
+   "sido": "전남광주통합특별시",
+   "sigungu": "해남군",
+   "query": "해남폐차장"
+  },
+  {
+   "slug": "jeonnam-muan",
+   "sido": "전남광주통합특별시",
+   "sigungu": "무안군",
+   "query": "무안폐차장"
+  },
+  {
+   "slug": "seoul-nowon",
+   "sido": "서울특별시",
+   "sigungu": "노원구",
+   "query": "노원폐차"
+  },
+  {
+   "slug": "gangwon-samcheok",
+   "sido": "강원특별자치도",
+   "sigungu": "삼척시",
+   "query": "삼척폐차장"
+  },
+  {
+   "slug": "seoul-seongdong",
+   "sido": "서울특별시",
+   "sigungu": "성동구",
+   "query": "성동폐차장"
+  },
+  {
+   "slug": "jeonnam-yeongam",
+   "sido": "전남광주통합특별시",
+   "sigungu": "영암군",
+   "query": "영암폐차"
+  },
+  {
+   "slug": "chungnam-gyeryong",
+   "sido": "충청남도",
+   "sigungu": "계룡시",
+   "query": "계룡폐차장"
   }
  ],
  "empty": [
@@ -144,8 +144,15 @@
    "sido": "전남광주통합특별시",
    "sigungu": "목포시",
    "queries": [
-    "목포폐차",
-    "목포폐차장"
+    "목포폐차"
+   ]
+  },
+  {
+   "slug": "gyeongnam-jinju",
+   "sido": "경상남도",
+   "sigungu": "진주시",
+   "queries": [
+    "진주폐차"
    ]
   },
   {
@@ -155,14 +162,6 @@
    "queries": [
     "세종폐차",
     "세종폐차장"
-   ]
-  },
-  {
-   "slug": "chungbuk-chungju",
-   "sido": "충청북도",
-   "sigungu": "충주시",
-   "queries": [
-    "충주폐차"
    ]
   },
   {
@@ -222,6 +221,14 @@
    ]
   },
   {
+   "slug": "gyeongbuk-yeongcheon",
+   "sido": "경상북도",
+   "sigungu": "영천시",
+   "queries": [
+    "영천폐차"
+   ]
+  },
+  {
    "slug": "gyeonggi-namyangju",
    "sido": "경기도",
    "sigungu": "남양주시",
@@ -235,6 +242,14 @@
    "sigungu": "사천시",
    "queries": [
     "사천폐차"
+   ]
+  },
+  {
+   "slug": "gangwon-sokcho",
+   "sido": "강원특별자치도",
+   "sigungu": "속초시",
+   "queries": [
+    "속초폐차"
    ]
   },
   {
@@ -335,19 +350,19 @@
    ]
   },
   {
-   "slug": "jeonnam-muan",
-   "sido": "전남광주통합특별시",
-   "sigungu": "무안군",
-   "queries": [
-    "무안폐차"
-   ]
-  },
-  {
    "slug": "gangwon-hongcheon",
    "sido": "강원특별자치도",
    "sigungu": "홍천군",
    "queries": [
     "홍천폐차"
+   ]
+  },
+  {
+   "slug": "daegu-dalseo",
+   "sido": "대구광역시",
+   "sigungu": "달서구",
+   "queries": [
+    "달서폐차장"
    ]
   },
   {
@@ -384,11 +399,11 @@
    ]
   },
   {
-   "slug": "seoul-gangnam",
-   "sido": "서울특별시",
-   "sigungu": "강남구",
+   "slug": "chungnam-taean",
+   "sido": "충청남도",
+   "sigungu": "태안군",
    "queries": [
-    "강남폐차"
+    "태안폐차"
    ]
   },
   {
@@ -408,11 +423,11 @@
    ]
   },
   {
-   "slug": "jeonnam-damyang",
-   "sido": "전남광주통합특별시",
-   "sigungu": "담양군",
+   "slug": "gyeongbuk-mungyeong",
+   "sido": "경상북도",
+   "sigungu": "문경시",
    "queries": [
-    "담양폐차"
+    "문경폐차"
    ]
   },
   {
@@ -480,6 +495,22 @@
    ]
   },
   {
+   "slug": "seoul-jongno",
+   "sido": "서울특별시",
+   "sigungu": "종로구",
+   "queries": [
+    "종로폐차"
+   ]
+  },
+  {
+   "slug": "jeonbuk-jinan",
+   "sido": "전북특별자치도",
+   "sigungu": "진안군",
+   "queries": [
+    "진안폐차"
+   ]
+  },
+  {
    "slug": "chungbuk-danyang",
    "sido": "충청북도",
    "sigungu": "단양군",
@@ -520,6 +551,14 @@
    ]
   },
   {
+   "slug": "seoul-seongbuk",
+   "sido": "서울특별시",
+   "sigungu": "성북구",
+   "queries": [
+    "성북폐차"
+   ]
+  },
+  {
    "slug": "jeonbuk-muju",
    "sido": "전북특별자치도",
    "sigungu": "무주군",
@@ -541,6 +580,14 @@
    "sigungu": "영종구",
    "queries": [
     "영종폐차"
+   ]
+  },
+  {
+   "slug": "incheon-jemulpo",
+   "sido": "인천광역시",
+   "sigungu": "제물포구",
+   "queries": [
+    "제물포폐차장"
    ]
   },
   {
