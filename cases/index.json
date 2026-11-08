@@ -1,5 +1,461 @@
 [
  {
+  "slug": "case-20240214-gyeonggi-yongin-giheung-jung",
+  "date": "2024-02-14",
+  "sido": "경기도",
+  "sigungu": "용인시 기흥구",
+  "dong": "중동",
+  "region_slug": null,
+  "car": "2004년식 카렌스2",
+  "title": "중동 2004년식 카렌스2 폐차·수출 비교 상담 사례",
+  "summary": "2004년식 카렌스2 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "카렌스2"
+   ],
+   [
+    "연식",
+    "2004년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2004년식 카렌스2 차량으로, 시동은 걸리는 상태였습니다. 주행거리 많은 영업용 카렌스2 LPG",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20240214-gyeonggi-yongin-giheung-jung-1.jpg",
+  "photos": [
+   "case-20240214-gyeonggi-yongin-giheung-jung-1.jpg",
+   "case-20240214-gyeonggi-yongin-giheung-jung-2.jpg",
+   "case-20240214-gyeonggi-yongin-giheung-jung-3.jpg",
+   "case-20240214-gyeonggi-yongin-giheung-jung-4.jpg",
+   "case-20240214-gyeonggi-yongin-giheung-jung-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2024-02-14"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2004년식 카렌스2 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-09"
+ },
+ {
+  "slug": "case-20231212-seoul-eunpyeong-sinsa",
+  "date": "2023-12-12",
+  "sido": "서울특별시",
+  "sigungu": "은평구",
+  "dong": "신사동",
+  "region_slug": null,
+  "car": "2002년식 그랜저XG",
+  "title": "신사동 2002년식 그랜저XG 폐차·수출 비교 상담 사례",
+  "summary": "2002년식 그랜저XG 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "그랜저XG"
+   ],
+   [
+    "연식",
+    "2002년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2002년식 그랜저XG 차량으로, 시동은 걸리는 상태였습니다. 먼지 쌓인 검정 그랜저XG 세단",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20231212-seoul-eunpyeong-sinsa-1.jpg",
+  "photos": [
+   "case-20231212-seoul-eunpyeong-sinsa-1.jpg",
+   "case-20231212-seoul-eunpyeong-sinsa-2.jpg",
+   "case-20231212-seoul-eunpyeong-sinsa-3.jpg",
+   "case-20231212-seoul-eunpyeong-sinsa-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-12-12"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2002년식 그랜저XG 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-09"
+ },
+ {
+  "slug": "case-20231211-gyeonggi-ansan-sangnok-bono",
+  "date": "2023-12-11",
+  "sido": "경기도",
+  "sigungu": "안산시 상록구",
+  "dong": "본오동",
+  "region_slug": null,
+  "car": "2008년식 스포티지",
+  "title": "본오동 2008년식 스포티지 폐차·수출 비교 상담 사례",
+  "summary": "2008년식 스포티지 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "스포티지"
+   ],
+   [
+    "연식",
+    "2008년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "문의 내용",
+    "외관 깨끗한 은색 스포티지"
+   ]
+  ],
+  "situation": "2008년식 스포티지 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20231211-gyeonggi-ansan-sangnok-bono-1.jpg",
+  "photos": [
+   "case-20231211-gyeonggi-ansan-sangnok-bono-1.jpg",
+   "case-20231211-gyeonggi-ansan-sangnok-bono-2.jpg",
+   "case-20231211-gyeonggi-ansan-sangnok-bono-3.jpg",
+   "case-20231211-gyeonggi-ansan-sangnok-bono-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-12-11"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2008년식 스포티지 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-09"
+ },
+ {
+  "slug": "case-20231121-gwangju-bukgu-sinyong",
+  "date": "2023-11-21",
+  "sido": "전남광주통합특별시",
+  "sigungu": "북구",
+  "dong": "신용동",
+  "region_slug": null,
+  "car": "2007년식 아반떼 HD",
+  "title": "신용동 2007년식 아반떼 HD 폐차·수출 비교 상담 사례",
+  "summary": "2007년식 아반떼 HD 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "아반떼 HD"
+   ],
+   [
+    "연식",
+    "2007년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2007년식 아반떼 HD 차량으로, 시동은 걸리는 상태였습니다. 보닛 도장 벗겨지고 얼룩진 아반떼 HD",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20231121-gwangju-bukgu-sinyong-1.jpg",
+  "photos": [
+   "case-20231121-gwangju-bukgu-sinyong-1.jpg",
+   "case-20231121-gwangju-bukgu-sinyong-2.jpg",
+   "case-20231121-gwangju-bukgu-sinyong-3.jpg",
+   "case-20231121-gwangju-bukgu-sinyong-4.jpg",
+   "case-20231121-gwangju-bukgu-sinyong-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-11-21"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2007년식 아반떼 HD 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-09"
+ },
+ {
+  "slug": "case-20231115-gyeonggi-suwon-gwonseon-gwonseon",
+  "date": "2023-11-15",
+  "sido": "경기도",
+  "sigungu": "수원시 권선구",
+  "dong": "권선동",
+  "region_slug": null,
+  "car": "2003년식 아반떼 XD",
+  "title": "권선동 2003년식 아반떼 XD 폐차·수출 비교 상담 사례",
+  "summary": "2003년식 아반떼 XD 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "아반떼 XD"
+   ],
+   [
+    "연식",
+    "2003년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2003년식 아반떼 XD 차량으로, 시동은 걸리는 상태였습니다. 범퍼 긁히고 찍힌 흰색 아반떼 XD",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20231115-gyeonggi-suwon-gwonseon-gwonseon-1.jpg",
+  "photos": [
+   "case-20231115-gyeonggi-suwon-gwonseon-gwonseon-1.jpg",
+   "case-20231115-gyeonggi-suwon-gwonseon-gwonseon-2.jpg",
+   "case-20231115-gyeonggi-suwon-gwonseon-gwonseon-3.jpg",
+   "case-20231115-gyeonggi-suwon-gwonseon-gwonseon-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-11-15"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2003년식 아반떼 XD 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-09"
+ },
+ {
+  "slug": "case-20231107-seoul-gangdong-myeongil",
+  "date": "2023-11-07",
+  "sido": "서울특별시",
+  "sigungu": "강동구",
+  "dong": "명일동",
+  "region_slug": null,
+  "car": "2006년식 렉서스 ES330",
+  "title": "명일동 2006년식 렉서스 ES330 폐차·수출 비교 상담 사례",
+  "summary": "2006년식 렉서스 ES330 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "렉서스 ES330"
+   ],
+   [
+    "연식",
+    "2006년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2006년식 렉서스 ES330 차량으로, 시동은 걸리는 상태였습니다. 범퍼 긁히고 찍힌 수입 세단 ES330",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20231107-seoul-gangdong-myeongil-1.jpg",
+  "photos": [
+   "case-20231107-seoul-gangdong-myeongil-1.jpg",
+   "case-20231107-seoul-gangdong-myeongil-2.jpg",
+   "case-20231107-seoul-gangdong-myeongil-3.jpg",
+   "case-20231107-seoul-gangdong-myeongil-4.jpg",
+   "case-20231107-seoul-gangdong-myeongil-5.jpg",
+   "case-20231107-seoul-gangdong-myeongil-6.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-11-07"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2006년식 렉서스 ES330 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-09"
+ },
+ {
+  "slug": "case-20231020-seoul-eunpyeong-yeokchon",
+  "date": "2023-10-20",
+  "sido": "서울특별시",
+  "sigungu": "은평구",
+  "dong": "역촌동",
+  "region_slug": null,
+  "car": "2010년식 쏘렌토",
+  "title": "역촌동 2010년식 쏘렌토 폐차·수출 비교 상담 사례",
+  "summary": "2010년식 쏘렌토 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "쏘렌토"
+   ],
+   [
+    "연식",
+    "2010년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2010년식 쏘렌토 차량으로, 시동은 걸리는 상태였습니다. 지하주차장에 선 검정 쏘렌토R",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20231020-seoul-eunpyeong-yeokchon-1.jpg",
+  "photos": [
+   "case-20231020-seoul-eunpyeong-yeokchon-1.jpg",
+   "case-20231020-seoul-eunpyeong-yeokchon-2.jpg",
+   "case-20231020-seoul-eunpyeong-yeokchon-3.jpg",
+   "case-20231020-seoul-eunpyeong-yeokchon-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-10-20"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2010년식 쏘렌토 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-09"
+ },
+ {
+  "slug": "case-20231010-seoul-eunpyeong-daejo",
+  "date": "2023-10-10",
+  "sido": "서울특별시",
+  "sigungu": "은평구",
+  "dong": "대조동",
+  "region_slug": null,
+  "car": "2010년식 그랜드 스타렉스",
+  "title": "대조동 2010년식 그랜드 스타렉스 폐차·수출 비교 상담 사례",
+  "summary": "2010년식 그랜드 스타렉스 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "그랜드 스타렉스"
+   ],
+   [
+    "연식",
+    "2010년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2010년식 그랜드 스타렉스 차량으로, 시동은 걸리는 상태였습니다. 뒷펜더 찌그러진 그랜드 스타렉스 밴",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20231010-seoul-eunpyeong-daejo-1.jpg",
+  "photos": [
+   "case-20231010-seoul-eunpyeong-daejo-1.jpg",
+   "case-20231010-seoul-eunpyeong-daejo-2.jpg",
+   "case-20231010-seoul-eunpyeong-daejo-3.jpg",
+   "case-20231010-seoul-eunpyeong-daejo-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-10-10"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2010년식 그랜드 스타렉스 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-09"
+ },
+ {
+  "slug": "case-20230912-seoul-yeongdeungpo",
+  "date": "2023-09-12",
+  "sido": "서울특별시",
+  "sigungu": "영등포구",
+  "dong": "",
+  "region_slug": null,
+  "car": "2008년식 오피러스",
+  "title": "영등포구 2008년식 오피러스 폐차·수출 비교 상담 사례",
+  "summary": "2008년식 오피러스 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "오피러스"
+   ],
+   [
+    "연식",
+    "2008년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2008년식 오피러스 차량으로, 시동은 걸리는 상태였습니다. 외관 깨끗한 검정 뉴 오피러스",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230912-seoul-yeongdeungpo-1.jpg",
+  "photos": [
+   "case-20230912-seoul-yeongdeungpo-1.jpg",
+   "case-20230912-seoul-yeongdeungpo-2.jpg",
+   "case-20230912-seoul-yeongdeungpo-3.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-09-12"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2008년식 오피러스 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-09"
+ },
+ {
+  "slug": "case-20230807-gyeonggi-icheon-jeungpo",
+  "date": "2023-08-07",
+  "sido": "경기도",
+  "sigungu": "이천시",
+  "dong": "증포동",
+  "region_slug": null,
+  "car": "2015년식 포터 더블캡",
+  "title": "증포동 2015년식 포터 더블캡 폐차·수출 비교 상담 사례",
+  "summary": "2015년식 포터 더블캡 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "포터 더블캡"
+   ],
+   [
+    "연식",
+    "2015년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2015년식 포터 더블캡 차량으로, 시동은 걸리는 상태였습니다. 업체 로고 붙은 포터2 더블캡 1톤",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230807-gyeonggi-icheon-jeungpo-1.jpg",
+  "photos": [
+   "case-20230807-gyeonggi-icheon-jeungpo-1.jpg",
+   "case-20230807-gyeonggi-icheon-jeungpo-2.jpg",
+   "case-20230807-gyeonggi-icheon-jeungpo-3.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-08-07"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2015년식 포터 더블캡 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-09"
+ },
+ {
   "slug": "case-20230912-gyeonggi-uiwang-naeson-2",
   "date": "2023-09-12",
   "sido": "경기도",
