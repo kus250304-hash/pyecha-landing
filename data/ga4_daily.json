@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-07T12:26+09:00",
+ "updated": "2026-11-08T12:26+09:00",
  "days": {
   "2026-10-20": {
    "sessions": {
@@ -1208,6 +1208,86 @@
    "pages": [
     {
      "page": "/pages/jeonnam-mokpo-daeyang.html",
+     "quote_submit": 0,
+     "call_click": 1
+    }
+   ]
+  },
+  "2026-11-07": {
+   "sessions": {
+    "네이버": 19,
+    "구글": 0,
+    "유튜브": 0,
+    "직접": 6,
+    "기타": 6
+   },
+   "events": {
+    "네이버": {
+     "quote_submit": 0,
+     "call_click": 2,
+     "sms_click": 0
+    },
+    "구글": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "유튜브": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "직접": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "기타": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    }
+   },
+   "totals": {
+    "sessions": 31,
+    "quote_submit": 0,
+    "call_click": 2,
+    "sms_click": 0
+   },
+   "sources": [
+    {
+     "source": "m.search.naver.com / referral",
+     "sessions": 12
+    },
+    {
+     "source": "(direct) / (none)",
+     "sessions": 6
+    },
+    {
+     "source": "(not set) / (not set)",
+     "sessions": 6
+    },
+    {
+     "source": "naver / organic",
+     "sessions": 4
+    },
+    {
+     "source": "blog.naver.com / referral",
+     "sessions": 2
+    },
+    {
+     "source": "m.blog.naver.com / referral",
+     "sessions": 1
+    }
+   ],
+   "pages": [
+    {
+     "page": "/gu/청주시-흥덕구-폐차장.html",
+     "quote_submit": 0,
+     "call_click": 1
+    },
+    {
+     "page": "/pages/gangwon-cheolwon-cheolwon.html",
      "quote_submit": 0,
      "call_click": 1
     }
