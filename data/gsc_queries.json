@@ -1,12 +1,12 @@
 {
- "updated": "2026-11-02",
+ "updated": "2026-11-08",
  "site": "sc-domain:pyecha119.com",
- "start": "2026-10-05",
- "end": "2026-11-01",
+ "start": "2026-10-11",
+ "end": "2026-11-07",
  "totals": {
-  "clicks": 4,
-  "impressions": 170,
-  "position": 11.0
+  "clicks": 3,
+  "impressions": 168,
+  "position": 11.2
  },
  "dropped_private": 0,
  "rows": [
@@ -32,6 +32,20 @@
    "position": 50
   },
   {
+   "query": "대양동",
+   "page": "https://pyecha119.com/gu/%EB%AA%A9%ED%8F%AC%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html",
+   "clicks": 0,
+   "impressions": 1,
+   "position": 6
+  },
+  {
+   "query": "대양동",
+   "page": "https://pyecha119.com/pages/jeonnam-mokpo-daeyang.html",
+   "clicks": 1,
+   "impressions": 1,
+   "position": 2
+  },
+  {
    "query": "마산폐차장",
    "page": "https://pyecha119.com/gu/%EC%B0%BD%EC%9B%90%EC%8B%9C-%EB%A7%88%EC%82%B0%ED%9A%8C%EC%9B%90%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html",
    "clicks": 0,
@@ -51,13 +65,6 @@
    "clicks": 0,
    "impressions": 1,
    "position": 82
-  },
-  {
-   "query": "폐차 보상금",
-   "page": "https://pyecha119.com/pages/gyeonggi-suwon-jangan-yeonghwa.html",
-   "clicks": 0,
-   "impressions": 1,
-   "position": 10
   }
  ]
 }
