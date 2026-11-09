@@ -1,5 +1,5 @@
 {
- "date": "2026-11-08",
+ "date": "2026-11-09",
  "rival": [
   {
    "slug": "chungnam-asan",
@@ -11,7 +11,7 @@
    "slug": "gangwon-gangneung",
    "sido": "강원특별자치도",
    "sigungu": "강릉시",
-   "query": "강릉폐차장"
+   "query": "강릉폐차"
   },
   {
    "slug": "jeonbuk-jeonju-deokjin",
@@ -24,12 +24,6 @@
    "sido": "전북특별자치도",
    "sigungu": "전주시 완산구",
    "query": "전주폐차"
-  },
-  {
-   "slug": "jeonbuk-gunsan",
-   "sido": "전북특별자치도",
-   "sigungu": "군산시",
-   "query": "군산폐차"
   },
   {
    "slug": "gyeonggi-pyeongtaek",
@@ -116,10 +110,16 @@
    "query": "동해폐차"
   },
   {
-   "slug": "jeonnam-naju",
-   "sido": "전남광주통합특별시",
-   "sigungu": "나주시",
-   "query": "나주폐차"
+   "slug": "jeonbuk-gimje",
+   "sido": "전북특별자치도",
+   "sigungu": "김제시",
+   "query": "김제폐차"
+  },
+  {
+   "slug": "jeonbuk-jeongeup",
+   "sido": "전북특별자치도",
+   "sigungu": "정읍시",
+   "query": "정읍폐차"
   }
  ],
  "empty": [
@@ -144,8 +144,7 @@
    "sido": "전남광주통합특별시",
    "sigungu": "목포시",
    "queries": [
-    "목포폐차",
-    "목포폐차장"
+    "목포폐차"
    ]
   },
   {
@@ -247,6 +246,14 @@
    ]
   },
   {
+   "slug": "jeonnam-naju",
+   "sido": "전남광주통합특별시",
+   "sigungu": "나주시",
+   "queries": [
+    "나주폐차"
+   ]
+  },
+  {
    "slug": "gangwon-taebaek",
    "sido": "강원특별자치도",
    "sigungu": "태백시",
@@ -336,14 +343,6 @@
    ]
   },
   {
-   "slug": "chungbuk-okcheon",
-   "sido": "충청북도",
-   "sigungu": "옥천군",
-   "queries": [
-    "옥천폐차"
-   ]
-  },
-  {
    "slug": "daegu-donggu",
    "sido": "대구광역시",
    "sigungu": "동구",
@@ -381,6 +380,14 @@
    "sigungu": "문경시",
    "queries": [
     "문경폐차"
+   ]
+  },
+  {
+   "slug": "jeonnam-damyang",
+   "sido": "전남광주통합특별시",
+   "sigungu": "담양군",
+   "queries": [
+    "담양폐차"
    ]
   },
   {
@@ -448,11 +455,19 @@
    ]
   },
   {
-   "slug": "jeonbuk-jinan",
-   "sido": "전북특별자치도",
-   "sigungu": "진안군",
+   "slug": "seoul-jongno",
+   "sido": "서울특별시",
+   "sigungu": "종로구",
    "queries": [
-    "진안폐차"
+    "종로폐차"
+   ]
+  },
+  {
+   "slug": "gyeongbuk-yeongdeok",
+   "sido": "경상북도",
+   "sigungu": "영덕군",
+   "queries": [
+    "영덕폐차"
    ]
   },
   {
@@ -493,6 +508,14 @@
    "sigungu": "하동군",
    "queries": [
     "하동폐차"
+   ]
+  },
+  {
+   "slug": "seoul-seongbuk",
+   "sido": "서울특별시",
+   "sigungu": "성북구",
+   "queries": [
+    "성북폐차"
    ]
   },
   {
