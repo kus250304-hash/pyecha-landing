@@ -157,14 +157,14 @@
     "value": "말소등록은 차가 등록된 시·군의 자동차 등록 부서에서 처리합니다. 예를 들어 목포시는 목포시 자동차등록사무소가, 여수시는 여수시청 차량등록 부서가 말소등록을 맡습니다.",
     "source": "목포시 자동차등록사무소 누리집(말소등록 안내)",
     "url": "https://www.mokpo.go.kr/car/registration/erasure",
-    "grade": "summary"
+    "grade": "opened"
    },
    {
     "label": "말소등록 관청 예(여수)",
     "value": "여수시는 시청 차량등록·관리 부서에서 이전·말소 등 자동차 등록 업무를 안내합니다.",
     "source": "여수시청 누리집(차량등록·관리)",
     "url": "https://www.yeosu.go.kr/www/sphere/traffic/office",
-    "grade": "summary"
+    "grade": "opened"
    },
    {
     "label": "노후차 조기폐차 지원",
@@ -204,14 +204,14 @@
     "value": "말소등록은 차가 등록된 시·군의 차량등록사업소나 시·군청 자동차 등록 부서에서 처리합니다. 예를 들어 춘천시 차량등록사업소는 등록말소 업무를 안내합니다.",
     "source": "춘천시 차량등록사업소 누리집(등록말소)",
     "url": "https://www.chuncheon.go.kr/vehicle/vehicle-registration/cancellation/",
-    "grade": "summary"
+    "grade": "opened"
    },
    {
     "label": "말소등록 관청 예(원주)",
     "value": "원주시는 원주시 차량등록사업소가 신규·이전·말소 등 자동차 등록 업무를 맡습니다.",
     "source": "원주시 차량등록사업소 누리집",
     "url": "https://www.wonju.go.kr/vehicle/index.do",
-    "grade": "summary"
+    "grade": "opened"
    },
    {
     "label": "노후차 조기폐차 지원",
@@ -303,14 +303,14 @@
     "value": "경북에서는 차가 등록된 시·군의 차량등록사업소나 시청·군청 차량등록 부서가 말소등록을 처리합니다. 예를 들어 구미시 차량등록사업소는 수출·폐차 같은 말소 사유가 생기면 기한 안에 말소등록을 신청하도록 안내합니다.",
     "source": "구미시 차량등록사업소 말소등록 안내",
     "url": "https://www.gumi.go.kr/car/contents.do?mid=0201040000",
-    "grade": "summary"
+    "grade": "opened"
    },
    {
     "label": "말소등록 서류",
     "value": "구미시 안내 기준 기본 서류는 자동차말소등록신청서(사업소 비치)·자동차등록증·폐차인수증명서·신분증이며, 소유자가 오지 않으면 소유자 신분증 사본과 대리인 신분증이 필요합니다. 신청 기한을 넘기면 과태료가 붙습니다.",
     "source": "구미시 차량등록사업소 말소등록 안내",
     "url": "https://www.gumi.go.kr/car/contents.do?mid=0201040000",
-    "grade": "summary"
+    "grade": "opened"
    },
    {
     "label": "노후차 조기폐차 지원",

@@ -1,5 +1,473 @@
 [
  {
+  "slug": "case-20240624-gyeonggi-gapyeong-cheongpyeong",
+  "date": "2024-06-24",
+  "sido": "경기도",
+  "sigungu": "가평군",
+  "dong": "청평면",
+  "region_slug": null,
+  "car": "2011년식 액티언",
+  "title": "청평면 2011년식 액티언 폐차·수출 비교 상담 사례",
+  "summary": "2011년식 액티언 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "액티언"
+   ],
+   [
+    "연식",
+    "2011년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "문의 내용",
+    "탑 얹은 은색 액티언 스포츠"
+   ]
+  ],
+  "situation": "2011년식 액티언 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20240624-gyeonggi-gapyeong-cheongpyeong-1.jpg",
+  "photos": [
+   "case-20240624-gyeonggi-gapyeong-cheongpyeong-1.jpg",
+   "case-20240624-gyeonggi-gapyeong-cheongpyeong-2.jpg",
+   "case-20240624-gyeonggi-gapyeong-cheongpyeong-3.jpg",
+   "case-20240624-gyeonggi-gapyeong-cheongpyeong-4.jpg",
+   "case-20240624-gyeonggi-gapyeong-cheongpyeong-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2024-06-24"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2011년식 액티언 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-10"
+ },
+ {
+  "slug": "case-20240429-incheon-gyeyang-dongyang",
+  "date": "2024-04-29",
+  "sido": "인천광역시",
+  "sigungu": "계양구",
+  "dong": "동양동",
+  "region_slug": null,
+  "car": "2009년식 오피러스",
+  "title": "동양동 2009년식 오피러스 폐차·수출 비교 상담 사례",
+  "summary": "2009년식 오피러스 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "오피러스"
+   ],
+   [
+    "연식",
+    "2009년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2009년식 오피러스 차량으로, 시동은 걸리는 상태였습니다. 휠 튜닝된 검정 오피러스 대형 세단",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20240429-incheon-gyeyang-dongyang-1.jpg",
+  "photos": [
+   "case-20240429-incheon-gyeyang-dongyang-1.jpg",
+   "case-20240429-incheon-gyeyang-dongyang-2.jpg",
+   "case-20240429-incheon-gyeyang-dongyang-3.jpg",
+   "case-20240429-incheon-gyeyang-dongyang-4.jpg",
+   "case-20240429-incheon-gyeyang-dongyang-5.jpg",
+   "case-20240429-incheon-gyeyang-dongyang-6.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2024-04-29"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2009년식 오피러스 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-10"
+ },
+ {
+  "slug": "case-20240427-seoul-gangdong-myeongil",
+  "date": "2024-04-27",
+  "sido": "서울특별시",
+  "sigungu": "강동구",
+  "dong": "명일동",
+  "region_slug": null,
+  "car": "2002년식 SM5",
+  "title": "명일동 2002년식 SM5 폐차·수출 비교 상담 사례",
+  "summary": "2002년식 SM5 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "SM5"
+   ],
+   [
+    "연식",
+    "2002년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2002년식 SM5 차량으로, 시동은 걸리는 상태였습니다. 상태 깔끔한 흰색 1세대 SM5 세단",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20240427-seoul-gangdong-myeongil-1.jpg",
+  "photos": [
+   "case-20240427-seoul-gangdong-myeongil-1.jpg",
+   "case-20240427-seoul-gangdong-myeongil-2.jpg",
+   "case-20240427-seoul-gangdong-myeongil-3.jpg",
+   "case-20240427-seoul-gangdong-myeongil-4.jpg",
+   "case-20240427-seoul-gangdong-myeongil-5.jpg",
+   "case-20240427-seoul-gangdong-myeongil-6.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2024-04-27"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2002년식 SM5 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-10"
+ },
+ {
+  "slug": "case-20240306-seoul-gangbuk",
+  "date": "2024-03-06",
+  "sido": "서울특별시",
+  "sigungu": "강북구",
+  "dong": "",
+  "region_slug": null,
+  "car": "2007년식 프라이드",
+  "title": "강북구 2007년식 프라이드 폐차·수출 비교 상담 사례",
+  "summary": "2007년식 프라이드 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "프라이드"
+   ],
+   [
+    "연식",
+    "2007년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2007년식 프라이드 차량으로, 시동은 걸리는 상태였습니다. 옆면 찍힘 여러 곳 있는 소형 해치백",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20240306-seoul-gangbuk-1.jpg",
+  "photos": [
+   "case-20240306-seoul-gangbuk-1.jpg",
+   "case-20240306-seoul-gangbuk-2.jpg",
+   "case-20240306-seoul-gangbuk-3.jpg",
+   "case-20240306-seoul-gangbuk-4.jpg",
+   "case-20240306-seoul-gangbuk-5.jpg",
+   "case-20240306-seoul-gangbuk-6.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2024-03-06"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2007년식 프라이드 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-10"
+ },
+ {
+  "slug": "case-20240305-gwangju-namgu-wolsan",
+  "date": "2024-03-05",
+  "sido": "전남광주통합특별시",
+  "sigungu": "남구",
+  "dong": "월산동",
+  "region_slug": null,
+  "car": "2005년식 오피러스",
+  "title": "월산동 2005년식 오피러스 폐차·수출 비교 상담 사례",
+  "summary": "2005년식 오피러스 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "오피러스"
+   ],
+   [
+    "연식",
+    "2005년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2005년식 오피러스 차량으로, 시동은 걸리는 상태였습니다. 뒷문 도장 벗겨진 검정 오피러스",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20240305-gwangju-namgu-wolsan-1.jpg",
+  "photos": [
+   "case-20240305-gwangju-namgu-wolsan-1.jpg",
+   "case-20240305-gwangju-namgu-wolsan-2.jpg",
+   "case-20240305-gwangju-namgu-wolsan-3.jpg",
+   "case-20240305-gwangju-namgu-wolsan-4.jpg",
+   "case-20240305-gwangju-namgu-wolsan-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2024-03-05"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2005년식 오피러스 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-10"
+ },
+ {
+  "slug": "case-20240208-gangwon-pyeongchang-jinbu",
+  "date": "2024-02-08",
+  "sido": "강원특별자치도",
+  "sigungu": "평창군",
+  "dong": "진부면",
+  "region_slug": null,
+  "car": "2008년식 i30",
+  "title": "진부면 2008년식 i30 폐차·수출 비교 상담 사례",
+  "summary": "2008년식 i30 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "i30"
+   ],
+   [
+    "연식",
+    "2008년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2008년식 i30 차량으로, 시동은 걸리는 상태였습니다. 주행 22만km대 해치백, 외관 양호",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20240208-gangwon-pyeongchang-jinbu-1.jpg",
+  "photos": [
+   "case-20240208-gangwon-pyeongchang-jinbu-1.jpg",
+   "case-20240208-gangwon-pyeongchang-jinbu-2.jpg",
+   "case-20240208-gangwon-pyeongchang-jinbu-3.jpg",
+   "case-20240208-gangwon-pyeongchang-jinbu-4.jpg",
+   "case-20240208-gangwon-pyeongchang-jinbu-5.jpg",
+   "case-20240208-gangwon-pyeongchang-jinbu-6.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2024-02-08"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2008년식 i30 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-10"
+ },
+ {
+  "slug": "case-20240207-gwangju-gwangsan-wolgye",
+  "date": "2024-02-07",
+  "sido": "전남광주통합특별시",
+  "sigungu": "광산구",
+  "dong": "월계동",
+  "region_slug": null,
+  "car": "2014년식 아반떼",
+  "title": "월계동 2014년식 아반떼 폐차·수출 비교 상담 사례",
+  "summary": "2014년식 아반떼 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "아반떼"
+   ],
+   [
+    "연식",
+    "2014년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2014년식 아반떼 차량으로, 시동은 걸리는 상태였습니다. 외관 깨끗한 은색 아반떼 MD",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20240207-gwangju-gwangsan-wolgye-1.jpg",
+  "photos": [
+   "case-20240207-gwangju-gwangsan-wolgye-1.jpg",
+   "case-20240207-gwangju-gwangsan-wolgye-2.jpg",
+   "case-20240207-gwangju-gwangsan-wolgye-3.jpg",
+   "case-20240207-gwangju-gwangsan-wolgye-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2024-02-07"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2014년식 아반떼 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-10"
+ },
+ {
+  "slug": "case-20240129-gyeonggi-suwon-jangan",
+  "date": "2024-01-29",
+  "sido": "경기도",
+  "sigungu": "수원시 장안구",
+  "dong": "",
+  "region_slug": null,
+  "car": "2004년식 쏘렌토",
+  "title": "수원시 장안구 2004년식 쏘렌토 폐차·수출 비교 상담 사례",
+  "summary": "2004년식 쏘렌토 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "쏘렌토"
+   ],
+   [
+    "연식",
+    "2004년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2004년식 쏘렌토 차량으로, 시동은 걸리는 상태였습니다. 영업용 번호판 단 1세대 쏘렌토",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20240129-gyeonggi-suwon-jangan-1.jpg",
+  "photos": [
+   "case-20240129-gyeonggi-suwon-jangan-1.jpg",
+   "case-20240129-gyeonggi-suwon-jangan-2.jpg",
+   "case-20240129-gyeonggi-suwon-jangan-3.jpg",
+   "case-20240129-gyeonggi-suwon-jangan-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2024-01-29"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2004년식 쏘렌토 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-10"
+ },
+ {
+  "slug": "case-20231228-gyeonggi-gapyeong-jojong",
+  "date": "2023-12-28",
+  "sido": "경기도",
+  "sigungu": "가평군",
+  "dong": "조종면",
+  "region_slug": null,
+  "car": "2007년식 그랜저 TG",
+  "title": "조종면 2007년식 그랜저 TG 폐차·수출 비교 상담 사례",
+  "summary": "2007년식 그랜저 TG 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "그랜저 TG"
+   ],
+   [
+    "연식",
+    "2007년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2007년식 그랜저 TG 차량으로, 시동은 걸리는 상태였습니다. 먼지 쌓이고 뒷휀다 녹슨 그랜저 TG",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20231228-gyeonggi-gapyeong-jojong-1.jpg",
+  "photos": [
+   "case-20231228-gyeonggi-gapyeong-jojong-1.jpg",
+   "case-20231228-gyeonggi-gapyeong-jojong-2.jpg",
+   "case-20231228-gyeonggi-gapyeong-jojong-3.jpg",
+   "case-20231228-gyeonggi-gapyeong-jojong-4.jpg",
+   "case-20231228-gyeonggi-gapyeong-jojong-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-12-28"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2007년식 그랜저 TG 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-10"
+ },
+ {
+  "slug": "case-20231220-gangwon-wonju-dangu",
+  "date": "2023-12-20",
+  "sido": "강원특별자치도",
+  "sigungu": "원주시",
+  "dong": "단구동",
+  "region_slug": null,
+  "car": "2006년식 쎄라토",
+  "title": "단구동 2006년식 쎄라토 폐차·수출 비교 상담 사례",
+  "summary": "2006년식 쎄라토 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "쎄라토"
+   ],
+   [
+    "연식",
+    "2006년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "문의 내용",
+    "눈 쌓인 주차장의 쎄라토"
+   ]
+  ],
+  "situation": "2006년식 쎄라토 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20231220-gangwon-wonju-dangu-1.jpg",
+  "photos": [
+   "case-20231220-gangwon-wonju-dangu-1.jpg",
+   "case-20231220-gangwon-wonju-dangu-2.jpg",
+   "case-20231220-gangwon-wonju-dangu-3.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-12-20"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2006년식 쎄라토 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-10"
+ },
+ {
   "slug": "case-20240214-gyeonggi-yongin-giheung-jung",
   "date": "2024-02-14",
   "sido": "경기도",
