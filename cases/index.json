@@ -1,5 +1,482 @@
 [
  {
+  "slug": "case-20250611-jeju-jeju-yeon",
+  "date": "2025-06-11",
+  "sido": "제주특별자치도",
+  "sigungu": "제주시",
+  "dong": "연동",
+  "region_slug": null,
+  "car": "2007년식 SM5 뉴임프레션",
+  "title": "연동 2007년식 SM5 뉴임프레션 폐차·수출 비교 상담 사례",
+  "summary": "2007년식 SM5 뉴임프레션 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "SM5 뉴임프레션"
+   ],
+   [
+    "연식",
+    "2007년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2007년식 SM5 뉴임프레션 차량으로, 시동은 걸리는 상태였습니다. 옆면 찍히고 긁힌 흰색 SM5",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20250611-jeju-jeju-yeon-1.jpg",
+  "photos": [
+   "case-20250611-jeju-jeju-yeon-1.jpg",
+   "case-20250611-jeju-jeju-yeon-2.jpg",
+   "case-20250611-jeju-jeju-yeon-3.jpg",
+   "case-20250611-jeju-jeju-yeon-4.jpg",
+   "case-20250611-jeju-jeju-yeon-5.jpg",
+   "case-20250611-jeju-jeju-yeon-6.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2025-06-11"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2007년식 SM5 뉴임프레션 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-11"
+ },
+ {
+  "slug": "case-20250404-gwangju-gwangsan-ok",
+  "date": "2025-04-04",
+  "sido": "전남광주통합특별시",
+  "sigungu": "광산구",
+  "dong": "옥동",
+  "region_slug": null,
+  "car": "2002년식 현대 11.5톤 카고트럭",
+  "title": "옥동 2002년식 현대 11.5톤 카고트럭 폐차·수출 비교 상담 사례",
+  "summary": "2002년식 현대 11.5톤 카고트럭 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "현대 11.5톤 카고트럭"
+   ],
+   [
+    "연식",
+    "2002년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "문의 내용",
+    "지게차 실린 대형 카고트럭"
+   ]
+  ],
+  "situation": "2002년식 현대 11.5톤 카고트럭 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20250404-gwangju-gwangsan-ok-1.jpg",
+  "photos": [
+   "case-20250404-gwangju-gwangsan-ok-1.jpg",
+   "case-20250404-gwangju-gwangsan-ok-2.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2025-04-04"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2002년식 현대 11.5톤 카고트럭 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-11"
+ },
+ {
+  "slug": "case-20250327-gyeonggi-gunpo-geumjeong",
+  "date": "2025-03-27",
+  "sido": "경기도",
+  "sigungu": "군포시",
+  "dong": "금정동",
+  "region_slug": null,
+  "car": "2007년식 로체",
+  "title": "금정동 2007년식 로체 폐차·수출 비교 상담 사례",
+  "summary": "2007년식 로체 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "로체"
+   ],
+   [
+    "연식",
+    "2007년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "문의 내용",
+    "외관 무난한 흰색 로체"
+   ]
+  ],
+  "situation": "2007년식 로체 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20250327-gyeonggi-gunpo-geumjeong-1.jpg",
+  "photos": [
+   "case-20250327-gyeonggi-gunpo-geumjeong-1.jpg",
+   "case-20250327-gyeonggi-gunpo-geumjeong-2.jpg",
+   "case-20250327-gyeonggi-gunpo-geumjeong-3.jpg",
+   "case-20250327-gyeonggi-gunpo-geumjeong-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2025-03-27"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2007년식 로체 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-11"
+ },
+ {
+  "slug": "case-20250318-gwangju-gwangsan-wolgok",
+  "date": "2025-03-18",
+  "sido": "전남광주통합특별시",
+  "sigungu": "광산구",
+  "dong": "월곡동",
+  "region_slug": null,
+  "car": "2012년식 아반떼 MD",
+  "title": "월곡동 2012년식 아반떼 MD 폐차·수출 비교 상담 사례",
+  "summary": "2012년식 아반떼 MD 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "아반떼 MD"
+   ],
+   [
+    "연식",
+    "2012년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2012년식 아반떼 MD 차량으로, 시동은 걸리는 상태였습니다. 외관 무난한 준중형 세단, 23만km대",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20250318-gwangju-gwangsan-wolgok-1.jpg",
+  "photos": [
+   "case-20250318-gwangju-gwangsan-wolgok-1.jpg",
+   "case-20250318-gwangju-gwangsan-wolgok-2.jpg",
+   "case-20250318-gwangju-gwangsan-wolgok-3.jpg",
+   "case-20250318-gwangju-gwangsan-wolgok-4.jpg",
+   "case-20250318-gwangju-gwangsan-wolgok-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2025-03-18"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2012년식 아반떼 MD 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-11"
+ },
+ {
+  "slug": "case-20250221-gyeonggi-gimpo",
+  "date": "2025-02-21",
+  "sido": "경기도",
+  "sigungu": "김포시",
+  "dong": "",
+  "region_slug": null,
+  "car": "2009년식 스포티지",
+  "title": "김포시 2009년식 스포티지 폐차·수출 비교 상담 사례",
+  "summary": "2009년식 스포티지 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "스포티지"
+   ],
+   [
+    "연식",
+    "2009년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "문의 내용",
+    "외관 깨끗한 검정 스포티지"
+   ]
+  ],
+  "situation": "2009년식 스포티지 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20250221-gyeonggi-gimpo-1.jpg",
+  "photos": [
+   "case-20250221-gyeonggi-gimpo-1.jpg",
+   "case-20250221-gyeonggi-gimpo-2.jpg",
+   "case-20250221-gyeonggi-gimpo-3.jpg",
+   "case-20250221-gyeonggi-gimpo-4.jpg",
+   "case-20250221-gyeonggi-gimpo-5.jpg",
+   "case-20250221-gyeonggi-gimpo-6.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2025-02-21"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2009년식 스포티지 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-11"
+ },
+ {
+  "slug": "case-20241202-seoul-dongjak-heukseok",
+  "date": "2024-12-02",
+  "sido": "서울특별시",
+  "sigungu": "동작구",
+  "dong": "흑석동",
+  "region_slug": null,
+  "car": "2002년식 SM3",
+  "title": "흑석동 2002년식 SM3 폐차·수출 비교 상담 사례",
+  "summary": "2002년식 SM3 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "SM3"
+   ],
+   [
+    "연식",
+    "2002년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2002년식 SM3 차량으로, 시동은 걸리는 상태였습니다. 휠아치 녹 슨 구형 SM3 영업용",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20241202-seoul-dongjak-heukseok-1.jpg",
+  "photos": [
+   "case-20241202-seoul-dongjak-heukseok-1.jpg",
+   "case-20241202-seoul-dongjak-heukseok-2.jpg",
+   "case-20241202-seoul-dongjak-heukseok-3.jpg",
+   "case-20241202-seoul-dongjak-heukseok-4.jpg",
+   "case-20241202-seoul-dongjak-heukseok-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2024-12-02"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2002년식 SM3 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-11"
+ },
+ {
+  "slug": "case-20241030-gyeongbuk-gimcheon-daehang",
+  "date": "2024-10-30",
+  "sido": "경상북도",
+  "sigungu": "김천시",
+  "dong": "대항면",
+  "region_slug": null,
+  "car": "2010년식 윈스톰",
+  "title": "대항면 2010년식 윈스톰 폐차·수출 비교 상담 사례",
+  "summary": "2010년식 윈스톰 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "윈스톰"
+   ],
+   [
+    "연식",
+    "2010년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "문의 내용",
+    "옆문 찌그러진 흰색 윈스톰"
+   ]
+  ],
+  "situation": "2010년식 윈스톰 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20241030-gyeongbuk-gimcheon-daehang-1.jpg",
+  "photos": [
+   "case-20241030-gyeongbuk-gimcheon-daehang-1.jpg",
+   "case-20241030-gyeongbuk-gimcheon-daehang-2.jpg",
+   "case-20241030-gyeongbuk-gimcheon-daehang-3.jpg",
+   "case-20241030-gyeongbuk-gimcheon-daehang-4.jpg",
+   "case-20241030-gyeongbuk-gimcheon-daehang-5.jpg",
+   "case-20241030-gyeongbuk-gimcheon-daehang-6.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2024-10-30"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2010년식 윈스톰 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-11"
+ },
+ {
+  "slug": "case-20240926-seoul-gwangjin-hwayang",
+  "date": "2024-09-26",
+  "sido": "서울특별시",
+  "sigungu": "광진구",
+  "dong": "화양동",
+  "region_slug": null,
+  "car": "2003년식 SM5",
+  "title": "화양동 2003년식 SM5 폐차·수출 비교 상담 사례",
+  "summary": "2003년식 SM5 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "SM5"
+   ],
+   [
+    "연식",
+    "2003년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2003년식 SM5 차량으로, 시동은 걸리는 상태였습니다. 상태 깔끔한 흰색 1세대 SM5",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20240926-seoul-gwangjin-hwayang-1.jpg",
+  "photos": [
+   "case-20240926-seoul-gwangjin-hwayang-1.jpg",
+   "case-20240926-seoul-gwangjin-hwayang-2.jpg",
+   "case-20240926-seoul-gwangjin-hwayang-3.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2024-09-26"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2003년식 SM5 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-11"
+ },
+ {
+  "slug": "case-20240627-gyeonggi-gwangju-docheok",
+  "date": "2024-06-27",
+  "sido": "경기도",
+  "sigungu": "광주시",
+  "dong": "도척면",
+  "region_slug": null,
+  "car": "2010년식 파사트",
+  "title": "도척면 2010년식 파사트 폐차·수출 비교 상담 사례",
+  "summary": "2010년식 파사트 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "파사트"
+   ],
+   [
+    "연식",
+    "2010년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2010년식 파사트 차량으로, 시동은 걸리는 상태였습니다. 앞 펜더·범퍼 크게 파손된 수입 세단",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20240627-gyeonggi-gwangju-docheok-1.jpg",
+  "photos": [
+   "case-20240627-gyeonggi-gwangju-docheok-1.jpg",
+   "case-20240627-gyeonggi-gwangju-docheok-2.jpg",
+   "case-20240627-gyeonggi-gwangju-docheok-3.jpg",
+   "case-20240627-gyeonggi-gwangju-docheok-4.jpg",
+   "case-20240627-gyeonggi-gwangju-docheok-5.jpg",
+   "case-20240627-gyeonggi-gwangju-docheok-6.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2024-06-27"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2010년식 파사트 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-11"
+ },
+ {
+  "slug": "case-20240626-gyeonggi-goyang-ilsandong",
+  "date": "2024-06-26",
+  "sido": "경기도",
+  "sigungu": "고양시 일산동구",
+  "dong": "",
+  "region_slug": null,
+  "car": "2011년식 렉스턴",
+  "title": "고양시 일산동구 2011년식 렉스턴 폐차·수출 비교 상담 사례",
+  "summary": "2011년식 렉스턴 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "렉스턴"
+   ],
+   [
+    "연식",
+    "2011년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "문의 내용",
+    "외관 깨끗한 검정 렉스턴"
+   ]
+  ],
+  "situation": "2011년식 렉스턴 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20240626-gyeonggi-goyang-ilsandong-1.jpg",
+  "photos": [
+   "case-20240626-gyeonggi-goyang-ilsandong-1.jpg",
+   "case-20240626-gyeonggi-goyang-ilsandong-2.jpg",
+   "case-20240626-gyeonggi-goyang-ilsandong-3.jpg",
+   "case-20240626-gyeonggi-goyang-ilsandong-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2024-06-26"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2011년식 렉스턴 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-11"
+ },
+ {
   "slug": "case-20240624-gyeonggi-gapyeong-cheongpyeong",
   "date": "2024-06-24",
   "sido": "경기도",
