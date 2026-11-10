@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-09T12:25+09:00",
+ "updated": "2026-11-10T12:25+09:00",
  "days": {
   "2026-10-20": {
    "sessions": {
@@ -1357,6 +1357,69 @@
      "page": "/",
      "quote_submit": 2,
      "call_click": 0
+    }
+   ]
+  },
+  "2026-11-09": {
+   "sessions": {
+    "네이버": 19,
+    "구글": 0,
+    "유튜브": 0,
+    "직접": 1,
+    "기타": 0
+   },
+   "events": {
+    "네이버": {
+     "quote_submit": 0,
+     "call_click": 2,
+     "sms_click": 0
+    },
+    "구글": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "유튜브": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "직접": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "기타": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    }
+   },
+   "totals": {
+    "sessions": 20,
+    "quote_submit": 0,
+    "call_click": 2,
+    "sms_click": 0
+   },
+   "sources": [
+    {
+     "source": "m.search.naver.com / referral",
+     "sessions": 12
+    },
+    {
+     "source": "naver / organic",
+     "sessions": 7
+    },
+    {
+     "source": "(direct) / (none)",
+     "sessions": 1
+    }
+   ],
+   "pages": [
+    {
+     "page": "/pages/seoul-seongbuk-seongbuk.html",
+     "quote_submit": 0,
+     "call_click": 2
     }
    ]
   }
