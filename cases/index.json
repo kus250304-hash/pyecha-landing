@@ -1,5 +1,242 @@
 [
  {
+  "slug": "case-20260801-gyeonggi-gwangju-songjeong",
+  "date": "2026-08-01",
+  "sido": "경기도",
+  "sigungu": "광주시",
+  "dong": "송정동",
+  "region_slug": null,
+  "car": "2008년식 SM5 뉴 임프레션",
+  "title": "송정동 2008년식 SM5 뉴 임프레션 폐차·수출 비교 상담 사례",
+  "summary": "2008년식 SM5 뉴 임프레션 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "SM5 뉴 임프레션"
+   ],
+   [
+    "연식",
+    "2008년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2008년식 SM5 뉴 임프레션 차량으로, 시동은 걸리는 상태였습니다. 지하주차장에 있던 흰색 SM5",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20260801-gyeonggi-gwangju-songjeong-1.jpg",
+  "photos": [
+   "case-20260801-gyeonggi-gwangju-songjeong-1.jpg",
+   "case-20260801-gyeonggi-gwangju-songjeong-2.jpg",
+   "case-20260801-gyeonggi-gwangju-songjeong-3.jpg",
+   "case-20260801-gyeonggi-gwangju-songjeong-4.jpg",
+   "case-20260801-gyeonggi-gwangju-songjeong-5.jpg",
+   "case-20260801-gyeonggi-gwangju-songjeong-6.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2026-08-01"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2008년식 SM5 뉴 임프레션 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-12"
+ },
+ {
+  "slug": "case-20260423-gwangju-gwangsan-sochon",
+  "date": "2026-04-23",
+  "sido": "전남광주통합특별시",
+  "sigungu": "광산구",
+  "dong": "소촌동",
+  "region_slug": null,
+  "car": "2007년식 BMW 3시리즈",
+  "title": "소촌동 2007년식 BMW 3시리즈 폐차·수출 비교 상담 사례",
+  "summary": "2007년식 BMW 3시리즈 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "BMW 3시리즈"
+   ],
+   [
+    "연식",
+    "2007년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "문의 내용",
+    "외관 양호한 구형 수입 세단"
+   ]
+  ],
+  "situation": "2007년식 BMW 3시리즈 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20260423-gwangju-gwangsan-sochon-1.jpg",
+  "photos": [
+   "case-20260423-gwangju-gwangsan-sochon-1.jpg",
+   "case-20260423-gwangju-gwangsan-sochon-2.jpg",
+   "case-20260423-gwangju-gwangsan-sochon-3.jpg",
+   "case-20260423-gwangju-gwangsan-sochon-4.jpg",
+   "case-20260423-gwangju-gwangsan-sochon-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2026-04-23"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2007년식 BMW 3시리즈 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-12"
+ },
+ {
+  "slug": "case-20251229-seoul-gwangjin-jayang",
+  "date": "2025-12-29",
+  "sido": "서울특별시",
+  "sigungu": "광진구",
+  "dong": "자양동",
+  "region_slug": null,
+  "car": "2009년식 액티언",
+  "title": "자양동 2009년식 액티언 폐차·수출 비교 상담 사례",
+  "summary": "2009년식 액티언 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "액티언"
+   ],
+   [
+    "연식",
+    "2009년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2009년식 액티언 차량으로, 시동은 걸리는 상태였습니다. 외관 무난한 흰색 액티언 SUV",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20251229-seoul-gwangjin-jayang-1.jpg",
+  "photos": [
+   "case-20251229-seoul-gwangjin-jayang-1.jpg",
+   "case-20251229-seoul-gwangjin-jayang-2.jpg",
+   "case-20251229-seoul-gwangjin-jayang-3.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2025-12-29"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2009년식 액티언 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-12"
+ },
+ {
+  "slug": "case-20250915-incheon-yeonsu-cheonghak",
+  "date": "2025-09-15",
+  "sido": "인천광역시",
+  "sigungu": "연수구",
+  "dong": "청학동",
+  "region_slug": null,
+  "car": "2008년식 투싼 JM",
+  "title": "청학동 2008년식 투싼 JM 폐차·수출 비교 상담 사례",
+  "summary": "2008년식 투싼 JM 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "투싼 JM"
+   ],
+   [
+    "연식",
+    "2008년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "문의 내용",
+    "외관 무난한 은색 구형 투싼"
+   ]
+  ],
+  "situation": "2008년식 투싼 JM 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20250915-incheon-yeonsu-cheonghak-1.jpg",
+  "photos": [
+   "case-20250915-incheon-yeonsu-cheonghak-1.jpg",
+   "case-20250915-incheon-yeonsu-cheonghak-2.jpg",
+   "case-20250915-incheon-yeonsu-cheonghak-3.jpg",
+   "case-20250915-incheon-yeonsu-cheonghak-4.jpg",
+   "case-20250915-incheon-yeonsu-cheonghak-5.jpg",
+   "case-20250915-incheon-yeonsu-cheonghak-6.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2025-09-15"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2008년식 투싼 JM 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-12"
+ },
+ {
+  "slug": "case-20250626-seoul-eunpyeong-gusan",
+  "date": "2025-06-26",
+  "sido": "서울특별시",
+  "sigungu": "은평구",
+  "dong": "구산동",
+  "region_slug": null,
+  "car": "2010년식 쏘나타 YF",
+  "title": "구산동 2010년식 쏘나타 YF 폐차·수출 비교 상담 사례",
+  "summary": "2010년식 쏘나타 YF 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "쏘나타 YF"
+   ],
+   [
+    "연식",
+    "2010년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2010년식 쏘나타 YF 차량으로, 시동은 걸리는 상태였습니다. 외관 양호한 검정 쏘나타 YF",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20250626-seoul-eunpyeong-gusan-1.jpg",
+  "photos": [
+   "case-20250626-seoul-eunpyeong-gusan-1.jpg",
+   "case-20250626-seoul-eunpyeong-gusan-2.jpg",
+   "case-20250626-seoul-eunpyeong-gusan-3.jpg",
+   "case-20250626-seoul-eunpyeong-gusan-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2025-06-26"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2010년식 쏘나타 YF 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-12"
+ },
+ {
   "slug": "case-20250611-jeju-jeju-yeon",
   "date": "2025-06-11",
   "sido": "제주특별자치도",
