@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-10T12:25+09:00",
+ "updated": "2026-11-11T12:25+09:00",
  "days": {
   "2026-10-20": {
    "sessions": {
@@ -1420,6 +1420,79 @@
      "page": "/pages/seoul-seongbuk-seongbuk.html",
      "quote_submit": 0,
      "call_click": 2
+    }
+   ]
+  },
+  "2026-11-10": {
+   "sessions": {
+    "네이버": 23,
+    "구글": 0,
+    "유튜브": 0,
+    "직접": 0,
+    "기타": 4
+   },
+   "events": {
+    "네이버": {
+     "quote_submit": 0,
+     "call_click": 2,
+     "sms_click": 0
+    },
+    "구글": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "유튜브": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "직접": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "기타": {
+     "quote_submit": 0,
+     "call_click": 1,
+     "sms_click": 0
+    }
+   },
+   "totals": {
+    "sessions": 27,
+    "quote_submit": 0,
+    "call_click": 3,
+    "sms_click": 0
+   },
+   "sources": [
+    {
+     "source": "m.search.naver.com / referral",
+     "sessions": 19
+    },
+    {
+     "source": "(not set) / (not set)",
+     "sessions": 4
+    },
+    {
+     "source": "naver / organic",
+     "sessions": 4
+    }
+   ],
+   "pages": [
+    {
+     "page": "/gu/의왕시-폐차장.html",
+     "quote_submit": 0,
+     "call_click": 1
+    },
+    {
+     "page": "/gu/포천시-폐차장.html",
+     "quote_submit": 0,
+     "call_click": 1
+    },
+    {
+     "page": "/si/대전-폐차장.html",
+     "quote_submit": 0,
+     "call_click": 1
     }
    ]
   }
