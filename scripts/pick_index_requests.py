@@ -311,7 +311,10 @@ def main() -> None:
     regions, gu_data = load_json(REGIONS), load_json(GU_DATA, default=[])
     text = LOG.read_text(encoding="utf-8") if LOG.exists() else ""
     secs = sections(text)
-    priority = [u for head, body in secs if head.startswith("최우선") for u in URL_RE.findall(body)]
+    priority = [u for head, body in secs if head.startswith("최우선") and not head.startswith("최우선 다시") for u in URL_RE.findall(body)]
+    # "최우선 다시" 칸(2026-11-12 조기폐차 칸): 적힌 순서대로, 본문이 바뀐 날(lastmod) 뒤로 요청 안 했으면 구글 맨 앞에 다시.
+    # 이미 색인됨이어도 넣는다(바뀐 내용을 다시 읽히려고). 그 뒤 요청하면 저절로 빠진다
+    redo = [u for head, body in secs if head.startswith("최우선 다시") for u in URL_RE.findall(body)]
     inquiry = next((body for head, body in secs if head.startswith("문의가 온 페이지")), "")
     day = args.date or today()
 
@@ -346,6 +349,11 @@ def main() -> None:
     # ── 구글: 하루 15개, 구·시군·주제(안내) 페이지만(동·시·도·사례 페이지는 고르지 않음, 2026-10-29) ──
     indexed, gsc_note = gsc_indexed(day)
     g = Picker(secs, "구글", lambda u: ("/gu/" in u or "/guide/" in u) and u not in indexed)
+    for u in redo:
+        rel = unquote(u[len(base) + 1:])
+        if ("/gu/" in u or "/guide/" in u) and lastmod.get(rel, "") > g.last_req.get(u, "") and u not in g._seen:
+            g.ordered.append((u, f"최우선 다시({lastmod[rel]} 내용 바뀜)"))
+            g._seen.add(u)
     g.requeue(secs, day)  # ⓪ 맨 앞(2026-10-30: 사례 붙은 페이지가 하루 10개쯤이라 ⓐ 뒤면 못 한 주소가 계속 밀림)
     # ⓐ 어제·오늘 사례가 새로 붙은 구·시군 페이지(2026-10-28). 사례가 붙은 날 뒤로 요청한 적이 없으면 다시
     since = (datetime.fromisoformat(day) - timedelta(days=1)).date().isoformat()

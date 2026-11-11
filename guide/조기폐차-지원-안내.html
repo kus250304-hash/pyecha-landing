@@ -20,7 +20,7 @@
 
 <meta name="theme-color" content="#0E5E63">
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "승인 전에 차를 먼저 넘겨도 되나요?", "acceptedAnswer": {"@type": "Answer", "text": "아니요, 지원을 받으시려면 승인 뒤에 폐차하셔야 합니다. 승인 전이라면 일정을 먼저 맞춰 드립니다."}}, {"@type": "Question", "name": "지원 대상이 아니면 어떻게 하나요?", "acceptedAnswer": {"@type": "Answer", "text": "일반 폐차나 수출 비교 상담으로 진행할 수 있습니다. 차 상태를 알려주시면 통화에서 말씀드립니다."}}, {"@type": "Question", "name": "조기폐차와 수출을 같이 할 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "아니요, 조기폐차 지원은 폐차를 조건으로 하므로 보통 수출과 함께 진행하지 않습니다. 어느 쪽이 나은지 통화에서 바로 말씀드립니다."}}]}, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "전체 지역", "item": "https://pyecha119.com/"}, {"@type": "ListItem", "position": 2, "name": "폐차 안내", "item": "https://pyecha119.com/guide/%ED%8F%90%EC%B0%A8-%EC%A0%88%EC%B0%A8.html"}, {"@type": "ListItem", "position": 3, "name": "조기폐차 지원", "item": "https://pyecha119.com/guide/%EC%A1%B0%EA%B8%B0%ED%8F%90%EC%B0%A8-%EC%A7%80%EC%9B%90-%EC%95%88%EB%82%B4.html"}]}]</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "노후 경유차 조기폐차 지원 안내 | 폐차·수출 비교 상담 · 전화 1600-6011", "url": "https://pyecha119.com/guide/%EC%A1%B0%EA%B8%B0%ED%8F%90%EC%B0%A8-%EC%A7%80%EC%9B%90-%EC%95%88%EB%82%B4.html", "inLanguage": "ko-KR", "datePublished": "2026-10-01", "dateModified": "2026-10-28"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "노후 경유차 조기폐차 지원 안내 | 폐차·수출 비교 상담 · 전화 1600-6011", "url": "https://pyecha119.com/guide/%EC%A1%B0%EA%B8%B0%ED%8F%90%EC%B0%A8-%EC%A7%80%EC%9B%90-%EC%95%88%EB%82%B4.html", "inLanguage": "ko-KR", "datePublished": "2026-10-01", "dateModified": "2026-11-12"}</script>
 <style>
   @font-face {
     font-family: 'Jalnan';
@@ -313,6 +313,19 @@
   .route .oneplus small { display: block; margin-top: 2px; font-weight: 400; font-size: 13px; color: var(--muted); }
   .route .exit { margin: 0; font-weight: 700; color: var(--teal-deep); }
   .final .quote-card { color: var(--ink); }
+  /* 조각 아래 표·출처 한 줄(2026-10-18) */
+  .table-wrap { margin-top: 16px; overflow-x: auto; }
+  .guide-table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 12px; overflow: hidden; font-size: 14px; }
+  .guide-table th, .guide-table td { padding: 10px 12px; border-bottom: 1px solid rgba(23,40,43,.08); text-align: left; vertical-align: top; }
+  .guide-table thead th { background: var(--teal-deep); color: #fff; font-weight: 700; }
+  .guide-table tbody th { color: var(--teal-deep); }
+  .note.source a { color: inherit; }
+  .guide-table[data-howto] { min-width: 680px; }
+  .guide-table[data-howto] tbody th { white-space: nowrap; }
+  .guide-table tbody th { min-width: 5.5em; }
+  .table-wrap:has(> [data-howto])::after { content: "← 표를 옆으로 밀어 보세요"; display: block; margin-top: 6px; font-size: 12px; color: #5E6E70; }
+  @media (min-width: 720px) { .table-wrap:has(> [data-howto])::after { display: none; } }
+
 </style>
 </head>
 <body>
@@ -335,7 +348,7 @@
 <!-- 첫 화면: 안내 5장은 예전 모양(build_guide.OLD_HERO), 주제 페이지 5장은 동 페이지와 같은 첫 화면(scripts/first_screen.py) -->
 <header class="hero">
   <div class="wrap">
-    <p class="updated">최종 업데이트: 2026년 10월 28일</p>
+    <p class="updated">최종 업데이트: 2026년 11월 12일</p>
     <nav class="crumbs" aria-label="경로"><a href="../index.html">전체 지역</a> › <a href="폐차-절차.html">폐차 안내</a> › 조기폐차 지원</nav>
     <span class="badge">폐차 안내 · 전국 어디든 차 있는 자리로</span>
     <h1 class="display">노후 경유차 조기폐차 지원,<br>이렇게 확인하세요</h1>
@@ -348,6 +361,14 @@
 </header>
 
 <main>
+  <section id="early-now" style="background:#fff">
+    <div class="wrap">
+      <h2 class="sec-title display">지금 접수가 확인된 곳</h2>
+      <p class="sec-sub">지자체 공고를 직접 열어 확인한 곳만 적었습니다</p>
+      <div class="table-wrap"><table class="guide-table"><thead><tr><th>지역</th><th>신청</th><th>대상</th><th>확인일</th><th>페이지</th></tr></thead><tbody><tr><th>서울</th><td>11월 30일(월) 오후 6시까지 (예산이 먼저 떨어지면 일찍 닫힙니다)</td><td>4등급 경유차·5등급 차</td><td>2026-11-11</td><td><a href="../si/서울-폐차장.html#gu">서울 구 페이지</a></td></tr></tbody></table></div>
+      <p class="note">다른 지역은 확인되는 대로 더합니다. 공고는 바뀔 수 있으니 신청 전에 다시 확인하세요.</p>
+    </div>
+  </section>
   <section id="part1" style="background:#fff">
     <div class="wrap">
       <h2 class="sec-title display">대상인지 먼저 확인하세요</h2>

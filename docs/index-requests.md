@@ -9,6 +9,34 @@
 - 문의가 온 페이지를 한 줄 더할 때 `python3 scripts/population_stats.py dong <시·군>` 도 돌려 둡니다(그 시·군의 동을 인구 많은 순으로 고르는 데 씀, 매일 루틴의 동 3장 규칙 ①).
 - 네이버·공용 IndexNow 자동 전송(`scripts/indexnow.py`)은 이와 따로 그대로 돕니다.
 
+## 최우선 다시 (2026-11-12 조기폐차 칸, 내용 바뀐 뒤 요청 안 했으면 구글 맨 앞)
+
+서울 구 페이지 22장 + 조기폐차 안내에 조기폐차 칸을 넣었습니다. 문의·방문이 있었던 곳부터 적었고, 색인됨이어도 다시 요청합니다(`pick_index_requests.py` 의 redo). 네이버는 "바뀜"으로 저절로 들어가며 서울 시·도 페이지(si/서울-폐차장.html)도 그쪽으로 갑니다.
+
+- https://pyecha119.com/gu/%EC%84%9C%EC%9A%B8-%EA%B0%95%EC%84%9C%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/서울-강서구-폐차장.html (문의·방문 있음)
+- https://pyecha119.com/gu/%EA%B8%88%EC%B2%9C%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/금천구-폐차장.html (폼 문의 있음)
+- https://pyecha119.com/gu/%EC%84%B1%EB%B6%81%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/성북구-폐차장.html (폼 문의 있음)
+- https://pyecha119.com/guide/%EC%A1%B0%EA%B8%B0%ED%8F%90%EC%B0%A8-%EC%A7%80%EC%9B%90-%EC%95%88%EB%82%B4.html — guide/조기폐차-지원-안내.html (접수 확인 표)
+- https://pyecha119.com/gu/%EC%86%A1%ED%8C%8C%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/송파구-폐차장.html (조기폐차 칸)
+- https://pyecha119.com/gu/%EB%8F%99%EB%8C%80%EB%AC%B8%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/동대문구-폐차장.html (조기폐차 칸)
+- https://pyecha119.com/gu/%EA%B0%95%EB%8F%99%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/강동구-폐차장.html (조기폐차 칸)
+- https://pyecha119.com/gu/%EC%A4%91%EB%9E%91%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/중랑구-폐차장.html (조기폐차 칸)
+- https://pyecha119.com/gu/%EA%B4%80%EC%95%85%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/관악구-폐차장.html (조기폐차 칸)
+- https://pyecha119.com/gu/%EA%B0%95%EB%B6%81%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/강북구-폐차장.html (조기폐차 칸)
+- https://pyecha119.com/gu/%EC%84%9C%EB%8C%80%EB%AC%B8%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/서대문구-폐차장.html (조기폐차 칸)
+- https://pyecha119.com/gu/%EB%A7%88%ED%8F%AC%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/마포구-폐차장.html (조기폐차 칸)
+- https://pyecha119.com/gu/%EC%A2%85%EB%A1%9C%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/종로구-폐차장.html (조기폐차 칸)
+- https://pyecha119.com/gu/%EA%B0%95%EB%82%A8%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/강남구-폐차장.html (조기폐차 칸)
+- https://pyecha119.com/gu/%EC%84%9C%EC%B4%88%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/서초구-폐차장.html (조기폐차 칸)
+- https://pyecha119.com/gu/%EA%B5%AC%EB%A1%9C%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/구로구-폐차장.html (조기폐차 칸)
+- https://pyecha119.com/gu/%EB%85%B8%EC%9B%90%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/노원구-폐차장.html (조기폐차 칸)
+- https://pyecha119.com/gu/%EC%9D%80%ED%8F%89%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/은평구-폐차장.html (조기폐차 칸)
+- https://pyecha119.com/gu/%EB%8F%84%EB%B4%89%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/도봉구-폐차장.html (조기폐차 칸)
+- https://pyecha119.com/gu/%EC%84%B1%EB%8F%99%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/성동구-폐차장.html (조기폐차 칸)
+- https://pyecha119.com/gu/%EC%96%91%EC%B2%9C%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/양천구-폐차장.html (조기폐차 칸)
+- https://pyecha119.com/gu/%EA%B4%91%EC%A7%84%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/광진구-폐차장.html (조기폐차 칸)
+- https://pyecha119.com/gu/%EC%98%81%EB%93%B1%ED%8F%AC%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/영등포구-폐차장.html (조기폐차 칸)
+
 ## 최우선 (아직 요청 안 된 것부터 맨 앞)
 
 주제 페이지 6장(/guide/ 압류·차령초과·상속·시동·방치차·저당), 2026-10-19 추가. 날짜 칸에 들어가면 요청한 것으로 칩니다.

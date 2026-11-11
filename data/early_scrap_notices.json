@@ -1,0 +1,32 @@
+[
+  {
+    "sido": "서울특별시",
+    "short": "서울",
+    "agency": "서울시",
+    "target": "사용본거지가 서울인 배출가스 4등급 경유차, 5등급 자동차",
+    "target_short": "4등급 경유차·5등급 차",
+    "apply_start": "2026-03-03 09:00",
+    "deadline": "2026-11-30",
+    "deadline_time": "18:00",
+    "deadline_text": "11월 30일(월) 오후 6시",
+    "early_close": "예산이 먼저 떨어지면 일찍 닫힙니다",
+    "grade5_last_year": 2026,
+    "hold_months": 6,
+    "claim_months": 2,
+    "contacts": [
+      {"name": "한국자동차환경협회", "tel": "1577-7121"},
+      {"name": "서울시 대기정책과", "tel": "02-2133-4240"},
+      {"name": "120 다산콜", "tel": "120"}
+    ],
+    "grade_check": {"site": "mecar.or.kr", "site_name": "자동차 배출가스 종합전산시스템", "tel": "1833-7435"},
+    "sources": [
+      {"name": "서울특별시 고시·공고 「2026년 조기폐차 지원사업 변경공고(6차)」(2026-10-12)", "url": "https://www.seoul.go.kr/news/news_notice.do?nttNo=465267", "grade": "opened", "note": "신청기간 2026. 3. 3.(화) 09:00 ~ 2026. 11. 30.(월) 18:00 (예산소진 시 조기마감), 대상"},
+      {"name": "서울특별시 고시·공고 「2026년 조기폐차 지원사업 변경공고(7차)」(2026-11-06)", "url": "https://www.seoul.go.kr/news/news_notice.do?nttNo=469829", "grade": "opened", "note": "신청기간 6차와 같음"},
+      {"name": "내 손안에 서울 「2026년 조기폐차 지원사업 신청 접수」", "url": "https://news.seoul.go.kr/env/archives/568794", "grade": "opened", "note": "5등급 지원 올해가 마지막, 대상"},
+      {"name": "서울시 미디어허브 2026-03-03 보도", "url": "https://mediahub.seoul.go.kr/archives/2017302", "grade": "opened", "note": "6개월 이상 연속 소유, 지급대상확인서 발급일부터 2개월 이내 청구, 5등급 지원 올해로 마무리"},
+      {"name": "내 손안에 서울 2024년 조기폐차 지원 안내", "url": "https://news.seoul.go.kr/env/archives/557397", "grade": "opened", "note": "2024년부터 DPF 부착 여부와 관계없이 4등급 경유차 지원"}
+    ],
+    "checked_on": "2026-11-11",
+    "added_on": "2026-11-12"
+  }
+]

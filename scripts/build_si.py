@@ -213,6 +213,10 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
                      else f"{si} 사례는 준비 중입니다. 유튜브와 블로그에서 실제 진행 사례를 보실 수 있습니다")
         # 시·도마다 다른 질문 3개 + 실제 통화 FAQ 풀에서 4개(2026-10-03)
         faqs = [V.far_faq(si)] + [tuple(qa) for qa in s["faqs"]] + V.call_faqs("si:" + sido, 4)  # 맨 위 안심 FAQ(2026-10-16)
+        import early_scrap  # 조기폐차 칸(2026-11-12): 공고가 확인된 시·도만, 안심 FAQ 바로 뒤에 FAQ 3개
+        es_notice = early_scrap.notice_for(sido)
+        if es_notice:
+            faqs = faqs[:1] + early_scrap.faqs(es_notice) + faqs[1:]
         faq_html = "\n      ".join(f"<details><summary>{esc(q)}</summary><p>{tel_text(esc(a))}</p></details>" for q, a in faqs)
         info_rows = "\n        ".join(
             f'<tr><th>{esc(row["label"])}</th><td>{esc(info_value(row))}'
@@ -242,6 +246,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
             "WHY_BLOCK": why_block_html(f"{sido} 폐차 상담 · 당일 접수", f"{sido} 어디든 전화 한 통이면 기사가 차 있는 곳으로 갑니다."),
             "SI": esc(si), "SI_FULL": esc(f"{sido} — {old}" if old else sido), "SI_JOSA": josa(sido, "은", "는"),
             "GU_LIST_HTML": gu_list, "DONG_LIST_HTML": dong_list, "FAQ_HTML": faq_html, "INFO_ROWS": info_rows,
+            "EARLY_SCRAP_HTML": early_scrap.section_html(es_notice, si, cfg, esc, tel_text),
             "CHECKED_ON": esc(s.get("checked_on", "")), "UPDATED_ON": UPDATED_MARK,
             "CASES_SUB": esc(cases_sub), "CASES_HTML": case_cards_html(my_cases[:MAX_CASES]), "CASE_PHOTOS_HTML": "",
             "CONSULT_TEXT": tel_text(esc(V.fill(V.GU_CONSULT[i % V.N], phone=phone_disp))),

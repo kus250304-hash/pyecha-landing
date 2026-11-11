@@ -42,6 +42,7 @@ import variants as V
 import og_image
 import analytics
 import proof_blocks
+import early_scrap
 from first_screen import hero_top_html, why_block_html
 from build_guide import guide_links_html
 from vehicle_stats import registration_row, with_registration
@@ -296,6 +297,10 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
             + (f' · {esc(c["date"])}' if c.get("date") else "") + "</span></li>" for c in nearby) + "</ul>") if nearby else ""
         # 구마다 다른 질문 3개 + 실제 통화 FAQ 풀에서 4개(2026-10-03)
         faqs = [V.far_faq(gu)] + [tuple(qa) for qa in g["faqs"]] + V.call_faqs("gu:" + g["slug"], 4)  # 맨 위 안심 FAQ(2026-10-16)
+        # 조기폐차 공고가 확인된 시·도(2026-11-12, data/early_scrap_notices.json)는 안심 FAQ 바로 뒤에 조기폐차 FAQ 3개
+        es_notice = early_scrap.notice_for(sido)
+        if es_notice:
+            faqs = faqs[:1] + early_scrap.faqs(es_notice) + faqs[1:]
         faq_html = "\n      ".join(f"<details><summary>{esc(q)}</summary><p>{tel_text(esc(a))}</p></details>" for q, a in faqs)
         info_rows = "\n        ".join(
             f'<tr><th>{esc(row["label"])}</th><td>{esc(info_value(row))}'
@@ -346,6 +351,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
             # 최근 진행한 차·손님 후기(2026-11-05, scripts/proof_blocks.py, 기록 0건이면 빈칸)
             "PROOF_HTML": proof_blocks.gu_html(sido, sigungu),
             "FAQ_HTML": faq_html,
+            "EARLY_SCRAP_HTML": early_scrap.section_html(es_notice, gu, cfg, esc, tel_text),
             "INFO_ROWS": info_rows,
             "CHECKED_ON": esc(g.get("checked_on", "")),
             "UPDATED_ON": UPDATED_MARK,

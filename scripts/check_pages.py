@@ -1292,6 +1292,8 @@ def main() -> None:
         errors.extend(check_breadcrumbs(site_cfg["site_base_url"].rstrip("/")))
         errors.extend(check_business_jsonld())
         errors.extend(check_faq_first_sentence())
+        import early_scrap  # 조기폐차 칸 금지 표현·FAQ 첫 문장·출처(2026-11-12)
+        errors.extend(early_scrap.problems())
         # 눈가리개 감사(2026-10-22): 시·도 링크 통일(3번), 본문 대표번호 tel: 링크(10번), 동 페이지 문장·FAQ 경고(2·11번)
         errors.extend(check_sido_links())
         errors.extend(check_phone_links(site_cfg))

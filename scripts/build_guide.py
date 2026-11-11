@@ -689,6 +689,8 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], keep_dates: 
                     '      <div class="neighbors">'
                     + "".join(f'<a href="../gu/{esc(gu_file(sd, sg))}">{esc(sg or SIDO_SHORT[sd])} 폐차 안내</a>' for sd, sg in popular)
                     + "</div>\n    </div>\n  </section>") if popular else ""
+    import early_scrap
+    early_scrap_table = early_scrap.guide_table_html(esc)
     cross = {}
     for f, idx, files in GUIDE_CROSS_LINKS:
         cross.setdefault(f, {})[idx] = files
@@ -762,10 +764,12 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], keep_dates: 
                 sections.append(section_html(i, h2, sub_, list(parts) + extra, esc))
             values.update({
                 "H1": esc(g["h1"]).replace("&lt;br&gt;", "<br>"), "LEAD": esc(g["lead"]), "CONTACT_LINE": tel_text(esc(contact_line)),
-                "SECTIONS_HTML": "".join(sections) + guide_cases_html(g, cases, esc),
+                # 조기폐차 안내 맨 위 "지금 접수가 확인된 곳" 표(2026-11-12, data/early_scrap_notices.json)
+                "SECTIONS_HTML": (early_scrap_table if g["file"] == early_scrap.GUIDE_FILE else "") + "".join(sections) + guide_cases_html(g, cases, esc),
                 "AFTER_FAQ": "", "BOTTOM_FORM": "", "SCRIPT": "", "OG_META": "", "POPULAR_HTML": "",
                 # 표가 있는 안내 페이지만 표 모양(.guide-table)을 넣는다(2026-10-22, 나머지 안내 페이지는 그대로)
-                "TOPIC_STYLE": TOPIC_STYLE + HOWTO_STYLE if any(k == "table" for *_, ps in g["sections"] for k, _ in ps) else "",
+                "TOPIC_STYLE": TOPIC_STYLE + HOWTO_STYLE if (any(k == "table" for *_, ps in g["sections"] for k, _ in ps)
+                                                         or (early_scrap_table and g["file"] == early_scrap.GUIDE_FILE)) else "",
             })
 
         def sub(m: re.Match) -> str:
