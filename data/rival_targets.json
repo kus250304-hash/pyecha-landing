@@ -1,5 +1,5 @@
 {
- "date": "2026-11-11",
+ "date": "2026-11-12",
  "rival": [
   {
    "slug": "chungnam-asan",
@@ -11,19 +11,7 @@
    "slug": "gangwon-gangneung",
    "sido": "강원특별자치도",
    "sigungu": "강릉시",
-   "query": "강릉폐차장"
-  },
-  {
-   "slug": "jeonbuk-jeonju-deokjin",
-   "sido": "전북특별자치도",
-   "sigungu": "전주시 덕진구",
-   "query": "전주폐차장"
-  },
-  {
-   "slug": "jeonbuk-jeonju-wansan",
-   "sido": "전북특별자치도",
-   "sigungu": "전주시 완산구",
-   "query": "전주폐차장"
+   "query": "강릉폐차"
   },
   {
    "slug": "gyeongbuk-gyeongsan",
@@ -104,22 +92,34 @@
    "query": "동해폐차"
   },
   {
-   "slug": "chungnam-hongseong",
-   "sido": "충청남도",
-   "sigungu": "홍성군",
-   "query": "홍성폐차"
-  },
-  {
    "slug": "gyeonggi-yongin-cheoin",
    "sido": "경기도",
    "sigungu": "용인시 처인구",
    "query": "용인폐차장"
   },
   {
+   "slug": "chungnam-boryeong",
+   "sido": "충청남도",
+   "sigungu": "보령시",
+   "query": "보령폐차장"
+  },
+  {
    "slug": "gyeonggi-yongin-giheung",
    "sido": "경기도",
    "sigungu": "용인시 기흥구",
    "query": "용인폐차장"
+  },
+  {
+   "slug": "gyeonggi-yongin-suji",
+   "sido": "경기도",
+   "sigungu": "용인시 수지구",
+   "query": "용인폐차장"
+  },
+  {
+   "slug": "jeonnam-haenam",
+   "sido": "전남광주통합특별시",
+   "sigungu": "해남군",
+   "query": "해남폐차장"
   }
  ],
  "empty": [
@@ -144,7 +144,16 @@
    "sido": "전남광주통합특별시",
    "sigungu": "목포시",
    "queries": [
-    "목포폐차"
+    "목포폐차",
+    "목포폐차장"
+   ]
+  },
+  {
+   "slug": "gyeongnam-jinju",
+   "sido": "경상남도",
+   "sigungu": "진주시",
+   "queries": [
+    "진주폐차"
    ]
   },
   {
@@ -318,6 +327,14 @@
    ]
   },
   {
+   "slug": "daegu-dalseo",
+   "sido": "대구광역시",
+   "sigungu": "달서구",
+   "queries": [
+    "달서폐차장"
+   ]
+  },
+  {
    "slug": "gyeongnam-geochang",
    "sido": "경상남도",
    "sigungu": "거창군",
@@ -351,14 +368,6 @@
    ]
   },
   {
-   "slug": "seoul-gangnam",
-   "sido": "서울특별시",
-   "sigungu": "강남구",
-   "queries": [
-    "강남폐차"
-   ]
-  },
-  {
    "slug": "gyeonggi-gwacheon",
    "sido": "경기도",
    "sigungu": "과천시",
@@ -372,6 +381,14 @@
    "sigungu": "의왕시",
    "queries": [
     "의왕폐차"
+   ]
+  },
+  {
+   "slug": "gyeongbuk-mungyeong",
+   "sido": "경상북도",
+   "sigungu": "문경시",
+   "queries": [
+    "문경폐차"
    ]
   },
   {
@@ -495,6 +512,14 @@
    ]
   },
   {
+   "slug": "daegu-gunwi",
+   "sido": "대구광역시",
+   "sigungu": "군위군",
+   "queries": [
+    "군위폐차"
+   ]
+  },
+  {
    "slug": "daegu-dalseong",
    "sido": "대구광역시",
    "sigungu": "달성군",
@@ -516,14 +541,6 @@
    "sigungu": "서구",
    "queries": [
     "대구서구폐차"
-   ]
-  },
-  {
-   "slug": "seoul-dongdaemun",
-   "sido": "서울특별시",
-   "sigungu": "동대문구",
-   "queries": [
-    "동대문폐차"
    ]
   },
   {
