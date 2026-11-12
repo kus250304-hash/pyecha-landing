@@ -1,5 +1,47 @@
 [
  {
+  "slug": "case-20230111-gyeonggi-seongnam-jungwon-seongnam",
+  "date": "2023-01-11",
+  "sido": "경기도",
+  "sigungu": "성남시 중원구",
+  "dong": "성남동",
+  "region_slug": "gyeonggi-seongnam-jungwon-seongnam",
+  "car": "2011년식 로디우스",
+  "title": "성남동 2011년식 로디우스 폐차·수출 비교 상담 사례",
+  "summary": "2011년식 로디우스 차량으로, 시동이 걸리지 않는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "로디우스"
+   ],
+   [
+    "연식",
+    "2011년식"
+   ],
+   [
+    "시동",
+    "안 걸림"
+   ]
+  ],
+  "situation": "2011년식 로디우스 차량으로, 시동이 걸리지 않는 상태였습니다. 차 사진 없이 서류만 온 로디우스",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20230111-gyeonggi-seongnam-jungwon-seongnam-1.jpg",
+  "photos": [
+   "case-20230111-gyeonggi-seongnam-jungwon-seongnam-1.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2023-01-11"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2011년식 로디우스 차량으로, 시동이 걸리지 않는 상태였습니다.",
+  "added": "2026-11-13"
+ },
+ {
   "slug": "case-20260801-gyeonggi-gwangju-songjeong",
   "date": "2026-08-01",
   "sido": "경기도",
