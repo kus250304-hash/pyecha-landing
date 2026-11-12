@@ -54,9 +54,12 @@
 
 - 2026-11-11, 랜딩 문의(상태: 진행) — https://pyecha119.com/gu/%EC%96%91%EC%82%B0%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (양산시)
 - 2026-11-11, 랜딩 문의(상태: 진행) — https://pyecha119.com/gu/%EC%96%91%EC%82%B0%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (양산시)
+- 2026-11-11, 랜딩 문의(상태: 진행) — https://pyecha119.com/gu/%EA%B3%A0%EC%96%91%EC%8B%9C-%EB%8D%95%EC%96%91%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (고양시 덕양구)
+- 2026-11-11, 랜딩 문의(상태: 진행) — https://pyecha119.com/gu/%EC%88%9C%EC%B2%9C%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (순천시)
 - 2026-11-10, 랜딩 문의(상태: 거래 성사) — https://pyecha119.com/gu/%EC%A7%84%EC%B2%9C%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (진천군)
 - 2026-11-10, 랜딩 문의(상태: 진행) — https://pyecha119.com/gu/%EC%9D%98%EC%99%95%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (의왕시)
 - 2026-11-10, 랜딩 문의(상태: 거래 성사) — https://pyecha119.com/gu/%EC%9D%98%EC%99%95%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (의왕시)
+- 2026-11-10, 랜딩 문의(상태: 거래 성사) — https://pyecha119.com/gu/%ED%8F%AC%EC%B2%9C%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (포천시)
 - 2026-11-09, 랜딩 문의(상태: 진행) — https://pyecha119.com/gu/%EC%84%B1%EB%B6%81%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (성북구)
 - 2026-11-09, 랜딩 문의(상태: 진행) — https://pyecha119.com/gu/%EC%9D%B4%EC%B2%9C%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (이천시)
 - 2026-11-08, 랜딩 문의(상태: 종료) — https://pyecha119.com/gu/%EA%B2%BD%EC%A3%BC%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html (경주시)
