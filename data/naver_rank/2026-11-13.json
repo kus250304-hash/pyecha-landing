@@ -1,7 +1,7 @@
 {
  "date": "2026-11-13",
  "source": "네이버 검색 API webkr·blog, display=30",
- "calls": 467,
+ "calls": 468,
  "failed": 0,
  "regions": [
   {
@@ -728,7 +728,7 @@
      "top3": [
       "kadra.or.kr",
       "kumo7878.com",
-      "m.onestore.co.kr"
+      "soonwidot.co.kr"
      ]
     }
    },
@@ -3171,7 +3171,7 @@
    "priority_rank": 242,
    "web": {
     "영종폐차": {
-     "rank": 28,
+     "rank": 25,
      "url": "https://pyecha119.com/pages/incheon-junggu-unseo.html",
      "top3": [
       "yeongjong.go.kr",
@@ -3416,7 +3416,10 @@
      ]
     }
    },
-   "blog": null
+   "blog": {
+    "rank": null,
+    "url": null
+   }
   },
   {
    "sido": "서울특별시",
@@ -4272,7 +4275,7 @@
      "top3": [
       "carmap.co.kr",
       "nicebizinfo.com",
-      "kadra.or.kr"
+      "daegu.scourt.go.kr"
      ]
     }
    },
@@ -6500,7 +6503,7 @@
      "top3": [
       "tbn.or.kr",
       "aea.or.kr",
-      "gtbikemall.com"
+      "sugo.kr"
      ]
     },
     "영양폐차장": {
@@ -6547,6 +6550,10 @@
   }
  ],
  "blog": {
+  "서귀포폐차": {
+   "rank": null,
+   "url": null
+  },
   "양산폐차": {
    "rank": null,
    "url": null
