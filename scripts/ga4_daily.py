@@ -3,9 +3,12 @@ GA4 로 "어디서 왔나"를 매일 센다(2026-11-04 병한님). 폼 문의가
 사이트 폼 칸·문구·버튼은 바꾸지 않는다(측정만).
 
 사용법
-  python scripts/ga4_daily.py                    # 어제 하루(한국 시간)를 받아 data/ga4_daily.json·docs/ga4-sources.md 저장
+  python scripts/ga4_daily.py                    # 최근 3일(어제 포함, 한국 시간)을 받아 data/ga4_daily.json·docs/ga4-sources.md 저장
+                                                 #   (2026-11-13: 예전엔 어제 하루만. GA4 숫자가 굳는 데 24~48시간 걸려 늦게 들어온 숫자가 빠졌음.
+                                                 #    같은 날짜는 덮어쓰므로 하루치를 사흘 동안 세 번 받아 마지막 값이 남는다)
   python scripts/ga4_daily.py --since 2026-10-20 # 그날부터 어제까지 받아 합침(과거치 채우기)
-  python scripts/ga4_daily.py --push             # PC 예약 작업 "구글 색인 확인 (매일 낮)" 뒤에: git pull → 받기 → 두 파일만 커밋·푸시
+  python scripts/ga4_daily.py --push             # PC 예약 작업 "구글 색인 확인 (매일 낮)" 뒤에: git pull → 받기 → judgment_inputs.py --write
+                                                 #   → data/ga4_daily.json·docs/ga4-sources.md·data/dong_boost.json·docs/judgment-inputs.md 만 커밋·푸시
   python scripts/ga4_daily.py --from-json        # API 없이 저장된 json 으로 docs/ga4-sources.md 만 다시 만듦
   python3 scripts/ga4_daily.py report [--today YYYY-MM-DD]   # 보고 한 줄(아침 보고·PC 작업 보고, 저장된 json 만 읽음)
 
@@ -16,6 +19,11 @@ GA4 로 "어디서 왔나"를 매일 센다(2026-11-04 병한님). 폼 문의가
   준비(병한님 1회): docs/ga4-setup.md — Google Analytics Data API 사용 + GA4 속성에 서비스 계정 뷰어 추가 + 속성 ID.
 - 받는 것 (가) 날짜 × 세션 소스/매체별 세션 수와 이벤트 quote_submit·call_click·sms_click 수
            (나) 날짜 × 페이지 경로별 quote_submit·call_click 수(날짜마다 상위 20).
+           (다) 날짜 × 들어온 페이지(landingPage, 세션이 시작된 페이지. 안 되면 landingPagePlusQueryString 에서 ? 뒤를 뗌)
+                × 출처 묶음별 세션 수(날짜마다 세션 많은 50개, 2026-11-13) → 날짜마다 "landing"(페이지 경로·묶음·세션 수만).
+- 속성 시간대(응답 metadata.timeZone)를 json 맨 위 "property_timezone" 에 남긴다(Asia/Seoul 이 아니면 알리기만, 고치지 않음).
+- report 안전장치(2026-11-13): "네이버 휴대폰 검색 방문 7일 평균" = 보고 기준일(자료가 있는 마지막 날, 어제까지)까지 7일 sources 의
+  "m.search.naver.com / referral" 세션 합 ÷ 7. 8 미만이면 "⚠ … (8 아래 — 클로드 채팅에 알리기)". 7일치가 다 없으면 줄을 내지 않는다.
 - 나누기: 소스에 naver → 네이버, google → 구글, youtube·youtu.be → 유튜브, (direct) → 직접, 그 밖 → 기타.
   원래 소스/매체는 날짜마다 세션 많은 15개까지 json 의 sources 에 남긴다(나중에 다시 나눌 수 있게).
 - 개인정보 없음: 세션·이벤트 수, 소스 이름, 페이지 경로만. 같은 날짜를 다시 받으면 덮어쓴다. 손으로 고치지 않는다.
@@ -45,6 +53,10 @@ EVENTS = ["quote_submit", "call_click", "sms_click"]
 BUCKETS = ["네이버", "구글", "유튜브", "직접", "기타"]
 WEEK = "월화수목금토일"
 PAGE_TOP = 20
+LANDING_TOP = 50
+FETCH_DAYS = 3  # --since 가 없을 때 받는 날 수(어제 포함, 2026-11-13)
+NAVER_MOBILE = "m.search.naver.com / referral"
+NAVER_MOBILE_ALERT = 8  # 7일 평균이 이 아래면 ⚠
 SOURCE_TOP = 15
 DOC_DAYS = 60
 STALE_DAYS = 3  # report: 마지막 날이 이보다 오래되면 "자료 없음"
@@ -73,14 +85,16 @@ def bucket(source: str) -> str:
 
 
 # ── API ──
-def run_report(token: str, pid: str, body: dict) -> list[list[str]]:
-    """runReport 를 끝까지(쪽 나눔) 받아 [차원값…, 지표값…] 줄 목록으로."""
+def run_report(token: str, pid: str, body: dict, meta: dict | None = None) -> list[list[str]]:
+    """runReport 를 끝까지(쪽 나눔) 받아 [차원값…, 지표값…] 줄 목록으로. meta 를 주면 응답 metadata(timeZone 등)를 담는다."""
     rows, offset = [], 0
     while True:
         req = urllib.request.Request(RUN_URL.format(pid=pid), data=json.dumps({**body, "limit": 10000, "offset": offset}).encode(),
                                      headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"})
         with urllib.request.urlopen(req, timeout=60) as r:
             res = json.loads(r.read())
+        if meta is not None:
+            meta.update(res.get("metadata") or {})
         for row in res.get("rows", []):
             rows.append([v.get("value", "") for v in row.get("dimensionValues", [])] + [v.get("value", "0") for v in row.get("metricValues", [])])
         offset += 10000
@@ -96,18 +110,34 @@ def iso(d: str) -> str:
     return f"{d[:4]}-{d[4:6]}-{d[6:]}"
 
 
-def fetch(token: str, pid: str, start: str, end: str) -> dict:
+def landing_path(v: str) -> str:
+    return unquote((v or "").split("?", 1)[0].split("#", 1)[0]) or "(not set)"
+
+
+def fetch_landing(token: str, pid: str, span: list) -> list[list[str]]:
+    """(다) 날짜 × 들어온 페이지 × 소스 세션. landingPage 가 안 되면 landingPagePlusQueryString."""
+    for dim in ("landingPage", "landingPagePlusQueryString"):
+        try:
+            return run_report(token, pid, {"dateRanges": span, "metrics": [{"name": "sessions"}],
+                                           "dimensions": [{"name": "date"}, {"name": dim}, {"name": "sessionSource"}]})
+        except urllib.error.HTTPError as e:
+            if e.code != 400 or dim == "landingPagePlusQueryString":
+                raise
+    return []
+
+
+def fetch(token: str, pid: str, start: str, end: str, meta: dict | None = None) -> dict:
     span = [{"startDate": start, "endDate": end}]
     days: dict[str, dict] = {}
     d = date.fromisoformat(start)
     while d <= date.fromisoformat(end):  # 0건인 날도 "받은 날"로 남긴다
         days[d.isoformat()] = {"sessions": {b: 0 for b in BUCKETS}, "events": {b: {e: 0 for e in EVENTS} for b in BUCKETS},
-                               "totals": {"sessions": 0, **{e: 0 for e in EVENTS}}, "sources": [], "pages": []}
+                               "totals": {"sessions": 0, **{e: 0 for e in EVENTS}}, "sources": [], "pages": [], "landing": []}
         d += timedelta(days=1)
     raw_src: dict[str, Counter] = defaultdict(Counter)
     # (가) 세션
     for dt, src, med, n in run_report(token, pid, {"dateRanges": span, "metrics": [{"name": "sessions"}],
-                                                   "dimensions": [{"name": "date"}, {"name": "sessionSource"}, {"name": "sessionMedium"}]}):
+                                                   "dimensions": [{"name": "date"}, {"name": "sessionSource"}, {"name": "sessionMedium"}]}, meta):
         day = days.get(iso(dt))
         if day is None:
             continue
@@ -130,7 +160,14 @@ def fetch(token: str, pid: str, start: str, end: str) -> dict:
                                                    "dimensionFilter": event_filter(["quote_submit", "call_click"])}):
         if iso(dt) in days:
             pages[iso(dt)][unquote(path)][ev] += int(n)
+    # (다) 들어온 페이지(2026-11-13)
+    landing: dict[str, Counter] = defaultdict(Counter)
+    for dt, path, src, n in fetch_landing(token, pid, span):
+        if iso(dt) in days:
+            landing[iso(dt)][(landing_path(path), bucket(src))] += int(n)
     for k, day in days.items():
+        day["landing"] = [{"page": p, "bucket": b, "sessions": n}
+                          for (p, b), n in sorted(landing[k].items(), key=lambda x: (-x[1], x[0]))[:LANDING_TOP]]
         day["sources"] = [{"source": s, "sessions": n} for s, n in raw_src[k].most_common(SOURCE_TOP)]
         ranked = sorted(pages[k].items(), key=lambda x: (-x[1]["quote_submit"], -x[1]["call_click"], x[0]))[:PAGE_TOP]
         day["pages"] = [{"page": p, "quote_submit": c["quote_submit"], "call_click": c["call_click"]} for p, c in ranked]
@@ -204,6 +241,37 @@ def report(today: date) -> None:
     top = [p for p in day["pages"] if p["quote_submit"] or p["call_click"]][:5]
     if top:
         print("  - 많이 누른 페이지: " + ", ".join(f"{p['page']} 폼 {p['quote_submit']}·전화 {p['call_click']}" for p in top))
+    tz = data.get("property_timezone")
+    if tz and tz != "Asia/Seoul":
+        print(f"  - 참고: GA4 속성 시간대가 {tz} (Asia/Seoul 아님 — 날짜 경계가 한국 날짜와 다를 수 있음)")
+    line = naver_mobile_line(data, date.fromisoformat(k))
+    if line:
+        print(line)
+
+
+def naver_mobile(day: dict) -> int:
+    return sum(s["sessions"] for s in day.get("sources", []) if s["source"] == NAVER_MOBILE)
+
+
+def naver_mobile_avg(data: dict, last: date, n: int = 7) -> tuple[float, int] | None:
+    """last 까지 n 일 네이버 휴대폰 검색(m.search.naver.com / referral) 세션 (하루 평균, 합). 하루라도 없으면 None."""
+    ks = [(last - timedelta(days=i)).isoformat() for i in range(n)]
+    if any(k not in data["days"] for k in ks):
+        return None
+    total = sum(naver_mobile(data["days"][k]) for k in ks)
+    return total / n, total
+
+
+def naver_mobile_line(data: dict, last: date) -> str:
+    """안전장치(2026-11-13): 최근 7일(보고 기준일까지) 네이버 휴대폰 검색 방문 하루 평균, 8 아래면 ⚠."""
+    got = naver_mobile_avg(data, last)
+    if got is None:
+        return ""
+    avg = got[0]
+    span = f"{day_name((last - timedelta(days=6)).isoformat())}~{day_name(last.isoformat())}"
+    if avg < NAVER_MOBILE_ALERT:
+        return f"⚠ 네이버 휴대폰 검색 방문 7일 평균 {avg:.1f} ({span}) (8 아래 — 클로드 채팅에 알리기)"
+    return f"네이버 휴대폰 검색 방문 7일 평균 {avg:.1f} ({span})"
 
 
 # ── git ──
@@ -212,7 +280,8 @@ def git(*args: str) -> subprocess.CompletedProcess:
 
 
 def push(summary: str) -> str:
-    rels = [OUT.relative_to(ROOT).as_posix(), DOC.relative_to(ROOT).as_posix(), "data/dong_boost.json"]  # 반응 온 동 페이지(2026-11-05)
+    rels = [OUT.relative_to(ROOT).as_posix(), DOC.relative_to(ROOT).as_posix(), "data/dong_boost.json",  # 반응 온 동 페이지(2026-11-05)
+            "docs/judgment-inputs.md"]  # 17일 판단 보고 숫자(2026-11-13, judgment_inputs.py --write)
     if not git("status", "--porcelain", "--", *rels).stdout.strip():
         return "바뀐 것 없음(커밋 안 함)"
     git("add", "--", *rels)
@@ -253,13 +322,14 @@ def main() -> None:
         git("checkout", "main")
         git("pull", "--rebase", "--autostash", "origin", "main")
     end = (kst_today() - timedelta(days=1)).isoformat()
-    start = args.since or end
+    start = args.since or (date.fromisoformat(end) - timedelta(days=FETCH_DAYS - 1)).isoformat()
     if start > end:
         print(f"받을 날짜 없음({start} > {end})")
         return
     try:
         token = G.access_token(json.loads(G.KEY.read_text(encoding="utf-8")), SCOPE)
-        days = fetch(token, pid, start, end)
+        meta: dict = {}
+        days = fetch(token, pid, start, end, meta)
     except urllib.error.HTTPError as e:
         why = ""
         try:
@@ -276,6 +346,9 @@ def main() -> None:
     data = load()
     data["days"].update(days)
     data["updated"] = datetime.now(KST).isoformat(timespec="minutes")
+    if meta.get("timeZone"):
+        data.pop("property_timezone", None)
+        data = {"property_timezone": meta["timeZone"], **data}  # 맨 위
     save(data)
     t = Counter()
     for d in days.values():
@@ -288,7 +361,16 @@ def main() -> None:
     import proof_blocks
     proof_blocks.write_boost()
     print(f"반응 온 동 페이지 {len(proof_blocks.compute_boost())}곳(data/dong_boost.json)")
+    print(f"GA4 속성 시간대: {data.get('property_timezone') or '모름(응답에 없음)'}")
     if args.push:
+        # 17일 판단 보고 숫자 한 장(2026-11-13). 실패해도 GA4 저장·푸시는 그대로 간다.
+        try:
+            r = subprocess.run([sys.executable, str(ROOT / "scripts" / "judgment_inputs.py"), "--write"], cwd=ROOT,
+                               capture_output=True, text=True, encoding="utf-8", timeout=300)
+            print("판단 숫자: " + ("docs/judgment-inputs.md 다시 씀" if r.returncode == 0
+                                  else "실패(건너뜀) " + (r.stderr or r.stdout).strip()[-200:]))
+        except Exception as e:  # noqa: BLE001
+            print(f"판단 숫자: 실패(건너뜀) {type(e).__name__}")
         print(push(summary))
 
 
