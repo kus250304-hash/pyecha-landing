@@ -99,6 +99,40 @@ def _lines(n: dict, cfg: dict) -> list[str]:
     return out
 
 
+def info_text(n: dict) -> str:
+    """공공 정보 표의 조기폐차 줄 글(2026-11-13): 칸과 같은 공고에서 만들어 날짜가 둘이 되지 않게 한다. 마감 뒤에는 마감 모양."""
+    year = n["deadline"][:4] if n.get("deadline") else ""
+    when = f"{year}년 {n['deadline_text']}" if year else ""
+    if is_closed(n):
+        return (f"{n['agency']} {year}년 조기폐차 지원 신청은 {when}에 접수 마감했습니다. "
+                f"확인서를 받으셨다면 {n['claim_months']}개월 안에 폐차를 마치고 보조금을 청구해야 합니다. (확인일 {n['checked_on']})")
+    head = (f"{n['agency']} {year}년 조기폐차 지원 신청은 {when}까지입니다({n['early_close']}). " if when
+            else f"{n['agency']} 조기폐차 지원이 지금 접수되는지는 {_contacts(n)}에서 확인하세요. ")
+    return (head + f"대상은 {n['target']}이고"
+            + (", 5등급 지원은 올해가 마지막입니다." if n.get("grade5_last_year") else "입니다.")
+            + f" (확인일 {n['checked_on']})")
+
+
+def info_rows(rows: list[dict], n: dict | None) -> list[dict]:
+    """public_info 중 "early_scrap": true 인 줄은 글·출처를 공고 파일에서 만든다(구·시 빌더가 부름)."""
+    if not n:
+        return rows
+    src = n["sources"][0]
+    return [{**r, "value": info_text(n), "source": src["name"], "url": src["url"], "grade": "opened"} if r.get("early_scrap") else r
+            for r in rows]
+
+
+def closed_faqs(faqs: list[tuple[str, str]], n: dict | None) -> list[tuple[str, str]]:
+    """지역 FAQ 답에 공고 마감일(deadline_text)이 들어 있으면, 마감 다음 날부터 "마감했습니다" 답으로 바꾼다(2026-11-13).
+    네/아니요 질문("아직 신청되나요?")은 "아니요, "로 시작한다(FAQ_ANSWER_RULE)."""
+    if not n or not is_closed(n):
+        return faqs
+    import variants as V
+    done = (f"올해 {n['agency']} 조기폐차 신청은 {n['deadline_text']}에 마감했습니다. "
+            f"확인서를 받으셨다면 {n['claim_months']}개월 안에 폐차해야 하니, 차값과 순서는 전화로 같이 봐 드립니다.")
+    return [(q, ("아니요, " + done if V.is_yes_no_question(q) else done) if n["deadline_text"] in a else a) for q, a in faqs]
+
+
 def section_title(n: dict, area: str) -> str:
     if is_closed(n):
         return f"{area} 조기폐차 — {n['agency']} 접수 마감({n['deadline_text'].split('(')[0]})"
@@ -159,7 +193,7 @@ def problems() -> list[str]:
     out = []
     cfg = json.loads((ROOT / "data" / "site_config.json").read_text(encoding="utf-8"))
     for n in notices():
-        text = " ".join(_lines(n, cfg) + [x for qa in faqs(n) for x in qa] + [n["target"], n.get("early_close", "")])
+        text = " ".join(_lines(n, cfg) + [x for qa in faqs(n) for x in qa] + [n["target"], n.get("early_close", ""), info_text(n)])
         if m := BAN_RE.search(text):
             out.append(f"조기폐차 칸 {n['short']}: 금지 표현 '{m.group(0)}'")
         out += [f"조기폐차 칸 {n['short']}: FAQ '{q}' — {p}" for q, a in faqs(n) if (p := V.faq_answer_problem(q, a))]

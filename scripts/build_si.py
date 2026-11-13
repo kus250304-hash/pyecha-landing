@@ -189,7 +189,8 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
             problems.append(f"{sido}: " + "; ".join(errs))
             continue
         si = SIDO_SHORT[sido]
-        info = with_registration(s["public_info"], registration_row_sido(sido))  # 등록대수 줄은 통계 파일에서(2026-10-03)
+        import early_scrap  # 조기폐차 줄("early_scrap": true)은 공고 파일에서(2026-11-13)
+        info = with_registration(early_scrap.info_rows(s["public_info"], early_scrap.notice_for(sido)), registration_row_sido(sido))  # 등록대수 줄은 통계 파일에서(2026-10-03)
         # 통합 전 이름 병기(2026-10-22 눈가리개 감사 9번): 제목·H1·첫 문단에 한 번씩. 다른 시·도는 그대로
         old = SI_OLD_NAMES.get(sido)
         si_label = f"{si} · {old}" if old else si
@@ -212,7 +213,9 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
         cases_sub = (f"{si}에서 진행한 실제 사례입니다. 지역은 카드마다 표시됩니다" if my_cases
                      else f"{si} 사례는 준비 중입니다. 유튜브와 블로그에서 실제 진행 사례를 보실 수 있습니다")
         # 시·도마다 다른 질문 3개 + 실제 통화 FAQ 풀에서 4개(2026-10-03)
-        faqs = [V.far_faq(si)] + [tuple(qa) for qa in s["faqs"]] + V.call_faqs("si:" + sido, 4)  # 맨 위 안심 FAQ(2026-10-16)
+        import early_scrap
+        faqs = ([V.far_faq(si)] + early_scrap.closed_faqs([tuple(qa) for qa in s["faqs"]], early_scrap.notice_for(sido))
+                + V.call_faqs("si:" + sido, 4))  # 맨 위 안심 FAQ(2026-10-16), 마감일 든 답은 마감 뒤 바꿈(2026-11-13)
         import early_scrap  # 조기폐차 칸(2026-11-12): 공고가 확인된 시·도만, 안심 FAQ 바로 뒤에 FAQ 3개
         es_notice = early_scrap.notice_for(sido)
         if es_notice:

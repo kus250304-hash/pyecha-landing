@@ -256,7 +256,8 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
             problems.append(f"{g['slug']}: " + "; ".join(errs))
             continue
         sido, sigungu = g["sido"], g["sigungu"]
-        info = with_registration(g["public_info"], registration_row(sido, sigungu))
+        # 조기폐차 줄("early_scrap": true)은 공고 파일에서 글을 만든다(2026-11-13, 칸과 날짜를 맞춤)
+        info = with_registration(early_scrap.info_rows(g["public_info"], early_scrap.notice_for(sido)), registration_row(sido, sigungu))
         gu = sigungu or SIDO_SHORT[sido]
         gu_full = " ".join(x for x in (sido, sigungu) if x)
         title_name = title_names.get(g["slug"], gu)
@@ -296,9 +297,11 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
             f'<span>{esc(" ".join(x for x in (c["sigungu"] or SIDO_SHORT[sido], c["dong"]) if x))} 작업 사례'
             + (f' · {esc(c["date"])}' if c.get("date") else "") + "</span></li>" for c in nearby) + "</ul>") if nearby else ""
         # 구마다 다른 질문 3개 + 실제 통화 FAQ 풀에서 4개(2026-10-03)
-        faqs = [V.far_faq(gu)] + [tuple(qa) for qa in g["faqs"]] + V.call_faqs("gu:" + g["slug"], 4)  # 맨 위 안심 FAQ(2026-10-16)
-        # 조기폐차 공고가 확인된 시·도(2026-11-12, data/early_scrap_notices.json)는 안심 FAQ 바로 뒤에 조기폐차 FAQ 3개
+        # 조기폐차 공고가 확인된 시·도(2026-11-12, data/early_scrap_notices.json)는 안심 FAQ 바로 뒤에 조기폐차 FAQ 3개.
+        # 지역 FAQ 답에 공고 마감일이 있으면 마감 다음 날부터 "마감했습니다" 답으로(2026-11-13, early_scrap.closed_faqs)
         es_notice = early_scrap.notice_for(sido)
+        faqs = ([V.far_faq(gu)] + early_scrap.closed_faqs([tuple(qa) for qa in g["faqs"]], es_notice)
+                + V.call_faqs("gu:" + g["slug"], 4))  # 맨 위 안심 FAQ(2026-10-16)
         if es_notice:
             faqs = faqs[:1] + early_scrap.faqs(es_notice) + faqs[1:]
         faq_html = "\n      ".join(f"<details><summary>{esc(q)}</summary><p>{tel_text(esc(a))}</p></details>" for q, a in faqs)
