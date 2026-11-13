@@ -77,7 +77,7 @@ PC에서 하는 "사례 가져오기" 작업이다. 원본 사진·메모는 이
 12. `git commit -m "Add N case inputs (YYYY-MM-DD)"` 후 `git push origin main`. 거절되면 `git pull --rebase origin main` 후 한 번 더 push 한다. 그래도 안 되면 mark 하지 말고 이유를 보고한다. 강제 push 는 하지 않는다.
 13. push 가 성공한 뒤에만 `python scripts/pc_cases.py mark` 를 실행한다(가져간 원본 폴더마다 반영됨.txt).
 14. `python scripts/pc_cases.py report` 를 실행해 그 줄을 보고에 옮긴 뒤, `python scripts/pc_cases.py clean` 으로 미리보기(원본 사진 사본)를 지운다.
-15. 네이버 순위: 2026-11-11 병한님 결정으로 하지 않는다. `scripts/naver_rank.py` 를 돌리지 않고, data/naver_rank/·docs/naver-rank.md·data/rival_targets.json 을 고치거나 올리지 않는다(rival_targets.json 은 2026-11-10 기준에서 멈춘 채 4단계 scan 이 그대로 읽는다). 네이버 자리는 2-1 의 `ga4_daily.py report` 맨 끝 "네이버 휴대폰 검색 방문 7일 평균" 줄로 본다(docs/current-rules.md). 옛(2026-10-22~11-10): `python scripts/naver_rank.py --write` → "Naver rank (YYYY-MM-DD)" 커밋.
+15. 네이버 순위: 2026-11-11 병한님 결정으로 하지 않는다. `scripts/naver_rank.py` 를 돌리지 않고, data/naver_rank/·docs/naver-rank.md·data/rival_targets.json 을 고치거나 올리지 않는다(rival_targets.json 은 2026-11-13 기준(마지막 자동 수집)에서 멈춘 채 4단계 scan 이 그대로 읽는다). 네이버 자리는 2-1 의 `ga4_daily.py report` 맨 끝 "네이버 휴대폰 검색 방문 7일 평균" 줄로 본다(docs/current-rules.md). 옛(2026-10-22~11-10): `python scripts/naver_rank.py --write` → "Naver rank (YYYY-MM-DD)" 커밋.
 
 [보고]
 - 첫 줄은 반드시 둘 중 하나: 올린 건이 1건 이상이면 "성공: N건 올라감(커밋 <번호>)", 0건이면 "실패: 0건, 이유: <쉬운 말 이유>"(예: 가져올 사례 없음, 3건 모두 가리기 실패로 뺌, push 거절). 도중에 명령이 이유 없이 실패하면 한 번 더 해 보고, 그래도 안 되면 지금까지 한 것을 그대로 두고(다음 실행이 이어 감) 실패 줄로 보고한다.
