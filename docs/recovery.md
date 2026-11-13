@@ -82,7 +82,7 @@ PC가 고장 나거나 새 PC로 바꿀 때 이 순서대로 되살립니다. �
    | 구글 색인 확인 (매일 낮) | 매일 낮 12시 10분 | `pyecha-gsc-index-check` | `gsc-key.json` 필요, 이어서 GA4 유입(`ga4_daily.py --push`, `site_config.ga4_property_id`·`docs/ga4-setup.md`) |
    | 폐차_검색어_주간 | 매주 일요일 밤 8시 | `pyecha-gsc-queries-weekly` | `gsc-key.json` 필요 |
    | 캘린더→기록부 (매일) | 매일 오후 1시 20분 | `scheduled-task` | 업무위키 `폐차\거래기록부\_캘린더\루틴지시문.md` |
-   | 폐차 사례 가져오기 (매일 3건) | 매일 오후 1시 40분·1시 55분 | `3` | `docs/pc-case-import-prompt.md`, 네이버 순위 15단계에 `naver_search.env` 필요 |
+   | 폐차 사례 가져오기 (매일 3건) | 매일 오후 1시 40분·1시 55분 | `3` | `docs/pc-case-import-prompt.md` (네이버 순위 15단계는 2026-11-11부터 안 함 — `naver_search.env` 는 지금 안 씀) |
    | 폐차장 명단 채우기 | (꺼져 있음) | `pyecha-junkyard-list-fill` | 필요할 때만 |
 
    이름에 날짜가 붙은 한 번짜리 확인 작업(`…-2026-10-15`, `…-2026-10-16`)은 다시 만들지 않습니다.

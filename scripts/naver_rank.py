@@ -1,4 +1,6 @@
 """
+2026-11-11부터 자동 실행 안 함(병한님 결정, docs/current-rules.md — PC 예약 작업 15단계 끔. 지우지 않고 남겨 둠).
+
 네이버 노출 지도(2026-10-22 Fable 설계, 상자 2): 우리 구·시군 페이지가 네이버 검색에서 몇 위로 뜨는지 매일 센다.
 
   python scripts/naver_rank.py --write   # 조회 + data/naver_rank/YYYY-MM-DD.json·docs/naver-rank.md 저장(같은 날은 덮어씀)
