@@ -197,17 +197,32 @@ def other_dongs(sido: str, sigungu: str, dongs: list[dict]) -> list[str]:
     return sorted(plain)
 
 
+# 깊은 사례를 먼저 보일 구 페이지(2026-11-13): data/rival_targets.json 의 empty 를 약관(네이버 검색 API 특약 2.3·2.4) 때문에
+# 지우면서, 그 순서를 쓰던 구 페이지가 11/18 전에 바뀌지 않게 우리 구 페이지 이름(slug)만 남김. 검색 순위·도메인은 없음.
+# 11/18 뒤 문구 묶음에서 이 목록을 없앨지(모든 구 페이지를 같은 규칙으로) 정한다.
+DEEP_FIRST_GU = {
+    "busan-gijang", "busan-sasang", "chungbuk-chungju", "chungbuk-danyang", "chungbuk-goesan", "chungbuk-okcheon",
+    "chungnam-yesan", "daegu-dalseong", "daegu-donggu", "gangwon-goseong", "gangwon-hongcheon", "gangwon-jeongseon",
+    "gangwon-taebaek", "gangwon-yanggu", "gangwon-yangyang", "gyeongbuk-chilgok", "gyeongbuk-goryeong", "gyeongbuk-gumi",
+    "gyeongbuk-gyeongju", "gyeongbuk-mungyeong", "gyeongbuk-pohang-bukgu", "gyeongbuk-pohang-namgu", "gyeongbuk-seongju",
+    "gyeongbuk-yeongdeok", "gyeonggi-gwacheon", "gyeonggi-namyangju", "gyeonggi-uiwang", "gyeongnam-changnyeong",
+    "gyeongnam-geochang", "gyeongnam-goseong", "gyeongnam-hadong", "gyeongnam-haman", "gyeongnam-hapcheon", "gyeongnam-jinju",
+    "gyeongnam-milyang", "gyeongnam-sacheon", "gyeongnam-sancheong", "gyeongnam-tongyeong", "gyeongnam-uiryeong",
+    "gyeongnam-yangsan", "incheon-jemulpo", "incheon-seohae", "incheon-yeongjong", "jeju-seogwipo", "jeonbuk-jangsu",
+    "jeonbuk-muju", "jeonnam-damyang", "jeonnam-goheung", "jeonnam-gwangyang", "jeonnam-jangseong", "jeonnam-mokpo", "sejong",
+    "ulsan-namgu",
+}
+
+
 def nearby_cases(slug: str, sido: str, cases: list[dict], n: int = 3) -> list[dict]:
     """같은 시·도의 다른 시군구 사례 최신 n건(그 구 사례가 모자랄 때 "가까운 지역 사례", 2026-10-20).
-    빈 땅 구 페이지(data/rival_targets.json 의 empty, 2026-10-25)는 깊은 사례(thin 아님)를 먼저 보이고 그다음 최신순.
+    DEEP_FIRST_GU 의 구 페이지(옛 '빈 땅', 2026-10-25 → 2026-11-13 고정 목록)는 깊은 사례(thin 아님)를 먼저 보이고 그다음 최신순.
     다른 시·도 사례는 지금처럼 붙이지 않는다."""
     from build_site import gu_slug, load_json
     others = [c for c in cases if c["sido"] == sido and gu_slug(c["sido"], c["sigungu"]) != slug
               and (ROOT / "cases" / f"{c['slug']}.html").exists()]
     others = sorted(others, key=lambda c: (c.get("date") or "", c["slug"]), reverse=True)
-    targets = load_json(ROOT / "data" / "rival_targets.json", default={})
-    empty = {t["slug"] for t in targets.get("empty", [])} if isinstance(targets, dict) else set()
-    if slug in empty:
+    if slug in DEEP_FIRST_GU:
         others = sorted(others, key=lambda c: bool(c.get("thin")))  # 정렬이 안정적이라 같은 깊이 안에서는 최신순 그대로
     return others[:n]
 
