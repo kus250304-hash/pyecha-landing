@@ -1,5 +1,5 @@
 {
- "date": "2026-11-12",
+ "date": "2026-11-13",
  "rival": [
   {
    "slug": "chungnam-asan",
@@ -11,7 +11,7 @@
    "slug": "gangwon-gangneung",
    "sido": "강원특별자치도",
    "sigungu": "강릉시",
-   "query": "강릉폐차"
+   "query": "강릉폐차장"
   },
   {
    "slug": "gyeongbuk-gyeongsan",
@@ -48,6 +48,12 @@
    "sido": "경상북도",
    "sigungu": "영천시",
    "query": "영천폐차"
+  },
+  {
+   "slug": "jeonnam-gurye",
+   "sido": "전남광주통합특별시",
+   "sigungu": "구례군",
+   "query": "구례폐차"
   },
   {
    "slug": "jeonnam-sinan",
@@ -92,34 +98,28 @@
    "query": "동해폐차"
   },
   {
-   "slug": "gyeonggi-yongin-cheoin",
-   "sido": "경기도",
-   "sigungu": "용인시 처인구",
-   "query": "용인폐차장"
-  },
-  {
-   "slug": "chungnam-boryeong",
-   "sido": "충청남도",
-   "sigungu": "보령시",
-   "query": "보령폐차장"
-  },
-  {
-   "slug": "gyeonggi-yongin-giheung",
-   "sido": "경기도",
-   "sigungu": "용인시 기흥구",
-   "query": "용인폐차장"
-  },
-  {
-   "slug": "gyeonggi-yongin-suji",
-   "sido": "경기도",
-   "sigungu": "용인시 수지구",
-   "query": "용인폐차장"
+   "slug": "jeonbuk-gimje",
+   "sido": "전북특별자치도",
+   "sigungu": "김제시",
+   "query": "김제폐차"
   },
   {
    "slug": "jeonnam-haenam",
    "sido": "전남광주통합특별시",
    "sigungu": "해남군",
    "query": "해남폐차장"
+  },
+  {
+   "slug": "jeonnam-muan",
+   "sido": "전남광주통합특별시",
+   "sigungu": "무안군",
+   "query": "무안폐차"
+  },
+  {
+   "slug": "seoul-gangdong",
+   "sido": "서울특별시",
+   "sigungu": "강동구",
+   "query": "강동폐차장"
   }
  ],
  "empty": [
@@ -211,14 +211,6 @@
    "sigungu": "광양시",
    "queries": [
     "광양폐차장"
-   ]
-  },
-  {
-   "slug": "jeonnam-gurye",
-   "sido": "전남광주통합특별시",
-   "sigungu": "구례군",
-   "queries": [
-    "구례폐차"
    ]
   },
   {
@@ -324,14 +316,6 @@
    "sigungu": "홍천군",
    "queries": [
     "홍천폐차"
-   ]
-  },
-  {
-   "slug": "daegu-dalseo",
-   "sido": "대구광역시",
-   "sigungu": "달서구",
-   "queries": [
-    "달서폐차장"
    ]
   },
   {
@@ -472,14 +456,6 @@
    ]
   },
   {
-   "slug": "seoul-jongno",
-   "sido": "서울특별시",
-   "sigungu": "종로구",
-   "queries": [
-    "종로폐차"
-   ]
-  },
-  {
    "slug": "gyeongbuk-yeongdeok",
    "sido": "경상북도",
    "sigungu": "영덕군",
@@ -512,14 +488,6 @@
    ]
   },
   {
-   "slug": "daegu-gunwi",
-   "sido": "대구광역시",
-   "sigungu": "군위군",
-   "queries": [
-    "군위폐차"
-   ]
-  },
-  {
    "slug": "daegu-dalseong",
    "sido": "대구광역시",
    "sigungu": "달성군",
@@ -536,27 +504,11 @@
    ]
   },
   {
-   "slug": "daegu-seogu",
-   "sido": "대구광역시",
-   "sigungu": "서구",
-   "queries": [
-    "대구서구폐차"
-   ]
-  },
-  {
    "slug": "jeonbuk-muju",
    "sido": "전북특별자치도",
    "sigungu": "무주군",
    "queries": [
     "무주폐차"
-   ]
-  },
-  {
-   "slug": "seoul-gangseo",
-   "sido": "서울특별시",
-   "sigungu": "강서구",
-   "queries": [
-    "서울강서구폐차"
    ]
   },
   {
