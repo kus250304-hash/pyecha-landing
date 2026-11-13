@@ -1424,3 +1424,16 @@
 - https://pyecha119.com/pages/jeonbuk-gimje-yochon.html — pages/jeonbuk-gimje-yochon.html (동: 점수표 82위(김제시) 동 요촌동, 인구 6,277명)
 - https://pyecha119.com/pages/jeonnam-naju-bitgaram.html — pages/jeonnam-naju-bitgaram.html (동: 점수표 83위(나주시) 동 빛가람동, 인구 39,786명)
 - https://pyecha119.com/pages/jeonnam-naju-songwol.html — pages/jeonnam-naju-songwol.html (동: 점수표 83위(나주시) 동 송월동, 인구 11,013명)
+
+## 2026-11-14 네이버
+
+- https://pyecha119.com/gu/%EC%9A%A9%EC%9D%B8%EC%8B%9C-%EC%B2%98%EC%9D%B8%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/용인시-처인구-폐차장.html (바뀜: 2026-11-14 사례가 새로 붙음(용인시 처인구))
+- https://pyecha119.com/gu/%EC%9D%98%EC%99%95%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/의왕시-폐차장.html (반응: 최근 7일 전화 1)
+- https://pyecha119.com/si/%EB%8C%80%EC%A0%84-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — si/대전-폐차장.html (반응: 최근 7일 전화 1)
+- https://pyecha119.com/gu/%EA%B0%95%EB%82%A8%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/강남구-폐차장.html (바뀜: 2026-11-13 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EA%B0%95%EB%8F%99%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/강동구-폐차장.html (바뀜: 2026-11-13 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EA%B5%AC%EB%A1%9C%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/구로구-폐차장.html (바뀜: 2026-11-13 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EB%85%B8%EC%9B%90%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/노원구-폐차장.html (바뀜: 2026-11-13 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EB%8F%84%EB%B4%89%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/도봉구-폐차장.html (바뀜: 2026-11-13 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EB%8F%99%EB%8C%80%EB%AC%B8%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/동대문구-폐차장.html (바뀜: 2026-11-13 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EC%86%A1%ED%8C%8C%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/송파구-폐차장.html (바뀜: 2026-11-13 본문 바뀜(구·시군))

@@ -1,5 +1,51 @@
 [
  {
+  "slug": "case-20221216-gyeonggi-yongin-cheoin-mohyeon",
+  "date": "2022-12-16",
+  "sido": "경기도",
+  "sigungu": "용인시 처인구",
+  "dong": "모현읍",
+  "region_slug": null,
+  "car": "2018년식 그랜드스타렉스",
+  "title": "모현읍 2018년식 그랜드스타렉스 폐차·수출 비교 상담 사례",
+  "summary": "2018년식 그랜드스타렉스 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "그랜드스타렉스"
+   ],
+   [
+    "연식",
+    "2018년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2018년식 그랜드스타렉스 차량으로, 시동은 걸리는 상태였습니다. 뒷범퍼 찌그러진 노란 어린이 통학 승합",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20221216-gyeonggi-yongin-cheoin-mohyeon-1.jpg",
+  "photos": [
+   "case-20221216-gyeonggi-yongin-cheoin-mohyeon-1.jpg",
+   "case-20221216-gyeonggi-yongin-cheoin-mohyeon-2.jpg",
+   "case-20221216-gyeonggi-yongin-cheoin-mohyeon-3.jpg",
+   "case-20221216-gyeonggi-yongin-cheoin-mohyeon-4.jpg",
+   "case-20221216-gyeonggi-yongin-cheoin-mohyeon-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "인수일": "2022-12-16"
+  },
+  "depth": [],
+  "thin": true,
+  "card_line": "2018년식 그랜드스타렉스 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-14"
+ },
+ {
   "slug": "case-20230111-gyeonggi-seongnam-jungwon-seongnam",
   "date": "2023-01-11",
   "sido": "경기도",
