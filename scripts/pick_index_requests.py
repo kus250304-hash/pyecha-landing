@@ -1,43 +1,29 @@
 """
-오늘 손으로 색인 요청할 주소를 구글·네이버 따로 고른다(2026-10-18 병한님 요청, 2026-10-20 10개 → 5개, 2026-10-22 5개 → 10개,
-2026-10-29 구글·네이버 나눔: 구글 15개 + 네이버 50개). 매일 루틴이 커밋 전에 돌리고, 아침 보고 맨 끝에 구글 목록(주소마다
-서치 콘솔 URL 검사 바로가기)과 네이버 목록(코드 상자 하나에 한 줄씩)을 붙인다. 네이버·공용 IndexNow 자동 전송(scripts/indexnow.py)과는 따로다.
+네이버 수집 요청 후보를 고른다. 2026-11-11 병한님 결정(docs/current-rules.md)부터 아침 색인(구글 15·네이버 50)은 하지 않고,
+일요일 저녁 발행판에서 병한님이 네이버 수집 요청 10개까지만 넣는다. 매일 루틴이 커밋 전에 --write 로 돌려 그 후보를
+docs/index-requests.md 에 "## 날짜 네이버" 칸으로 쌓아 두고, 일요일 발행판(업무위키 _도구/주간꾸러미.py)이 최근 7일 줄을 읽는다.
+구글 목록은 만들지 않는다. 네이버·공용 IndexNow 자동 전송(scripts/indexnow.py)과는 따로다.
 
 사용법
   python3 scripts/pick_index_requests.py           # 고르기만(파일 그대로)
-  python3 scripts/pick_index_requests.py --write   # 고른 주소를 docs/index-requests.md 에 "## 날짜 구글"·"## 날짜 네이버" 칸으로 덧붙임
+  python3 scripts/pick_index_requests.py --write   # 고른 주소를 docs/index-requests.md 에 "## 날짜 네이버" 칸으로 덧붙임(0개면 칸 없음)
+
+네이버 후보(하루 10개까지, 사이트맵에 있는 페이지만 = noindex·자동 이동 빼기)
+  (가) 어제·오늘 사례가 새로 붙은 구·시군 페이지(cases/index.json 의 added)   이유 "바뀜: YYYY-MM-DD 사례가 새로 붙음(시군구)"
+  (나) data/ga4_daily.json 최근 7일 pages 에 quote_submit·call_click·sms_click 1 이상   이유 "반응: 최근 7일 …"
+  (다) 어제·오늘 본문 해시가 바뀐 구·시·주제·사례 페이지(data/page_hashes.json lastmod)   이유 "바뀜: YYYY-MM-DD 본문 바뀜(…)"
+  이 순서로 10개까지. 같은 주소는 7일 안에 다시 넣지 않는다(네이버 칸 기록 기준).
+  "요청 못 함" 다시 넣기와 동 페이지로 채우기는 2026-11-11부터 끔(Picker.requeue·dong_order 는 남겨 둠).
+  글자 꼴은 바꾸지 않는다(주간꾸러미.py 가 읽음): 칸 제목 "## YYYY-MM-DD 네이버", 줄 "- 주소 — 파일 (이유)",
+  이유 속 "YYYY-MM-DD 사례가 새로 붙음"·"YYYY-MM-DD 본문 바뀜"·"내용 바뀜(YYYY-MM-DD)".
 
 기록(docs/index-requests.md 날짜 칸, 2026-10-29)
   제목이 "날짜 구글" / "날짜 네이버" / "날짜 구글·네이버 …"이면 그곳에 넣은 것. 표시가 없는 옛 칸은 2026-10-22부터 둘 다,
   그 전은 구글만. 제목에 "요청 못 함"이 있는 칸은 그곳에 요청 안 한 것. 주소는 %인코딩한 전체 주소.
-  곳마다 그곳 날짜 칸에 있는 주소는 요청한 것으로 보고 뺀다. 오늘 날짜 칸이 이미 "요청 못 함"으로 적혀 있으면 --write 도 같은 표시를 단다.
 
-구글(하루 15개, 구·시군·주제(안내) 페이지만. 동·시·도·사례 페이지는 고르지 않음)
-  ⓪ 구글 "요청 못 함" 칸 주소를 같은 순서로 다시 맨 앞에(2026-10-29부터 모든 칸을 최근 칸부터 보고, 예전에 요청한 적 있는
-     주소도 그 칸 뒤로 요청하지 않았으면 다시. "그 칸 뒤" = 더 늦은 날짜 칸, 같은 날이면 파일에서 더 아래 칸(2026-10-30).
-     하루 개수를 넘어 남은 주소는 다음 날 이어서 나옴. 2026-10-30부터 ⓐ 보다 앞)
-  ⓐ 어제·오늘 사례가 새로 붙은 구·시군 페이지(2026-10-28 병한님, cases/index.json 의 added = 페이지에 붙은 날, 없으면 git 에
-     cases/<slug>.html 이 처음 들어간 날). 이미 요청했어도 사례가 붙은 날 뒤로 요청한 적이 없으면 다시 고른다
-  ① docs/index-requests.md 의 "## 최우선" 칸 주소 중 아직 요청 안 된 것(적힌 순서대로, 지금은 주제 페이지 6장)
-  ② 문의가 온 페이지(그 파일의 "문의가 온 페이지" 칸)와 같은 시·군의 구·시군 페이지
-     (일반구면 같은 시의 다른 구 페이지까지, 문의 온 곳이 여럿이면 번갈아)
-  ②-0 빈 땅(검색어 top3 에 폐차 업체가 없는 구·시군, data/rival_targets.json 의 empty) → ②-1 지인 공략 20곳(같은 파일의 rival,
-     scripts/naver_rank.py, 2026-10-25). 둘 다 구 페이지 중 아직 요청 안 된 것,
-     또는 마지막 요청 날짜 뒤에 본문 해시 날짜(data/page_hashes.json lastmod)가 바뀐 것(내용이 그대로면 다시 고르지 않음)
-  ④ 점수표(data/priority_regions.json) 순위 높은 지방 시·군(build_gu.min_dong_pages 가 0)의 구 페이지
-  구글 목록 전체에서 이미 색인된 주소는 뺀다(2026-10-30, data/gsc_index_status.json — PC 예약 작업 scripts/gsc_index_check.py 가
-  매일 씀. 파일이 없거나 마지막 확인이 3일보다 오래면 거르지 않음). 빠진 자리는 다음 순서 주소로 채운다.
-  (③ 시·도 페이지는 2026-10-29 구글에서 뺌, 14장 모두 요청됨. A·B 실험 20곳 빼기는 2026-10-28 실험 취소로 없앰.)
-
-네이버(하루 50개, 사이트맵에 있는 페이지만 = noindex·자동 이동 페이지 빼기, 2026-11-05 새 규칙)
-  ⓪ 네이버 "요청 못 함" 칸 주소(구글과 같은 규칙)
-  ① 바뀐·반응 온 페이지 최대 25개: (가) 어제·오늘 본문 해시가 바뀐 구·시·주제·사례 페이지 (나) data/ga4_daily.json 최근 7일
-     pages 에 quote_submit·call_click·sms_click 1 이상. 같은 주소는 7일 안에 다시 넣지 않음. 전체 재빌드 다음 날(바뀐 페이지 300개 넘음)은
-     반응 온 → 사례 붙은 구 → 나머지 바뀐 페이지 순
-  ② 동 페이지로 50개까지: 문의 온 시·군(일반구면 같은 시의 모든 구)의 동을 인구 많은 순(문의 온 곳이 여럿이면 번갈아) → 점수표 순
-     시·군마다 인구 많은 동 → 나머지. 인구는 data/population_dong.json(population_stats.py dong)에 있는 것만, 없는 동은 그 시·군 맨 뒤
-  ③ 그래도 남으면 네이버에 아직 안 넣은 구·시·주제·사례 페이지(2026-10-29 ① 순서)
-  네이버 칸 주소 뒤 괄호의 첫 낱말이 이유: 다시 / 바뀜 / 반응 / 동 / 안 넣음
+옛(2026-10-29~11-10, 아침 색인): 구글 15개(⓪ 요청 못 함 → ⓐ 사례 붙은 구 → ① 최우선 → ② 문의 온 시·군 → ②-0 빈 땅 →
+  ②-1 지인 공략 → ④ 점수표 지방 시·군, 색인됨 빼기) + 네이버 50개(⓪ 요청 못 함 → ① 바뀐·반응 최대 25 → ② 동 페이지 →
+  ③ 안 넣은 구·시·주제·사례). 자세한 옛 규칙은 git 기록(2026-11-12 이전 이 파일)에 있다.
 """
 import argparse
 from collections import Counter
@@ -53,11 +39,9 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 from build_gu import min_dong_pages  # noqa: E402
 from build_site import CONFIG, GU_DATA, REGIONS, gu_file, load_json  # noqa: E402
-from build_si import load_si, si_file  # noqa: E402
 
 LOG = ROOT / "docs" / "index-requests.md"
-COUNT_GOOGLE = 15  # 2026-10-20 10 → 5, 2026-10-22 5 → 10, 2026-10-29 10 → 15(병한님, 구글·네이버 나눔)
-COUNT_NAVER = 50  # 2026-10-29 병한님: 서치어드바이저 웹 페이지 수집은 하루 50개까지 됨
+COUNT_NAVER = 10  # 2026-11-11 병한님: 일요일 발행판용 후보 하루 10개까지(옛: 2026-10-29 50개, 구글 15개는 없앰)
 GSC_STATUS = ROOT / "data" / "gsc_index_status.json"  # 구글 색인 상태(2026-10-30, scripts/gsc_index_check.py)
 GSC_MAX_AGE = 3  # 마지막 확인이 이 날수보다 오래면 거르지 않음
 NAVER_AGAIN_DAYS = 7  # 네이버: 같은 주소는 7일 안에 다시 넣지 않음(2026-11-05)
@@ -307,15 +291,11 @@ def main() -> None:
     ap.add_argument("--write", action="store_true")
     ap.add_argument("--date", help="이 날짜(YYYY-MM-DD)로 고르기(미리 보기용, 기본 오늘 한국 시간)")
     args = ap.parse_args()
+    sys.stdout.reconfigure(encoding="utf-8")
     base = load_json(CONFIG)["site_base_url"].rstrip("/")
-    regions, gu_data = load_json(REGIONS), load_json(GU_DATA, default=[])
+    gu_data = load_json(GU_DATA, default=[])
     text = LOG.read_text(encoding="utf-8") if LOG.exists() else ""
     secs = sections(text)
-    priority = [u for head, body in secs if head.startswith("최우선") and not head.startswith("최우선 다시") for u in URL_RE.findall(body)]
-    # "최우선 다시" 칸(2026-11-12 조기폐차 칸): 적힌 순서대로, 본문이 바뀐 날(lastmod) 뒤로 요청 안 했으면 구글 맨 앞에 다시.
-    # 이미 색인됨이어도 넣는다(바뀐 내용을 다시 읽히려고). 그 뒤 요청하면 저절로 빠진다
-    redo = [u for head, body in secs if head.startswith("최우선 다시") for u in URL_RE.findall(body)]
-    inquiry = next((body for head, body in secs if head.startswith("문의가 온 페이지")), "")
     day = args.date or today()
 
     def gu_url(sido, sigungu):
@@ -323,147 +303,47 @@ def main() -> None:
 
     gu_keys = {(g["sido"], g["sigungu"]) for g in gu_data}
     lastmod = {rel: v["lastmod"] for rel, v in load_json(ROOT / "data" / "page_hashes.json", default={}).items()}
-    targets = load_json(ROOT / "data" / "rival_targets.json", default={})
-    if isinstance(targets, list):  # 2026-10-25 첫 모양(지인 목록만)
-        targets = {"rival": targets}
-    per_inquiry = [[(gu_url(*k), f"문의 온 곳({key[1]})과 같은 시·군의 구 페이지") for k in inquiry_group(key, gu_keys)]
-                   for key in inquiry_places(inquiry, base, regions, gu_data)]
-    prio_gu = load_json(ROOT / "data" / "priority_regions.json", default={}).get("gu", [])
 
-    def inquiry_items(p: Picker) -> None:  # 문의 온 곳이 여럿이면 번갈아
-        for i in range(max((len(x) for x in per_inquiry), default=0)):
-            for x in per_inquiry:
-                if i < len(x):
-                    p.add(*x[i])
-
-    def target_items(p: Picker, t: dict, label: str) -> None:
-        if (t["sido"], t["sigungu"]) not in gu_keys:
-            return
-        url, rel = gu_url(t["sido"], t["sigungu"]), "gu/" + gu_file(t["sido"], t["sigungu"])
-        why = f"{label}({t['sigungu'] or t['sido']} · {t.get('query') or ' · '.join(t.get('queries') or [])})"
-        if url not in p.done:
-            p.add(url, why)
-        elif lastmod.get(rel, "") > p.last_req.get(url, ""):
-            p.add(url, f"{why} · {p.last_req[url]} 요청 뒤 내용 바뀜({lastmod[rel]})", again=True)
-
-    # ── 구글: 하루 15개, 구·시군·주제(안내) 페이지만(동·시·도·사례 페이지는 고르지 않음, 2026-10-29) ──
-    indexed, gsc_note = gsc_indexed(day)
-    g = Picker(secs, "구글", lambda u: ("/gu/" in u or "/guide/" in u) and u not in indexed)
-    for u in redo:
-        rel = unquote(u[len(base) + 1:])
-        if ("/gu/" in u or "/guide/" in u) and lastmod.get(rel, "") > g.last_req.get(u, "") and u not in g._seen:
-            g.ordered.append((u, f"최우선 다시({lastmod[rel]} 내용 바뀜)"))
-            g._seen.add(u)
-    g.requeue(secs, day)  # ⓪ 맨 앞(2026-10-30: 사례 붙은 페이지가 하루 10개쯤이라 ⓐ 뒤면 못 한 주소가 계속 밀림)
-    # ⓐ 어제·오늘 사례가 새로 붙은 구·시군 페이지(2026-10-28). 사례가 붙은 날 뒤로 요청한 적이 없으면 다시
-    since = (datetime.fromisoformat(day) - timedelta(days=1)).date().isoformat()
-    for c, added in new_cases(since, day):
-        k = (c["sido"], c["sigungu"])
-        if k in gu_keys:
-            url = gu_url(*k)
-            if g.last_req.get(url, "") < added:
-                g.add(url, f"{added} 사례가 새로 붙음({c['sigungu']} {c.get('car', '')})".replace(" )", ")"), again=True)
-    for u in priority:  # ① 최우선 칸
-        g.add(u, "최우선 칸")
-    inquiry_items(g)  # ② 문의가 온 페이지와 같은 시·군의 구·시군 페이지
-    # ②-0 빈 땅(검색어 top3 에 폐차 업체가 없는 구·시군, 점수표 순) → ②-1 지인 공략 20곳(2026-10-25, data/rival_targets.json):
-    # (가) 아직 요청 안 된 것, (나) 마지막 요청 날짜 뒤에 본문 해시 날짜(lastmod)가 바뀐 것. 내용이 그대로면 다시 고르지 않는다
-    for t in targets.get("empty", []):
-        target_items(g, t, "빈 땅")
-    for t in targets.get("rival", []):
-        target_items(g, t, "지인 공략")
-    for e in prio_gu:  # ④ 점수표 순위 높은 지방 시·군의 구 페이지
-        k = (e["sido"], e["sigungu"])
-        if k in gu_keys and min_dong_pages(*k) == 0:
-            g.add(gu_url(*k), f"점수표 {e['rank']}위 지방 시·군")
-
-    # ── 네이버: 하루 50개, 사이트맵에 있는 페이지만(noindex·자동 이동 빼기, 2026-10-29) ──
-    # 2026-11-05 새 규칙(병한님 상자 B-1 6번): ⓪ 요청 못 함 → ① 바뀐·반응 온 페이지 최대 25 → ② 동 페이지(지금 규칙)로 50까지.
-    #   ① (가) 어제·오늘 본문이 바뀐 구·시·주제·사례 페이지(data/page_hashes.json lastmod) (나) data/ga4_daily.json 최근 7일
-    #   pages 에 quote_submit·call_click·sms_click 이 1 이상인 페이지. 같은 주소는 7일 안에 다시 넣지 않는다.
-    #   전체 재빌드 다음 날(바뀐 페이지가 FULL_REBUILD 개 넘음)은 반응 온 → 사례 붙은 구 → 나머지 바뀐 페이지 순으로 25개만.
-    #   ①·② 로도 50개가 안 차면 아직 네이버에 안 넣은 구·시·주제·사례 페이지(예전 ①)로 채운다.
-    #   docs/index-requests.md 네이버 칸에는 주소마다 이유 첫 낱말("다시"/"바뀜"/"반응"/"동"/"안 넣음")이 붙는다.
-    core, cases = sitemap_urls("sitemap-core.xml"), sitemap_urls("sitemap-cases.xml")
-    indexable = set(core) | set(cases) | set(sitemap_urls("sitemap-dong-*.xml"))
+    # ── 네이버 후보: 하루 10개까지, 사이트맵에 있는 페이지만(2026-11-11 병한님) ──
+    indexable = set(sitemap_urls("sitemap-core.xml")) | set(sitemap_urls("sitemap-cases.xml")) | set(sitemap_urls("sitemap-dong-*.xml"))
     n = Picker(secs, "네이버", lambda u: u in indexable)
-    n.requeue(secs, day)  # ⓪
-    for i, (u, why) in enumerate(n.ordered):
-        n.ordered[i] = (u, "다시: " + why)
     d0 = datetime.fromisoformat(day)
     yday = (d0 - timedelta(days=1)).date().isoformat()
 
-    def fresh(u: str) -> bool:  # 7일 안에 넣은 주소는 다시 넣지 않음
+    def add(u: str, why: str) -> None:  # 같은 주소는 7일 안에 다시 넣지 않음
         last = n.last_req.get(u)
-        return not last or (d0 - datetime.fromisoformat(last)).days >= NAVER_AGAIN_DAYS
-
-    first_limit = len(n.ordered) + NAVER_CHANGED_MAX
-
-    def add_first(u: str, why: str) -> None:
-        if len(n.ordered) < first_limit and fresh(u):
+        if not last or (d0 - datetime.fromisoformat(last)).days >= NAVER_AGAIN_DAYS:
             n.add(u, why, again=True)
 
-    changed = sorted((rel for rel, lm in lastmod.items() if yday <= lm <= day), key=lambda r: (KIND_ORDER.get(r.split("/")[0], 9), r))
-    full_rebuild = len(changed) > FULL_REBUILD
-    changed_urls = [(f"{base}/{quote(rel)}", f"바뀜: {lastmod[rel]} 본문 바뀜({kind('/' + rel)})") for rel in changed
-                    if rel.split("/")[0] in ("gu", "si", "guide", "cases")]
-    reacted = [(u, f"반응: 최근 7일 {why}") for u, why in ga4_reacted(base, day)]
-    if full_rebuild:
-        case_gu = [(gu_url(c["sido"], c["sigungu"]), f"바뀜: {added} 사례 붙은 구({c['sigungu']})")
-                   for c, added in new_cases(yday, day) if (c["sido"], c["sigungu"]) in gu_keys]
-        for u, why in reacted + case_gu + changed_urls:
-            add_first(u, why)
-    else:
-        for u, why in changed_urls + reacted:
-            add_first(u, why)
-    for u, why in dong_order(base, regions, inquiry, gu_data, indexable):  # ② 동 페이지
-        n.add(u, "동: " + why)
-    # 남으면: 네이버에 아직 안 넣은 구·시·주제·사례 페이지(2026-10-29 ① 순서 그대로)
-    for u in priority:
-        n.add(u, "안 넣음: 최우선 칸")
-    for x in per_inquiry:
-        for u, why in x:
-            n.add(u, "안 넣음: " + why)
-    for label, key in (("빈 땅", "empty"), ("지인 공략", "rival")):
-        for t in targets.get(key, []):
-            if (t["sido"], t["sigungu"]) in gu_keys:
-                n.add(gu_url(t["sido"], t["sigungu"]), f"안 넣음: {label}({t['sigungu'] or t['sido']})")
-    for si in load_si():
-        n.add(f"{base}/si/{quote(si_file(si['sido']))}", "안 넣음: 시·도 페이지")
-    for e in prio_gu:
-        if (e["sido"], e["sigungu"]) in gu_keys:
-            n.add(gu_url(e["sido"], e["sigungu"]), f"안 넣음: 점수표 {e['rank']}위")
-    for u in core:
-        n.add(u, f"안 넣음: {kind(u)} 페이지")
-    for u in sorted(cases, reverse=True):
-        n.add(u, "안 넣음: 사례 페이지")
+    # (가) 어제·오늘 사례가 새로 붙은 구·시군 페이지
+    for c, added in new_cases(yday, day):
+        if (c["sido"], c["sigungu"]) in gu_keys:
+            add(gu_url(c["sido"], c["sigungu"]), f"바뀜: {added} 사례가 새로 붙음({c['sigungu']})")
+    # (나) GA4 최근 7일 폼·전화·문자 반응 온 페이지
+    for u, why in ga4_reacted(base, day):
+        add(u, f"반응: 최근 7일 {why}")
+    # (다) 어제·오늘 본문이 바뀐 구·시·주제·사례 페이지
+    changed = sorted((rel for rel, lm in lastmod.items() if yday <= lm <= day and rel.split("/")[0] in ("gu", "si", "guide", "cases")),
+                     key=lambda r: (KIND_ORDER.get(r.split("/")[0], 9), r))
+    for rel in changed:
+        add(f"{base}/{quote(rel)}", f"바뀜: {lastmod[rel]} 본문 바뀜({kind('/' + rel)})")
 
-    picked = {"구글": g.ordered[:COUNT_GOOGLE], "네이버": n.ordered[:COUNT_NAVER]}
-    print(f"오늘 구글 색인 요청 {len(picked['구글'])}개 — 서치 콘솔 URL 검사 → 색인 생성 요청 "
-          f"({day}, 구글에 요청한 {len(g.done)}개는 뺌)")
-    print(f"구글 색인 확인: {gsc_note}")
-    for i, (u, why) in enumerate(picked["구글"], 1):
-        print(f"{i}. {unquote(u)} — {why}\n{u}\nURL 검사 바로가기: {inspect_link(base, u)}")
-    kinds: dict[str, int] = {}
-    for u, _ in picked["네이버"]:
-        kinds[kind(u)] = kinds.get(kind(u), 0) + 1
-    print(f"\n오늘 네이버 웹 페이지 수집 {len(picked['네이버'])}개 — 서치어드바이저 요청 → 웹 페이지 수집 "
-          f"({day}, 네이버에 넣은 {len(n.done)}개는 뺌, 고를 수 있던 것 {len(n.ordered)}개)")
-    print("종류: " + " · ".join(f"{k} {v}" for k, v in kinds.items()))
-    print("네이버 이유: " + " · ".join(f"{w} {c}" for w, c in Counter(why.split(":")[0] for _, why in picked["네이버"]).items()))
-    print("네이버 주소(코드 상자 하나에 한 줄씩):")
-    for u, _ in picked["네이버"]:
-        print(u)
-    if args.write and any(picked.values()):
+    picked = n.ordered[:COUNT_NAVER]
+    print(f"네이버 후보 {len(picked)}개 — 일요일 저녁 발행판에서 넣을 것(하루 {COUNT_NAVER}개까지, {day}, "
+          f"고를 수 있던 것 {len(n.ordered)}개, 7일 안에 넣은 주소는 뺌). 2026-11-11부터 아침 색인·구글 목록 없음")
+    if picked:
+        print("네이버 이유: " + " · ".join(f"{w} {c}" for w, c in Counter(why.split(":")[0] for _, why in picked).items()))
+        for i, (u, why) in enumerate(picked, 1):
+            print(f"{i}. {unquote(u)} — {why}")
+    if args.write:
+        if not picked:
+            print("docs/index-requests.md: 후보 0개라 칸을 만들지 않음")
+            return
         if not text.endswith("\n"):
             text += "\n"
-        for engine, p in (("구글", g), ("네이버", n)):
-            if picked[engine]:
-                head = (f"{day} {engine} — {NOT_DONE}(이날 할당량 초과로 루틴이 고른 목록만 적음, 다음 날 다시 고름)"
-                        if p.not_done_today(secs, day) else f"{day} {engine}")
-                text += f"\n## {head}\n\n" + "".join(f"- {u} — {unquote(u[len(base) + 1:])} ({why})\n" for u, why in picked[engine])
+        text += f"\n## {day} 네이버\n\n" + "".join(f"- {u} — {unquote(u[len(base) + 1:])} ({why})\n" for u, why in picked)
         LOG.write_text(text, encoding="utf-8")
-        print(f"docs/index-requests.md 에 구글 {len(picked['구글'])}개 · 네이버 {len(picked['네이버'])}개 덧붙임")
+        print(f"docs/index-requests.md 에 네이버 {len(picked)}개 덧붙임")
 
 
 if __name__ == "__main__":
