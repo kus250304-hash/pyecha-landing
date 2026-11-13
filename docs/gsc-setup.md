@@ -12,7 +12,7 @@ PC 예약 작업 "구글 색인 확인 (매일 낮)"이 매일 낮 12시 10분 �
 
 ## 병한님이 한 번만 할 일
 
-모두 크롬에서 kus250304@gmail.com(서치 콘솔과 같은 구글 계정)으로 로그인한 채로 합니다.
+모두 크롬에서 (병한님 구글 계정)(서치 콘솔과 같은 구글 계정)으로 로그인한 채로 합니다.
 
 1. **프로젝트 만들기** — [프로젝트 만들기 화면](https://console.cloud.google.com/projectcreate) 열기 → "프로젝트 이름"에 `pyecha119-gsc` 입력 → "만들기" 누르기 → 오른쪽 위 알림 종에 "만들기 완료"가 뜰 때까지 기다리기.
 2. **Search Console API 켜기** — [Search Console API 화면](https://console.cloud.google.com/apis/library/searchconsole.googleapis.com) 열기 → 맨 위 왼쪽 프로젝트 이름이 `pyecha119-gsc` 인지 보기(아니면 눌러서 바꾸기) → 파란 "사용" 버튼 누르기.
