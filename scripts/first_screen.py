@@ -66,7 +66,7 @@ def hero_top_html(cfg: dict, region: str, form: dict, crumb: str = "", updated: 
         '          <label class="sr-only" for="q1-plate">차량번호</label>'
         '<input id="q1-plate" name="plate" type="text" inputmode="text" placeholder="12가 3456" autocomplete="off">',
         '          <label class="sr-only" for="q1-phone">연락처</label>'
-        '<input id="q1-phone" name="phone" type="tel" inputmode="tel" placeholder="010-" maxlength="13" required autocomplete="tel">',
+        '<input id="q1-phone" name="phone" type="tel" inputmode="tel" placeholder="010-" maxlength="20" required autocomplete="tel">',
         '        </div>',
         '        <button class="btn btn-call" type="submit">차 번호로 두 금액 받기 <span>— 폐차값·수출값 둘 다</span></button>',
         f'        <p class="fine">{CONSENT_HTML.format(prefix=prefix)}</p>',

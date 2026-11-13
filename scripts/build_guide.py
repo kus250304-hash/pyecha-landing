@@ -636,7 +636,7 @@ BOTTOM_FORM = """      <div class="quote-card" style="margin-top:16px;text-align
           <label for="t2-plate">차량번호</label>
           <input id="t2-plate" name="plate" type="text" inputmode="text" placeholder="예: 12가 3456" autocomplete="off">
           <label for="t2-phone">연락처</label>
-          <input id="t2-phone" name="phone" type="tel" inputmode="tel" placeholder="010-0000-0000" maxlength="13" required autocomplete="tel">
+          <input id="t2-phone" name="phone" type="tel" inputmode="tel" placeholder="010-0000-0000" maxlength="20" required autocomplete="tel">
           <label for="t2-car">연식 또는 차종 (선택)</label>
           <input id="t2-car" name="car" type="text" placeholder="예: 2015 그랜저" autocomplete="off">
           <button class="btn btn-call" type="submit"><svg><use href="#i-chat"/></svg>폐차·수출 비교 견적 받기</button>
