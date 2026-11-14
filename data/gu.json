@@ -3633,17 +3633,17 @@
   "public_info": [
    {
     "label": "말소등록 관할 관청",
-    "value": "수지구를 포함한 용인시의 자동차 등록 업무는 용인특례시 차량등록사업소가 맡습니다. 사업소는 2023년 8월 처인구 삼가동 용인미르스타디움으로 옮기면서 처인·기흥·수지구에 나뉘어 있던 민원실을 한곳으로 합쳤습니다.",
-    "source": "뉴스서울(용인특례시 차량등록사업소 이전, 2023)",
-    "url": "https://newsseoul.co.kr/news/view/1065594616172856",
-    "grade": "summary"
+    "value": "수지구를 포함한 용인시의 자동차 등록 업무는 용인특례시 차량등록사업소가 맡습니다. 사업소는 2023년 8월 용인미르스타디움으로 옮겼습니다.",
+    "source": "용인특례시 인터넷방송(용인시 누리집) 2023-08-29 뉴스",
+    "url": "https://tv.yongin.go.kr/vod_view.asp?code=news&vod_id=20230829105926844",
+    "grade": "opened"
    },
    {
     "label": "노후차 조기폐차 지원(2026년)",
     "value": "용인특례시는 2026년 조기폐차 지원 신청을 3월 6일부터 27일까지 받아 우선순위에 따라 대상을 뽑았습니다. 배출가스 4등급 경유차, 5등급 자동차, 일부 노후 건설기계가 대상이었고, 5등급 차량 지원은 2026년까지만 합니다.",
-    "source": "메트로신문(용인특례시 2026 조기폐차 신청 접수)",
-    "url": "https://www.metroseoul.co.kr/article/20260225500126",
-    "grade": "summary"
+    "source": "용인특례시 고시공고(용인시 공고 제2026-632호, 2026년 조기폐차 보조금 지원사업 공고)",
+    "url": "https://eminwon.yongin.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=141257&homepage_pbs_yn=Y&subCheck=Y",
+    "grade": "opened"
    }
   ],
   "dropped_info": [
@@ -3688,17 +3688,17 @@
   "public_info": [
    {
     "label": "말소등록 관할 관청",
-    "value": "처인구를 포함한 용인시의 자동차 등록·말소 업무는 용인특례시 차량등록사업소가 맡습니다. 사업소는 2023년 8월 처인구 삼가동 용인미르스타디움으로 옮기면서 처인·기흥·수지구에 나뉘어 있던 민원실을 한곳으로 합쳤습니다.",
-    "source": "뉴스서울(용인특례시 차량등록사업소 이전, 2023)",
-    "url": "https://newsseoul.co.kr/news/view/1065594616172856",
-    "grade": "summary"
+    "value": "처인구를 포함한 용인시의 자동차 등록·말소 업무는 용인시 차량등록사업소가 맡습니다. 사업소는 2023년 8월 청사를 옮기면서 기흥·수지에 있던 민원실을 하나로 합쳤습니다.",
+    "source": "용인특례시 누리집 차량종합민원(차량등록사업소 연혁)",
+    "url": "https://www.yongin.go.kr/home/cvIf/www07_03/www07_03_01.jsp",
+    "grade": "opened"
    },
    {
     "label": "노후차 조기폐차 지원(2026년)",
     "value": "용인특례시는 2026년 조기폐차 지원 신청을 3월 6일부터 27일까지 받아 우선순위에 따라 대상을 뽑았습니다. 배출가스 4등급 경유차와 5등급 자동차 등이 대상이었고, 5등급 차량 지원은 2026년까지만 합니다.",
-    "source": "뉴시스(용인시 조기폐차 보조금 신청 접수, 2026)",
-    "url": "https://www.newsis.com/view/NISX20260225_0003525259",
-    "grade": "summary"
+    "source": "용인특례시 고시공고(용인시 공고 제2026-632호)",
+    "url": "https://eminwon.yongin.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=141257&homepage_pbs_yn=Y&subCheck=Y",
+    "grade": "opened"
    }
   ],
   "dropped_info": [
@@ -3795,10 +3795,10 @@
   "public_info": [
    {
     "label": "말소등록 관할 관청",
-    "value": "병점구를 포함한 화성시의 자동차 말소등록은 화성차량등록사업소가 맡습니다. 주소는 경기도 화성시 만세구 향남읍 향남로 470(도이리 668, 화성종합경기타운)입니다.",
-    "source": "화성차량등록사업소 장소 안내(placeview)",
-    "url": "https://www.placeview.co.kr/id/ODE2OTczMCAg",
-    "grade": "summary"
+    "value": "병점구를 포함한 화성시의 자동차 말소등록은 화성특례시 차량등록과가 맡습니다. 주소는 경기도 화성시 만세구 향남읍 향남로 470입니다.",
+    "source": "화성특례시 누리집 찾아오시는길(직속기관/사업소)",
+    "url": "https://www.hscity.go.kr/www/intro/ctyhllInfo/ctyhllOtlnmap00/ctyhllOtlnmap02.jsp",
+    "grade": "opened"
    }
   ],
   "dropped_info": [
@@ -3843,17 +3843,17 @@
   "public_info": [
    {
     "label": "말소등록 관할 관청",
-    "value": "상주시 자동차 등록 업무는 상주시청 종합민원실 차량등록 창구에서 처리합니다.",
-    "source": "경북매일(상주시 자동차세 연납액 환급 시스템 개선, 2021)",
-    "url": "https://kbmaeil.com/article/202104270305433",
-    "grade": "summary"
+    "value": "상주시 자동차 등록·말소 업무는 상주시청 교통에너지과 차량등록팀이 맡습니다.",
+    "source": "상주시청 누리집 교통에너지과 직원업무안내",
+    "url": "https://www.sangju.go.kr/page/16591/11846.tc",
+    "grade": "opened"
    },
    {
     "label": "노후차 조기폐차 지원(2026년)",
-    "value": "상주시는 '2026년 노후차 조기폐차 추가지원사업' 신청을 9월 21일부터 10월 8일까지 받았습니다. 배출가스 4등급 경유차, 5등급 자동차, 노후 건설기계가 대상이며, 자동차 배출가스 종합전산시스템이나 한국자동차환경협회 등기우편으로 신청합니다. 5등급 차량 지원은 올해가 마지막입니다.",
-    "source": "경북일보(2026년 9월 27일, 상주시 노후차 조기폐차 추가 지원)",
-    "url": "https://www.kyongbuk.co.kr/news/articleView.html?idxno=4085464",
-    "grade": "summary"
+    "value": "상주시는 '2026년 추가 노후경유차 조기폐차 지원사업' 신청을 9월 21일부터 10월 8일까지 받았습니다. 배출가스 4등급 경유차와 5등급 자동차, 도로용 3종 건설기계, 오래된 지게차·굴착기가 대상이며, 자동차 배출가스 종합전산시스템이나 한국자동차환경협회 등기우편으로 신청합니다.",
+    "source": "상주시 고시공고(상주시 공고 제2026-1397호, 2026년 추가 노후경유차 조기폐차 지원사업 시행 공고)",
+    "url": "https://www.sangju.go.kr/gosi/detail.tc?mn=10297&mgtNo=29169&notAncmtSeCode=01,02,03,04,05,07&pageIndex=1",
+    "grade": "opened"
    }
   ],
   "dropped_info": [
@@ -3905,10 +3905,10 @@
    },
    {
     "label": "노후차 조기폐차 지원(2026년)",
-    "value": "전주시는 2026년 노후차 조기폐차 지원 신청을 3월 4일부터 24일까지 받았습니다. 전주시에 6개월 이상 등록된 배출가스 4등급 경유차와 5등급 자동차, 오래된 건설기계가 대상이었고, 5등급 차량 지원은 올해가 마지막입니다.",
-    "source": "뉴스프리존(전주시 노후차 조기폐차 지원 보도)",
-    "url": "https://www.newsfreezone.co.kr/news/articleView.html?idxno=677797",
-    "grade": "summary"
+    "value": "전주시는 2026년 노후차 조기폐차 보조금 지원 신청을 3월 4일부터 24일까지 받았습니다. 배출가스 4등급 경유차와 5등급 자동차, 오래된 도로용 건설기계·지게차·굴착기가 대상이었고, 인터넷·방문(전주시 기후변화대응과)·등기우편으로 접수했습니다.",
+    "source": "전주시 고시공고(전주시 공고 제2026-476호, 2026년 노후차 조기폐차 보조금 지원사업 시행공고)",
+    "url": "https://www.jeonju.go.kr/planweb/board/view.9is?dataUid=62d3690193674f0c95231b68c3687ce8&contentUid=ff8080818990c349018b041a879f395a&boardUid=9be517a7914528ce01930aa3ddc26cf0",
+    "grade": "opened"
    }
   ],
   "dropped_info": [
@@ -4013,10 +4013,10 @@
    },
    {
     "label": "노후차 조기폐차 지원(2026년)",
-    "value": "안산시는 2026년 조기폐차 지원 신청을 2월 24일부터 3월 13일까지 받았습니다. 배출가스 4등급 경유차, 5등급 자동차(연료 무관), 도로용 3종 건설기계, 지게차·굴착기가 대상이었고, 5등급 차량 지원은 2026년이 마지막이라고 밝혔습니다. 신청은 자동차 배출가스 종합전산시스템 누리집 또는 한국자동차환경협회 등기우편으로 받았습니다.",
-    "source": "경기일보(안산시 노후 경유차 조기폐차 지원, 2026-02-23)",
-    "url": "https://www.kyeonggi.com/article/20260223580601",
-    "grade": "summary"
+    "value": "안산시는 2026년 조기폐차 지원 신청을 2월 24일부터 3월 13일까지 받았습니다. 배출가스 4·5등급 경유차(5등급은 경유 이외 연료 포함), 도로용 3종 건설기계, 지게차·굴착기가 대상이었고, 자동차 배출가스 종합전산시스템 누리집이나 한국자동차환경협회 등기우편으로 신청했습니다. 7월 8일부터 22일까지 2차 신청도 받았습니다.",
+    "source": "안산시 고시/공고(안산시 공고 제2026-418호, 2026년 조기폐차 보조금 지원사업 공고)",
+    "url": "https://www.ansan.go.kr/www/common/bbs/selectBbsDetail.do?bbs_code=WWW13&bbs_seq=1664646",
+    "grade": "opened"
    }
   ],
   "dropped_info": [
@@ -4068,10 +4068,10 @@
    },
    {
     "label": "노후차 조기폐차 지원(2026년)",
-    "value": "정읍시는 2026년 3월 노후 차량 배출가스 저감사업 신청을 그달 19일까지 받았습니다. 조기폐차는 배출가스 5등급과 4등급 차량, 건설기계가 대상이었고, 정읍시청 자원순환과 방문이나 자동차 배출가스 누리집으로 접수했습니다.",
-    "source": "전라일보(정읍시, 노후 차량 배출가스 저감사업, 2026-03-06)",
-    "url": "http://www.jeollailbo.com/news/articleView.html?idxno=794016",
-    "grade": "summary"
+    "value": "정읍시는 2026년 노후경유차 조기폐차 지원 신청을 3월 5일부터 19일까지 받았고, 남은 예산이 있으면 11월 24일까지 계속 받습니다. 배출가스 4·5등급 경유차(5등급은 경유 이외 연료 포함)와 오래된 건설기계·지게차·굴착기가 대상이며, 자동차 배출가스 종합전산시스템, 등기우편, 정읍시청 자원순환과 방문으로 접수합니다.",
+    "source": "정읍시 고시공고(정읍시 공고 제2026-495호, 2026년 노후경유차 조기폐차 지원사업 공고)",
+    "url": "https://eminwon.jeongeup.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=47895&homepage_pbs_yn=Y&subCheck=Y",
+    "grade": "opened"
    }
   ],
   "dropped_info": [
@@ -4225,10 +4225,10 @@
   "public_info": [
    {
     "label": "말소등록 관할 관청",
-    "value": "수정구를 포함한 성남시 자동차의 신규 등록부터 말소등록까지는 성남시 차량등록사업소가 맡습니다. 위치는 성남시 분당구 야탑로 327(야탑동)입니다.",
-    "source": "디지털성남문화대전(성남시 차량등록사업소)",
-    "url": "https://seongnam.grandculture.net/seongnam/toc/GC00101213",
-    "grade": "summary"
+    "value": "수정구를 포함한 성남시 자동차 등록 업무는 성남시 차량등록사업소가 맡습니다. 위치는 성남시 분당구 야탑로 327(야탑동)입니다.",
+    "source": "성남시청 누리집 차량등록사업소",
+    "url": "https://www.seongnam.go.kr/tr010600",
+    "grade": "opened"
    }
   ],
   "dropped_info": [
