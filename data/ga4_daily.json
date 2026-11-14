@@ -1,6 +1,6 @@
 {
  "property_timezone": "Asia/Seoul",
- "updated": "2026-11-13T16:56+09:00",
+ "updated": "2026-11-14T12:25+09:00",
  "days": {
   "2026-10-20": {
    "sessions": {
@@ -3120,6 +3120,151 @@
     },
     {
      "page": "/pages/jeonnam-mokpo-sanjeong.html",
+     "bucket": "네이버",
+     "sessions": 1
+    }
+   ]
+  },
+  "2026-11-13": {
+   "sessions": {
+    "네이버": 13,
+    "구글": 0,
+    "유튜브": 0,
+    "직접": 0,
+    "기타": 1
+   },
+   "events": {
+    "네이버": {
+     "quote_submit": 2,
+     "call_click": 1,
+     "sms_click": 1
+    },
+    "구글": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "유튜브": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "직접": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "기타": {
+     "quote_submit": 1,
+     "call_click": 0,
+     "sms_click": 0
+    }
+   },
+   "totals": {
+    "sessions": 14,
+    "quote_submit": 3,
+    "call_click": 1,
+    "sms_click": 1
+   },
+   "sources": [
+    {
+     "source": "m.search.naver.com / referral",
+     "sessions": 9
+    },
+    {
+     "source": "naver / organic",
+     "sessions": 4
+    },
+    {
+     "source": "(not set) / (not set)",
+     "sessions": 1
+    }
+   ],
+   "pages": [
+    {
+     "page": "/guide/시동-안-걸리는-차.html",
+     "quote_submit": 2,
+     "call_click": 0
+    },
+    {
+     "page": "/gu/안산시-상록구-폐차장.html",
+     "quote_submit": 1,
+     "call_click": 0
+    },
+    {
+     "page": "/pages/daejeon-daedeok-sintanjin.html",
+     "quote_submit": 0,
+     "call_click": 1
+    }
+   ],
+   "landing": [
+    {
+     "page": "/cases/case-20250320-incheon-yeonsu-okryeon.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/cases/case-20261026-gyeonggi-seongnam-bundang.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/광양시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/남양주시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/부평구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/안산시-상록구-폐차장.html",
+     "bucket": "기타",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/안산시-상록구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/익산시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/청주시-청원구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/guide/시동-안-걸리는-차.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/pages/daejeon-daedeok-sintanjin.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/pages/gyeonggi-hwaseong-byeongjeom.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/pages/gyeonggi-pyeongtaek-anjung.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/si/제주-폐차장.html",
      "bucket": "네이버",
      "sessions": 1
     }
