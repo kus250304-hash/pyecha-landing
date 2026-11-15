@@ -1,12 +1,12 @@
 {
- "updated": "2026-11-08",
+ "updated": "2026-11-15",
  "site": "sc-domain:pyecha119.com",
- "start": "2026-10-11",
- "end": "2026-11-07",
+ "start": "2026-10-18",
+ "end": "2026-11-14",
  "totals": {
   "clicks": 3,
-  "impressions": 168,
-  "position": 11.2
+  "impressions": 176,
+  "position": 12.0
  },
  "dropped_private": 0,
  "rows": [
@@ -16,6 +16,13 @@
    "clicks": 0,
    "impressions": 4,
    "position": 7
+  },
+  {
+   "query": "가까운 폐차장",
+   "page": "https://pyecha119.com/gu/%EC%9A%A9%EC%9D%B8%EC%8B%9C-%EA%B8%B0%ED%9D%A5%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html",
+   "clicks": 0,
+   "impressions": 1,
+   "position": 4
   },
   {
    "query": "가까운 폐차장",
