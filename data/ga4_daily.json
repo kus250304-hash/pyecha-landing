@@ -1,6 +1,6 @@
 {
  "property_timezone": "Asia/Seoul",
- "updated": "2026-11-14T12:25+09:00",
+ "updated": "2026-11-15T12:47+09:00",
  "days": {
   "2026-10-20": {
    "sessions": {
@@ -3012,7 +3012,7 @@
   },
   "2026-11-12": {
    "sessions": {
-    "네이버": 10,
+    "네이버": 0,
     "구글": 0,
     "유튜브": 0,
     "직접": 0,
@@ -3020,7 +3020,7 @@
    },
    "events": {
     "네이버": {
-     "quote_submit": 2,
+     "quote_submit": 0,
      "call_click": 0,
      "sms_click": 0
     },
@@ -3046,84 +3046,14 @@
     }
    },
    "totals": {
-    "sessions": 10,
-    "quote_submit": 2,
+    "sessions": 0,
+    "quote_submit": 0,
     "call_click": 0,
     "sms_click": 0
    },
-   "sources": [
-    {
-     "source": "m.search.naver.com / referral",
-     "sessions": 5
-    },
-    {
-     "source": "naver / organic",
-     "sessions": 4
-    },
-    {
-     "source": "blog.naver.com / referral",
-     "sessions": 1
-    }
-   ],
-   "pages": [
-    {
-     "page": "/gu/영종구-폐차장.html",
-     "quote_submit": 2,
-     "call_click": 0
-    }
-   ],
-   "landing": [
-    {
-     "page": "/gu/경산시-폐차장.html",
-     "bucket": "네이버",
-     "sessions": 1
-    },
-    {
-     "page": "/gu/금천구-폐차장.html",
-     "bucket": "네이버",
-     "sessions": 1
-    },
-    {
-     "page": "/gu/아산시-폐차장.html",
-     "bucket": "네이버",
-     "sessions": 1
-    },
-    {
-     "page": "/gu/영종구-폐차장.html",
-     "bucket": "네이버",
-     "sessions": 1
-    },
-    {
-     "page": "/gu/평택시-폐차장.html",
-     "bucket": "네이버",
-     "sessions": 1
-    },
-    {
-     "page": "/guide/차령초과-폐차.html",
-     "bucket": "네이버",
-     "sessions": 1
-    },
-    {
-     "page": "/guide/폐차-절차.html",
-     "bucket": "네이버",
-     "sessions": 1
-    },
-    {
-     "page": "/pages/incheon-yeonsu-yeonsu.html",
-     "bucket": "네이버",
-     "sessions": 1
-    },
-    {
-     "page": "/pages/jeonbuk-iksan-jungang.html",
-     "bucket": "네이버",
-     "sessions": 1
-    },
-    {
-     "page": "/pages/jeonnam-mokpo-sanjeong.html",
-     "bucket": "네이버",
-     "sessions": 1
-    }
-   ]
+   "sources": [],
+   "pages": [],
+   "landing": []
   },
   "2026-11-13": {
    "sessions": {
@@ -3265,6 +3195,156 @@
     },
     {
      "page": "/si/제주-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    }
+   ]
+  },
+  "2026-11-14": {
+   "sessions": {
+    "네이버": 18,
+    "구글": 0,
+    "유튜브": 0,
+    "직접": 0,
+    "기타": 0
+   },
+   "events": {
+    "네이버": {
+     "quote_submit": 4,
+     "call_click": 0,
+     "sms_click": 1
+    },
+    "구글": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "유튜브": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "직접": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "기타": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    }
+   },
+   "totals": {
+    "sessions": 18,
+    "quote_submit": 4,
+    "call_click": 0,
+    "sms_click": 1
+   },
+   "sources": [
+    {
+     "source": "m.search.naver.com / referral",
+     "sessions": 14
+    },
+    {
+     "source": "naver / organic",
+     "sessions": 3
+    },
+    {
+     "source": "m.blog.naver.com / referral",
+     "sessions": 1
+    }
+   ],
+   "pages": [
+    {
+     "page": "/gu/구미시-폐차장.html",
+     "quote_submit": 2,
+     "call_click": 0
+    },
+    {
+     "page": "/gu/기장군-폐차장.html",
+     "quote_submit": 2,
+     "call_click": 0
+    }
+   ],
+   "landing": [
+    {
+     "page": "/gu/기장군-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 2
+    },
+    {
+     "page": "/guide/차령초과-폐차.html",
+     "bucket": "네이버",
+     "sessions": 2
+    },
+    {
+     "page": "(not set)",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/cases/case-20261026-gyeonggi-seongnam-bundang.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/cases/case-20261028-chungnam-taean-wonbuk.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/강원-고성군-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/경남-고성군-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/구미시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/대구-동구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/목포시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/부천시-소사구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/증평군-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/포천시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/guide/폐차-필요-서류.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/pages/jeonbuk-jeonju-wansan-taepyeong.html",
      "bucket": "네이버",
      "sessions": 1
     }
