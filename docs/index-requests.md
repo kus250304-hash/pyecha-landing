@@ -1450,3 +1450,16 @@
 - https://pyecha119.com/gu/%EC%9A%A9%EC%9D%B8%EC%8B%9C-%EC%88%98%EC%A7%80%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/용인시-수지구-폐차장.html (바뀜: 2026-11-15 본문 바뀜(구·시군))
 - https://pyecha119.com/gu/%EC%A0%84%EC%A3%BC%EC%8B%9C-%EB%8D%95%EC%A7%84%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/전주시-덕진구-폐차장.html (바뀜: 2026-11-15 본문 바뀜(구·시군))
 - https://pyecha119.com/gu/%ED%99%94%EC%84%B1%EC%8B%9C-%EB%B3%91%EC%A0%90%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/화성시-병점구-폐차장.html (바뀜: 2026-11-15 본문 바뀜(구·시군))
+
+## 2026-11-16 네이버
+
+- https://pyecha119.com/gu/%EA%B5%AC%EB%AF%B8%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/구미시-폐차장.html (반응: 최근 7일 폼 2)
+- https://pyecha119.com/gu/%EA%B8%B0%EC%9E%A5%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/기장군-폐차장.html (반응: 최근 7일 폼 2)
+- https://pyecha119.com/guide/%EC%8B%9C%EB%8F%99-%EC%95%88-%EA%B1%B8%EB%A6%AC%EB%8A%94-%EC%B0%A8.html — guide/시동-안-걸리는-차.html (반응: 최근 7일 폼 2)
+- https://pyecha119.com/gu/%EC%95%88%EC%96%91%EC%8B%9C-%EB%8F%99%EC%95%88%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/안양시-동안구-폐차장.html (바뀜: 2026-11-16 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EC%A0%95%EC%9D%8D%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/정읍시-폐차장.html (바뀜: 2026-11-15 본문 바뀜(구·시군))
+- https://pyecha119.com/guide/%EB%B0%A9%EC%B9%98%EC%B0%A8-%EC%98%A4%EB%9E%98-%EC%84%B8%EC%9B%8C%EB%91%94-%EC%B0%A8.html — guide/방치차-오래-세워둔-차.html (바뀜: 2026-11-16 본문 바뀜(안내))
+- https://pyecha119.com/guide/%EC%83%81%EC%86%8D%EC%B0%A8-%EB%B2%95%EC%9D%B8%EC%B0%A8-%EC%84%9C%EB%A5%98.html — guide/상속차-법인차-서류.html (바뀜: 2026-11-16 본문 바뀜(안내))
+- https://pyecha119.com/guide/%EC%95%95%EB%A5%98-%EC%9E%88%EB%8A%94-%EC%B0%A8-%ED%8F%90%EC%B0%A8.html — guide/압류-있는-차-폐차.html (바뀜: 2026-11-16 본문 바뀜(안내))
+- https://pyecha119.com/guide/%EC%A0%80%EB%8B%B9%EB%A7%8C-%EC%9E%88%EB%8A%94-%EC%B0%A8.html — guide/저당만-있는-차.html (바뀜: 2026-11-16 본문 바뀜(안내))
+- https://pyecha119.com/guide/%EC%B0%A8%EB%A0%B9%EC%B4%88%EA%B3%BC-%ED%8F%90%EC%B0%A8.html — guide/차령초과-폐차.html (바뀜: 2026-11-16 본문 바뀜(안내))
