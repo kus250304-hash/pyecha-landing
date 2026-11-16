@@ -1,6 +1,6 @@
 {
  "property_timezone": "Asia/Seoul",
- "updated": "2026-11-15T12:47+09:00",
+ "updated": "2026-11-16T12:26+09:00",
  "days": {
   "2026-10-20": {
    "sessions": {
@@ -3061,11 +3061,11 @@
     "구글": 0,
     "유튜브": 0,
     "직접": 0,
-    "기타": 1
+    "기타": 0
    },
    "events": {
     "네이버": {
-     "quote_submit": 2,
+     "quote_submit": 3,
      "call_click": 1,
      "sms_click": 1
     },
@@ -3085,13 +3085,13 @@
      "sms_click": 0
     },
     "기타": {
-     "quote_submit": 1,
+     "quote_submit": 0,
      "call_click": 0,
      "sms_click": 0
     }
    },
    "totals": {
-    "sessions": 14,
+    "sessions": 13,
     "quote_submit": 3,
     "call_click": 1,
     "sms_click": 1
@@ -3104,10 +3104,6 @@
     {
      "source": "naver / organic",
      "sessions": 4
-    },
-    {
-     "source": "(not set) / (not set)",
-     "sessions": 1
     }
    ],
    "pages": [
@@ -3151,11 +3147,6 @@
     {
      "page": "/gu/부평구-폐차장.html",
      "bucket": "네이버",
-     "sessions": 1
-    },
-    {
-     "page": "/gu/안산시-상록구-폐차장.html",
-     "bucket": "기타",
      "sessions": 1
     },
     {
@@ -3345,6 +3336,128 @@
     },
     {
      "page": "/pages/jeonbuk-jeonju-wansan-taepyeong.html",
+     "bucket": "네이버",
+     "sessions": 1
+    }
+   ]
+  },
+  "2026-11-15": {
+   "sessions": {
+    "네이버": 10,
+    "구글": 0,
+    "유튜브": 0,
+    "직접": 1,
+    "기타": 1
+   },
+   "events": {
+    "네이버": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "구글": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "유튜브": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "직접": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "기타": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    }
+   },
+   "totals": {
+    "sessions": 12,
+    "quote_submit": 0,
+    "call_click": 0,
+    "sms_click": 0
+   },
+   "sources": [
+    {
+     "source": "m.search.naver.com / referral",
+     "sessions": 7
+    },
+    {
+     "source": "naver / organic",
+     "sessions": 2
+    },
+    {
+     "source": "(direct) / (none)",
+     "sessions": 1
+    },
+    {
+     "source": "(not set) / (not set)",
+     "sessions": 1
+    },
+    {
+     "source": "m.blog.naver.com / referral",
+     "sessions": 1
+    }
+   ],
+   "pages": [],
+   "landing": [
+    {
+     "page": "/cases/case-20261026-gyeonggi-seongnam-bundang.html",
+     "bucket": "네이버",
+     "sessions": 2
+    },
+    {
+     "page": "(not set)",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/",
+     "bucket": "직접",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/구미시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/성주군-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/양산시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/오산시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/포천시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/guide/차령초과-폐차.html",
+     "bucket": "기타",
+     "sessions": 1
+    },
+    {
+     "page": "/guide/차령초과-폐차.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/si/서울-폐차장.html",
      "bucket": "네이버",
      "sessions": 1
     }
