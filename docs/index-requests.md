@@ -1465,3 +1465,7 @@
 - https://pyecha119.com/guide/%EC%95%95%EB%A5%98-%EC%9E%88%EB%8A%94-%EC%B0%A8-%ED%8F%90%EC%B0%A8.html — guide/압류-있는-차-폐차.html (바뀜: 2026-11-16 본문 바뀜(안내))
 - https://pyecha119.com/guide/%EC%A0%80%EB%8B%B9%EB%A7%8C-%EC%9E%88%EB%8A%94-%EC%B0%A8.html — guide/저당만-있는-차.html (바뀜: 2026-11-16 본문 바뀜(안내))
 - https://pyecha119.com/guide/%EC%B0%A8%EB%A0%B9%EC%B4%88%EA%B3%BC-%ED%8F%90%EC%B0%A8.html — guide/차령초과-폐차.html (바뀜: 2026-11-16 본문 바뀜(안내))
+
+## 2026-11-17 네이버
+
+- https://pyecha119.com/gu/%EC%B0%BD%EC%9B%90%EC%8B%9C-%EC%A7%84%ED%95%B4%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/창원시-진해구-폐차장.html (바뀜: 2026-11-17 본문 바뀜(구·시군))
