@@ -1,6 +1,6 @@
 {
  "property_timezone": "Asia/Seoul",
- "updated": "2026-11-16T12:26+09:00",
+ "updated": "2026-11-17T12:24+09:00",
  "days": {
   "2026-10-20": {
    "sessions": {
@@ -3347,7 +3347,7 @@
     "구글": 0,
     "유튜브": 0,
     "직접": 1,
-    "기타": 1
+    "기타": 0
    },
    "events": {
     "네이버": {
@@ -3377,7 +3377,7 @@
     }
    },
    "totals": {
-    "sessions": 12,
+    "sessions": 11,
     "quote_submit": 0,
     "call_click": 0,
     "sms_click": 0
@@ -3393,10 +3393,6 @@
     },
     {
      "source": "(direct) / (none)",
-     "sessions": 1
-    },
-    {
-     "source": "(not set) / (not set)",
      "sessions": 1
     },
     {
@@ -3448,7 +3444,152 @@
     },
     {
      "page": "/guide/차령초과-폐차.html",
-     "bucket": "기타",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/si/서울-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    }
+   ]
+  },
+  "2026-11-16": {
+   "sessions": {
+    "네이버": 18,
+    "구글": 0,
+    "유튜브": 0,
+    "직접": 3,
+    "기타": 0
+   },
+   "events": {
+    "네이버": {
+     "quote_submit": 1,
+     "call_click": 1,
+     "sms_click": 1
+    },
+    "구글": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "유튜브": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "직접": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "기타": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    }
+   },
+   "totals": {
+    "sessions": 21,
+    "quote_submit": 1,
+    "call_click": 1,
+    "sms_click": 1
+   },
+   "sources": [
+    {
+     "source": "m.search.naver.com / referral",
+     "sessions": 13
+    },
+    {
+     "source": "naver / organic",
+     "sessions": 5
+    },
+    {
+     "source": "(direct) / (none)",
+     "sessions": 3
+    }
+   ],
+   "pages": [
+    {
+     "page": "/gu/평창군-폐차장.html",
+     "quote_submit": 1,
+     "call_click": 0
+    },
+    {
+     "page": "/gu/청주시-서원구-폐차장.html",
+     "quote_submit": 0,
+     "call_click": 1
+    }
+   ],
+   "landing": [
+    {
+     "page": "/gu/부천시-원미구-폐차장.html",
+     "bucket": "직접",
+     "sessions": 2
+    },
+    {
+     "page": "/gu/시흥시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 2
+    },
+    {
+     "page": "/",
+     "bucket": "직접",
+     "sessions": 1
+    },
+    {
+     "page": "/cases/case-20260306-gyeongbuk-andong-unan.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/남동구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/마포구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/영등포구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/용인시-처인구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/울릉군-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/울산-북구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/청주시-서원구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/평창군-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/포천시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/guide/시동-안-걸리는-차.html",
+     "bucket": "네이버",
      "sessions": 1
     },
     {
@@ -3457,7 +3598,22 @@
      "sessions": 1
     },
     {
-     "page": "/si/서울-폐차장.html",
+     "page": "/pages/busan-donggu-choryang.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/pages/gyeonggi-pyeongtaek-anjung.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/pages/incheon-bupyeong-sipjeong.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/si/제주-폐차장.html",
      "bucket": "네이버",
      "sessions": 1
     }
