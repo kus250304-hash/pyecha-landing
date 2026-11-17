@@ -110,6 +110,13 @@ def apply_fix(memo: dict, fix: dict | None) -> dict:
     """확인된 메모 칸을 덮어쓴다. 표에 없는 칸(고객명 등)은 받지 않는다."""
     if fix:
         memo.update({k: str(v).strip() for k, v in (fix.get("memo") or {}).items() if k in PC_MEMO_KEYS and str(v).strip()})
+    # 2026-11-17: 병한님 알림·통화로 사연(걱정+고른쪽)이 있는 차는 연식·시동을 몰라도 사례가 된다.
+    # 빈 상황·처리 칸을 사연으로 채워 build_cases 의 두 번째 필수 묶음(지역·차종·상황·처리)을 맞춘다.
+    if memo.get("걱정") and memo.get("고른쪽") and not all(memo.get(k) for k in ("연식", "시동")):
+        if not memo.get("상황"):
+            memo["상황"] = memo["걱정"]
+        if not memo.get("처리"):
+            memo["처리"] = memo.get("이유") or f"{memo['고른쪽']} 쪽으로 진행했습니다."
     return memo
 
 
@@ -459,6 +466,8 @@ def cmd_scan(args) -> None:
             memo, origin = folder_memo(folder, src, score)
             memo = apply_fix(memo, fix)
             missing = [k for k in PC_REQUIRED if not memo.get(k)]
+            if missing and all(memo.get(k) for k in ("지역", "차종", "상황", "처리", "걱정", "고른쪽")):
+                missing = []  # 사연 있는 차(2026-11-17)
             if missing:
                 skipped.append((rel, f"{origin}에 {'·'.join(missing)} 없음"))
                 continue
