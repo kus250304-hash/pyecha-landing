@@ -1469,3 +1469,16 @@
 ## 2026-11-17 네이버
 
 - https://pyecha119.com/gu/%EC%B0%BD%EC%9B%90%EC%8B%9C-%EC%A7%84%ED%95%B4%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/창원시-진해구-폐차장.html (바뀜: 2026-11-17 본문 바뀜(구·시군))
+
+## 2026-11-18 네이버
+
+- https://pyecha119.com/gu/%EB%8C%80%EB%8D%95%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/대덕구-폐차장.html (바뀜: 2026-11-17 사례가 새로 붙음(대덕구))
+- https://pyecha119.com/gu/%EC%97%AC%EC%A3%BC%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/여주시-폐차장.html (바뀜: 2026-11-17 사례가 새로 붙음(여주시))
+- https://pyecha119.com/gu/%EC%B2%AD%EC%A3%BC%EC%8B%9C-%EC%84%9C%EC%9B%90%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/청주시-서원구-폐차장.html (반응: 최근 7일 전화 1)
+- https://pyecha119.com/gu/%ED%8F%89%EC%B0%BD%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/평창군-폐차장.html (반응: 최근 7일 폼 1)
+- https://pyecha119.com/gu/%EA%B3%A0%EC%96%91%EC%8B%9C-%EC%9D%BC%EC%82%B0%EB%8F%99%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/고양시-일산동구-폐차장.html (바뀜: 2026-11-17 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EA%B3%A0%EC%96%91%EC%8B%9C-%EC%9D%BC%EC%82%B0%EC%84%9C%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/고양시-일산서구-폐차장.html (바뀜: 2026-11-17 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EA%B3%BC%EC%B2%9C%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/과천시-폐차장.html (바뀜: 2026-11-17 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EA%B4%91%EB%AA%85%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/광명시-폐차장.html (바뀜: 2026-11-17 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EA%B5%AC%EB%A6%AC%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/구리시-폐차장.html (바뀜: 2026-11-17 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EA%B5%B0%ED%8F%AC%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/군포시-폐차장.html (바뀜: 2026-11-17 본문 바뀜(구·시군))
