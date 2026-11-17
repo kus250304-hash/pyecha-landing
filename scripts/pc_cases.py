@@ -667,8 +667,10 @@ def cmd_stage(args) -> None:
     c["ledger"] = why
     # ② 걱정 후보: Claude 가 말.txt·통화 글자본을 보고 .cases_staging/cN/extra.json 에 {"걱정": "… (통화 요약)"} 을 썼으면 넣는다
     extra = load_json(STAGING / args.cid / "extra.json", default={}) or {}
-    if extra.get("걱정") and not memo.get("걱정"):
-        memo["걱정"] = str(extra["걱정"]).strip()
+    # 2026-11-17 병한님: 통화표·거래 기록부로 걱정·확인·고른쪽·이유·끝한줄·제목꼬리까지 채운다(메모에 이미 있는 칸은 그대로)
+    for k in ("걱정", "확인", "고른쪽", "이유", "끝한줄", "제목꼬리"):
+        if str(extra.get(k) or "").strip() and not memo.get(k):
+            memo[k] = str(extra[k]).strip()
     name = f"{memo['날짜'] if memo['날짜'] != '미상' else 'nodate'}-{region_label(r).replace(' ', '-')}-{tag}"
     dest = INPUT_DIR / name
     if dest.exists():
