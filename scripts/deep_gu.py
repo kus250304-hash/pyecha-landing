@@ -158,6 +158,28 @@ def status(g: dict, dongs: list[dict], cases: list[dict]) -> dict:
     }
 
 
+def page_visits(g: dict, days: int = 28) -> dict:
+    """그 구 페이지로 실제 들어온 방문과 폼·전화 누름(data/ga4_daily.json 최근 days 일). 기록부의 문의는 지역으로 적히므로
+    (어느 페이지로 들어왔는지는 모름) 이 숫자를 함께 봐야 그 페이지를 깊게 할 값어치를 알 수 있다. 자료가 없으면 빈 dict."""
+    from build_site import gu_file
+    ga = _load(ROOT / "data" / "ga4_daily.json", {}).get("days", {})
+    if not ga:
+        return {}
+    last = max(ga)
+    since = (date.fromisoformat(last) - timedelta(days=days - 1)).isoformat()
+    page = "/gu/" + gu_file(g["sido"], g["sigungu"])
+    out = {"visits": 0, "forms": 0, "calls": 0, "window": f"{since}~{last}"}
+    for d, v in ga.items():
+        if d < since:
+            continue
+        out["visits"] += sum(x.get("sessions", 0) for x in v.get("landing", []) if unquote(x.get("page", "")) == page)
+        for x in v.get("pages", []):
+            if unquote(x.get("page", "")) == page:
+                out["forms"] += x.get("quote_submit", 0)
+                out["calls"] += x.get("call_click", 0)
+    return out
+
+
 def next_steps(st: dict) -> list[str]:
     out = []
     if st["area_missing"]:
@@ -224,6 +246,9 @@ def main() -> None:
         print(f"- {name} (켠 날 {g['deep']['since']}, 문의 {g['deep'].get('inquiries', '?')}건): "
               f"깊은 사례 {st['deep_cases']} · 얇은 사례 {st['thin_cases']} · 최근 진행한 차 {st['recent_cars']} · "
               f"읍·면·동 한 줄 {st['area_notes']}/{len(st['area_targets'])} · 지역 질문 {st['local_faqs']}/{LOCAL_FAQ_N}")
+        pv = page_visits(g)
+        if pv:
+            print(f"    이 페이지로 들어온 방문 {pv['visits']} · 폼 {pv['forms']} · 전화 {pv['calls']} (GA4 {pv['window']})")
         for s in next_steps(st):
             print(f"    다음: {s}")
 
