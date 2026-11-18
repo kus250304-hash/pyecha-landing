@@ -1,6 +1,6 @@
 {
  "property_timezone": "Asia/Seoul",
- "updated": "2026-11-17T12:24+09:00",
+ "updated": "2026-11-18T12:25+09:00",
  "days": {
   "2026-10-20": {
    "sessions": {
@@ -3615,6 +3615,218 @@
     {
      "page": "/si/제주-폐차장.html",
      "bucket": "네이버",
+     "sessions": 1
+    }
+   ]
+  },
+  "2026-11-17": {
+   "sessions": {
+    "네이버": 24,
+    "구글": 0,
+    "유튜브": 0,
+    "직접": 2,
+    "기타": 6
+   },
+   "events": {
+    "네이버": {
+     "quote_submit": 2,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "구글": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "유튜브": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "직접": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "기타": {
+     "quote_submit": 1,
+     "call_click": 1,
+     "sms_click": 2
+    }
+   },
+   "totals": {
+    "sessions": 32,
+    "quote_submit": 3,
+    "call_click": 1,
+    "sms_click": 2
+   },
+   "sources": [
+    {
+     "source": "m.search.naver.com / referral",
+     "sessions": 15
+    },
+    {
+     "source": "(not set) / (not set)",
+     "sessions": 6
+    },
+    {
+     "source": "naver / organic",
+     "sessions": 6
+    },
+    {
+     "source": "(direct) / (none)",
+     "sessions": 2
+    },
+    {
+     "source": "m.blog.naver.com / referral",
+     "sessions": 2
+    },
+    {
+     "source": "blog.naver.com / referral",
+     "sessions": 1
+    }
+   ],
+   "pages": [
+    {
+     "page": "/gu/영천시-폐차장.html",
+     "quote_submit": 2,
+     "call_click": 0
+    },
+    {
+     "page": "/gu/강릉시-폐차장.html",
+     "quote_submit": 1,
+     "call_click": 0
+    },
+    {
+     "page": "/guide/압류-있는-차-폐차.html",
+     "quote_submit": 0,
+     "call_click": 1
+    }
+   ],
+   "landing": [
+    {
+     "page": "(not set)",
+     "bucket": "기타",
+     "sessions": 4
+    },
+    {
+     "page": "/",
+     "bucket": "네이버",
+     "sessions": 2
+    },
+    {
+     "page": "/gu/제주시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 2
+    },
+    {
+     "page": "/gu/천안시-서북구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 2
+    },
+    {
+     "page": "/gu/해남군-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 2
+    },
+    {
+     "page": "/gu/강릉시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/강릉시-폐차장.html",
+     "bucket": "직접",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/구미시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/김제시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/나주시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/산청군-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/서해구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/양주시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/여수시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/영천시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/완주군-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/하남시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/화성시-동탄구-폐차장.html",
+     "bucket": "직접",
+     "sessions": 1
+    },
+    {
+     "page": "/guide/상속차-법인차-서류.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/guide/저당만-있는-차.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/guide/조기폐차-지원-안내.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/guide/폐차-수출-비교.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/guide/폐차-절차.html",
+     "bucket": "기타",
+     "sessions": 1
+    },
+    {
+     "page": "/pages/chungbuk-cheongju-sangdang-yeong.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/thanks.html",
+     "bucket": "기타",
      "sessions": 1
     }
    ]
