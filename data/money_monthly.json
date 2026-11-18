@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-16",
+ "updated": "2026-11-18",
  "source": "병한-업무위키 거래 기록부(scripts/money_monthly.py), 칸 설명 docs/money-monthly.md",
  "months": {
   "2026-07": {
@@ -45,16 +45,16 @@
    "money_n": 6
   },
   "2026-11": {
-   "deals": 12,
-   "lost": 4,
+   "deals": 13,
+   "lost": 8,
    "lost_reasons": [
     [
      "기타",
-     2
+     5
     ],
     [
      "다른 데서 먼저",
-     1
+     2
     ],
     [
      "금액",
