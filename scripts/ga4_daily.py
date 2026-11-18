@@ -23,7 +23,7 @@ GA4 로 "어디서 왔나"를 매일 센다(2026-11-04 병한님). 폼 문의가
                 × 출처 묶음별 세션 수(날짜마다 세션 많은 50개, 2026-11-13) → 날짜마다 "landing"(페이지 경로·묶음·세션 수만).
 - 속성 시간대(응답 metadata.timeZone)를 json 맨 위 "property_timezone" 에 남긴다(Asia/Seoul 이 아니면 알리기만, 고치지 않음).
 - report 안전장치(2026-11-13): "네이버 휴대폰 검색 방문 7일 평균" = 보고 기준일(자료가 있는 마지막 날, 어제까지)까지 7일 sources 의
-  "m.search.naver.com / referral" 세션 합 ÷ 7. 8 미만이면 "⚠ … (8 아래 — 클로드 채팅에 알리기)". 7일치가 다 없으면 줄을 내지 않는다.
+  "m.search.naver.com / referral" 세션 합 ÷ 7(2026-11-18: 세션 0·출처 빈 GA4 자료 구멍 날은 빼고 나눔, 구멍이 3일 넘으면 줄 안 냄). 8 미만이면 "⚠ … (8 아래 — 클로드 채팅에 알리기)". 7일치가 다 없으면 줄을 내지 않는다.
 - 나누기: 소스에 naver → 네이버, google → 구글, youtube·youtu.be → 유튜브, (direct) → 직접, 그 밖 → 기타.
   원래 소스/매체는 날짜마다 세션 많은 15개까지 json 의 sources 에 남긴다(나중에 다시 나눌 수 있게).
 - 개인정보 없음: 세션·이벤트 수, 소스 이름, 페이지 경로만. 같은 날짜를 다시 받으면 덮어쓴다. 손으로 고치지 않는다.
@@ -253,13 +253,23 @@ def naver_mobile(day: dict) -> int:
     return sum(s["sessions"] for s in day.get("sources", []) if s["source"] == NAVER_MOBILE)
 
 
-def naver_mobile_avg(data: dict, last: date, n: int = 7) -> tuple[float, int] | None:
-    """last 까지 n 일 네이버 휴대폰 검색(m.search.naver.com / referral) 세션 (하루 평균, 합). 하루라도 없으면 None."""
+def is_hole(day: dict) -> bool:
+    """GA4 자료 구멍(2026-11-18): 세션 0 + 출처 목록이 빈 날(예: 11/12). 실제 0 방문이 아니라 자료가 없는 날로 본다."""
+    return not day.get("sources") and not (day.get("totals") or {}).get("sessions")
+
+
+def naver_mobile_avg(data: dict, last: date, n: int = 7) -> tuple[float, int, list[str]] | None:
+    """last 까지 n 일 네이버 휴대폰 검색(m.search.naver.com / referral) 세션 (하루 평균, 합, 뺀 구멍 날짜).
+    하루라도 자료 칸이 없거나, 구멍을 빼고 n-2 일보다 적으면 None. 구멍 날은 평균에서 뺀다(2026-11-18)."""
     ks = [(last - timedelta(days=i)).isoformat() for i in range(n)]
     if any(k not in data["days"] for k in ks):
         return None
-    total = sum(naver_mobile(data["days"][k]) for k in ks)
-    return total / n, total
+    holes = sorted(k for k in ks if is_hole(data["days"][k]))
+    good = [k for k in ks if k not in holes]
+    if len(good) < n - 2:
+        return None
+    total = sum(naver_mobile(data["days"][k]) for k in good)
+    return total / len(good), total, holes
 
 
 def naver_mobile_line(data: dict, last: date) -> str:
@@ -267,8 +277,10 @@ def naver_mobile_line(data: dict, last: date) -> str:
     got = naver_mobile_avg(data, last)
     if got is None:
         return ""
-    avg = got[0]
+    avg, _, holes = got
     span = f"{day_name((last - timedelta(days=6)).isoformat())}~{day_name(last.isoformat())}"
+    if holes:
+        span += ", GA4 자료 구멍 " + "·".join(day_name(h) for h in holes) + " 뺌"
     if avg < NAVER_MOBILE_ALERT:
         return f"⚠ 네이버 휴대폰 검색 방문 7일 평균 {avg:.1f} ({span}) (8 아래 — 클로드 채팅에 알리기)"
     return f"네이버 휴대폰 검색 방문 7일 평균 {avg:.1f} ({span})"

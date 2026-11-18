@@ -103,6 +103,11 @@ def ga4_days() -> dict[str, dict]:
     return load(GA4, {}).get("days", {}) or {}
 
 
+def is_hole(day: dict) -> bool:
+    """GA4 자료 구멍(2026-11-18): 세션 0 + 출처 빈 날(예: 11/12). 평균·일치 수에서 뺀다."""
+    return not day.get("sources") and not (day.get("totals") or {}).get("sessions")
+
+
 def naver_mobile(day: dict) -> int:
     return sum(s.get("sessions", 0) for s in day.get("sources", []) if s.get("source") == NAVER_MOBILE)
 
@@ -111,7 +116,8 @@ def ga4_week_table(days: dict, ws: list[tuple[date, date]], today: date) -> list
     lines = ["| 주(월~일) | GA4 자료 | 세션 | 네이버 휴대폰 검색 | 폼 전송 | 전화 클릭 | 문자 클릭 |", "|---|---|---|---|---|---|---|"]
     for w in ws:
         ks = [(w[0] + timedelta(days=i)).isoformat() for i in range(7)]
-        have = [days[k] for k in ks if k in days and k < today.isoformat()]
+        have = [days[k] for k in ks if k in days and k < today.isoformat() and not is_hole(days[k])]
+        holes = sum(1 for k in ks if k in days and k < today.isoformat() and is_hole(days[k]))
         if not have:
             lines.append(f"| {week_label(w, today)} | 없음 | - | - | - | - | - |")
             continue
@@ -119,7 +125,7 @@ def ga4_week_table(days: dict, ws: list[tuple[date, date]], today: date) -> list
         for d in have:
             t.update(d.get("totals", {}))
         nm = sum(naver_mobile(d) for d in have)
-        lines.append(f"| {week_label(w, today)} | {len(have)}일치 | {t['sessions']} | {nm} | {t['quote_submit']} | "
+        lines.append(f"| {week_label(w, today)} | {len(have)}일치{f' (구멍 {holes}일 뺌)' if holes else ''} | {t['sessions']} | {nm} | {t['quote_submit']} | "
                      f"{t['call_click']} | {t['sms_click']} |")
     return lines
 
@@ -127,14 +133,14 @@ def ga4_week_table(days: dict, ws: list[tuple[date, date]], today: date) -> list
 def naver_before_after(days: dict, today: date) -> list[str]:
     def avg(start: date, end: date) -> tuple[float | None, int]:
         ks = [(start + timedelta(days=i)).isoformat() for i in range((end - start).days + 1)]
-        have = [days[k] for k in ks if k in days and k < today.isoformat()]
+        have = [days[k] for k in ks if k in days and k < today.isoformat() and not is_hole(days[k])]
         return (sum(naver_mobile(d) for d in have) / len(have) if have else None), len(have)
 
     b, nb = avg(STOP_DAY - timedelta(days=7), STOP_DAY - timedelta(days=1))
     a, na = avg(STOP_DAY, STOP_DAY + timedelta(days=6))
     fmt = lambda v: "자료 없음" if v is None else f"{v:.1f}"  # noqa: E731
     return [f"- 앞 7일({md(STOP_DAY - timedelta(days=7))}~{md(STOP_DAY - timedelta(days=1))}, {nb}일치): 하루 평균 {fmt(b)}",
-            f"- 뒤 7일({md(STOP_DAY)}~{md(STOP_DAY + timedelta(days=6))}, {na}일치{'' if na == 7 else ' — 아직 다 안 참'}): 하루 평균 {fmt(a)}"]
+            f"- 뒤 7일({md(STOP_DAY)}~{md(STOP_DAY + timedelta(days=6))}, {na}일치{'' if na == 7 else (' — GA4 자료 구멍 뺌' if STOP_DAY + timedelta(days=6) < today else ' — 아직 다 안 참')}): 하루 평균 {fmt(a)}"]
 
 
 KINDS = [("구·시군", "/gu/"), ("동", "/pages/"), ("시·도", "/si/"), ("안내", "/guide/"), ("사례", "/cases/")]
