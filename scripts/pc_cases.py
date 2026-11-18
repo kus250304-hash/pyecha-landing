@@ -795,6 +795,35 @@ def cmd_restage(args) -> None:
             print(f"  {line}")
 
 
+BACKFILL_TRIED = ROOT / "data" / "case_backfill_tried.json"  # 얇은 사례 채우기에서 통화·기록부가 안 맞은 slug(2026-11-18)
+TEXT_FIXES = ROOT / "data" / "case_text_fixes.json"
+
+
+def cmd_thin(args) -> None:
+    """이미 만든 얇은 사례 중 통화표·거래 기록부로 사연을 채워 볼 건(2026-11-18, 병한님 "기억 묻지 말고 통화·기록부로").
+    고침 통로(data/case_text_fixes.json)에 이미 있거나 전에 안 맞은(data/case_backfill_tried.json) slug 는 뺀다.
+    --since 는 통화표·기록부가 시작되는 날(그 전 사례는 맞춰 볼 자료가 없음). --tried 로 안 맞은 slug 를 적는다."""
+    tried = load_json(BACKFILL_TRIED, default=[]) or []
+    if args.tried:
+        have = {t["slug"] for t in tried}
+        today = date.today().isoformat()
+        for slug in [x.strip() for x in args.tried.split(",") if x.strip()]:
+            if slug not in have:
+                tried.append({"slug": slug, "on": today})
+        BACKFILL_TRIED.write_text(json.dumps(tried, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+        print(f"안 맞음 기록 {len(tried)}건(data/case_backfill_tried.json)")
+        return
+    skip = {t["slug"] for t in tried} | {f.get("slug") for f in load_json(TEXT_FIXES, default=[]) or [] if isinstance(f, dict)}
+    cases = load_json(ROOT / "cases" / "index.json", default=[]) or []
+    todo = [c for c in cases if c.get("thin") and c.get("slug") not in skip and (c.get("date") or "") >= args.since]
+    todo.sort(key=lambda c: c.get("date") or "", reverse=True)
+    print(f"채워 볼 얇은 사례 {len(todo)}건(--since {args.since or '없음'}), 오늘 {min(args.n, len(todo))}건:")
+    for c in todo[: args.n]:
+        empty = [k for k in ("걱정", "확인", "고른쪽", "끝한줄") if not (c.get("story") or {}).get(k)]
+        place = " ".join(x for x in (c.get("sigungu"), c.get("dong")) if x)
+        print(f"  {c['slug']} | {c.get('date') or '날짜 없음'} | {place} | {c.get('car') or ''} | 빈 칸: {'·'.join(empty)}")
+
+
 def cmd_clean(args) -> None:
     if STAGING.exists():
         shutil.rmtree(STAGING)
@@ -833,10 +862,14 @@ def main() -> None:
     sc = sub.add_parser("score")
     sc.add_argument("names", nargs="+")
     sc.add_argument("--src", default=SRC_DEFAULT)
+    th = sub.add_parser("thin")
+    th.add_argument("--n", type=int, default=5)
+    th.add_argument("--since", default="", help="통화표·기록부가 시작되는 날 YYYY-MM-DD(그 전 사례는 뺌)")
+    th.add_argument("--tried", default="", help="통화·기록부가 안 맞은 slug(쉼표로 여러 개)를 적고 끝냄")
     sub.add_parser("ledger").add_argument("--dir", default="", help="거래 기록부 폴더(기본: 저장소 옆 병한-업무위키\\폐차\\거래기록)")
     args = ap.parse_args()
     {"scan": cmd_scan, "prepare": cmd_prepare, "mask": cmd_mask, "stage": cmd_stage, "drop": cmd_drop,
-     "mark": cmd_mark, "report": cmd_report, "clean": cmd_clean, "ledger": cmd_ledger, "score": cmd_score, "restage": cmd_restage, "ledger-near": cmd_ledger_near, "priority": cmd_priority}[args.cmd](args)
+     "mark": cmd_mark, "report": cmd_report, "clean": cmd_clean, "ledger": cmd_ledger, "score": cmd_score, "restage": cmd_restage, "ledger-near": cmd_ledger_near, "priority": cmd_priority, "thin": cmd_thin}[args.cmd](args)
 
 
 if __name__ == "__main__":
