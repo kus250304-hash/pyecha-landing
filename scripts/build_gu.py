@@ -280,7 +280,8 @@ def area_notes_html(g: dict, gu: str, esc) -> str:
 
 def local_faq_problems(g: dict) -> list[str]:
     """지역에서 받은 질문(gu.json "local_faqs")의 문제. 줄마다 q·a·asked(YYYY-MM)·source(통화표|거래 기록부|폼·문자).
-    금액·결과 약속·고객 정보·개인 상담 사정은 사례 글과 같은 검사(build_cases.banned_text)로 막는다."""
+    금액·결과 약속·고객 정보·개인 상담 사정은 사례 글과 같은 검사(build_cases.banned_text)로 막고,
+    네/아니요로 답할 질문은 답이 "네, …"·"아니요, …" + 이유로 시작해야 한다(variants.faq_answer_problem)."""
     from build_cases import banned_text
     faqs = g.get("local_faqs")
     if faqs is None:
@@ -301,6 +302,8 @@ def local_faq_problems(g: dict) -> list[str]:
         if m := (BAN_RE.search(text) or LINE_BAN_RE.search(text)):
             errs.append(f"{tag}: 금액·결과 약속 표현 '{m.group(0)}'")
         elif why := banned_text(text):
+            errs.append(f"{tag}: {why}")
+        if q and a and (why := V.faq_answer_problem(q, a)):  # FAQ 답 첫 문장 규칙(2026-10-10)은 지역 질문에도 같다
             errs.append(f"{tag}: {why}")
     return errs
 
