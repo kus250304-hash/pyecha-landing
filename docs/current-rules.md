@@ -19,5 +19,6 @@ CLAUDE.md·`docs/roadmap.md`·지시문에 옛 규칙이 "옛(날짜):"으로 �
 ## 함께 보는 곳
 
 - 매달 17일 판단 보고: `docs/judgment-inputs.md`(숫자 한 장, `scripts/judgment_inputs.py`)를 먼저 읽음
+- 11/17 판단 보고: `docs/judgment-2026-11-17.md`(2026-11-18 작성, 병한님 고르기 대기)
 - GA4 다시 받기 결과(2026-11-13): `docs/ga4-refetch-2026-11-13.md`
 - 변경 기록: `docs/changelog.md`
