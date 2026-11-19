@@ -323,14 +323,14 @@ OLD_HERO = """<header class="hero">
 """
 
 
-# 주제 페이지(2026-10-14 5장, 2026-10-18 6장, scripts/topics.py). FAQ 는 실제 통화 FAQ 풀(variants.CALL_FAQ)·공통 질문에서 질문으로 가져온다
+# 주제 페이지(2026-10-14 5장, 2026-10-18 6장, 2026-11-19 7장, scripts/topics.py). FAQ 는 실제 통화 FAQ 풀(variants.CALL_FAQ)·공통 질문에서 질문으로 가져온다
 from topics import TOPICS, GUIDE_CROSS_LINKS  # noqa: E402
 import variants as _V  # noqa: E402
 
 _FAQ_POOL = dict(_V.CALL_FAQ) | dict(zip(_V.COMMON_FAQ_QUESTIONS, _V.DONG_FAQ[0]))
 for _t in TOPICS:
     _t["faqs"] = [(q, _FAQ_POOL[q]) for q in _t["faq_questions"]] + list(_t["faqs_extra"])
-ALL_GUIDES = GUIDES + TOPICS  # 상단 메뉴·맨 아래 "폐차 안내" 링크·유형별 안내 링크는 이 11장(2026-10-18)
+ALL_GUIDES = GUIDES + TOPICS  # 상단 메뉴·맨 아래 "폐차 안내" 링크·유형별 안내 링크는 이 12장(2026-10-18 11장, 2026-11-19 12장)
 
 
 def section_html(i: int, h2: str, sub: str, parts: list, esc) -> str:
@@ -401,16 +401,19 @@ def guide_text(g: dict) -> str:
 
 # 동·구·시 페이지 "폐차 유형별 안내" 칸 끝(2026-10-19 병한님): "이런 차도 됩니다" 버튼 5개 + 나머지 안내 작은 글자 한 줄.
 # 첫 화면(hero)에는 넣지 않는다(압류 같은 낱말이 있어 check_pages 첫 화면 검사에 걸림)
-TYPE_BUTTONS = [("압류 있는 차", "압류-있는-차-폐차.html"), ("11년 넘은 차 말소", "차령초과-폐차.html"),
+TYPE_BUTTONS = [("수리비 많이 나온 차", "고쳐-탈까-폐차할까.html"),
+                ("압류 있는 차", "압류-있는-차-폐차.html"), ("11년 넘은 차 말소", "차령초과-폐차.html"),
                 ("상속·법인차", "상속차-법인차-서류.html"), ("시동 안 걸리는 차", "시동-안-걸리는-차.html"),
                 ("오래 세워둔 차", "방치차-오래-세워둔-차.html"), ("저당만 있는 차", "저당만-있는-차.html")]
-# 버튼 = 주제 페이지 6장 전부(2026-10-20 저당을 작은 글자에서 버튼으로 옮김), 작은 글자 = 안내 5장
+# 버튼 = 주제 페이지 전부(2026-10-20 저당을 작은 글자에서 버튼으로 옮김, 2026-11-19 "고쳐 탈까, 폐차할까"를 맨 앞에 더해 7장),
+# 작은 글자 = 안내 5장. 첫 화면 홈의 "이런 차도 됩니다" 칸도 이 순서를 쓴다(build_index.render_home_links)
 TYPE_MORE = [("폐차 절차", "폐차-절차.html"), ("필요 서류", "폐차-필요-서류.html"),
              ("수출 비교", "폐차-수출-비교.html"), ("금액 정하는 방법", "폐차-금액-정하는-방법.html"), ("조기폐차", "조기폐차-지원-안내.html")]
 
 
 def guide_links_html(prefix: str = "../") -> str:
-    """동·구·시 페이지 "이런 차도 됩니다" 칸에 넣는 안내 11장 링크: 주제 6장 버튼 + 안내 5장 작은 글자 한 줄(2026-10-19, 2026-10-20 버튼 6개)."""
+    """동·구·시 페이지 "이런 차도 됩니다" 칸에 넣는 안내 링크: 주제 페이지 전부(2026-11-19부터 7장) 버튼 + 안내 5장 작은 글자 한 줄
+    (2026-10-19, 2026-10-20 버튼 6개, 2026-11-19 버튼 7개)."""
     from build_site import esc
     files = [f for _, f in TYPE_BUTTONS + TYPE_MORE]
     if sorted(files) != sorted(x["file"] for x in ALL_GUIDES):  # 안내 페이지를 새로 만들면 여기 둘 중 한 곳에 넣어야 한다
@@ -433,7 +436,8 @@ def related_html(files: list[str], esc) -> str:
 
 
 def topic_text(t: dict) -> str:
-    out = [t["h1"], t["lead"], t["desc"], t["answer"], t["hook"], t["route"], t.get("case_note", "")]
+    out = [t["h1"], t["lead"], t["desc"], t["answer"], t["hook"], t["route"], t.get("case_note", ""),
+           t.get("exit_link", ""), t.get("exit_rest", ""), t.get("exit_sms", "")]
     out += [x for pair in t["pieces"] + t["worries"] + t["faqs"] for x in pair]
     out += [label for label, _ in sources(t)]
     if t.get("table"):
@@ -447,7 +451,21 @@ def sources(t: dict) -> list[tuple[str, str]]:
     return [src] if isinstance(src, tuple) else list(src)
 
 
-def topic_sections_html(t: dict, n0: int, cases: list[dict], esc) -> str:
+DEFAULT_EXIT = "차 번호·지역만 문자 주셔도 됩니다. 답만 받고 안 하셔도 됩니다."
+
+
+def topic_exit_html(t: dict, cfg: dict | None, esc) -> str:
+    """ "내 차는 어디로?" 칸 맨 아래 출구 한 줄. 주제에 exit_link(누르는 글)·exit_sms(문자 창에 미리 적히는 말)가 있으면
+    그 글을 문자 링크로 쓰고 exit_rest 를 뒤에 붙인다(2026-11-19 "고쳐 탈까, 폐차할까": 전환 변경 #3 출구 문구).
+    없으면 예전 문장 그대로라 다른 주제 페이지는 글자 하나 바뀌지 않는다."""
+    if not t.get("exit_link"):
+        return f'        <p class="exit">{esc(DEFAULT_EXIT)}</p>\n'
+    from first_screen import exit_link_html
+    return (f'        <p class="exit">{exit_link_html(cfg, "", t["exit_link"], t["exit_sms"])}'
+            + (f' {esc(t["exit_rest"])}' if t.get("exit_rest") else "") + "</p>\n")
+
+
+def topic_sections_html(t: dict, n0: int, cases: list[dict], esc, cfg: dict | None = None) -> str:
     """주제 페이지 본문: 시리즈 한 줄("폐차 사전 N편") → 한 줄 답 → 조각("사전 n번") + 내 차는 어디로(상담) → 걱정 3개 → 같은 상황 사례(있을 때만)."""
     from build_site import case_cards_html
     # 시리즈 표시(2026-10-22 눈가리개 감사 6번): "n/36" 꼬리표 대신 글 맨 위 "폐차 사전 N편 — 압류 있는 차" 한 줄.
@@ -474,7 +492,7 @@ def topic_sections_html(t: dict, n0: int, cases: list[dict], esc) -> str:
         + '      <div class="route">\n        <h3>내 차는 어디로?</h3>\n'
         f'        <p>{esc(t["route"])}</p>\n'
         '        <p class="oneplus">폐차값과 수출값, 둘 다 알려드려요</p>\n'
-        '        <p class="exit">차 번호·지역만 문자 주셔도 됩니다. 답만 받고 안 하셔도 됩니다.</p>\n'
+        + topic_exit_html(t, cfg, esc) +
         '      </div>\n    </div>\n  </section>\n',
         '  <section id="worries" style="background:#fff">\n    <div class="wrap">\n'
         '      <h2 class="sec-title display">손님이 자주 걱정하는 것</h2>\n'
@@ -669,14 +687,16 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], keep_dates: 
     contact_line = f"전화 {phone_disp}" + (f" / 문자 {text_disp}" if text_disp else "")
     kakao = cfg.get("kakao_channel_url")
     kakao_bar = (f'<a class="btn btn-kakao" href="{esc(kakao)}" target="_blank" rel="noopener noreferrer">카톡</a>' if kakao else "")
-    if text_tel:
-        sms_href = f'href="{esc(sms_link({"sms_number": text_tel}, ""))}"'
-        sms_btn = f'<a class="btn btn-sms" {sms_href}><svg><use href="#i-chat"/></svg>문자 {esc(text_disp)}</a>'
-        bar_second = f'<a class="btn btn-sms" {sms_href}><svg><use href="#i-chat"/></svg>문자</a>' + kakao_bar
-        bar_cols = "2fr 1fr 1fr" if kakao else "2fr 1fr"
-    else:
-        sms_btn, bar_cols = "", "3fr 2fr"
-        bar_second = '<a class="btn btn-quote" href="#consult" style="background:#fff"><svg><use href="#i-chat"/></svg>상담 안내</a>'
+    def sms_parts(what: str = "폐차 문의") -> tuple[str, str]:
+        """(본문 문자 버튼, 하단 띠 둘째 버튼). what 은 문자 창에 미리 적히는 말(주제의 sms_what, 2026-11-19)."""
+        if not text_tel:
+            return "", '<a class="btn btn-quote" href="#consult" style="background:#fff"><svg><use href="#i-chat"/></svg>상담 안내</a>'
+        href = f'href="{esc(sms_link({"sms_number": text_tel}, "", what))}"'
+        return (f'<a class="btn btn-sms" {href}><svg><use href="#i-chat"/></svg>문자 {esc(text_disp)}</a>',
+                f'<a class="btn btn-sms" {href}><svg><use href="#i-chat"/></svg>문자</a>' + kakao_bar)
+
+    sms_btn, bar_second = sms_parts()
+    bar_cols = ("2fr 1fr 1fr" if kakao else "2fr 1fr") if text_tel else "3fr 2fr"
     area = area_links_html(regions, gu_data)
     cases = load_json(CASES_INDEX, default=[])
     # 주제 페이지 맨 아래 "최근 문의 지역"(2026-10-20, 2026-10-22 이름 바꿈·본문 해시에서 뺌): 첫 화면과 같은 구·시군 10곳(pick_index_requests.popular_gu)
@@ -742,12 +762,15 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], keep_dates: 
             n0 = (n - len(GUIDES)) * 6 + 1
             form = form_parts(cfg, "주제 " + g["nav"], "주제 페이지 " + g["nav"], canonical, meta_title)
             hero = ('<header class="hero hero-v3">\n'
-                    + hero_top_html(cfg, "", form, crumb=crumbs, updated=UPDATED_MARK, h1=g["h1"], lead=g["lead"])
+                    + hero_top_html(cfg, "", form, crumb=crumbs, updated=UPDATED_MARK, h1=g["h1"], lead=g["lead"],
+                                    sms_what=g.get("sms_what") or "폐차 문의")
                     + "\n</header>")
             name, suffix = g["og"]
+            if g.get("sms_what"):  # 그 주제 페이지의 문자 버튼 미리 채움 글(2026-11-19 "수리 견적서 사진 보냅니다")
+                values["SMS_BUTTON"], values["BAR_SECOND"] = sms_parts(g["sms_what"])
             values.update({
                 "HERO_HTML": hero,
-                "SECTIONS_HTML": topic_sections_html(g, n0, cases, esc),
+                "SECTIONS_HTML": topic_sections_html(g, n0, cases, esc, cfg),
                 "AFTER_FAQ": shorts_html(g, esc, topic_cases(g, cases)[0], base),
                 "BOTTOM_FORM": BOTTOM_FORM.format(**form).replace(
                     "폐차·수출 비교 견적 받기", "차 번호로 원부 확인 상담 받기" if g.get("no_export") else "폐차·수출 비교 견적 받기"),

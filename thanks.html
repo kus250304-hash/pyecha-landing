@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- analytics:start -->
 <meta name="ahrefs-site-verification" content="e91a4182e4f7c9c483140d737049bb5be7f0c7fd497206574707c05cf39e419a">
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config',"G-MLKQDS4TK8");(function(){var P={page_type:"thanks",region:"전국"};window.pyechaTrack=function(n,pos,cb){var d=false,f=function(){if(!d){d=true;if(cb)cb();}};gtag('event',n,{page_type:P.page_type,region:P.region,position:pos,event_callback:f,event_timeout:1500});try{if(window.wcs&&typeof wcs.event==='function')wcs.event(n,P.page_type+'_'+pos);}catch(e){}if(cb)setTimeout(f,1600);};document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="tel:"],a[href^="sms:"]');if(!a)return;var pos=a.closest('.bar')?'sticky':a.closest('header')?'top':'bottom';window.pyechaTrack(a.getAttribute('href').indexOf('tel:')===0?'call_click':'sms_click',pos);},true);function L(){var s=document.createElement('script');s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id=G-MLKQDS4TK8";document.head.appendChild(s);}if(document.readyState==='complete')L();else window.addEventListener('load',L);})();</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config',"G-MLKQDS4TK8");(function(){var P={page_type:"thanks",region:"전국"};window.pyechaTrack=function(n,pos,cb){var d=false,f=function(){if(!d){d=true;if(cb)cb();}};gtag('event',n,{page_type:P.page_type,region:P.region,position:pos,event_callback:f,event_timeout:1500});try{if(window.wcs&&typeof wcs.event==='function')wcs.event(n,P.page_type+'_'+pos);}catch(e){}if(cb)setTimeout(f,1600);};document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="tel:"],a[href^="sms:"]');if(!a)return;var pos=a.closest('.bar')?'sticky':a.closest('header')?'top':'bottom';window.pyechaTrack(a.getAttribute('href').indexOf('tel:')===0?'call_click':'sms_click',pos);var x=a.getAttribute('data-exit');if(x)window.pyechaTrack(x,pos);},true);function L(){var s=document.createElement('script');s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id=G-MLKQDS4TK8";document.head.appendChild(s);}if(document.readyState==='complete')L();else window.addEventListener('load',L);})();</script>
 <!-- analytics:end -->
 <link rel="icon" href="favicon.ico" sizes="any">
 <title>접수되었습니다 | 폐차·수출 비교 견적</title>
@@ -19,6 +19,11 @@
   p { color: #5E6E70; margin: 0 0 8px; }
   .btn { display: flex; align-items: center; justify-content: center; min-height: 56px; border-radius: 12px; background: #E5541F; color: #fff; font-weight: 800; font-size: 18px; text-decoration: none; margin-top: 26px; }
   .back { display: inline-block; margin-top: 18px; color: #5E6E70; font-size: 14px; }
+  .while { margin: 22px 0; padding: 16px 14px; background: #fff; border: 1px solid #D9E3E4; border-radius: 14px; text-align: left; word-break: keep-all; }
+  .while .while-title { margin: 0 0 6px; color: #17282B; font-weight: 800; font-size: 16px; }
+  .while p { font-size: 14px; line-height: 1.6; }
+  .while .btn { margin-top: 12px; }
+  .btn.btn-sms { background: #0E5E63; }
   footer { text-align: center; color: #5E6E70; font-size: 13px; padding: 0 16px 36px; line-height: 1.8; }
   footer p { margin: 0; font-size: 13px; }
   footer a { color: inherit; }
@@ -29,6 +34,13 @@
   <div class="mark">✓</div>
   <h1>접수되었습니다</h1>
   <p>빠르면 10분, 늦어도 영업시간 안에 연락드립니다.</p>
+  <!-- 전환 변경 #3(2026-11-19, docs/fable-2026-11-19/conversion-3b.md): 기다리는 동안 견적서 사진을 문자로 받는 출구.
+       문자 번호는 data/site_config.json 의 sms_number(check_pages.py 가 확인), 누름은 GA4 이벤트 thanks_sms_click -->
+  <div class="while">
+    <p class="while-title">기다리시는 동안 — 받아 두신 견적이 있으면 보내 주세요</p>
+    <p>수리 견적서 사진이나 다른 곳에서 받은 금액을 문자로 보내 주시면, 전화드릴 때 폐차값·수출값과 같이 견줘 드립니다. 없으면 안 보내셔도 됩니다.</p>
+    <a class="btn btn-sms" href="sms:01099267779?&amp;body=%EB%B0%A9%EA%B8%88%20%EA%B2%AC%EC%A0%81%20%ED%8F%BC%20%EB%82%A8%EA%B2%BC%EC%8A%B5%EB%8B%88%EB%8B%A4.%20%EA%B2%AC%EC%A0%81%EC%84%9C%20%EC%82%AC%EC%A7%84%20%EB%B3%B4%EB%83%85%EB%8B%88%EB%8B%A4%20%2F%20%EC%B0%A8%EB%B2%88%ED%98%B8%3A%20" data-exit="thanks_sms_click">💬 견적서 사진 문자로 보내기</a>
+  </div>
   <p>급하시면 지금 바로 전화 주셔도 됩니다.</p>
   <a class="btn" href="tel:16006011">📞 1600-6011 지금 전화하기</a>
   <a class="back" href="index.html">전체 지역 보기</a>

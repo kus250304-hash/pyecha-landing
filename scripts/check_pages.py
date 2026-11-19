@@ -28,6 +28,7 @@ from pathlib import Path
 from urllib.parse import quote, unquote
 
 import og_image  # og:image 주소 끝 ?v=VERSION 확인(2026-10-22)
+from first_screen import EXIT_EVENT, EXIT_QUOTE, EXIT_REPAIR  # 전환 변경 #3 출구 두 줄(2026-11-19)
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 ROOT = Path(__file__).resolve().parent.parent
@@ -67,7 +68,10 @@ REQUIRED = [
 CORE_SENTENCES = [
     "폐차 전에 수출 시세와 비교해서 더 높은 쪽으로 안내합니다",
     "차량 확인하면 먼저 입금하고, 그 다음에 차를 가져갑니다",
-    "다른 곳 견적 들고 오세요 — 폐차값·수출값 둘 다 보고 더 높은 쪽으로",  # 2026-10-28 "왜 비교해 드리나" 칸
+    # 2026-11-19 전환 변경 #3: "왜 비교해 드리나" 칸 맨 위 출구 두 줄(누르면 문자 창). 문구는 first_screen.py 한 곳에서 고친다
+    # (예전 2026-10-28 "다른 곳 견적 들고 오세요 — 폐차값·수출값 둘 다 보고 더 높은 쪽으로" 줄을 대신함)
+    EXIT_REPAIR,
+    EXIT_QUOTE,
     "차량번호와 연락처만 남기시면 바로 연락드립니다",
     "견인비 따로 없음",  # 2026-10-28(예전 "견인비 대부분 별도 청구 없음")
     "말소가 끝나면 말소증을 문자로 보내드립니다",  # 2026-10-28 진행 순서 ④
@@ -129,12 +133,20 @@ def core_problems(html: str) -> list[str]:
         out.append("폼 바로 아래 '왜 비교해 드리나' 칸이 없음")
     else:
         w = why.group(0)
-        for needle in ('<ul class="core">', 'class="compare-note"', 'class="trust"', 'class="oneplus"'):
+        for needle in ('<ul class="core">', 'class="compare-note exit"', 'class="trust"', 'class="oneplus"'):
             if needle not in w:
                 out.append(f"'왜 비교해 드리나' 칸에 {needle} 없음")
         nxt = html.find("<section", hero.end())
         if nxt != why.start():
             out.append("'왜 비교해 드리나' 칸이 첫 화면 바로 다음이 아님")
+        # 전환 변경 #3(2026-11-19): 제목 바로 아래(뱃지 위)에 출구 두 줄, 문자 번호가 있으면 둘 다 문자 링크 + 측정 표시(data-exit)
+        linked = 'href="sms:' in html
+        pat = (rf'<p class="compare-note exit"><a href="sms:[^"]+" data-exit="{EXIT_EVENT}">([^<]+)</a></p>' if linked
+               else r'<p class="compare-note exit">([^<]+)</p>')
+        if re.findall(pat, w) != [EXIT_REPAIR, EXIT_QUOTE]:
+            out.append("'왜 비교해 드리나' 칸에 출구 두 줄(수리 견적서 사진 · 다른 곳 견적 금액, 누르면 문자)이 없거나 순서가 다름")
+        elif not (w.find("</h2>") < w.find('class="compare-note exit"') < w.find('class="badge"')):
+            out.append("출구 두 줄이 '왜 비교해 드리나' 제목 바로 아래(뱃지 위)가 아님")
     return out
 
 
@@ -223,6 +235,11 @@ def check_site_pages(cfg: dict) -> list[str]:
             continue
         text = f.read_text(encoding="utf-8")
         problems += [f"{f.relative_to(ROOT)}: {p} (build_index.py 또는 템플릿 확인)" for p in footer_problems(text, cfg)]
+    # 접수 화면 출구(2026-11-19 전환 변경 #3): "견적서 사진 문자로 보내기" 버튼이 문자 번호(sms_number)로 가고 측정 표시가 있는지
+    thanks = (ROOT / "thanks.html").read_text(encoding="utf-8") if (ROOT / "thanks.html").exists() else ""
+    if cfg.get("sms_number") and not re.search(
+            rf'<a class="btn btn-sms" href="sms:{re.escape(cfg["sms_number"])}\?&amp;body=[^"]+" data-exit="thanks_sms_click">', thanks):
+        problems.append("thanks.html: '견적서 사진 문자로 보내기' 버튼(문자 번호·data-exit=\"thanks_sms_click\")이 없음")
     privacy = (ROOT / "privacy.html").read_text(encoding="utf-8") if (ROOT / "privacy.html").exists() else ""
     for needle in PRIVACY_REQUIRED + [cfg["phone_display"]]:
         if needle not in privacy:
@@ -1340,7 +1357,7 @@ def main() -> None:
                 errors.append(f"index.html: 첫 화면 폼에 {label} 없음")
         if index_text.count("<h1") != 1:
             errors.append(f"index.html: H1 이 {index_text.count('<h1')}개 (1개여야 함)")
-    # 첫 화면 아래 네 칸(2026-10-20, build_index.render_home_links): 동 페이지 전체 목록 대신 시·도 버튼·주제 6장·문의 많은 지역·최근 사례
+    # 첫 화면 아래 네 칸(2026-10-20, build_index.render_home_links): 동 페이지 전체 목록 대신 시·도 버튼·주제 페이지 전부(2026-11-19 7장)·문의 많은 지역·최근 사례
     main_part = re.search(r'<main class="container">.*?</main>', index_text, flags=re.DOTALL)
     main_part = main_part.group(0) if main_part else ""
     for sec in ("regions", "types", "popular"):

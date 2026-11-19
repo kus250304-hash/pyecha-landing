@@ -2,7 +2,7 @@
 index.html 의 첫 화면 아래 링크 칸과 헤더의 지역 수를 다시 만든다.
 
 2026-10-20 병한님 결정: 예전처럼 시·도 14·구 232·동 833을 전부 잇는 목록을 두지 않고 네 칸만 둔다
-(render_home_links): 지역별 폐차 상담(시·도 버튼) / 이런 차도 됩니다(주제 6장 버튼 + 안내 5장 작은 글자) /
+(render_home_links): 지역별 폐차 상담(시·도 버튼) / 이런 차도 됩니다(주제 페이지 전부 버튼 — 2026-11-19부터 7장 — + 안내 5장 작은 글자) /
 최근 문의 지역(pick_index_requests.popular_gu 10곳, 매 빌드 갱신) / 최근 폐차 사례(cases/index.json 최신 6건).
 구·동은 시·도 페이지의 "구 → 동 목록"으로 간다(첫 화면 → 시·도 → 동 2클릭).
 검색엔진 소유확인 메타 태그(site_config.json 의 naver_site_verification)는 실행할 때마다
@@ -307,7 +307,7 @@ HOME_LINKS_STYLE = """<style>
 
 
 def render_home_links(by_sido: dict[str, list[tuple[str, str]]]) -> str:
-    """첫 화면 아래 네 칸(2026-10-20 병한님 결정): 지역별 폐차 상담(시·도 버튼) / 이런 차도 됩니다(주제 6장 버튼 + 안내 5장 작은 글자) /
+    """첫 화면 아래 네 칸(2026-10-20 병한님 결정): 지역별 폐차 상담(시·도 버튼) / 이런 차도 됩니다(주제 페이지 전부 버튼 + 안내 5장 작은 글자) /
     최근 문의 지역(pick_index_requests.popular_gu, 10곳) / 최근 폐차 사례(cases/index.json 최신 6건).
     예전처럼 구·동 전체 목록은 넣지 않는다(시·도 페이지에 있음). 시·도 페이지가 아직 없는 시·도는 버튼 대신
     그 시·도의 구(없으면 동) 페이지 링크를 작게 두고, 시·도 링크는 build_site.sido_href 하나로 만든다(2026-10-22, #sido 앵커 링크 없음)."""
@@ -331,8 +331,11 @@ def render_home_links(by_sido: dict[str, list[tuple[str, str]]]) -> str:
         if links:
             chips.append(f'<span class="chip-group" id="sido-{esc(short)}">{esc(short)}: '
                          + " · ".join(f'<a href="{esc(h)}">{esc(n)}</a>' for n, h in links) + "</span>")
-    label = dict((f, l) for l, f in TYPE_BUTTONS)
-    topics = "".join(f'<a href="guide/{esc(t["file"])}">{esc(label.get(t["file"], t["nav"]))}</a>' for t in TOPICS)
+    # 주제 버튼은 동·구·시 페이지 "이런 차도 됩니다"와 같은 순서·같은 글자(build_guide.TYPE_BUTTONS, 2026-11-19).
+    # TYPE_BUTTONS 가 주제 페이지 전부인지는 build_guide.guide_links_html 과 check_pages.py 가 본다
+    if sorted(f for _, f in TYPE_BUTTONS) != sorted(t["file"] for t in TOPICS):
+        raise SystemExit("build_guide.TYPE_BUTTONS 는 주제 페이지(topics.TOPICS) 전부여야 함")
+    topics = "".join(f'<a href="guide/{esc(f)}">{esc(l)}</a>' for l, f in TYPE_BUTTONS)
     guides = " · ".join(f'<a href="guide/{esc(g["file"])}">{esc(g["nav"])}</a>' for g in GUIDES)
     popular = "".join(f'<a href="gu/{esc(gu_file(sd, sg))}">{esc(sg or SIDO_SHORT[sd])} 폐차 안내</a>' for sd, sg in popular_gu(10))
     cases_path = ROOT / "cases" / "index.json"
@@ -349,7 +352,7 @@ def render_home_links(by_sido: dict[str, list[tuple[str, str]]]) -> str:
         '<p class="sub">시·도를 고르면 시·군·구와 동별 상담 페이지가 나옵니다</p>'
         f'<div class="chips">{"".join(chips)}</div></section>',
         '<section class="home-sec" id="types"><h2>이런 차도 됩니다</h2>'
-        '<p class="sub">압류·말소·상속·시동·방치·저당, 상황별로 정리했습니다</p>'
+        '<p class="sub">수리비·압류·말소·상속·시동·방치·저당, 상황별로 정리했습니다</p>'
         f'<div class="chips big">{topics}</div><p class="more">폐차 안내: {guides}</p></section>',
         '<section class="home-sec" id="popular"><h2>최근 문의 지역</h2>'
         '<p class="sub">최근 문의가 온 곳과 상담이 많은 시·군입니다</p>'

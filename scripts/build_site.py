@@ -676,7 +676,8 @@ def render(r: dict, regions: list[dict], cfg: dict, cases: list[dict], template:
         "HERO_TOP": hero_top_html(cfg, title_region if is_renamed(r) else r["dong"],
                                   form_parts(cfg, " ".join(x for x in (SIDO_SHORT[r["sido"]], r["sigungu"], r["dong"]) if x), full, canonical, meta_title),
                                   crumb=breadcrumb(r, gu_pages), updated=UPDATED_MARK),
-        "WHY_BLOCK": why_block_html(f"{sigungu_dong} 폐차 상담 · 당일 접수", hero_sub),
+        "WHY_BLOCK": why_block_html(f"{sigungu_dong} 폐차 상담 · 당일 접수", hero_sub, cfg,
+                                    title_region if is_renamed(r) else r["dong"]),  # 출구 두 줄 문자 주소(2026-11-19)
         "AREA_LINKS": area_links_html(regions, list(gu_data), here_dong=r),
         "CASES_TITLE": esc(c_title),
         "CASES_SUB": esc(c_sub),

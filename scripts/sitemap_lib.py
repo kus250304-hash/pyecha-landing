@@ -56,7 +56,7 @@ STRIP_TAGS = ("script", "style", "noscript", "template", "svg", "header", "nav",
 UPDATED_P_RE = re.compile(r'<p class="updated">.*?</p>', re.S)  # "최종 업데이트: …"(빌드 중에는 @@UPDATED_ON@@ 자리표)
 # 모든 동·구·시 페이지에 똑같이 들어가는 "이런 차도 됩니다" 링크 묶음(build_guide.guide_links_html)도 공통 틀로 본다(2026-10-20)
 TYPE_LINKS_RE = re.compile(r'<div class="type-links">.*?<p class="type-more">.*?</p></div>', re.S)
-# 첫 화면·주제 6장의 "최근 문의 지역" 칸(문의 기록이 바뀔 때마다 목록이 바뀜)도 공통 틀로 본다(2026-10-22 눈가리개 감사 4번)
+# 첫 화면·주제 페이지의 "최근 문의 지역" 칸(문의 기록이 바뀔 때마다 목록이 바뀜)도 공통 틀로 본다(2026-10-22 눈가리개 감사 4번)
 POPULAR_RE = re.compile(r'<section[^>]*id="popular"[^>]*>.*?</section>', re.S)
 
 

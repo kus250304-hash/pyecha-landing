@@ -8,6 +8,9 @@ site_config.json
                          모든 페이지에 하나씩 들어간다. 비어 있으면 넣지 않는다. 네이버 소유확인 태그는 첫 화면에만(build_index.py).
 
 이벤트(GA4): 전화 버튼 call_click, 문자 버튼 sms_click, 견적 폼 전송 성공 quote_submit.
+2026-11-19(전환 변경 #3): data-exit="이름" 이 붙은 전화·문자 링크는 그 이름의 이벤트를 한 번 더 보낸다
+(estimate_sms_click = "견적서 사진만 문자로" 출구 줄, thanks_sms_click = 접수 화면의 사진 문자 버튼). sms_click 에도 그대로 들어가므로
+문의 행동으로 볼 문자 누름 = sms_click − thanks_sms_click 이다.
 매개변수: page_type(dong/gu/si/guide/case/home/thanks/privacy), region(페이지 지역 이름, 손님 정보 아님),
 position(top = 첫 화면, sticky = 하단 고정 바, bottom = 그 밖의 본문).
 quote_submit 은 Web3Forms 가 성공을 돌려준 뒤에만 보낸다(templates/region-landing-v2.html 의 폼 스크립트가
@@ -54,7 +57,10 @@ def head_html(cfg: dict, page_type: str, region: str = "") -> str:
         # 전화(tel:)·문자(sms:) 버튼 클릭: 하단 고정 바 = sticky, 첫 화면(header) = top, 나머지 = bottom
         + "document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^=\"tel:\"],a[href^=\"sms:\"]');"
         "if(!a)return;var pos=a.closest('.bar')?'sticky':a.closest('header')?'top':'bottom';"
-        "window.pyechaTrack(a.getAttribute('href').indexOf('tel:')===0?'call_click':'sms_click',pos);},true);"
+        "window.pyechaTrack(a.getAttribute('href').indexOf('tel:')===0?'call_click':'sms_click',pos);"
+        # 출구 줄(2026-11-19 전환 변경 #3): data-exit 가 붙은 링크는 그 이름의 이벤트를 한 번 더 보낸다
+        # (estimate_sms_click = 폼 아래 칸·주제 페이지 출구, thanks_sms_click = 접수 화면 버튼). sms_click 은 그대로 함께 센다
+        "var x=a.getAttribute('data-exit');if(x)window.pyechaTrack(x,pos);},true);"
     )
     if ga:
         # gtag.js 는 load 뒤에 불러 첫 화면을 막지 않는다

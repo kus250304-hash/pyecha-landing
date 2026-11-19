@@ -246,7 +246,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], cases: list[
             # 첫 화면(2026-10-13, scripts/first_screen.py)과 폼 바로 아래 "왜 비교해 드리나"
             "TYPE_LINKS": guide_links_html(),
             "HERO_TOP": hero_top_html(cfg, si_label, form_parts(cfg, si, sido, canonical, meta_title), crumb=si_crumb, updated=UPDATED_MARK),
-            "WHY_BLOCK": why_block_html(f"{sido} 폐차 상담 · 당일 접수", f"{sido} 어디든 전화 한 통이면 기사가 차 있는 곳으로 갑니다."),
+            "WHY_BLOCK": why_block_html(f"{sido} 폐차 상담 · 당일 접수", f"{sido} 어디든 전화 한 통이면 기사가 차 있는 곳으로 갑니다.", cfg, si),
             "SI": esc(si), "SI_FULL": esc(f"{sido} — {old}" if old else sido), "SI_JOSA": josa(sido, "은", "는"),
             "GU_LIST_HTML": gu_list, "DONG_LIST_HTML": dong_list, "FAQ_HTML": faq_html, "INFO_ROWS": info_rows,
             "EARLY_SCRAP_HTML": early_scrap.section_html(es_notice, si, cfg, esc, tel_text),

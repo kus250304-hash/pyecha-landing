@@ -186,6 +186,12 @@
   .why-compare .core li::before, .why-compare .trust span::before { color: var(--coral); }
   .why-compare .hint { margin: 0 0 12px; font-size: 14px; color: var(--muted); }
   .why-compare .compare-note { text-align: left; }
+  /* 전환 변경 #3(2026-11-19): 제목 바로 아래 출구 두 줄 — 누르면 문자 창이 열린다(first_screen.exit_link_html) */
+  .why-compare .sec-title { margin-bottom: 10px; }
+  .why-compare .compare-note.exit { margin: 0 0 8px; max-width: 560px; font-size: 14.5px; line-height: 1.4; }
+  .why-compare .compare-note.exit + .badge { margin-top: 6px; }
+  .why-compare .compare-note.exit a { display: flex; gap: 8px; align-items: flex-start; padding: 9px 12px; background: #fff; border: 1.5px solid var(--teal); border-radius: 12px; color: var(--ink); text-decoration: none; }
+  .why-compare .compare-note.exit a::before { content: "💬"; flex: none; }
   .why-compare .trust { justify-content: flex-start; }
 
   /* 견적 폼 */

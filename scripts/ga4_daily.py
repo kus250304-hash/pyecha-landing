@@ -18,6 +18,7 @@ GA4 로 "어디서 왔나"를 매일 센다(2026-11-04 병한님). 폼 문의가
   값은 출력·기록하지 않는다. 열쇠가 없으면 "키 없음"만 알리고 파일을 바꾸지 않는다.
   준비(병한님 1회): docs/ga4-setup.md — Google Analytics Data API 사용 + GA4 속성에 서비스 계정 뷰어 추가 + 속성 ID.
 - 받는 것 (가) 날짜 × 세션 소스/매체별 세션 수와 이벤트 quote_submit·call_click·sms_click 수
+               (2026-11-19부터 출구 누름 estimate_sms_click·thanks_sms_click 도 같은 칸에. 보고 줄에는 0보다 클 때만 덧붙임)
            (나) 날짜 × 페이지 경로별 quote_submit·call_click 수(날짜마다 상위 20).
            (다) 날짜 × 들어온 페이지(landingPage, 세션이 시작된 페이지. 안 되면 landingPagePlusQueryString 에서 ? 뒤를 뗌)
                 × 출처 묶음별 세션 수(날짜마다 세션 많은 50개, 2026-11-13) → 날짜마다 "landing"(페이지 경로·묶음·세션 수만).
@@ -49,7 +50,12 @@ CONFIG = ROOT / "data" / "site_config.json"
 KST = timezone(timedelta(hours=9))
 SCOPE = "https://www.googleapis.com/auth/analytics.readonly"
 RUN_URL = "https://analyticsdata.googleapis.com/v1beta/properties/{pid}:runReport"
-EVENTS = ["quote_submit", "call_click", "sms_click"]
+# 문의 행동 셋 + 출구 누름 둘(2026-11-19 전환 변경 #3, scripts/analytics.py 의 data-exit):
+# estimate_sms_click = "견적서 사진만 문자로" 출구 줄(폼 아래 칸·주제 페이지), thanks_sms_click = 접수 화면의 사진 문자 버튼.
+# 둘 다 sms_click 에도 들어가 있으므로 문의 행동으로 볼 문자 누름 = sms_click − thanks_sms_click. 옛 날짜에는 이 두 칸이 없다(.get 으로 읽기)
+BASE_EVENTS = ["quote_submit", "call_click", "sms_click"]
+EXIT_EVENTS = ["estimate_sms_click", "thanks_sms_click"]
+EVENTS = BASE_EVENTS + EXIT_EVENTS
 BUCKETS = ["네이버", "구글", "유튜브", "직접", "기타"]
 WEEK = "월화수목금토일"
 PAGE_TOP = 20
@@ -233,9 +239,12 @@ def report(today: date) -> None:
     when = f"어제 {day_name(k)}" if k == (today - timedelta(days=1)).isoformat() else f"{day_name(k)}, 어제 자료 아직 없음"
     s, t = day["sessions"], day["totals"]
     parts = " · ".join(f"{b} {s[b]}" for b in BUCKETS[:4]) + (f" · 기타 {s['기타']}" if s["기타"] else "")
+    exits = "".join(f" · {label} {t[e]}" for e, label in (("estimate_sms_click", "견적서 문자 출구"), ("thanks_sms_click", "접수 화면 사진 문자"))
+                    if t.get(e))  # 전환 변경 #3 출구 누름(2026-11-19), 문자 클릭 안에 이미 들어 있는 수
     print(f"어디서 왔나({when}, 방문 세션): {parts} "
-          f"(폼 전송 {t['quote_submit']} · 전화 클릭 {t['call_click']} · 문자 클릭 {t['sms_click']})")
-    by = [f"{b} {sum(day['events'][b].values())}" for b in BUCKETS if sum(day["events"][b].values())]
+          f"(폼 전송 {t['quote_submit']} · 전화 클릭 {t['call_click']} · 문자 클릭 {t['sms_click']}{exits})")
+    base = lambda b: sum(day["events"][b].get(e, 0) for e in BASE_EVENTS)  # noqa: E731  출구 누름은 문자 클릭과 겹치므로 합에 넣지 않는다
+    by = [f"{b} {base(b)}" for b in BUCKETS if base(b)]
     if by:
         print("  - 누른 곳(폼·전화·문자 합): " + " · ".join(by))
     top = [p for p in day["pages"] if p["quote_submit"] or p["call_click"]][:5]
