@@ -525,6 +525,21 @@
   },
   "area_notes": [
    {
+    "dong": "포남동",
+    "line": "포남동은 강릉동인병원이 있는 동네로, 차를 세워 둔 자리까지 견인차가 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-19",
+     "items": [
+      {
+       "name": "강릉동인병원",
+       "evidence": "병원 정보(굿닥)에 의료법인 강릉동인병원 주소 강원특별자치도 강릉시 강릉대로419번길 42 (포남동), 지번 강원특별자치도 강릉시 포남동 1085-1",
+       "url": "https://www.goodoc.co.kr/hospitals/73190",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
     "dong": "주문진읍",
     "line": "주문진수산시장이 있는 주문진읍도 기사가 차 있는 자리로 갑니다.",
     "fact_check": {
@@ -564,6 +579,21 @@
        "name": "가톨릭관동대학교",
        "evidence": "대학 공식 홈페이지 학과 안내에 (25601) 강릉시 범일로 579번길 24(내곡동)",
        "url": "https://www.cku.ac.kr/geography/3736/subview.do",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "송정동",
+    "line": "송정동은 이마트 강릉점이 있는 동네이고, 여기도 차 있는 자리로 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-19",
+     "items": [
+      {
+       "name": "이마트 강릉점",
+       "evidence": "도로명주소 목록(송정동)에 강원특별자치도 강릉시 경강로 2398-10 (송정동), 채용 공고 근무지에도 강원 강릉시 경강로 2398-10 (송정동) 이마트 강릉점",
+       "url": "https://dorojuso.kr/강원특별자치도/강릉시/송정동",
        "grade": "summary_with_address"
       }
      ]
@@ -671,7 +701,84 @@
    "since": "2026-11-18",
    "inquiries": 2,
    "window": "2026-10-20~2026-11-18"
-  }
+  },
+  "area_notes": [
+   {
+    "dong": "해룡면",
+    "line": "해룡면은 와온해변이 있는 곳이고, 여기도 차 있는 자리로 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-19",
+     "items": [
+      {
+       "name": "와온해변",
+       "evidence": "여행 정보(mom-mom.net 등)에 전라남도 순천시 해룡면 와온길 133 와온경로당 와온해변, 관광 정보에는 [58025] 순천시 해룡면 상내리",
+       "url": "https://mom-mom.net/travel/places/666690fd54270ec747c6571f",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "연향동",
+    "line": "순천시립연향도서관이 있는 연향동은 기사가 차 있는 곳으로 와서 확인하고 가져갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-19",
+     "items": [
+      {
+       "name": "순천시립연향도서관",
+       "evidence": "건물 정보(safehomes)에 순천연향시립도서관 전라남도 순천시 연향번영길 54(교육연구시설), 지역 분류 순천시 연향동. 건물 이름은 순천연향시립도서관으로 올라 있고 기사에는 순천시립연향도서관",
+       "url": "https://safehomes.kr/risk-map/전라남도/순천시/연향동/기타/building/순천연향시립도서관/1205120994",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "용당동",
+    "line": "순천용당초등학교가 있는 용당동도 기사가 차 있는 자리로 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-19",
+     "items": [
+      {
+       "name": "순천용당초등학교",
+       "evidence": "학교 정보에 순천용당초등학교 주소 전남 순천시 용당초등길 33-10, 도로명주소 목록에 전라남도 순천시 용당초등길 33-10 (용당동)",
+       "url": "https://dorojuso.kr/전라남도/순천시/삼산동?page=92",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "서면",
+    "line": "순천자연휴양림이 있는 서면에서도 전화 한 통이면 차 있는 자리로 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-19",
+     "items": [
+      {
+       "name": "순천자연휴양림",
+       "evidence": "관광 정보(한국관광공사 자료를 옮긴 곳) 두 곳에 순천자연휴양림 주소 [57905] 전남광주통합특별시 순천시 서면 청소년수련원길 170",
+       "url": "https://www.ktriptips.com/kor/leisure/2743272",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "오천동",
+    "line": "오천동은 순천만국가정원이 있는 동네로, 차를 세워 둔 자리까지 견인차가 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-19",
+     "items": [
+      {
+       "name": "순천만국가정원",
+       "evidence": "관광 정보(한국관광공사 자료를 옮긴 곳)에 순천만국가정원 주소 [58026] 전남광주통합특별시 순천시 국가정원1호길 47 (오천동), 건물 정보에는 지번 오천동 600",
+       "url": "https://www.ktriptips.com/kor/tourspot/1919548",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   }
+  ]
  },
  {
   "slug": "seoul-gangseo",
@@ -1335,7 +1442,84 @@
    "since": "2026-11-18",
    "inquiries": 3,
    "window": "2026-10-20~2026-11-18"
-  }
+  },
+  "area_notes": [
+   {
+    "dong": "구평동",
+    "line": "구평동은 구평초등학교가 있는 동네로, 차를 세워 둔 자리까지 견인차가 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-19",
+     "items": [
+      {
+       "name": "구평초등학교",
+       "evidence": "학교 정보에 구평초등학교 주소 경북 구미시 인동가산로 382-14, 도로명주소 목록에 경상북도 구미시 인동가산로 382-14 (구평동)",
+       "url": "https://dorojuso.kr/경상북도/구미시/인동동?page=12",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "인의동",
+    "line": "인의초등학교가 있는 인의동에서도 전화 한 통이면 차 있는 자리로 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-19",
+     "items": [
+      {
+       "name": "인의초등학교",
+       "evidence": "건물 정보(safehomes)에 인의초등학교 경상북도 구미시 인동13길 23, 지역 분류 구미시 인의동. 학교 위키(wiki.onul.works)에도 위치 경상북도 구미시 인동13길 23",
+       "url": "https://safehomes.kr/risk-map/경상북도/구미시/인의동/기타/building/인의초등학교/12321100325302",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "진평동",
+    "line": "구미과학관이 있는 진평동도 기사가 차 있는 자리로 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-19",
+     "items": [
+      {
+       "name": "구미과학관",
+       "evidence": "관광 정보(한국관광공사 자료를 옮긴 곳)에 구미과학관 주소 [39392] 경상북도 구미시 3공단1로 219-1 (진평동)",
+       "url": "https://www.ktriptips.com/kor/culture/2736727",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "상모동",
+    "line": "상모동은 정수초등학교가 있는 동네이고, 여기도 차 있는 자리로 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-19",
+     "items": [
+      {
+       "name": "정수초등학교",
+       "evidence": "학교 정보 두 곳에 정수초등학교 주소 경북 구미시 박정희로 120, 그중 집품은 구미시 상모동 학교로 분류. 같은 길 박정희로 88·123도 다른 자료에 (상모동)으로 표기",
+       "url": "https://zippoom.com/부동산/경북-구미시-상모동-정수초등학교/jnz41q",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "사곡동",
+    "line": "사곡역이 있는 사곡동은 기사가 차 있는 곳으로 와서 확인하고 가져갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-19",
+     "items": [
+      {
+       "name": "사곡역",
+       "evidence": "경북매일 기사(2021년 1월)에 대구권 광역철도 사곡역을 구미시 사곡동 495-3번지 일원에 신축, 다른 기사에 대경선 2024년 12월 14일 개통(사곡역 신설 포함)",
+       "url": "https://kbmaeil.com/article/202101190297449",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   }
+  ]
  },
  {
   "slug": "chungnam-seosan",
@@ -1837,7 +2021,84 @@
    "since": "2026-11-18",
    "inquiries": 2,
    "window": "2026-10-20~2026-11-18"
-  }
+  },
+  "area_notes": [
+   {
+    "dong": "소흘읍",
+    "line": "국립수목원이 있는 소흘읍에서도 전화 한 통이면 차 있는 자리로 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-19",
+     "items": [
+      {
+       "name": "국립수목원",
+       "evidence": "관광 정보(한국관광공사 자료를 옮긴 곳)에 국립수목원 주소 [11186] 경기도 포천시 소흘읍 광릉수목원로 509(다른 안내에는 소흘읍 광릉수목원로 415, 둘 다 소흘읍)",
+       "url": "https://www.ktriptips.com/kor/tourspot/127497",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "선단동",
+    "line": "대진대학교가 있는 선단동도 기사가 차 있는 자리로 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-19",
+     "items": [
+      {
+       "name": "대진대학교",
+       "evidence": "채용 공고(jinhakpro.com)에 경기도 포천시 호국로 1007 (선단동, 대진대학교), 건물 정보(safehomes)도 대진대학교를 포천시 선단동으로 분류",
+       "url": "https://safehomes.kr/risk-map/경기도/포천시/선단동/기타/building/대진대학교/112715932",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "신북면",
+    "line": "신북면은 포천아트밸리가 있는 곳으로, 차를 세워 둔 자리까지 견인차가 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-19",
+     "items": [
+      {
+       "name": "포천아트밸리",
+       "evidence": "관광 정보(한국관광공사 자료를 옮긴 곳)과 여행 안내 여러 곳에 포천아트밸리 주소 [11139] 경기도 포천시 신북면 아트밸리로 234",
+       "url": "https://www.ktriptips.com/kor/tourspot/2464201",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "군내면",
+    "line": "군내면은 포천반월아트홀이 있는 곳이고, 여기도 차 있는 자리로 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-19",
+     "items": [
+      {
+       "name": "포천반월아트홀",
+       "evidence": "관광 정보(한국관광공사 자료를 옮긴 곳)에 포천반월아트홀 주소 [11151] 경기도 포천시 군내면 청성로 111, 공연 예매 안내에도 같은 주소",
+       "url": "https://www.ktriptips.com/kor/culture/130684",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "일동면",
+    "line": "일동제일유황온천이 있는 일동면은 기사가 차 있는 곳으로 와서 확인하고 가져갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-19",
+     "items": [
+      {
+       "name": "일동제일유황온천",
+       "evidence": "관광 정보(한국관광공사 자료를 옮긴 곳)에 일동제일유황온천 주소 [11117] 경기도 포천시 일동면 화동로 1210(이용 안내 기준일 2026년 11월)",
+       "url": "https://www.ktriptips.com/kor/tourspot/126573",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   }
+  ]
  },
  {
   "slug": "gyeonggi-goyang-deokyang",
@@ -5088,7 +5349,84 @@
    "since": "2026-11-18",
    "inquiries": 2,
    "window": "2026-10-20~2026-11-18"
-  }
+  },
+  "area_notes": [
+   {
+    "dong": "내손동",
+    "line": "계원예술대학교가 있는 내손동은 기사가 차 있는 곳으로 와서 확인하고 가져갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-19",
+     "items": [
+      {
+       "name": "계원예술대학교",
+       "evidence": "건물 정보(knowingasset)에 계원예술대학교 경기도 의왕시 계원대학로 66, 지번 내손동 768",
+       "url": "https://knowingasset.com/app/land/building/4143010700107680000",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "오전동",
+    "line": "오전동은 오전초등학교가 있는 동네이고, 여기도 차 있는 자리로 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-19",
+     "items": [
+      {
+       "name": "오전초등학교",
+       "evidence": "학교 정보(yugacrew)에 경기도 의왕시 찬우물길 49 (오전동, 오전초등학교)",
+       "url": "https://www.yugacrew.com/gyeonggi/uiwang/school/b000004063-오전초등학교",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "포일동",
+    "line": "포일동은 포일초등학교가 있는 동네로, 차를 세워 둔 자리까지 견인차가 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-19",
+     "items": [
+      {
+       "name": "포일초등학교",
+       "evidence": "학교 정보(yugacrew 등)에 경기도 의왕시 포일세거리로 51 (포일동, 포일초등학교)",
+       "url": "https://www.yugacrew.com/gyeonggi/uiwang/school/b000004060-",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "학의동",
+    "line": "백운호수가 있는 학의동도 기사가 차 있는 자리로 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-19",
+     "items": [
+      {
+       "name": "백운호수",
+       "evidence": "관광 정보(한국관광공사 자료를 옮긴 곳)에 백운호수 주소 경기도 의왕시 백운로 526 (학의동), 우편번호 16012",
+       "url": "https://info.koreacharts.com/tour/126705/contents.html",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "청계동",
+    "line": "청계사가 있는 청계동에서도 전화 한 통이면 차 있는 자리로 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-19",
+     "items": [
+      {
+       "name": "청계사",
+       "evidence": "관광 정보(한국관광공사 자료를 옮긴 곳)에 청계사 주소 경기도 의왕시 청계동 11, 사찰 정보에는 경기도 의왕시 청계로 475 (청계동)",
+       "url": "https://www.ktriptips.com/kor/tourspot/125530",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   }
+  ]
  },
  {
   "slug": "gyeonggi-anyang-dongan",
@@ -6552,7 +6890,84 @@
    "since": "2026-11-18",
    "inquiries": 3,
    "window": "2026-10-20~2026-11-18"
-  }
+  },
+  "area_notes": [
+   {
+    "dong": "금천동",
+    "line": "효성병원이 있는 금천동도 기사가 차 있는 자리로 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-19",
+     "items": [
+      {
+       "name": "효성병원",
+       "evidence": "병원 정보(굿닥)에 의료법인 정산의료재단 효성병원 주소 충북 청주시 상당구 쇠내로 16, 지번 충북 청주시 상당구 금천동 162-90",
+       "url": "https://www.goodoc.co.kr/hospitals/42345",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "방서동",
+    "line": "방서동은 하나로마트 청주점이 있는 동네로, 차를 세워 둔 자리까지 견인차가 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-19",
+     "items": [
+      {
+       "name": "하나로마트 청주점",
+       "evidence": "관광 정보(한국관광공사 자료를 옮긴 곳)에 하나로마트 청주점 주소 충청북도 청주시 상당구 무농정로 32 (방서동), 우편번호 28783. 채용 공고에는 같은 곳이 농협유통 청주농산물종합유통센터 안으로 나옴",
+       "url": "https://info.koreacharts.com/tour/4009657/contents.html",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "용담동",
+    "line": "명암저수지가 있는 용담동에서도 전화 한 통이면 차 있는 자리로 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-19",
+     "items": [
+      {
+       "name": "명암저수지",
+       "evidence": "여행 정보 두 곳(mom-mom.net 등)에 명암저수지 주소 충청북도 청주시 상당구 용담동 290",
+       "url": "https://mom-mom.net/travel/places/66d51e0558d8accb6989d92e",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "용정동",
+    "line": "김수녕양궁장이 있는 용정동은 기사가 차 있는 곳으로 와서 확인하고 가져갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-19",
+     "items": [
+      {
+       "name": "김수녕양궁장",
+       "evidence": "관광 정보(한국관광공사 자료를 옮긴 곳)에 김수녕양궁장 주소 충청북도 청주시 상당구 1순환로1514번길 89 (용정동), 우편번호 28754",
+       "url": "https://www.ktriptips.com/kor/leisure/3034941",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "남일면",
+    "line": "남일면은 공군사관학교가 있는 곳이고, 여기도 차 있는 자리로 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-19",
+     "items": [
+      {
+       "name": "공군사관학교",
+       "evidence": "문화 시설 정보(문화체육관광부 공공데이터를 옮긴 곳)에 공군사관학교 안 공군박물관 주소 충청북도 청주시 상당구 남일면 단재로 635, 공군사관학교 교수사관 모집 공고의 제출처도 충북 청주시 상당구 남일면",
+       "url": "https://www.yugacrew.com/chungbuk/cheongju/museum/220_13",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   }
+  ]
  },
  {
   "slug": "chungnam-hongseong",
