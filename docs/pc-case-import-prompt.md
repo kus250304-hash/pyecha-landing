@@ -36,6 +36,11 @@ PC에서 하는 "사례 가져오기" 작업이다. 원본 사진·메모는 이
    - 이어서 `python scripts/money_monthly.py --write` 를 실행한다(2026-11-05, 달마다 거래 수·안 된 수·안 된 이유 상위 3·건당 평균 구간·지난달 대비만 data/money_monthly.json 에, 남는 돈 합계·건당 평균 절대값은 위키 거래기록부\월 숫자.md 에만. 칸 설명 docs/money-monthly.md). 돈 숫자는 보고에도 쓰지 않는다.
    - `git status --short` 에 docs/index-requests.md, data/population_dong.json, data/form_inquiries.json, data/recent_cars.json, data/money_monthly.json 중 바뀐 것이 있으면, 커밋하기 전에 `python scripts/build_index.py` 를 실행한다(2026-11-17: 첫 화면 index.html 의 "최근 문의 지역" 칸이 docs/index-requests.md 로 만들어져서, 다시 만들지 않으면 check 의 "페이지가 최신 데이터로 렌더링되어 있는지" 단계가 실패함). 그다음 바뀐 그 파일들과, `git status --short` 에 index.html 이 바뀌었으면 index.html 도 함께 `git add` → `git commit -m "Log landing inquiries (YYYY-MM-DD)"` → `git push origin main`(거절되면 pull --rebase 후 한 번 더). index.html 밖의 사이트 페이지는 넣지 않는다. 안 바뀌었으면 build_index.py 도 돌리지 않고 커밋하지 않는다.
    - 출력의 "문의 기록: …" 줄과 "뺀 거래" 줄을 보고에 옮긴다. 보고 맨 위(성공·실패 줄 바로 아래)에 "폼 문의" 칸으로 `form_inquiries.py report` 출력을 그대로 옮긴다(어제 건수·페이지별 목록·유입·최근 7일 합계와 지난주 같은 요일 비교·"이 지역 강화 후보"). 그 칸 바로 아래에 `ga4_daily.py report` 출력("어디서 왔나(어제 …): 네이버 n · 구글 n · 유튜브 n · 직접 n (폼 전송 n · 전화 클릭 n · 문자 클릭 n)" 줄과 그 아래 줄)을 그대로 옮긴다. 전화번호·이름·차번호는 쓰지 않는다(출력에 없음). 이 단계가 실패해도 사례 가져오기는 계속하고 보고에 이유를 적는다.
+2-2. 안 된 이유 적기(2026-11-19 병한님 "1 2 3", 병한님께 묻지 않는다): `python scripts/lost_reasons.py todo --n 10` 을 실행한다(문의가 온 페이지 칸에서 종료이거나 21일 넘게 "진행"인 "잠듦" 문의 중 이유를 아직 안 적은 것, 오래된 것부터).
+   - 줄마다 거래 기록부에서 같은 시·군·문의 날짜 ±3일 거래의 메모·상황분류·안된이유 칸과, `통화녹음백업\_분석\통화표.csv` 에서 같은 시·군·날짜 ±14일 통화 줄(같은 손님의 여러 통화 포함)을 읽고 이유 하나를 고른다: 금액 / 수리·계속탐 / 다른데서먼저 / 나중에 / 서류·명의 / 연락끊김 / 거리·탁송 / 모름.
+   - 병한님 경험(11/19): "새 차 나오면·며칠 뒤·생각해 볼게요"는 대부분 예의상 거절이고 진짜 이유는 금액이나 수리인 경우가 가장 많다. 통화에 금액이 마음에 안 든다는 말·다른 곳 금액 얘기가 있으면 "금액", 고쳐서 타겠다는 말이 있으면 "수리·계속탐"을 고르고, 미루는 말뿐이면 "나중에". 맞는 거래·통화가 없거나 여러 건이라 고를 수 없거나 확신이 낮으면 "모름"(그것도 적어서 다시 고르지 않게 한다).
+   - `python scripts/lost_reasons.py set <날짜> "<곳>" <이유> --src <통화표|기록부|통화표·기록부|모름> --nth <todo 의 nth>` 로 한 줄씩 적는다. 저장되는 것은 날짜·곳·이유·근거 종류뿐이다(이름·전화·차번호·금액·통화 내용은 넣지 않는다).
+   - 바뀌었으면 `git add data/lost_reasons.json` → `git commit -m "Log lost reasons (YYYY-MM-DD)"` → `git push origin main`(거절되면 pull --rebase 후 한 번 더). 사이트 페이지는 바뀌지 않는다. 그다음 `python scripts/lost_reasons.py report` 두 줄을 보고 "폼 문의" 칸 아래에 옮긴다. 이 단계가 실패해도 사례 가져오기는 이어서 한다.
 3. `python -m pip install -q pillow` (python 이 안 되면 py 로). 이후 명령도 같은 것으로 실행한다.
 3-1. 오늘(한국 시간) 이미 올렸는지 본다: `git log origin/main --since=00:00 --format=%s` 에 "Add N case inputs (오늘 날짜)" 가 있으면 아무것도 하지 않고 "성공: 오늘 이미 N건 올라감(커밋 <번호>)"이라고 보고하고 끝낸다(13:55 재시도 실행이 13:40 실행을 두 번 하지 않게).
 3-2. 이어 하기: .cases_staging/scan.json 이 있고 그 안의 "date" 가 오늘이며 status 가 marked 가 아닌 건이 있으면, 앞 실행이 중간에 끊긴 것이다. 이때는 4단계 scan 을 하지 않는다(scan 은 오늘 고른 목록을 지운다). 대신 `python scripts/pc_cases.py prepare` 로 아직 준비 안 된(picked) 건만 준비하고, 건마다 status 를 보고 이어 간다: prepared → 6~8단계, masked → 8단계 확인 뒤 10단계, staged → 11단계로. 이어서 한 사실을 보고에 적는다.
@@ -93,6 +98,7 @@ PC에서 하는 "사례 가져오기" 작업이다. 원본 사진·메모는 이
 - 손님 후기: reviews.py apply 의 "손님 후기: …" 줄(캡처 없으면 "후기 캡처 없음")
 - 뺀 건과 이유, scan 의 "조건 미달" 건수
 - 얇은 사례 채우기: 채움 N건(slug 와 채운 칸 이름만) · 안 맞음 N건 · 남은 대상 N건(thin 출력 첫 줄)
+- 안 된 이유: 적음 N건(이유별 건수만) + `lost_reasons.py report` 두 줄
 - 문의 기록: 더함 N줄·상태 고침 N줄(시·군과 상태), 뺀 거래와 이유
 - 네이버 순위: 2026-11-11 병한님 결정으로 하지 않는다(보고 줄 없음). 대신 "폼 문의" 칸 아래 `ga4_daily.py report` 의 "네이버 휴대폰 검색 방문 7일 평균" 줄을 그대로 옮기고, "⚠"로 시작하면 보고 첫 줄 바로 아래에도 한 번 더 적는다
 - "사례 페이지는 오후 2시 루틴이 만들어 3시 보고에 올립니다"
