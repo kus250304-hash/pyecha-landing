@@ -2061,7 +2061,7 @@
      "items": [
       {
        "name": "포천아트밸리",
-       "evidence": "관광 정보(한국관광공사 자료를 옮긴 곳)과 여행 안내 여러 곳에 포천아트밸리 주소 [11139] 경기도 포천시 신북면 아트밸리로 234",
+       "evidence": "관광 정보(한국관광공사 자료를 옮긴 곳)과 여행 안내 여러 곳에 포천아트밸리(안에 있는 천문과학관 포함) 주소 경기도 포천시 신북면 아트밸리로 234, 우편번호 11139",
        "url": "https://www.ktriptips.com/kor/tourspot/2464201",
        "grade": "summary_with_address"
       }
@@ -6946,7 +6946,7 @@
       {
        "name": "김수녕양궁장",
        "evidence": "관광 정보(한국관광공사 자료를 옮긴 곳)에 김수녕양궁장 주소 충청북도 청주시 상당구 1순환로1514번길 89 (용정동), 우편번호 28754",
-       "url": "https://www.ktriptips.com/kor/leisure/3034941",
+       "url": "https://info.koreacharts.com/tour/3034941/contents.html",
        "grade": "summary_with_address"
       }
      ]
