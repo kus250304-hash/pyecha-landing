@@ -443,6 +443,10 @@ def check_gu_pages(cfg: dict, sitemap: str, all_sidos: set[str]) -> list[str]:
                 problems.append(f"gu/{name}: 자동 이동 페이지가 sitemap.xml 에 남아 있음")
         else:
             problems.append(f"gu/{name}: data/gu.json 에 없는 구 페이지")
+    # 깊은 구 틀(2026-11-18, scripts/deep_gu.py): 읍·면·동 한 줄·지역 질문의 사실 확인 기록과, 페이지에 그려졌는지
+    from build_gu import area_note_problems, local_faq_problems, local_faqs
+    from build_site import gu_groups
+    dong_groups = gu_groups(json.loads(REGIONS_PATH.read_text(encoding="utf-8")))
     for slug, g in want.items():
         tag = f"구 {slug}"
         f = ROOT / "gu" / files[slug]
@@ -450,6 +454,14 @@ def check_gu_pages(cfg: dict, sitemap: str, all_sidos: set[str]) -> list[str]:
             problems.append(f"{tag}: gu/{files[slug]} 없음 (build_site.py 실행 필요)")
             continue
         html = f.read_text(encoding="utf-8")
+        problems += [f"{tag}: {x}" for x in area_note_problems(g, dong_groups.get(slug, [])) + local_faq_problems(g)]
+        for n in g.get("area_notes") or []:
+            if (f'{html_lib.escape(str(n.get("dong", "")))} 폐차</b>' not in html
+                    or html_lib.escape(str(n.get("line", ""))) not in html):
+                problems.append(f"{tag}: 읍·면·동 한 줄 '{n.get('dong')}' 이 페이지에 없음 (build_site.py 실행 필요)")
+        for q, _ in local_faqs(g):
+            if f"<summary>{html_lib.escape(q)}</summary>" not in html:
+                problems.append(f"{tag}: 지역에서 받은 질문 '{q[:20]}' 이 페이지에 없음 (build_site.py 실행 필요)")
         if PLACEHOLDER_RE.search(html):
             problems.append(f"{tag}: 템플릿 자리 잔여 {PLACEHOLDER_RE.findall(html)[:3]}")
         for needle, label in GU_REQUIRED:
