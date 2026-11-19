@@ -151,6 +151,10 @@ def validate(g: dict, dongs: list[dict]) -> list[str]:
     m = BAN_RE.search(text)
     if m:
         errs.append(f"금액·결과 약속 표현 '{m.group(0)}'")
+    # 깊은 구 틀(2026-11-18): 표시 모양과 재료 검사
+    if "deep" in g and not (isinstance(g["deep"], dict) and re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(g["deep"].get("since", "")))):
+        errs.append("deep 표시는 {\"since\": \"YYYY-MM-DD\", …} 모양(scripts/deep_gu.py mark --write 가 적음)")
+    errs += area_note_problems(g, dongs) + local_faq_problems(g)
     return errs
 
 
@@ -171,18 +175,23 @@ LINE_BAN_RE = re.compile(r"최고가|1등|최대(?!한)|실시간\s*접수|보�
 _LEGAL: dict[tuple[str, str], list[dict]] = {}
 
 
-def other_dongs(sido: str, sigungu: str, dongs: list[dict]) -> list[str]:
-    """그 시군구의 법정 읍·면·동(data/legal_dong_list.csv) 중 동 페이지가 없는 것의 이름(2026-10-20).
-    "종로1가~6가"처럼 숫자+가 만 다른 동은 한 이름("종로1~6가")으로 묶는다. 이름 말고는 아무것도 쓰지 않는다."""
+def legal_rows(sido: str, sigungu: str) -> list[dict]:
+    """그 시군구의 법정 읍·면·동 줄(data/legal_dong_list.csv)."""
     import csv
     if not _LEGAL:
         for row in csv.DictReader((ROOT / "data" / "legal_dong_list.csv").open(encoding="utf-8-sig")):
             _LEGAL.setdefault((row["시도"], row["시군구"]), []).append(row)
+    return _LEGAL.get((sido, sigungu), [])
+
+
+def other_dongs(sido: str, sigungu: str, dongs: list[dict]) -> list[str]:
+    """그 시군구의 법정 읍·면·동(data/legal_dong_list.csv) 중 동 페이지가 없는 것의 이름(2026-10-20).
+    "종로1가~6가"처럼 숫자+가 만 다른 동은 한 이름("종로1~6가")으로 묶는다. 이름 말고는 아무것도 쓰지 않는다."""
     covered_codes = {r.get("code") for r in dongs}
     covered_names = {r["dong"] for r in dongs} | {p for r in dongs for p in r.get("dong_parts", [])}
     plain: set[str] = set()
     ga: dict[str, list[int]] = {}
-    for row in _LEGAL.get((sido, sigungu), []):
+    for row in legal_rows(sido, sigungu):
         name = row["읍면동"]
         if row["법정동코드"] in covered_codes or name in covered_names:
             continue
@@ -195,6 +204,122 @@ def other_dongs(sido: str, sigungu: str, dongs: list[dict]) -> list[str]:
         nums.sort()
         plain.add(f"{base}{nums[0]}가" if len(nums) == 1 else f"{base}{nums[0]}~{nums[-1]}가")
     return sorted(plain)
+
+
+# ── 깊은 구 틀(2026-11-18, scripts/deep_gu.py, docs/fable-2026-11-18/deep-gu.md) ──────────────────────────────
+# 문의가 되풀이해 온 구 페이지("deep" 표시)에만 쓰는 칸. 재료가 없으면 그 칸은 그리지 않는다(지어내지 않음).
+AREA_NOTE_MAX = 5     # 읍·면·동 한 줄: 동 페이지가 없는 읍·면·동 중 주민 많은 순 5곳까지
+AREA_LINE_MAX = 90    # 한 문장, 90자 이내
+LOCAL_FAQ_MAX = 2     # 그 시·군 손님이 실제로 물은 질문(PC 가 통화표·기록부에서 채움)
+LOCAL_FAQ_SOURCES = ("통화표", "거래 기록부", "폼·문자")
+
+
+def area_note_problems(g: dict, dongs: list[dict]) -> list[str]:
+    """읍·면·동 한 줄(gu.json "area_notes")의 문제. 빈 목록이면 통과.
+    줄마다: 그 시·군·구의 법정 읍·면·동이면서 동 페이지가 없는 곳 / 한 문장(90자 이내) / 글에 나오는 장소 이름마다
+    사실 확인 기록(name·evidence·url·grade)이 있고 근거 글에 그 읍·면·동 이름이 보여야 한다(CLAUDE.md "사실 확인"과 같은 등급:
+    opened = 실제로 연 페이지, summary_with_address = 검색 요약에 그 읍·면·동 주소가 보임). 이름만 확인된 장소는 쓸 수 없다."""
+    from fact_check import GRADES, address_grade
+    notes = g.get("area_notes")
+    if notes is None:
+        return []
+    if not isinstance(notes, list) or len(notes) > AREA_NOTE_MAX:
+        return [f"읍·면·동 한 줄(area_notes)은 목록이고 {AREA_NOTE_MAX}개까지"]
+    errs = []
+    legal = {row["읍면동"] for row in legal_rows(g["sido"], g["sigungu"])}
+    covered = {r["dong"] for r in dongs} | {p for r in dongs for p in r.get("dong_parts", [])}
+    seen = set()
+    for n in notes:
+        dong, line = str(n.get("dong", "")).strip(), str(n.get("line", "")).strip()
+        tag = f"읍·면·동 한 줄 '{dong}'"
+        if dong not in legal:
+            errs.append(f"{tag}: {g['sigungu'] or g['sido']}의 법정 읍·면·동이 아님")
+        if dong in covered:
+            errs.append(f"{tag}: 동 페이지가 이미 있는 곳(동 목록에 나옴)")
+        if dong in seen:
+            errs.append(f"{tag}: 두 번 적힘")
+        seen.add(dong)
+        if len(re.findall(r"[다요]\.", line)) != 1 or not line.endswith(("다.", "요.")) or len(line) > AREA_LINE_MAX:
+            errs.append(f"{tag}: 한 문장({AREA_LINE_MAX}자 이내)이어야 함")
+        if m := (BAN_RE.search(line) or LINE_BAN_RE.search(line)):
+            errs.append(f"{tag}: 금액·결과 약속 표현 '{m.group(0)}'")
+        items = (n.get("fact_check") or {}).get("items") or []
+        if not items:
+            errs.append(f"{tag}: 사실 확인 기록(fact_check.items) 없음")
+        for it in items:
+            name, ev = str(it.get("name", "")).strip(), str(it.get("evidence", "")).strip()
+            if not name or name not in line:
+                errs.append(f"{tag}: 확인 기록의 이름 '{name}' 이 글에 없음")
+            if not ev or dong not in ev:
+                errs.append(f"{tag}: '{name}' 근거에 '{dong}' 이름이 없음(그 읍·면·동에 있다는 근거가 있어야 함)")
+            if not re.match(r"^https?://\S+\.\S+", str(it.get("url", ""))):
+                errs.append(f"{tag}: '{name}' 출처 주소 없음")
+            if it.get("grade") not in GRADES:
+                errs.append(f"{tag}: '{name}' 근거 등급은 {GRADES} 중 하나")
+            elif it["grade"] == "summary_with_address" and address_grade(ev, dong) != "summary_with_address":
+                errs.append(f"{tag}: '{name}' 요약 근거에 그 읍·면·동 주소(지번·도로명)가 안 보임")
+        allowed = {str(it.get("name", "")) for it in items} | {g["sido"], g["sigungu"], *g["sigungu"].split(), dong} | legal
+        for name in unverified_places(line, allowed):
+            errs.append(f"{tag}: 확인 기록이 없는 장소 이름 '{name}'")
+    return errs
+
+
+def area_notes_html(g: dict, gu: str, esc) -> str:
+    """동 목록 아래 "다른 읍·면·동" 칸. 링크 없는 카드(동 페이지를 새로 만들지 않고 구 페이지 안에서 깊게, 2026-11-18)."""
+    notes = g.get("area_notes") or []
+    if not notes:
+        return ""
+    # 모양은 이 칸 안에만 적는다(공통 템플릿 CSS 를 건드리면 구 페이지 전부가 바뀜 — proof_blocks 와 같은 방식)
+    card = 'style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px"'
+    return (f'<h3 class="area-title" style="margin:22px 0 0;font-size:17px">{esc(gu)}의 다른 읍·면·동 — 여기도 차 있는 자리로 갑니다</h3>'
+            '<div class="gu-list area-notes">'
+            + "".join(f'<div {card}><b style="display:block;font-size:16px">{esc(n["dong"])} 폐차</b>'
+                      f'<span style="display:block;font-size:13px;color:#5E6E70;margin-top:2px">{esc(n["line"])}</span></div>' for n in notes)
+            + "</div>")
+
+
+def local_faq_problems(g: dict) -> list[str]:
+    """지역에서 받은 질문(gu.json "local_faqs")의 문제. 줄마다 q·a·asked(YYYY-MM)·source(통화표|거래 기록부|폼·문자).
+    금액·결과 약속·고객 정보·개인 상담 사정은 사례 글과 같은 검사(build_cases.banned_text)로 막고,
+    네/아니요로 답할 질문은 답이 "네, …"·"아니요, …" + 이유로 시작해야 한다(variants.faq_answer_problem)."""
+    from build_cases import banned_text
+    faqs = g.get("local_faqs")
+    if faqs is None:
+        return []
+    if not isinstance(faqs, list):
+        return ["지역에서 받은 질문(local_faqs)은 목록"]
+    errs = []
+    for f in faqs:
+        q, a = str(f.get("q", "")).strip(), str(f.get("a", "")).strip()
+        tag = f"지역 질문 '{q[:20]}'"
+        if not q or not a:
+            errs.append(f"{tag}: 질문·답이 비었음")
+        if not re.fullmatch(r"\d{4}-\d{2}", str(f.get("asked", ""))):
+            errs.append(f"{tag}: asked 는 물은 달(YYYY-MM)")
+        if f.get("source") not in LOCAL_FAQ_SOURCES:
+            errs.append(f"{tag}: source 는 {LOCAL_FAQ_SOURCES} 중 하나(어디서 나온 질문인지)")
+        text = f"{q} {a}"
+        if m := (BAN_RE.search(text) or LINE_BAN_RE.search(text)):
+            errs.append(f"{tag}: 금액·결과 약속 표현 '{m.group(0)}'")
+        elif why := banned_text(text):
+            errs.append(f"{tag}: {why}")
+        if q and a and (why := V.faq_answer_problem(q, a)):  # FAQ 답 첫 문장 규칙(2026-10-10)은 지역 질문에도 같다
+            errs.append(f"{tag}: {why}")
+    return errs
+
+
+def local_faqs(g: dict) -> list[tuple[str, str]]:
+    """페이지에 보일 지역 질문(최근에 물은 것부터 LOCAL_FAQ_MAX 개)."""
+    faqs = sorted(g.get("local_faqs") or [], key=lambda f: str(f.get("asked", "")), reverse=True)
+    return [(f["q"].strip(), f["a"].strip()) for f in faqs[:LOCAL_FAQ_MAX]]
+
+
+def worry_line(c: dict) -> str:
+    """가까운 지역 사례 목록에 붙이는 걱정 한 줄(깊은 사례만, 사례 카드 둘째 줄과 같은 글). 금지 표현이 섞이면 비운다."""
+    import case_story
+    worry = (c.get("story") or {}).get("걱정") if not c.get("thin") else ""
+    line = case_story.first_sentence(case_story.shown(worry)) if worry else ""
+    return "" if (BAN_RE.search(line) or LINE_BAN_RE.search(line)) else line
 
 
 # 깊은 사례를 먼저 보일 구 페이지(2026-11-13): data/rival_targets.json 의 empty 를 약관(네이버 검색 API 특약 2.3·2.4) 때문에
@@ -214,7 +339,7 @@ DEEP_FIRST_GU = {
 }
 
 
-def nearby_cases(slug: str, sido: str, cases: list[dict], n: int = 3) -> list[dict]:
+def nearby_cases(slug: str, sido: str, cases: list[dict], n: int = 3, deep: bool = False) -> list[dict]:
     """같은 시·도의 다른 시군구 사례 최신 n건(그 구 사례가 모자랄 때 "가까운 지역 사례", 2026-10-20).
     DEEP_FIRST_GU 의 구 페이지(옛 '빈 땅', 2026-10-25 → 2026-11-13 고정 목록)는 깊은 사례(thin 아님)를 먼저 보이고 그다음 최신순.
     다른 시·도 사례는 지금처럼 붙이지 않는다."""
@@ -222,7 +347,7 @@ def nearby_cases(slug: str, sido: str, cases: list[dict], n: int = 3) -> list[di
     others = [c for c in cases if c["sido"] == sido and gu_slug(c["sido"], c["sigungu"]) != slug
               and (ROOT / "cases" / f"{c['slug']}.html").exists()]
     others = sorted(others, key=lambda c: (c.get("date") or "", c["slug"]), reverse=True)
-    if slug in DEEP_FIRST_GU:
+    if slug in DEEP_FIRST_GU or deep:  # deep = 깊은 구 표시(2026-11-18, deep_gu.py)
         others = sorted(others, key=lambda c: bool(c.get("thin")))  # 정렬이 안정적이라 같은 깊이 안에서는 최신순 그대로
     return others[:n]
 
@@ -300,23 +425,30 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
             f'<a href="../pages/{esc(r["slug"])}.html"><b>{esc(r["dong"])} 폐차</b><span>{esc(landmark_line(r))}</span></a>'
             for r in dongs
         ) or '<p class="note">동별 안내 준비 중</p>'  # 동 페이지가 없는 지방 시·군(2026-10-15)
-        others = other_dongs(sido, sigungu, dongs)
+        deep = isinstance(g.get("deep"), dict)  # 깊은 구 표시(2026-11-18, scripts/deep_gu.py)
+        noted = {n["dong"] for n in g.get("area_notes") or []}
+        others = [o for o in other_dongs(sido, sigungu, dongs) if o not in noted]
         other_html = (f'<p class="note other-dongs">{esc(gu)}의 그 밖의 읍·면·동: {esc(" · ".join(others))}</p>'
                       if others else "")
         # 그 구 사례가 3건보다 적으면 같은 시·도의 다른 시군구 사례 최신 3건을 "가까운 지역 사례"로 뒤에 붙인다(2026-10-20)
-        nearby = nearby_cases(g["slug"], sido, cases) if len(my_cases) < 3 else []
+        nearby = nearby_cases(g["slug"], sido, cases, deep=deep) if len(my_cases) < 3 else []
         if not my_cases and nearby:
             cases_sub = f"{gu} 사례는 아직 없어 같은 {SIDO_SHORT[sido]} 안 가까운 지역 사례를 보여 드립니다"
         nearby_html = ('<h3 class="nearby-title">가까운 지역 사례</h3><ul class="nearby-cases">' + "".join(
             f'<li><a href="../cases/{esc(c["slug"])}.html">{esc(c["title"])}</a>'
-            f'<span>{esc(" ".join(x for x in (c["sigungu"] or SIDO_SHORT[sido], c["dong"]) if x))} 작업 사례'
+            + (f'<em style="display:block;font-style:normal;font-size:14px;margin-top:2px">“{esc(worry_line(c))}”</em>'
+               if deep and worry_line(c) else "")  # 깊은 구: 깊은 사례의 걱정 한 줄
+            + f'<span>{esc(" ".join(x for x in (c["sigungu"] or SIDO_SHORT[sido], c["dong"]) if x))} 작업 사례'
             + (f' · {esc(c["date"])}' if c.get("date") else "") + "</span></li>" for c in nearby) + "</ul>") if nearby else ""
         # 구마다 다른 질문 3개 + 실제 통화 FAQ 풀에서 4개(2026-10-03)
         # 조기폐차 공고가 확인된 시·도(2026-11-12, data/early_scrap_notices.json)는 안심 FAQ 바로 뒤에 조기폐차 FAQ 3개.
         # 지역 FAQ 답에 공고 마감일이 있으면 마감 다음 날부터 "마감했습니다" 답으로(2026-11-13, early_scrap.closed_faqs)
         es_notice = early_scrap.notice_for(sido)
-        faqs = ([V.far_faq(gu)] + early_scrap.closed_faqs([tuple(qa) for qa in g["faqs"]], es_notice)
-                + V.call_faqs("gu:" + g["slug"], 4))  # 맨 위 안심 FAQ(2026-10-16)
+        # 깊은 구(2026-11-18): 그 시·군 손님이 실제로 물은 질문(local_faqs)을 안심 FAQ 바로 뒤에. 통화 FAQ 풀과 같은 질문은 한 번만
+        mine_q = local_faqs(g)
+        asked = {q for q, _ in mine_q}
+        faqs = ([V.far_faq(gu)] + mine_q + early_scrap.closed_faqs([tuple(qa) for qa in g["faqs"]], es_notice)
+                + [qa for qa in V.call_faqs("gu:" + g["slug"], 4) if qa[0] not in asked])  # 맨 위 안심 FAQ(2026-10-16)
         if es_notice:
             faqs = faqs[:1] + early_scrap.faqs(es_notice) + faqs[1:]
         faq_html = "\n      ".join(f"<details><summary>{esc(q)}</summary><p>{tel_text(esc(a))}</p></details>" for q, a in faqs)
@@ -365,6 +497,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
                             f"{gu} 동별 안내 페이지는 차례로 늘어납니다. 동과 상관없이 {gu} 어디든 전화 한 통이면 기사가 차 있는 자리로 갑니다."),
             "DONG_LIST_HTML": dong_list,
             "OTHER_DONGS_HTML": other_html,
+            "AREA_NOTES_HTML": area_notes_html(g, gu, esc),  # 깊은 구: 주민 많은 읍·면·동 한 줄(2026-11-18)
             "NEARBY_CASES_HTML": nearby_html,
             # 최근 진행한 차·손님 후기(2026-11-05, scripts/proof_blocks.py, 기록 0건이면 빈칸)
             "PROOF_HTML": proof_blocks.gu_html(sido, sigungu),
