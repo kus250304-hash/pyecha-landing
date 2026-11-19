@@ -27,6 +27,7 @@ from urllib.parse import unquote
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 from pick_index_requests import DATE_HEAD_RE, NOT_DONE, URL_RE, engines, sections  # noqa: E402
+import lost_reasons  # noqa: E402
 
 KST = timezone(timedelta(hours=9))
 LOG = ROOT / "docs" / "index-requests.md"
@@ -248,6 +249,14 @@ def build(today: date) -> str:
         "",
         f"- {today.year}년 {today.month}월 GA4 폼 전송 {forms_month}건 ÷ {WEB3FORMS_FREE} = {forms_month / WEB3FORMS_FREE:.0%} "
         "(참고값. 실제 사용량은 Web3Forms 화면에 있음)",
+        "",
+        "## 6. 문의 결과와 안 된 이유 (계약 쪽, 2026-11-19)",
+        "",
+        f"\"진행\"인데 문의한 날부터 {lost_reasons.SLEEP_DAYS}일이 넘은 문의는 \"잠듦\"으로 따로 셉니다(병한님 11/19: 미루는 말은 대부분 예의상 거절). "
+        "거래 기록부는 고치지 않습니다. 안 된 이유는 PC 작업이 기록부·통화표로 적은 것(`data/lost_reasons.json`)입니다.",
+        "",
+        *[f"- {line.strip().lstrip('- ')}" for line in lost_reasons.report_lines(today)],
+        *[f"- 최근 4주: {line.strip().lstrip('- ')}" for line in lost_reasons.report_lines(today, (today - timedelta(days=28)).isoformat())[:1]],
         "",
         "---",
         "",

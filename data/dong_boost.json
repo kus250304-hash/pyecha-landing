@@ -2,6 +2,12 @@
  "rule": "data/ga4_daily.json 최근 30일 quote_submit 또는 call_click 1 이상인 동 페이지(scripts/proof_blocks.py boost)",
  "pages": [
   {
+   "slug": "gyeonggi-goyang-ilsandong-jungsan",
+   "quote_submit": 0,
+   "call_click": 2,
+   "last": "2026-11-18"
+  },
+  {
    "slug": "gyeonggi-uijeongbu-jangam",
    "quote_submit": 2,
    "call_click": 0,

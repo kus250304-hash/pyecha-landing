@@ -1,6 +1,6 @@
 {
  "property_timezone": "Asia/Seoul",
- "updated": "2026-11-18T12:25+09:00",
+ "updated": "2026-11-19T12:25+09:00",
  "days": {
   "2026-10-20": {
    "sessions": {
@@ -3625,13 +3625,13 @@
     "구글": 0,
     "유튜브": 0,
     "직접": 2,
-    "기타": 6
+    "기타": 0
    },
    "events": {
     "네이버": {
-     "quote_submit": 2,
-     "call_click": 0,
-     "sms_click": 0
+     "quote_submit": 3,
+     "call_click": 1,
+     "sms_click": 2
     },
     "구글": {
      "quote_submit": 0,
@@ -3649,13 +3649,13 @@
      "sms_click": 0
     },
     "기타": {
-     "quote_submit": 1,
-     "call_click": 1,
-     "sms_click": 2
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
     }
    },
    "totals": {
-    "sessions": 32,
+    "sessions": 26,
     "quote_submit": 3,
     "call_click": 1,
     "sms_click": 2
@@ -3664,10 +3664,6 @@
     {
      "source": "m.search.naver.com / referral",
      "sessions": 15
-    },
-    {
-     "source": "(not set) / (not set)",
-     "sessions": 6
     },
     {
      "source": "naver / organic",
@@ -3704,11 +3700,6 @@
     }
    ],
    "landing": [
-    {
-     "page": "(not set)",
-     "bucket": "기타",
-     "sessions": 4
-    },
     {
      "page": "/",
      "bucket": "네이버",
@@ -3815,8 +3806,142 @@
      "sessions": 1
     },
     {
-     "page": "/guide/폐차-절차.html",
-     "bucket": "기타",
+     "page": "/pages/chungbuk-cheongju-sangdang-yeong.html",
+     "bucket": "네이버",
+     "sessions": 1
+    }
+   ]
+  },
+  "2026-11-18": {
+   "sessions": {
+    "네이버": 17,
+    "구글": 0,
+    "유튜브": 0,
+    "직접": 2,
+    "기타": 0
+   },
+   "events": {
+    "네이버": {
+     "quote_submit": 2,
+     "call_click": 2,
+     "sms_click": 5
+    },
+    "구글": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "유튜브": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "직접": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "기타": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    }
+   },
+   "totals": {
+    "sessions": 19,
+    "quote_submit": 2,
+    "call_click": 2,
+    "sms_click": 5
+   },
+   "sources": [
+    {
+     "source": "m.search.naver.com / referral",
+     "sessions": 12
+    },
+    {
+     "source": "naver / organic",
+     "sessions": 4
+    },
+    {
+     "source": "(direct) / (none)",
+     "sessions": 2
+    },
+    {
+     "source": "m.naver.com / referral",
+     "sessions": 1
+    }
+   ],
+   "pages": [
+    {
+     "page": "/gu/광주시-폐차장.html",
+     "quote_submit": 1,
+     "call_click": 0
+    },
+    {
+     "page": "/gu/철원군-폐차장.html",
+     "quote_submit": 1,
+     "call_click": 0
+    },
+    {
+     "page": "/pages/gyeonggi-goyang-ilsandong-jungsan.html",
+     "quote_submit": 0,
+     "call_click": 2
+    }
+   ],
+   "landing": [
+    {
+     "page": "/gu/철원군-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 3
+    },
+    {
+     "page": "/",
+     "bucket": "직접",
+     "sessions": 2
+    },
+    {
+     "page": "/gu/포천시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 2
+    },
+    {
+     "page": "/",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/cases/case-20250828-jeonbuk-gunsan-gaejeong.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/강릉시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/광주시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/대전-서구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/양산시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/영천시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/guide/방치차-오래-세워둔-차.html",
+     "bucket": "네이버",
      "sessions": 1
     },
     {
@@ -3825,8 +3950,18 @@
      "sessions": 1
     },
     {
-     "page": "/thanks.html",
-     "bucket": "기타",
+     "page": "/pages/gyeonggi-goyang-ilsandong-jungsan.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/si/부산-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/si/전남광주-폐차장.html",
+     "bucket": "네이버",
      "sessions": 1
     }
    ]

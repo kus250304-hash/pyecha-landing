@@ -522,7 +522,54 @@
    "since": "2026-11-18",
    "inquiries": 2,
    "window": "2026-10-20~2026-11-18"
-  }
+  },
+  "area_notes": [
+   {
+    "dong": "주문진읍",
+    "line": "주문진수산시장이 있는 주문진읍도 기사가 차 있는 자리로 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-19",
+     "items": [
+      {
+       "name": "주문진수산시장",
+       "evidence": "관광 안내(한국관광공사 자료를 옮긴 곳)에 주소 강원특별자치도 강릉시 주문진읍 시장길 38",
+       "url": "https://www.ktriptips.com/kor/shopping/2776853",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "노암동",
+    "line": "노암초등학교가 있는 노암동에서도 전화 한 통이면 차 있는 자리로 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-19",
+     "items": [
+      {
+       "name": "노암초등학교",
+       "evidence": "도로명주소 목록에 강원특별자치도 강릉시 노암등길 71 (노암동), 학교 정보에도 노암등길 71",
+       "url": "https://dorojuso.kr/강원특별자치도/강릉시/노암동",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "내곡동",
+    "line": "가톨릭관동대학교가 있는 내곡동은 기사가 차 있는 곳으로 와서 확인하고 가져갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-19",
+     "items": [
+      {
+       "name": "가톨릭관동대학교",
+       "evidence": "대학 공식 홈페이지 학과 안내에 (25601) 강릉시 범일로 579번길 24(내곡동)",
+       "url": "https://www.cku.ac.kr/geography/3736/subview.do",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   }
+  ]
  },
  {
   "slug": "incheon-namdong",

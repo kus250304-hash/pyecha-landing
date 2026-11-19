@@ -8,7 +8,7 @@ GA4 로 "어디서 왔나"를 매일 센다(2026-11-04 병한님). 폼 문의가
                                                  #    같은 날짜는 덮어쓰므로 하루치를 사흘 동안 세 번 받아 마지막 값이 남는다)
   python scripts/ga4_daily.py --since 2026-10-20 # 그날부터 어제까지 받아 합침(과거치 채우기)
   python scripts/ga4_daily.py --push             # PC 예약 작업 "구글 색인 확인 (매일 낮)" 뒤에: git pull → 받기 → judgment_inputs.py --write
-                                                 #   → data/ga4_daily.json·docs/ga4-sources.md·data/dong_boost.json·docs/judgment-inputs.md 만 커밋·푸시
+                                                 #   → data/ga4_daily.json·docs/ga4-sources.md·docs/judgment-inputs.md 만 커밋·푸시(dong_boost 는 아침 루틴)
   python scripts/ga4_daily.py --from-json        # API 없이 저장된 json 으로 docs/ga4-sources.md 만 다시 만듦
   python3 scripts/ga4_daily.py report [--today YYYY-MM-DD]   # 보고 한 줄(아침 보고·PC 작업 보고, 저장된 json 만 읽음)
 
@@ -292,7 +292,7 @@ def git(*args: str) -> subprocess.CompletedProcess:
 
 
 def push(summary: str) -> str:
-    rels = [OUT.relative_to(ROOT).as_posix(), DOC.relative_to(ROOT).as_posix(), "data/dong_boost.json",  # 반응 온 동 페이지(2026-11-05)
+    rels = [OUT.relative_to(ROOT).as_posix(), DOC.relative_to(ROOT).as_posix(),  # dong_boost.json 은 2026-11-19부터 아침 루틴이 씀
             "docs/judgment-inputs.md"]  # 17일 판단 보고 숫자(2026-11-13, judgment_inputs.py --write)
     if not git("status", "--porcelain", "--", *rels).stdout.strip():
         return "바뀐 것 없음(커밋 안 함)"
@@ -370,9 +370,10 @@ def main() -> None:
           f" · 전화 클릭 {t['call_click']} · 문자 클릭 {t['sms_click']}")
     report(kst_today())
     # 반응 온 동 페이지 목록(2026-11-05, scripts/proof_blocks.py): 그 동 페이지에 시·군의 최근 진행한 차·후기 칸을 보인다
+    # 2026-11-19: data/dong_boost.json 은 여기서 쓰지 않는다. 낮에 이 파일만 바뀌면 동 페이지가 다시 만들어지지 않은 채 main 에 올라가
+    # check 의 "페이지가 최신 데이터로 렌더링되어 있는지"가 다음 날 아침까지 실패했다(11/19 중산동). 매일 루틴 3-0b 가 빌드 전에 쓴다.
     import proof_blocks
-    proof_blocks.write_boost()
-    print(f"반응 온 동 페이지 {len(proof_blocks.compute_boost())}곳(data/dong_boost.json)")
+    print(f"반응 온 동 페이지 {len(proof_blocks.compute_boost())}곳(내일 아침 루틴이 data/dong_boost.json 에 씀)")
     print(f"GA4 속성 시간대: {data.get('property_timezone') or '모름(응답에 없음)'}")
     if args.push:
         # 17일 판단 보고 숫자 한 장(2026-11-13). 실패해도 GA4 저장·푸시는 그대로 간다.
