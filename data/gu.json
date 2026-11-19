@@ -7282,7 +7282,12 @@
   "dropped_info": [
    "교통행정과 대표 전화·담당자 번호는 페이지 성격상 넣지 않았습니다(대표번호 1600-6011 통일)."
   ],
-  "checked_on": "2026-10-13"
+  "checked_on": "2026-10-13",
+  "deep": {
+   "since": "2026-11-19",
+   "inquiries": 2,
+   "window": "2026-10-21~2026-11-19"
+  }
  },
  {
   "slug": "gyeonggi-suwon-gwonseon",

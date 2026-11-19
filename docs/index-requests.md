@@ -1502,3 +1502,16 @@
 - https://pyecha119.com/gu/%EB%8B%A8%EC%96%91%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/단양군-폐차장.html (바뀜: 2026-11-19 본문 바뀜(구·시군))
 - https://pyecha119.com/gu/%EB%8F%99%EB%91%90%EC%B2%9C%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/동두천시-폐차장.html (바뀜: 2026-11-19 본문 바뀜(구·시군))
 - https://pyecha119.com/gu/%EB%B3%B4%EC%9D%80%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/보은군-폐차장.html (바뀜: 2026-11-19 본문 바뀜(구·시군))
+
+## 2026-11-20 네이버
+
+- https://pyecha119.com/pages/gyeonggi-goyang-ilsandong-jungsan.html — pages/gyeonggi-goyang-ilsandong-jungsan.html (반응: 최근 7일 전화 2)
+- https://pyecha119.com/gu/%EA%B4%91%EC%A3%BC%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/광주시-폐차장.html (반응: 최근 7일 폼 1)
+- https://pyecha119.com/gu/%EC%B2%A0%EC%9B%90%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/철원군-폐차장.html (반응: 최근 7일 폼 1)
+- https://pyecha119.com/gu/%EA%B3%A0%EC%96%91%EC%8B%9C-%EB%8D%95%EC%96%91%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/고양시-덕양구-폐차장.html (바뀜: 2026-11-19 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EB%B6%80%EC%B2%9C%EC%8B%9C-%EC%86%8C%EC%82%AC%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/부천시-소사구-폐차장.html (바뀜: 2026-11-19 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EB%B6%80%EC%B2%9C%EC%8B%9C-%EC%98%A4%EC%A0%95%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/부천시-오정구-폐차장.html (바뀜: 2026-11-19 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EB%B6%80%EC%B2%9C%EC%8B%9C-%EC%9B%90%EB%AF%B8%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/부천시-원미구-폐차장.html (바뀜: 2026-11-19 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EC%82%BC%EC%B2%99%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/삼척시-폐차장.html (바뀜: 2026-11-19 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EC%86%8D%EC%B4%88%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/속초시-폐차장.html (바뀜: 2026-11-19 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EC%88%98%EC%9B%90%EC%8B%9C-%EC%98%81%ED%86%B5%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/수원시-영통구-폐차장.html (바뀜: 2026-11-19 본문 바뀜(구·시군))
