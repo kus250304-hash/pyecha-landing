@@ -142,8 +142,22 @@ def car_folders(inbox: Path) -> list[Path]:
                   and not any(w in p.name for w in ("문자백업", "제외", "후기", "처리됨")))
 
 
+FOLDER_MEMO = "메모.txt"  # 차 폴더 안 메모(병한님이 채팅으로 말한 시동·운행·사연을 클로드가 적음, 2026-11-20). 대본이 아님
+FOLDER_MEMO_KEYS = ("시동", "운행", "상황", "처리", "걱정", "확인", "고른쪽", "이유", "문의일", "인수일", "말소일", "끝한줄", "제목꼬리")
+
+
 def folder_files(folder: Path) -> list[Path]:
-    return sorted((p for p in folder.iterdir() if p.is_file() and kind_of(p)), key=lambda p: p.stat().st_mtime)
+    return sorted((p for p in folder.iterdir() if p.is_file() and kind_of(p) and p.name != FOLDER_MEMO),
+                  key=lambda p: p.stat().st_mtime)
+
+
+def folder_memo(folder: Path) -> dict:
+    """차 폴더의 메모.txt 에서 FOLDER_MEMO_KEYS 칸만(지역·차종·연식은 폴더 이름이 정함, 다른 칸은 버림)."""
+    f = folder / FOLDER_MEMO
+    if not f.exists():
+        return {}
+    from build_cases import parse_memo, read_text_any
+    return {k: v for k, v in parse_memo(read_text_any(f)).items() if k in FOLDER_MEMO_KEYS}
 
 
 def place_names(rows: list[dict]) -> set[str]:
@@ -312,6 +326,8 @@ def folder_draft(folder: Path, files: list[Path], rows: list[dict], names: set[s
     day = max(set(days), key=days.count)
     info = {"folder": safe_label(folder.name), "parsed": parsed, "shot_day": day}
     base = {"시동": "", "운행": "", "상황": "", "처리": "", "차번호": "", "압류": "", "등록증": [], "조회": [], "보류": ""}
+    plain = dict(base)  # 사진 붙이기 초안에는 폴더 메모를 넣지 않는다(그 사례에 이미 있음)
+    base.update(folder_memo(folder))
     if not parsed["car"]:
         info["hold"] = "확인 필요: 폴더 이름에서 차종을 못 찾음 (예: 탁송기사 대구 북구 02년 아반떼)"
         return None, info
@@ -320,7 +336,7 @@ def folder_draft(folder: Path, files: list[Path], rows: list[dict], names: set[s
         c = hits[0]
         info["attach"] = c["slug"]
         region = " ".join(x for x in (c["sido"], c["sigungu"], c["dong"]) if x)
-        return {**base, "지역": region, "지역근거": "사례", "차종": case_car(c), "연식": case_year(c) or parsed["year"],
+        return {**plain, "지역": region, "지역근거": "사례", "차종": case_car(c), "연식": case_year(c) or parsed["year"],
                 "붙일사례": c["slug"]}, info
     if len(hits) > 1:
         info["hold"] = (f"확인 필요: 이미 만든 사례 {len(hits)}건과 맞음 — 폴더 이름에 구·동이나 연식을 더 넣어 주세요")
