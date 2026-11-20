@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-19",
+ "updated": "2026-11-20",
  "source": "병한-업무위키 거래 기록부(scripts/money_monthly.py), 칸 설명 docs/money-monthly.md",
  "months": {
   "2026-07": {
@@ -50,7 +50,7 @@
    "lost_reasons": [
     [
      "기타",
-     6
+     5
     ],
     [
      "다른 데서 먼저",
@@ -61,9 +61,9 @@
      1
     ]
    ],
-   "avg_band": "기록 없음",
-   "vs_last_month": "비교 못 함",
-   "money_n": 0
+   "avg_band": "10~40",
+   "vs_last_month": "내려감",
+   "money_n": 3
   }
  }
 }
