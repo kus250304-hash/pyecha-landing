@@ -139,7 +139,7 @@ ATTACH_DAYS = 30  # 사진이 있는 사례는 사례 날짜와 촬영 날짜가
 def car_folders(inbox: Path) -> list[Path]:
     """인박스 바로 아래 차 폴더. '_'·'.' 로 시작하는 폴더, 문자백업·제외 폴더, 이름에 "후기"가 든 폴더(reviews.py 몫)는 보지 않는다."""
     return sorted(p for p in inbox.iterdir() if p.is_dir() and not p.name.startswith(("_", "."))
-                  and not any(w in p.name for w in ("문자백업", "제외", "후기")))
+                  and not any(w in p.name for w in ("문자백업", "제외", "후기", "처리됨")))
 
 
 def folder_files(folder: Path) -> list[Path]:
@@ -280,6 +280,23 @@ def folder_region(parsed: dict, rows: list[dict]) -> dict | None:
     return region or whole_city(text, rows)
 
 
+def new_car_hold(region: dict, year: str, rows: list[dict]) -> str:
+    """새 차로 만들기 전에 모자란 것. 구가 있는 시인데 구가 없거나('안양시' → 만안구·동안구) 연식이 없으면
+    pc_cases 가 고르지 못하므로 폴더 단계에서 병한님께 묻는다. 다 있으면 ""."""
+    city = region.get("sigungu") or ""
+    need = []
+    gus = sorted({r["sigungu"].split()[1] for r in rows
+                  if r["sido"] == region.get("sido") and r["sigungu"].startswith(city + " ")}) if city and " " not in city else []
+    if gus:
+        need.append(f"구({'·'.join(gus)} 중 하나)")
+    if not year:
+        need.append("연식(예: 12년)")
+    if not need:
+        return ""
+    ex = " ".join(x for x in (city.removesuffix("시") if gus else city, gus[0] if gus else "", "12년" if not year else "") if x)
+    return f"확인 필요: 폴더 이름에 {'·'.join(need)}을 넣어 주세요 (예: 탁송기사 {ex} …)"
+
+
 def safe_label(name: str) -> str:
     """보고·저장소 목록에 적을 폴더 이름. 차번호·전화번호 꼴이 섞였으면 이름 대신 '(이름에 번호가 있어 숨김)'."""
     import ledger_read as L
@@ -314,11 +331,17 @@ def folder_draft(folder: Path, files: list[Path], rows: list[dict], names: set[s
         region, _ = resolve_region(h["지역"], rows)
         if not region:  # 기록부 지역이 '경기 포천' 처럼 줄인 이름이면 폴더 이름 낱말과 합쳐 다시
             region = folder_region(parse_folder_name(h["지역"] + " " + " ".join(parsed["places"]), rows, names) | {"car": ""}, rows)
+        if region and (why := new_car_hold(region, parsed["year"] or h["연식"], rows)):
+            info["hold"] = why
+            return None, info
         if region:
             info["ledger"] = "기록부 1건 맞음"
             return {**base, "지역": " ".join(x for x in (region["sido"], region["sigungu"], region["dong"]) if x),
                     "지역근거": "기록부", "차종": parsed["car"], "연식": parsed["year"] or h["연식"]}, info
     region = folder_region(parsed, rows)
+    if region and (why := new_car_hold(region, parsed["year"], rows)):
+        info["hold"] = why
+        return None, info
     if region:
         return {**base, "지역": " ".join(x for x in (region["sido"], region["sigungu"], region["dong"]) if x),
                 "지역근거": "폴더이름", "차종": parsed["car"], "연식": parsed["year"]}, info
