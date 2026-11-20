@@ -143,7 +143,7 @@ def car_folders(inbox: Path) -> list[Path]:
 
 
 FOLDER_MEMO = "메모.txt"  # 차 폴더 안 메모(병한님이 채팅으로 말한 시동·운행·사연을 클로드가 적음, 2026-11-20). 대본이 아님
-FOLDER_MEMO_KEYS = ("시동", "운행", "상황", "처리", "걱정", "확인", "고른쪽", "이유", "문의일", "인수일", "말소일", "끝한줄", "제목꼬리")
+FOLDER_MEMO_KEYS = ("날짜", "시동", "운행", "상황", "처리", "걱정", "확인", "고른쪽", "이유", "문의일", "인수일", "말소일", "끝한줄", "제목꼬리")
 
 
 def folder_files(folder: Path) -> list[Path]:
@@ -696,6 +696,9 @@ def cmd_apply(args) -> None:
     car = safe_name(ans["차종"])
     year = re.sub(r"\D", "", ans.get("연식", ""))[:4]
     situ = "사진추가" if ans.get("붙일사례") else (safe_name(ans.get("상황", "")) or "일반폐차")
+    # 병한님이 알려 준 거래 날짜(폴더 메모 "날짜: YYYY-MM-DD")가 있으면 올린 시각 대신 그 날(2026-11-20)
+    if re.fullmatch(r"\d{4}-\d{2}-\d{2}", (ans.get("날짜") or "").strip()):
+        first = datetime.strptime(ans["날짜"].strip(), "%Y-%m-%d")
     base = f"{first:%Y%m%d}_{region['dong'] or region['sigungu'].split()[-1]}_{car}{year}_{situ}"
     src = Path(args.src) / "우선"
     dest, n = src / base, 2
