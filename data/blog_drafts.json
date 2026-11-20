@@ -1,0 +1,10 @@
+{
+ "skip": {
+  "case-20261009-gyeonggi-osan": "2026-11-20 이미 블로그에 씀(2026-10-11 쏘렌토, 오산)",
+  "case-20261008-chungnam-cheonan-seobuk": "2026-11-20 이미 블로그에 씀(2026-10-10 모닝, 천안 서북구)",
+  "case-20261019-gyeonggi-hwaseong-dongtan": "2026-11-20 이미 블로그에 씀(2026-11-01 스파크 밴, 동탄)"
+ },
+ "dead_drafts": [
+  "docs/blog-drafts/2026-11-05/4_전주.md"
+ ]
+}
