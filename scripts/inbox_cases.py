@@ -159,7 +159,10 @@ def parse_folder_name(name: str, rows: list[dict], names: set[str] | None = None
     순서는 상관없다. 연식은 '02년'·'2002'·'02년식'."""
     names = names if names is not None else place_names(rows)
     places, car, year = [], [], ""
-    for tok in re.split(r"[\s_\-·,]+", re.sub(r"\(\d+\)$", "", name.strip())):
+    text = re.sub(r"\(\d+\)$", "", name.strip())
+    # 띄어 쓰지 않은 이름("의왕sm3", "대구02년아반떼")도 한글 ↔ 영문·숫자 사이를 나눠 읽는다("14년"·"02년식"은 붙여 둠)
+    text = re.sub(r"(?<=[가-힣])(?=[A-Za-z0-9])|(?<=[A-Za-z])(?=[가-힣])|(?<=\d)(?=[가-힣])(?!년|식)|(?<=년)(?=[가-힣])(?!식)|(?<=식)(?=[가-힣])", " ", text)
+    for tok in re.split(r"[\s_\-·,]+", text):
         if not tok or FOLDER_DROP_RE.match(tok):
             continue
         if not year and (m := FOLDER_YEAR_RE.match(tok)):
@@ -173,6 +176,19 @@ def parse_folder_name(name: str, rows: list[dict], names: set[str] | None = None
         if hit and not car:  # 차종 뒤에 오는 낱말은 지역으로 보지 않는다("아반떼 XD")
             places.append(hit)
             continue
+        if not car:  # 붙여 쓴 "여주크루즈"·"탁송기사의왕": 앞쪽이 지역 이름이면 떼어 낸다(가장 긴 것부터, 두 글자 이상)
+            head = re.sub(r"^(탁송기사|탁송)", "", tok)
+            for k in range(len(head), 1, -1):
+                pre = head[:k]
+                got = pre if pre in names else next((pre + s for s in PLACE_SUFFIX if pre + s in names), None)
+                if got:
+                    places.append(got)
+                    tok = head[k:]
+                    break
+            else:
+                tok = head or tok
+            if not tok:
+                continue
         car.append(tok)
     return {"places": places, "year": year, "car": " ".join(car)}
 
@@ -463,7 +479,9 @@ def cmd_scan(args) -> None:
     rows = load_csv_rows()
     names_all = place_names(rows)
     index = load_json(ROOT / "cases" / "index.json", default=[]) or []
-    plan = {"date": date.today().isoformat(), "inbox": str(inbox), "groups": {}}
+    plan = {"date": date.today().isoformat(), "inbox": str(inbox), "groups": {},
+            # 사진이 아직 안 들어간 차 폴더(업로드가 안 됐거나 '스캔'으로 올라감): 보고에 알린다(2026-11-20)
+            "empty_folders": [safe_label(f.name) for f in car_folders(inbox) if not folder_files(f)]}
     for gi, (car, files) in enumerate(groups, 1):
         gid = f"g{gi}"
         d = STAGING / gid
@@ -531,7 +549,7 @@ def cmd_scan(args) -> None:
                 plan["groups"][gid]["ledger"] = f"같은 날 입고 {len(hits)}대 — 붙이지 않음"
                 plan["groups"][gid]["calendar_ask"] = f"[기록부 확인] {day} 사진 어느 차? {ask}"
     (STAGING / "plan.json").write_text(json.dumps(plan, ensure_ascii=False, indent=1), encoding="utf-8")
-    print(f"인박스 파일 {sum(len(g) for g in groups)}개 → {len(groups)}대로 묶음 ({STAGING.relative_to(ROOT)})")
+    print(f"인박스 파일 {sum(len(fs) for _, fs in groups)}개 → {len(groups)}대로 묶음 ({STAGING.relative_to(ROOT)})")
     for gid, g in plan["groups"].items():
         kinds = {k: sum(1 for i in g["files"] if i["kind"] == k) for k in ("video", "image", "audio")}
         print(f"  {gid}: 영상 {kinds['video']} · 사진 {kinds['image']} · 녹음 {kinds['audio']}, "
@@ -687,6 +705,8 @@ def cmd_report(args) -> None:
     made = [g for g in plan["groups"].values() if g.get("status") == "applied"]
     held = [g for g in plan["groups"].values() if g.get("status") != "applied"]
     print(f"인박스: 폴더 만든 차 {len(made)}대, 보류 {len(held)}대")
+    for name in plan.get("empty_folders", []):
+        print(f"  확인 필요: 폴더 '{name}' — 폴더가 비어 있음(사진이 안 올라감. 폴더 안에서 + → 업로드로 다시 올려 주세요)")
     for g in made:
         print(f"  만듦: {g.get('made') or g.get('folder')}" + (f" (사례 {g['attach']} 에 사진 붙임)" if g.get("attach") else ""))
     rows = []
@@ -707,7 +727,8 @@ def cmd_report(args) -> None:
         "구글 드라이브 `폐차_인박스` 에 올린 차 중 지역·차종을 알아내지 못해 보류한 것입니다. "
         "파일은 인박스에 그대로 있습니다. 영상 끝에 지역을 다시 말해 올리거나 병한님이 알려 주시면 다음 실행 때 들어갑니다.\n\n"
         f"기준: {date.today().isoformat()}\n\n"
-        + ("| 올린 시각 | 파일 | 차종 | 이유 |\n|---|---|---|---|\n" + "\n".join(rows) + "\n" if rows else "보류된 차 없음\n"),
+        + ("| 올린 시각 | 파일 | 차종 | 이유 |\n|---|---|---|---|\n" + "\n".join(rows) + "\n" if rows else "보류된 차 없음\n")
+        + "".join(f"\n빈 폴더: '{n}' — 사진이 안 올라갔습니다. 폴더 안에서 + → 업로드로 다시 올려 주세요\n" for n in plan.get("empty_folders", [])),
         encoding="utf-8")
 
 
