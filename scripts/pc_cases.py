@@ -22,6 +22,9 @@ PC(운영자 컴퓨터)에서 돌리는 "사례 가져오기" 도구. 원본 사
       → out 사진을 다시 보고 번호판·얼굴·서류가 조금이라도 보이면 select.json 을 고쳐 다시 mask
   python scripts/pc_cases.py stage cN             cases/input/<폴더>/ 에 사진 + 정리된 메모.txt 를 넣고 검사
   python scripts/pc_cases.py drop cN "<이유>"     이 건은 오늘 쓰지 않음 (원본에 표시하지 않음)
+  사진 붙이기(2026-11-20): 메모에 "붙일사례: case-…" 가 있는 폴더(인박스 차 폴더가 이미 만든 사례와 맞은 것)는
+      새 사례가 아니라 그 사례에 사진만 붙인다. scan 이 맨 앞에 고르고(하루 건수와 따로), stage 는 지역·차종·붙일사례와
+      가린 사진만 cases/input 에 넣는다. build_cases.py 가 그 사례 사진 뒤에 이어 붙인다(모두 6장까지).
   python scripts/pc_cases.py scan --more          뺀 만큼 새로 고르기 → 다시 prepare (새로 고른 건만 준비)
   python scripts/pc_cases.py scan --no-dong --n 20  동 없이 시군구까지만 적힌 사례만 고르기
   python scripts/pc_cases.py scan --only 퇴촌면,쌍령동  폴더 이름으로 특정 건만 고르기(운영자가 지정할 때만)
@@ -450,6 +453,8 @@ def cmd_scan(args) -> None:
     score = load_score(src)
     places, _ = priority_places()
     cands, skipped, marked = [], [], 0
+    index_slugs = {c["slug"] for c in load_json(ROOT / "cases" / "index.json", []) or []}
+    attach = []  # 이미 만든 사례에 사진만 붙일 폴더(2026-11-20)
     for ti, tier in enumerate(TIERS):
         tier_dir = src / tier
         if not tier_dir.exists():
@@ -465,6 +470,21 @@ def cmd_scan(args) -> None:
                 continue
             memo, origin = folder_memo(folder, src, score)
             memo = apply_fix(memo, fix)
+            if memo and memo.get("붙일사례"):
+                if memo["붙일사례"] not in index_slugs:
+                    skipped.append((rel, f"붙일 사례 {memo['붙일사례']} 가 cases/index.json 에 없음"))
+                    continue
+                if not photo_files(folder):
+                    skipped.append((rel, "사진 붙이기인데 사진 없음"))
+                    continue
+                region, why = resolve_region(memo.get("지역", ""), rows)
+                if not region:
+                    skipped.append((rel, why))
+                    continue
+                attach.append({"tier": tier, "tier_i": ti, "rank": 0, "place": (-1, 0), "src": str(folder), "rel": rel,
+                               "memo_from": origin, "region": region, "car": memo.get("차종", ""),
+                               "photos": len(photo_files(folder)), "attach": memo["붙일사례"]})
+                continue
             missing = [k for k in PC_REQUIRED if not memo.get(k)]
             if missing and all(memo.get(k) for k in ("지역", "차종", "상황", "처리", "걱정", "고른쪽")):
                 missing = []  # 사연 있는 차(2026-11-17)
@@ -509,7 +529,7 @@ def cmd_scan(args) -> None:
     taken = {c["src"] for c in state["picks"].values()}
     n = args.n or (BACKLOG_DAILY if len(cands) > DAILY else DAILY)
     need = n - sum(1 for c in state["picks"].values() if c.get("status") != "dropped")
-    picks = [c for c in cands if c["src"] not in taken][: max(0, need)]
+    picks = [c for c in attach if c["src"] not in taken] + [c for c in cands if c["src"] not in taken][: max(0, need)]
     for c in picks:
         state["picks"][f"c{len(state['picks']) + 1}"] = {**c, "status": "picked"}
     save_state(state)
@@ -517,11 +537,14 @@ def cmd_scan(args) -> None:
     label = {0: "동 페이지 있음", 1: "같은 시군구 페이지 있음", 2: "붙을 페이지 아직 없음"}
     order = [o["label"] for o in (load_json(CASE_PRIORITY, default={}) or {}).get("order", [])] or ["문의 온 시·군", "빈 땅", "지인 공략", "나머지"]
     gu_label = {1: "동 없음 · 구 페이지 있음", 2: "동 없음 · 구 페이지 대기"}
-    print(f"대상 {len(cands)}건 (이미 반영됨 {marked}건, 조건 미달 {len(skipped)}건). 새로 고른 {len(picks)}건:")
+    print((f"사진 붙이기 {len(attach)}건 · " if attach else "") + f"대상 {len(cands)}건 (이미 반영됨 {marked}건, 조건 미달 {len(skipped)}건). 새로 고른 {len(picks)}건:")
     for cid, c in state["picks"].items():
         if c.get("status") != "picked":
             continue
         r = c["region"]
+        if c.get("attach"):
+            print(f"  {cid}: [{c['tier']}] {r['sigungu'] or r['sido']} {r['dong']} · {c['car']} · 사진 {c['photos']}장 · 사진 붙이기 → {c['attach']}".replace("  ·", " ·"))
+            continue
         lab = label[c["rank"]] if r["dong"] else gu_label[c["rank"]]
         from_score = " · 점수표" if c.get("memo_from") == "점수표" else ""
         why = order[c["place"][0]] if c.get("place") and c["place"][0] < len(order) else "나머지"
@@ -664,6 +687,9 @@ def cmd_stage(args) -> None:
         raise SystemExit(f"{args.cid}: 메모.txt 도 점수표 줄도 없습니다")
     memo = apply_fix(memo, load_fixes().get(rel.replace("/", "\\")))
     r = c["region"]
+    if c.get("attach"):
+        stage_attach(args.cid, state, c, memo, r)
+        return
     memo["지역"] = " ".join(x for x in (r["sido"], r["sigungu"], r["dong"]) if x)
     memo["차종"] = c["car"].split("년식 ", 1)[-1]
     tag = hashlib.sha1(c["src"].encode("utf-8")).hexdigest()[:6]  # 원본 폴더 이름(고객 이름이 있을 수 있음)은 쓰지 않는다
@@ -703,6 +729,29 @@ def cmd_stage(args) -> None:
     print(f"  {c['ledger']}")
     for line in case_story.report_lines({"story": c["story"]}):
         print(f"  {line}")
+
+
+def stage_attach(cid: str, state: dict, c: dict, memo: dict, r: dict) -> None:
+    """이미 만든 사례에 사진만 붙일 건: cases/input/<날짜>-<지역>-사진추가-<tag>/ 에 메모(지역·차종·붙일사례)와 가린 사진."""
+    from build_cases import check_attach
+    tag = hashlib.sha1(c["src"].encode("utf-8")).hexdigest()[:6]
+    name = f"{date.today().isoformat()}-{region_label(r).replace(' ', '-')}-사진추가-{tag}"
+    dest = INPUT_DIR / name
+    if dest.exists():
+        shutil.rmtree(dest)
+    dest.mkdir(parents=True)
+    region = " ".join(x for x in (r["sido"], r["sigungu"], r["dong"]) if x)
+    (dest / "메모.txt").write_text(f"지역: {region}\n차종: {memo.get('차종', '')}\n붙일사례: {c['attach']}\n", encoding="utf-8")
+    for p in sorted((STAGING / cid / "out").glob("[0-9]*.jpg"), key=lambda p: int(p.stem)):
+        shutil.copy2(p, dest / p.name)
+    case, photos, why = check_attach(dest)
+    bad = [p.name for p in photo_files(dest) if hidden_info(p)]
+    if not case or bad:
+        shutil.rmtree(dest)
+        raise SystemExit(f"{cid}: 검사 실패 — {why or f'숨은 정보 남음 {bad}'}")
+    c["status"], c["input"] = "staged", f"cases/input/{name}"
+    save_state(state)
+    print(f"{cid}: {c['input']} 준비됨 — 사례 {c['attach']} 에 사진 {len(photos)}장 붙일 것(지금 {len(case.get('photos') or [])}장)")
 
 
 def cmd_drop(args) -> None:

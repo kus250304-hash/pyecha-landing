@@ -70,6 +70,8 @@ KEY_ALIASES = {
     # 사례 글 틀 v2(2026-10-23, 모두 선택): 뜻과 규칙은 scripts/case_story.py 맨 위
     "걱정": "걱정", "확인": "확인", "고른쪽": "고른쪽", "이유": "이유",
     "문의일": "문의일", "인수일": "인수일", "말소일": "말소일", "끝한줄": "끝한줄", "제목꼬리": "제목꼬리",
+    # 사진 붙이기(2026-11-20): 이 칸이 있는 폴더는 새 사례가 아니라 그 사례(slug)에 사진만 이어 붙인다(attach_photos)
+    "붙일사례": "붙일사례",
 }
 # 둘 중 한 형식이 다 있어야 한다: PC 원본 메모 형식 / 예전 직접 작성 형식
 REQUIRED_SETS = (("지역", "차종", "연식", "시동"), ("지역", "차종", "상황", "처리"))
@@ -488,6 +490,47 @@ def check_folder(folder: Path, rows: list[dict]) -> tuple[dict | None, str]:
     return {"memo": memo, "region": region, "body": body, "photos": photos, "date": case_date, "spoken": spoken}, ""
 
 
+def attach_slug(folder: Path) -> str:
+    memo_path = next((folder / n for n in MEMO_NAMES if (folder / n).exists()), None)
+    return parse_memo(read_text_any(memo_path)).get("붙일사례", "") if memo_path else ""
+
+
+def check_attach(folder: Path, index: list[dict] | None = None) -> tuple[dict | None, list[Path], str]:
+    """사진 붙이기 폴더 검사: (붙일 사례, 붙일 사진, 문제). 사진만 보며 메모의 다른 칸은 쓰지 않는다.
+    그 사례 사진과 합쳐 MAX_PHOTOS 장을 넘으면 넘는 사진은 붙이지 않는다(앞에서부터)."""
+    slug = attach_slug(folder)
+    index = index if index is not None else load_json(INDEX_PATH, default=[])
+    case = next((c for c in index if c.get("slug") == slug), None)
+    if not case:
+        return None, [], f"붙일 사례 '{slug}' 가 cases/index.json 에 없습니다"
+    photos = sorted((p for p in folder.iterdir() if p.suffix.lower() in PHOTO_EXT),
+                    key=lambda p: (int(p.stem) if p.stem.isdigit() else 999, p.name))
+    if not photos:
+        return None, [], "붙일 사진이 없습니다"
+    room = MAX_PHOTOS - len(case.get("photos") or [])
+    if room <= 0:
+        return None, [], f"사례 {slug} 에 사진이 이미 {MAX_PHOTOS}장입니다"
+    return case, photos[:room], ""
+
+
+def attach_photos(folder: Path, index: list[dict]) -> dict | None:
+    """사진 붙이기 폴더 하나를 그 사례에 붙인다. 고친 사례(같은 dict) 또는 None."""
+    case, photos, why = check_attach(folder, index)
+    if not case:
+        print(f"건너뜀 {folder.name}: {why}")
+        return None
+    slug = case["slug"]
+    used = [int(m.group(1)) for n in case.get("photos") or [] if (m := re.match(rf"{re.escape(slug)}-(\d+)\.jpg$", n))]
+    start = max(used, default=0) + 1
+    IMAGES_DIR.mkdir(parents=True, exist_ok=True)
+    names = [save_photo(p, IMAGES_DIR / f"{slug}-{start + i}") for i, p in enumerate(photos)]
+    case["photos"] = (case.get("photos") or []) + names
+    case["thumb"] = case.get("thumb") or names[0]
+    case["photos_added"] = datetime.now(KST).strftime("%Y-%m-%d")
+    case_story.finalize(case)
+    return case
+
+
 def process_folder(folder: Path, rows: list[dict], page_slugs: dict, used_slugs: set[str]) -> dict | None:
     info, why = check_folder(folder, rows)
     if not info:
@@ -782,6 +825,18 @@ def main() -> None:
     used_slugs = {c["slug"] for c in index}
 
     done, skipped, waiting = [], 0, []
+    attached = []  # 사진만 붙인 사례(2026-11-20). 사진 붙이기 폴더는 새 사례로 만들지 않는다(실패해도 cases/input 에 남김)
+    attach_folders = [f for f in folders if attach_slug(f)]
+    folders = [f for f in folders if f not in attach_folders]
+    for folder in attach_folders:
+        c = attach_photos(folder, index)
+        if not c:
+            skipped += 1
+            continue
+        DONE_DIR.mkdir(parents=True, exist_ok=True)
+        shutil.move(str(folder), str(DONE_DIR / folder.name))
+        attached.append(c)
+        print(f"사진 붙임: cases/{c['slug']}.html (사진 {len(c['photos'])}장)")
     for folder in folders:
         info, _ = check_folder(folder, rows)
         if info and not info["region"]["dong"] and not gu_page_exists(info["region"]):
@@ -808,11 +863,11 @@ def main() -> None:
         for line in case_story.report_lines(c):
             print(f"  {line}")
 
-    if done or index_changed or args.keep_dates:
+    if done or attached or index_changed or args.keep_dates:
         write_index(index)
         # build_site.py 가 동 페이지와 함께 사례 페이지(render_all_cases)·사이트맵도 만든다
         subprocess.run(build_cmd, cwd=ROOT, check=True, stdout=subprocess.DEVNULL)
-        update_sitemap(ROOT, [], paths=[f"cases/{c['slug']}.html" for c in done], keep_dates=args.keep_dates)
+        update_sitemap(ROOT, [], paths=[f"cases/{c['slug']}.html" for c in done + attached], keep_dates=args.keep_dates)
         print(f"지역 페이지 재렌더링 완료, 사례 {len(done)}건 추가(사이트맵에는 깊은 사례만)")
         for c in done:
             if not c["dong"]:
@@ -830,7 +885,7 @@ def main() -> None:
                 print(line)
         if result.returncode != 0:
             sys.exit(result.returncode)
-    print(f"완료: 사례 {len(done)}건 처리, {skipped}건 건너뜀, {len(waiting)}건 대기(구 페이지·실험 B)")
+    print(f"완료: 사례 {len(done)}건 처리, 사진 붙인 사례 {len(attached)}건, {skipped}건 건너뜀, {len(waiting)}건 대기(구 페이지·실험 B)")
     if skipped:
         sys.exit(1)
 

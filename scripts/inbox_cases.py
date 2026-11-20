@@ -9,6 +9,14 @@ PC "사례 가져오기" 앞 단계: 구글 드라이브 인박스(G:\\내 드�
   python scripts/inbox_cases.py apply gN  지역 검사 → 원본 우선/ 에 폴더 만들고 파일 옮기기, 등록증은 지우기
   python scripts/inbox_cases.py report    오늘 만든 폴더·보류(확인 필요) 요약, cases/input/인박스-확인-필요.md 다시 쓰기
 
+차 폴더(2026-11-20 병한님): 인박스 안에 카톡 대화방 이름 그대로("탁송기사 대구 북구 02년 아반떼") 폴더를 만들고 사진을 넣으면
+  폴더 하나 = 차 한 대(시간 묶음·알림보다 먼저). 폴더 이름에서 지역 낱말(시·군·구·동·읍·면은 빼고 적어도 됨)·연식·차종을 읽어
+  ① 이미 만든 사례(cases/index.json)와 하나만 맞으면 answer.json 초안에 "붙일사례": slug(지역근거 "사례") — 새 사례가 아니라
+     그 사례에 사진만 붙는다(pc_cases stage → build_cases.attach_photos, 모두 6장까지)
+  ② 아니면 새 차: 거래 기록부에서 하나만 맞으면 그 지역(지역근거 "기록부"), 없으면 폴더 이름의 지역(시·군·구까지 정해질 때, "폴더이름")
+  ③ 못 정하면 초안 없이 보류("확인 필요: '대구' 만으로는 구를 모름 — 폴더 이름에 구를 넣어 주세요"), 폴더는 인박스에 그대로.
+  다 옮긴 폴더는 지운다. 이름에 "후기"가 든 폴더는 reviews.py 몫이라 보지 않는다.
+
 병한님 알림(2026-10-28): 인박스에 _지역알림.json 이 있으면(클로드 채팅이 병한님 "○○ 올림"을 받고 적음)
   ① 시간 묶음보다 먼저 그 "차" 목록으로 나눈다. "파일" 이 이름 목록이면 그 파일만, 글자(예: "그 시각 묶음 전부")면
     "올린 시각"(분까지)에 올라온 시간 묶음을 통째로 그 차로. 남은 파일만 시간으로 묶는다.
@@ -55,7 +63,8 @@ STAGING = ROOT / ".cases_staging" / "inbox"
 PARTNERS = ROOT / "data" / "partner_locations.json"
 HOLD_MD = ROOT / "cases" / "input" / "인박스-확인-필요.md"
 NOTICE = "_지역알림.json"  # 병한님 "○○ 올림" 알림(클로드 채팅이 씀)
-REGION_SOURCES = ("말", "등록증", "GPS", "병한님", "기록부")  # 기록부 = 촬영 날짜가 입고일인 거래가 하나뿐(2026-11-05)
+REGION_SOURCES = ("말", "등록증", "GPS", "병한님", "기록부", "폴더이름", "사례")  # 기록부 = 촬영 날짜가 입고일인 거래가 하나뿐(2026-11-05)
+# 폴더이름 = 병한님이 붙인 차 폴더 이름(병한님과 같은 급), 사례 = 이미 만든 사례에 사진만 붙임(2026-11-20)
 VIDEO_EXT = {".mp4", ".mov", ".3gp", ".m4v"}
 IMAGE_EXT = {".jpg", ".jpeg", ".png", ".webp", ".heic"}
 AUDIO_EXT = {".mp3", ".m4a", ".wav", ".aac", ".amr"}
@@ -65,7 +74,8 @@ TAIL_SEC = 5            # 영상 마지막 몇 초의 말을 읽나
 AUDIO_MAX_SEC = 60      # 녹음은 앞 60초만 글로 바꾼다
 MEMO_KEYS = ("날짜", "지역", "차종", "연식", "시동", "운행", "상황", "처리", "차번호", "압류",
              # 사례 글 새 칸(case_story.STORY_KEYS): 병한님이 알려 준 사연이 있을 때만 answer.json 에 적는다
-             "걱정", "확인", "고른쪽", "이유", "문의일", "인수일", "말소일", "끝한줄", "제목꼬리")
+             "걱정", "확인", "고른쪽", "이유", "문의일", "인수일", "말소일", "끝한줄", "제목꼬리",
+             "붙일사례")  # 이미 만든 사례 slug: 새 사례 대신 그 사례에 사진만 붙인다(build_cases.attach_photos, 2026-11-20)
 
 
 def kind_of(p: Path) -> str:
@@ -117,6 +127,189 @@ def notice_groups(files: list[Path], cars: list[dict]) -> tuple[list[tuple[dict,
             used.update(p.name for p in picked)
             out.append((car, picked))
     return out, [p for p in files if p.name not in used]
+
+
+# ---- 차 폴더(2026-11-20 병한님): 인박스 안에 "탁송기사 대구 02년 아반떼" 처럼 이름 붙인 폴더 하나 = 차 한 대 ----
+FOLDER_DROP_RE = re.compile(r"^(탁송기사|탁송|기사님?|사진|영상)$")
+FOLDER_YEAR_RE = re.compile(r"^((?:19|20)?\d{2})(?:년식?|식)?$")
+PLACE_SUFFIX = ("시", "군", "구", "동", "읍", "면")
+ATTACH_DAYS = 30  # 사진이 있는 사례는 사례 날짜와 촬영 날짜가 이 안일 때만 같은 차로 본다(사진 없는 사례는 날짜를 보지 않음)
+
+
+def car_folders(inbox: Path) -> list[Path]:
+    """인박스 바로 아래 차 폴더. '_'·'.' 로 시작하는 폴더, 문자백업·제외 폴더, 이름에 "후기"가 든 폴더(reviews.py 몫)는 보지 않는다."""
+    return sorted(p for p in inbox.iterdir() if p.is_dir() and not p.name.startswith(("_", "."))
+                  and not any(w in p.name for w in ("문자백업", "제외", "후기")))
+
+
+def folder_files(folder: Path) -> list[Path]:
+    return sorted((p for p in folder.iterdir() if p.is_file() and kind_of(p)), key=lambda p: p.stat().st_mtime)
+
+
+def place_names(rows: list[dict]) -> set[str]:
+    from build_cases import SIDO_ALIASES
+    names = set(SIDO_ALIASES) | {r["sido"] for r in rows} | {r["dong"] for r in rows}
+    names |= {t for r in rows for t in r["sigungu"].split()}
+    return names
+
+
+def parse_folder_name(name: str, rows: list[dict], names: set[str] | None = None) -> dict:
+    """'탁송기사 대구 02년 아반떼' → {"places": ["대구"], "year": "2002", "car": "아반떼"}.
+    지역 낱말은 법정동 목록의 이름(끝의 시·군·구·동·읍·면을 빼고 적어도 됨: 의왕 → 의왕시, 신탄진 → 신탄진동), 나머지는 차종.
+    순서는 상관없다. 연식은 '02년'·'2002'·'02년식'."""
+    names = names if names is not None else place_names(rows)
+    places, car, year = [], [], ""
+    for tok in re.split(r"[\s_\-·,]+", re.sub(r"\(\d+\)$", "", name.strip())):
+        if not tok or FOLDER_DROP_RE.match(tok):
+            continue
+        if not year and (m := FOLDER_YEAR_RE.match(tok)):
+            y = m.group(1)
+            year = y if len(y) == 4 else (f"20{y}" if int(y) <= date.today().year % 100 else f"19{y}")
+            continue
+        if tok in names:
+            places.append(tok)
+            continue
+        hit = next((tok + s for s in PLACE_SUFFIX if tok + s in names), None)
+        if hit and not car:  # 차종 뒤에 오는 낱말은 지역으로 보지 않는다("아반떼 XD")
+            places.append(hit)
+            continue
+        car.append(tok)
+    return {"places": places, "year": year, "car": " ".join(car)}
+
+
+def case_year(c: dict) -> str:
+    text = " ".join([c.get("car") or ""] + [v for k, v in c.get("facts") or [] if k == "연식"])
+    m = re.search(r"((?:19|20)\d{2})\s*년", text)
+    return m.group(1) if m else ""
+
+
+def case_car(c: dict) -> str:
+    return re.sub(r"^\s*(?:19|20)\d{2}\s*년식\s*", "", c.get("car") or "").strip()
+
+
+def place_hit(place: str, c: dict) -> bool:
+    """폴더 이름의 지역 낱말 하나가 사례 지역(시·도/시·군·구/동)과 맞나."""
+    from build_cases import SIDO_ALIASES
+    sido = SIDO_ALIASES.get(place, place)
+    return (sido == c.get("sido") or place in (c.get("sigungu") or "").split() or place == c.get("dong"))
+
+
+def match_cases(parsed: dict, day: str, index: list[dict]) -> list[dict]:
+    """폴더 이름(지역·차종·연식)과 맞는 이미 만든 사례. 지역 낱말이 전부 맞고, 차종이 서로 포함되고, 연식이 둘 다 있으면 같아야 한다.
+    사진이 이미 있는 사례는 사례 날짜가 촬영 날짜 ±30일 안일 때만(같은 차종의 다른 차에 붙지 않게)."""
+    from pc_cases import car_key
+    want = car_key(parsed["car"])
+    if not want or not parsed["places"]:
+        return []
+    try:
+        d0 = date.fromisoformat(day)
+    except ValueError:
+        d0 = None
+    out = []
+    for c in index:
+        have = car_key(case_car(c))
+        if not have or not (want in have or have in want):
+            continue
+        if not all(place_hit(p, c) for p in parsed["places"]):
+            continue
+        cy = case_year(c)
+        if parsed["year"] and cy and parsed["year"] != cy:
+            continue
+        if c.get("photos") and d0:
+            try:
+                if abs((date.fromisoformat(c.get("date") or "") - d0).days) > ATTACH_DAYS:
+                    continue
+            except ValueError:
+                continue
+        out.append(c)
+    return out
+
+
+def ledger_for_folder(parsed: dict, day: str) -> list[dict]:
+    """거래 기록부에서 폴더 이름과 맞는 거래(지역 낱말 하나 이상 + 차종, 날짜·입고일이 촬영 날짜 ±30일). [{지역, 차종, 연식}]"""
+    import ledger_read as L
+    from inquiry_log import WIKI_DIR
+    from pc_cases import car_key
+    want = car_key(parsed["car"])
+    if not want:
+        return []
+    try:
+        d0 = date.fromisoformat(day)
+    except ValueError:
+        return []
+    bases = [re.sub(r"(특별자치시|특별자치도|특별시|광역시|도|시|군|구|동|읍|면)$", "", p) or p for p in parsed["places"]]
+    out = []
+    for r in L.records(WIKI_DIR):
+        if r.get("거래상태") == "종료":
+            continue
+        days = [x for x in (r.get("입고일"), r.get("날짜")) if L.is_day(x or "")]
+        if not days or min(abs((date.fromisoformat(x) - d0).days) for x in days) > ATTACH_DAYS:
+            continue
+        have = car_key(L.car_name(r.get("차종", "")))
+        if not have or not (want in have or have in want):
+            continue
+        if bases and not any(b and b in (r.get("지역") or "") for b in bases):
+            continue
+        y = L.model_year(r.get("연식", ""))
+        if parsed["year"] and y and parsed["year"] != y:
+            continue
+        out.append({"지역": r.get("지역", ""), "차종": L.car_name(r.get("차종", "")), "연식": y})
+    return out
+
+
+def folder_region(parsed: dict, rows: list[dict]) -> dict | None:
+    """폴더 이름의 지역 낱말만으로 정한 지역(시·군·구까지 정해질 때). '대구'처럼 시·도뿐이면 None."""
+    text = " ".join(parsed["places"])
+    region, _ = resolve_region(text, rows)
+    return region or whole_city(text, rows)
+
+
+def safe_label(name: str) -> str:
+    """보고·저장소 목록에 적을 폴더 이름. 차번호·전화번호 꼴이 섞였으면 이름 대신 '(이름에 번호가 있어 숨김)'."""
+    import ledger_read as L
+    return "(이름에 번호가 있어 숨김)" if re.search(r"\d{2,3}\s?[가-힣]\s?\d{4}|\d{3,4}-?\d{4}", name) or L.CAR_BAD_RE.search(name) else name
+
+
+def folder_draft(folder: Path, files: list[Path], rows: list[dict], names: set[str], index: list[dict]) -> tuple[dict | None, dict]:
+    """차 폴더 하나 → (answer.json 초안 또는 None, plan 에 적을 칸).
+    ① 이미 만든 사례와 하나만 맞으면 그 사례에 사진만 붙인다(붙일사례) ② 아니면 새 차: 기록부에서 하나만 맞으면 그 지역,
+    없으면 폴더 이름의 지역(시·군·구까지 정해질 때) ③ 못 정하면 초안 없이 보류 이유만."""
+    parsed = parse_folder_name(folder.name, rows, names)
+    days = [shot_day(p) for p in files if kind_of(p) in ("image", "video")] or [upload_time(files[0])[:10]]
+    day = max(set(days), key=days.count)
+    info = {"folder": safe_label(folder.name), "parsed": parsed, "shot_day": day}
+    base = {"시동": "", "운행": "", "상황": "", "처리": "", "차번호": "", "압류": "", "등록증": [], "조회": [], "보류": ""}
+    if not parsed["car"]:
+        info["hold"] = "확인 필요: 폴더 이름에서 차종을 못 찾음 (예: 탁송기사 대구 북구 02년 아반떼)"
+        return None, info
+    hits = match_cases(parsed, day, index)
+    if len(hits) == 1:
+        c = hits[0]
+        info["attach"] = c["slug"]
+        region = " ".join(x for x in (c["sido"], c["sigungu"], c["dong"]) if x)
+        return {**base, "지역": region, "지역근거": "사례", "차종": case_car(c), "연식": case_year(c) or parsed["year"],
+                "붙일사례": c["slug"]}, info
+    if len(hits) > 1:
+        info["hold"] = (f"확인 필요: 이미 만든 사례 {len(hits)}건과 맞음 — 폴더 이름에 구·동이나 연식을 더 넣어 주세요")
+        return None, info
+    led = ledger_for_folder(parsed, day)
+    if len(led) == 1:
+        h = led[0]
+        region, _ = resolve_region(h["지역"], rows)
+        if not region:  # 기록부 지역이 '경기 포천' 처럼 줄인 이름이면 폴더 이름 낱말과 합쳐 다시
+            region = folder_region(parse_folder_name(h["지역"] + " " + " ".join(parsed["places"]), rows, names) | {"car": ""}, rows)
+        if region:
+            info["ledger"] = "기록부 1건 맞음"
+            return {**base, "지역": " ".join(x for x in (region["sido"], region["sigungu"], region["dong"]) if x),
+                    "지역근거": "기록부", "차종": parsed["car"], "연식": parsed["year"] or h["연식"]}, info
+    region = folder_region(parsed, rows)
+    if region:
+        return {**base, "지역": " ".join(x for x in (region["sido"], region["sigungu"], region["dong"]) if x),
+                "지역근거": "폴더이름", "차종": parsed["car"], "연식": parsed["year"]}, info
+    where = " ".join(parsed["places"]) or "지역 없음"
+    info["hold"] = (f"확인 필요: '{where}' 만으로는 구를 모름" + (f"(기록부에 맞는 거래 {len(led)}건)" if led else "")
+                    + " — 폴더 이름에 구를 넣어 주세요 (예: 탁송기사 대구 북구 02년 아반떼)")
+    return None, info
 
 
 def duplicate_of(p: Path, names: set[str]) -> str:
@@ -264,7 +457,12 @@ def cmd_scan(args) -> None:
         shutil.rmtree(STAGING)
     STAGING.mkdir(parents=True)
     noticed, rest = notice_groups(inbox_files(inbox), load_notice(inbox).get("차", []))
-    groups = noticed + [(None, files) for files in group_files(rest)]
+    # 차 폴더(2026-11-20): 폴더 하나 = 차 한 대. 시간 묶음·알림보다 먼저, 폴더 안 파일만
+    folders = [(f, fs) for f in car_folders(inbox) if (fs := folder_files(f))]
+    groups = [({"_folder": f}, fs) for f, fs in folders] + noticed + [(None, files) for files in group_files(rest)]
+    rows = load_csv_rows()
+    names_all = place_names(rows)
+    index = load_json(ROOT / "cases" / "index.json", default=[]) or []
     plan = {"date": date.today().isoformat(), "inbox": str(inbox), "groups": {}}
     for gi, (car, files) in enumerate(groups, 1):
         gid = f"g{gi}"
@@ -298,7 +496,14 @@ def cmd_scan(args) -> None:
         (d / "말.txt").write_text("\n".join(speech) + "\n", encoding="utf-8")
         plan["groups"][gid] = {"files": items, "speech": speech, "gps": gps,
                                "gps_usable": partners_ready(), "status": "scanned"}
-        if car:
+        if car and car.get("_folder"):
+            folder = car["_folder"]
+            plan["groups"][gid]["dir"] = folder.name  # 파일은 인박스 안 이 폴더에 있음
+            draft, info = folder_draft(folder, files, rows, names_all, index)
+            plan["groups"][gid].update(info)
+            if draft:
+                (d / "answer.json").write_text(json.dumps(draft, ensure_ascii=False, indent=1), encoding="utf-8")
+        elif car:
             plan["groups"][gid]["notice"] = {k: v for k, v in car.items() if k != "파일"}
             # answer.json 초안: 병한님이 알려 준 지역·차종·연식. 시동·상황 등은 Claude 가 미리보기·말을 보고 채운다
             draft = {"지역": car.get("지역", ""), "지역근거": "병한님", "차종": car.get("차종", ""),
@@ -332,7 +537,14 @@ def cmd_scan(args) -> None:
         print(f"  {gid}: 영상 {kinds['video']} · 사진 {kinds['image']} · 녹음 {kinds['audio']}, "
               f"{g['files'][0]['time']}~{g['files'][-1]['time']}"
               + (f" · 똑같은 사본 {dups}개(옮기지 않고 지움)" if (dups := sum(1 for i in g["files"] if i.get("dup"))) else "")
-              + (f" — 병한님 알림 '{g['notice'].get('이름', '')}'(answer.json 초안 씀)" if g.get("notice") else ""))
+              + (f" — 병한님 알림 '{g['notice'].get('이름', '')}'(answer.json 초안 씀)" if g.get("notice") else "")
+              + (f" — 폴더 '{g['folder']}'" if g.get("folder") else ""))
+        if g.get("attach"):
+            print(f"     이미 만든 사례 {g['attach']} 에 사진만 붙임(answer.json 초안 씀, 붙일사례)")
+        elif g.get("folder") and not g.get("hold"):
+            print("     새 차(answer.json 초안 씀, 지역근거 " + ("기록부" if g.get("ledger") else "폴더이름") + ")")
+        if g.get("hold"):
+            print(f"     {g['hold']} (폴더는 인박스에 그대로 둠)")
         if g.get("ledger"):
             print(f"     기록부(촬영 {g.get('shot_day')}): {g['ledger']}" + (" → answer.json 초안(지역근거 기록부)" if "1건" in g["ledger"] else ""))
         if g.get("calendar_ask"):
@@ -382,7 +594,8 @@ def cmd_apply(args) -> None:
     ans = load_json(STAGING / args.gid / "answer.json", default=None)
     if not ans:
         raise SystemExit(f"{args.gid}: answer.json 을 먼저 쓰세요")
-    inbox = Path(plan["inbox"])
+    inbox_root = Path(plan["inbox"])
+    inbox = inbox_root / g["dir"] if g.get("dir") else inbox_root  # 차 폴더면 그 폴더 안
     names = {i["file"] for i in g["files"]}
     for k in ("등록증", "조회"):
         bad = [n for n in ans.get(k, []) if n not in names]
@@ -405,7 +618,7 @@ def cmd_apply(args) -> None:
         else:
             rows = load_csv_rows()
             region, why = resolve_region(ans.get("지역", ""), rows)
-            if not region and src_kind == "병한님":
+            if not region and src_kind in ("병한님", "폴더이름", "기록부", "사례"):
                 region = whole_city(ans.get("지역", ""), rows)  # "안산시"처럼 구를 모르는 시: 폴더는 만들고 사례는 구가 정해질 때까지 대기
             if not region:
                 hold = f"확인 필요: 지역 '{ans.get('지역', '')}' — {why}"
@@ -425,7 +638,7 @@ def cmd_apply(args) -> None:
     first = min(datetime.strptime(i["time"], "%Y-%m-%d %H:%M") for i in g["files"])
     car = safe_name(ans["차종"])
     year = re.sub(r"\D", "", ans.get("연식", ""))[:4]
-    situ = safe_name(ans.get("상황", "")) or "일반폐차"
+    situ = "사진추가" if ans.get("붙일사례") else (safe_name(ans.get("상황", "")) or "일반폐차")
     base = f"{first:%Y%m%d}_{region['dong'] or region['sigungu'].split()[-1]}_{car}{year}_{situ}"
     src = Path(args.src) / "우선"
     dest, n = src / base, 2
@@ -453,14 +666,20 @@ def cmd_apply(args) -> None:
             continue
         to = dest / "자료" if (i["file"] in side or i["kind"] == "audio") else dest
         shutil.move(str(p), str(to / i["file"]))
-    g.update(status="applied", folder=f"우선\\{dest.name}", car=ans["차종"], region=memo["지역"])
+    g.update(status="applied", made=f"우선\\{dest.name}", car=ans["차종"], region=memo["지역"])
     save_plan(plan)
+    if g.get("dir"):  # 다 옮긴 차 폴더는 지운다(남은 파일이 있으면 그대로 둠)
+        try:
+            inbox.rmdir()
+        except OSError:
+            pass
     if g.get("notice"):  # 처리한 차는 병한님 알림에서 뺀다
-        data = load_notice(inbox)
+        data = load_notice(inbox_root)
         if data:
             data["차"] = [c for c in data.get("차", []) if c.get("이름") != g["notice"].get("이름")]
-            (inbox / NOTICE).write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"{args.gid}: 원본 폴더 만듦 → 우선\\{dest.name} (지역 근거: {src_kind})")
+            (inbox_root / NOTICE).write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(f"{args.gid}: 원본 폴더 만듦 → 우선\\{dest.name} (지역 근거: {src_kind})"
+          + (f" — 사례 {ans['붙일사례']} 에 사진만 붙일 차" if ans.get("붙일사례") else ""))
 
 
 def cmd_report(args) -> None:
@@ -469,16 +688,19 @@ def cmd_report(args) -> None:
     held = [g for g in plan["groups"].values() if g.get("status") != "applied"]
     print(f"인박스: 폴더 만든 차 {len(made)}대, 보류 {len(held)}대")
     for g in made:
-        print(f"  만듦: {g['folder']}")
+        print(f"  만듦: {g.get('made') or g.get('folder')}" + (f" (사례 {g['attach']} 에 사진 붙임)" if g.get("attach") else ""))
     rows = []
     for g in held:
         t = g["files"][0]["time"] if g["files"] else ""
         kinds = {k: sum(1 for i in g["files"] if i["kind"] == k) for k in ("video", "image", "audio")}
         reason = g.get("hold") or "확인 필요: answer.json 을 쓰지 않음"
-        print(f"  보류: {t} 올린 차({g.get('car') or '차종 모름'}) — {reason}")
+        where = f"폴더 '{g['folder']}'" if g.get("folder") else f"{t} 올린 차"
+        print(f"  보류: {where}({g.get('car') or g.get('parsed', {}).get('car') or '차종 모름'}) — {reason}")
+        if g.get("folder"):  # 아침 보고 "오늘 병한님이 할 것" 줄
+            print(f"  확인 필요: 폴더 '{g['folder']}' — {reason.removeprefix('확인 필요: ')}")
         # 저장소에 올라가는 목록: 올린 시각·파일 수·차종·이유만(위치·차번호·말은 넣지 않음)
-        rows.append(f"| {t} | 영상 {kinds['video']} · 사진 {kinds['image']} · 녹음 {kinds['audio']} | "
-                    f"{g.get('car') or g.get('notice', {}).get('차종') or '모름'} | {reason} |")
+        rows.append(f"| {t}" + (f" (폴더 {g['folder']})" if g.get("folder") else "") + f" | 영상 {kinds['video']} · 사진 {kinds['image']} · 녹음 {kinds['audio']} | "
+                    f"{g.get('car') or g.get('notice', {}).get('차종') or g.get('parsed', {}).get('car') or '모름'} | {reason} |")
     HOLD_MD.parent.mkdir(parents=True, exist_ok=True)
     HOLD_MD.write_text(
         "# 인박스 확인 필요 (PC 사례 가져오기가 매일 다시 씀)\n\n"
