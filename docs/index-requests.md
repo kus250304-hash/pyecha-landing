@@ -1515,3 +1515,8 @@
 - https://pyecha119.com/gu/%EC%82%BC%EC%B2%99%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/삼척시-폐차장.html (바뀜: 2026-11-19 본문 바뀜(구·시군))
 - https://pyecha119.com/gu/%EC%86%8D%EC%B4%88%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/속초시-폐차장.html (바뀜: 2026-11-19 본문 바뀜(구·시군))
 - https://pyecha119.com/gu/%EC%88%98%EC%9B%90%EC%8B%9C-%EC%98%81%ED%86%B5%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/수원시-영통구-폐차장.html (바뀜: 2026-11-19 본문 바뀜(구·시군))
+
+## 2026-11-21 네이버
+
+- https://pyecha119.com/gu/%EA%B8%88%EC%B2%9C%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/금천구-폐차장.html (반응: 최근 7일 전화 1)
+- https://pyecha119.com/gu/%EB%82%A8%EC%96%91%EC%A3%BC%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/남양주시-폐차장.html (반응: 최근 7일 전화 1)
