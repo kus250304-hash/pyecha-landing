@@ -1,5 +1,126 @@
 [
  {
+  "slug": "case-20261120-daegu-dalseo-sangin",
+  "date": "2026-11-20",
+  "sido": "대구광역시",
+  "sigungu": "달서구",
+  "dong": "상인동",
+  "region_slug": "daegu-dalseo-sangin",
+  "car": "2002년식 아반떼XD",
+  "title": "상인동 2002년식 아반떼XD 폐차·수출 비교 상담 사례",
+  "summary": "2002년식 아반떼XD 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "아반떼XD"
+   ],
+   [
+    "연식",
+    "2002년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ]
+  ],
+  "situation": "2002년식 아반떼XD 차량으로, 시동은 걸리는 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20261120-daegu-dalseo-sangin-1.jpg",
+  "photos": [
+   "case-20261120-daegu-dalseo-sangin-1.jpg",
+   "case-20261120-daegu-dalseo-sangin-2.jpg",
+   "case-20261120-daegu-dalseo-sangin-3.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "걱정": "등록증을 며칠째 찾아도 안 보여서 걱정하셨습니다. (통화 요약)",
+   "확인": [
+    "차번호 조회로 2002년식 아반떼XD 확인",
+    "휘발유 차"
+   ],
+   "고른쪽": "폐차",
+   "이유": "연식이 오래된 차라 폐차 쪽으로 정했습니다."
+  },
+  "depth": [
+   "걱정",
+   "확인",
+   "고른쪽"
+  ],
+  "thin": false,
+  "card_line": "등록증을 며칠째 찾아도 안 보여서 걱정하셨습니다.",
+  "added": "2026-11-22"
+ },
+ {
+  "slug": "case-20261118-gyeonggi-anyang-dongan",
+  "date": "2026-11-18",
+  "sido": "경기도",
+  "sigungu": "안양시 동안구",
+  "dong": "",
+  "region_slug": null,
+  "car": "2007년식 SM5",
+  "title": "안양시 동안구 2007년식 SM5 폐차·수출 비교 상담 사례",
+  "summary": "2007년식 SM5 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "SM5"
+   ],
+   [
+    "연식",
+    "2007년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ],
+   [
+    "문의 내용",
+    "오래 타서 폐차"
+   ]
+  ],
+  "situation": "2007년식 SM5 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20261118-gyeonggi-anyang-dongan-1.jpg",
+  "photos": [
+   "case-20261118-gyeonggi-anyang-dongan-1.jpg",
+   "case-20261118-gyeonggi-anyang-dongan-2.jpg",
+   "case-20261118-gyeonggi-anyang-dongan-3.jpg",
+   "case-20261118-gyeonggi-anyang-dongan-4.jpg",
+   "case-20261118-gyeonggi-anyang-dongan-5.jpg",
+   "case-20261118-gyeonggi-anyang-dongan-6.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "걱정": "기름이 많이 남아 있어서 아깝다고 하셨습니다.",
+   "확인": [
+    "출퇴근용으로 타던 차, 운행됨",
+    "휘발유 차"
+   ],
+   "고른쪽": "폐차",
+   "이유": "수출 쪽도 알아봤지만 이 차에 맞는 곳이 없어 폐차 쪽으로 진행했습니다.",
+   "끝한줄": "오래 타서 정이 든 차라, 차가 떠날 때까지 한참 지켜보셨습니다."
+  },
+  "depth": [
+   "걱정",
+   "확인",
+   "고른쪽",
+   "끝한줄"
+  ],
+  "thin": false,
+  "card_line": "기름이 많이 남아 있어서 아깝다고 하셨습니다.",
+  "added": "2026-11-22"
+ },
+ {
   "slug": "case-20261111-gyeonggi-pocheon",
   "date": "2026-11-11",
   "sido": "경기도",
@@ -228,8 +349,15 @@
   "method": "차번호로 차량을 조회하고 사진으로 상태를 확인한 뒤, 문의한 날 오후에 기사가 가서 차를 가져갔습니다.",
   "result": "",
   "quote": "",
-  "thumb": null,
-  "photos": [],
+  "thumb": "case-20261110-gyeonggi-uiwang-1.jpg",
+  "photos": [
+   "case-20261110-gyeonggi-uiwang-1.jpg",
+   "case-20261110-gyeonggi-uiwang-2.jpg",
+   "case-20261110-gyeonggi-uiwang-3.jpg",
+   "case-20261110-gyeonggi-uiwang-4.jpg",
+   "case-20261110-gyeonggi-uiwang-5.jpg",
+   "case-20261110-gyeonggi-uiwang-6.jpg"
+  ],
   "videos": [],
   "spoken": "",
   "story": {
@@ -255,7 +383,8 @@
   ],
   "thin": false,
   "card_line": "수리비가 많이 나오는 차라 최대한 빨리 정리하고 싶어요",
-  "added": "2026-11-17"
+  "added": "2026-11-17",
+  "photos_added": "2026-11-22"
  },
  {
   "slug": "case-20261109-gyeonggi-yeoju",

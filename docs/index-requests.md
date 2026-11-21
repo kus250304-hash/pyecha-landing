@@ -1521,3 +1521,16 @@
 
 - https://pyecha119.com/gu/%EA%B8%88%EC%B2%9C%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/금천구-폐차장.html (반응: 최근 7일 전화 1)
 - https://pyecha119.com/gu/%EB%82%A8%EC%96%91%EC%A3%BC%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/남양주시-폐차장.html (반응: 최근 7일 전화 1)
+
+## 2026-11-22 네이버
+
+- https://pyecha119.com/gu/%EB%8B%AC%EC%84%9C%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/달서구-폐차장.html (바뀜: 2026-11-22 사례가 새로 붙음(달서구))
+- https://pyecha119.com/pages/gyeonggi-anyang-dongan-pyeongchon.html — pages/gyeonggi-anyang-dongan-pyeongchon.html (반응: 최근 7일 폼 2)
+- https://pyecha119.com/gu/%EC%82%AC%EC%83%81%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/사상구-폐차장.html (반응: 최근 7일 전화 1)
+- https://pyecha119.com/pages/incheon-yeonsu-songdo.html — pages/incheon-yeonsu-songdo.html (반응: 최근 7일 전화 1)
+- https://pyecha119.com/gu/%EA%B5%B0%EC%9C%84%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/군위군-폐차장.html (바뀜: 2026-11-22 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EB%8B%AC%EC%84%B1%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/달성군-폐차장.html (바뀜: 2026-11-22 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EB%8C%80%EA%B5%AC-%EB%8F%99%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/대구-동구-폐차장.html (바뀜: 2026-11-22 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EB%8C%80%EA%B5%AC-%EC%84%9C%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/대구-서구-폐차장.html (바뀜: 2026-11-22 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EB%8C%80%EA%B5%AC-%EC%A4%91%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/대구-중구-폐차장.html (바뀜: 2026-11-22 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EC%84%9C%EB%8C%80%EB%AC%B8%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/서대문구-폐차장.html (바뀜: 2026-11-22 본문 바뀜(구·시군))

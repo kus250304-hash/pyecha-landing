@@ -74,7 +74,7 @@
     "value": "말소등록은 차가 등록된 시·군에서 처리합니다. 예를 들어 군산시 차량등록사업소는 자동차 압류·저당·말소 등록 업무를 하며 주소는 군산시 구영2길 39입니다.",
     "source": "군산시 차량등록사업소 안내",
     "url": "https://www.gunsan.go.kr/main/m442",
-    "grade": "summary"
+    "grade": "opened"
    },
    {
     "label": "노후차 조기폐차 지원",
@@ -226,7 +226,7 @@
     "value": "강릉시청 누리집에 노후경유차 조기폐차 지원 대상과 신청 방법이 안내되어 있습니다.",
     "source": "강릉시청 누리집(노후경유차 조기폐차 지원)",
     "url": "https://www.gn.go.kr/www/contents.do?key=1686",
-    "grade": "summary"
+    "grade": "opened"
    }
   ],
   "dropped_info": [
@@ -261,11 +261,11 @@
     "grade": "summary"
    },
    {
-    "label": "말소등록 기한·서류",
-    "value": "아산시 안내 기준으로 폐차 말소등록은 폐차일부터 30일 안에 신청하며, 자동차등록증·폐차인수증명서(폐차장 발급)·신분증이 기본 서류입니다.",
+    "label": "말소등록 서류",
+    "value": "아산시 안내 기준으로 폐차 말소등록에는 자동차 말소등록 신청서, 신분증, 폐차인수증명서(폐차업체 발행)가 기본으로 필요합니다.",
     "source": "아산시 민원과 자동차 말소등록 안내",
     "url": "https://asan.go.kr/car/design/node/?menu=010105_1",
-    "grade": "summary"
+    "grade": "opened"
    },
    {
     "label": "노후차 조기폐차 지원",
