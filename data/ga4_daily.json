@@ -1,6 +1,6 @@
 {
  "property_timezone": "Asia/Seoul",
- "updated": "2026-11-20T12:22+09:00",
+ "updated": "2026-11-21T12:25+09:00",
  "days": {
   "2026-10-20": {
    "sessions": {
@@ -3972,7 +3972,7 @@
     "구글": 0,
     "유튜브": 0,
     "직접": 0,
-    "기타": 1
+    "기타": 0
    },
    "events": {
     "네이버": {
@@ -4002,7 +4002,7 @@
     }
    },
    "totals": {
-    "sessions": 18,
+    "sessions": 17,
     "quote_submit": 0,
     "call_click": 3,
     "sms_click": 1
@@ -4015,10 +4015,6 @@
     {
      "source": "naver / organic",
      "sessions": 4
-    },
-    {
-     "source": "(not set) / (not set)",
-     "sessions": 1
     },
     {
      "source": "m.blog.naver.com / referral",
@@ -4052,11 +4048,6 @@
      "page": "/guide/차령초과-폐차.html",
      "bucket": "네이버",
      "sessions": 3
-    },
-    {
-     "page": "(not set)",
-     "bucket": "기타",
-     "sessions": 1
     },
     {
      "page": "/gu/금천구-폐차장.html",
@@ -4110,6 +4101,215 @@
     },
     {
      "page": "/pages/gyeonggi-goyang-ilsandong-jungsan.html",
+     "bucket": "네이버",
+     "sessions": 1
+    }
+   ]
+  },
+  "2026-11-20": {
+   "sessions": {
+    "네이버": 27,
+    "구글": 0,
+    "유튜브": 0,
+    "직접": 0,
+    "기타": 1
+   },
+   "events": {
+    "네이버": {
+     "quote_submit": 2,
+     "call_click": 2,
+     "sms_click": 1
+    },
+    "구글": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "유튜브": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "직접": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "기타": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    }
+   },
+   "totals": {
+    "sessions": 28,
+    "quote_submit": 2,
+    "call_click": 2,
+    "sms_click": 1
+   },
+   "sources": [
+    {
+     "source": "m.search.naver.com / referral",
+     "sessions": 18
+    },
+    {
+     "source": "naver / organic",
+     "sessions": 8
+    },
+    {
+     "source": "(not set) / (not set)",
+     "sessions": 1
+    },
+    {
+     "source": "m.blog.naver.com / referral",
+     "sessions": 1
+    }
+   ],
+   "pages": [
+    {
+     "page": "/pages/gyeonggi-anyang-dongan-pyeongchon.html",
+     "quote_submit": 2,
+     "call_click": 0
+    },
+    {
+     "page": "/gu/사상구-폐차장.html",
+     "quote_submit": 0,
+     "call_click": 1
+    },
+    {
+     "page": "/pages/incheon-yeonsu-songdo.html",
+     "quote_submit": 0,
+     "call_click": 1
+    }
+   ],
+   "landing": [
+    {
+     "page": "(not set)",
+     "bucket": "네이버",
+     "sessions": 2
+    },
+    {
+     "page": "/gu/담양군-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 2
+    },
+    {
+     "page": "(not set)",
+     "bucket": "기타",
+     "sessions": 1
+    },
+    {
+     "page": "/cases/case-20261008-chungnam-cheonan-seobuk.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/강릉시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/고양시-덕양구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/구미시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/대구-북구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/대전-서구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/사상구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/서해구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/수성구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/아산시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/영덕군-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/영종구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/용인시-수지구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/guide/차령초과-폐차.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/pages/gangwon-chuncheon-joyang.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/pages/gyeongbuk-cheongdo-hwayang.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/pages/gyeonggi-anyang-dongan-pyeongchon.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/pages/gyeongnam-tongyeong-mujeon.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/pages/incheon-bupyeong-sangok.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/pages/incheon-yeonsu-songdo.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/pages/jeonbuk-jeonju-wansan-taepyeong.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/pages/jeonnam-naju-bitgaram.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/pages/ulsan-ulju-eonyang.html",
      "bucket": "네이버",
      "sessions": 1
     }
