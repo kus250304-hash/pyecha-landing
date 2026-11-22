@@ -1534,3 +1534,16 @@
 - https://pyecha119.com/gu/%EB%8C%80%EA%B5%AC-%EC%84%9C%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/대구-서구-폐차장.html (바뀜: 2026-11-22 본문 바뀜(구·시군))
 - https://pyecha119.com/gu/%EB%8C%80%EA%B5%AC-%EC%A4%91%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/대구-중구-폐차장.html (바뀜: 2026-11-22 본문 바뀜(구·시군))
 - https://pyecha119.com/gu/%EC%84%9C%EB%8C%80%EB%AC%B8%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/서대문구-폐차장.html (바뀜: 2026-11-22 본문 바뀜(구·시군))
+
+## 2026-11-23 네이버
+
+- https://pyecha119.com/gu/%EC%95%88%EC%96%91%EC%8B%9C-%EB%8F%99%EC%95%88%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/안양시-동안구-폐차장.html (바뀜: 2026-11-22 사례가 새로 붙음(안양시 동안구))
+- https://pyecha119.com/gu/%EA%B3%84%EC%96%91%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/계양구-폐차장.html (반응: 최근 7일 전화 1)
+- https://pyecha119.com/guide/%EC%95%95%EB%A5%98-%EC%9E%88%EB%8A%94-%EC%B0%A8-%ED%8F%90%EC%B0%A8.html — guide/압류-있는-차-폐차.html (반응: 최근 7일 전화 1)
+- https://pyecha119.com/pages/gyeongbuk-cheongdo-hwayang.html — pages/gyeongbuk-cheongdo-hwayang.html (반응: 최근 7일 전화 1)
+- https://pyecha119.com/gu/%EC%84%B1%EB%82%A8%EC%8B%9C-%EC%88%98%EC%A0%95%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/성남시-수정구-폐차장.html (바뀜: 2026-11-22 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EC%88%98%EC%84%B1%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/수성구-폐차장.html (바뀜: 2026-11-22 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EC%88%98%EC%9B%90%EC%8B%9C-%ED%8C%94%EB%8B%AC%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/수원시-팔달구-폐차장.html (바뀜: 2026-11-22 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EC%95%88%EC%82%B0%EC%8B%9C-%EB%8B%A8%EC%9B%90%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/안산시-단원구-폐차장.html (바뀜: 2026-11-22 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EC%95%88%EC%84%B1%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/안성시-폐차장.html (바뀜: 2026-11-22 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EC%95%88%EC%96%91%EC%8B%9C-%EB%A7%8C%EC%95%88%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/안양시-만안구-폐차장.html (바뀜: 2026-11-22 본문 바뀜(구·시군))
