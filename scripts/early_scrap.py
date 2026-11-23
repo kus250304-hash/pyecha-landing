@@ -284,8 +284,76 @@ def refresh() -> int:
     return r.returncode
 
 
+# ── 날짜 점검(2026-11-23 병한님 "2") ─────────────────────────────────────────────────────────
+# 구·시 페이지 공공 정보 표의 조기폐차 줄과 지역 FAQ 답은 사람이 쓴 글이라, 기한이 지나거나 해가 바뀌면 틀린 글이 된다
+# (11/13 서울 12곳·장흥군을 손으로 고친 일). 이 점검은 읽기만 하고 고치지 않는다: `python3 scripts/early_scrap.py dated`.
+# 매일 아침 보고가 이 명령을 보고 줄이 나오면 맨 위에 알린다(docs/roadmap.md 7절). 고칠 때는 날짜가 지나도 틀리지 않는
+# 문장으로 쓴다: "○월 ○일까지 받습니다" 대신 "2026년 신청 기간은 ○월 ○일까지입니다", "올해" 대신 연도.
+_DEADLINE_RE = re.compile(r"(?:(20\d\d)년\s*)?(\d{1,2})월\s*(\d{1,2})일(?:\([^)]{1,3}\))?(?:\s*오[전후]\s*\d{1,2}시)?까지")
+_NOW_RE = re.compile(r"받습니다|받고 있습니다|받고,|받으며|접수합니다|접수하고 있습니다|신청할 수 있습니다|까지입니다|^네,")
+_PERIOD_RE = re.compile(r"기간[은이]")  # "신청 기간은 …까지입니다"는 날짜가 지나도 틀리지 않는 문장이라 뺀다
+_THIS_YEAR_RE = re.compile(r"올해(?:가|로|를|까지만|\s*\d{1,2}월|\s*신청 기간은)")
+_YEAR_RE = re.compile(r"(20\d\d)년")
+
+
+def _dated_reason(text: str, day: date) -> str:
+    """이 글이 day 기준으로 틀린 글이 됐으면 그 까닭(없으면 빈 문자열). 지난해 연도만 남은 글은 "old:연도"."""
+    years = [int(y) for y in _YEAR_RE.findall(text)]
+    base_year = max(years) if years else day.year
+    for s in re.split(r"(?<=[.!?])\s+", text):
+        if _PERIOD_RE.search(s) or not _NOW_RE.search(s.strip()):
+            continue
+        for m in _DEADLINE_RE.finditer(s):
+            try:
+                d = date(int(m.group(1) or base_year), int(m.group(2)), int(m.group(3)))
+            except ValueError:
+                continue
+            if d < day:
+                return f"기한({d.month}월 {d.day}일)이 지났는데 지금 받는 것처럼 적힘"
+    if m := _THIS_YEAR_RE.search(text):
+        return f"'{m.group(0).strip()}'처럼 해가 바뀌면 틀리는 말"
+    # 지난해 공고로 쓴 글은 새 공고가 나오기 시작하는 2월 1일부터 센다. 그보다 오래된 연도를 밝혀 적은 글
+    # (칠곡군 "2024년 공고"처럼 찾은 공고가 그것뿐이라 지난 일로 적은 줄)은 틀린 글이 아니라 세지 않는다
+    if years and max(years) == day.year - 1 and (day.month, day.day) >= (2, 1):
+        return f"old:{max(years)}"
+    return ""
+
+
+def dated(day: date | None = None) -> list[str]:
+    """날짜가 지나 틀린 글이 된 조기폐차 줄·FAQ 답 목록(읽기만). 공고 파일에서 글을 만드는 줄(early_scrap)과
+    공고 마감일이 든 FAQ 답(closed_faqs 가 바꿈)은 뺀다. 지난해 연도만 남은 글은 2월 1일부터 한 줄로 묶어 센다."""
+    day = day or today()
+    out, old = [], {}
+    for kind, fname in (("구", "gu.json"), ("시·도", "si.json")):
+        p = ROOT / "data" / fname
+        if not p.exists():
+            continue
+        for it in json.loads(p.read_text(encoding="utf-8")):
+            name = (it.get("sigungu") or it.get("sido", "")) if kind == "구" else it.get("sido", "")
+            n = notice_for(it.get("sido", ""))
+            texts = [("공공 정보", r.get("value", "")) for r in it.get("public_info") or []
+                     if "조기폐차" in r.get("label", "") and not r.get("early_scrap")]
+            texts += [("FAQ", qa[1]) for qa in it.get("faqs") or []
+                      if "조기폐차" in qa[0] + qa[1] and not (n and n.get("deadline_text") and n["deadline_text"] in qa[1])]
+            for where, text in texts:
+                why = _dated_reason(text, day)
+                if why.startswith("old:"):
+                    old.setdefault(why[4:], []).append(f"{name}({where})")
+                elif why:
+                    out.append(f"{kind} {name} {where}: {why}")
+    for year, names in sorted(old.items()):
+        out.append(f"{year}년 공고 기준 글 {len(names)}줄 — 올해 공고가 나온 곳부터 다시 확인: {', '.join(names[:8])}"
+                   + (" 등" if len(names) > 8 else ""))
+    return out
+
+
 if __name__ == "__main__":
     sys.path.insert(0, str(Path(__file__).resolve().parent))
+    if len(sys.argv) > 1 and sys.argv[1] == "dated":
+        # 점검만 하고 늘 0으로 끝난다(루틴·검사를 멈추지 않게). 시험: EARLY_SCRAP_TODAY=2027-02-01
+        lines = dated()
+        print("\n".join(f"조기폐차 줄 날짜: {l}" for l in lines) or "조기폐차 줄 날짜: 문제 없음")
+        raise SystemExit(0)
     if len(sys.argv) > 1 and sys.argv[1] == "refresh":
         raise SystemExit(refresh())
     if len(sys.argv) > 1 and sys.argv[1] == "pages":
