@@ -1547,3 +1547,16 @@
 - https://pyecha119.com/gu/%EC%95%88%EC%82%B0%EC%8B%9C-%EB%8B%A8%EC%9B%90%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/안산시-단원구-폐차장.html (바뀜: 2026-11-22 본문 바뀜(구·시군))
 - https://pyecha119.com/gu/%EC%95%88%EC%84%B1%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/안성시-폐차장.html (바뀜: 2026-11-22 본문 바뀜(구·시군))
 - https://pyecha119.com/gu/%EC%95%88%EC%96%91%EC%8B%9C-%EB%A7%8C%EC%95%88%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/안양시-만안구-폐차장.html (바뀜: 2026-11-22 본문 바뀜(구·시군))
+
+## 2026-11-24 네이버
+
+- https://pyecha119.com/guide/%EC%A1%B0%EA%B8%B0%ED%8F%90%EC%B0%A8-%EC%A7%80%EC%9B%90-%EC%95%88%EB%82%B4.html — guide/조기폐차-지원-안내.html (바뀜: 2026-11-24 본문 바뀜(안내))
+- https://pyecha119.com/guide/%ED%8F%90%EC%B0%A8-%EC%A0%88%EC%B0%A8.html — guide/폐차-절차.html (바뀜: 2026-11-24 본문 바뀜(안내))
+- https://pyecha119.com/guide/%ED%8F%90%EC%B0%A8-%ED%95%84%EC%9A%94-%EC%84%9C%EB%A5%98.html — guide/폐차-필요-서류.html (바뀜: 2026-11-24 본문 바뀜(안내))
+- https://pyecha119.com/gu/%EA%B9%80%EC%B2%9C%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/김천시-폐차장.html (바뀜: 2026-11-23 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EB%85%B8%EC%9B%90%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/노원구-폐차장.html (바뀜: 2026-11-23 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EB%8C%80%EC%A0%84-%EB%8F%99%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/대전-동구-폐차장.html (바뀜: 2026-11-23 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EB%8C%80%EC%A0%84-%EC%84%9C%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/대전-서구-폐차장.html (바뀜: 2026-11-23 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EC%82%AC%EC%B2%9C%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/사천시-폐차장.html (바뀜: 2026-11-23 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EC%95%84%EC%82%B0%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/아산시-폐차장.html (바뀜: 2026-11-23 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EC%96%91%EC%A3%BC%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/양주시-폐차장.html (바뀜: 2026-11-24 본문 바뀜(구·시군))
