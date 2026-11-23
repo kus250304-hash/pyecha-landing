@@ -47,7 +47,8 @@ GSC_MAX_AGE = 3  # 마지막 확인이 이 날수보다 오래면 거르지 않�
 NAVER_AGAIN_DAYS = 7  # 네이버: 같은 주소는 7일 안에 다시 넣지 않음(2026-11-05)
 NAVER_CHANGED_MAX = 25  # 네이버 ① 바뀐·반응 온 페이지 최대 개수(2026-11-05)
 FULL_REBUILD = 300  # 어제·오늘 바뀐 페이지가 이보다 많으면 전체 재빌드 다음 날로 봄
-KIND_ORDER = {"gu": 0, "si": 1, "guide": 2, "cases": 3, "pages": 4}
+# 안내·주제 페이지가 맨 앞(2026-11-24): 한 장이 전국 검색(조기폐차·서류·절차)에 닿고 자주 바뀌지 않아, 바뀐 날에는 먼저 넣는다
+KIND_ORDER = {"guide": 0, "gu": 1, "si": 2, "cases": 3, "pages": 4}
 GA4 = ROOT / "data" / "ga4_daily.json"
 NAVER_SINCE = "2026-10-22"  # 이날부터 날짜 칸 주소를 네이버 웹 페이지 수집에도 넣음(그 전 칸은 구글만)
 PUBLISHED_RE = re.compile(r'"datePublished": "(\d{4}-\d{2}-\d{2})"')
