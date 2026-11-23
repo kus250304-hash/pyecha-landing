@@ -341,6 +341,17 @@ def dated(day: date | None = None) -> list[str]:
                     old.setdefault(why[4:], []).append(f"{name}({where})")
                 elif why:
                     out.append(f"{kind} {name} {where}: {why}")
+    # 조기폐차 안내 페이지(2026-11-24): "2026년 공고 기준" 문장이 있어, 해가 바뀌면 새 공고로 다시 확인해야 한다
+    try:
+        import build_guide
+        g = next(x for x in build_guide.GUIDES if x["file"] == GUIDE_FILE)
+        why = _dated_reason(build_guide.guide_text(g), day)
+        if why.startswith("old:"):
+            old.setdefault(why[4:], []).insert(0, "조기폐차 안내 페이지")
+        elif why:
+            out.append(f"안내 조기폐차 지원: {why}")
+    except Exception:  # 안내 빌더를 못 읽어도 구·시 점검은 그대로 한다
+        pass
     for year, names in sorted(old.items()):
         out.append(f"{year}년 공고 기준 글 {len(names)}줄 — 올해 공고가 나온 곳부터 다시 확인: {', '.join(names[:8])}"
                    + (" 등" if len(names) > 8 else ""))
