@@ -19,7 +19,7 @@ PC에서 하는 "사례 가져오기" 작업이다. 원본 사진·메모는 이
 - 원본 폴더에는 pc_cases.py mark 가 만드는 반영됨.txt 와 inbox_cases.py apply 가 만드는 우선/ 새 폴더 말고는 아무것도 만들거나 고치거나 옮기거나 지우지 않는다.
 - 구글 드라이브 인박스(G:\내 드라이브\폐차_인박스)는 scripts/inbox_cases.py 로만 다룬다. 사진·영상은 .cases_staging/inbox/ 의 미리보기만 본다. 등록증 사진은 지역만 읽고(이름·주민번호·주소 번지 등 다른 칸은 읽지도 적지도 않는다) answer.json 의 "등록증" 에 적어 스크립트가 지우게 한다. GPS 좌표·차번호·말 내용은 저장소에 쓰지 않는다.
 - 금액·시세, "수출 된다/안 된다" 같은 단정, 고객 이름·전화번호·차량번호·주소는 어디에도 쓰지 않는다(스크립트가 메모에서 걸러 낸다. 메모를 손으로 고쳐 통과시키지 않는다).
-- 하루 건수와 고르는 순서는 scan 이 정한다(data/case_priority.json, 2026-10-28: 밀린 대상이 3건보다 많은 동안 10건, 아니면 3건. 순서는 ① 문의 온 시·군 ② 빈 땅 ③ 지인 공략 ④ 나머지). 얇은 사례(걱정·확인 칸이 비는 건)도 그대로 올린다. 원본 폴더는 읽기만 한다. scripts/, templates/, CLAUDE.md, docs/ 는 고치지 않는다. 예외: 2-1 단계의 scripts/inquiry_log.py 가 고치는 docs/index-requests.md 와 data/population_dong.json, scripts/form_inquiries.py 가 쓰는 data/form_inquiries.json(손으로 고치지 않는다). (15 단계 네이버 순위의 data/naver_rank/·docs/naver-rank.md 예외는 2026-11-11 병한님 결정으로 하지 않는다 — 15 단계를 안 하므로 그 파일들을 쓰지 않는다.) 또 하나의 예외: 18 단계가 새로 쓰는 docs/blog-drafts/YYYY-MM-DD/ 초안 파일과 data/blog_drafts.json(2026-11-20).
+- 하루 건수와 고르는 순서는 scan 이 정한다(data/case_priority.json, 2026-10-28: 밀린 대상이 3건보다 많은 동안 10건, 아니면 3건. 순서는 ① 문의 온 시·군 ② 빈 땅 ③ 지인 공략 ④ 나머지). 얇은 사례(걱정·확인 칸이 비는 건)도 그대로 올린다. 원본 폴더는 읽기만 한다. scripts/, templates/, CLAUDE.md, docs/ 는 고치지 않는다. 예외: 2-1 단계의 scripts/inquiry_log.py 가 고치는 docs/index-requests.md 와 data/population_dong.json, scripts/form_inquiries.py 가 쓰는 data/form_inquiries.json(손으로 고치지 않는다). (15 단계 네이버 순위의 data/naver_rank/·docs/naver-rank.md 예외는 2026-11-11 병한님 결정으로 하지 않는다 — 15 단계를 안 하므로 그 파일들을 쓰지 않는다.) 또 하나의 예외: 18 단계가 새로 쓰는 docs/blog-drafts/YYYY-MM-DD/ 초안 파일과 data/blog_drafts.json(2026-11-20). 그리고 2-5 단계의 scripts/pc_health.py 가 쓰는 data/pc_health.json(2026-11-24, 손으로 고치지 않는다).
 - 거래 기록부(C:\Users\AOMG\Documents\병한-업무위키\폐차\거래기록)는 scripts/inquiry_log.py 와 scripts/pc_cases.py(ledger·stage, 날짜 칸만)로만 읽는다. 직접 열지 않고, 전화·차번호·이름·금액은 어디에도 쓰지 않는다.
 - 통화 글자본(C:\Users\AOMG\Documents\통화녹음백업\_분석)은 8-1 단계의 걱정 후보를 찾을 때만 읽는다. 이름·전화번호·차번호·금액·주소는 옮기지 않는다.
 - 법인 차, 서류를 못 받는 경우, "차만 폐차", 명의자와 연락 안 됨, 서류 없이 진행 같은 사정은 개인 상담으로만 다루는 일이라 사례 칸·extra.json 어디에도 쓰지 않고, 통화 글자본에 이런 내용이 나오면 그 통화는 걱정 후보에서 뺀다(2026-10-27, build_cases.py 가 case_story.PRIVATE_RE 로 막음).
@@ -52,6 +52,9 @@ PC에서 하는 "사례 가져오기" 작업이다. 원본 사진·메모는 이
    - ③ 확인: 40초 기다린 뒤 `Get-PrintJob -PrinterName "<프린터 이름>"` 로 대기열을 본다. 작업이 "오류"로 걸려 있으면 실패로 본다. 대기열이 비었거나 인쇄 중이면 성공으로 본다.
    - ④ 기록: `docs/print/print-log.md` 맨 아래에 `| YYYY-MM-DD HH:MM | <파일 이름> | <쓴 프린터 이름> | 기본 프린터: <이름> | 성공/실패(이유) |` 한 줄을 더한다(프린터 이름만, 다른 정보 없음). 성공이면 그 줄을 `print-queue.txt` 에서 지우고, 실패면 남겨 둔다. `git add docs/print/print-queue.txt docs/print/print-log.md` → `git commit -m "Print attempt (YYYY-MM-DD)"` → `git push origin main`(거절되면 pull --rebase 후 한 번 더).
    - 보고: "인쇄: 성공 — <프린터 이름>" 또는 "인쇄 실패: <이유>". 같은 날 두 번 돌면(13:40·13:55) 두 번째는 print-log 에 오늘 성공 줄이 있으면 하지 않는다.
+2-5. PC 상태 기록(2026-11-24 병한님 "알아서 해줘", 사례가 0건이거나 오늘 이미 올렸어도 매번 한다): `python scripts/pc_health.py --push` 를 실행한다(통화 인박스·통화 녹음 올리기·문자 백업·밤 백업·영상공장·주간 꾸러미·FAQ 월간 갱신·캘린더→기록부 여덟 가지가 마지막으로 돈 시각과 성공 여부만 읽어 data/pc_health.json 에 쓰고 그 파일 하나만 커밋·푸시한다. 캘린더 고장 점검이 PC 폴더를 읽지 못해서 PC가 스스로 적어 보내는 것이다).
+   - 로그·기록 파일은 스크립트만 읽는다(직접 열지 않는다). 스크립트는 시각과 성공 여부만 뽑고, 파일 이름·통화 내용·이름·전화번호는 읽어 오지도 쓰지도 않는다.
+   - 출력 첫 줄("PC 상태: …")과 그 아래 "  - " 줄을 보고에 옮긴다. 이상 줄이 있어도 여기서 고치지 않는다(알리기만 한다). 같은 날 두 번 돌면 스크립트가 "오늘 이미 적음"으로 넘어간다. 이 단계가 실패해도 사례 가져오기는 이어서 한다.
 3. `python -m pip install -q pillow` (python 이 안 되면 py 로). 이후 명령도 같은 것으로 실행한다.
 3-1. 오늘(한국 시간) 이미 올렸는지 본다: `git log origin/main --since=00:00 --format=%s` 에 "Add N case inputs (오늘 날짜)" 가 있으면 아무것도 하지 않고 "성공: 오늘 이미 N건 올라감(커밋 <번호>)"이라고 보고하고 끝낸다(13:55 재시도 실행이 13:40 실행을 두 번 하지 않게).
 3-2. 이어 하기: .cases_staging/scan.json 이 있고 그 안의 "date" 가 오늘이며 status 가 marked 가 아닌 건이 있으면, 앞 실행이 중간에 끊긴 것이다. 이때는 4단계 scan 을 하지 않는다(scan 은 오늘 고른 목록을 지운다). 대신 `python scripts/pc_cases.py prepare` 로 아직 준비 안 된(picked) 건만 준비하고, 건마다 status 를 보고 이어 간다: prepared → 6~8단계, masked → 8단계 확인 뒤 10단계, staged → 11단계로. 이어서 한 사실을 보고에 적는다.
@@ -124,6 +127,7 @@ PC에서 하는 "사례 가져오기" 작업이다. 원본 사진·메모는 이
 - 얇은 사례 채우기: 채움 N건(slug 와 채운 칸 이름만) · 안 맞음 N건 · 남은 대상 N건(thin 출력 첫 줄)
 - 블로그 초안(18): 쓴 N편(지역·차종·제목) · 건너뛴 N건(이유) · `blog_drafts.py stock` 첫 줄("쌓인 초안(안 나감) N편 / 한도 20편"). 사연은 깊은데 사진이 없어 못 쓰는 사례가 있으면 "사진 부탁: 지역 차종" 으로 적는다(next 첫 줄의 "사진 없음" 건수)
 - 인쇄: 보냄 <파일 이름> / 실패(이유) / 없음 (2-4)
+- PC 상태(2-5): `pc_health.py` 출력 첫 줄과 그 아래 이상 줄
 - 주간꾸러미 챗GPT 칸: 넣음 / 이미 있음 / 실패(이유) (2-3)
 - 안 된 이유: 적음 N건(이유별 건수만) + `lost_reasons.py report` 두 줄
 - 문의 기록: 더함 N줄·상태 고침 N줄(시·군과 상태), 뺀 거래와 이유
