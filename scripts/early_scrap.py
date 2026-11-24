@@ -1,7 +1,15 @@
 """
 조기폐차 칸(2026-11-12 병한님, 상자 공장-2a): data/early_scrap_notices.json 에 적힌 지자체 조기폐차 공고를
 그 시·도의 구 페이지(gu/)·시·도 페이지(si/)에 "조기폐차 — ○○시 접수 안내" 칸으로, 조기폐차 안내 페이지 맨 위에
-"지금 접수가 확인된 곳" 표로 넣는다. 지금은 서울 한 건.
+"지금 접수가 확인된 곳" 표로 넣는다.
+
+시·군 공고(2026-11-24 병한님 "조기폐차는 전국으로"): 공고에 "sigungu" 가 있으면 그 시·군·구 페이지 하나에만 들어간다
+(gu.json 의 sigungu 와 같은 글자, 예 "양산시"·"청주시 상당구"). 같은 시·도에 시·도 공고와 시·군 공고가 둘 다 있으면 그 구
+페이지에는 시·군 공고가 먼저다. 시·도 페이지(si/)에는 시·도 공고(sigungu 없음)만 들어간다.
+공고마다 다른 칸은 없어도 된다: hold_months·claim_months(없으면 그 줄·FAQ 를 뺌), dpf_since_2024(true 일 때만
+"DPF 4등급도 대상" FAQ, 그 공고나 그 지자체 안내에서 확인한 경우만), grade5_last_year.
+매주 공고 감시(클로드 예약 작업 "조기폐차 공고 감시 (매주)")가 공식 공고를 직접 연 곳만 이 파일에 더하고
+`python scripts/early_scrap.py publish` 로 이 칸 페이지만 올린다.
 
 규칙
 - 공고 파일에 적힌 사실만 쓴다. 금액·"최대 얼마"는 쓰지 않고 공식 글 링크로 넘긴다. 수출 얘기는 넣지 않는다(조기폐차는 폐차만).
@@ -42,8 +50,14 @@ def today() -> date:
     return date.fromisoformat(forced) if forced else datetime.now(KST).date()
 
 
-def notice_for(sido: str) -> dict | None:
-    return next((n for n in notices() if n["sido"] == sido), None)
+def notice_for(sido: str, sigungu: str | None = None) -> dict | None:
+    """그 페이지에 넣을 공고. 시·군 공고(sigungu 칸)가 있으면 그 시·군·구 페이지에만, 없으면 시·도 공고.
+    sigungu 를 주지 않으면(시·도 페이지) 시·도 공고만 본다."""
+    if sigungu:
+        own = next((n for n in notices() if n["sido"] == sido and n.get("sigungu") == sigungu), None)
+        if own:
+            return own
+    return next((n for n in notices() if n["sido"] == sido and not n.get("sigungu")), None)
 
 
 def is_closed(n: dict) -> bool:
@@ -57,15 +71,28 @@ def _contacts(n: dict) -> str:
 def faqs(n: dict) -> list[tuple[str, str]]:
     """FAQ 틀(구·시 페이지 FAQ 칸과 FAQPage 구조화 데이터)에 같이 넣는 3개. FAQ_ANSWER_RULE 를 지킨다."""
     agency = n["agency"]
-    return [
-        ("DPF가 달려 나온 4등급 경유차도 되나요?",
-         f"네, {agency}는 2024년부터 DPF가 있든 없든 4등급 경유차를 대상에 넣었습니다. "
-         "다만 나라 지원금으로 DPF를 나중에 단 차는 안 됩니다. 올해 조건은 공고에서 한 번 더 확인하세요."),
-        ("확인서를 받았는데 언제까지 폐차해야 하나요?",
-         f"받은 날부터 {n['claim_months']}개월 안입니다. 이 기간 안에 폐차를 마치고 보조금을 청구해야 합니다."),
-        ("지원금을 받으면 차값은 못 받나요?",
-         f"아니요, 지원금은 {agency}가 주고 차값은 폐차할 때 따로 받습니다."),
-    ]
+    g = n["grade_check"]
+    out = []
+    if n.get("dpf_since_2024"):  # 그 지자체 안내에서 확인한 경우만(서울, 2026-11-12)
+        out.append(("DPF가 달려 나온 4등급 경유차도 되나요?",
+                    f"네, {agency}는 2024년부터 DPF가 있든 없든 4등급 경유차를 대상에 넣었습니다. "
+                    "다만 나라 지원금으로 DPF를 나중에 단 차는 안 됩니다. 올해 조건은 공고에서 한 번 더 확인하세요."))
+    else:
+        out.append(("내 차가 조기폐차 대상인지 어떻게 아나요?",
+                    f"{g['site_name']}({g['site']})이나 {g['tel']}에서 차 번호로 배출가스 등급을 먼저 봅니다. "
+                    f"{'4등급 경유차나 5등급 차' if n.get('grade5_last_year') else n['target_short']}면 "
+                    f"{agency} 공고의 등록·소유 기간 조건을 한 번 더 확인합니다."))
+    if n.get("claim_months"):
+        out.append(("확인서를 받았는데 언제까지 폐차해야 하나요?",
+                    f"받은 날부터 {n['claim_months']}개월 안입니다. 이 기간 안에 폐차를 마치고 보조금을 청구해야 합니다."))
+    out.append(("지원금을 받으면 차값은 못 받나요?",
+                f"아니요, 지원금은 {agency}가 주고 차값은 폐차할 때 따로 받습니다."))
+    return out
+
+
+def _claim(n: dict) -> str:
+    """확인서 기한 문장(공고에 claim_months 가 없으면 빈칸)."""
+    return f"확인서를 받으면 {n['claim_months']}개월 안에 폐차를 마치고 보조금을 청구해야 합니다." if n.get("claim_months") else ""
 
 
 def _lines(n: dict, cfg: dict) -> list[str]:
@@ -77,23 +104,29 @@ def _lines(n: dict, cfg: dict) -> list[str]:
                + (f" ({cfg['reply_hours']})" if cfg.get("reply_hours") else ""))
     support = f"지원금은 {agency}가 주고, 차값은 폐차할 때 따로 받습니다."
     if is_closed(n):
+        if not n.get("claim_months"):
+            return [f"올해 {agency} 조기폐차 신청은 {n['deadline_text']}에 마감했습니다.",
+                    f"확인서를 받으셨다면 기한 안에 폐차해야 합니다. {support}", closing]
         return [
             f"확인서를 받으셨다면 {n['claim_months']}개월 안에 폐차해야 합니다. 차값과 순서는 전화로 같이 봐 드립니다.",
             f"올해 {agency} 조기폐차 신청은 {n['deadline_text']}에 마감했습니다.",
             f"확인서를 받은 날부터 {n['claim_months']}개월 안에 폐차를 마치고 보조금을 청구해야 합니다. {support}",
             closing,
         ]
-    out = [f"{short}에 등록된 배출가스 4등급 경유차와 5등급 차는 {agency} 조기폐차 지원을 신청할 수 있습니다."]
+    # 5등급 지원은 2026년도가 끝(전국). 그 뒤 공고(grade5_last_year 없음)는 공고에 적힌 대상(target_short)대로 쓴다
+    who = "배출가스 4등급 경유차와 5등급 차" if n.get("grade5_last_year") else n["target_short"]
+    out = [f"{short}에 등록된 {who}는 {agency} 조기폐차 지원을 신청할 수 있습니다."]
     if n.get("deadline"):
         out.append(f"신청 마감은 {n['deadline_text']}입니다. {n['early_close']}.")
     else:
         out.append(f"지금 접수되는지는 {_contacts(n)}에서 확인하세요.")
     if n.get("grade5_last_year"):
         out.append("5등급 차 지원은 올해가 마지막입니다.")
+    if n.get("hold_months"):
+        out.append(f"신청일 전 {n['hold_months']}개월 이상 이어서 가지고 있던 차여야 합니다.")
     out += [
-        f"신청일 전 {n['hold_months']}개월 이상 이어서 가지고 있던 차여야 합니다.",
         f"내 차 등급은 {g['site_name']}({g['site']})이나 {g['tel']}에서 확인합니다.",
-        f"{support} 확인서를 받으면 {n['claim_months']}개월 안에 폐차를 마치고 보조금을 청구해야 합니다.",
+        f"{support} {_claim(n)}".strip(),
         closing,
     ]
     return out
@@ -105,7 +138,8 @@ def info_text(n: dict) -> str:
     when = f"{year}년 {n['deadline_text']}" if year else ""
     if is_closed(n):
         return (f"{n['agency']} {year}년 조기폐차 지원 신청은 {when}에 접수 마감했습니다. "
-                f"확인서를 받으셨다면 {n['claim_months']}개월 안에 폐차를 마치고 보조금을 청구해야 합니다. (확인일 {n['checked_on']})")
+                + (f"확인서를 받으셨다면 {n['claim_months']}개월 안에 폐차를 마치고 보조금을 청구해야 합니다. " if n.get("claim_months") else "")
+                + f"(확인일 {n['checked_on']})")
     head = (f"{n['agency']} {year}년 조기폐차 지원 신청은 {when}까지입니다({n['early_close']}). " if when
             else f"{n['agency']} 조기폐차 지원이 지금 접수되는지는 {_contacts(n)}에서 확인하세요. ")
     return (head + f"대상은 {n['target']}이고"
@@ -129,7 +163,8 @@ def closed_faqs(faqs: list[tuple[str, str]], n: dict | None) -> list[tuple[str, 
         return faqs
     import variants as V
     done = (f"올해 {n['agency']} 조기폐차 신청은 {n['deadline_text']}에 마감했습니다. "
-            f"확인서를 받으셨다면 {n['claim_months']}개월 안에 폐차해야 하니, 차값과 순서는 전화로 같이 봐 드립니다.")
+            + (f"확인서를 받으셨다면 {n['claim_months']}개월 안에 폐차해야 하니, " if n.get("claim_months") else "")
+            + "차값과 순서는 전화로 같이 봐 드립니다.")
     return [(q, ("아니요, " + done if V.is_yes_no_question(q) else done) if n["deadline_text"] in a else a) for q, a in faqs]
 
 
@@ -168,13 +203,17 @@ def guide_table_html(esc) -> str:
     """조기폐차 안내 페이지 맨 위 "지금 접수가 확인된 곳" 표(마감 지난 곳은 "접수 마감"으로)."""
     if not notices():
         return ""
-    from build_site import sido_link
+    from build_site import sido_link, gu_file
     rows = []
     for n in notices():
         when = (f"{n['deadline_text'].split('(')[0]} 접수 마감" if is_closed(n)
                 else f"{n['deadline_text']}까지 ({n['early_close']})" if n.get("deadline") else "접수 여부 확인 중")
+        if n.get("sigungu"):  # 시·군 공고는 그 구 페이지로
+            link = f'<a href="../gu/{esc(gu_file(n["sido"], n["sigungu"]))}">{esc(n["short"])} 페이지</a>'
+        else:
+            link = f'<a href="{esc(sido_link(n["sido"]))}#gu">{esc(n["short"])} 구 페이지</a>'
         rows.append(f'<tr><th>{esc(n["short"])}</th><td>{esc(when)}</td><td>{esc(n["target_short"])}</td>'
-                    f'<td>{esc(n["checked_on"])}</td><td><a href="{esc(sido_link(n["sido"]))}#gu">{esc(n["short"])} 구 페이지</a></td></tr>')
+                    f'<td>{esc(n["checked_on"])}</td><td>{link}</td></tr>')
     open_any = any(not is_closed(n) for n in notices())
     return (
         '  <section id="early-now" style="background:#fff">\n    <div class="wrap">\n'
@@ -206,8 +245,10 @@ def pages() -> list[str]:
     """이 칸이 들어가는 페이지(저장소 기준 경로)."""
     from build_site import gu_file, load_json, GU_DATA
     from build_si import si_file
-    sidos = {n["sido"] for n in notices()}
-    out = [f"gu/{gu_file(g['sido'], g['sigungu'])}" for g in load_json(GU_DATA, default=[]) if g["sido"] in sidos]
+    sidos = {n["sido"] for n in notices() if not n.get("sigungu")}
+    own = {(n["sido"], n["sigungu"]) for n in notices() if n.get("sigungu")}
+    out = [f"gu/{gu_file(g['sido'], g['sigungu'])}" for g in load_json(GU_DATA, default=[])
+           if g["sido"] in sidos or (g["sido"], g["sigungu"]) in own]
     out += [f"si/{si_file(s)}" for s in sidos if (ROOT / "si" / si_file(s)).exists()]
     return out + [f"guide/{GUIDE_FILE}"]
 
@@ -216,7 +257,7 @@ MAX_CHANGED = 30
 SIDE_FILES = ("sitemap.xml", "sitemap-core.xml", "rss.xml", "data/page_hashes.json")
 
 
-def refresh() -> int:
+def refresh(publish: bool = False) -> int:
     """마감 다음 날 한 번(Windows 작업 "폐차_조기폐차_마감", 2026-12-01 오전 0시 20분, 놓치면 켜질 때 바로):
     build_site.py 를 돌린 뒤 이 칸 페이지(pages()) 말고 같이 그려진 페이지는 되돌리고(그 페이지의 해시 기록도 HEAD 대로),
     사이트맵·rss 를 다시 만들어 이 칸 페이지 + 사이트맵·rss·해시만 커밋·push 한다. 30장을 넘거나 검사 오류면 모두 되돌리고 멈춘다.
@@ -229,7 +270,7 @@ def refresh() -> int:
     def status() -> list[str]:
         return [l[3:].strip().strip('"') for l in git("status", "--porcelain", "-uall").stdout.splitlines()]
 
-    if not any(is_closed(n) for n in notices()):
+    if not publish and not any(is_closed(n) for n in notices()):
         print("아직 마감 전이라 할 일 없음")
         return 0
     if status():
@@ -278,7 +319,7 @@ def refresh() -> int:
         print("check_pages.py 오류, 되돌림")
         return 1
     git("add", *changed)
-    git("commit", "-m", f"Early scrap section closed ({today().isoformat()}): {page_n} pages")
+    git("commit", "-m", f"Early scrap section {'notices' if publish else 'closed'} ({today().isoformat()}): {page_n} pages")
     r = git("push")
     print(f"반영: {page_n}장" + ("" if r.returncode == 0 else f" (push 실패: {r.stderr.strip()[:200]})"))
     return r.returncode
@@ -367,6 +408,12 @@ if __name__ == "__main__":
         raise SystemExit(0)
     if len(sys.argv) > 1 and sys.argv[1] == "refresh":
         raise SystemExit(refresh())
+    if len(sys.argv) > 1 and sys.argv[1] == "publish":
+        # 공고를 더하거나 고친 뒤(매주 공고 감시, 2026-11-24): 이 칸 페이지만 다시 그려 올린다. 규칙은 refresh 와 같음
+        p = problems()
+        if p:
+            print("\n".join(p)); raise SystemExit(1)
+        raise SystemExit(refresh(publish=True))
     if len(sys.argv) > 1 and sys.argv[1] == "pages":
         print("\n".join(pages()))
         raise SystemExit(0)

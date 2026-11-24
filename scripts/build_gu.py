@@ -397,7 +397,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
             continue
         sido, sigungu = g["sido"], g["sigungu"]
         # 조기폐차 줄("early_scrap": true)은 공고 파일에서 글을 만든다(2026-11-13, 칸과 날짜를 맞춤)
-        info = with_registration(early_scrap.info_rows(g["public_info"], early_scrap.notice_for(sido)), registration_row(sido, sigungu))
+        info = with_registration(early_scrap.info_rows(g["public_info"], early_scrap.notice_for(sido, sigungu)), registration_row(sido, sigungu))
         gu = sigungu or SIDO_SHORT[sido]
         gu_full = " ".join(x for x in (sido, sigungu) if x)
         title_name = title_names.get(g["slug"], gu)
@@ -443,7 +443,7 @@ def render_all(regions: list[dict], cfg: dict, gu_data: list[dict], groups: dict
         # 구마다 다른 질문 3개 + 실제 통화 FAQ 풀에서 4개(2026-10-03)
         # 조기폐차 공고가 확인된 시·도(2026-11-12, data/early_scrap_notices.json)는 안심 FAQ 바로 뒤에 조기폐차 FAQ 3개.
         # 지역 FAQ 답에 공고 마감일이 있으면 마감 다음 날부터 "마감했습니다" 답으로(2026-11-13, early_scrap.closed_faqs)
-        es_notice = early_scrap.notice_for(sido)
+        es_notice = early_scrap.notice_for(sido, sigungu)  # 시·군 공고가 먼저(2026-11-24)
         # 깊은 구(2026-11-18): 그 시·군 손님이 실제로 물은 질문(local_faqs)을 안심 FAQ 바로 뒤에. 통화 FAQ 풀과 같은 질문은 한 번만
         mine_q = local_faqs(g)
         asked = {q for q, _ in mine_q}
