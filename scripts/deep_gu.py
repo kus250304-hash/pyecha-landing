@@ -19,8 +19,16 @@
   ③ 가까운 지역 사례    깊은 사례 먼저 + 걱정 한 줄 (재료: cases/index.json, 그 구 사례가 3건보다 적을 때만)
   ④ 최근 진행한 차·사례 카드  이미 있는 칸(proof_blocks·build_gu). 거래가 끝나면 PC 작업이 올려 저절로 붙는다
 
+문의가 1건이라도 온 구에도 "지역에서 받은 질문" 1개 (2026-11-24 병한님 "2")
+  ②는 깊은 구가 아니어도 넣는다: 자료의 마지막 날짜부터 거꾸로 FAQ_WINDOW_DAYS(60)일 안에 문의가 1건이라도 온 구는
+  그 시·군 손님이 실제로 물은 질문을 FAQ_ONE(1)개까지. 페이지는 gu.json "local_faqs" 가 있으면 그리므로(build_gu.py) 표시가 따로 없다.
+  ①③(읍·면·동 한 줄·가까운 지역 사례 모양)은 여전히 깊은 구만. PC 예약 작업 17단계가 `faq-todo` 순서대로 채우고,
+  찾아봤는데 없던 곳은 `faq-tried` 로 적어 FAQ_TRIED_DAYS(14)일 동안 다시 고르지 않는다(그사이 새 문의가 오면 다시 고름).
+
 사용법
   python3 scripts/deep_gu.py show            # 반응 온 구와 칸마다 채워진 정도, 다음에 누가 무엇을 채울지
+  python3 scripts/deep_gu.py faq-todo        # 지역에서 받은 질문을 채울 곳(깊은 구 먼저 → 문의가 온 구, 최근 문의 순)
+  python3 scripts/deep_gu.py faq-tried a,b   # 찾아봤는데 그 시·군 손님 질문이 없던 구(slug)를 적는다
   python3 scripts/deep_gu.py mark            # 새로 켜질 구 미리 보기
   python3 scripts/deep_gu.py mark --write    # data/gu.json 에 "deep" 표시를 적는다(이미 있는 곳은 건드리지 않음)
   python3 scripts/deep_gu.py todo            # 루틴용 JSON: 깊은 구마다 한 줄이 아직 없는 읍·면·동(주민 많은 순)
@@ -44,6 +52,10 @@ WINDOW_DAYS = 30
 MIN_INQUIRIES = 2
 AREA_N = 5
 LOCAL_FAQ_N = 2
+FAQ_WINDOW_DAYS = 60   # 이 기간 안에 문의가 1건이라도 온 구에는 지역 질문을 FAQ_ONE 개까지(2026-11-24 병한님 "2")
+FAQ_ONE = 1
+FAQ_TRIED = ROOT / "data" / "local_faq_tried.json"   # 찾아봤는데 없던 곳 {"tried": {slug: 날짜}} (손으로 고치지 않음)
+FAQ_TRIED_DAYS = 14
 LINE_RE = re.compile(r"^- (\d{4}-\d{2}-\d{2})[^—]*— \S*/gu/(\S+?\.html)")
 
 
@@ -180,6 +192,40 @@ def page_visits(g: dict, days: int = 28) -> dict:
     return out
 
 
+def faq_tried() -> dict[str, str]:
+    d = _load(FAQ_TRIED, {})
+    t = d.get("tried") if isinstance(d, dict) else None
+    return {k: v for k, v in (t or {}).items() if re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(v))}
+
+
+def faq_targets(gu_data: list[dict], today: date | None = None) -> tuple[list[dict], str, str]:
+    """지역에서 받은 질문을 채울 곳과 세는 기간. 깊은 구(LOCAL_FAQ_N 개까지)가 먼저, 그다음 최근 FAQ_WINDOW_DAYS 일 안에
+    문의가 1건이라도 온 구(FAQ_ONE 개까지)를 최근 문의 순으로. 이미 채운 곳과, FAQ_TRIED_DAYS 일 안에 찾아봤는데 없던 곳
+    (그 뒤로 새 문의가 없으면)은 뺀다."""
+    from build_site import gu_file
+    today = today or date.today()
+    c, since, last = counts(FAQ_WINDOW_DAYS)
+    by_file = {gu_file(g["sido"], g["sigungu"]): g["slug"] for g in gu_data}
+    inq = {by_file[page]: v for page, v in c.items() if page in by_file}
+    tried = faq_tried()
+    out = []
+    for g in gu_data:
+        deep, v = is_deep(g), inq.get(g["slug"])
+        if not deep and not v:
+            continue
+        want, have = (LOCAL_FAQ_N if deep else FAQ_ONE), len(g.get("local_faqs") or [])
+        last_inq = v["dates"][-1] if v else ""
+        t = tried.get(g["slug"])
+        if have >= want or (t and (today - date.fromisoformat(t)).days < FAQ_TRIED_DAYS and not last_inq > t):
+            continue
+        out.append({"slug": g["slug"], "sido": g["sido"], "sigungu": g["sigungu"], "deep": deep, "have": have, "want": want,
+                    "inquiries": v["n"] if v else 0, "last": last_inq})
+    out.sort(key=lambda x: x["slug"])
+    out.sort(key=lambda x: x["last"], reverse=True)
+    out.sort(key=lambda x: not x["deep"])  # 정렬이 안정적이라 깊은 구 → 최근 문의 → 이름 순
+    return out, since, last
+
+
 def next_steps(st: dict) -> list[str]:
     out = []
     if st["area_missing"]:
@@ -194,7 +240,8 @@ def next_steps(st: dict) -> list[str]:
 def main() -> None:
     from build_site import CASES_INDEX, GU_DATA, REGIONS, gu_groups, load_json
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["show", "mark", "todo", "check"])
+    ap.add_argument("cmd", choices=["show", "mark", "todo", "check", "faq-todo", "faq-tried"])
+    ap.add_argument("names", nargs="?", default="", help="faq-tried: 쉼표로 이은 구 slug")
     ap.add_argument("--write", action="store_true", help="mark: data/gu.json 에 적는다")
     args = ap.parse_args()
     gu_data = load_json(GU_DATA, default=[])
@@ -212,6 +259,30 @@ def main() -> None:
             print(f"data/gu.json 에 deep 표시 {len(new)}곳 적음")
         else:
             print("(미리 보기 — 적으려면 --write)")
+        return
+
+    if args.cmd == "faq-todo":
+        out, since, last = faq_targets(gu_data)
+        print(f"지역에서 받은 질문 대상 {len(out)}곳 (깊은 구 {sum(1 for x in out if x['deep'])} · 문의가 온 구 "
+              f"{sum(1 for x in out if not x['deep'])}, 문의는 {since}~{last} {FAQ_WINDOW_DAYS}일)")
+        for x in out:
+            name = " ".join(v for v in (x["sido"], x["sigungu"]) if v)
+            why = "깊은 구" if x["deep"] else f"문의 {x['inquiries']}건"
+            print(f"- {name} [slug {x['slug']}]: 지금 {x['have']}/{x['want']}개 · {why}" + (f" · 최근 문의 {x['last']}" if x["last"] else ""))
+        return
+
+    if args.cmd == "faq-tried":
+        slugs = [x.strip() for x in args.names.split(",") if x.strip()]
+        known = {g["slug"] for g in gu_data}
+        bad = [x for x in slugs if x not in known]
+        if not slugs or bad:
+            print("적지 않음: " + (f"data/gu.json 에 없는 slug {bad}" if bad else "slug 를 쉼표로 이어 적는다(faq-todo 의 [slug …])"))
+            sys.exit(1)
+        tried = faq_tried() | {x: date.today().isoformat() for x in slugs}
+        FAQ_TRIED.write_text(json.dumps({
+            "_comment": "scripts/deep_gu.py faq-tried 가 씀(손으로 고치지 않음). 통화표·기록부를 찾아봤는데 그 시·군 손님 질문이 없던 구와 그 날짜.",
+            "tried": dict(sorted(tried.items()))}, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+        print(f"찾아봤는데 없던 곳으로 적음: {', '.join(slugs)} ({FAQ_TRIED_DAYS}일 동안 다시 고르지 않음, 새 문의가 오면 다시 고름)")
         return
 
     if args.cmd == "check":
@@ -251,6 +322,9 @@ def main() -> None:
             print(f"    이 페이지로 들어온 방문 {pv['visits']} · 폼 {pv['forms']} · 전화 {pv['calls']} (GA4 {pv['window']})")
         for s in next_steps(st):
             print(f"    다음: {s}")
+    wide = [x for x in faq_targets(gu_data)[0] if not x["deep"]]
+    filled = sum(1 for g in gu_data if not is_deep(g) and g.get("local_faqs"))
+    print(f"문의가 온 구(깊은 구 아님)의 지역 질문: 채운 곳 {filled} · 채울 곳 {len(wide)} → python3 scripts/deep_gu.py faq-todo")
 
 
 if __name__ == "__main__":
