@@ -37,7 +37,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 import build_cases as BC  # noqa: E402
 import case_story  # noqa: E402
 import ledger_read as L  # noqa: E402
-from inquiry_log import WIKI_DIR  # noqa: E402
+from inquiry_log import SIDO_ALIAS, WIKI_DIR, part_match  # noqa: E402
 
 STATE = ROOT / "data" / "ledger_cases.json"
 KST = timezone(timedelta(hours=9))
@@ -90,9 +90,28 @@ def save_state(s: dict) -> None:
     STATE.write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
 
 
-def deals(folder: Path) -> tuple[list[dict], Counter]:
+def region_from_ledger(text: str, sido: str, city: str, rows: list[dict]) -> dict | None:
+    """기록부 지역 글이 구(와 동)까지 정해 주면 그 정식 지역. '경기 화성 동탄구' → 경기도 화성시 동탄구, '경북 구미 진평동' → … 진평동.
+    줄임말(경기·화성)을 정식 이름으로 바꿔 build_cases.resolve_region 에 맡긴다. 시·군까지만 있거나 여러 곳과 맞으면 None."""
+    tokens = re.sub(r"[,()]", " ", text).split()
+    if not tokens:
+        return None
+    if SIDO_ALIAS.get(tokens[0]) == sido:
+        tokens[0] = sido
+    for i, t in enumerate(tokens):
+        if city and t != sido and part_match(city, t):
+            tokens[i] = city
+            break
+    region, _ = BC.resolve_region(" ".join(tokens), rows)
+    if region and region["sido"] == sido and region["sigungu"].split()[:1] == ([city] if city else []):
+        return region
+    return None
+
+
+def deals(folder: Path, rows: list[dict] | None = None) -> tuple[list[dict], Counter]:
     """끝난 거래(입고 완료·말소 완료) 가운데 사례로 쓸 뼈대가 읽히는 것. 못 쓰는 까닭은 세기만 한다."""
     places = L.gu_places()
+    rows = rows if rows is not None else BC.load_csv_rows()
     out, why = [], Counter()
     for r in L.records(folder):
         if not L.arrived(r):
@@ -106,6 +125,10 @@ def deals(folder: Path) -> tuple[list[dict], Counter]:
             place = L.city_of(r["지역"], places)
         except Exception:  # 세종처럼 시·군 이름이 빈 곳
             place = None
+        if not place and r["지역"].strip():  # 줄임말이 아닌 정식 이름·세종: 사례 쪽 규칙으로 한 번 더(구 페이지가 있을 때만)
+            reg, _ = BC.resolve_region(r["지역"], rows)
+            if reg and BC.gu_page_exists(reg):
+                place = (reg["sido"], reg["sigungu"].split()[0] if reg["sigungu"] else "")
         if not (got or asked):
             why["날짜 없음"] += 1
             continue
@@ -123,7 +146,8 @@ def deals(folder: Path) -> tuple[list[dict], Counter]:
             pass
         out.append({"id": rec_id(r["file"]), "asked": asked, "got": got, "day": got or asked, "closed": closed,
                     "car": car, "year": year, "start": L.start_state(r["차상태"]), "side": L.chosen_side(r),
-                    "region_text": re.sub(r"\s+", " ", r["지역"]).strip(), "sido": place[0], "city": place[1]})
+                    "region_text": re.sub(r"\s+", " ", r["지역"]).strip(), "sido": place[0], "city": place[1],
+                    "region": region_from_ledger(r["지역"], place[0], place[1], rows)})
     return out, why
 
 
@@ -185,7 +209,7 @@ def targets(folder: Path, since: str = "") -> tuple[list[dict], dict]:
     rows = BC.load_csv_rows()
     known = known_cases(rows)
     state = load_state()
-    all_deals, why = deals(folder)
+    all_deals, why = deals(folder, rows)
     counts = {"끝난 거래": len(all_deals) + sum(why.values()), **why, "이미 사례 있음": 0, "만들어 둠": 0, "건너뜀": 0, "기간 밖": 0}
     has_case = Counter((c["sido"], c["city"]) for c in known)
     out = []
@@ -210,7 +234,10 @@ def targets(folder: Path, since: str = "") -> tuple[list[dict], dict]:
 
 
 def default_region(d: dict, rows: list[dict]) -> dict | None:
-    """기록부의 시·군이 구 하나로 정해지면(일반구가 없는 시·군, 광역시의 구) 그 시·군·구. 여러 구면 None."""
+    """기록부 지역 글이 구(와 동)까지 정해 주면 그것, 아니면 시·군이 구 하나로 정해질 때(일반구가 없는 시·군, 광역시의 구)
+    그 시·군·구. 구가 여럿인데 기록부에 구가 없으면 None."""
+    if d.get("region"):
+        return d["region"]
     gus = {(r["sido"], r["sigungu"]) for r in rows if r["sido"] == d["sido"] and r["sigungu"].split()[:1] == [d["city"]]}
     if len(gus) == 1:
         sido, sigungu = next(iter(gus))
@@ -231,14 +258,14 @@ def cmd_todo(args) -> None:
         print(json.dumps({
             "id": d["id"], "문의 날짜": d["asked"] or "모름", "입고일": d["got"] or "모름", "말소일": d["closed"] or "모름",
             "기록부 지역": d["region_text"],
-            "시·군·구": (f"{reg['sido']} {reg['sigungu']}" if reg else f"{d['sido']} {d['city']} — 구가 여럿이라 answer 의 \"지역\"에 구(알면 동)까지 적어야 함"),
+            "시·군·구(알면 동)": (" ".join(x for x in (reg["sido"], reg["sigungu"], reg["dong"]) if x) if reg else f"{d['sido']} {d['city']} — 구가 여럿이라 answer 의 \"지역\"에 구(알면 동)까지 적어야 함"),
             "차종": d["car"], "연식": d["year"] or "모름", "시동(기록부)": d["start"] or "모름", "고른쪽(기록부)": d["side"] or "모름",
             "그 시·군의 가까운 날짜 사례(같은 차면 skip)": d["near"] or "없음",
         }, ensure_ascii=False, indent=1))
 
 
 def find_deal(folder: Path, deal_id: str) -> dict | None:
-    return next((d for d in deals(folder)[0] if d["id"] == deal_id), None)
+    return next((d for d in deals(folder)[0] if d["id"] == deal_id), None)  # 한 건 찾는 데는 법정동 목록을 새로 읽어도 됨
 
 
 def cmd_make(args) -> int:
