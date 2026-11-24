@@ -1856,7 +1856,74 @@
    "용인시청 누리집은 접속이 막혀 직접 열지 못했고 검색 결과 요약으로 확인했습니다.",
    "조기폐차 안내는 시 누리집 상시 안내라 2026년 공고인지 확인하지 못해 접수 기간은 넣지 않았습니다."
   ],
-  "checked_on": "2026-10-03"
+  "checked_on": "2026-10-03",
+  "deep": {
+   "since": "2026-11-23",
+   "inquiries": 3,
+   "window": "2026-10-25~2026-11-23"
+  },
+  "area_notes": [
+   {
+    "dong": "영덕동",
+    "line": "흥덕고등학교가 있는 영덕동도 차를 세워 둔 아파트 단지까지 기사가 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-25",
+     "items": [
+      {
+       "name": "흥덕고등학교",
+       "evidence": "부동산 정보 학교 목록에 경기 용인시 기흥구 흥덕2로 36(영덕동 1020)",
+       "url": "https://zippoom.com/학교/경기-용인시-기흥구-영덕동-흥덕고등학교/lsbejh",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "중동",
+    "line": "중동은 동백호수공원 둘레 아파트가 많은 동네로, 지하주차장에 있는 차도 차 있는 자리로 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-25",
+     "items": [
+      {
+       "name": "동백호수공원",
+       "evidence": "여행 안내에 위치 경기도 용인시 기흥구 동백5로 12 (중동)",
+       "url": "https://www.ktriptips.com/kor/tourspot/2648607",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "보정동",
+    "line": "보정역 가까운 보정동 골목에 세워 둔 차라면 견인차가 그 자리까지 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-25",
+     "items": [
+      {
+       "name": "보정역",
+       "evidence": "역 문서(직접 열어 봄) 소재지 경기도 용인시 기흥구 용구대로 지하2560 보정동, 본문 \"기흥구 보정동에 있는 수인·분당선 전철역\"",
+       "url": "https://itwiki.kr/w/%EB%B3%B4%EC%A0%95%EC%97%AD",
+       "grade": "opened"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "마북동",
+    "line": "구성역이 있는 마북동, 시동이 안 걸리는 차도 기사가 차 있는 자리로 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-25",
+     "items": [
+      {
+       "name": "구성역",
+       "evidence": "역 문서에 경기도 용인시 기흥구 마북동, 소재지 용구대로 2403",
+       "url": "https://itwiki.kr/w/%EA%B5%AC%EC%84%B1%EC%97%AD(%EC%9A%A9%EC%9D%B8)",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   }
+  ]
  },
  {
   "slug": "gyeonggi-gunpo",
