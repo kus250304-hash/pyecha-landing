@@ -18,6 +18,8 @@ PC 예약 작업 "폐차 사례 가져오기"가 그 거래의 통화표 줄·�
   (거래 파일 이름을 알아볼 수 없게 바꾼 id, 만든 폴더 이름, 건너뛴 짧은 이유). 기록부 파일 이름은 어디에도 쓰지 않는다.
 - 지어내지 않는다: 차종·연식·날짜·시·군은 기록부 값만 쓰고, 사연(상황·처리·걱정·확인·이유…)은 PC 작업이 통화표·거래 노트에서
   이 차라고 확신할 때만 적는다. 사진이 없으므로 사연 칸이 2개보다 적으면 만들지 않는다(build_cases.check_folder).
+- 건너뛴 거래는 다시 고르지 않는다. 다만 끝난 지 30일 안에 "통화 못 찾음"·"확신 낮음"으로 건너뛴 거래는 10일 뒤 한 번만 다시 나온다
+  (막 끝난 거래는 통화표에 아직 안 올라와 있을 수 있어서).
 - 같은 거래로 사례를 두 번 만들지 않는다: 같은 시·군 + 차종이 겹침 + (연식을 둘 다 알면 같음) + 날짜가 MATCH_DAYS 일 안인
   사례(cases/index.json)나 대기 입력(cases/input)이 있으면 "이미 사례 있음"으로 본다. todo 는 그 시·군의 가까운 날짜 사례도
   같이 보여 주므로, 이름이 다르게 적힌 같은 차로 보이면 PC 작업이 skip 으로 넘긴다.
@@ -53,6 +55,11 @@ AGE_SEX_RE = re.compile(r"할머니|할아버지|어르신|아주머니|아저�
 CLOSE_DAY_RE = re.compile(r"^말소(?:일|[ \t]*날짜|일자|완료일?)?:[ \t]*(\d{4}-\d{2}-\d{2})[ \t]*$", re.M)
 YEAR_IN_CAR_RE = re.compile(r"((?:19[89]|20[0-4])\d)\s*년식?\s*")
 SKIP_WHY_MAX = 30
+# 막 끝난 거래는 통화표에 아직 안 올라와 있을 수 있다: 끝난 지 RECENT_DAYS 일 안에 이 까닭으로 건너뛴 거래는
+# RETRY_DAYS 일 뒤에 한 번만 다시 대상이 된다(두 번째에도 못 찾으면 그대로 건너뜀)
+RETRY_WHY = ("통화 못 찾음", "확신 낮음")
+RETRY_DAYS = 10
+RECENT_DAYS = 30
 
 
 def today() -> date:
@@ -106,6 +113,15 @@ def region_from_ledger(text: str, sido: str, city: str, rows: list[dict]) -> dic
     if region and region["sido"] == sido and region["sigungu"].split()[:1] == ([city] if city else []):
         return region
     return None
+
+
+def still_skipped(v: dict, d: dict) -> bool:
+    """건너뜀 기록이 아직 살아 있는지. 막 끝난 거래의 '통화 못 찾음'·'확신 낮음'은 RETRY_DAYS 일 뒤 한 번만 풀린다."""
+    if v.get("why") in RETRY_WHY and int(v.get("n", 1)) < 2:
+        skipped, done = day_of(v.get("day", "")), day_of(d["day"])
+        if skipped and done and (skipped - done).days <= RECENT_DAYS and (today() - skipped).days >= RETRY_DAYS:
+            return False
+    return True
 
 
 def deals(folder: Path, rows: list[dict] | None = None) -> tuple[list[dict], Counter]:
@@ -216,7 +232,7 @@ def targets(folder: Path, since: str = "") -> tuple[list[dict], dict]:
     for d in all_deals:
         if d["id"] in state["made"]:
             counts["만들어 둠"] += 1
-        elif d["id"] in state["skip"]:
+        elif d["id"] in state["skip"] and still_skipped(state["skip"][d["id"]], d):
             counts["건너뜀"] += 1
         elif covered(d, known):
             counts["이미 사례 있음"] += 1
@@ -371,7 +387,7 @@ def cmd_skip(args) -> int:
         print(f"적지 않음: id {args.id} 인 끝난 거래를 기록부에서 못 찾음")
         return 1
     state = load_state()
-    state["skip"][args.id] = {"why": why, "day": today().isoformat()}
+    state["skip"][args.id] = {"why": why, "day": today().isoformat(), "n": int(state["skip"].get(args.id, {}).get("n", 0)) + 1}
     save_state(state)
     print(f"건너뜀으로 적음: {args.id} — {why}")
     return 0
