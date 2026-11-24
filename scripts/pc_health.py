@@ -1,7 +1,7 @@
 """
 PC 상태 기록(2026-11-24 병한님 "알아서 해줘").
 캘린더 고장 점검(클로드 예약 작업 "폐차 고장 점검 (아침·저녁)")은 PC 폴더를 읽지 못한다. 그래서 PC가 스스로
-여덟 가지 자료 흐름이 '마지막으로 돈 시각'과 성공 여부만 data/pc_health.json 에 적어 올리고, 점검은 그 파일을 읽는다.
+아홉 가지 자료 흐름이 '마지막으로 돈 시각'과 성공 여부만 data/pc_health.json 에 적어 올리고, 점검은 그 파일을 읽는다.
 PC가 꺼져 있거나 낮 작업이 안 돌면 이 기록이 안 와서, 그게 곧 경보가 된다.
 
 사용법
@@ -20,6 +20,9 @@ PC가 꺼져 있거나 낮 작업이 안 돌면 이 기록이 안 와서, 그게
     주간 꾸러미      병한-업무위키\\마케팅\\주간\\마지막실행.txt 시각 + "성공"
     FAQ 월간 갱신    통화녹음백업\\_분석\\폐차_FAQ_log.txt 마지막 줄 시각
     캘린더→기록부    병한-업무위키\\폐차\\거래기록부\\_캘린더\\보고_YYYY-MM-DD.md (어제 것이 있는지, "확인 필요 N건")
+    블로그 공개      (PC 폴더가 아니라) 블로그 공개 목록(RSS)의 마지막 공개 날짜·최근 7일·28일 편수 + 저장소 초안 가운데 아직 안 나간 것
+                     (2026-11-24 병한님 "쌓인 초안 더 자주": 클라우드는 공개 목록을 못 읽어 초안이 나가는지 알 수 없었음.
+                      공개된 글의 날짜와 저장소 초안 이름만 적는다. 예약만 걸린 글은 '안 나감'에 들어간다. 못 읽으면 판단 안 함)
 - 기준(LIMITS)을 넘으면 problems 에 한 줄씩("무엇 — 마지막 시각 — 할 일"). 통화 인박스가 멈춰 있으면 통화 녹음·문자 백업은
   판단하지 않는다(인박스가 처리한 기록으로 보는 값이라, 인박스가 멈추면 같이 멈춘 것처럼 보임).
 - MODE: "observe" 인 동안 고장 점검은 problems 를 고장으로 세지 않는다(기준이 실제 PC 와 맞는지 먼저 보는 기간).
@@ -48,6 +51,8 @@ KST = timezone(timedelta(hours=9))
 
 MODE = "observe"   # "alert" 로 바꾸면 고장 점검이 problems 를 캘린더에 올린다
 SKIP_HOURS = 3     # 이 시간 안에 적은 기록이 있고 problems 가 같으면 다시 쓰지 않음
+BLOG_NAME = "블로그 공개"   # scripts/blog_drafts.py 의 PC_BLOG_ITEM 과 같은 글자
+BLOG_STALE_DAYS = 8         # 일요일 발행을 한 주 건너뛰면 넘는 날 수(새 글이 며칠 받는 자리라, 한 주 쉬면 그 주는 빈칸)
 # 기준(시간). 예전 점검 지시문의 기준에 조금 여유를 둠
 LIMITS = {
     "통화 인박스": 1.25,        # 15분마다 도는 작업
@@ -145,6 +150,35 @@ def age_item(name: str, last: datetime | None, day: datetime, by: str, good: boo
     return item
 
 
+def blog_item(day: datetime) -> dict:
+    """블로그 공개 흐름. 못 읽으면 ok=None(고장으로 세지 않음). 이 칸 때문에 다른 칸 기록이 멈추면 안 된다."""
+    try:
+        if str(ROOT / "scripts") not in sys.path:
+            sys.path.insert(0, str(ROOT / "scripts"))
+        import blog_drafts as bd
+        pub = bd.public_posts()
+        if pub is None:
+            return {"ok": None, "why": "공개 목록을 못 읽음"}
+        rows = bd.stock_rows(pub, bd.load_state())
+        today, dates = day.date(), sorted(pub.values())
+        last = dates[-1] if dates else None
+        it = {"last": last.isoformat() if last else None,
+              "count_7d": sum(1 for d in dates if 0 <= (today - d).days < 7),
+              "count_28d": sum(1 for d in dates if 0 <= (today - d).days < 28),
+              "stock": len(rows), "stock_cap": bd.STOCK_CAP, "waiting": [bd.draft_key(d) for d in rows],
+              "limit_d": BLOG_STALE_DAYS}
+        # 하루 한 편씩 나가고 있는지 보려고: 최근 14일에 글이 나간 날(날짜만)과, 저장소 초안 가운데 최근 28일에 나간 것의 공개 날짜
+        it["out_14d"] = [d.isoformat() for d in dates if 0 <= (today - d).days < 14]
+        it["published"] = {bd.draft_key(d): on.isoformat() for d in bd.all_drafts()
+                           if (on := bd.published_on(d, pub)) and 0 <= (today - on).days < 28}
+        it["ok"] = bool(last) and (today - last).days <= BLOG_STALE_DAYS
+        if not it["ok"]:
+            it["why"] = f"새 글이 {BLOG_STALE_DAYS}일 넘게 없음"
+        return it
+    except Exception as e:
+        return {"ok": None, "why": f"확인 못 함({type(e).__name__})"}
+
+
 def collect(day: datetime | None = None) -> dict:
     day = day or now()
     items: dict[str, dict] = {}
@@ -193,6 +227,7 @@ def collect(day: datetime | None = None) -> dict:
             need = 0
     items["캘린더→기록부"] = {"folder": bool(cal), "today": has_today, "yesterday": has_yest, "need_check": need,
                          "ok": bool(cal) and has_yest}
+    items[BLOG_NAME] = blog_item(day)
 
     problems = []
     for name, it in items.items():
@@ -201,6 +236,9 @@ def collect(day: datetime | None = None) -> dict:
                 problems.append(f"캘린더→기록부 — 어제 보고 파일이 없음 — {TODO[name]}")
             if it["need_check"]:
                 problems.append(f"기록부 확인 필요 {it['need_check']}건 — 병한님: 저녁 기록부 보고의 '확인 필요' 줄 보기")
+        elif name == BLOG_NAME:
+            if it["ok"] is False:
+                problems.append(f"{name} — 마지막 {it.get('last') or '기록 없음'}({it['why']}) — 병한님: 일요일 발행판에서 블로그 예약")
         elif it["ok"] is False:
             last = datetime.fromisoformat(it["last"]) if it["last"] else None
             problems.append(f"{name} — 마지막 {short(last)}({it['why']}) — {TODO[name]}")
@@ -212,7 +250,12 @@ def first_line(data: dict, tail_msg: str = "") -> str:
     n = len(data["problems"])
     state = "모두 정상" if not n else f"이상 {n}줄"
     watch = "(관찰 중 — 캘린더에는 아직 안 올림)" if data["mode"] != "alert" and n else ""
-    return f"PC 상태: 여덟 가지 중 {state}{watch}" + (f" — {tail_msg}" if tail_msg else "")
+    line = f"PC 상태: {len(data['items'])}가지 중 {state}{watch}" + (f" — {tail_msg}" if tail_msg else "")
+    b = data["items"].get(BLOG_NAME) or {}
+    if b.get("ok") is not None:   # 보고에 한 줄 더: 블로그가 실제로 나가고 있는지
+        line += (f"\n  블로그: 최근 7일 공개 {b['count_7d']}편 · 마지막 공개 {b.get('last') or '없음'}"
+                 f" · 안 나간 초안 {b['stock']}편(한도 {b['stock_cap']}편)")
+    return line
 
 
 def git(*args: str) -> subprocess.CompletedProcess:

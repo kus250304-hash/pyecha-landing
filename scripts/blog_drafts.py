@@ -54,6 +54,14 @@ PLATE_ADDR_RE = re.compile(r"(?<!\d)\d{2,3}\s?[가-힣]\s?\d{4}(?!\d|년)|\d+\s*
 ROAD_RE = re.compile(r"[가-힣\d]{2,}(?:로|길)\s?\d+(?:-\d+)?(?:번길)?(?!\d|-\d|\s*(?:층|년|개|대|시|분|일|주|달|건|번|장|명|km|킬로|가지|단계|곳|편|통|차례|줄))")
 BAN_WORDS = ["최고가", "보장", "100%", "무조건", "0원", "법인", "보험 견인", "서류 없이", "말소 뒤 수출", "말소 후 수출",
              "말소하고 수출", "보험견인", "응원 이벤트", "응원이벤트"]   # 주간꾸러미 BAN·RISK·EXTRA_BAN 과 같은 글자
+# 차령초과말소 차 나이 기준을 틀리게 적는 꼴(2026-11-24, 군산 초안이 "경차는 10년"으로 나갈 뻔함).
+# 자동차등록령 제31조 제2항: 승용차 11년(경차도 승용차), 승합차 10년, 경형·소형 화물·특수차 10년, 중형·대형 화물·특수차 12년.
+# "경형·소형 승합·화물차 10년"은 맞는 문구라 막지 않고, 차령초과말소를 말하는 글에서만 본다.
+_AGE_TAIL = r"10년(?:이|을)?\s*(?:기준|넘|이상|이에요|이고|이며|·)"
+AGE_RULE_RE = re.compile(r"(?:경차|승용차)(?:(?!11년)[^\n.?!]){0,14}" + _AGE_TAIL
+                         + r"|경형(?!\s*[·ㆍ]\s*소형)(?!\s*및\s*소형)(?:(?!11년)[^\n.?!]){0,10}" + _AGE_TAIL)
+PC_HEALTH = ROOT / "data" / "pc_health.json"
+PC_BLOG_ITEM = "블로그 공개"   # scripts/pc_health.py 가 PC 에서 공개 목록을 읽어 적는 칸
 
 
 def today() -> date:
@@ -191,6 +199,33 @@ def stock_rows(pub: dict | None, state: dict) -> list[dict]:
         elif not published_on(d, pub):
             rows.append(d)
     return rows
+
+
+def draft_key(d: dict) -> str:
+    """'2026-11-20/1_포천' — pc_health.json 의 waiting 목록과 같은 꼴."""
+    return f"{d['path'].parent.name}/{d['path'].stem}"
+
+
+def pc_record(max_age_days: int = 3) -> dict | None:
+    """PC 가 낮에 공개 목록을 읽어 적어 둔 블로그 칸(data/pc_health.json). 없거나 오래됐거나 PC 도 못 읽었으면 None."""
+    try:
+        data = json.loads(PC_HEALTH.read_text(encoding="utf-8"))
+        it = data["items"][PC_BLOG_ITEM]
+        written = datetime.fromisoformat(data["written"])
+    except (OSError, ValueError, KeyError, TypeError):
+        return None
+    if it.get("ok") is None or not isinstance(it.get("waiting"), list):
+        return None
+    if (datetime.now(KST) - written).days > max_age_days:
+        return None
+    return {**it, "written": written}
+
+
+def stock_from_pc(rec: dict, state: dict) -> list[dict]:
+    """PC 기록 기준으로 안 나간 초안: 그때 안 나가 있던 것 + 그 뒤에 새로 쓴 것."""
+    waiting, day = set(rec["waiting"]), rec["written"].date()
+    return [d for d in all_drafts() if d["rel"] not in state["dead_drafts"]
+            and (draft_key(d) in waiting or (d["date"] and d["date"] > day))]
 
 
 def region_of_draft(d: dict, by_slug: dict) -> str:
@@ -404,6 +439,9 @@ def check_one(d: dict, others: list[dict], by_slug: dict) -> tuple[list[str], li
     for w in BAN_WORDS:
         if w in txt:
             err.append(f"금지 낱말: \"{w}\" (주간꾸러미가 뺌)")
+    if "차령초과" in txt and (m := AGE_RULE_RE.search(txt)):
+        err.append(f"차령초과말소 기준을 틀리게 적음: \"{m.group(0)}\" — 승용차는 경차도 11년, 10년은 승합차와 경형·소형 화물차"
+                   "(docs/blog-draft-rules.md 5절)")
     for m in PHONE_RE.finditer(txt):
         if re.sub(r"\D", "", m.group(0)) not in OUR_PHONES:
             err.append(f"우리 번호가 아닌 전화번호: {m.group(0)}")
@@ -465,8 +503,16 @@ def cmd_check(files: list[str]) -> int:
 def cmd_stock() -> None:
     state = load_state()
     pub = public_posts()
-    rows = stock_rows(pub, state)
-    print(f"쌓인 초안(안 나감) {len(rows)}편 / 한도 {STOCK_CAP}편" + ("" if pub is not None else " — 공개 목록을 못 읽어 최근 21일 초안으로 어림"))
+    rec = pc_record() if pub is None else None
+    if rec:   # 이 컴퓨터는 공개 목록을 못 읽지만 PC 가 낮에 읽어 둔 기록이 있음(클라우드 세션·아침 루틴)
+        rows = stock_from_pc(rec, state)
+        w = rec["written"]
+        note = (f" — PC 기록({w.month}/{w.day} {w:%H:%M}) 기준 · 최근 7일 공개 {rec.get('count_7d', '?')}편"
+                f" · 마지막 공개 {rec.get('last') or '없음'} (예약만 걸린 글은 '안 나감'에 들어 있음)")
+    else:
+        rows = stock_rows(pub, state)
+        note = "" if pub is not None else " — 공개 목록을 못 읽어 최근 21일 초안으로 어림(이미 나간 글이 섞여 있을 수 있음)"
+    print(f"쌓인 초안(안 나감) {len(rows)}편 / 한도 {STOCK_CAP}편" + note)
     for d in rows:
         print(f"- {d['rel']} · {d['title']}")
 
