@@ -167,10 +167,13 @@ def blog_item(day: datetime) -> dict:
               "count_28d": sum(1 for d in dates if 0 <= (today - d).days < 28),
               "stock": len(rows), "stock_cap": bd.STOCK_CAP, "waiting": [bd.draft_key(d) for d in rows],
               "limit_d": BLOG_STALE_DAYS}
-        # 하루 한 편씩 나가고 있는지 보려고: 최근 14일에 글이 나간 날(날짜만)과, 저장소 초안 가운데 최근 28일에 나간 것의 공개 날짜
+        # 하루 한 편씩 나가고 있는지 보려고: 최근 14일에 글이 나간 날(날짜만)과, 저장소 초안의 공개 날짜.
+        # 공개 날짜는 지우지 않고 쌓는다(2026-11-24): 공개 목록은 최근 50편쯤만 보여서, 석 달쯤 지난 글은 앞선 기록에서 이어받아야
+        # '나간 글'인 줄 안다(안 그러면 안 나간 초안으로 다시 세어져 초안 쓰기가 멈춤). 같은 지역 120일 간격도 이 날짜로 센다.
         it["out_14d"] = [d.isoformat() for d in dates if 0 <= (today - d).days < 14]
-        it["published"] = {bd.draft_key(d): on.isoformat() for d in bd.all_drafts()
-                           if (on := bd.published_on(d, pub)) and 0 <= (today - on).days < 28}
+        seen = {bd.draft_key(d): on.isoformat() for d in bd.all_drafts() if (on := bd.rss_date(d, pub))}
+        kept = {k: v.isoformat() for k, v in bd.pc_published().items()}
+        it["published"] = dict(sorted({**kept, **seen}.items()))
         it["ok"] = bool(last) and (today - last).days <= BLOG_STALE_DAYS
         if not it["ok"]:
             it["why"] = f"새 글이 {BLOG_STALE_DAYS}일 넘게 없음"

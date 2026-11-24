@@ -11,10 +11,12 @@
   그 시·군 구 페이지가 있고, 아직 초안이 없는 것. 새 거래(14일 안에 붙은 사례) 먼저, 그다음 "○○폐차장" 검색량이 큰 지역 순.
 - 초안은 docs/blog-drafts/YYYY-MM-DD/N_지역.md (N 은 한 자리 숫자). 업무위키 `_도구/주간꾸러미.py` 가 토요일 밤에 이 형식을 읽어
   일요일 발행판에 넣는다. 그래서 check 는 꾸러미가 글을 빼는 까닭(사진 없음·다른 글과 같은 문장 4줄 연속·소제목 뼈대 같음·금지 낱말)도 미리 본다.
-- 같은 지역은 안 나간 초안이 있거나 공개한 지 28일이 안 됐으면 고르지 않는다. 안 나간 초안이 STOCK_CAP 편이면 그날은 쓰지 않는다.
+- 같은 지역은 안 나간 초안이 있거나 공개한 지 REGION_GAP 일(120일, 주간꾸러미의 '같은 지역 120일' 규칙과 같게)이 안 됐으면
+  고르지 않는다. 안 나간 초안이 STOCK_CAP 편이면 그날은 쓰지 않는다.
 - 네이버 검색 API 는 쓰지 않는다. 공개 여부는 블로그 공개 목록(RSS)만 본다(못 읽으면 초안 날짜로 어림).
 """
 import argparse
+import functools
 import json
 import re
 import sys
@@ -37,7 +39,9 @@ STATE = ROOT / "data" / "blog_drafts.json"
 BLOG_ID = "abh77790"
 KST = timezone(timedelta(hours=9))
 STOCK_CAP = 20          # 안 나간 초안이 이만큼 쌓이면 새로 쓰지 않음(약 3주치, 2026-11-20 병한님 "많이 만들어 놓고 하루 한 편")
-REGION_GAP = 28         # 같은 지역 다시 쓰기까지(일)
+REGION_GAP = 120        # 같은 지역 다시 쓰기까지(일). 주간꾸러미가 "최근 120일 안에 공개된 글과 지역이 겹치면 뺌"이라 거기에 맞춤
+                        # (2026-11-24, docs/blog-board-facts.md ③. 28일로 쓰면 29~120일 사이 초안은 써도 발행판에 못 들어가 쌓이기만 함).
+                        # 꾸러미 규칙을 4주로 줄이면(docs/fable-2026-11-20/blog-landing.md 10절 "아직 안 한 것") 이 숫자도 같이 바꾼다
 NEW_DAYS = 14           # 이 안에 붙은 사례는 "새 거래"로 먼저
 CONTACT = "전화 1600-6011 / 문자 010-9926-7779"
 METRO = {"서울특별시": "서울", "부산광역시": "부산", "대구광역시": "대구", "인천광역시": "인천",
@@ -177,7 +181,8 @@ def public_posts() -> dict | None:
         return None
 
 
-def published_on(d: dict, pub: dict | None) -> date | None:
+def rss_date(d: dict, pub: dict | None) -> date | None:
+    """공개 목록(RSS)에서 본 이 초안의 공개 날짜. 목록을 못 읽었거나 목록에 없으면 None."""
     if pub is None:
         return None
     t = norm(d["title"])
@@ -185,6 +190,22 @@ def published_on(d: dict, pub: dict | None) -> date | None:
         if t and (k == t or k.startswith(t[:24]) or t.startswith(k[:24])):
             return v
     return None
+
+
+@functools.lru_cache(maxsize=1)
+def pc_published() -> dict:
+    """PC 가 적어 쌓아 둔 초안별 공개 날짜 {'2026-11-05/1_구미': date}(data/pc_health.json).
+    공개 목록(RSS)은 최근 50편쯤만 보여서, 석 달쯤 지난 글은 이 기록으로만 '나간 글'인 줄 안다(2026-11-24)."""
+    try:
+        m = json.loads(PC_HEALTH.read_text(encoding="utf-8"))["items"][PC_BLOG_ITEM].get("published") or {}
+        return {k: date.fromisoformat(v) for k, v in m.items()}
+    except (OSError, ValueError, KeyError, TypeError, AttributeError):
+        return {}
+
+
+def published_on(d: dict, pub: dict | None) -> date | None:
+    """이 초안이 공개된 날짜: 공개 목록에서 먼저 찾고, 없으면 PC 가 쌓아 둔 기록."""
+    return rss_date(d, pub) or pc_published().get(draft_key(d))
 
 
 def stock_rows(pub: dict | None, state: dict) -> list[dict]:
@@ -222,10 +243,13 @@ def pc_record(max_age_days: int = 3) -> dict | None:
 
 
 def stock_from_pc(rec: dict, state: dict) -> list[dict]:
-    """PC 기록 기준으로 안 나간 초안: 그때 안 나가 있던 것 + 그 뒤에 새로 쓴 것."""
+    """PC 기록 기준으로 안 나간 초안: 그때 안 나가 있던 것 + 그 뒤에 새로 쓴 것.
+    PC 는 낮 작업에서 상태 기록(2-5)을 먼저 쓰고 초안(18)을 나중에 쓰므로, 기록과 같은 날짜의 초안 가운데
+    기록에 없는 것(안 나감에도 공개됨에도 없음)은 기록 뒤에 쓴 것으로 센다(2026-11-24: 9편으로 보였는데 실제 12편)."""
     waiting, day = set(rec["waiting"]), rec["written"].date()
+    done = set(rec.get("published") or {})
     return [d for d in all_drafts() if d["rel"] not in state["dead_drafts"]
-            and (draft_key(d) in waiting or (d["date"] and d["date"] > day))]
+            and (draft_key(d) in waiting or (d["date"] and d["date"] >= day and draft_key(d) not in done))]
 
 
 def region_of_draft(d: dict, by_slug: dict) -> str:
