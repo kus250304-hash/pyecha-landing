@@ -1922,6 +1922,21 @@
       }
      ]
     }
+   },
+   {
+    "dong": "동백동",
+    "line": "동막초등학교가 있는 동백동이라면 주택가 골목에 세워 둔 차도 기사가 찾아갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-26",
+     "items": [
+      {
+       "name": "동막초등학교",
+       "evidence": "학교 정보 페이지(직접 열어 봄)에 경기도 용인시 기흥구 동백8로 39, 동막초등학교 (동백동, 동막초등학교)",
+       "url": "https://www.yugacrew.com/gyeonggi/yongin/school/b000003964-",
+       "grade": "opened"
+      }
+     ]
+    }
    }
   ]
  },

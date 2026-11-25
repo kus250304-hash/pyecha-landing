@@ -1,5 +1,126 @@
 [
  {
+  "slug": "case-20261124-gyeongnam-yangsan",
+  "date": "2026-11-24",
+  "sido": "경상남도",
+  "sigungu": "양산시",
+  "dong": "",
+  "region_slug": null,
+  "car": "2013년식 기아 카니발R 리무진 9인승 디젤",
+  "title": "양산시 2013년식 기아 카니발R 리무진 9인승 디젤 폐차·수출 비교 상담 사례",
+  "summary": "2013년식 기아 카니발R 리무진 9인승 디젤 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "기아 카니발R 리무진 9인승 디젤"
+   ],
+   [
+    "연식",
+    "2013년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2013년식 기아 카니발R 리무진 9인승 디젤 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20261124-gyeongnam-yangsan-1.jpg",
+  "photos": [
+   "case-20261124-gyeongnam-yangsan-1.jpg",
+   "case-20261124-gyeongnam-yangsan-2.jpg",
+   "case-20261124-gyeongnam-yangsan-3.jpg",
+   "case-20261124-gyeongnam-yangsan-4.jpg",
+   "case-20261124-gyeongnam-yangsan-5.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "걱정": "주행거리도 많고 수리비가 많이 나오는데 고쳐서 탈지",
+   "확인": [
+    "운행은 되는 차",
+    "주행거리 약 30만km",
+    "여기저기 수리비가 많이 나옴"
+   ],
+   "고른쪽": "폐차",
+   "이유": "주행거리가 많고 수리비가 커서 폐차로 진행. 해외에서는 사람 많이 태우는 차보다 포터처럼 짐 싣는 차를 더 찾아서 수출 쪽도 맞지 않았음",
+   "문의일": "2026-11-15",
+   "끝한줄": "오전에 탁송해서 그날 오후에 말소증까지 받으셨습니다"
+  },
+  "depth": [
+   "걱정",
+   "확인",
+   "고른쪽",
+   "끝한줄"
+  ],
+  "thin": false,
+  "card_line": "주행거리도 많고 수리비가 많이 나오는데 고쳐서 탈지",
+  "added": "2026-11-26"
+ },
+ {
+  "slug": "case-20261119-seoul-geumcheon",
+  "date": "2026-11-19",
+  "sido": "서울특별시",
+  "sigungu": "금천구",
+  "dong": "",
+  "region_slug": null,
+  "car": "2012년식 현대 엑센트 1.4 휘발유",
+  "title": "금천구 2012년식 현대 엑센트 1.4 휘발유 폐차·수출 비교 상담 사례",
+  "summary": "2012년식 현대 엑센트 1.4 휘발유 차량으로, 시동은 걸리는 상태였습니다.",
+  "facts": [
+   [
+    "차종",
+    "현대 엑센트 1.4 휘발유"
+   ],
+   [
+    "연식",
+    "2012년식"
+   ],
+   [
+    "시동",
+    "걸림"
+   ],
+   [
+    "운행",
+    "가능"
+   ]
+  ],
+  "situation": "2012년식 현대 엑센트 1.4 휘발유 차량으로, 시동은 걸리는 상태였습니다. 운행은 가능한 상태였습니다.",
+  "method": "",
+  "result": "",
+  "quote": "",
+  "thumb": "case-20261119-seoul-geumcheon-1.jpg",
+  "photos": [
+   "case-20261119-seoul-geumcheon-1.jpg",
+   "case-20261119-seoul-geumcheon-2.jpg",
+   "case-20261119-seoul-geumcheon-3.jpg",
+   "case-20261119-seoul-geumcheon-4.jpg"
+  ],
+  "videos": [],
+  "spoken": "",
+  "story": {
+   "확인": [
+    "운행 되는 휘발유 차",
+    "압류·저당 없음"
+   ],
+   "고른쪽": "수출",
+   "이유": "폐차로 정한 뒤에도 수출 쪽을 먼저 알아봤고, 수출이 더 나아 수출로 진행"
+  },
+  "depth": [
+   "확인",
+   "고른쪽"
+  ],
+  "thin": false,
+  "card_line": "2012년식 현대 엑센트 1.4 휘발유 차량으로, 시동은 걸리는 상태였습니다.",
+  "added": "2026-11-26"
+ },
+ {
   "slug": "case-20261124-gyeonggi-pocheon",
   "date": "2026-11-24",
   "sido": "경기도",
@@ -258,8 +379,15 @@
   "method": "통화로 차 상태를 듣고 그날 진행을 정했고, 문의한 다음 날 차를 가져갔습니다.",
   "result": "",
   "quote": "",
-  "thumb": null,
-  "photos": [],
+  "thumb": "case-20261104-jeonbuk-jeonju-wansan-1.jpg",
+  "photos": [
+   "case-20261104-jeonbuk-jeonju-wansan-1.jpg",
+   "case-20261104-jeonbuk-jeonju-wansan-2.jpg",
+   "case-20261104-jeonbuk-jeonju-wansan-3.jpg",
+   "case-20261104-jeonbuk-jeonju-wansan-4.jpg",
+   "case-20261104-jeonbuk-jeonju-wansan-5.jpg",
+   "case-20261104-jeonbuk-jeonju-wansan-6.jpg"
+  ],
   "videos": [],
   "spoken": "",
   "story": {
@@ -281,7 +409,8 @@
   ],
   "thin": false,
   "card_line": "서류는 뭐가 필요한지, 오늘 와 주실 수 있는지",
-  "added": "2026-11-25"
+  "added": "2026-11-25",
+  "photos_added": "2026-11-26"
  },
  {
   "slug": "case-20261103-jeonnam-suncheon",
