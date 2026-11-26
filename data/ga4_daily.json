@@ -1,6 +1,6 @@
 {
  "property_timezone": "Asia/Seoul",
- "updated": "2026-11-25T12:25+09:00",
+ "updated": "2026-11-26T12:24+09:00",
  "days": {
   "2026-10-20": {
    "sessions": {
@@ -4761,7 +4761,7 @@
     "구글": 0,
     "유튜브": 0,
     "직접": 2,
-    "기타": 3
+    "기타": 1
    },
    "events": {
     "네이버": {
@@ -4791,7 +4791,7 @@
     }
    },
    "totals": {
-    "sessions": 26,
+    "sessions": 24,
     "quote_submit": 0,
     "call_click": 3,
     "sms_click": 0
@@ -4807,10 +4807,6 @@
     },
     {
      "source": "(direct) / (none)",
-     "sessions": 2
-    },
-    {
-     "source": "(not set) / (not set)",
      "sessions": 2
     },
     {
@@ -4831,11 +4827,6 @@
     }
    ],
    "landing": [
-    {
-     "page": "(not set)",
-     "bucket": "기타",
-     "sessions": 2
-    },
     {
      "page": "/si/전남광주-폐차장.html",
      "bucket": "네이버",
@@ -4948,6 +4939,230 @@
     },
     {
      "page": "/si/전북-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    }
+   ]
+  },
+  "2026-11-25": {
+   "sessions": {
+    "네이버": 30,
+    "구글": 0,
+    "유튜브": 0,
+    "직접": 1,
+    "기타": 2
+   },
+   "events": {
+    "네이버": {
+     "quote_submit": 1,
+     "call_click": 3,
+     "sms_click": 0
+    },
+    "구글": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "유튜브": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "직접": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "기타": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    }
+   },
+   "totals": {
+    "sessions": 33,
+    "quote_submit": 1,
+    "call_click": 3,
+    "sms_click": 0
+   },
+   "sources": [
+    {
+     "source": "m.search.naver.com / referral",
+     "sessions": 24
+    },
+    {
+     "source": "naver / organic",
+     "sessions": 6
+    },
+    {
+     "source": "(not set) / (not set)",
+     "sessions": 2
+    },
+    {
+     "source": "(direct) / (none)",
+     "sessions": 1
+    }
+   ],
+   "pages": [
+    {
+     "page": "/gu/포항시-북구-폐차장.html",
+     "quote_submit": 1,
+     "call_click": 0
+    },
+    {
+     "page": "/gu/영종구-폐차장.html",
+     "quote_submit": 0,
+     "call_click": 1
+    },
+    {
+     "page": "/gu/음성군-폐차장.html",
+     "quote_submit": 0,
+     "call_click": 1
+    },
+    {
+     "page": "/gu/의정부시-폐차장.html",
+     "quote_submit": 0,
+     "call_click": 1
+    }
+   ],
+   "landing": [
+    {
+     "page": "/gu/영종구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 4
+    },
+    {
+     "page": "(not set)",
+     "bucket": "기타",
+     "sessions": 2
+    },
+    {
+     "page": "(not set)",
+     "bucket": "네이버",
+     "sessions": 2
+    },
+    {
+     "page": "/",
+     "bucket": "직접",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/광양시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/구미시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/군산시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/금정구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/김포시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/상주시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/순천시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/안산시-상록구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/울진군-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/음성군-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/의정부시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/이천시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/포항시-북구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/함양군-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/화성시-만세구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/guide/상속차-법인차-서류.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/guide/압류-있는-차-폐차.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/guide/조기폐차-지원-안내.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/pages/busan-yeongdo-dongsam.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/pages/gyeongnam-gimhae-yulha.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/pages/incheon-junggu-sa.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/pages/incheon-junggu-unseo.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/pages/seoul-dongdaemun-cheongnyangni.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/si/전남광주-폐차장.html",
      "bucket": "네이버",
      "sessions": 1
     }
