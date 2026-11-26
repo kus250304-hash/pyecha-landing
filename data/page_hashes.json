@@ -55,6 +55,10 @@
 "hash": "1f610707ff1c49042de2",
 "lastmod": "2026-10-28"
 },
+"cases/case-20261001-gyeonggi-seongnam-jungwon.html": {
+"hash": "7417f670c464cda4665c",
+"lastmod": "2026-11-27"
+},
 "cases/case-20261008-chungnam-cheonan-seobuk.html": {
 "hash": "ac66baccefbbfbb7713b",
 "lastmod": "2026-10-24"
@@ -126,6 +130,10 @@
 "cases/case-20261113-daejeon-daedeok-sintanjin.html": {
 "hash": "3bc1fdf284ed65f3da48",
 "lastmod": "2026-11-17"
+},
+"cases/case-20261118-gyeonggi-anyang-dongan-2.html": {
+"hash": "581575b935b07e8d0225",
+"lastmod": "2026-11-27"
 },
 "cases/case-20261118-gyeonggi-anyang-dongan.html": {
 "hash": "28990efd935c6c4d9edc",
@@ -220,16 +228,16 @@
 "lastmod": "2026-11-25"
 },
 "gu/고양시-덕양구-폐차장.html": {
-"hash": "0a42f9108ae35ddea8b4",
-"lastmod": "2026-11-25"
+"hash": "f48b538395da27b11f96",
+"lastmod": "2026-11-27"
 },
 "gu/고양시-일산동구-폐차장.html": {
-"hash": "05b9722fc2b2f3d47b3b",
-"lastmod": "2026-11-25"
+"hash": "d6957ccbc47b2f00a172",
+"lastmod": "2026-11-27"
 },
 "gu/고양시-일산서구-폐차장.html": {
-"hash": "b3d93556aa8ba25032ab",
-"lastmod": "2026-11-25"
+"hash": "39f4e5393dfbea354156",
+"lastmod": "2026-11-27"
 },
 "gu/고창군-폐차장.html": {
 "hash": "a7169e3ef875ae77778c",
@@ -248,16 +256,16 @@
 "lastmod": "2026-11-02"
 },
 "gu/과천시-폐차장.html": {
-"hash": "01c7fc970c998ae8cd7c",
-"lastmod": "2026-11-25"
+"hash": "acb16e6a991d278e6566",
+"lastmod": "2026-11-27"
 },
 "gu/관악구-폐차장.html": {
 "hash": "50e0e224e896bc9d39c0",
 "lastmod": "2026-11-26"
 },
 "gu/광명시-폐차장.html": {
-"hash": "e3fe4dac96fde3f2c83c",
-"lastmod": "2026-11-25"
+"hash": "f21b514844abf42f935e",
+"lastmod": "2026-11-27"
 },
 "gu/광양시-폐차장.html": {
 "hash": "34c1c5302f9036663544",
@@ -284,24 +292,24 @@
 "lastmod": "2026-11-26"
 },
 "gu/구리시-폐차장.html": {
-"hash": "016f87f8d66d5331346c",
-"lastmod": "2026-11-25"
+"hash": "a9bee6eb97147d6865ea",
+"lastmod": "2026-11-27"
 },
 "gu/구미시-폐차장.html": {
 "hash": "368da795af6a8b368df2",
 "lastmod": "2026-11-21"
 },
 "gu/군산시-폐차장.html": {
-"hash": "913f0104d2c971c5e074",
-"lastmod": "2026-11-25"
+"hash": "c95d99fcfbf81887c269",
+"lastmod": "2026-11-27"
 },
 "gu/군위군-폐차장.html": {
 "hash": "685aa562a8b0e800c9f2",
 "lastmod": "2026-11-22"
 },
 "gu/군포시-폐차장.html": {
-"hash": "4d2b7564c41bef23bf39",
-"lastmod": "2026-11-25"
+"hash": "e2e0e23a8edbfe254075",
+"lastmod": "2026-11-27"
 },
 "gu/금정구-폐차장.html": {
 "hash": "41325ae1b153f1b4fb23",
@@ -416,8 +424,8 @@
 "lastmod": "2026-11-26"
 },
 "gu/동두천시-폐차장.html": {
-"hash": "5a6b1039fa51cc76a42c",
-"lastmod": "2026-11-25"
+"hash": "1df4b2dfe1f1fdab6a93",
+"lastmod": "2026-11-27"
 },
 "gu/동래구-폐차장.html": {
 "hash": "605127d3304a77e25a50",
@@ -492,16 +500,16 @@
 "lastmod": "2026-11-02"
 },
 "gu/부천시-소사구-폐차장.html": {
-"hash": "821f6b438e37c1d81100",
-"lastmod": "2026-11-25"
+"hash": "07b100dd1586f665d769",
+"lastmod": "2026-11-27"
 },
 "gu/부천시-오정구-폐차장.html": {
-"hash": "d37835b77ea29feb311f",
-"lastmod": "2026-11-25"
+"hash": "369e5d2d7ced7a80481d",
+"lastmod": "2026-11-27"
 },
 "gu/부천시-원미구-폐차장.html": {
-"hash": "c5606730153cf8b96701",
-"lastmod": "2026-11-25"
+"hash": "b63c6b003097f8b9a184",
+"lastmod": "2026-11-27"
 },
 "gu/부평구-폐차장.html": {
 "hash": "ea455dcf32e6bd7198bc",
@@ -564,12 +572,12 @@
 "lastmod": "2026-11-07"
 },
 "gu/성남시-수정구-폐차장.html": {
-"hash": "2ffabb81db9d4d0ab44a",
-"lastmod": "2026-11-25"
+"hash": "e58d863342bfe6b4ab77",
+"lastmod": "2026-11-27"
 },
 "gu/성남시-중원구-폐차장.html": {
-"hash": "a0db734a6cb81b0a334d",
-"lastmod": "2026-11-13"
+"hash": "8a93a8cba074388860a1",
+"lastmod": "2026-11-27"
 },
 "gu/성동구-폐차장.html": {
 "hash": "6072266c525c8001bc74",
@@ -608,16 +616,16 @@
 "lastmod": "2026-11-09"
 },
 "gu/수원시-영통구-폐차장.html": {
-"hash": "dc75dc3dc63a601a5507",
-"lastmod": "2026-11-25"
+"hash": "d45019a1ef27f55b1f23",
+"lastmod": "2026-11-27"
 },
 "gu/수원시-장안구-폐차장.html": {
 "hash": "6732b8f8171991424b3c",
 "lastmod": "2026-11-10"
 },
 "gu/수원시-팔달구-폐차장.html": {
-"hash": "566c9b827918527c2a91",
-"lastmod": "2026-11-25"
+"hash": "099fd0a811d2ead4f0bd",
+"lastmod": "2026-11-27"
 },
 "gu/순창군-폐차장.html": {
 "hash": "b1a52f50e827b8b47e24",
@@ -644,24 +652,24 @@
 "lastmod": "2026-11-25"
 },
 "gu/안산시-단원구-폐차장.html": {
-"hash": "b4981f60df39c1c5f4a5",
-"lastmod": "2026-11-25"
+"hash": "6a44bc723cfc3d5dd591",
+"lastmod": "2026-11-27"
 },
 "gu/안산시-상록구-폐차장.html": {
 "hash": "34efe52b7119333c46fe",
 "lastmod": "2026-11-12"
 },
 "gu/안성시-폐차장.html": {
-"hash": "898b36e49b7713286e20",
-"lastmod": "2026-11-25"
+"hash": "96ff8d60c53254293a03",
+"lastmod": "2026-11-27"
 },
 "gu/안양시-동안구-폐차장.html": {
-"hash": "3633fddb3cf26bd68206",
-"lastmod": "2026-11-22"
+"hash": "1abda43417ca40e02916",
+"lastmod": "2026-11-27"
 },
 "gu/안양시-만안구-폐차장.html": {
-"hash": "54848861eb4a63321d87",
-"lastmod": "2026-11-25"
+"hash": "9357e5e138a2dbd794ab",
+"lastmod": "2026-11-27"
 },
 "gu/양구군-폐차장.html": {
 "hash": "26082fe69623cd3d1fc3",
@@ -676,8 +684,8 @@
 "lastmod": "2026-11-19"
 },
 "gu/양주시-폐차장.html": {
-"hash": "85733a4f6c33f1124630",
-"lastmod": "2026-11-25"
+"hash": "9db587b1bac70f61ce12",
+"lastmod": "2026-11-27"
 },
 "gu/양천구-폐차장.html": {
 "hash": "b9d7365671a84aa674c8",
@@ -688,8 +696,8 @@
 "lastmod": "2026-11-25"
 },
 "gu/여주시-폐차장.html": {
-"hash": "fe4b4200b7230985de73",
-"lastmod": "2026-11-25"
+"hash": "ed268c4a18b34b2e9438",
+"lastmod": "2026-11-27"
 },
 "gu/연수구-폐차장.html": {
 "hash": "0eb651c94b9ca958ec89",
@@ -744,8 +752,8 @@
 "lastmod": "2026-11-25"
 },
 "gu/오산시-폐차장.html": {
-"hash": "c431683bdca7b7490c04",
-"lastmod": "2026-11-25"
+"hash": "c0ffbecfc69c67bec6c1",
+"lastmod": "2026-11-27"
 },
 "gu/옥천군-폐차장.html": {
 "hash": "c4e307226f95fd6ede9f",
@@ -760,12 +768,12 @@
 "lastmod": "2026-11-25"
 },
 "gu/용인시-기흥구-폐차장.html": {
-"hash": "635f8f02fd6f8f156d2f",
-"lastmod": "2026-11-26"
+"hash": "e3b5729753c72067d7a9",
+"lastmod": "2026-11-27"
 },
 "gu/용인시-수지구-폐차장.html": {
-"hash": "9366cfab470a07149b8f",
-"lastmod": "2026-11-25"
+"hash": "f16181d9cecb8dc2d2de",
+"lastmod": "2026-11-27"
 },
 "gu/용인시-처인구-폐차장.html": {
 "hash": "0710e042de03d0d5e2a3",
@@ -820,12 +828,12 @@
 "lastmod": "2026-11-22"
 },
 "gu/의정부시-폐차장.html": {
-"hash": "83d82cc51ea0a7616f37",
-"lastmod": "2026-11-25"
+"hash": "cdee3ec93f3b5a663dcd",
+"lastmod": "2026-11-27"
 },
 "gu/이천시-폐차장.html": {
-"hash": "95d61c8ea933d0857194",
-"lastmod": "2026-11-26"
+"hash": "412fba3a5a086099d031",
+"lastmod": "2026-11-27"
 },
 "gu/익산시-폐차장.html": {
 "hash": "49d1297625a3151f5838",
@@ -1000,8 +1008,8 @@
 "lastmod": "2026-11-26"
 },
 "gu/파주시-폐차장.html": {
-"hash": "328a4fc8c454ebce77b5",
-"lastmod": "2026-11-25"
+"hash": "a6d53a7e7b5bcf995ab8",
+"lastmod": "2026-11-27"
 },
 "gu/평창군-폐차장.html": {
 "hash": "ae0cbb29cb01db2bf7ee",
@@ -1024,8 +1032,8 @@
 "lastmod": "2026-11-25"
 },
 "gu/하남시-폐차장.html": {
-"hash": "b7a16b3ef7d37ab71ed0",
-"lastmod": "2026-11-25"
+"hash": "8096e000093971cdf600",
+"lastmod": "2026-11-27"
 },
 "gu/하동군-폐차장.html": {
 "hash": "5add19a8efb0bc61f73b",
@@ -1064,16 +1072,16 @@
 "lastmod": "2026-11-19"
 },
 "gu/화성시-동탄구-폐차장.html": {
-"hash": "d807ed767399cc445a76",
-"lastmod": "2026-11-25"
+"hash": "fdf256e1ba0eca2660e9",
+"lastmod": "2026-11-27"
 },
 "gu/화성시-만세구-폐차장.html": {
-"hash": "16a0377aa67a29d92810",
-"lastmod": "2026-11-25"
+"hash": "390f466279bf3853da66",
+"lastmod": "2026-11-27"
 },
 "gu/화성시-병점구-폐차장.html": {
-"hash": "5e1944c0ec93bb2b38bc",
-"lastmod": "2026-11-25"
+"hash": "f6f646fb8182e0281179",
+"lastmod": "2026-11-27"
 },
 "gu/화순군-폐차장.html": {
 "hash": "4bfd2720c071de4ccc87",
@@ -1088,32 +1096,32 @@
 "lastmod": "2026-11-19"
 },
 "guide/방치차-오래-세워둔-차.html": {
-"hash": "755804bee9c81dcb744c",
-"lastmod": "2026-11-26"
+"hash": "2f9c6db9d13608803640",
+"lastmod": "2026-11-27"
 },
 "guide/상속차-법인차-서류.html": {
-"hash": "f57741c79bdcbe40eb37",
-"lastmod": "2026-11-26"
+"hash": "a3085c0cb7e51def9209",
+"lastmod": "2026-11-27"
 },
 "guide/시동-안-걸리는-차.html": {
-"hash": "081532199ddad0752fb4",
-"lastmod": "2026-11-26"
+"hash": "783c0e882d1e5150aca2",
+"lastmod": "2026-11-27"
 },
 "guide/압류-있는-차-폐차.html": {
-"hash": "e6278f7fed1922b26c85",
-"lastmod": "2026-11-26"
+"hash": "2440e1e15704a7e85e50",
+"lastmod": "2026-11-27"
 },
 "guide/저당만-있는-차.html": {
-"hash": "e25677caa924416e4544",
-"lastmod": "2026-11-26"
+"hash": "a2fe76102ca5202a6e48",
+"lastmod": "2026-11-27"
 },
 "guide/조기폐차-지원-안내.html": {
 "hash": "34defbe81d9e7b512ee3",
 "lastmod": "2026-11-24"
 },
 "guide/차령초과-폐차.html": {
-"hash": "7256f1b2450c186253ab",
-"lastmod": "2026-11-26"
+"hash": "f2717d2b7335d12683b2",
+"lastmod": "2026-11-27"
 },
 "guide/폐차-금액-정하는-방법.html": {
 "hash": "e4ff9e049ede4d843477",
@@ -4556,8 +4564,8 @@
 "lastmod": "2026-11-23"
 },
 "si/경기-폐차장.html": {
-"hash": "a84718e3b1e465aeece4",
-"lastmod": "2026-11-25"
+"hash": "8631df9f265dae9903c8",
+"lastmod": "2026-11-27"
 },
 "si/경남-폐차장.html": {
 "hash": "dac11f8f7bf1c14435fe",

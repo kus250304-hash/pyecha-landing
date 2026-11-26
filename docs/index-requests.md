@@ -1599,3 +1599,16 @@
 - https://pyecha119.com/gu/%EA%B0%95%EB%82%A8%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/강남구-폐차장.html (바뀜: 2026-11-26 본문 바뀜(구·시군))
 - https://pyecha119.com/gu/%EA%B0%95%EB%8F%99%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/강동구-폐차장.html (바뀜: 2026-11-26 본문 바뀜(구·시군))
 - https://pyecha119.com/gu/%EA%B0%95%EB%B6%81%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/강북구-폐차장.html (바뀜: 2026-11-26 본문 바뀜(구·시군))
+
+## 2026-11-27 네이버
+
+- https://pyecha119.com/gu/%EC%84%B1%EB%82%A8%EC%8B%9C-%EC%A4%91%EC%9B%90%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/성남시-중원구-폐차장.html (바뀜: 2026-11-27 사례가 새로 붙음(성남시 중원구))
+- https://pyecha119.com/gu/%EC%98%81%EC%A2%85%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/영종구-폐차장.html (반응: 최근 7일 전화 1)
+- https://pyecha119.com/gu/%EC%9D%8C%EC%84%B1%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/음성군-폐차장.html (반응: 최근 7일 전화 1)
+- https://pyecha119.com/gu/%EC%9D%98%EC%A0%95%EB%B6%80%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/의정부시-폐차장.html (반응: 최근 7일 전화 1)
+- https://pyecha119.com/gu/%ED%8F%AC%ED%95%AD%EC%8B%9C-%EB%B6%81%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/포항시-북구-폐차장.html (반응: 최근 7일 폼 1)
+- https://pyecha119.com/gu/%EA%B1%B0%EC%A0%9C%EC%8B%9C-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/거제시-폐차장.html (바뀜: 2026-11-26 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EA%B1%B0%EC%B0%BD%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/거창군-폐차장.html (바뀜: 2026-11-26 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EA%B2%BD%EB%82%A8-%EA%B3%A0%EC%84%B1%EA%B5%B0-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/경남-고성군-폐차장.html (바뀜: 2026-11-26 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EA%B3%A0%EC%96%91%EC%8B%9C-%EB%8D%95%EC%96%91%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/고양시-덕양구-폐차장.html (바뀜: 2026-11-27 본문 바뀜(구·시군))
+- https://pyecha119.com/gu/%EA%B3%A0%EC%96%91%EC%8B%9C-%EC%9D%BC%EC%82%B0%EB%8F%99%EA%B5%AC-%ED%8F%90%EC%B0%A8%EC%9E%A5.html — gu/고양시-일산동구-폐차장.html (바뀜: 2026-11-27 본문 바뀜(구·시군))

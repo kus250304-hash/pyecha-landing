@@ -902,7 +902,12 @@
    "조기폐차 지원사업: 군산시의 2026년 공고문을 찾지 못해 뺐습니다(검색에는 2024년 홍보 글과 전국 공통 안내만 나옴).",
    "군산시청 누리집은 이 작업 환경에서 직접 열리지 않아 검색 결과 요약으로만 확인했습니다."
   ],
-  "checked_on": "2026-10-02"
+  "checked_on": "2026-10-02",
+  "deep": {
+   "since": "2026-11-26",
+   "inquiries": 2,
+   "window": "2026-10-28~2026-11-26"
+  }
  },
  {
   "slug": "sejong",
@@ -2900,7 +2905,89 @@
   "dropped_info": [
    "의정부시 누리집 차량등록 안내 페이지는 접속이 막혀 직접 열지 못했고, 주소는 같은 누리집의 검색 결과 내용으로 확인했습니다."
   ],
-  "checked_on": "2026-10-05"
+  "checked_on": "2026-10-05",
+  "deep": {
+   "since": "2026-11-26",
+   "inquiries": 2,
+   "window": "2026-10-28~2026-11-26"
+  },
+  "area_notes": [
+   {
+    "dong": "신곡동",
+    "line": "경기도청 북부청사가 있는 신곡동도 기사가 차 있는 자리로 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-27",
+     "items": [
+      {
+       "name": "경기도청 북부청사",
+       "evidence": "어린이집 안내 사이트에 주소 경기도 의정부시 청사로 1 경기도청 북부청사 (신곡동)",
+       "url": "https://www.yugacrew.com/gyeonggi/uiejeongbu/daycare-center/3",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "민락동",
+    "line": "민락동은 민락국민체육센터가 들어선 택지 동네로, 아파트 주차장에 선 차도 견인차가 찾아갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-27",
+     "items": [
+      {
+       "name": "민락국민체육센터",
+       "evidence": "경기일보 기사에 '체육센터는 민락동 880일대에 지하1층∼지상 4층' 규모로 준공",
+       "url": "https://www.kyeonggi.com/article/20240723580012",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "가능동",
+    "line": "가능역 앞 골목이든 집 앞이든, 가능동 차는 세워 둔 자리까지 기사가 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-27",
+     "items": [
+      {
+       "name": "가능역",
+       "evidence": "위키 문서에 '경기도 의정부시 가능동에 위치한' 역, 소재지 경기도 의정부시 평화로 633",
+       "url": "https://itwiki.kr/w/%EA%B0%80%EB%8A%A5%EC%97%AD",
+       "grade": "opened"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "용현동",
+    "line": "용현산업단지가 있는 용현동은 공장 마당에 둔 차도 차 있는 자리로 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-27",
+     "items": [
+      {
+       "name": "용현산업단지",
+       "evidence": "경기일보 기사에 용현산업단지는 '용현동 523 일원' 34만5천여㎡ 규모로 2000년 7월 조성",
+       "url": "https://www.kyeonggi.com/article/202009171138727",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "금오동",
+    "line": "금오동 을지대학교 의정부캠퍼스 쪽 동네도 견인차가 차 있는 자리로 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-27",
+     "items": [
+      {
+       "name": "을지대학교 의정부캠퍼스",
+       "evidence": "병원 정보(굿닥)에 주소 경기 의정부시 동일로 712 을지대학교 의정부캠퍼스 및 부속병원 (금오동), 지번 경기 의정부시 금오동 489",
+       "url": "https://www.goodoc.co.kr/hospitals/76936",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   }
+  ]
  },
  {
   "slug": "gyeongbuk-gimcheon",
