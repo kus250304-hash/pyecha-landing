@@ -1,9 +1,12 @@
 {
  "_comment": "scripts/deep_gu.py faq-tried 가 씀(손으로 고치지 않음). 통화표·기록부를 찾아봤는데 그 시·군 손님 질문이 없던 구와 그 날짜.",
  "tried": {
+  "chungbuk-eumseong": "2026-11-26",
+  "gyeongbuk-pohang-namgu": "2026-11-26",
   "gyeonggi-uiwang": "2026-11-24",
   "gyeonggi-yongin-giheung": "2026-11-25",
   "jeonbuk-gunsan": "2026-11-25",
+  "jeonnam-mokpo": "2026-11-26",
   "jeonnam-suncheon": "2026-11-24",
   "seoul-geumcheon": "2026-11-24"
  }
