@@ -1,6 +1,6 @@
 {
  "property_timezone": "Asia/Seoul",
- "updated": "2026-11-26T12:24+09:00",
+ "updated": "2026-11-27T12:25+09:00",
  "days": {
   "2026-10-20": {
    "sessions": {
@@ -4950,7 +4950,7 @@
     "구글": 0,
     "유튜브": 0,
     "직접": 1,
-    "기타": 2
+    "기타": 0
    },
    "events": {
     "네이버": {
@@ -4980,7 +4980,7 @@
     }
    },
    "totals": {
-    "sessions": 33,
+    "sessions": 31,
     "quote_submit": 1,
     "call_click": 3,
     "sms_click": 0
@@ -4993,10 +4993,6 @@
     {
      "source": "naver / organic",
      "sessions": 6
-    },
-    {
-     "source": "(not set) / (not set)",
-     "sessions": 2
     },
     {
      "source": "(direct) / (none)",
@@ -5030,11 +5026,6 @@
      "page": "/gu/영종구-폐차장.html",
      "bucket": "네이버",
      "sessions": 4
-    },
-    {
-     "page": "(not set)",
-     "bucket": "기타",
-     "sessions": 2
     },
     {
      "page": "(not set)",
@@ -5164,6 +5155,185 @@
     {
      "page": "/si/전남광주-폐차장.html",
      "bucket": "네이버",
+     "sessions": 1
+    }
+   ]
+  },
+  "2026-11-26": {
+   "sessions": {
+    "네이버": 19,
+    "구글": 0,
+    "유튜브": 0,
+    "직접": 2,
+    "기타": 1
+   },
+   "events": {
+    "네이버": {
+     "quote_submit": 0,
+     "call_click": 2,
+     "sms_click": 0
+    },
+    "구글": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "유튜브": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "직접": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "기타": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    }
+   },
+   "totals": {
+    "sessions": 22,
+    "quote_submit": 0,
+    "call_click": 2,
+    "sms_click": 0
+   },
+   "sources": [
+    {
+     "source": "m.search.naver.com / referral",
+     "sessions": 12
+    },
+    {
+     "source": "naver / organic",
+     "sessions": 7
+    },
+    {
+     "source": "(direct) / (none)",
+     "sessions": 2
+    },
+    {
+     "source": "chatgpt.com / ai-assistant",
+     "sessions": 1
+    }
+   ],
+   "pages": [
+    {
+     "page": "/gu/달서구-폐차장.html",
+     "quote_submit": 0,
+     "call_click": 1
+    },
+    {
+     "page": "/pages/gyeonggi-yeoncheon-yeoncheon.html",
+     "quote_submit": 0,
+     "call_click": 1
+    }
+   ],
+   "landing": [
+    {
+     "page": "/gu/달서구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 2
+    },
+    {
+     "page": "(not set)",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/",
+     "bucket": "직접",
+     "sessions": 1
+    },
+    {
+     "page": "/cases/case-20230822-jeonbuk-jeonju-wansan.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/cases/case-20261026-gyeonggi-seongnam-bundang.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/시흥시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/영종구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/음성군-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/의왕시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/장수군-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/창원시-의창구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/창원시-진해구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/포천시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/guide/차령초과-폐차.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/guide/폐차-수출-비교.html",
+     "bucket": "직접",
+     "sessions": 1
+    },
+    {
+     "page": "/guide/폐차-필요-서류.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/pages/daegu-dalseong-hyeonpung.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/pages/gyeonggi-suwon-yeongtong-yeongtong.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/pages/gyeonggi-yeoncheon-yeoncheon.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/pages/jeonnam-yeonggwang-baeksu.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/si/충북-폐차장.html",
+     "bucket": "기타",
      "sessions": 1
     }
    ]
