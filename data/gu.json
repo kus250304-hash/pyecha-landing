@@ -3614,7 +3614,89 @@
   "dropped_info": [
    "포항시 누리집과 뉴시스 원문은 접속이 막혀 직접 열지 못했고, 검색 결과 내용으로 확인했습니다."
   ],
-  "checked_on": "2026-10-06"
+  "checked_on": "2026-10-06",
+  "deep": {
+   "since": "2026-11-26",
+   "inquiries": 2,
+   "window": "2026-10-28~2026-11-26"
+  },
+  "area_notes": [
+   {
+    "dong": "오천읍",
+    "line": "해병대 제1사단이 있는 오천읍은 아파트 주차장이든 집 마당이든 차 있는 자리로 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-28",
+     "items": [
+      {
+       "name": "해병대 제1사단",
+       "evidence": "관광 안내(한국관광공사 자료를 옮긴 곳) 축제 장소에 경상북도 포항시 남구 오천읍 용덕리 360-1 오천읍 해병의 거리, 해병대 제1사단",
+       "url": "https://www.ktriptips.com/kor/festival/2491545",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "연일읍",
+    "line": "연일읍행정복지센터가 있는 연일읍 마을에서도 전화 한 통이면 견인차가 차 있는 곳까지 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-28",
+     "items": [
+      {
+       "name": "연일읍행정복지센터",
+       "evidence": "읍소재지 남구 연일읍 철강로 10(괴정리), 건물 정보에도 연일읍사무소 경상북도 포항시 남구 철강로 10",
+       "url": "https://thewiki.kr/w/연일읍",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "지곡동",
+    "line": "지곡동 효자그린아파트처럼 지하주차장에 둔 차도 높이만 알려 주시면 기사가 차 있는 자리로 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-28",
+     "items": [
+      {
+       "name": "효자그린아파트",
+       "evidence": "부동산 매물 주소에 경상북도 포항시 남구 지곡로 294 (지곡동, 효자그린아파트)",
+       "url": "https://realty.daangn.com/articles/3735702",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "효자동",
+    "line": "효자시장 골목이 있는 효자동도 세워 둔 곳을 알려 주시면 차 있는 자리로 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-28",
+     "items": [
+      {
+       "name": "효자시장",
+       "evidence": "사업자 등록 정보에 경상북도 포항시 남구 효자동길2번길 13, 경상북도 포항시 남구 효자동 299 효자시장",
+       "url": "https://bizno.net/article/1892801927",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   },
+   {
+    "dong": "동해면",
+    "line": "포항경주공항이 있는 동해면은 바닷가 마을 공터에 오래 둔 차도 기사가 직접 갑니다.",
+    "fact_check": {
+     "checked_on": "2026-11-28",
+     "items": [
+      {
+       "name": "포항경주공항",
+       "evidence": "국토교통부 공항 안내에 주소 경상북도 포항시 남구 동해면 도구리 402-1번지",
+       "url": "https://www.molit.go.kr/broa/USR/WPGE0201/m_22523/DTL.jsp",
+       "grade": "summary_with_address"
+      }
+     ]
+    }
+   }
+  ]
  },
  {
   "slug": "gyeongbuk-chilgok",
