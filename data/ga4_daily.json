@@ -1,6 +1,6 @@
 {
  "property_timezone": "Asia/Seoul",
- "updated": "2026-11-27T12:25+09:00",
+ "updated": "2026-11-28T12:25+09:00",
  "days": {
   "2026-10-20": {
    "sessions": {
@@ -5334,6 +5334,215 @@
     {
      "page": "/si/충북-폐차장.html",
      "bucket": "기타",
+     "sessions": 1
+    }
+   ]
+  },
+  "2026-11-27": {
+   "sessions": {
+    "네이버": 21,
+    "구글": 0,
+    "유튜브": 0,
+    "직접": 4,
+    "기타": 3
+   },
+   "events": {
+    "네이버": {
+     "quote_submit": 4,
+     "call_click": 5,
+     "sms_click": 0
+    },
+    "구글": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "유튜브": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "직접": {
+     "quote_submit": 1,
+     "call_click": 0,
+     "sms_click": 0
+    },
+    "기타": {
+     "quote_submit": 0,
+     "call_click": 0,
+     "sms_click": 0
+    }
+   },
+   "totals": {
+    "sessions": 28,
+    "quote_submit": 5,
+    "call_click": 5,
+    "sms_click": 0
+   },
+   "sources": [
+    {
+     "source": "m.search.naver.com / referral",
+     "sessions": 16
+    },
+    {
+     "source": "naver / organic",
+     "sessions": 5
+    },
+    {
+     "source": "(direct) / (none)",
+     "sessions": 4
+    },
+    {
+     "source": "(not set) / (not set)",
+     "sessions": 3
+    }
+   ],
+   "pages": [
+    {
+     "page": "/gu/공주시-폐차장.html",
+     "quote_submit": 2,
+     "call_click": 0
+    },
+    {
+     "page": "/gu/포항시-남구-폐차장.html",
+     "quote_submit": 2,
+     "call_click": 0
+    },
+    {
+     "page": "/gu/검단구-폐차장.html",
+     "quote_submit": 1,
+     "call_click": 0
+    },
+    {
+     "page": "/gu/양산시-폐차장.html",
+     "quote_submit": 0,
+     "call_click": 2
+    },
+    {
+     "page": "/gu/시흥시-폐차장.html",
+     "quote_submit": 0,
+     "call_click": 1
+    },
+    {
+     "page": "/gu/포항시-북구-폐차장.html",
+     "quote_submit": 0,
+     "call_click": 1
+    },
+    {
+     "page": "/thanks.html",
+     "quote_submit": 0,
+     "call_click": 1
+    }
+   ],
+   "landing": [
+    {
+     "page": "(not set)",
+     "bucket": "기타",
+     "sessions": 2
+    },
+    {
+     "page": "(not set)",
+     "bucket": "네이버",
+     "sessions": 2
+    },
+    {
+     "page": "/",
+     "bucket": "직접",
+     "sessions": 2
+    },
+    {
+     "page": "/gu/공주시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 2
+    },
+    {
+     "page": "/gu/영종구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 2
+    },
+    {
+     "page": "/gu/포항시-남구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 2
+    },
+    {
+     "page": "/gu/강릉시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/검단구-폐차장.html",
+     "bucket": "기타",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/검단구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/검단구-폐차장.html",
+     "bucket": "직접",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/구미시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/부안군-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/시흥시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/양산시-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/익산시-폐차장.html",
+     "bucket": "직접",
+     "sessions": 1
+    },
+    {
+     "page": "/gu/창원시-마산회원구-폐차장.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/guide/시동-안-걸리는-차.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/guide/조기폐차-지원-안내.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/guide/폐차-절차.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/pages/gyeonggi-yongin-suji-jukjeon.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/pages/jeonnam-yeonggwang-baeksu.html",
+     "bucket": "네이버",
+     "sessions": 1
+    },
+    {
+     "page": "/pages/seoul-dobong-chang.html",
+     "bucket": "네이버",
      "sessions": 1
     }
    ]
